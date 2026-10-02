@@ -132,4 +132,8 @@ MAILERS = {
 
 AUTH_USER_MODEL = 'accounts.User'
 
+DEFAULT_FROM_EMAIL = "no-reply@worknet.com"
+
+EMAIL_VERIFICATION_TIMEOUT = 60 * 60 * 24
+
 CORS_ALLOW_ALL_ORIGINS = True
