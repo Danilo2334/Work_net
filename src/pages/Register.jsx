@@ -45,13 +45,13 @@ const Register = () => {
       }
     >
       <form className="auth__form" onSubmit={handleSubmit} style={{ padding: 0, backgroundColor: 'transparent' }}>
-        
+
         {/* Toggle Role */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '24px' }}>
           <Pressable
             type="button"
             onClick={() => setRole('candidate')}
-            style={{ 
+            style={{
               borderRadius: '12px', flex: 1, padding: '12px', fontSize: '14px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
               backgroundColor: role === 'candidate' ? 'var(--primary-blue)' : 'var(--surface-color)',
               color: role === 'candidate' ? '#fff' : 'var(--text-secondary)',
@@ -66,7 +66,7 @@ const Register = () => {
           <Pressable
             type="button"
             onClick={() => setRole('company')}
-            style={{ 
+            style={{
               borderRadius: '12px', flex: 1, padding: '12px', fontSize: '14px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
               backgroundColor: role === 'company' ? 'var(--primary-blue)' : 'var(--surface-color)',
               color: role === 'company' ? '#fff' : 'var(--text-secondary)',
@@ -112,7 +112,7 @@ const Register = () => {
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px' }}>Correo electrónico</label>
             <div style={{ position: 'relative' }}>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="juanmatabanchoyc@gmail.com" required style={{ width: '100%', padding: '12px 16px', paddingRight: '48px', backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-primary)', outline: 'none', fontSize: '15px' }} />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="example@gmail.com" required style={{ width: '100%', padding: '12px 16px', paddingRight: '48px', backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: '12px', color: 'var(--text-primary)', outline: 'none', fontSize: '15px' }} />
               <div style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', color: '#10b981' }}>
                 <Check size={18} />
               </div>
@@ -141,14 +141,14 @@ const Register = () => {
             </div>
           </div>
         </div>
-        
+
         <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', margin: '24px 0', cursor: 'pointer' }}>
           <input type="checkbox" required defaultChecked style={{ marginTop: '4px' }} />
           <span style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
             Acepto los <a href="#" style={{ color: 'var(--primary-blue)', fontWeight: 600, textDecoration: 'none' }}>Términos de Servicio</a> y la <a href="#" style={{ color: 'var(--primary-blue)', fontWeight: 600, textDecoration: 'none' }}>Política de Privacidad</a> de WorkNet.
           </span>
         </label>
-        
+
         <Pressable
           type="submit"
           style={{ width: '100%', padding: '16px', backgroundColor: 'var(--primary-blue)', color: '#fff', fontSize: '16px', fontWeight: 600, borderRadius: '12px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}
