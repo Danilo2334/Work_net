@@ -1,19 +1,174 @@
+/* ==========================================================================
+   Design tokens
+   Light theme is the default; [data-theme="dark"] overrides colors only.
+   Every color in the app must come from these variables.
+   ========================================================================== */
 :root {
+  color-scheme: light;
+
+  /* Backgrounds & surfaces */
   --bg-color: #f5f5f7;
+  --bg-canvas: #ffffff;
   --surface-color: #ffffff;
+  --surface-muted: #f5f5f7;
+  --surface-strong: #e5e5ea;
+
+  /* Text */
   --text-primary: #1d1d1f;
   --text-secondary: #86868b;
+  --text-on-accent: #ffffff;
+
+  /* Borders & fills */
   --border-color: #d2d2d7;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --fill-secondary: rgba(0, 0, 0, 0.05);
+  --fill-secondary-hover: rgba(0, 0, 0, 0.08);
+  --overlay-hover: rgba(0, 0, 0, 0.04);
+
+  /* Brand */
   --primary-blue: #0066cc;
   --primary-blue-hover: #0071e3;
+  --primary-soft: rgba(0, 102, 204, 0.1);
+  --primary-ring: rgba(0, 102, 204, 0.15);
+  --primary-glow: rgba(0, 102, 204, 0.28);
+  --accent-violet: #7d5bf0;
+  --gradient-text: linear-gradient(135deg, #0066cc 0%, #00aaff 100%);
+  --auth-panel-bg: linear-gradient(150deg, #0071e3 0%, #0058b0 100%);
+
+  /* Inverse (dark buttons on light UI and vice versa) */
+  --inverse-bg: #1d1d1f;
+  --inverse-text: #ffffff;
+
+  /* Status */
+  --success: #16a34a;
+  --success-soft: rgba(39, 201, 63, 0.15);
+  --warning: #d97706;
+  --warning-soft: rgba(255, 189, 46, 0.2);
+  --danger: #dc2626;
+  --danger-soft: rgba(255, 95, 86, 0.1);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --nav-glass-bg: rgba(255, 255, 255, 0.8);
+
+  /* Elevation */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.08);
+
+  /* Shader palettes (hex only – parsed by the WebGL renderer) */
+  --shader-opacity: 0.9;
+  --shader-blue-1: #d6e6ff;
+  --shader-blue-2: #e6defd;
+  --shader-blue-3: #c9ecfb;
+  --shader-violet-1: #e8defd;
+  --shader-violet-2: #fbe1f1;
+  --shader-violet-3: #d9e3ff;
+  --shader-teal-1: #cdf1ec;
+  --shader-teal-2: #d6e9ff;
+  --shader-teal-3: #e1f7d9;
+  --shader-green-1: #d9f5df;
+  --shader-green-2: #e4f3c9;
+  --shader-green-3: #cfeefa;
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
+
+  /* Shape */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-xl: 24px;
   --sidebar-width: 260px;
+
+  /* Motion (mirrors src/motion/tokens.js) */
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-base: 280ms;
+  --duration-slow: 450ms;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-color: #000000;
+  --bg-canvas: #0b0b0d;
+  --surface-color: #1c1c1e;
+  --surface-muted: #2c2c2e;
+  --surface-strong: #3a3a3c;
+
+  --text-primary: #f5f5f7;
+  --text-secondary: #98989d;
+
+  --border-color: #3a3a3c;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --fill-secondary: rgba(255, 255, 255, 0.07);
+  --fill-secondary-hover: rgba(255, 255, 255, 0.12);
+  --overlay-hover: rgba(255, 255, 255, 0.06);
+
+  --primary-blue: #0a84ff;
+  --primary-blue-hover: #409cff;
+  --primary-soft: rgba(10, 132, 255, 0.16);
+  --primary-ring: rgba(10, 132, 255, 0.3);
+  --primary-glow: rgba(10, 132, 255, 0.35);
+  --accent-violet: #9d7dff;
+  --gradient-text: linear-gradient(135deg, #2997ff 0%, #64d2ff 100%);
+  --auth-panel-bg: linear-gradient(150deg, #0a3d7a 0%, #061a36 100%);
+
+  --inverse-bg: #f5f5f7;
+  --inverse-text: #1d1d1f;
+
+  --success: #30d158;
+  --success-soft: rgba(48, 209, 88, 0.16);
+  --warning: #ffb340;
+  --warning-soft: rgba(255, 179, 64, 0.16);
+  --danger: #ff6961;
+  --danger-soft: rgba(255, 105, 97, 0.16);
+
+  --glass-bg: rgba(28, 28, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --nav-glass-bg: rgba(11, 11, 13, 0.72);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.6);
+
+  --shader-opacity: 0.75;
+  --shader-blue-1: #0b2c5e;
+  --shader-blue-2: #24195a;
+  --shader-blue-3: #073e52;
+  --shader-violet-1: #2a1b5c;
+  --shader-violet-2: #4a1745;
+  --shader-violet-3: #142a63;
+  --shader-teal-1: #06433f;
+  --shader-teal-2: #0b2c5e;
+  --shader-teal-3: #1d3f1a;
+  --shader-green-1: #0f4220;
+  --shader-green-2: #2d4210;
+  --shader-green-3: #073e52;
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.18);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.28);
+}
+
+/* Smooth, global color cross-transition – only active while the theme switches
+   (class toggled by ThemeManager), so it never slows down regular interactions. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color var(--duration-slow) var(--ease-standard),
+    color var(--duration-slow) var(--ease-standard),
+    border-color var(--duration-slow) var(--ease-standard),
+    fill var(--duration-slow) var(--ease-standard),
+    stroke var(--duration-slow) var(--ease-standard),
+    box-shadow var(--duration-slow) var(--ease-standard) !important;
+  transition-delay: 0s !important;
 }
 
 * {
@@ -31,11 +186,25 @@ body {
   line-height: 1.5;
 }
 
+:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--glass-border);
 }
 
 a {
@@ -82,30 +251,67 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 10px 20px;
   border-radius: 980px; /* pill shape */
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-lg {
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-block {
+  width: 100%;
 }
 
 .btn-primary {
   background-color: var(--primary-blue);
-  color: white;
+  color: var(--text-on-accent);
 }
 
 .btn-primary:hover {
   background-color: var(--primary-blue-hover);
-  transform: scale(1.02);
+  color: var(--text-on-accent);
+  box-shadow: 0 6px 18px var(--primary-glow);
 }
 
 .btn-secondary {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--fill-secondary);
   color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: var(--fill-secondary-hover);
+  color: var(--text-primary);
+}
+
+.btn-inverse {
+  background-color: var(--inverse-bg);
+  color: var(--inverse-text);
+}
+
+.btn-inverse:hover {
+  color: var(--inverse-text);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-outline {
@@ -115,6 +321,7 @@ button {
 
 .btn-outline:hover {
   border-color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 /* Cards */
@@ -123,7 +330,7 @@ button {
   border-radius: var(--radius-md);
   padding: 24px;
   box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-subtle);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -146,7 +353,7 @@ button {
 
 .input:focus {
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+  box-shadow: 0 0 0 4px var(--primary-ring);
 }
 
 .label {
@@ -204,12 +411,12 @@ button {
 }
 
 .nav-item:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: var(--overlay-hover);
   color: var(--text-primary);
 }
 
 .nav-item.active {
-  background-color: rgba(0, 102, 204, 0.1);
+  background-color: var(--primary-soft);
   color: var(--primary-blue);
 }
 
@@ -222,6 +429,7 @@ button {
 .badge {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   padding: 4px 10px;
   border-radius: 980px;
   font-size: 12px;
@@ -229,16 +437,26 @@ button {
 }
 
 .badge-blue {
-  background-color: rgba(0, 102, 204, 0.1);
+  background-color: var(--primary-soft);
   color: var(--primary-blue);
 }
 
 .badge-green {
-  background-color: rgba(52, 199, 89, 0.1);
-  color: #34c759;
+  background-color: var(--success-soft);
+  color: var(--success);
+}
+
+.badge-amber {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+}
+
+.badge-red {
+  background-color: var(--danger-soft);
+  color: var(--danger);
 }
 
 .badge-gray {
-  background-color: rgba(142, 142, 147, 0.1);
-  color: #8e8e93;
+  background-color: rgba(142, 142, 147, 0.12);
+  color: var(--text-secondary);
 }

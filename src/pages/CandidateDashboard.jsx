@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Search, MapPin, Building, Clock, ChevronRight } from 'lucide-react';
+import { Search, MapPin, Building, Clock, ChevronRight, Filter, Compass, Bookmark, Send } from 'lucide-react';
 import DashboardLayout from '../components/DashboardLayout';
+import { Reveal, Stagger } from '../motion/Reveal';
+import Card from '../components/common/Card';
+import Pressable from '../motion/Pressable';
+import FormField from '../components/common/FormField';
+import Tabs from '../components/common/Tabs';
+import { Crossfade } from '../motion';
 
 const CandidateDashboard = () => {
   const [activeTab, setActiveTab] = useState('explore');
@@ -12,88 +17,121 @@ const CandidateDashboard = () => {
     { id: 3, title: 'Backend Engineer', company: 'DataFlow', location: 'Remoto', type: 'Contract', salary: '$60/hr' },
   ];
 
+  const tabs = [
+    { id: 'explore', label: 'Explorar', icon: Compass },
+    { id: 'saved', label: 'Guardadas', icon: Bookmark },
+    { id: 'applications', label: 'Mis Postulaciones', icon: Send },
+  ];
+
   return (
     <DashboardLayout role="candidate">
-      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-          <div>
-            <h1 style={{ fontSize: '32px', marginBottom: '8px' }}>Explorar Ofertas</h1>
-            <p style={{ color: '#86868b', fontSize: '16px' }}>Encuentra tu próximo desafío profesional.</p>
-          </div>
-          <div style={{ display: 'flex', gap: '12px' }}>
-            <div style={{ position: 'relative' }}>
-              <Search style={{ position: 'absolute', left: '16px', top: '12px', color: '#86868b' }} size={20} />
-              <input 
-                type="text" 
-                placeholder="Buscar por rol o empresa..." 
-                className="input-modern"
-                style={{ paddingLeft: '44px', width: '300px' }}
-              />
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px' }}>
+        <Reveal>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
+            <div>
+              <h1 style={{ fontSize: '32px', fontWeight: 700, margin: '0 0 8px' }}>Mi Espacio</h1>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '16px', margin: 0 }}>Encuentra y gestiona tus oportunidades profesionales.</p>
             </div>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: '24px', marginBottom: '32px' }}>
-          <div style={{ width: '260px', flexShrink: 0 }}>
-            <div className="glass-panel" style={{ padding: '24px', borderRadius: '16px' }}>
-              <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Filtros</h3>
-              
-              <div style={{ marginBottom: '20px' }}>
-                <span className="label-modern">Ubicación</span>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '14px' }}>
-                  <input type="checkbox" /> Remoto
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '14px' }}>
-                  <input type="checkbox" /> Híbrido
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px' }}>
-                  <input type="checkbox" /> Presencial
-                </label>
-              </div>
-
-              <div>
-                <span className="label-modern">Tipo de Contrato</span>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '14px' }}>
-                  <input type="checkbox" /> Full-time
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '14px' }}>
-                  <input type="checkbox" /> Part-time
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px' }}>
-                  <input type="checkbox" /> Freelance
-                </label>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <div style={{ position: 'relative', width: '300px' }}>
+                <Search style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} size={20} />
+                <input 
+                  type="text" 
+                  placeholder="Buscar por rol o empresa..." 
+                  style={{ 
+                    width: '100%',
+                    padding: '12px 16px 12px 48px',
+                    borderRadius: '12px',
+                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--surface-color)',
+                    color: 'var(--text-primary)',
+                    outline: 'none',
+                    fontSize: '14px',
+                    transition: 'var(--motion-spring-base)'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = 'var(--primary-blue)'}
+                  onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
+                />
               </div>
             </div>
           </div>
+        </Reveal>
 
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {jobs.map((job, index) => (
-              <motion.div
-                key={job.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="glass-panel hover-lift"
-                style={{ padding: '24px', borderRadius: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
-              >
-                <div>
-                  <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>{job.title}</h3>
-                  <div style={{ display: 'flex', gap: '16px', color: '#86868b', fontSize: '14px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Building size={16} /> {job.company}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><MapPin size={16} /> {job.location}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={16} /> {job.type}</span>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <span style={{ fontWeight: 500 }}>{job.salary}</span>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#f5f5f7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <ChevronRight size={20} color="#0066cc" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+        <Reveal delay={0.1}>
+          <div style={{ marginBottom: '32px' }}>
+            <Tabs tabs={tabs} value={activeTab} onChange={setActiveTab} />
           </div>
-        </div>
+        </Reveal>
+
+        <Crossfade activeKey={activeTab}>
+          {activeTab === 'explore' && (
+            <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+              <Reveal delay={0.15}>
+                <Card className="glass-panel" style={{ width: '260px', flexShrink: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 600, margin: 0 }}>Filtros</h3>
+                    <Filter size={16} color="var(--text-secondary)" />
+                  </div>
+                  
+                  <div style={{ marginBottom: '24px' }}>
+                    <span style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '12px' }}>Ubicación</span>
+                    {['Remoto', 'Híbrido', 'Presencial'].map(loc => (
+                      <label key={loc} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', fontSize: '14px', cursor: 'pointer' }}>
+                        <input type="checkbox" style={{ accentColor: 'var(--primary-blue)', width: '16px', height: '16px' }} /> {loc}
+                      </label>
+                    ))}
+                  </div>
+
+                  <div>
+                    <span style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '12px' }}>Tipo de Contrato</span>
+                    {['Full-time', 'Part-time', 'Freelance'].map(type => (
+                      <label key={type} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', fontSize: '14px', cursor: 'pointer' }}>
+                        <input type="checkbox" style={{ accentColor: 'var(--primary-blue)', width: '16px', height: '16px' }} /> {type}
+                      </label>
+                    ))}
+                  </div>
+                </Card>
+              </Reveal>
+
+              <Stagger staggerChildren={0.1} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {jobs.map((job) => (
+                  <Card key={job.id} hoverable className="glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px' }}>
+                    <div>
+                      <h3 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 12px' }}>{job.title}</h3>
+                      <div style={{ display: 'flex', gap: '20px', color: 'var(--text-secondary)', fontSize: '14px', flexWrap: 'wrap' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Building size={16} /> {job.company}</span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><MapPin size={16} /> {job.location}</span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Clock size={16} /> {job.type}</span>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                      <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{job.salary}</span>
+                      <Pressable style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ChevronRight size={20} color="var(--primary-blue)" />
+                      </Pressable>
+                    </div>
+                  </Card>
+                ))}
+              </Stagger>
+            </div>
+          )}
+
+          {activeTab === 'saved' && (
+            <div style={{ padding: '64px', textAlign: 'center', backgroundColor: 'var(--surface-color)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+              <Bookmark size={48} color="var(--border-color)" style={{ margin: '0 auto 16px' }} />
+              <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px' }}>No hay ofertas guardadas</h3>
+              <p style={{ color: 'var(--text-secondary)' }}>Cuando guardes una oferta que te interese, aparecerá aquí.</p>
+            </div>
+          )}
+
+          {activeTab === 'applications' && (
+            <div style={{ padding: '64px', textAlign: 'center', backgroundColor: 'var(--surface-color)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+              <Send size={48} color="var(--border-color)" style={{ margin: '0 auto 16px' }} />
+              <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px' }}>Aún no te has postulado</h3>
+              <p style={{ color: 'var(--text-secondary)' }}>Explora las ofertas y da el primer paso hacia tu nuevo trabajo.</p>
+            </div>
+          )}
+        </Crossfade>
       </div>
     </DashboardLayout>
   );

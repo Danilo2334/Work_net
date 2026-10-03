@@ -1,0 +1,36 @@
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.brand-logo:hover {
+  color: var(--text-primary);
+}
+
+.brand-logo__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  background: linear-gradient(145deg, var(--primary-blue-hover), var(--primary-blue));
+  box-shadow: 0 4px 12px var(--primary-glow);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.brand-logo:hover .brand-logo__mark {
+  transform: rotate(-6deg) scale(1.04);
+}
+
+.brand-logo__name {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}

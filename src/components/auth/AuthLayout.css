@@ -1,0 +1,152 @@
+.auth {
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--bg-color);
+}
+
+.auth__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.auth__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.auth__link {
+  font-size: 14px;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth__link:hover {
+  text-decoration: underline;
+}
+
+.auth__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.auth__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.auth__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.auth__body {
+  margin: auto;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 0;
+}
+
+.auth__title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.auth__subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth__form {
+  padding: 32px;
+  border-radius: 24px;
+  background-color: var(--surface-color);
+}
+
+.auth__footer {
+  text-align: center;
+  margin-top: 32px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.auth__footer a {
+  font-weight: 500;
+}
+
+.auth__panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--auth-panel-bg);
+}
+
+.auth__panel-glow {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+  animation: auth-glow 14s ease-in-out infinite alternate;
+}
+
+@keyframes auth-glow {
+  from { transform: translate3d(-4%, -2%, 0) scale(1); }
+  to { transform: translate3d(4%, 3%, 0) scale(1.08); }
+}
+
+.auth__panel-content {
+  position: relative;
+  z-index: 1;
+  padding: 64px;
+  max-width: 600px;
+  color: #fff;
+}
+
+.auth__panel-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.auth__panel-text {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+@media (max-width: 960px) {
+  .auth__panel {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth__main {
+    padding: 20px 16px;
+  }
+
+  .auth__form {
+    padding: 24px 20px;
+  }
+}

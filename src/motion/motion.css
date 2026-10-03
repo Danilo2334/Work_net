@@ -1,0 +1,14 @@
+.crossfade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.crossfade--fill {
+  min-height: 100%;
+}
+
+/* All layers share the same cell, so outgoing/incoming views overlap. */
+.crossfade__layer {
+  grid-area: 1 / 1;
+  min-width: 0;
+}

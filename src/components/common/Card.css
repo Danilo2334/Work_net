@@ -1,0 +1,94 @@
+.ui-card {
+  position: relative;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.ui-card--pad-sm { padding: 16px; }
+.ui-card--pad-md { padding: 24px; }
+.ui-card--pad-lg { padding: 32px; }
+
+.ui-card--interactive {
+  cursor: default;
+  will-change: transform;
+}
+
+.ui-card--interactive:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-color);
+}
+
+/* ---------- Shader variant ---------- */
+.ui-card--shader {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ui-card__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Palettes per accent; each theme overrides them in index.css tokens. */
+.ui-card--accent-blue   { --shader-1: var(--shader-blue-1);   --shader-2: var(--shader-blue-2);   --shader-3: var(--shader-blue-3); }
+.ui-card--accent-violet { --shader-1: var(--shader-violet-1); --shader-2: var(--shader-violet-2); --shader-3: var(--shader-violet-3); }
+.ui-card--accent-teal   { --shader-1: var(--shader-teal-1);   --shader-2: var(--shader-teal-2);   --shader-3: var(--shader-teal-3); }
+.ui-card--accent-green  { --shader-1: var(--shader-green-1);  --shader-2: var(--shader-green-2);  --shader-3: var(--shader-green-3); }
+
+/* ---------- Stat card ---------- */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 168px;
+}
+
+.stat-card .ui-card__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 6px;
+}
+
+.stat-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.stat-card__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.stat-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: var(--primary-blue);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.stat-card__value {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.stat-card__hint {
+  font-size: 13px;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,32 @@
+.auth__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.auth__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.auth__link {
+  font-size: 14px;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth__link:hover {
+  text-decoration: underline;
+}
+
+.auth__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

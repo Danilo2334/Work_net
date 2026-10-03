@@ -1,0 +1,70 @@
+/* ---------- Avatar ---------- */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: linear-gradient(145deg, var(--primary-blue-hover), var(--accent-violet));
+  box-shadow: 0 0 0 2px var(--surface-color), 0 0 0 3px var(--border-subtle);
+}
+
+/* ---------- Progress ---------- */
+.progress {
+  position: relative;
+  height: 6px;
+  border-radius: 980px;
+  background-color: var(--fill-secondary);
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.progress__fill {
+  position: absolute;
+  inset: 0;
+  width: var(--progress);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-hover));
+  transform-origin: left center;
+  animation: progress-grow 900ms var(--ease-out) both 200ms;
+}
+
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 56px 24px;
+}
+
+.empty-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  color: var(--primary-blue);
+  background-color: var(--primary-soft);
+}
+
+.empty-state__title {
+  font-size: 18px;
+}
+
+.empty-state__description {
+  max-width: 380px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}

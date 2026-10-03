@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import Crossfade from '../motion/Crossfade';
 
 const DashboardLayout = ({ children, role }) => {
   const location = useLocation();
@@ -9,20 +9,12 @@ const DashboardLayout = ({ children, role }) => {
   return (
     <div className="dashboard-layout">
       <Sidebar role={role} />
-      <div className="dashboard-content">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            style={{ height: '100%' }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <main className="dashboard-content">
+        {/* Section changes crossfade in place (outgoing and incoming overlap). */}
+        <Crossfade activeKey={location.pathname} fill>
+          {children}
+        </Crossfade>
+      </main>
     </div>
   );
 };
