@@ -4,15 +4,34 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
 import '../components/dashboard_widgets.dart';
 
-class CompanyDashboard extends StatelessWidget {
+import '../components/profile_edit_modal.dart';
+
+class CompanyDashboard extends StatefulWidget {
   const CompanyDashboard({super.key});
+
+  @override
+  State<CompanyDashboard> createState() => _CompanyDashboardState();
+}
+
+class _CompanyDashboardState extends State<CompanyDashboard> {
+  String companyName = 'Mercado Pago';
+  String subtitle = 'FinTech Core • Partner Oficial';
+
+  void _openSettings() {
+    context.push('/settings/company');
+  }
 
   @override
   Widget build(BuildContext context) {
     final primaryBlue = const Color(0xFF0F62FE);
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: DashboardHeader(title: 'Ats Dashboard', onBack: () => context.go('/')),
+      appBar: DashboardHeader(
+        title: 'Ats Dashboard', 
+        onBack: () => context.go('/'),
+        onAvatarTap: _openSettings,
+        trailing: IconButton(icon: const Icon(LucideIcons.settings, color: Colors.black87), onPressed: _openSettings),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -38,17 +57,24 @@ class CompanyDashboard extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                const Text('Mercado Pago', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                Text(companyName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                                 const SizedBox(width: 8),
                                 Container(
                                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                   decoration: BoxDecoration(color: Colors.green.withOpacity(0.1), borderRadius: BorderRadius.circular(4)),
                                   child: const Text('Verificada 4.9', style: TextStyle(color: Colors.green, fontSize: 10, fontWeight: FontWeight.bold)),
+                                ),
+                                const Spacer(),
+                                IconButton(
+                                  icon: const Icon(LucideIcons.edit3, size: 16, color: Colors.grey),
+                                  onPressed: _openSettings,
+                                  constraints: const BoxConstraints(),
+                                  padding: EdgeInsets.zero,
                                 )
                               ],
                             ),
                             const SizedBox(height: 4),
-                            Text('FinTech Core • Partner Oficial', style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                            Text(subtitle, style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
                           ],
                         ),
                       )

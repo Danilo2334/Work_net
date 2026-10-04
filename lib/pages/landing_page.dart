@@ -58,6 +58,7 @@ class _LandingPageState extends State<LandingPage> {
       backgroundColor: Colors.white,
       elevation: 0,
       title: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             padding: const EdgeInsets.all(6),

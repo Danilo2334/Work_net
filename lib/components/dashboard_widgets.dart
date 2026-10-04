@@ -6,8 +6,9 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onBack;
   final Widget? trailing;
+  final VoidCallback? onAvatarTap;
 
-  const DashboardHeader({super.key, required this.title, this.onBack, this.trailing});
+  const DashboardHeader({super.key, required this.title, this.onBack, this.trailing, this.onAvatarTap});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +36,13 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (trailing != null) trailing!,
         const SizedBox(width: 16),
-        CircleAvatar(
-          radius: 16,
-          backgroundColor: Colors.grey.shade200,
-          child: Icon(LucideIcons.user, size: 18, color: Colors.grey.shade600),
+        GestureDetector(
+          onTap: onAvatarTap,
+          child: CircleAvatar(
+            radius: 16,
+            backgroundColor: Colors.grey.shade200,
+            child: Icon(LucideIcons.user, size: 18, color: Colors.grey.shade600),
+          ),
         ),
         const SizedBox(width: 16),
       ],

@@ -7,6 +7,7 @@ import 'pages/landing_page.dart';
 import 'pages/admin_dashboard.dart';
 import 'pages/company_dashboard.dart';
 import 'pages/candidate_dashboard.dart';
+import 'pages/settings_page.dart';
 
 void main() {
   runApp(const WorkNetApp());
@@ -60,6 +61,14 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         child: const CandidateDashboard(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/:role',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: SettingsPage(role: state.pathParameters['role'] ?? 'candidate'),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
       ),
     ),

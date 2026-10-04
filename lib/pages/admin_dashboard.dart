@@ -4,8 +4,22 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
 import '../components/dashboard_widgets.dart';
 
-class AdminDashboard extends StatelessWidget {
+import '../components/profile_edit_modal.dart';
+
+class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
+
+  @override
+  State<AdminDashboard> createState() => _AdminDashboardState();
+}
+
+class _AdminDashboardState extends State<AdminDashboard> {
+  String adminName = 'Administrador Global';
+  String adminEmail = 'admin@worknet.ai';
+
+  void _openSettings() {
+    context.push('/settings/admin');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +29,8 @@ class AdminDashboard extends StatelessWidget {
       appBar: DashboardHeader(
         title: 'Admin Metrics',
         onBack: () => context.go('/'),
+        onAvatarTap: _openSettings,
+        trailing: IconButton(icon: const Icon(LucideIcons.settings, color: Colors.black87), onPressed: _openSettings),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

@@ -4,15 +4,35 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
 import '../components/dashboard_widgets.dart';
 
-class CandidateDashboard extends StatelessWidget {
+import '../components/profile_edit_modal.dart';
+
+class CandidateDashboard extends StatefulWidget {
   const CandidateDashboard({super.key});
+
+  @override
+  State<CandidateDashboard> createState() => _CandidateDashboardState();
+}
+
+class _CandidateDashboardState extends State<CandidateDashboard> {
+  String name = 'Camila Restrepo';
+  String role = 'Lead Product Designer & Design Systems';
+  String location = 'Medellín, Colombia • Remoto Global';
+
+  void _openSettings() {
+    context.push('/settings/candidate');
+  }
 
   @override
   Widget build(BuildContext context) {
     final primaryBlue = const Color(0xFF0F62FE);
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: DashboardHeader(title: 'WorkNet', onBack: () => context.go('/')),
+      appBar: DashboardHeader(
+        title: 'WorkNet',
+        onBack: () => context.go('/'),
+        onAvatarTap: _openSettings,
+        trailing: IconButton(icon: const Icon(LucideIcons.settings, color: Colors.black87), onPressed: _openSettings),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,16 +52,16 @@ class CandidateDashboard extends StatelessWidget {
                     child: Icon(LucideIcons.user, size: 40, color: primaryBlue),
                   ).animate().scale(delay: 100.ms, duration: 400.ms, curve: Curves.easeOutBack),
                   const SizedBox(height: 16),
-                  const Text('Camila Restrepo', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  Text(name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
-                  const Text('Lead Product Designer & Design Systems', style: TextStyle(fontSize: 14, color: Color(0xFF0F62FE), fontWeight: FontWeight.w600), textAlign: TextAlign.center),
+                  Text(role, style: const TextStyle(fontSize: 14, color: Color(0xFF0F62FE), fontWeight: FontWeight.w600), textAlign: TextAlign.center),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(LucideIcons.mapPin, size: 14, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
-                      Text('Medellín, Colombia • Remoto Global', style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                      Text(location, style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -49,7 +69,7 @@ class CandidateDashboard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: _openSettings,
                           icon: const Icon(LucideIcons.edit2, size: 16),
                           label: const Text('Editar Perfil'),
                           style: ElevatedButton.styleFrom(backgroundColor: primaryBlue, foregroundColor: Colors.white, elevation: 0),
