@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -268,14 +269,14 @@ class _HomeTabContentState extends State<_HomeTabContent> {
             const SizedBox(height: 12),
             
             // Headline
-            const Text('El futuro del empleo.', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, height: 1.1, color: Colors.black87)),
-            Text('Simple. Inteligente.', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, height: 1.1, color: primaryBlue)),
-            const SizedBox(height: 12),
+            const Text('El futuro del empleo.', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, height: 1.1, color: Colors.black87)),
+            Text('Simple. Inteligente.', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, height: 1.1, color: primaryBlue)),
+            const SizedBox(height: 10),
             Text(
               'Conectamos talento tech de alto impacto con las mejores empresas globales mediante algoritmos de compatibilidad neural.',
-              style: TextStyle(color: Colors.grey.shade600, fontSize: 14, height: 1.4),
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 13, height: 1.4),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
             // Toggle
             Row(
@@ -371,7 +372,7 @@ class _HomeTabContentState extends State<_HomeTabContent> {
                 const SizedBox(width: 8),
                 Expanded(child: _buildStatCard('+2.4k', 'Empresas', primaryBlue)),
               ],
-            ),
+            ).animate().fade(duration: 500.ms).slideY(begin: 0.1),
             const SizedBox(height: 24),
 
             // Algoritmo Neural Live Card
@@ -471,7 +472,7 @@ class _HomeTabContentState extends State<_HomeTabContent> {
                   ),
                 ],
               ),
-            ),
+            ).animate().fade(delay: 200.ms, duration: 500.ms).scaleXY(begin: 0.95),
             const SizedBox(height: 32),
 
             Center(child: Text('EMPRESAS LÍDERES CONTRATANDO ACTIVAMENTE', style: TextStyle(color: Colors.grey.shade500, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.1))),
@@ -490,17 +491,17 @@ class _HomeTabContentState extends State<_HomeTabContent> {
             ),
             const SizedBox(height: 40),
 
-            const Text('Diseñado para la velocidad del talento', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
+            const Text('Diseñado para la velocidad del talento', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
             const SizedBox(height: 6),
-            Text('Sin formularios redundantes ni procesos opacos.', style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
-            const SizedBox(height: 20),
+            Text('Sin formularios redundantes ni procesos opacos.', style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
+            const SizedBox(height: 16),
 
-            _buildFeatureCard(LucideIcons.shieldCheck, 'Ofertas y Salarios Verificados', 'Rangos salariales transparentes en USD o moneda local antes de postularte.', primaryBlue.withOpacity(0.1), primaryBlue),
-            const SizedBox(height: 16),
-            _buildFeatureCard(LucideIcons.zap, 'Postulaciones en 1 Click', 'Sincroniza tu perfil de desarrollador o diseñador y recibe feedback en menos de 48 horas.', const Color(0xFFE0E7FF), const Color(0xFF6366F1)),
-            const SizedBox(height: 16),
-            _buildFeatureCard(LucideIcons.cpu, 'Filtros IA de Compatibilidad', 'Evaluamos tu stack técnico real y aspiraciones para evitar entrevistas sin sentido.', const Color(0xFFD1FAE5), const Color(0xFF10B981)),
-            const SizedBox(height: 60),
+            _buildFeatureCard(LucideIcons.shieldCheck, 'Ofertas y Salarios Verificados', 'Rangos salariales transparentes en USD o moneda local antes de postularte.', primaryBlue.withOpacity(0.1), primaryBlue).animate().fade(delay: 400.ms).slideX(begin: -0.1),
+            const SizedBox(height: 12),
+            _buildFeatureCard(LucideIcons.zap, 'Postulaciones en 1 Click', 'Sincroniza tu perfil de desarrollador o diseñador y recibe feedback en menos de 48 horas.', const Color(0xFFE0E7FF), const Color(0xFF6366F1)).animate().fade(delay: 500.ms).slideX(begin: -0.1),
+            const SizedBox(height: 12),
+            _buildFeatureCard(LucideIcons.cpu, 'Filtros IA de Compatibilidad', 'Evaluamos tu stack técnico real y aspiraciones para evitar entrevistas sin sentido.', const Color(0xFFD1FAE5), const Color(0xFF10B981)).animate().fade(delay: 600.ms).slideX(begin: -0.1),
+            const SizedBox(height: 40),
 
             // Call to action bottom
             Center(
@@ -511,9 +512,9 @@ class _HomeTabContentState extends State<_HomeTabContent> {
               ),
             ),
             const SizedBox(height: 24),
-            const Text('¿Listo para dar el siguiente salto?', textAlign: TextAlign.center, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Text('¿Listo para dar el siguiente salto?', textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
-            Text('Crea tu perfil gratuito en 2 minutos y accede a propuestas exclusivas de alto valor.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+            Text('Crea tu perfil gratuito en 2 minutos y accede a propuestas exclusivas de alto valor.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => context.go('/register'),
@@ -608,9 +609,9 @@ class _HomeTabContentState extends State<_HomeTabContent> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                const SizedBox(height: 6),
-                Text(desc, style: TextStyle(color: Colors.grey.shade600, fontSize: 13, height: 1.4)),
+                Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                const SizedBox(height: 4),
+                Text(desc, style: TextStyle(color: Colors.grey.shade600, fontSize: 11, height: 1.4)),
               ],
             ),
           ),

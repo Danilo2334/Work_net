@@ -62,8 +62,20 @@
       "languageVersion": "3.8"
     },
     {
+      "name": "flutter_animate",
+      "rootUri": "file:///C:/Users/juanm/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_animate-4.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/juanm/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "flutter_shaders",
+      "rootUri": "file:///C:/Users/juanm/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_shaders-0.1.3",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
