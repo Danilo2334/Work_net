@@ -131,5 +131,7 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = 'accounts.User'
+DEFAULT_FROM_EMAIL = "no-reply@worknet.com"
+PASSWORD_RESET_FRONTEND_URL = "http://localhost:3000/reset-password"
 
 CORS_ALLOW_ALL_ORIGINS = True
