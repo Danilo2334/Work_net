@@ -16,8 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _rememberMe = true;
 
   void _handleLogin(String role) {
-    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Navegando a \$role')));
-    // Aquí iría el enrutamiento con go_router: context.go('/\$role');
+    context.go('/$role');
   }
 
   @override

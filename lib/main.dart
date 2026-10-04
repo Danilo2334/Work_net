@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'pages/landing_page.dart';
+import 'pages/admin_dashboard.dart';
+import 'pages/company_dashboard.dart';
+import 'pages/candidate_dashboard.dart';
 
 void main() {
   runApp(const WorkNetApp());
@@ -33,6 +36,30 @@ final _router = GoRouter(
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         child: const RegisterPage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/admin',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const AdminDashboard(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/company',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const CompanyDashboard(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
+      ),
+    ),
+    GoRoute(
+      path: '/candidate',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const CandidateDashboard(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(opacity: animation, child: child),
       ),
     ),
