@@ -265,17 +265,17 @@ class _HomeTabContentState extends State<_HomeTabContent> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             
             // Headline
-            const Text('El futuro del empleo.', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, height: 1.1, color: Colors.black87)),
-            Text('Simple. Inteligente.', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, height: 1.1, color: primaryBlue)),
-            const SizedBox(height: 16),
+            const Text('El futuro del empleo.', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, height: 1.1, color: Colors.black87)),
+            Text('Simple. Inteligente.', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, height: 1.1, color: primaryBlue)),
+            const SizedBox(height: 12),
             Text(
               'Conectamos talento tech de alto impacto con las mejores empresas globales mediante algoritmos de compatibilidad neural.',
-              style: TextStyle(color: Colors.grey.shade600, fontSize: 16, height: 1.4),
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 14, height: 1.4),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             // Toggle
             Row(
@@ -364,14 +364,15 @@ class _HomeTabContentState extends State<_HomeTabContent> {
 
             // Stats
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildStatCard('+15k', 'Vacantes', primaryBlue),
-                _buildStatCard('94%', 'Tasa Match', Colors.green),
-                _buildStatCard('+2.4k', 'Empresas', primaryBlue),
+                Expanded(child: _buildStatCard('+15k', 'Vacantes', primaryBlue)),
+                const SizedBox(width: 8),
+                Expanded(child: _buildStatCard('94%', 'Tasa Match', Colors.green)),
+                const SizedBox(width: 8),
+                Expanded(child: _buildStatCard('+2.4k', 'Empresas', primaryBlue)),
               ],
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 24),
 
             // Algoritmo Neural Live Card
             Container(
@@ -386,21 +387,24 @@ class _HomeTabContentState extends State<_HomeTabContent> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Icon(LucideIcons.brainCircuit, color: primaryBlue, size: 18),
-                          const SizedBox(width: 8),
-                          Text('ALGORITMO NEURAL LIVE', style: TextStyle(color: primaryBlue, fontWeight: FontWeight.bold, fontSize: 12, letterSpacing: 1.1)),
-                        ],
+                      Flexible(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(LucideIcons.brainCircuit, color: primaryBlue, size: 16),
+                            const SizedBox(width: 6),
+                            Flexible(child: Text('ALGORITMO NEURAL LIVE', style: TextStyle(color: primaryBlue, fontWeight: FontWeight.bold, fontSize: 11, letterSpacing: 0.5), overflow: TextOverflow.ellipsis)),
+                          ],
+                        ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(color: Colors.green.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
-                        child: const Text('98% Match', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 12)),
+                        child: const Text('98% Match', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 11)),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16), boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 10)]),
@@ -434,10 +438,10 @@ class _HomeTabContentState extends State<_HomeTabContent> {
                   const SizedBox(height: 16),
                   Row(
                     children: [
-                      const Text('Afinidad con: ', style: TextStyle(fontSize: 12)),
-                      const Text('Senior Mobile Lead en Nubank', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                      const Text('Afinidad con: ', style: TextStyle(fontSize: 11)),
+                      const Flexible(child: Text('Senior Mobile Lead', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11), overflow: TextOverflow.ellipsis)),
                       const Spacer(),
-                      const Text('Excelente', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 12)),
+                      const Text('Excelente', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 11)),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -486,10 +490,10 @@ class _HomeTabContentState extends State<_HomeTabContent> {
             ),
             const SizedBox(height: 40),
 
-            const Text('Diseñado para la velocidad del talento', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87)),
-            const SizedBox(height: 8),
-            Text('Sin formularios redundantes ni procesos opacos.', style: TextStyle(color: Colors.grey.shade600, fontSize: 14)),
-            const SizedBox(height: 24),
+            const Text('Diseñado para la velocidad del talento', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
+            const SizedBox(height: 6),
+            Text('Sin formularios redundantes ni procesos opacos.', style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+            const SizedBox(height: 20),
 
             _buildFeatureCard(LucideIcons.shieldCheck, 'Ofertas y Salarios Verificados', 'Rangos salariales transparentes en USD o moneda local antes de postularte.', primaryBlue.withOpacity(0.1), primaryBlue),
             const SizedBox(height: 16),
@@ -507,10 +511,10 @@ class _HomeTabContentState extends State<_HomeTabContent> {
               ),
             ),
             const SizedBox(height: 24),
-            const Text('¿Listo para dar el siguiente salto?', textAlign: TextAlign.center, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 12),
-            Text('Crea tu perfil gratuito en 2 minutos y accede a propuestas exclusivas de alto valor.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600, fontSize: 14)),
-            const SizedBox(height: 24),
+            const Text('¿Listo para dar el siguiente salto?', textAlign: TextAlign.center, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            Text('Crea tu perfil gratuito en 2 minutos y accede a propuestas exclusivas de alto valor.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => context.go('/register'),
               style: ElevatedButton.styleFrom(
@@ -548,14 +552,13 @@ class _HomeTabContentState extends State<_HomeTabContent> {
 
   Widget _buildStatCard(String value, String label, Color color) {
     return Container(
-      width: 100,
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      decoration: BoxDecoration(color: Colors.grey.shade50, borderRadius: BorderRadius.circular(16)),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+      decoration: BoxDecoration(color: Colors.grey.shade50, borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
-          Text(value, style: TextStyle(color: color, fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+          Text(value, style: TextStyle(color: color, fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 2),
+          Text(label, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600), textAlign: TextAlign.center),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -200,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Text('¿No tienes cuenta? '),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => context.go('/register'),
                       child: Text(
                         'Regístrate gratis',
                         style: TextStyle(

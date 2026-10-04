@@ -13,6 +13,38 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isCandidate = true;
   bool _obscurePassword = true;
   bool _acceptedTerms = false;
+  String _password = '';
+
+  int get _strengthScore {
+    if (_password.isEmpty) return 0;
+    int score = 0;
+    if (_password.length >= 8) score++;
+    if (_password.contains(RegExp(r'[A-Z]'))) score++;
+    if (_password.contains(RegExp(r'[a-z]'))) score++;
+    if (_password.contains(RegExp(r'[0-9!@#\$&*~._-]'))) score++;
+    return score;
+  }
+
+  String get _strengthText {
+    switch (_strengthScore) {
+      case 0: return '';
+      case 1: return 'Débil';
+      case 2: return 'Regular';
+      case 3: return 'Buena';
+      case 4: return 'Fuerte';
+      default: return '';
+    }
+  }
+
+  Color get _strengthColor {
+    switch (_strengthScore) {
+      case 1: return Colors.red;
+      case 2: return Colors.orange;
+      case 3: return Colors.yellow.shade700;
+      case 4: return Colors.green;
+      default: return Colors.grey.shade300;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -219,18 +251,20 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildLabel('Contraseña'),
-                Row(
-                  children: [
-                    Container(width: 6, height: 6, decoration: const BoxDecoration(color: Colors.green, shape: BoxShape.circle)),
-                    const SizedBox(width: 6),
-                    const Text('Seguridad: Fuerte', style: TextStyle(color: Colors.green, fontSize: 12, fontWeight: FontWeight.w600)),
-                  ],
-                ),
+                if (_password.isNotEmpty)
+                  Row(
+                    children: [
+                      Container(width: 6, height: 6, decoration: BoxDecoration(color: _strengthColor, shape: BoxShape.circle)),
+                      const SizedBox(width: 6),
+                      Text('Seguridad: $_strengthText', style: TextStyle(color: _strengthColor, fontSize: 12, fontWeight: FontWeight.w600)),
+                    ],
+                  ),
               ],
             ),
             const SizedBox(height: 8),
             TextField(
               obscureText: _obscurePassword,
+              onChanged: (val) => setState(() => _password = val),
               decoration: _inputDecoration(
                 hint: '••••••••••••',
                 icon: LucideIcons.lock,
@@ -244,13 +278,13 @@ class _RegisterPageState extends State<RegisterPage> {
             // Password strength bars
             Row(
               children: [
-                Expanded(child: Container(height: 4, decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(2)))),
+                Expanded(child: AnimatedContainer(duration: const Duration(milliseconds: 300), height: 4, decoration: BoxDecoration(color: _strengthScore >= 1 ? _strengthColor : Colors.grey.shade200, borderRadius: BorderRadius.circular(2)))),
                 const SizedBox(width: 4),
-                Expanded(child: Container(height: 4, decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(2)))),
+                Expanded(child: AnimatedContainer(duration: const Duration(milliseconds: 300), height: 4, decoration: BoxDecoration(color: _strengthScore >= 2 ? _strengthColor : Colors.grey.shade200, borderRadius: BorderRadius.circular(2)))),
                 const SizedBox(width: 4),
-                Expanded(child: Container(height: 4, decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(2)))),
+                Expanded(child: AnimatedContainer(duration: const Duration(milliseconds: 300), height: 4, decoration: BoxDecoration(color: _strengthScore >= 3 ? _strengthColor : Colors.grey.shade200, borderRadius: BorderRadius.circular(2)))),
                 const SizedBox(width: 4),
-                Expanded(child: Container(height: 4, decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(2)))),
+                Expanded(child: AnimatedContainer(duration: const Duration(milliseconds: 300), height: 4, decoration: BoxDecoration(color: _strengthScore >= 4 ? _strengthColor : Colors.grey.shade200, borderRadius: BorderRadius.circular(2)))),
               ],
             ),
             const SizedBox(height: 24),
