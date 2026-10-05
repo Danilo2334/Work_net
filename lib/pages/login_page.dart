@@ -54,55 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 32),
 
-                // Social Buttons
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(LucideIcons.chrome, size: 18), // Sustituto temporal de logo Google
-                        label: const Text('Google'),
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(LucideIcons.linkedin, size: 18),
-                        label: const Text('LinkedIn'),
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 24),
-                // Divider
-                Row(
-                  children: [
-                    Expanded(child: Divider(color: colorScheme.outline.withOpacity(0.3))),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'O CON TU CORREO',
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: colorScheme.onSurface.withOpacity(0.5),
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                    ),
-                    Expanded(child: Divider(color: colorScheme.outline.withOpacity(0.3))),
-                  ],
-                ),
-                const SizedBox(height: 24),
 
                 // Form
                 Text('Correo electrónico', style: theme.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold)),

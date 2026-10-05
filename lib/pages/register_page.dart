@@ -180,52 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             const SizedBox(height: 24),
 
-            // Social Buttons
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(LucideIcons.chrome, size: 18, color: Colors.red), 
-                    label: const Text('Google', style: TextStyle(color: Colors.black87)),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      side: BorderSide(color: Colors.grey.shade300),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(LucideIcons.linkedin, size: 18, color: Color(0xFF0A66C2)),
-                    label: const Text('LinkedIn', style: TextStyle(color: Colors.black87)),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      side: BorderSide(color: Colors.grey.shade300),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
 
-            const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(child: Divider(color: Colors.grey.shade300)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    'O COMPLETA TUS DATOS',
-                    style: TextStyle(color: Colors.grey.shade500, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.1),
-                  ),
-                ),
-                Expanded(child: Divider(color: Colors.grey.shade300)),
-              ],
-            ),
-            const SizedBox(height: 24),
 
             // Form Fields
             _buildLabel('Nombre completo'),
