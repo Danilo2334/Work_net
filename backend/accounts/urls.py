@@ -1,5 +1,7 @@
 from django.urls import path
 
+from .notification_preferences import NotificationPreferencesView
+
 from .account_configuration import (
     AccountView,
     ChangePasswordView,
@@ -13,6 +15,7 @@ from .views import (
 
 
 urlpatterns = [
+    path("account/notifications/", NotificationPreferencesView.as_view(), name="account-notifications"),
     path("account/", AccountView.as_view(), name="account-configuration"),
     path("account/password/", ChangePasswordView.as_view(), name="account-password"),
     path("account/delete/", DeleteAccountView.as_view(), name="account-delete"),
