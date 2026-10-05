@@ -14,7 +14,10 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool _isCandidate = true;
+
   bool _obscurePassword = true;
+  bool _obscurePasswordConfirm = true;
+
   bool _acceptedTerms = false;
   bool _isLoading = false;
 
@@ -27,6 +30,9 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
 
   final TextEditingController _passwordController =
+      TextEditingController();
+
+  final TextEditingController _passwordConfirmController =
       TextEditingController();
 
   int get _strengthScore {
@@ -81,6 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _passwordConfirmController.dispose();
 
     super.dispose();
   }
@@ -89,12 +96,23 @@ class _RegisterPageState extends State<RegisterPage> {
     final fullName = _nameController.text.trim();
     final email = _emailController.text.trim();
     final password = _passwordController.text;
+    final passwordConfirm =
+        _passwordConfirmController.text;
 
     if (fullName.isEmpty ||
         email.isEmpty ||
-        password.isEmpty) {
+        password.isEmpty ||
+        passwordConfirm.isEmpty) {
       _showMessage(
         'Completa todos los campos.',
+        isError: true,
+      );
+      return;
+    }
+
+    if (password != passwordConfirm) {
+      _showMessage(
+        'Las contraseñas no coinciden.',
         isError: true,
       );
       return;
@@ -124,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
           'full_name': fullName,
           'email': email,
           'password': password,
-          'password_confirm': password,
+          'password_confirm': passwordConfirm,
           'role': _isCandidate
               ? 'candidato'
               : 'empresa',
@@ -150,6 +168,7 @@ class _RegisterPageState extends State<RegisterPage> {
         _nameController.clear();
         _emailController.clear();
         _passwordController.clear();
+        _passwordConfirmController.clear();
 
         setState(() {
           _password = '';
@@ -213,7 +232,8 @@ class _RegisterPageState extends State<RegisterPage> {
     String message, {
     bool isError = false,
   }) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context)
+        .hideCurrentSnackBar();
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -226,7 +246,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme =
+        Theme.of(context).colorScheme;
+
     const primaryBlue = Color(0xFF0F62FE);
 
     return Scaffold(
@@ -248,7 +270,8 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: primaryBlue,
-                borderRadius: BorderRadius.circular(6),
+                borderRadius:
+                    BorderRadius.circular(6),
               ),
               child: const Icon(
                 Icons.work,
@@ -298,7 +321,8 @@ class _RegisterPageState extends State<RegisterPage> {
           vertical: 16.0,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment:
+              CrossAxisAlignment.stretch,
           children: [
             Text(
               'Crea tu cuenta',
@@ -307,7 +331,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   .headlineMedium
                   ?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF1E293B),
+                    color:
+                        const Color(0xFF1E293B),
                   ),
             ),
             const SizedBox(height: 8),
@@ -326,7 +351,8 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius:
+                    BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
@@ -336,11 +362,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           ? null
                           : () {
                               setState(() {
-                                _isCandidate = true;
+                                _isCandidate =
+                                    true;
                               });
                             },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
+                        padding:
+                            const EdgeInsets.symmetric(
                           vertical: 12,
                         ),
                         decoration: BoxDecoration(
@@ -348,26 +376,33 @@ class _RegisterPageState extends State<RegisterPage> {
                               ? primaryBlue
                               : Colors.transparent,
                           borderRadius:
-                              BorderRadius.circular(10),
+                              BorderRadius.circular(
+                            10,
+                          ),
                         ),
                         child: Row(
                           mainAxisAlignment:
-                              MainAxisAlignment.center,
+                              MainAxisAlignment
+                                  .center,
                           children: [
                             Icon(
                               LucideIcons.user,
                               size: 18,
                               color: _isCandidate
                                   ? Colors.white
-                                  : Colors.grey.shade600,
+                                  : Colors.grey
+                                      .shade600,
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(
+                              width: 8,
+                            ),
                             Text(
                               'Soy Candidato',
                               style: TextStyle(
                                 color: _isCandidate
                                     ? Colors.white
-                                    : Colors.grey.shade700,
+                                    : Colors.grey
+                                        .shade700,
                                 fontWeight:
                                     FontWeight.bold,
                               ),
@@ -383,11 +418,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           ? null
                           : () {
                               setState(() {
-                                _isCandidate = false;
+                                _isCandidate =
+                                    false;
                               });
                             },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
+                        padding:
+                            const EdgeInsets.symmetric(
                           vertical: 12,
                         ),
                         decoration: BoxDecoration(
@@ -395,26 +432,33 @@ class _RegisterPageState extends State<RegisterPage> {
                               ? primaryBlue
                               : Colors.transparent,
                           borderRadius:
-                              BorderRadius.circular(10),
+                              BorderRadius.circular(
+                            10,
+                          ),
                         ),
                         child: Row(
                           mainAxisAlignment:
-                              MainAxisAlignment.center,
+                              MainAxisAlignment
+                                  .center,
                           children: [
                             Icon(
                               LucideIcons.building,
                               size: 18,
                               color: !_isCandidate
                                   ? Colors.white
-                                  : Colors.grey.shade600,
+                                  : Colors.grey
+                                      .shade600,
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(
+                              width: 8,
+                            ),
                             Text(
                               'Soy Empresa',
                               style: TextStyle(
                                 color: !_isCandidate
                                     ? Colors.white
-                                    : Colors.grey.shade700,
+                                    : Colors.grey
+                                        .shade700,
                                 fontWeight:
                                     FontWeight.bold,
                               ),
@@ -447,17 +491,22 @@ class _RegisterPageState extends State<RegisterPage> {
                         color: Colors.black87,
                       ),
                     ),
-                    style: OutlinedButton.styleFrom(
+                    style:
+                        OutlinedButton.styleFrom(
                       padding:
                           const EdgeInsets.symmetric(
                         vertical: 14,
                       ),
                       side: BorderSide(
-                        color: Colors.grey.shade300,
+                        color:
+                            Colors.grey.shade300,
                       ),
-                      shape: RoundedRectangleBorder(
+                      shape:
+                          RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.circular(10),
+                            BorderRadius.circular(
+                          10,
+                        ),
                       ),
                     ),
                   ),
@@ -467,9 +516,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: OutlinedButton.icon(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.business_center_outlined,
+                      Icons
+                          .business_center_outlined,
                       size: 18,
-                      color: Color(0xFF0A66C2),
+                      color:
+                          Color(0xFF0A66C2),
                     ),
                     label: const Text(
                       'LinkedIn',
@@ -477,17 +528,22 @@ class _RegisterPageState extends State<RegisterPage> {
                         color: Colors.black87,
                       ),
                     ),
-                    style: OutlinedButton.styleFrom(
+                    style:
+                        OutlinedButton.styleFrom(
                       padding:
                           const EdgeInsets.symmetric(
                         vertical: 14,
                       ),
                       side: BorderSide(
-                        color: Colors.grey.shade300,
+                        color:
+                            Colors.grey.shade300,
                       ),
-                      shape: RoundedRectangleBorder(
+                      shape:
+                          RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.circular(10),
+                            BorderRadius.circular(
+                          10,
+                        ),
                       ),
                     ),
                   ),
@@ -505,15 +561,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding:
+                      const EdgeInsets.symmetric(
                     horizontal: 16,
                   ),
                   child: Text(
                     'O COMPLETA TUS DATOS',
                     style: TextStyle(
-                      color: Colors.grey.shade500,
+                      color:
+                          Colors.grey.shade500,
                       fontSize: 11,
-                      fontWeight: FontWeight.bold,
+                      fontWeight:
+                          FontWeight.bold,
                       letterSpacing: 1.1,
                     ),
                   ),
@@ -529,13 +588,18 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 24),
 
             // Nombre
-            _buildLabel('Nombre completo'),
+            _buildLabel(
+              'Nombre completo',
+            ),
+
             TextField(
               controller: _nameController,
               enabled: !_isLoading,
-              textInputAction: TextInputAction.next,
+              textInputAction:
+                  TextInputAction.next,
               decoration: _inputDecoration(
-                hint: 'Ej. Mariana Valenzuela',
+                hint:
+                    'Ej. Mariana Valenzuela',
                 icon: LucideIcons.user,
               ),
             ),
@@ -546,14 +610,17 @@ class _RegisterPageState extends State<RegisterPage> {
             _buildLabel(
               'Correo electrónico profesional',
             ),
+
             TextField(
               controller: _emailController,
               enabled: !_isLoading,
               keyboardType:
                   TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
+              textInputAction:
+                  TextInputAction.next,
               decoration: _inputDecoration(
-                hint: 'mariana.v@techlead.io',
+                hint:
+                    'mariana.v@techlead.io',
                 icon: LucideIcons.mail,
                 suffixIcon: const Icon(
                   LucideIcons.checkCircle2,
@@ -568,25 +635,34 @@ class _RegisterPageState extends State<RegisterPage> {
             // Contraseña
             Row(
               mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+                  MainAxisAlignment
+                      .spaceBetween,
               children: [
-                _buildLabel('Contraseña'),
+                _buildLabel(
+                  'Contraseña',
+                ),
                 if (_password.isNotEmpty)
                   Row(
                     children: [
                       Container(
                         width: 6,
                         height: 6,
-                        decoration: BoxDecoration(
-                          color: _strengthColor,
-                          shape: BoxShape.circle,
+                        decoration:
+                            BoxDecoration(
+                          color:
+                              _strengthColor,
+                          shape:
+                              BoxShape.circle,
                         ),
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(
+                        width: 6,
+                      ),
                       Text(
                         'Seguridad: $_strengthText',
                         style: TextStyle(
-                          color: _strengthColor,
+                          color:
+                              _strengthColor,
                           fontSize: 12,
                           fontWeight:
                               FontWeight.w600,
@@ -600,18 +676,17 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 8),
 
             TextField(
-              controller: _passwordController,
+              controller:
+                  _passwordController,
               enabled: !_isLoading,
-              obscureText: _obscurePassword,
+              obscureText:
+                  _obscurePassword,
+              textInputAction:
+                  TextInputAction.next,
               onChanged: (value) {
                 setState(() {
                   _password = value;
                 });
-              },
-              onSubmitted: (_) {
-                if (!_isLoading) {
-                  _register();
-                }
               },
               decoration: _inputDecoration(
                 hint: '••••••••••••',
@@ -622,7 +697,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ? LucideIcons.eye
                         : LucideIcons.eyeOff,
                     size: 18,
-                    color: Colors.grey.shade600,
+                    color:
+                        Colors.grey.shade600,
                   ),
                   onPressed: () {
                     setState(() {
@@ -642,14 +718,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   child: AnimatedContainer(
                     duration:
-                        const Duration(milliseconds: 300),
+                        const Duration(
+                      milliseconds: 300,
+                    ),
                     height: 4,
-                    decoration: BoxDecoration(
-                      color: _strengthScore >= 1
-                          ? _strengthColor
-                          : Colors.grey.shade200,
+                    decoration:
+                        BoxDecoration(
+                      color:
+                          _strengthScore >= 1
+                              ? _strengthColor
+                              : Colors.grey
+                                  .shade200,
                       borderRadius:
-                          BorderRadius.circular(2),
+                          BorderRadius.circular(
+                        2,
+                      ),
                     ),
                   ),
                 ),
@@ -657,14 +740,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   child: AnimatedContainer(
                     duration:
-                        const Duration(milliseconds: 300),
+                        const Duration(
+                      milliseconds: 300,
+                    ),
                     height: 4,
-                    decoration: BoxDecoration(
-                      color: _strengthScore >= 2
-                          ? _strengthColor
-                          : Colors.grey.shade200,
+                    decoration:
+                        BoxDecoration(
+                      color:
+                          _strengthScore >= 2
+                              ? _strengthColor
+                              : Colors.grey
+                                  .shade200,
                       borderRadius:
-                          BorderRadius.circular(2),
+                          BorderRadius.circular(
+                        2,
+                      ),
                     ),
                   ),
                 ),
@@ -672,14 +762,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   child: AnimatedContainer(
                     duration:
-                        const Duration(milliseconds: 300),
+                        const Duration(
+                      milliseconds: 300,
+                    ),
                     height: 4,
-                    decoration: BoxDecoration(
-                      color: _strengthScore >= 3
-                          ? _strengthColor
-                          : Colors.grey.shade200,
+                    decoration:
+                        BoxDecoration(
+                      color:
+                          _strengthScore >= 3
+                              ? _strengthColor
+                              : Colors.grey
+                                  .shade200,
                       borderRadius:
-                          BorderRadius.circular(2),
+                          BorderRadius.circular(
+                        2,
+                      ),
                     ),
                   ),
                 ),
@@ -687,18 +784,67 @@ class _RegisterPageState extends State<RegisterPage> {
                 Expanded(
                   child: AnimatedContainer(
                     duration:
-                        const Duration(milliseconds: 300),
+                        const Duration(
+                      milliseconds: 300,
+                    ),
                     height: 4,
-                    decoration: BoxDecoration(
-                      color: _strengthScore >= 4
-                          ? _strengthColor
-                          : Colors.grey.shade200,
+                    decoration:
+                        BoxDecoration(
+                      color:
+                          _strengthScore >= 4
+                              ? _strengthColor
+                              : Colors.grey
+                                  .shade200,
                       borderRadius:
-                          BorderRadius.circular(2),
+                          BorderRadius.circular(
+                        2,
+                      ),
                     ),
                   ),
                 ),
               ],
+            ),
+
+            const SizedBox(height: 16),
+
+            // Confirmar contraseña
+            _buildLabel(
+              'Confirmar contraseña',
+            ),
+
+            TextField(
+              controller:
+                  _passwordConfirmController,
+              enabled: !_isLoading,
+              obscureText:
+                  _obscurePasswordConfirm,
+              textInputAction:
+                  TextInputAction.done,
+              onSubmitted: (_) {
+                if (!_isLoading) {
+                  _register();
+                }
+              },
+              decoration: _inputDecoration(
+                hint: '••••••••••••',
+                icon: LucideIcons.lock,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscurePasswordConfirm
+                        ? LucideIcons.eye
+                        : LucideIcons.eyeOff,
+                    size: 18,
+                    color:
+                        Colors.grey.shade600,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _obscurePasswordConfirm =
+                          !_obscurePasswordConfirm;
+                    });
+                  },
+                ),
+              ),
             ),
 
             const SizedBox(height: 24),
@@ -718,10 +864,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         : (value) {
                             setState(() {
                               _acceptedTerms =
-                                  value ?? false;
+                                  value ??
+                                      false;
                             });
                           },
-                    activeColor: primaryBlue,
+                    activeColor:
+                        primaryBlue,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -729,37 +877,45 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: RichText(
                     text: TextSpan(
                       style: TextStyle(
-                        color: Colors.grey.shade700,
+                        color:
+                            Colors.grey.shade700,
                         fontSize: 13,
                         height: 1.5,
                       ),
                       children: const [
                         TextSpan(
-                          text: 'Acepto los ',
+                          text:
+                              'Acepto los ',
                         ),
                         TextSpan(
                           text:
                               'Términos de Servicio',
                           style: TextStyle(
-                            color: primaryBlue,
+                            color:
+                                primaryBlue,
                             fontWeight:
-                                FontWeight.w600,
+                                FontWeight
+                                    .w600,
                           ),
                         ),
                         TextSpan(
-                          text: ' y la ',
+                          text:
+                              ' y la ',
                         ),
                         TextSpan(
                           text:
                               'Política de Privacidad',
                           style: TextStyle(
-                            color: primaryBlue,
+                            color:
+                                primaryBlue,
                             fontWeight:
-                                FontWeight.w600,
+                                FontWeight
+                                    .w600,
                           ),
                         ),
                         TextSpan(
-                          text: ' de WorkNet.',
+                          text:
+                              ' de WorkNet.',
                         ),
                       ],
                     ),
@@ -774,16 +930,24 @@ class _RegisterPageState extends State<RegisterPage> {
             ElevatedButton(
               onPressed:
                   _isLoading ? null : _register,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryBlue,
+              style:
+                  ElevatedButton.styleFrom(
+                backgroundColor:
+                    primaryBlue,
                 disabledBackgroundColor:
-                    primaryBlue.withOpacity(0.6),
-                padding: const EdgeInsets.symmetric(
+                    primaryBlue.withOpacity(
+                  0.6,
+                ),
+                padding:
+                    const EdgeInsets.symmetric(
                   vertical: 16,
                 ),
-                shape: RoundedRectangleBorder(
+                shape:
+                    RoundedRectangleBorder(
                   borderRadius:
-                      BorderRadius.circular(10),
+                      BorderRadius.circular(
+                    10,
+                  ),
                 ),
                 elevation: 0,
               ),
@@ -799,21 +963,26 @@ class _RegisterPageState extends State<RegisterPage> {
                     )
                   : const Row(
                       mainAxisAlignment:
-                          MainAxisAlignment.center,
+                          MainAxisAlignment
+                              .center,
                       children: [
                         Text(
                           'Registrarme gratis',
                           style: TextStyle(
-                            color: Colors.white,
+                            color:
+                                Colors.white,
                             fontSize: 16,
                             fontWeight:
-                                FontWeight.bold,
+                                FontWeight
+                                    .bold,
                           ),
                         ),
                         SizedBox(width: 8),
                         Icon(
-                          LucideIcons.arrowRight,
-                          color: Colors.white,
+                          LucideIcons
+                              .arrowRight,
+                          color:
+                              Colors.white,
                           size: 18,
                         ),
                       ],
@@ -824,29 +993,46 @@ class _RegisterPageState extends State<RegisterPage> {
 
             // Información inferior
             Container(
-              padding: const EdgeInsets.all(16),
+              padding:
+                  const EdgeInsets.all(
+                16,
+              ),
               decoration: BoxDecoration(
-                color: const Color(0xFFF1F5F9),
-                borderRadius: BorderRadius.circular(12),
+                color:
+                    const Color(
+                  0xFFF1F5F9,
+                ),
+                borderRadius:
+                    BorderRadius.circular(
+                  12,
+                ),
               ),
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
+                    padding:
+                        const EdgeInsets.all(
+                      10,
+                    ),
+                    decoration:
+                        BoxDecoration(
                       color: Colors.white,
-                      shape: BoxShape.circle,
+                      shape:
+                          BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black
-                              .withOpacity(0.05),
+                              .withOpacity(
+                            0.05,
+                          ),
                           blurRadius: 10,
                         ),
                       ],
                     ),
                     child: const Icon(
                       LucideIcons.award,
-                      color: primaryBlue,
+                      color:
+                          primaryBlue,
                       size: 20,
                     ),
                   ),
@@ -854,22 +1040,29 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: Column(
                       crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                          CrossAxisAlignment
+                              .start,
                       children: [
                         const Text(
                           '+85,000 candidatos calificados',
-                          style: TextStyle(
+                          style:
+                              TextStyle(
                             fontWeight:
-                                FontWeight.bold,
+                                FontWeight
+                                    .bold,
                             fontSize: 14,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(
+                          height: 4,
+                        ),
                         Text(
                           '12 días promedio de colocación laboral',
-                          style: TextStyle(
+                          style:
+                              TextStyle(
                             color:
-                                Colors.grey.shade600,
+                                Colors.grey
+                                    .shade600,
                             fontSize: 12,
                           ),
                         ),
@@ -889,16 +1082,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text(
                   '¿Ya tienes cuenta? ',
                   style: TextStyle(
-                    color: Colors.grey.shade700,
+                    color:
+                        Colors.grey.shade700,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => context.go('/login'),
+                  onTap: () =>
+                      context.go(
+                    '/login',
+                  ),
                   child: const Text(
                     'Inicia sesión',
                     style: TextStyle(
-                      color: primaryBlue,
-                      fontWeight: FontWeight.bold,
+                      color:
+                          primaryBlue,
+                      fontWeight:
+                          FontWeight.bold,
                     ),
                   ),
                 ),
@@ -912,17 +1111,22 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Widget _buildLabel(String text) {
+  Widget _buildLabel(
+    String text,
+  ) {
     return Padding(
-      padding: const EdgeInsets.only(
+      padding:
+          const EdgeInsets.only(
         bottom: 8.0,
       ),
       child: Text(
         text,
         style: const TextStyle(
-          fontWeight: FontWeight.bold,
+          fontWeight:
+              FontWeight.bold,
           fontSize: 13,
-          color: Color(0xFF1E293B),
+          color:
+              Color(0xFF1E293B),
         ),
       ),
     );
@@ -936,31 +1140,47 @@ class _RegisterPageState extends State<RegisterPage> {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(
-        color: Colors.grey.shade400,
+        color:
+            Colors.grey.shade400,
         fontSize: 14,
       ),
       prefixIcon: Icon(
         icon,
         size: 18,
-        color: Colors.grey.shade600,
+        color:
+            Colors.grey.shade600,
       ),
-      suffixIcon: suffixIcon,
+      suffixIcon:
+          suffixIcon,
       filled: true,
-      fillColor: Colors.white,
+      fillColor:
+          Colors.white,
       contentPadding:
           const EdgeInsets.symmetric(
         vertical: 16,
       ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(
-          color: Colors.grey.shade200,
+      enabledBorder:
+          OutlineInputBorder(
+        borderRadius:
+            BorderRadius.circular(
+          10,
+        ),
+        borderSide:
+            BorderSide(
+          color:
+              Colors.grey.shade200,
         ),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(
-          color: Color(0xFF0F62FE),
+      focusedBorder:
+          OutlineInputBorder(
+        borderRadius:
+            BorderRadius.circular(
+          10,
+        ),
+        borderSide:
+            const BorderSide(
+          color:
+              Color(0xFF0F62FE),
         ),
       ),
     );
