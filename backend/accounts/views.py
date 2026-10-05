@@ -9,8 +9,13 @@ from .email_verification import (
     EMAIL_VERIFICATION_SALT,
     send_verification_email,
 )
+
 from .models import User
-from .serializer import RegisterSerializer
+
+from .serializer import (
+    LoginSerializer,
+    RegisterSerializer,
+)
 
 
 class RegisterView(APIView):
@@ -36,7 +41,8 @@ class RegisterView(APIView):
             return Response(
                 {
                     "message":
-                        "Usuario registrado correctamente. Revisa tu correo para verificar la cuenta.",
+                        "Usuario registrado correctamente. "
+                        "Revisa tu correo para verificar la cuenta.",
 
                     "user": {
                         "id": user.id,
@@ -77,7 +83,8 @@ class VerifyEmailView(APIView):
             return Response(
                 {
                     "message":
-                        "El token de verificación es obligatorio."
+                        "El token de verificación "
+                        "es obligatorio."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -86,14 +93,16 @@ class VerifyEmailView(APIView):
             data = signing.loads(
                 token,
                 salt=EMAIL_VERIFICATION_SALT,
-                max_age=settings.EMAIL_VERIFICATION_TIMEOUT,
+                max_age=
+                    settings.EMAIL_VERIFICATION_TIMEOUT,
             )
 
         except signing.SignatureExpired:
             return Response(
                 {
                     "message":
-                        "El enlace de verificación ha expirado."
+                        "El enlace de verificación "
+                        "ha expirado."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -102,7 +111,8 @@ class VerifyEmailView(APIView):
             return Response(
                 {
                     "message":
-                        "El enlace de verificación no es válido."
+                        "El enlace de verificación "
+                        "no es válido."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -125,7 +135,8 @@ class VerifyEmailView(APIView):
             return Response(
                 {
                     "message":
-                        "El correo ya había sido verificado."
+                        "El correo ya había sido "
+                        "verificado."
                 },
                 status=status.HTTP_200_OK
             )
@@ -144,4 +155,53 @@ class VerifyEmailView(APIView):
                     "Correo verificado correctamente."
             },
             status=status.HTTP_200_OK
+        )
+
+
+class LoginView(APIView):
+
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
+
+        serializer = LoginSerializer(
+            data=request.data
+        )
+
+        if serializer.is_valid():
+
+            user = serializer.validated_data[
+                "user"
+            ]
+
+            return Response(
+                {
+                    "message":
+                        "Inicio de sesión correcto.",
+
+                    "user": {
+                        "id": user.id,
+                        "full_name":
+                            user.full_name,
+                        "email":
+                            user.email,
+                        "role":
+                            user.role,
+                        "email_verified":
+                            user.email_verified,
+                    }
+                },
+                status=status.HTTP_200_OK
+            )
+
+        return Response(
+            {
+                "message":
+                    "No fue posible iniciar sesión.",
+
+                "errors":
+                    serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
         )
