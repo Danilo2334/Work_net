@@ -1,6 +1,6 @@
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
-
+from django.contrib.auth import authenticate
 from .models import User
 
 
@@ -77,3 +77,40 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
 
         return user
+
+
+class LoginSerializer(serializers.Serializer):
+
+    email = serializers.EmailField()
+    password = serializers.CharField(
+        write_only=True,
+        trim_whitespace=False,
+    )
+
+    def validate(self, data):
+
+        email = data.get("email")
+        password = data.get("password")
+
+        user = authenticate(
+            email=email,
+            password=password
+        )
+
+        if user is None:
+            raise serializers.ValidationError(
+                "Correo o contraseña incorrectos."
+            )
+
+        if not user.is_active:
+            raise serializers.ValidationError(
+                "La cuenta se encuentra inactiva."
+            )
+
+        if not user.email_verified:
+            raise serializers.ValidationError(
+                "Debes verificar tu correo antes de iniciar sesión."
+            )
+
+        data["user"] = user
+        return data
