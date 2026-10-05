@@ -50,5 +50,4 @@ def send_verification_email(user, request):
         message,
         settings.DEFAULT_FROM_EMAIL,
         [user.email],
-        fail_silently=False,
     )

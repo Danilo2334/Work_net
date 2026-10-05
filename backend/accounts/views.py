@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core import signing
 
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -80,6 +81,7 @@ class VerifyEmailView(APIView):
         )
 
         if not token:
+
             return Response(
                 {
                     "message":
@@ -90,6 +92,7 @@ class VerifyEmailView(APIView):
             )
 
         try:
+
             data = signing.loads(
                 token,
                 salt=EMAIL_VERIFICATION_SALT,
@@ -98,6 +101,7 @@ class VerifyEmailView(APIView):
             )
 
         except signing.SignatureExpired:
+
             return Response(
                 {
                     "message":
@@ -108,6 +112,7 @@ class VerifyEmailView(APIView):
             )
 
         except signing.BadSignature:
+
             return Response(
                 {
                     "message":
@@ -123,6 +128,7 @@ class VerifyEmailView(APIView):
         ).first()
 
         if not user:
+
             return Response(
                 {
                     "message":
@@ -132,6 +138,7 @@ class VerifyEmailView(APIView):
             )
 
         if user.email_verified:
+
             return Response(
                 {
                     "message":
@@ -175,19 +182,40 @@ class LoginView(APIView):
                 "user"
             ]
 
+            # Crear u obtener el token del usuario
+            token, _ = Token.objects.get_or_create(
+                user=user
+            )
+
+            # Determinar rol efectivo
+            # Un superusuario o staff se considera administrador
+            effective_role = (
+                "admin"
+                if user.is_staff or user.is_superuser
+                else user.role
+            )
+
             return Response(
                 {
                     "message":
                         "Inicio de sesión correcto.",
 
+                    "token":
+                        token.key,
+
                     "user": {
-                        "id": user.id,
+                        "id":
+                            user.id,
+
                         "full_name":
                             user.full_name,
+
                         "email":
                             user.email,
+
                         "role":
-                            user.role,
+                            effective_role,
+
                         "email_verified":
                             user.email_verified,
                     }
