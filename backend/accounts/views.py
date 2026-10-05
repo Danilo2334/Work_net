@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -69,10 +70,14 @@ class LoginView(APIView):
                 "user"
             ]
 
+            token, _ = Token.objects.get_or_create(user=user)
+
             return Response(
                 {
                     "message":
                         "Inicio de sesión correcto.",
+
+                    "token": token.key,
 
                     "user": {
                         "id": user.id,
