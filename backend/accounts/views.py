@@ -13,8 +13,14 @@ from .email_verification import (
 
 from .models import User
 
+from .password_recovery import (
+    send_password_recovery_email,
+)
+
 from .serializer import (
     LoginSerializer,
+    PasswordRecoveryConfirmSerializer,
+    PasswordRecoveryRequestSerializer,
     RegisterSerializer,
 )
 
@@ -142,8 +148,7 @@ class VerifyEmailView(APIView):
             return Response(
                 {
                     "message":
-                        "El correo ya había sido "
-                        "verificado."
+                        "El correo ya había sido verificado."
                 },
                 status=status.HTTP_200_OK
             )
@@ -182,13 +187,10 @@ class LoginView(APIView):
                 "user"
             ]
 
-            # Crear u obtener el token del usuario
             token, _ = Token.objects.get_or_create(
                 user=user
             )
 
-            # Determinar rol efectivo
-            # Un superusuario o staff se considera administrador
             effective_role = (
                 "admin"
                 if user.is_staff or user.is_superuser
@@ -232,4 +234,98 @@ class LoginView(APIView):
                     serializer.errors
             },
             status=status.HTTP_400_BAD_REQUEST
+        )
+
+
+class PasswordRecoveryRequestView(APIView):
+
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
+
+        serializer = PasswordRecoveryRequestSerializer(
+            data=request.data
+        )
+
+        if not serializer.is_valid():
+
+            return Response(
+                {
+                    "message":
+                        "No fue posible procesar la solicitud.",
+
+                    "errors":
+                        serializer.errors
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        email = serializer.validated_data[
+            "email"
+        ]
+
+        user = User.objects.filter(
+            email__iexact=email,
+            is_active=True
+        ).first()
+
+        if (
+            user
+            and user.has_usable_password()
+        ):
+            send_password_recovery_email(
+                user
+            )
+
+        return Response(
+            {
+                "message":
+                    "Si el correo está registrado, "
+                    "recibirás un enlace para "
+                    "restablecer tu contraseña."
+            },
+            status=status.HTTP_200_OK
+        )
+
+
+class PasswordRecoveryConfirmView(APIView):
+
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
+
+        serializer = PasswordRecoveryConfirmSerializer(
+            data=request.data
+        )
+
+        if not serializer.is_valid():
+
+            return Response(
+                {
+                    "message":
+                        "No fue posible restablecer "
+                        "la contraseña.",
+
+                    "errors":
+                        serializer.errors
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        user = serializer.save()
+
+        # Invalida el token anterior de autenticación.
+        # El próximo login generará uno nuevo.
+        Token.objects.filter(
+            user=user
+        ).delete()
+
+        return Response(
+            {
+                "message":
+                    "Contraseña restablecida correctamente."
+            },
+            status=status.HTTP_200_OK
         )

@@ -1,5 +1,10 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.tokens import default_token_generator
+from django.core.exceptions import ValidationError as DjangoValidationError
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+
 from rest_framework import serializers
 
 from .models import User
@@ -116,3 +121,118 @@ class LoginSerializer(serializers.Serializer):
         data["user"] = user
 
         return data
+
+
+class PasswordRecoveryRequestSerializer(
+    serializers.Serializer
+):
+
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+
+        return value.strip().lower()
+
+
+class PasswordRecoveryConfirmSerializer(
+    serializers.Serializer
+):
+
+    uid = serializers.CharField()
+
+    token = serializers.CharField()
+
+    new_password = serializers.CharField(
+        write_only=True,
+        trim_whitespace=False
+    )
+
+    new_password_confirm = serializers.CharField(
+        write_only=True,
+        trim_whitespace=False
+    )
+
+    def validate(self, data):
+
+        if (
+            data["new_password"]
+            != data["new_password_confirm"]
+        ):
+            raise serializers.ValidationError({
+                "new_password_confirm":
+                    "Las contraseñas no coinciden."
+            })
+
+        try:
+
+            uid = force_str(
+                urlsafe_base64_decode(
+                    data["uid"]
+                )
+            )
+
+            user = User.objects.get(
+                pk=uid,
+                is_active=True
+            )
+
+        except (
+            ValueError,
+            TypeError,
+            OverflowError,
+            UnicodeDecodeError,
+            User.DoesNotExist,
+        ):
+
+            raise serializers.ValidationError({
+                "token":
+                    "El enlace es inválido o ha expirado."
+            })
+
+        if not default_token_generator.check_token(
+            user,
+            data["token"]
+        ):
+
+            raise serializers.ValidationError({
+                "token":
+                    "El enlace es inválido o ha expirado."
+            })
+
+        try:
+
+            validate_password(
+                data["new_password"],
+                user=user
+            )
+
+        except DjangoValidationError as exc:
+
+            raise serializers.ValidationError({
+                "new_password":
+                    exc.messages
+            })
+
+        data["user"] = user
+
+        return data
+
+    def save(self, **kwargs):
+
+        user = self.validated_data[
+            "user"
+        ]
+
+        user.set_password(
+            self.validated_data[
+                "new_password"
+            ]
+        )
+
+        user.save(
+            update_fields=[
+                "password"
+            ]
+        )
+
+        return user
