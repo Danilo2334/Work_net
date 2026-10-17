@@ -61,6 +61,8 @@ class User(AbstractUser):
         default=False
     )
 
+    push_notifications = models.BooleanField(default=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

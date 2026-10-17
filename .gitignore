@@ -1,18 +1,24 @@
-# Python
-backend/.venv/
+# Python / Django
+.venv/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Django
-db.sqlite3
+*.py[cod]
 *.sqlite3
 .env
+.env.*
+!.env.example
 
-# VS Code
+# Nueva aplicación Flutter en frontend/
+frontend/.dart_tool/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.pub/
+frontend/.pub-cache/
+frontend/build/
+
+# Editores y sistema
+*.iml
+.idea/
 .vscode/
-
-# Sistema
+*.log
 .DS_Store
 Thumbs.db
