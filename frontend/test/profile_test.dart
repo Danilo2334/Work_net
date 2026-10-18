@@ -306,6 +306,7 @@ void main() {
           expect(r.url.query, isEmpty);
           if (r.url.path.endsWith('photo/')) {
             if (r.method == 'GET') {
+              expect(r.headers['Accept'], contains('application/json'));
               return http.Response.bytes(
                 image,
                 200,

@@ -95,7 +95,10 @@ class WorkNetApi {
     final response = await _transport(
       () => _client.get(
         _base.resolve('profile/candidate/photo/'),
-        headers: {'Authorization': 'Token $token', 'Accept': 'image/jpeg'},
+        headers: {
+          'Authorization': 'Token $token',
+          'Accept': 'image/jpeg, application/json',
+        },
       ),
     );
     if (response.statusCode != 200) {
