@@ -1,0 +1,307 @@
+{
+  "entorno": "Django SQLite aislada y correo local; datos identificados QA",
+  "responsable_qa": "Danilo2334",
+  "smtp_real": "no comprobado",
+  "casos": [
+    {
+      "caso": "Ruta configuración sin sesión redirige a login",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "API sin autenticación: account/",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "API sin autenticación: account/notifications/",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Entrada desde dashboard consulta datos reales",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Nombre guardado vuelve desde Django",
+      "esperado": "Candidato QA actualizado",
+      "obtenido": "Candidato QA actualizado",
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Nombre recordado después de recarga",
+      "esperado": "Candidato QA actualizado",
+      "obtenido": "Candidato QA actualizado",
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Preferencia false conservada por API",
+      "esperado": false,
+      "obtenido": false,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Preferencia false conservada al recargar",
+      "esperado": false,
+      "obtenido": false,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Contraseñas distintas bloquean cambio",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Contraseña actual incorrecta rechazada",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Token anterior rechazado después del cambio",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Token del cambio es nuevo",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Token nuevo persistido con Recordar sesión",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Contraseña anterior no permite login",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Error de conexión visible al guardar",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Reintento guarda tras recuperar conexión",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard refleja nombre actualizado",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Eliminar sin casilla queda deshabilitado",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Eliminación cancelada conserva cuenta",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "DELETE sin confirmation se rechaza",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "DELETE confirmation false se rechaza",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Eliminar con contraseña incorrecta conserva cuenta",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Eliminación confirmada vuelve al login",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Token de cuenta eliminada rechazado",
+      "esperado": 401,
+      "obtenido": 401,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Cuenta eliminada no permite login",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Eliminación limpia persistencia",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Token nuevo funciona sin Recordar sesión",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Cambio de contraseña no activa Recordar sesión",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    }
+  ],
+  "respuestas_api": [
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/password/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/password/",
+      "estado": 400
+    },
+    {
+      "ruta": "/api/account/password/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/delete/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/delete/",
+      "estado": 400
+    },
+    {
+      "ruta": "/api/account/delete/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/notifications/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/account/password/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    }
+  ],
+  "codigo_frontend": "1f9a34136e65904965a5b7005f6bea174dc576a8",
+  "ejecucion": "automatizada por agente; registrada con Danilo2334; revisi?n humana pendiente",
+  "flutter_analyze": "sin incidencias",
+  "flutter_test": 54,
+  "backend_test": 70,
+  "capturas": 12,
+  "frontend_origin": "http://localhost:55002",
+  "api_origin": "http://127.0.0.1:8003/api/",
+  "base": "SQLite nueva, aislada; solo datos QA",
+  "cuenta_eliminada": "eliminar.qa@worknet.test (desechable QA)"
+}

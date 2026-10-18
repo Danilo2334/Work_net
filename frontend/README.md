@@ -1,7 +1,7 @@
 # WorkNet · Frontend Flutter
 
 Reconstrucción del registro HU001 y del recorrido de acceso del candidato:
-login, recuperación y dashboard conectado a Django. Se conservan el formulario,
+login, recuperación, dashboard y configuración de cuenta conectados a Django. Se conservan el formulario,
 los componentes y la paleta del bloque de registro publicado en `acb48b5`.
 
 ## Alcance
@@ -29,6 +29,8 @@ endpoint de verificación que ya existe. Esta entrega no agrega reenvío de corr
 - `/reset-password?uid=…&token=…`: confirmación al endpoint `password-recovery/confirm/`.
 - `/password-updated`: confirmación del cambio sin conservar el enlace en la URL.
 - `/dashboard`: candidato autenticado; consume `dashboard/candidate/` con `Authorization: Token`.
+- `/account`: configuración autenticada, accesible desde el icono del dashboard;
+  consulta cuenta, guarda nombre/preferencias, cambia contraseña y elimina con confirmación explícita.
 - `/access-pending`: aviso explícito para empresa o administrador, sin inventar estados empresariales.
 
 Recordar sesión guarda la credencial mediante `flutter_secure_storage`, sin
@@ -36,7 +38,12 @@ guardar contraseñas. Sin esa opción, el acceso solo permanece en memoria y se
 pierde al recargar o cerrar la aplicación. Cerrar sesión elimina la credencial
 local. Un HTTP 401 también limpia la sesión y pide autenticarse de nuevo.
 La API actual no ofrece logout remoto: el cierre local no revoca el token del
-servidor; la recuperación de contraseña sí invalida el token anterior en Django.
+servidor; la recuperación y el cambio de contraseña sí invalidan el token anterior en Django.
+Cambiar la contraseña en configuración sustituye el token y conserva la elección
+de Recordar sesión. Guardar el nombre actualiza también la sesión. El correo, rol
+y verificación son de solo lectura. La eliminación pide contraseña y confirmación,
+y limpia la sesión después del éxito. La preferencia push se guarda en Django;
+esta entrega no acredita envío de notificaciones al dispositivo.
 
 Los enlaces web usan rutas de navegador. El hosting deberá redirigir esas
 rutas a `index.html`. Configurar `PASSWORD_RESET_FRONTEND_URL` con el origen
@@ -91,9 +98,9 @@ los manifiestos de desarrollo de Android. Para publicar se debe usar una API HTT
 ## Verificación de esta entrega
 
 La reconstrucción se validó en Windows con el SDK instalado en el equipo del
-proyecto. `flutter analyze` terminó sin incidencias y las **40 pruebas Flutter**
-aprobaron. Incluyen los 21 escenarios previos y las nuevas comprobaciones de
-sesión, recuperación, permisos, navegación directa, dashboard y tamaños de pantalla.
+proyecto. `flutter analyze` terminó sin incidencias y las **54 pruebas Flutter**
+aprobaron. Incluyen registro, sesión, recuperación, permisos, navegación directa,
+dashboard, configuración y tamaños de pantalla; HU004 añadió 14 pruebas a las 40 previas.
 Las **70 pruebas del backend** también aprobaron.
 
 La corrección de correo duplicado del backend está separada en el commit
@@ -142,6 +149,9 @@ recepción en Gmail. No se publican contraseñas ni tokens en las evidencias.
 
 - [HU002 — login, sesión e integración](docs/evidencias/hu002/README.md): #34, #36 y #38.
 - [HU003 — recuperación](docs/evidencias/hu003/README.md): #39, #41 y #42.
+- [HU004 — configuración e integración/QA](docs/evidencias/hu004/README.md): #43 y #46;
+  28 comprobaciones nuevas contra Django y 12 capturas de escritorio/móvil, con
+  eliminación solo de una cuenta desechable en otra SQLite (puertos 8003/55002).
 - [HU005 — dashboard](docs/evidencias/hu005/README.md): #47, #49 y #50.
 - [Informe del navegador](docs/evidencias/acceso-candidato/resultados-qa.json).
 
