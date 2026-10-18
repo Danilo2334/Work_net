@@ -1,7 +1,7 @@
 # WorkNet · Frontend Flutter
 
 Reconstrucción del registro HU001 y del recorrido de acceso del candidato:
-login, recuperación, dashboard y configuración de cuenta conectados a Django. Se conservan el formulario,
+login, recuperación, dashboard, configuración de cuenta y perfil profesional conectados a Django. Se conservan el formulario,
 los componentes y la paleta del bloque de registro publicado en `acb48b5`.
 
 ## Alcance
@@ -31,6 +31,8 @@ endpoint de verificación que ya existe. Esta entrega no agrega reenvío de corr
 - `/dashboard`: candidato autenticado; consume `dashboard/candidate/` con `Authorization: Token`.
 - `/account`: configuración autenticada, accesible desde el icono del dashboard;
   consulta cuenta, guarda nombre/preferencias, cambia contraseña y elimina con confirmación explícita.
+- `/profile`: candidato autenticado; descripción, educación, experiencia,
+  habilidades, idiomas y fotografía opcional, con CRUD conectado a Django.
 - `/access-pending`: aviso explícito para empresa o administrador, sin inventar estados empresariales.
 
 Recordar sesión guarda la credencial mediante `flutter_secure_storage`, sin
@@ -50,7 +52,8 @@ rutas a `index.html`. Configurar `PASSWORD_RESET_FRONTEND_URL` con el origen
 y `/reset-password` para que el correo abra la pantalla correcta.
 
 El dashboard presenta exclusivamente los datos recibidos de la API: completitud,
-postulaciones, guardados, notificaciones y trabajos recientes. Perfil, CV,
+postulaciones, guardados, notificaciones y trabajos recientes. El acceso al perfil
+ya funciona y al volver se actualiza la completitud desde Django. CV,
 búsqueda, mensajes, historial y detalle/postulación de ofertas se identifican
 como módulos pendientes, sin botones que aparenten navegar a pantallas inexistentes.
 
@@ -98,10 +101,10 @@ los manifiestos de desarrollo de Android. Para publicar se debe usar una API HTT
 ## Verificación de esta entrega
 
 La reconstrucción se validó en Windows con el SDK instalado en el equipo del
-proyecto. `flutter analyze` terminó sin incidencias y las **54 pruebas Flutter**
+proyecto. `flutter analyze` terminó sin incidencias y las **67 pruebas Flutter**
 aprobaron. Incluyen registro, sesión, recuperación, permisos, navegación directa,
-dashboard, configuración y tamaños de pantalla; HU004 añadió 14 pruebas a las 40 previas.
-Las **70 pruebas del backend** también aprobaron.
+dashboard, configuración, perfil, fotografía y tamaños de pantalla; HU008 añadió 13 pruebas a las 54 previas.
+Las **87 pruebas del backend** también aprobaron, incluidas las 70 de la base anterior.
 
 La corrección de correo duplicado del backend está separada en el commit
 `763fceb`, de Danilo2334, en `feature/backend-sprint-2` y, tras fast-forward,
@@ -153,6 +156,10 @@ recepción en Gmail. No se publican contraseñas ni tokens en las evidencias.
   28 comprobaciones nuevas contra Django y 12 capturas de escritorio/móvil, con
   eliminación solo de una cuenta desechable en otra SQLite (puertos 8003/55002).
 - [HU005 — dashboard](docs/evidencias/hu005/README.md): #47, #49 y #50.
+- [HU008 — perfil profesional y fotografía](docs/evidencias/hu008/README.md): #59–#62;
+  47 comprobaciones nuevas, 14 capturas y una imagen sintética QA. Backend consolidado
+  en develop antes de incorporarlo a frontend. Requiere instalar Pillow y aplicar
+  `python manage.py migrate` en los entornos actualizados; para QA aislada, puertos 8004/55003.
 - [Informe del navegador](docs/evidencias/acceso-candidato/resultados-qa.json).
 
 Las versiones de navegación y almacenamiento están fijadas al conjunto validado.
@@ -164,4 +171,5 @@ la [documentación de flutter_secure_storage](https://pub.dev/packages/flutter_s
 
 SMTP real, estados y destinos empresariales/administrativos, módulos de los accesos
 del dashboard y revisión del orden registro/rol siguen pendientes. **HU001, HU002,
-HU003 y HU005 no se declaran completas.** El PR #146 permanece en borrador.
+HU003, HU005 y HU008 no se declaran completas.** HU008 mantiene restringido el acceso
+de empresa hasta implementar autorización en selección. El PR #146 permanece en borrador.

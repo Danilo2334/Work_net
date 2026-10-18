@@ -49,7 +49,11 @@ Un token revocado en la base de QA produjo HTTP 401 y retorno al login.
 
 ## Qué falta
 
-Los accesos a perfil completo/HU008, CV, búsqueda, mensajes e historial de postulaciones
+El acceso al perfil del candidato ya está habilitado y conectado en [HU008](../hu008/README.md),
+incluido el recálculo del dashboard al regresar. Las capturas de esta página
+conservan el estado de la entrega anterior del resumen.
+
+Los accesos a CV, búsqueda, mensajes e historial de postulaciones
 no tienen módulos implementados en esta entrega. Se muestran como pendientes, sin
 botones de navegación vacíos. El detalle de ofertas y la postulación también requieren
 sus pantallas y API de escritura. El resumen disponible de HU005 no sustituye esas APIs.
