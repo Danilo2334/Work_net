@@ -45,6 +45,8 @@ candidate = User.objects.create_user(email="candidato.qa@worknet.test", full_nam
     password=password, role="candidato", email_verified=True)
 User.objects.create_user(email="vacio.qa@worknet.test", full_name="Candidato sin actividad QA",
     password=password, role="candidato", email_verified=True)
+User.objects.create_user(email="perfil.qa@worknet.test", full_name="Perfil ficticio QA",
+    password=password, role="candidato", email_verified=True)
 User.objects.create_user(email="eliminar.qa@worknet.test", full_name="Cuenta desechable QA",
     password=password, role="candidato", email_verified=True)
 company = User.objects.create_user(email="empresa.qa@worknet.test", full_name="Empresa QA — base aislada",
@@ -64,7 +66,7 @@ for index in range(2):
 
 # Solo archivo local ignorado por Git; no imprimir ni publicar credenciales.
 state = {"database": str(run_path / "qa.sqlite3"), "mail": str(run_path / "mail"),
-         "password": password, "candidate": candidate.email, "frontend": args.frontend_origin,
+         "password": password, "candidate": candidate.email, "profile_candidate": "perfil.qa@worknet.test", "frontend": args.frontend_origin,
          "expected": {"percentage": 83, "applications": 2, "saved": 1, "notifications": 2, "jobs": 2}}
 (qa_root / "latest.json").write_text(json.dumps(state), encoding="utf-8")
 print(f"QA aislada en http://127.0.0.1:{args.port}; correos a archivos locales, sin SMTP.")

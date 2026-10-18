@@ -9,6 +9,7 @@ import 'features/access/login_page.dart';
 import 'features/access/recovery_pages.dart';
 import 'features/access/session.dart';
 import 'features/account/account_page.dart';
+import 'features/profile/profile_page.dart';
 import 'features/dashboard/candidate_dashboard.dart';
 import 'features/registration/data/registration_api.dart';
 import 'features/registration/presentation/registration_page.dart';
@@ -50,7 +51,12 @@ class _WorkNetAppState extends State<WorkNetApp> {
             _session.session?.role == 'candidato') {
           return '/dashboard';
         }
-        if (['/dashboard', '/access-pending', '/account'].contains(path) &&
+        if ([
+              '/dashboard',
+              '/access-pending',
+              '/account',
+              '/profile',
+            ].contains(path) &&
             _session.session == null) {
           return '/login';
         }
@@ -59,12 +65,25 @@ class _WorkNetAppState extends State<WorkNetApp> {
               ? '/dashboard'
               : '/access-pending';
         }
-        if (path == '/dashboard' && _session.session?.role != 'candidato') {
+        if (['/dashboard', '/profile'].contains(path) &&
+            _session.session?.role != 'candidato') {
           return '/access-pending';
         }
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/profile',
+          builder: (_, _) => ListenableBuilder(
+            listenable: _session,
+            builder: (_, _) =>
+                _session.restoring || _session.session?.role != 'candidato'
+                ? const Scaffold(
+                    body: Center(child: CircularProgressIndicator()),
+                  )
+                : ProfilePage(controller: _session),
+          ),
+        ),
         GoRoute(
           path: '/account',
           builder: (_, _) => ListenableBuilder(

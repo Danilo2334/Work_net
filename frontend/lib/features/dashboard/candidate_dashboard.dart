@@ -153,13 +153,19 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
       children: [
         Text('Tus accesos', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
+        TextButton.icon(
+          key: const Key('open_candidate_profile'),
+          onPressed: () => context.go('/profile'),
+          icon: const Icon(Icons.person_outline),
+          label: const Text('Perfil del candidato'),
+        ),
+        const SizedBox(height: 12),
         const Text(
-          'Estos módulos todavía no están disponibles. Aquí podrás encontrar sus accesos cuando estén implementados.',
+          'Los siguientes módulos todavía no están disponibles. Aquí podrás encontrar sus accesos cuando estén implementados.',
           style: TextStyle(color: WorkNetColors.muted),
         ),
         const SizedBox(height: 16),
         for (final entry in const [
-          (Icons.person_outline, 'Perfil del candidato', 'HU008'),
           (Icons.description_outlined, 'Currículum', 'Módulo de CV'),
           (Icons.search, 'Buscar ofertas', 'Búsqueda de ofertas'),
           (Icons.chat_bubble_outline, 'Mensajes', 'Mensajería'),
