@@ -1,0 +1,204 @@
+{
+  "codigo_frontend": "a04eeec8fd281ddca6f4a254f3b4c3441a79ad53",
+  "entorno": "Django SQLite aislada y correo local; datos identificados QA",
+  "responsable_qa": "Danilo2334",
+  "smtp_real": "no comprobado",
+  "casos": [
+    {
+      "caso": "Login incorrecto en Django",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard usa completitud y ofertas de SQLite QA",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Recordar sesión conserva acceso después de recargar",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard muestra error ante pérdida de conexión",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Reintentar recupera datos reales",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard vacío corresponde a ofertas no publicadas en SQLite",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Token revocado por Django lleva al login",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Cerrar sesión elimina la persistencia",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Sin Recordar sesión no se restaura al recargar",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa tiene destino pendiente explícito, sin aprobación inventada",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Solicitud de recuperación vía Django responde con mensaje genérico",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Enlace vencido se rechaza en Django",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Confirmación distinta bloquea recuperación",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Recuperación actualiza contraseña y confirma sin revelar credenciales",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "La URL de éxito no conserva parámetros del enlace",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Reutilizar enlace después del cambio se rechaza",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Contraseña anterior rechazada",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Nueva contraseña permite acceso al dashboard",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Métricas de la API coinciden con las filas de QA",
+      "esperado": {
+        "percentage": 83,
+        "applications": 2,
+        "saved": 1,
+        "notifications": 2,
+        "jobs": 2
+      },
+      "obtenido": {
+        "percentage": 83,
+        "applications": 2,
+        "saved": 1,
+        "notifications": 2,
+        "jobs": 2
+      },
+      "resultado": "aprobado"
+    }
+  ],
+  "respuestas_api": [
+    {
+      "ruta": "/api/login/",
+      "estado": 400
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 401
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/password-recovery/confirm/",
+      "estado": 400
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 400
+    },
+    {
+      "ruta": "/api/login/",
+      "estado": 200
+    },
+    {
+      "ruta": "/api/dashboard/candidate/",
+      "estado": 200
+    }
+  ]
+}

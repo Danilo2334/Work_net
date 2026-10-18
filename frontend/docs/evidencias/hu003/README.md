@@ -1,0 +1,65 @@
+# HU003 — recuperación de contraseña
+
+Responsables: implementación e integración, francisco3788; QA, Danilo2334.
+Tareas: #39, #41 y #42. Criterios leídos en la historia #4 y las tareas vigentes.
+
+## Qué funciona
+
+La solicitud consume `POST /api/password-recovery/request/` y conserva el mensaje
+genérico para no confirmar si un correo pertenece a una cuenta. El enlace abre
+`/reset-password?uid=…&token=…` y el formulario envía los campos `uid`, `token`,
+`new_password` y `new_password_confirm` a `/api/password-recovery/confirm/`.
+
+Se valida la coincidencia de contraseñas, se muestra el rechazo de enlaces inválidos,
+expirados o reutilizados y se ofrece solicitar otro. Solo tras respuesta exitosa se
+confirma el cambio y se vuelve al login. La pantalla de éxito elimina los parámetros
+del enlace de la URL y limpia las contraseñas de los controladores. El nuevo login se
+realiza con la contraseña nueva; Django revoca el token anterior al restablecerla.
+
+## Cómo se probó
+
+Análisis limpio, 40 pruebas Flutter y 70 del backend aprobadas. En Chrome se solicitó
+un correo mediante la API, se extrajo el enlace del archivo local generado por Django
+y se completó el formulario. Un enlace de QA firmado con antigüedad superior al plazo
+configurado permitió comprobar el rechazo por vencimiento sin cambiar el timeout real.
+
+| Caso | Esperado | Obtenido |
+| --- | --- | --- |
+| Solicitar enlace | Respuesta genérica de API | HTTP 200 y mensaje visible |
+| Correo de QA | Mensaje generado localmente | Archivo de correo capturado; no enviado a Gmail |
+| Contraseñas diferentes | Bloqueo local | Error visible y ningún cambio |
+| Enlace vencido | Rechazo del backend | HTTP 400, aviso y opción de solicitar otro |
+| Enlace válido | Confirmación del cambio | HTTP 200 y «Contraseña actualizada» |
+| URL posterior al cambio | Sin parámetros del enlace | Comprobado en navegador |
+| Reutilizar enlace después del cambio | Rechazo | HTTP 400 |
+| Contraseña anterior | Login rechazado | HTTP 400 |
+| Contraseña nueva | Login y dashboard | HTTP 200 y datos reales de la SQLite QA |
+
+El [informe conjunto](../acceso-candidato/resultados-qa.json) no contiene contraseñas
+ni enlaces firmados. Las pruebas automatizadas cubren además el enlace ausente,
+el inválido y el error SMTP sin anunciar un envío exitoso.
+
+## Capturas vigentes
+
+![Solicitud](../acceso-candidato/recuperacion-solicitud.png)
+
+![Correo capturado localmente](../acceso-candidato/recuperacion-correo-local.png)
+
+![Contraseñas distintas](../acceso-candidato/recuperacion-contrasenas-distintas.png)
+
+![Enlace vencido](../acceso-candidato/recuperacion-enlace-vencido.png)
+
+![Cambio confirmado](../acceso-candidato/recuperacion-exito.png)
+
+![Solicitud móvil](../acceso-candidato/recuperacion-movil.png)
+
+![Confirmación móvil](../acceso-candidato/recuperacion-confirmacion-movil.png)
+
+## Qué falta
+
+La recepción SMTP real y la apertura del enlace desde un buzón recibido siguen
+bloqueadas: no existe `backend/.env`, faltan credenciales y no hay sesión del buzón.
+La prueba local no equivale a recepción en Gmail. Configurar localmente el remitente,
+la contraseña de aplicación y `PASSWORD_RESET_FRONTEND_URL` al origen real antes de
+esa validación; nunca incluirlos en commits. #39 queda para revisión, #41 acredita
+integración local y #42 conserva pendiente la entrega real. No se cierra HU003.

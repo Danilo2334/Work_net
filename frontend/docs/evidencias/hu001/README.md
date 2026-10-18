@@ -93,11 +93,13 @@ añaden imágenes que aparenten una recepción real no comprobada.
 ## Pendiente
 
 - Entrega real mediante SMTP y verificación desde el correo recibido.
-- Continuación al dashboard del candidato.
+- Validar el recorrido completo desde el correo real hasta el acceso del candidato.
 - Información empresarial y solicitud de validación.
 - Revisión del orden registro/rol: el frontend actual elige el rol antes de crear la cuenta.
 
 Los estados e información reales de empresa dependen también de #64 y #68.
+La navegación registro → login → dashboard del candidato se implementó en el
+[nuevo bloque de acceso](../hu002/README.md); esto no acredita el correo SMTP real.
 Las listas de cierre vigentes se conservan en sus issues; esta documentación
 no cierra #31, #32 ni #33 ni cambia sus criterios originales.
 

@@ -1,7 +1,8 @@
 # WorkNet · Frontend Flutter
 
-Primer bloque de reconstrucción: formulario HU001, elección de rol público,
-petición real de registro y confirmación para revisar el correo.
+Reconstrucción del registro HU001 y del recorrido de acceso del candidato:
+login, recuperación y dashboard conectado a Django. Se conservan el formulario,
+los componentes y la paleta del bloque de registro publicado en `acb48b5`.
 
 ## Alcance
 
@@ -14,10 +15,37 @@ petición real de registro y confirmación para revisar el correo.
 - La contraseña se conserva únicamente en memoria durante el formulario y se limpia al terminar.
 - Diseño adaptable a móvil y escritorio con la paleta verde de los mockups.
 
-Este bloque no declara terminada HU001 ni todo el frontend. Faltan el login,
-la navegación al dashboard y el formulario de información/validación de empresa.
+Este bloque no declara terminadas todas las historias. La navegación de login
+al dashboard del candidato está implementada. Los estados y destinos de empresa
+y administrador y el formulario de información/validación de empresa siguen pendientes.
 El correo de verificación lo envía Django; al abrir su enlace se utiliza el
 endpoint de verificación que ya existe. Esta entrega no agrega reenvío de correo.
+
+## Acceso, recuperación y dashboard
+
+- `/login`: correo, contraseña, errores, Recordar sesión, registro y recuperación.
+- `/register`: registro existente con acceso al inicio de sesión.
+- `/forgot-password`: solicitud al endpoint `password-recovery/request/`.
+- `/reset-password?uid=…&token=…`: confirmación al endpoint `password-recovery/confirm/`.
+- `/password-updated`: confirmación del cambio sin conservar el enlace en la URL.
+- `/dashboard`: candidato autenticado; consume `dashboard/candidate/` con `Authorization: Token`.
+- `/access-pending`: aviso explícito para empresa o administrador, sin inventar estados empresariales.
+
+Recordar sesión guarda la credencial mediante `flutter_secure_storage`, sin
+guardar contraseñas. Sin esa opción, el acceso solo permanece en memoria y se
+pierde al recargar o cerrar la aplicación. Cerrar sesión elimina la credencial
+local. Un HTTP 401 también limpia la sesión y pide autenticarse de nuevo.
+La API actual no ofrece logout remoto: el cierre local no revoca el token del
+servidor; la recuperación de contraseña sí invalida el token anterior en Django.
+
+Los enlaces web usan rutas de navegador. El hosting deberá redirigir esas
+rutas a `index.html`. Configurar `PASSWORD_RESET_FRONTEND_URL` con el origen
+y `/reset-password` para que el correo abra la pantalla correcta.
+
+El dashboard presenta exclusivamente los datos recibidos de la API: completitud,
+postulaciones, guardados, notificaciones y trabajos recientes. Perfil, CV,
+búsqueda, mensajes, historial y detalle/postulación de ofertas se identifican
+como módulos pendientes, sin botones que aparenten navegar a pantallas inexistentes.
 
 ## Ejecutar en Chrome
 
@@ -53,14 +81,20 @@ los manifiestos de desarrollo de Android. Para publicar se debe usar una API HTT
 4. Correo ya registrado: Django lo rechaza y el error aparece junto al correo.
 5. Crear un candidato y una empresa con correos nuevos: respuesta 201, rol
    correcto y pantalla de revisar correo. Abrir el enlace recibido verifica
-   la dirección en Django; el acceso posterior pertenece al siguiente bloque.
+   la dirección en Django. Después se puede iniciar sesión para abrir el dashboard del candidato.
+
+6. Probar credenciales incorrectas, Recordar sesión, recarga, cierre y token revocado.
+7. Recuperar la contraseña con un enlace válido; rechazar contraseñas distintas,
+   enlaces vencidos y reutilizados; comprobar que solo la nueva contraseña permite entrar.
+8. Actualizar el dashboard y comprobar carga, error/reintento y ausencia de ofertas publicadas.
 
 ## Verificación de esta entrega
 
 La reconstrucción se validó en Windows con el SDK instalado en el equipo del
-proyecto. `flutter analyze` terminó sin incidencias y las 21 pruebas Flutter
-aprobaron. Cubren contrato HTTP, validaciones, errores, duplicación de envíos,
-selección de ambos roles y tamaños de pantalla de móvil y escritorio.
+proyecto. `flutter analyze` terminó sin incidencias y las **40 pruebas Flutter**
+aprobaron. Incluyen los 21 escenarios previos y las nuevas comprobaciones de
+sesión, recuperación, permisos, navegación directa, dashboard y tamaños de pantalla.
+Las **70 pruebas del backend** también aprobaron.
 
 La corrección de correo duplicado del backend está separada en el commit
 `763fceb`, de Danilo2334, en `feature/backend-sprint-2` y, tras fast-forward,
@@ -82,5 +116,42 @@ en memoria y base temporal. El informe no contiene enlaces firmados ni tokens.
 SMTP real quedó bloqueado por ausencia de `backend/.env`, `GMAIL_USER`,
 `GMAIL_APP_PASSWORD` y sesión del buzón. No se modificó la lógica de envío.
 
-SMTP real, continuación al dashboard, información/validación empresarial y
-revisión del orden registro/rol siguen pendientes. **HU001 todavía no está completa.**
+## QA aislada y evidencias nuevas
+
+Desde la raíz, con las dependencias Python instaladas:
+
+```powershell
+python frontend/tool/qa_backend.py
+```
+
+Este comando crea otra SQLite, cuentas verificadas y ofertas identificadas como QA,
+y captura los correos en archivos. Se ejecuta en `127.0.0.1:8002`; no usa la base
+habitual ni envía SMTP. Las credenciales generadas, los correos y la SQLite quedan
+solo en `frontend/.dart_tool/worknet_qa/`, ignorado por Git. No publicar su contenido.
+
+En otra terminal desde `frontend`:
+
+```powershell
+flutter run -d chrome --web-port 55001 --dart-define=API_BASE_URL=http://127.0.0.1:8002/api/
+```
+
+Se revisaron escritorio 1440×1280 y móvil 390×844, con **19 comprobaciones de
+navegador aprobadas** contra Django y datos de QA. La recuperación usó mensajes
+capturados localmente; la entrega SMTP real sigue bloqueada y no se acredita
+recepción en Gmail. No se publican contraseñas ni tokens en las evidencias.
+
+- [HU002 — login, sesión e integración](docs/evidencias/hu002/README.md): #34, #36 y #38.
+- [HU003 — recuperación](docs/evidencias/hu003/README.md): #39, #41 y #42.
+- [HU005 — dashboard](docs/evidencias/hu005/README.md): #47, #49 y #50.
+- [Informe del navegador](docs/evidencias/acceso-candidato/resultados-qa.json).
+
+Las versiones de navegación y almacenamiento están fijadas al conjunto validado.
+Los overrides de `path_provider` evitan hooks nativos incompatibles con las rutas
+con espacios de este SDK en Windows; deben revisarse al actualizar el SDK.
+La validación manual es web; Android y otras plataformas nativas no se declaran probadas.
+En producción, la persistencia web necesita HTTPS y las condiciones indicadas por
+la [documentación de flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage/versions/9.2.4).
+
+SMTP real, estados y destinos empresariales/administrativos, módulos de los accesos
+del dashboard y revisión del orden registro/rol siguen pendientes. **HU001, HU002,
+HU003 y HU005 no se declaran completas.** El PR #146 permanece en borrador.
