@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:worknet/app.dart';
 import 'package:worknet/features/registration/data/registration_api.dart';
+import 'support/access_fakes.dart';
 
 http.Response success(String role) => http.Response(
   jsonEncode({
@@ -44,7 +45,14 @@ Future<void> start(
 ) async {
   final api = RegistrationApi(client: MockClient(handler));
   addTearDown(api.close);
-  await tester.pumpWidget(WorkNetApp(registrationApi: api));
+  await tester.pumpWidget(
+    WorkNetApp(
+      registrationApi: api,
+      initialLocation: '/register',
+      sessionStore: MemorySessionStore(),
+    ),
+  );
+  await tester.pumpAndSettle();
 }
 
 void main() {

@@ -6,9 +6,10 @@ import '../data/registration_api.dart';
 import '../domain/registration.dart';
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key, this.api});
+  const RegistrationPage({super.key, this.api, this.onLogin});
 
   final RegistrationApi? api;
+  final VoidCallback? onLogin;
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -265,6 +266,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
               onPressed: _continueToRole,
               child: const Text('Continuar'),
             ),
+            if (widget.onLogin != null) ...[
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: widget.onLogin,
+                child: const Text('Ya tengo cuenta. Iniciar sesión'),
+              ),
+            ],
           ],
         ),
       ),
@@ -486,6 +494,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
           onPressed: _startAgain,
           child: const Text('Registrar otra cuenta'),
         ),
+        if (widget.onLogin != null) ...[
+          const SizedBox(height: 16),
+          FilledButton(
+            onPressed: widget.onLogin,
+            child: const Text('Ir al inicio de sesión'),
+          ),
+        ],
       ],
     );
   }
