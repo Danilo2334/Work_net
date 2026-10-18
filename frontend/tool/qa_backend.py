@@ -45,6 +45,8 @@ candidate = User.objects.create_user(email="candidato.qa@worknet.test", full_nam
     password=password, role="candidato", email_verified=True)
 User.objects.create_user(email="vacio.qa@worknet.test", full_name="Candidato sin actividad QA",
     password=password, role="candidato", email_verified=True)
+User.objects.create_user(email="eliminar.qa@worknet.test", full_name="Cuenta desechable QA",
+    password=password, role="candidato", email_verified=True)
 company = User.objects.create_user(email="empresa.qa@worknet.test", full_name="Empresa QA — base aislada",
     password=password, role="empresa", email_verified=True)
 User.objects.create_user(email="admin.qa@worknet.test", full_name="Administrador QA",

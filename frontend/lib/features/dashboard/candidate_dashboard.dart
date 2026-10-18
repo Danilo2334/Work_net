@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/api/worknet_api.dart';
 import '../../core/theme/worknet_theme.dart';
 import '../../core/widgets/error_notice.dart';
@@ -254,6 +255,12 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
     appBar: AppBar(
       title: const Text('WorkNet'),
       actions: [
+        IconButton(
+          key: const Key('open_account'),
+          tooltip: 'Configuración de cuenta',
+          onPressed: () => context.go('/account'),
+          icon: const Icon(Icons.settings_outlined),
+        ),
         TextButton.icon(
           key: const Key('logout'),
           onPressed: _loggingOut ? null : _logout,

@@ -8,6 +8,7 @@ import 'core/widgets/error_notice.dart';
 import 'features/access/login_page.dart';
 import 'features/access/recovery_pages.dart';
 import 'features/access/session.dart';
+import 'features/account/account_page.dart';
 import 'features/dashboard/candidate_dashboard.dart';
 import 'features/registration/data/registration_api.dart';
 import 'features/registration/presentation/registration_page.dart';
@@ -49,7 +50,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
             _session.session?.role == 'candidato') {
           return '/dashboard';
         }
-        if (['/dashboard', '/access-pending'].contains(path) &&
+        if (['/dashboard', '/access-pending', '/account'].contains(path) &&
             _session.session == null) {
           return '/login';
         }
@@ -64,6 +65,17 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/account',
+          builder: (_, _) => ListenableBuilder(
+            listenable: _session,
+            builder: (_, _) => _session.restoring || _session.session == null
+                ? const Scaffold(
+                    body: Center(child: CircularProgressIndicator()),
+                  )
+                : AccountPage(controller: _session),
+          ),
+        ),
         GoRoute(path: '/', redirect: (_, _) => '/login'),
         GoRoute(
           path: '/login',

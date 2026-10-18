@@ -34,6 +34,7 @@ class WorkNetApi {
     String path, {
     Map<String, dynamic>? data,
     String? token,
+    String? method,
   }) async {
     http.Response response;
     final headers = <String, String>{
@@ -42,15 +43,15 @@ class WorkNetApi {
       if (token != null) 'Authorization': 'Token $token',
     };
     try {
-      response =
-          await (data == null
-                  ? _client.get(_base.resolve(path), headers: headers)
-                  : _client.post(
-                      _base.resolve(path),
-                      headers: headers,
-                      body: jsonEncode(data),
-                    ))
-              .timeout(timeout);
+      final uri = _base.resolve(path);
+      final body = data == null ? null : jsonEncode(data);
+      response = await (switch (method ?? (data == null ? 'GET' : 'POST')) {
+        'GET' => _client.get(uri, headers: headers),
+        'POST' => _client.post(uri, headers: headers, body: body),
+        'PATCH' => _client.patch(uri, headers: headers, body: body),
+        'DELETE' => _client.delete(uri, headers: headers, body: body),
+        _ => throw ArgumentError.value(method, 'method'),
+      }).timeout(timeout);
     } on TimeoutException {
       throw const ApiFailure(
         'La solicitud tardó demasiado. Comprueba tu conexión y vuelve a intentarlo.',

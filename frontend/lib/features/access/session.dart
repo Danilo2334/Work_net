@@ -78,6 +78,7 @@ class SessionController extends ChangeNotifier {
   bool restoring = true;
   String? notice;
   bool _disposed = false;
+  bool _remember = false;
 
   @override
   void notifyListeners() {
@@ -97,6 +98,7 @@ class SessionController extends ChangeNotifier {
         session = UserSession.fromJson(
           jsonDecode(value) as Map<String, dynamic>,
         );
+        _remember = true;
       }
     } catch (_) {
       session = null;
@@ -140,6 +142,7 @@ class SessionController extends ChangeNotifier {
       );
     }
     session = next;
+    _remember = remember;
     notice = null;
     notifyListeners();
   }
@@ -153,12 +156,14 @@ class SessionController extends ChangeNotifier {
       );
     }
     session = null;
+    _remember = false;
     notice = null;
     notifyListeners();
   }
 
   Future<void> expire({bool announce = true}) async {
     session = null;
+    _remember = false;
     notice = announce
         ? 'Tu sesión ya no es válida. Inicia sesión de nuevo.'
         : null;
@@ -168,5 +173,28 @@ class SessionController extends ChangeNotifier {
     } catch (_) {
       /* Invalid tokens remain rejected by Django. */
     }
+  }
+
+  /// Applies an already confirmed server change without changing Remember session.
+  Future<void> update({String? name, String? token}) async {
+    final previous = session;
+    if (previous == null) return;
+    final next = UserSession(
+      token: token ?? previous.token,
+      id: previous.id,
+      name: name ?? previous.name,
+      email: previous.email,
+      role: previous.role,
+    );
+    try {
+      if (_remember) await store.write(jsonEncode(next.toJson()));
+    } catch (_) {
+      await expire(announce: false);
+      throw const ApiFailure(
+        'El cambio se guardó, pero no pudimos actualizar la sesión. Inicia sesión de nuevo.',
+      );
+    }
+    session = next;
+    notifyListeners();
   }
 }
