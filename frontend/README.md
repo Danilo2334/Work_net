@@ -63,7 +63,8 @@ aprobaron. Cubren contrato HTTP, validaciones, errores, duplicación de envíos,
 selección de ambos roles y tamaños de pantalla de móvil y escritorio.
 
 La corrección de correo duplicado del backend está separada en el commit
-`763fceb`, de Danilo2334, en `feature/backend-sprint-2`. Las 70 pruebas de
+`763fceb`, de Danilo2334, en `feature/backend-sprint-2` y, tras fast-forward,
+en `develop`. Las 70 pruebas de
 `accounts` y `candidate_dashboard` aprobaron, incluida la regresión del mensaje
 en español con correos repetidos, mayúsculas y espacios.
 
@@ -75,5 +76,11 @@ esto no comprueba entrega real a Gmail ni verificación desde el correo recibido
 
 Las [capturas y límites de la validación](docs/evidencias/hu001/README.md)
 corresponden a la reconstrucción y complementan las tareas #29, #32 y #33.
-SMTP real, continuación al dashboard e información/validación empresarial
-siguen pendientes. **HU001 todavía no está completa.**
+La revisión adicional de la API verificó localmente el enlace, el cambio de
+`email_verified` y el login posterior: 13 comprobaciones aprobadas con correo
+en memoria y base temporal. El informe no contiene enlaces firmados ni tokens.
+SMTP real quedó bloqueado por ausencia de `backend/.env`, `GMAIL_USER`,
+`GMAIL_APP_PASSWORD` y sesión del buzón. No se modificó la lógica de envío.
+
+SMTP real, continuación al dashboard, información/validación empresarial y
+revisión del orden registro/rol siguen pendientes. **HU001 todavía no está completa.**

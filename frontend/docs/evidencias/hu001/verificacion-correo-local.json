@@ -1,0 +1,96 @@
+{
+  "historia": "HU001 - reconstrucción",
+  "fecha_contexto_usuario": "2026-10-17",
+  "responsable_qa": "Danilo2334",
+  "backend_commit": "763fceb115425029f8f8ebac670edb4b208eabcf",
+  "frontend_base": "fddd990dbe42914891a62fa9039c3dda70170002",
+  "entorno": "Base de datos temporal del runner Django; correo en memoria",
+  "envio_smtp_real": "bloqueado: faltan backend/.env, GMAIL_USER y GMAIL_APP_PASSWORD",
+  "recepcion_en_buzon": "no comprobada; no hay sesión del buzón disponible",
+  "credenciales_o_tokens_incluidos": false,
+  "casos": [
+    {
+      "caso": "Registro en API Django",
+      "esperado": 201,
+      "obtenido": 201,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Correo capturado en memoria; no entregado a Gmail",
+      "esperado": 1,
+      "obtenido": 1,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Destinatario correcto en el correo local",
+      "esperado": [
+        "danilocututruloroblesco@gmail.com"
+      ],
+      "obtenido": [
+        "danilocututruloroblesco@gmail.com"
+      ],
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "email_verified antes de abrir el enlace",
+      "esperado": false,
+      "obtenido": false,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Login antes de verificar",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Enlace de verificación inválido",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Enlace de verificación expirado",
+      "esperado": 400,
+      "obtenido": 400,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Abrir enlace válido capturado localmente",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "email_verified después del enlace válido",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Reutilizar enlace de cuenta ya verificada",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Login después de verificar",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "Login emite credencial de sesión, sin exponerla",
+      "esperado": true,
+      "obtenido": true,
+      "resultado": "aprobado_localmente"
+    },
+    {
+      "caso": "API del dashboard; no navegación desde Flutter",
+      "esperado": 200,
+      "obtenido": 200,
+      "resultado": "aprobado_localmente"
+    }
+  ],
+  "hu001_completa": false
+}
