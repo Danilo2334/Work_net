@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-19",
+  "python": "3.12.10",
+  "node": "v22.23.3",
+  "django": "6.1.1",
+  "newman": "6.2.3",
+  "backend_base": "2f8d226765f6d2dd76013ca6b6213ca385b4821f",
+  "coleccion_sha256": "e74c78ee1c2f561db4118cad55b8ebb3e03f893d036358b307952947535da991",
+  "ejecuciones": [
+    {
+      "run": "run-20261019T170427-afc757da",
+      "peticiones": 212,
+      "aprobadas": 212,
+      "fallidas": 0,
+      "comprobaciones": 631,
+      "comprobaciones_fallidas": 0
+    },
+    {
+      "run": "run-20261019T170633-317a245b",
+      "peticiones": 212,
+      "aprobadas": 212,
+      "fallidas": 0,
+      "comprobaciones": 631,
+      "comprobaciones_fallidas": 0
+    }
+  ],
+  "casos_por_tarea": {
+    "30": 12,
+    "31": 4,
+    "35": 17,
+    "40": 12,
+    "44": 27,
+    "45": 11,
+    "48": 6,
+    "52": 7,
+    "56": 7,
+    "60": 69,
+    "64": 26,
+    "68": 14
+  },
+  "pruebas_internas_django": {
+    "ejecutadas": 3,
+    "aprobadas": 3,
+    "alcance": "vencimiento de verificación y recuperación, fallo interno de envío con rollback y respuesta 503; base Django de test"
+  },
+  "capturas_postman": {
+    "estado": "pendiente",
+    "version_abierta": "12.31.7",
+    "motivo": "La interfaz se abrió en copia privada del perfil; no se consiguió completar la importación ni ejecutar casos desde ella. Ninguna captura se presenta como prueba funcional de Postman."
+  },
+  "revision_humana": "pendiente",
+  "smtp_esta_coleccion": "no ejecutado; correo real previo conservado en evidencia independiente"
+}
