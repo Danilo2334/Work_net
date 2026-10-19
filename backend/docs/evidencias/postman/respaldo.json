@@ -1,0 +1,30 @@
+{
+  "respaldo_privado": "originales-20261019.zip en .git/verification/postman; incluye perfil Postman y carpetas de Descargas",
+  "archivos_respaldados": 1518,
+  "colecciones_originales": [
+    {
+      "archivo": "Work_net_HU004_44.postman_collection.json",
+      "nombre": "Work_net — HU004 #44 — Cuenta de PRUEBA",
+      "peticiones": 7,
+      "sha256": "1d1582e660270c6138b12a328cece6e79305f29110bd570d28bf7522a20b570f",
+      "original_conservado": true
+    },
+    {
+      "archivo": "Work_net_HU004_45.postman_collection.json",
+      "nombre": "Work_net — HU004 #45 — Preferencias de notificaciones",
+      "peticiones": 8,
+      "sha256": "e1670b2926e9f729a5b024a415e2db711fea8fba85a715ea7cedebfc6c998863",
+      "original_conservado": true
+    },
+    {
+      "archivo": "Work_net_HU005_48.postman_collection.json",
+      "nombre": "Work_net - HU005 #48 API resumen candidato",
+      "peticiones": 10,
+      "sha256": "0b9e0037a4cd9e78d82cca6dd70b478cce6240ad80effb6a60aa908c79f175bd",
+      "original_conservado": true
+    }
+  ],
+  "comentarios_github_respaldados": 12,
+  "comentarios_originales_modificados_en_esta_entrega": 0,
+  "capturas_historicas": "Se conservan en sus comentarios originales; la colección nueva no reemplaza ni renormaliza sus cuerpos."
+}
