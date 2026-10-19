@@ -2,6 +2,12 @@
 
 19/10/2026, America/Bogota. Backend y QA: **Danilo2334**. Flutter e integración: **francisco3788**. Ejecución automatizada por agente; **revisión por otro integrante pendiente**. PR #146 en borrador y sin fusionar.
 
+## Actualización posterior de correo real
+
+Después de los casos a archivos, se completó la configuración privada, se comprobó TLS/autenticación Gmail y otro registro desde Flutter devolvió HTTP 201 mediante SMTP real. El rol posterior devolvió 200. **Recepción y apertura desde el buzón todavía pendientes**. [Registro separado de SMTP](../../../../backend/docs/evidencias/revision-sprint/SMTP.md). El contexto y resultados a archivos de esta página se conservan con su fecha; no se presentan como correo recibido.
+
+[Comentarios vigentes de las 42 tareas](seguimiento.md).
+
 ## Alcance comprobado y límite del Project
 
 Se leyeron los criterios originales de HU001–HU010 (historias #2–#11) y tareas #29–#70. No se pudo leer el campo Sprint ni la vista Sprint Backlog: la credencial de Danilo carece de `read:project`. Por tanto, esta entrega documenta el trabajo autorizado y sus dependencias, **no acredita que todas estas tareas pertenezcan al Sprint 2 ni que el Sprint esté terminado**. No se modificaron criterios, cuerpos de issues, responsables, estados, Sprints, fechas ni hitos.

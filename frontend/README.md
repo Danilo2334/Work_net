@@ -105,8 +105,10 @@ Para correo real, completar localmente `backend/.env` a partir de `.env.example`
 `GMAIL_USER`, `GMAIL_APP_PASSWORD` y
 `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password`.
 No compartir ni versionar credenciales. El backend usa Django 6.1.1 y conserva
-MAILERS. La entrega SMTP y recepción efectiva siguen pendientes; los enlaces
-usados en QA se capturan a archivos locales.
+MAILERS. Gmail ya autenticó y aceptó un registro desde Flutter en una instancia
+aislada; recepción efectiva, apertura del mensaje y recuperación real siguen
+pendientes. [Estado SMTP separado](../backend/docs/evidencias/revision-sprint/SMTP.md).
+Los enlaces de la QA anterior se capturaron a archivos y no acreditan recepción.
 
 El hosting debe resolver las rutas de Flutter a `index.html`. En desarrollo web
 el origen de recuperación debe coincidir con el puerto usado. La validación

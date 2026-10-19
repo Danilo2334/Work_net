@@ -43,7 +43,7 @@ Se utiliza la base SQLite local configurada en el proyecto. El runner crea y eli
 
 La configuración SMTP de la integración se conserva. Para los envíos reales, completar `GMAIL_USER` y `GMAIL_APP_PASSWORD` en `backend/.env`, usando una contraseña de aplicación autorizada. Puede tomarse `backend/.env.example` como referencia. El archivo `.env` se mantiene fuera de Git.
 
-La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` al ejecutar Flutter en ese puerto. Django instalado: 6.1.1; se conserva [MAILERS](https://docs.djangoproject.com/en/6.1/topics/email/#configuring-email). La recepción real de correo sigue pendiente de credenciales locales y comprobación en el buzón. El correo a archivos usado en QA no acredita entrega SMTP.
+La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` al ejecutar Flutter en ese puerto. Django instalado: 6.1.1; se conserva [MAILERS](https://docs.djangoproject.com/en/6.1/topics/email/#configuring-email). Gmail ya autenticó y aceptó un registro en la instancia aislada de SMTP; recepción en el buzón, apertura y recuperación real siguen pendientes. [Estado del correo](backend/docs/evidencias/revision-sprint/SMTP.md). El correo a archivos usado en la QA anterior no acredita entrega SMTP.
 
 ## API
 
