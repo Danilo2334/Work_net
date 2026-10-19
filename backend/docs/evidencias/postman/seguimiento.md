@@ -1,6 +1,6 @@
 # Seguimiento publicado — QA reproducible del backend
 
-Pruebas registradas como **Danilo2334**: dos ejecuciones en Postman, cada una con 212 peticiones y 631 comprobaciones aprobadas. Se conservan las 22 capturas de Postman y los adjuntos originales.
+Un comentario por tarea reúne las pruebas y capturas de backend, registradas como **Danilo2334**: dos ejecuciones en Postman, cada una con 212 peticiones y 631 comprobaciones aprobadas. Se conservan las 22 capturas de Postman y los adjuntos originales.
 
 | Tarea | Casos por ejecución | Comentario QA |
 |---|---:|---|
