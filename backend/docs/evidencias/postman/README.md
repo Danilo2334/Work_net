@@ -6,6 +6,8 @@ Fecha: **19/10/2026**. Responsable de backend y QA: **Danilo2334**. Base publica
 
 [Colección Postman](../../../postman/WorkNet.postman_collection.json), [entorno de ejemplo sin credenciales](../../../postman/WorkNet.local.postman_environment.json), [instrucciones de importación y repetición](../../../postman/README.md) y [catálogo de casos](../../../postman/CASOS.md). El script local prepara migraciones, datos ficticios, contraseñas aleatorias, correo a archivos y una SQLite nueva; conserva cada ejecución anterior.
 
+[Comentarios publicados por tarea y comprobación de conservación](seguimiento.md).
+
 Se encontraron tres colecciones originales en Descargas: #44 (7 peticiones), #45 (8) y #48 (10). Se respaldaron junto con sus carpetas y el perfil de Postman **antes de crear la nueva colección**. Las originales permanecen intactas; sus SHA-256 constan en [respaldo.json](respaldo.json). También se respaldaron los comentarios de las doce tareas. Los comentarios históricos y sus 26 capturas recuperadas no se reformatean ni sustituyen.
 
 ## Qué se probó
@@ -17,6 +19,8 @@ Se encontraron tres colecciones originales en Descargas: #44 (7 peticiones), #45
 | Interna Django | Base temporal del test runner | 3 tests | Verificación vencida, recuperación vencida y fallo de envío controlado | Todas aprobadas |
 
 Las dos pasadas ejecutaron **el mismo JSON de colección**, con el mismo SHA-256. Newman 6.2.3 envió las peticiones HTTP y ejecutó sus scripts Post-response. No se consultó la base habitual ni se enviaron mensajes a Gmail. Los informes publicados omiten cuerpos, encabezados de autenticación, contraseñas y URLs firmadas. Las respuestas y entornos completos permanecen únicamente en archivos privados ignorados.
+
+Git convierte los finales CRLF del archivo ejecutado en Windows a LF al publicarlo. [normalizacion.json](normalizacion.json) conserva ambos hashes y la comprobación de contenido JSON idéntico; los informes originales mantienen su hash de ejecución sin alterar. `.gitattributes` fija LF para las próximas importaciones y ejecuciones.
 
 También pasaron `manage.py check`, `makemigrations --check --dry-run` y la [validación de la colección contra el esquema oficial v2.1](schema-validacion.json). No se atribuyen aquí las 103 pruebas Django ni las pruebas Flutter de fases anteriores: no se volvieron a ejecutar en este bloque.
 
