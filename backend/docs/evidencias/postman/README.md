@@ -1,50 +1,44 @@
-# Pruebas del backend ejecutadas en Postman
+# Pruebas del backend en Postman
 
-**Evidencia vigente: Postman Desktop 12.31.7 contra Django real.** Fecha: 19/10/2026. Ejecución por agente; QA registrado como **Danilo2334**. La revisión humana permanece pendiente.
+19/10/2026. Seguimiento de QA: **Danilo2334**.
 
-Se registran únicamente capturas directas de Postman: petición, respuesta y comprobaciones. Las pantallas de frontend se acreditan con capturas de la app Flutter. Los informes HTML y las ejecuciones de consola anteriores se conservan como historial técnico y quedan fuera de la evidencia de aceptación solicitada.
+Se probaron los servicios de WorkNet desde Postman Desktop, con Django en funcionamiento y datos ficticios en bases separadas. Las dos ejecuciones terminaron sin fallos.
 
-## Resultado en Postman
+| Ejecución | Peticiones | Comprobaciones aprobadas | Fallos |
+|---|---:|---:|---:|
+| Primera | 212 | 631 | 0 |
+| Segunda, desde otra base nueva | 212 | 631 | 0 |
 
-| Pasada | Base inicial | Peticiones | Comprobaciones aprobadas | Fallos |
-|---|---|---:|---:|---:|
-| 1 | SQLite nueva, Django en 8008 | 212 | 631 | 0 |
-| 2 | Otra SQLite nueva, Django en 8009 | 212 | 631 | 0 |
+## Qué se comprobó
 
-Las once carpetas se ejecutaron desde el Collection Runner de **la aplicación Postman**, con el entorno correspondiente, una iteración y conservación de variables. Los datos iniciales son ficticios; IDs y tokens se obtuvieron de respuestas reales. Se comprobaron validaciones, persistencia mediante otra consulta, roles y separación entre usuarios, revocación de sesión, CRUD, fotografías y revisión empresarial.
-
-La primera preparación de recuperación se detuvo por una variable de enlace ausente; se cargó y se completó en Postman. No se modificó ningún resultado esperado. Las dos pasadas completas de la tabla quedaron aprobadas. Además se volvió a enviar la petición idempotente PM016 en el editor para capturar respuesta y Test Results sin exponer su enlace.
-
-## Capturas directas por tarea
-
-| Tarea | Evidencia de Postman |
+| Tarea | Pruebas principales |
 |---|---|
-| #30 | [PM007: Registro y correo duplicado](capturas/hu001-registro-duplicado.png) |
-| #31 | [PM016: Verificación: respuesta de Django](capturas/hu001-verificacion-respuesta.png), [PM016: Verificación: Test Results](capturas/hu001-verificacion-pruebas.png) |
-| #35 | [PM023: Logout y token revocado](capturas/hu002-token-revocado.png) |
-| #40 | [PM035: Solicitud de recuperación](capturas/hu003-solicitud.png), [PM039: Cambio de contraseña confirmado](capturas/hu003-cambio-confirmado.png) |
-| #44 | [PM051: Nombre recuperado en otra consulta](capturas/hu004-nombre-persistente.png), [PM057: Token anterior rechazado al cambiar contraseña](capturas/hu004-token-anterior.png), [PM209: Eliminación de la cuenta desechable](capturas/hu004-eliminacion.png), [PM210: Sesión de cuenta eliminada rechazada](capturas/hu004-cuenta-eliminada-401.png) |
-| #45 | [PM064: Preferencia false persistida](capturas/hu004-preferencia-persistente.png) |
-| #48 | [PM081: Resumen del candidato](capturas/hu005-resumen.png) |
-| #52 | [PM084: Resumen de empresa](capturas/hu006-resumen.png) |
-| #56 | [PM086: Resumen administrativo](capturas/hu007-resumen.png) |
-| #60 | [PM100: Educación editada y recuperada](capturas/hu008-educacion-persistente.png), [PM102: Otro candidato no modifica el registro](capturas/hu008-permisos.png), [PM138: Fotografía corrupta rechazada](capturas/hu008-foto-invalida.png) |
-| #64 | [PM165: Información empresarial persistida](capturas/hu009-informacion-persistente.png) |
-| #68 | [PM180: Rechazo con motivo y aviso](capturas/hu010-rechazo-notificado.png), [PM186: Aprobación administrativa](capturas/hu010-aprobacion.png), [PM187: Decisión con versión obsoleta](capturas/hu010-version-obsoleta.png) |
+| #30 · Registro | Cuenta nueva, elección del rol, validaciones y correo repetido |
+| #31 · Verificación | Enlace válido, ausente, inválido y apertura repetida |
+| #35 · Acceso y salida | Credenciales, roles, cuenta verificada y revocación de sesión |
+| #40 · Recuperación | Solicitud, cambio de contraseña y rechazo del enlace usado |
+| #44 · Cuenta | Nombre conservado, cambio de contraseña y eliminación de cuenta desechable |
+| #45 · Preferencias | Guardado y consulta posterior de notificaciones |
+| #48 · Candidato | Resumen propio, completitud y permisos |
+| #52 · Empresa | Resumen propio y acceso de empresa aprobada |
+| #56 · Administrador | Conteos, avisos y acceso exclusivo |
+| #60 · Perfil | Guardado, edición, eliminación, fotografías y separación entre usuarios |
+| #64 · Información empresarial | Datos obligatorios, NIT único, guardado y permisos |
+| #68 · Validación empresarial | Aprobación, rechazo con motivo, corrección y reenvío |
 
-[Ver todas las capturas con su explicación](capturas/README.md) · [Seguimiento de las tareas](seguimiento.md).
+## Capturas y repetición
 
-## Repetir las pruebas
+Las **22 capturas de Postman** muestran las peticiones, respuestas y comprobaciones de los casos principales. Se conservan también las capturas originales de entregas anteriores.
 
-[Importar la colección, preparar los datos y ejecutar en Postman](../../../postman/README.md). La colección está organizada por historia y tarea; cada petición conserva preparación, encabezados, cuerpo, respuesta esperada y scripts. Antes de las fases 02 y 04 se cargan las variables del enlace leído del correo local, sin revelarlas en capturas.
+- [Ver las capturas con su explicación](capturas/README.md).
+- [Importar la colección y repetir las pruebas desde cero](../../../postman/README.md).
 
-Los archivos de fotografía se cargaron desde el directorio de trabajo de Postman, con las mismas rutas relativas de la colección. Para repetir, seleccionar `backend/postman` como directorio de trabajo o copiar allí los cinco fixtures indicados en las instrucciones. Se conservan las tres colecciones originales y las capturas históricas recuperadas.
+En estas dos ejecuciones los enlaces se tomaron del correo guardado localmente. El registro y la recuperación con correo recibido se comprobaron antes y conservan su evidencia separada.
 
-## Qué queda pendiente
+## Pendientes
 
-- Revisión por otro integrante y validación nativa. No se cierran tareas ni se registra una aprobación humana.
-- Estas pasadas usan correo capturado en archivos. La recepción real anterior conserva su [evidencia SMTP separada](../revision-sprint/SMTP.md).
-- Consulta empresarial autorizada al perfil y módulos futuros conservan sus dependencias. Un 403 no acredita un acceso positivo todavía inexistente.
-- PR #146 continúa en borrador y sin fusionar; Sprints, fechas y criterios se conservan.
+- Revisión por otro integrante y pruebas en Android/iOS.
+- Consulta del perfil por una empresa autorizada durante la selección.
+- Módulos futuros de los dashboards y gestión de administradores.
 
-Los detalles de las dos observaciones del Runner y los hashes de las imágenes están en [entorno.json](entorno.json). Las imágenes son capturas de la aplicación; este documento solamente explica sus casos.
+El PR #146 continúa en borrador. Los criterios de las tareas y sus revisiones pendientes se conservan.
