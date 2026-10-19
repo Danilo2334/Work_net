@@ -1,3 +1,5 @@
+> **Criterio vigente de evidencia (19/10/2026):** las pruebas de backend se registran desde Postman. Los informes HTML y sus capturas de esta etapa son historial técnico y quedan fuera de la evidencia de aceptación. [Pruebas y capturas directas de Postman](../postman/README.md). Las evidencias SMTP anteriores conservan su alcance propio.
+
 # Normalización de evidencias backend y QA
 
 Fecha de contexto: **18/10/2026 — America/Bogota**. Responsable de publicación:

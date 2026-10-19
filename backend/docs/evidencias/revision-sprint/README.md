@@ -1,3 +1,5 @@
+> **Criterio vigente de evidencia (19/10/2026):** las pruebas de backend se registran desde Postman. Los informes HTML y sus capturas de esta etapa son historial técnico y quedan fuera de la evidencia de aceptación. [Pruebas y capturas directas de Postman](../postman/README.md). Las evidencias SMTP anteriores conservan su alcance propio.
+
 > **Estado vigente:** registro y recuperación con SMTP real comprobados usando los enlaces recibidos aportados por el usuario; verificación/cambio persistidos, login/dashboard y revocación confirmados. Revisión humana pendiente: [estado actual del correo](SMTP.md). El informe de abajo conserva el contexto histórico de la ejecución a archivos.
 
 <details>

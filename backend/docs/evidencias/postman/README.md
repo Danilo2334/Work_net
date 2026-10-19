@@ -1,58 +1,50 @@
-# QA backend reproducible — Postman y Newman
+# Pruebas del backend ejecutadas en Postman
 
-Fecha: **19/10/2026**. Responsable de backend y QA: **Danilo2334**. Base publicada de Django: `2f8d226`; esta entrega añade herramientas, colección y evidencia, sin modificar los endpoints del producto.
+**Evidencia vigente: Postman Desktop 12.31.7 contra Django real.** Fecha: 19/10/2026. Ejecución por agente; QA registrado como **Danilo2334**. La revisión humana permanece pendiente.
 
-## Qué se entregó
+Se registran únicamente capturas directas de Postman: petición, respuesta y comprobaciones. Las pantallas de frontend se acreditan con capturas de la app Flutter. Los informes HTML y las ejecuciones de consola anteriores se conservan como historial técnico y quedan fuera de la evidencia de aceptación solicitada.
 
-[Colección Postman](../../../postman/WorkNet.postman_collection.json), [entorno de ejemplo sin credenciales](../../../postman/WorkNet.local.postman_environment.json), [instrucciones de importación y repetición](../../../postman/README.md) y [catálogo de casos](../../../postman/CASOS.md). El script local prepara migraciones, datos ficticios, contraseñas aleatorias, correo a archivos y una SQLite nueva; conserva cada ejecución anterior.
+## Resultado en Postman
 
-[Comentarios publicados por tarea y comprobación de conservación](seguimiento.md).
+| Pasada | Base inicial | Peticiones | Comprobaciones aprobadas | Fallos |
+|---|---|---:|---:|---:|
+| 1 | SQLite nueva, Django en 8008 | 212 | 631 | 0 |
+| 2 | Otra SQLite nueva, Django en 8009 | 212 | 631 | 0 |
 
-Se encontraron tres colecciones originales en Descargas: #44 (7 peticiones), #45 (8) y #48 (10). Se respaldaron junto con sus carpetas y el perfil de Postman **antes de crear la nueva colección**. Las originales permanecen intactas; sus SHA-256 constan en [respaldo.json](respaldo.json). También se respaldaron los comentarios de las doce tareas. Los comentarios históricos y sus 26 capturas recuperadas no se reformatean ni sustituyen.
+Las once carpetas se ejecutaron desde el Collection Runner de **la aplicación Postman**, con el entorno correspondiente, una iteración y conservación de variables. Los datos iniciales son ficticios; IDs y tokens se obtuvieron de respuestas reales. Se comprobaron validaciones, persistencia mediante otra consulta, roles y separación entre usuarios, revocación de sesión, CRUD, fotografías y revisión empresarial.
 
-## Qué se probó
+La primera preparación de recuperación se detuvo por una variable de enlace ausente; se cargó y se completó en Postman. No se modificó ningún resultado esperado. Las dos pasadas completas de la tabla quedaron aprobadas. Además se volvió a enviar la petición idempotente PM016 en el editor para capturar respuesta y Test Results sin exponer su enlace.
 
-| Ejecución | Preparación | Peticiones | Comprobaciones | Resultado |
-|---|---|---:|---:|---|
-| [1](ejecucion-1.json) | SQLite nueva, Django real en puerto 8009 | 212 | 631 | Todas aprobadas |
-| [2](ejecucion-2.json) | Otra SQLite nueva, mismos datos funcionales iniciales, puerto 8010 | 212 | 631 | Todas aprobadas |
-| Interna Django | Base temporal del test runner | 3 tests | Verificación vencida, recuperación vencida y fallo de envío controlado | Todas aprobadas |
+## Capturas directas por tarea
 
-Las dos pasadas ejecutaron **el mismo JSON de colección**, con el mismo SHA-256. Newman 6.2.3 envió las peticiones HTTP y ejecutó sus scripts Post-response. No se consultó la base habitual ni se enviaron mensajes a Gmail. Los informes publicados omiten cuerpos, encabezados de autenticación, contraseñas y URLs firmadas. Las respuestas y entornos completos permanecen únicamente en archivos privados ignorados.
+| Tarea | Evidencia de Postman |
+|---|---|
+| #30 | [PM007: Registro y correo duplicado](capturas/hu001-registro-duplicado.png) |
+| #31 | [PM016: Verificación: respuesta de Django](capturas/hu001-verificacion-respuesta.png), [PM016: Verificación: Test Results](capturas/hu001-verificacion-pruebas.png) |
+| #35 | [PM023: Logout y token revocado](capturas/hu002-token-revocado.png) |
+| #40 | [PM035: Solicitud de recuperación](capturas/hu003-solicitud.png), [PM039: Cambio de contraseña confirmado](capturas/hu003-cambio-confirmado.png) |
+| #44 | [PM051: Nombre recuperado en otra consulta](capturas/hu004-nombre-persistente.png), [PM057: Token anterior rechazado al cambiar contraseña](capturas/hu004-token-anterior.png), [PM209: Eliminación de la cuenta desechable](capturas/hu004-eliminacion.png), [PM210: Sesión de cuenta eliminada rechazada](capturas/hu004-cuenta-eliminada-401.png) |
+| #45 | [PM064: Preferencia false persistida](capturas/hu004-preferencia-persistente.png) |
+| #48 | [PM081: Resumen del candidato](capturas/hu005-resumen.png) |
+| #52 | [PM084: Resumen de empresa](capturas/hu006-resumen.png) |
+| #56 | [PM086: Resumen administrativo](capturas/hu007-resumen.png) |
+| #60 | [PM100: Educación editada y recuperada](capturas/hu008-educacion-persistente.png), [PM102: Otro candidato no modifica el registro](capturas/hu008-permisos.png), [PM138: Fotografía corrupta rechazada](capturas/hu008-foto-invalida.png) |
+| #64 | [PM165: Información empresarial persistida](capturas/hu009-informacion-persistente.png) |
+| #68 | [PM180: Rechazo con motivo y aviso](capturas/hu010-rechazo-notificado.png), [PM186: Aprobación administrativa](capturas/hu010-aprobacion.png), [PM187: Decisión con versión obsoleta](capturas/hu010-version-obsoleta.png) |
 
-Git convierte los finales CRLF del archivo ejecutado en Windows a LF al publicarlo. [normalizacion.json](normalizacion.json) conserva ambos hashes y la comprobación de contenido JSON idéntico; los informes originales mantienen su hash de ejecución sin alterar. `.gitattributes` fija LF para las próximas importaciones y ejecuciones.
+[Ver todas las capturas con su explicación](capturas/README.md) · [Seguimiento de las tareas](seguimiento.md).
 
-También pasaron `manage.py check`, `makemigrations --check --dry-run` y la [validación de la colección contra el esquema oficial v2.1](schema-validacion.json). No se atribuyen aquí las 103 pruebas Django ni las pruebas Flutter de fases anteriores: no se volvieron a ejecutar en este bloque.
+## Repetir las pruebas
 
-Durante la preparación hubo una ejecución fallida del script por declarar `data`, nombre global reservado por el sandbox de Postman. Se corrigió a `payloadQA`, se conservó el diagnóstico privado y se prepararon dos bases nuevas antes de las dos ejecuciones completas indicadas arriba. No se cambió ningún resultado HTTP esperado para ocultar ese fallo.
+[Importar la colección, preparar los datos y ejecutar en Postman](../../../postman/README.md). La colección está organizada por historia y tarea; cada petición conserva preparación, encabezados, cuerpo, respuesta esperada y scripts. Antes de las fases 02 y 04 se cargan las variables del enlace leído del correo local, sin revelarlas en capturas.
 
-| Tarea | Qué se comprobó | Peticiones por ejecución | Esperado / obtenido |
-|---|---|---:|---|
-| #30 Registro y roles | Validaciones, correo duplicado, alta antes del rol, ticket limitado, rol persistido y no reasignable | 12 | Estados y contenido esperados; 12 aprobadas |
-| #31 Verificación | Enlace ausente, inválido, enlace del mensaje capturado y repetición idempotente | 4 | 400 para ausente/inválido; 200 para válido/repetido; 4 aprobadas |
-| #35 Login y sesión | Login verificado/no verificado, error, roles y estados empresariales, logout y token revocado | 17 | Token real cuando corresponde; rechazo y revocación esperados; 17 aprobadas |
-| #40 Recuperación | Solicitud genérica, validaciones, enlace local válido, reutilizado, contraseña anterior y revocación | 12 | Cambio persistido; enlace usado/contraseña anterior rechazados y token 401; 12 aprobadas |
-| #44 Cuenta y eliminación | Lectura propia, edición, campos protegidos, rotación de token, eliminación cancelada/inválida/confirmada | 27 | Persistencia propia, separación y eliminación solo desechable; 27 aprobadas |
-| #45 Preferencias | Booleanos, persistencia de false/true, errores y separación entre cuentas | 11 | Valores conservados y entradas incorrectas rechazadas; 11 aprobadas |
-| #48 Resumen candidato | 83 % y métricas 2/1/2; segundo candidato 17 % y métricas cero; permisos y método | 6 | Valores y restricciones coincidentes; 6 aprobadas |
-| #52 Resumen empresa | Empresa aprobada con dos ofertas/dos postulaciones; estados pendientes/rechazados; nueva aprobada sin actividad ajena | 7 | Métricas propias y acceso según estado; 7 aprobadas |
-| #56 Resumen administrador | Roles, conteos reales, pendiente completo y eventos de revisión persistidos | 7 | Conteos y eventos coincidentes; 7 aprobadas |
-| #60 Perfil y fotografía | CRUD de perfil y cuatro secciones, fechas, niveles, permisos entre usuarios y foto privada/opcional/inválida | 69 | Persistencia, restricciones y completitud real; 69 aprobadas |
-| #64 Información empresarial | Datos completos, validaciones, separación, NIT único, envío, edición protegida, web/redes y logo | 26 | Persistencia y restricciones coincidentes; 26 aprobadas |
-| #68 Validación empresarial | Solo administrador, motivo, rechazo, corrección, reenvío, aprobación, versión obsoleta y avisos | 14 | Decisiones persistidas con revisor; versión obsoleta 409; 14 aprobadas |
+Los archivos de fotografía se cargaron desde el directorio de trabajo de Postman, con las mismas rutas relativas de la colección. Para repetir, seleccionar `backend/postman` como directorio de trabajo o copiar allí los cinco fixtures indicados en las instrucciones. Se conservan las tres colecciones originales y las capturas históricas recuperadas.
 
-Los datos de entorno, versiones y límites están en [entorno.json](entorno.json). El [catálogo](../../../postman/CASOS.md) identifica método, ruta, preparación y esperado por caso; la colección conserva además los cuerpos y todas las comprobaciones.
+## Qué queda pendiente
 
-## Capturas
+- Revisión por otro integrante y validación nativa. No se cierran tareas ni se registra una aprobación humana.
+- Estas pasadas usan correo capturado en archivos. La recepción real anterior conserva su [evidencia SMTP separada](../revision-sprint/SMTP.md).
+- Consulta empresarial autorizada al perfil y módulos futuros conservan sus dependencias. Un 403 no acredita un acceso positivo todavía inexistente.
+- PR #146 continúa en borrador y sin fusionar; Sprints, fechas y criterios se conservan.
 
-**Pendiente la ejecución visual en Postman y sus capturas auténticas.** Postman 12.31.7 se abrió usando una copia privada del perfil respaldado; no se consiguió completar la importación ni ejecutar la colección desde esa interfaz. No se publica una pantalla de Postman vacía, un informe HTML o una captura de consola como si acreditaran los casos en su interfaz.
-
-La lista para completar esa evidencia está en [capturas/README.md](capturas/README.md). Las capturas históricas recuperadas siguen siendo evidencia histórica de sus ejecuciones; no se presentan como capturas de esta colección nueva.
-
-## Estado y pendientes
-
-- **Comprobado:** colección v2.1 válida, entorno de ejemplo, preparación/restauración por base nueva, dos pasadas completas con Newman, correo capturado localmente, permisos, persistencia y tres tests internos separados.
-- **Pendiente de este entregable:** importar y ejecutar visualmente en Postman, guardar las capturas descritas y registrar sus resultados reales.
-- **Correo real:** su evidencia anterior se conserva en [SMTP.md](../revision-sprint/SMTP.md). Estas dos pasadas prueban el contenido del correo capturado y los endpoints; no una nueva entrega SMTP.
-- **Criterios de otras funcionalidades:** consulta empresarial autorizada al perfil, accesos a módulos futuros y gestión de administradores conservan sus pendientes. Una respuesta 403 no acredita el caso positivo de autorización todavía ausente.
-- **Revisión humana:** no realizada. No se cierran tareas; PR #146 debe continuar en borrador y sin fusionar.
+Los detalles de las dos observaciones del Runner y los hashes de las imágenes están en [entorno.json](entorno.json). Las imágenes son capturas de la aplicación; este documento solamente explica sus casos.
