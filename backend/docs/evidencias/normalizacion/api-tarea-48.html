@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Tarea #48 — API QA</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#eff5f2;color:#193f36;font:16px/1.45 Arial,sans-serif}main{width:1120px;padding:28px}header,section{padding:24px;background:white;border:1px solid #d6e2dc;border-radius:16px;margin-bottom:18px}h1{font-size:27px;margin:8px 0}h2{font-size:20px;margin:0 0 10px}.tag{font-weight:bold;color:#087f70;letter-spacing:1px;font-size:13px}.note{padding:12px;background:#e8f5ee;border-radius:8px}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #d6e2dc;vertical-align:top}th{background:#e8f5ee}td:first-child{width:70%}small{display:block;color:#526d65;font-size:13px;margin-top:3px;overflow-wrap:anywhere}b{color:#087f70}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.35 Consolas,monospace;background:#f5f8f6;padding:16px;border-radius:8px}footer{color:#526d65;font-size:13px}</style>
+<main><header><div class="tag">WORK_NET · EVIDENCIA AUTOMÁTICA API</div><h1>#48 · Resumen del candidato</h1><div>18/10/2026 · HTTP real a Django local · SQLite aislada</div><p class="note">Datos ficticios QA. Sesiones, contraseñas y enlaces firmados omitidos.</p><div><b>4 casos API aprobados</b> · <b>19/19 pruebas pertinentes aprobadas</b></div><small>Selección de la suite completa: 87 pruebas, 0 fallos. Las selecciones pueden solaparse.</small></header>
+<section><h2>Casos ejecutados</h2><table><thead><tr><th>Caso y petición</th><th>Esperado</th><th>Obtenido</th></tr></thead><tbody><tr><td>Datos reales de actividad y completitud<small>GET /api/dashboard/candidate/</small></td><td>HTTP 200</td><td>HTTP 200<br><b>APROBADO</b></td></tr><tr><td>Otro candidato consulta solo sus métricas<small>GET /api/dashboard/candidate/</small></td><td>HTTP 200</td><td>HTTP 200<br><b>APROBADO</b></td></tr><tr><td>Dashboard sin autenticación<small>GET /api/dashboard/candidate/</small></td><td>HTTP 401</td><td>HTTP 401<br><b>APROBADO</b></td></tr><tr><td>Empresa no accede a dashboard candidato<small>GET /api/dashboard/candidate/</small></td><td>HTTP 403</td><td>HTTP 403<br><b>APROBADO</b></td></tr></tbody></table></section>
+<section><h2>Datos reales de actividad y completitud</h2><div>Extracto de respuesta real; campos sensibles omitidos.</div><pre>{
+  &quot;user&quot;: {
+    &quot;id&quot;: 1,
+    &quot;full_name&quot;: &quot;Candidato QA — base aislada&quot;,
+    &quot;role&quot;: &quot;candidato&quot;
+  },
+  &quot;profile_completion&quot;: {
+    &quot;percentage&quot;: 83,
+    &quot;status&quot;: &quot;incomplete&quot;,
+    &quot;completed_sections&quot;: 5,
+    &quot;total_sections&quot;: 6,
+    &quot;missing_sections&quot;: [
+      &quot;languages&quot;
+    ]
+  },
+  &quot;metrics&quot;: {
+    &quot;applications_count&quot;: 2,
+    &quot;saved_offers_count&quot;: 1,
+    &quot;pending_notifications_count&quot;: 2
+  }
+}</pre></section>
+<footer>Responsable de registro: Danilo2334 · Ejecución automatizada por agente · Revisión humana pendiente.<br>Origen: api.json y suite.json. Informe completo y comandos en README.md. Código backend validado: a400455.</footer></main></html>
