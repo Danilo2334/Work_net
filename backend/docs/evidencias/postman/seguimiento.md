@@ -1,6 +1,6 @@
 # Seguimiento publicado — QA reproducible del backend
 
-Comentarios añadidos como **Danilo2334**, sin editar los originales ni sus capturas. Se distinguen las dos ejecuciones Newman aprobadas de la comprobación visual pendiente en Postman.
+Seguimiento de QA como **Danilo2334**, con los comentarios históricos y sus capturas originales conservados. La evidencia vigente procede de **dos pasadas en Postman Desktop**, con 212 peticiones y 631 comprobaciones aprobadas cada una, y 22 capturas directas. Las ejecuciones de consola anteriores quedan como historial técnico, fuera de la evidencia de aceptación.
 
 | Tarea | Casos por ejecución | Comentario QA |
 |---|---:|---|
