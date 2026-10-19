@@ -4,7 +4,7 @@
 
 ## Actualización posterior de correo real
 
-Después de los casos a archivos se completó la configuración privada y se envió un registro desde Flutter mediante SMTP real. El usuario aportó el enlace recibido: el agente comprobó HTTP 200, `email_verified=true` persistido y login/dashboard desde Flutter. Logout devolvió 200 y el token anterior 401. También se solicitó recuperación real desde Flutter con HTTP 200; **su recepción, apertura y cambio todavía pendientes del usuario**. [Registro separado de SMTP](../../../../backend/docs/evidencias/revision-sprint/SMTP.md). El contexto y resultados a archivos de esta página se conservan con su fecha; no se presentan como correo recibido.
+Después de los casos a archivos se completó la configuración privada y se envió un registro desde Flutter mediante SMTP real. El usuario aportó el enlace recibido: el agente comprobó HTTP 200, `email_verified=true` persistido y login/dashboard desde Flutter. Logout devolvió 200 y el token anterior 401. La recuperación real también se completó desde el enlace recibido aportado por el usuario: cambio persistido, nueva contraseña aceptada en Flutter, anterior y enlace usado rechazados, sesiones revocadas. [Dos capturas adicionales de confirmación](../correo-real/README.md). [Registro separado de SMTP](../../../../backend/docs/evidencias/revision-sprint/SMTP.md). El contexto y resultados a archivos de esta página se conservan con su fecha; no se presentan como correo recibido.
 
 [Comentarios vigentes de las 42 tareas](seguimiento.md).
 
@@ -59,10 +59,10 @@ Todas conservan revisión humana pendiente. «Implementado» describe código y 
 | [#36 — TASK-HU002-03 Implementar sesión y redirección por rol](https://github.com/Danilo2334/Work_net/issues/36) | francisco3788 | Acceso: sesión, destinos y estados empresariales reales; revisión pendiente |
 | [#37 — TASK-HU002-04 Manejar estados especiales de empresa](https://github.com/Danilo2334/Work_net/issues/37) | francisco3788 | Acceso: sesión, destinos y estados empresariales reales; revisión pendiente |
 | [#38 — TASK-HU002-05 Probar criterios de aceptación del login](https://github.com/Danilo2334/Work_net/issues/38) | Danilo2334 | Acceso: sesión, destinos y estados empresariales reales; revisión pendiente |
-| [#39 — TASK-HU003-01 Crear pantallas de recuperación de contraseña](https://github.com/Danilo2334/Work_net/issues/39) | francisco3788 | Recuperación local completa; recepción SMTP pendiente; revisión pendiente |
-| [#40 — TASK-HU003-02 Implementar tokens y correo de recuperación](https://github.com/Danilo2334/Work_net/issues/40) | Danilo2334 | Recuperación local completa; recepción SMTP pendiente; revisión pendiente |
-| [#41 — TASK-HU003-03 Integrar recuperación Flutter-Django](https://github.com/Danilo2334/Work_net/issues/41) | francisco3788 | Recuperación local completa; recepción SMTP pendiente; revisión pendiente |
-| [#42 — TASK-HU003-04 Probar recuperación y expiración](https://github.com/Danilo2334/Work_net/issues/42) | Danilo2334 | Recuperación local completa; recepción SMTP pendiente; revisión pendiente |
+| [#39 — TASK-HU003-01 Crear pantallas de recuperación de contraseña](https://github.com/Danilo2334/Work_net/issues/39) | francisco3788 | Recuperación mediante correo real y acceso comprobados; revisión pendiente |
+| [#40 — TASK-HU003-02 Implementar tokens y correo de recuperación](https://github.com/Danilo2334/Work_net/issues/40) | Danilo2334 | Recuperación mediante correo real y acceso comprobados; revisión pendiente |
+| [#41 — TASK-HU003-03 Integrar recuperación Flutter-Django](https://github.com/Danilo2334/Work_net/issues/41) | francisco3788 | Recuperación mediante correo real y acceso comprobados; revisión pendiente |
+| [#42 — TASK-HU003-04 Probar recuperación y expiración](https://github.com/Danilo2334/Work_net/issues/42) | Danilo2334 | Recuperación mediante correo real y acceso comprobados; revisión pendiente |
 | [#43 — TASK-HU004-01 Crear interfaz de configuración de cuenta](https://github.com/Danilo2334/Work_net/issues/43) | francisco3788 | Configuración: revisión humana pendiente; revisión pendiente |
 | [#44 — TASK-HU004-02 Implementar endpoints de configuración](https://github.com/Danilo2334/Work_net/issues/44) | Danilo2334 | Configuración: revisión humana pendiente; revisión pendiente |
 | [#45 — TASK-HU004-03 Implementar preferencias de notificaciones](https://github.com/Danilo2334/Work_net/issues/45) | Danilo2334 | Configuración: revisión humana pendiente; revisión pendiente |
@@ -287,7 +287,7 @@ La API rechaza un archivo sin contenido de imagen y conserva el logo válido ant
 
 Los informes [HU001](../hu001/README.md), [HU002](../hu002/README.md), [HU003](../hu003/README.md), [HU004](../hu004/README.md), [HU005](../hu005/README.md) y [HU008](../hu008/README.md) conservan casos/capturas históricos identificados. No se atribuyen sus conteos a nuevas ejecuciones. Registro antes del rol, estados empresariales, destinos de empresa/administrador y logout remoto ya se corrigieron; sus referencias antiguas se conservan como historial.
 
-- #31/#32/#33: registro SMTP/verificación/login comprobados mediante enlace aportado por el usuario, disponibles para revisión. #40/#41/#42: recuperación SMTP solicitada; recepción, apertura, cambio y nuevo login pendientes.
+- #31/#32/#33: registro SMTP/verificación/login comprobados mediante enlace aportado por el usuario, disponibles para revisión. #40/#41/#42: recuperación con enlace recibido, cambio y nuevo login comprobados; revisión pendiente.
 - Dashboard candidato #47/#50: CV, búsqueda, mensajes, historial y detalle/postulación, pendientes de sus módulos. #48/#49 tienen resumen e integración disponibles para revisión.
 - Dashboard empresa #51–#54: métricas e integración implementadas; accesos funcionales de gestión de ofertas/postulantes, mensajes y estadísticas pendientes de módulos posteriores. La API #52 está disponible para revisión.
 - Administración #55/#58: gestión de administradores/permisos pendiente. #56/#57 y el recorrido de validación sí tienen evidencia.
