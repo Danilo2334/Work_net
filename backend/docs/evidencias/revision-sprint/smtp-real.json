@@ -12,7 +12,7 @@
     "ejecucion": "El agente abrió el enlace aportado por el usuario"
   },
   "email_verified": true,
-  "recuperacion_real": "Solicitud enviada; recepción, apertura, cambio y login pendientes",
+  "recuperacion_real": "Recorrido comprobado usando el enlace recibido aportado por el usuario: cambio, nueva contraseña, rechazo de anterior y de reutilización, sesiones revocadas",
   "revision_humana_codigo": "pendiente",
   "login_api_posterior": 200,
   "dashboard_api_posterior": 200,
@@ -22,5 +22,21 @@
   "token_anterior_tras_logout": 401,
   "recuperacion_solicitud_flutter": 200,
   "recuperacion_envio_smtp": "aceptado sin error SMTP para cuenta existente",
-  "recuperacion_recepcion": "pendiente del usuario"
+  "recuperacion_recepcion": "Usuario aportó el enlace del correo recibido; sin acceso directo a su buzón",
+  "recuperacion_confirmacion_flutter": 200,
+  "recuperacion_url_exito_sin_parametros": true,
+  "recuperacion_login_contrasena_anterior": 400,
+  "recuperacion_token_previo": 401,
+  "recuperacion_enlace_reutilizado": 400,
+  "recuperacion_login_api_nueva": 200,
+  "recuperacion_login_flutter_nueva": 200,
+  "recuperacion_dashboard_flutter": 200,
+  "recuperacion_logout_flutter": 200,
+  "recuperacion_token_despues_logout": 401,
+  "recuperacion_capturas": [
+    "recuperacion-smtp-escritorio.png",
+    "recuperacion-smtp-movil.png"
+  ],
+  "contrasena_cambiada_persistida": true,
+  "tokens_activos_tras_logout": 0
 }
