@@ -5,7 +5,7 @@ La aplicación y sus pruebas están preparadas para revisión humana. El PR #146
 
 [Tabla de cierre por tarea y matriz de criterios](REVISION_CIERRE.md) · [Demostración comprobada y valores iniciales](evidencias/revision-cierre/README.md).
 
-El backend también tiene una [colección Postman con preparación e instrucciones](../../backend/postman/README.md) y un [informe por tarea](../../backend/docs/evidencias/postman/README.md): dos pasadas de Newman con 212 peticiones y 631 comprobaciones cada una, contra bases aisladas nuevas. La ejecución visual en Postman y sus capturas nuevas siguen pendientes; las capturas históricas se conservan. Este resultado no registra revisión humana ni cierra tareas.
+Las evidencias de interfaz se registran con **capturas directas de la app Flutter** y las del backend, desde **Postman**. El backend completó dos pasadas en Postman Desktop: 212 peticiones y 631 comprobaciones aprobadas por pasada, con [22 capturas directas](../../backend/docs/evidencias/postman/capturas/README.md). [Colección e instrucciones para repetir](../../backend/postman/README.md). Los informes HTML y las ejecuciones de consola anteriores quedan como historial técnico, fuera de la evidencia de aceptación. Se conservan las capturas originales; revisión humana y cierres pendientes.
 
 ## Abrir una demostración aislada
 

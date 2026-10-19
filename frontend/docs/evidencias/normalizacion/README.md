@@ -1,3 +1,5 @@
+> **Criterio vigente de evidencia (19/10/2026):** frontend se acredita con capturas directas de la app Flutter; backend, con [capturas directas de Postman](../../../../backend/docs/evidencias/postman/capturas/README.md). Las imágenes de informes HTML de API citadas en este historial se conservan como soporte técnico y quedan fuera de la evidencia de aceptación.
+
 > **Historial del 18/10/2026.** El seguimiento actual está en [preparación de revisión](../revision-sprint/README.md). Las referencias a pendientes de rol, logout y estados empresariales de este informe ya fueron actualizadas allí. Se conserva este índice y sus enlaces para consultar la evidencia de esa fase.
 
 # Seguimiento vigente de evidencias — HU001, HU002, HU003, HU004, HU005 y HU008

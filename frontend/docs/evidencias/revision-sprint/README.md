@@ -1,5 +1,7 @@
 # Preparación de revisión — evidencias vigentes
 
+**Evidencia de aceptación:** las imágenes de frontend corresponden a la app Flutter. Para backend se usan las [pruebas y capturas directas de Postman](../../../../backend/docs/evidencias/postman/README.md). Los informes HTML, las pruebas automáticas y los scripts HTTP anteriores se conservan como soporte técnico con su fecha; no sustituyen esas evidencias ni una revisión humana. Esta corrección documental no atribuye una nueva ejecución de frontend.
+
 19/10/2026, America/Bogota. Backend y QA: **Danilo2334**. Flutter e integración: **francisco3788**. Ejecución automatizada por agente; **revisión por otro integrante pendiente**. PR #146 en borrador y sin fusionar.
 
 ## Actualización posterior de correo real
