@@ -1,9 +1,17 @@
 {
-  "issues_verificadas": 12,
+  "fecha": "2026-10-19",
+  "evidencia_vigente": "Postman Desktop; capturas directas de la aplicación",
+  "pasadas_postman": 2,
+  "peticiones_por_pasada": 212,
+  "comprobaciones_aprobadas_por_pasada": 631,
+  "capturas_publicadas": 22,
+  "comentarios_qa_actualizados": 12,
+  "comentarios_originales_intactos": 13,
+  "historial_consola_conservado_y_excluido_de_aceptacion": true,
   "criterios_y_responsables_conservados": true,
-  "comentarios_originales_conservados": 13,
-  "comentarios_qa_nuevos": 12,
-  "archivos_originales_locales_intactos": 1518,
+  "colecciones_originales_de_descargas_intactas": 3,
   "pr_borrador": true,
-  "pr_fusionado": false
+  "pr_fusionado": false,
+  "revision_humana": "pendiente",
+  "commit_de_capturas": "8b5e975"
 }
