@@ -6,9 +6,21 @@
   "registro_desde_flutter": 201,
   "seleccion_posterior_rol": 200,
   "envio_smtp": "aceptado sin error; backend SMTP real",
-  "recepcion_buzon": "pendiente de confirmación del usuario",
-  "apertura_enlace_recibido": "pendiente",
-  "email_verified": "pendiente",
-  "recuperacion_real": "pendiente",
-  "revision_humana_codigo": "pendiente"
+  "recepcion_buzon": "Evidencia aportada por el usuario: enlace del mensaje; no se accedió directamente a su buzón",
+  "apertura_enlace_recibido": {
+    "http": 200,
+    "ejecucion": "El agente abrió el enlace aportado por el usuario"
+  },
+  "email_verified": true,
+  "recuperacion_real": "Solicitud enviada; recepción, apertura, cambio y login pendientes",
+  "revision_humana_codigo": "pendiente",
+  "login_api_posterior": 200,
+  "dashboard_api_posterior": 200,
+  "login_flutter_posterior": 200,
+  "destino_flutter": "dashboard candidato con datos de la SQLite SMTP",
+  "logout_flutter": 200,
+  "token_anterior_tras_logout": 401,
+  "recuperacion_solicitud_flutter": 200,
+  "recuperacion_envio_smtp": "aceptado sin error SMTP para cuenta existente",
+  "recuperacion_recepcion": "pendiente del usuario"
 }
