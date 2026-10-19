@@ -25,6 +25,8 @@ Registro antes del rol, verificación y recuperación mediante SMTP real con enl
 
 «Sí» significa alcance propio disponible para revisión; no significa cerrado. Las filas parciales conservan su funcionalidad faltante. Todas requieren revisión por otro integrante; los flujos visuales se probaron en web y no acreditan validación nativa.
 
+Resultado: **33 tareas disponibles para revisar en su alcance propio y 9 parciales**. Los [33 resúmenes de descripciones actualizados](evidencias/revision-cierre/seguimiento-actualizado.md) conservan criterios, casillas y metadata originales; los comentarios del usuario, incluido #42, no se modificaron. Son cantidades diferentes: una cuenta tareas por alcance y la otra descripciones que tenían seguimientos anteriores.
+
 | Tarea y referencia | Qué funciona | Qué falta | Lista para revisión y revisor |
 | --- | --- | --- | --- |
 | [#29 — Crear interfaz de registro en Flutter](https://github.com/Danilo2334/Work_net/issues/29) | Registro en español: primero crea la cuenta y después permite elegir Candidato o Empresa. Conserva diseño, validaciones, confirmación y error de correo duplicado. | Sin funcionalidad propia pendiente detectada; falta revisión cruzada registrada. | **Sí, alcance propio; cierre sujeto a revisión**. Danilo |

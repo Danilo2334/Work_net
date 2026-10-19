@@ -22,6 +22,8 @@ Estos son valores iniciales de esta base, no constantes de Flutter. Cambian cuan
 
 [Guion corto y reparto de revisión cruzada](../../REVISION.md) · [Tabla de las 42 tareas](../../REVISION_CIERRE.md) · [Criterios originales, código, pruebas y evidencia](criterios.md).
 
+[Seguimientos actualizados y conservación del historial](seguimiento-actualizado.md) · [Verificación de la publicación](verificacion-publicacion.json).
+
 ## Comprobaciones nuevas de preparación
 
 Se ejecutaron `python manage.py check` (sin incidencias) y `python manage.py makemigrations --check --dry-run` (sin cambios). El arranque aplicó las migraciones a una nueva SQLite. Se comprobó que el código de producto coincide con el validado en `04e7e5c`/`f9e4dea`; por eso se reutilizan las suites ya publicadas de 77 Flutter y 103 Django sin atribuirlas a una ejecución nueva de esta preparación.
