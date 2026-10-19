@@ -1,4 +1,4 @@
-> **Criterio vigente de evidencia (19/10/2026):** frontend se acredita con capturas directas de la app Flutter; backend, con [capturas directas de Postman](../../../../backend/docs/evidencias/postman/capturas/README.md). Las imágenes de informes HTML de API citadas en este historial se conservan como soporte técnico y quedan fuera de la evidencia de aceptación.
+> **Pruebas actuales:** capturas de la app Flutter para interfaz y de Postman para backend. Los informes anteriores conservan su fecha e historial.
 
 > **Historial del 18/10/2026.** El seguimiento actual está en [preparación de revisión](../revision-sprint/README.md). Las referencias a pendientes de rol, logout y estados empresariales de este informe ya fueron actualizadas allí. Se conserva este índice y sus enlaces para consultar la evidencia de esa fase.
 
@@ -7,7 +7,7 @@
 Normalización del **18/10/2026**, America/Bogota. Este índice reúne **25 tareas
 y 26 comentarios vigentes**: #46 mantiene separados integración y QA.
 Backend y QA se registran con **Danilo2334**; Flutter e integración con
-**francisco3788**. Ejecución automatizada por agente; **revisión humana pendiente**.
+**francisco3788**. Falta la revisión por otro integrante.
 
 Cada comentario presenta función realizada, tabla de casos con tipo y resultado
 esperado/obtenido, imágenes embebidas con título y leyenda, referencias y

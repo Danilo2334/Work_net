@@ -2,7 +2,7 @@
 
 19/10/2026. El resumen usa métricas y ofertas reales. Se comprobó otra cuenta candidata en Chrome: guardar descripción y regresar actualiza la completitud de Django a 33%. El perfil está accesible. CV, búsqueda, mensajes, historial y detalle/postulación siguen pendientes de sus módulos; no hay botones de navegación vacíos que aparenten estar disponibles.
 
-[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Ejecución automatizada; revisión humana pendiente; PR #146 en borrador.
+[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Falta la revisión por otro integrante. PR #146 en borrador.
 
 Las capturas y resultados anteriores se conservan como evidencia de su fecha. Las referencias antiguas a selección previa del rol, logout solo local o destinos empresariales inexistentes quedan superadas por el seguimiento anterior.
 

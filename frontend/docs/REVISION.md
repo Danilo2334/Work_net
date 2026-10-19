@@ -1,11 +1,11 @@
 # Guía para revisar WorkNet
 
 Actualización: 19/10/2026. Código Flutter `04e7e5c`; backend `f9e4dea`.
-La aplicación y sus pruebas están preparadas para revisión humana. El PR #146 sigue en borrador.
+La aplicación y sus pruebas están preparadas para la revisión de Danilo y Francisco. El PR #146 sigue en borrador.
 
 [Tabla de cierre por tarea y matriz de criterios](REVISION_CIERRE.md) · [Demostración comprobada y valores iniciales](evidencias/revision-cierre/README.md).
 
-Las evidencias de interfaz se registran con **capturas directas de la app Flutter** y las del backend, desde **Postman**. El backend completó dos pasadas en Postman Desktop: 212 peticiones y 631 comprobaciones aprobadas por pasada, con [22 capturas directas](../../backend/docs/evidencias/postman/capturas/README.md). [Colección e instrucciones para repetir](../../backend/postman/README.md). Los informes HTML y las ejecuciones de consola anteriores quedan como historial técnico, fuera de la evidencia de aceptación. Se conservan las capturas originales; revisión humana y cierres pendientes.
+Las pruebas de interfaz tienen capturas de la app Flutter; las del backend se realizaron en Postman. Sus dos ejecuciones terminaron con 212 peticiones y 631 comprobaciones aprobadas cada una. [Ver resultados, capturas e instrucciones de Postman](../../backend/docs/evidencias/postman/README.md).
 
 ## Abrir una demostración aislada
 
@@ -55,12 +55,12 @@ La configuración privada quedó completada. En la SQLite SMTP separada (Django 
 ## Pendientes que deben decirse claramente
 
 - Falta acceso `read:project` para confirmar qué issues pertenecen realmente al Sprint 2. La rama no define ese alcance; no se modificaron Sprint ni fechas.
-- Registro y recuperación mediante correo real comprobados en este entorno con enlaces aportados por el usuario. La revisión humana del código sigue pendiente.
+- Registro y recuperación mediante correo real comprobados con los enlaces recibidos. Falta la revisión del código por otro integrante.
 - Dashboard candidato: CV, búsqueda, mensajes, historial y detalle/postulación pertenecen a módulos todavía ausentes.
 - Dashboard empresa: crear/gestionar ofertas, gestionar postulantes, mensajes y estadísticas siguen pendientes. Las métricas y postulaciones recientes sí usan datos reales.
 - Administración: gestión de administradores y permisos pendiente. Revisión de empresas, métricas y eventos de validación sí están implementados.
 - Perfil candidato: falta consulta positiva por empresas con autorización dentro de selección. Hoy se conserva el acceso restringido; un HTTP 403 no cumple ese criterio positivo.
-- Revisión por otro integrante y validación nativa pendientes. Ninguna prueba automática se registra como aprobación humana.
+- Revisión por otro integrante y pruebas en Android/iOS pendientes.
 
 [Resultados y capturas de esta fase](evidencias/revision-sprint/README.md). [Contratos empresariales](../../backend/accounts/COMPANY_API.md). [PR #146](https://github.com/Danilo2334/Work_net/pull/146).
 
@@ -83,17 +83,6 @@ Orden sugerido para conservar cuentas útiles:
 5. Dejar para el final `eliminar.qa@worknet.test`: nombre, preferencias, cambio de contraseña/token y eliminación cancelada/confirmada. No usar la cuenta candidata principal para eliminarla o cambiar su contraseña antes de terminar el resto de la demostración.
 6. Repetir las pantallas principales en móvil web. Android/iOS quedan pendientes de sus comprobaciones propias. Revisar los criterios de módulos faltantes como pendientes, aunque aparezcan sus avisos.
 
-Solo después de ejecutar una revisión real, cada integrante registra desde su cuenta:
+Después de probar la app o los servicios en Postman, cada integrante deja en la tarea una explicación breve del resultado, las capturas necesarias y cualquier fallo encontrado.
 
-```text
-Revisor y fecha: por completar tras la revisión
-Tarea y commit revisados:
-Caso / tipo (navegador, API o prueba automática observada):
-Resultado esperado:
-Resultado obtenido:
-Evidencia sin credenciales ni enlaces firmados:
-Observaciones o dependencia:
-Decisión de cierre: por registrar después de revisar
-```
-
-Esta plantilla está vacía y no acredita revisión humana. Las casillas existentes no se modificaron en esta preparación. Para HU004, Danilo revisa #43/#46 y Francisco #44/#45; SMTP y otras historias no bloquean esa revisión. Mantener #46 con integración y QA separados. No cerrar historias con criterios funcionales parciales ni declarar el Sprint terminado antes de confirmar su asignación real en Project.
+Para HU004, Danilo revisa #43/#46 y Francisco #44/#45. En #46 se mantienen separados integración y QA. Los cierres se decidirán después de revisar los criterios; el alcance del Sprint sigue pendiente de confirmación en el Project.

@@ -1,12 +1,12 @@
 # Preparación de revisión — evidencias vigentes
 
-**Evidencia de aceptación:** las imágenes de frontend corresponden a la app Flutter. Para backend se usan las [pruebas y capturas directas de Postman](../../../../backend/docs/evidencias/postman/README.md). Los informes HTML, las pruebas automáticas y los scripts HTTP anteriores se conservan como soporte técnico con su fecha; no sustituyen esas evidencias ni una revisión humana. Esta corrección documental no atribuye una nueva ejecución de frontend.
+Las pruebas de interfaz tienen capturas de la app Flutter. Las pruebas actuales del backend y sus capturas están en el [informe de Postman](../../../../backend/docs/evidencias/postman/README.md). Este informe conserva los resultados de la fase indicada.
 
-19/10/2026, America/Bogota. Backend y QA: **Danilo2334**. Flutter e integración: **francisco3788**. Ejecución automatizada por agente; **revisión por otro integrante pendiente**. PR #146 en borrador y sin fusionar.
+19/10/2026, America/Bogota. Backend y QA: **Danilo2334**. Flutter e integración: **francisco3788**. Falta la revisión por otro integrante. PR #146 en borrador.
 
 ## Actualización posterior de correo real
 
-Después de los casos a archivos se completó la configuración privada y se envió un registro desde Flutter mediante SMTP real. El usuario aportó el enlace recibido: el agente comprobó HTTP 200, `email_verified=true` persistido y login/dashboard desde Flutter. Logout devolvió 200 y el token anterior 401. La recuperación real también se completó desde el enlace recibido aportado por el usuario: cambio persistido, nueva contraseña aceptada en Flutter, anterior y enlace usado rechazados, sesiones revocadas. [Dos capturas adicionales de confirmación](../correo-real/README.md). [Registro separado de SMTP](../../../../backend/docs/evidencias/revision-sprint/SMTP.md). El contexto y resultados a archivos de esta página se conservan con su fecha; no se presentan como correo recibido.
+El registro se completó desde Flutter con correo real: el enlace recibido verificó la cuenta y permitió acceder al dashboard. La recuperación también se completó con el correo recibido: la nueva contraseña permitió entrar y se rechazaron la anterior, el enlace usado y las sesiones previas. [Ver las capturas y los resultados del correo](../correo-real/README.md). Las pruebas anteriores con correo local conservan su fecha.
 
 [Comentarios vigentes de las 42 tareas](seguimiento.md).
 

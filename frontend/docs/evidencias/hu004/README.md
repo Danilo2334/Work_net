@@ -2,7 +2,7 @@
 
 19/10/2026. La configuración conserva consulta/edición de nombre, preferencias booleanas, rotación de token y eliminación con contraseña/confirmación. Se ejecutó la regresión automatizada vigente tras separar repositorios. El cierre ordinario ahora revoca el token en Django; estados y destinos empresariales ya están implementados en sus historias. HU004 conserva únicamente sus revisiones pendientes; SMTP de otras historias no la bloquea.
 
-[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Ejecución automatizada; revisión humana pendiente; PR #146 en borrador.
+[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Falta la revisión por otro integrante. PR #146 en borrador.
 
 Las capturas y resultados anteriores se conservan como evidencia de su fecha. Las referencias antiguas a selección previa del rol, logout solo local o destinos empresariales inexistentes quedan superadas por el seguimiento anterior.
 

@@ -2,7 +2,7 @@
 
 19/10/2026. Login y redirección consumen el rol y estado reales: candidato → dashboard, empresa pendiente/rechazada → información y motivo, aprobada → dashboard empresarial, administrador → administración. Cerrar sesión llama POST /api/logout/, confirma revocación y limpia la sesión; el token anterior obtiene 401. Un fallo de red conserva la posibilidad de reintentar sin anunciar revocación confirmada. Recordar sesión y rotación se conservan.
 
-[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Ejecución automatizada; revisión humana pendiente; PR #146 en borrador.
+[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Falta la revisión por otro integrante. PR #146 en borrador.
 
 Las capturas y resultados anteriores se conservan como evidencia de su fecha. Las referencias antiguas a selección previa del rol, logout solo local o destinos empresariales inexistentes quedan superadas por el seguimiento anterior.
 
