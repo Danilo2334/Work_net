@@ -1,4 +1,11 @@
-> **Actualización posterior:** la configuración privada ya se completó y el registro se envió con SMTP real. Recepción y enlace recibido pendientes: [estado actual del correo](SMTP.md). El informe de abajo conserva el contexto de la ejecución previa a archivos.
+> **Estado vigente:** registro y recuperación con SMTP real comprobados usando los enlaces recibidos aportados por el usuario; verificación/cambio persistidos, login/dashboard y revocación confirmados. Revisión humana pendiente: [estado actual del correo](SMTP.md). El informe de abajo conserva el contexto histórico de la ejecución a archivos.
+
+<details>
+<summary>Historial del resumen anterior, previo a recibir y comprobar los enlaces</summary>
+
+La configuración privada ya se completó y el registro se envió con SMTP real. Recepción y enlace recibido pendientes. Este resumen quedó superado por el informe SMTP enlazado arriba.
+
+</details>
 
 # Evidencia API — preparación de revisión
 
