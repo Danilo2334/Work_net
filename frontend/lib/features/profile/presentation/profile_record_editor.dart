@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/api/worknet_api.dart';
-import '../../core/widgets/error_notice.dart';
-import 'profile_data.dart';
+import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/core/widgets/error_notice.dart';
+import 'package:worknet/features/profile/domain/profile.dart';
+import 'package:worknet/features/profile/domain/profile_validation.dart';
 
 class ProfileRecordEditor extends StatefulWidget {
   const ProfileRecordEditor({
@@ -69,16 +70,6 @@ class _ProfileRecordEditorState extends State<ProfileRecordEditor> {
       c.dispose();
     }
     super.dispose();
-  }
-
-  String? _date(String? value) {
-    if (value == null || value.trim().isEmpty) return null;
-    final date = DateTime.tryParse(value);
-    return !RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(value) ||
-            date == null ||
-            date.toIso8601String().substring(0, 10) != value
-        ? 'Usa una fecha válida: AAAA-MM-DD.'
-        : null;
   }
 
   Future<void> _save() async {
@@ -169,20 +160,12 @@ class _ProfileRecordEditorState extends State<ProfileRecordEditor> {
                             : 'Fecha de finalización',
                         hintText: 'AAAA-MM-DD (opcional)',
                       ),
-                      validator: (value) {
-                        final invalid = _date(value);
-                        if (invalid != null) return invalid;
-                        final start = _controllers['start_date']!.text,
-                            end = _controllers['end_date']!.text;
-                        if (field == 'end_date' &&
-                            start.isNotEmpty &&
-                            end != '' &&
-                            _date(start) == null &&
-                            end.compareTo(start) < 0) {
-                          return 'La fecha final no puede ser anterior a la inicial.';
-                        }
-                        return null;
-                      },
+                      validator: (value) => field == 'end_date'
+                          ? validateProfileEndDate(
+                              value,
+                              _controllers['start_date']!.text,
+                            )
+                          : validateProfileDate(value),
                     ),
                   ),
                 TextFormField(

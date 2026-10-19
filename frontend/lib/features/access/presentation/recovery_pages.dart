@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/api/worknet_api.dart';
-import '../../core/widgets/auth_shell.dart';
-import '../../core/widgets/error_notice.dart';
-import '../registration/domain/registration.dart';
+import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/features/access/domain/access.dart';
+import 'package:worknet/core/widgets/auth_shell.dart';
+import 'package:worknet/core/widgets/error_notice.dart';
+import 'package:worknet/features/registration/domain/registration.dart';
 
 class RecoveryRequestPage extends StatefulWidget {
-  const RecoveryRequestPage({super.key, required this.api});
-  final WorkNetApi api;
+  const RecoveryRequestPage({super.key, required this.repository});
+  final AccessRepository repository;
   @override
   State<RecoveryRequestPage> createState() => _RecoveryRequestPageState();
 }
@@ -31,10 +32,7 @@ class _RecoveryRequestPageState extends State<RecoveryRequestPage> {
       _error = null;
     });
     try {
-      await widget.api.request(
-        'password-recovery/request/',
-        data: {'email': _email.text.trim().toLowerCase()},
-      );
+      await widget.repository.requestRecovery(_email.text);
       if (mounted) setState(() => _sent = true);
     } on ApiFailure catch (e) {
       if (mounted) setState(() => _error = e.fields['email'] ?? e.message);
@@ -116,12 +114,12 @@ class _RecoveryRequestPageState extends State<RecoveryRequestPage> {
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({
     super.key,
-    required this.api,
+    required this.repository,
     required this.uid,
     required this.token,
     required this.onReset,
   });
-  final WorkNetApi api;
+  final AccessRepository repository;
   final String? uid, token;
   final Future<void> Function() onReset;
   @override
@@ -150,14 +148,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       _fields = {};
     });
     try {
-      await widget.api.request(
-        'password-recovery/confirm/',
-        data: {
-          'uid': widget.uid,
-          'token': widget.token,
-          'new_password': _password.text,
-          'new_password_confirm': _confirmation.text,
-        },
+      await widget.repository.resetPassword(
+        widget.uid!,
+        widget.token!,
+        _password.text,
+        _confirmation.text,
       );
       _password.clear();
       _confirmation.clear();

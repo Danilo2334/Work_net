@@ -37,6 +37,7 @@ django.setup()
 from django.core.management import call_command
 from django.utils import timezone
 from accounts.models import User
+from accounts.models import CompanyProfile
 from candidate_dashboard.models import Application, CandidateProfile, JobOffer, Notification, SavedOffer
 
 call_command("migrate", verbosity=0)
@@ -52,7 +53,12 @@ User.objects.create_user(email="eliminar.qa@worknet.test", full_name="Cuenta des
 company = User.objects.create_user(email="empresa.qa@worknet.test", full_name="Empresa QA — base aislada",
     password=password, role="empresa", email_verified=True)
 User.objects.create_user(email="admin.qa@worknet.test", full_name="Administrador QA",
-    password=password, role="admin", email_verified=True, is_staff=True)
+    password=password, email_verified=True, is_staff=True)
+User.objects.create_user(email="nueva.empresa.qa@worknet.test", full_name="Nueva empresa ficticia QA",
+    password=password, role="empresa", email_verified=True)
+CompanyProfile.objects.create(company=company, legal_name="Empresa ficticia QA", tax_id="900000001-1",
+    sector="Tecnología QA", location="Pasto", contact_email="contacto@worknet.test",
+    description="Datos ficticios de la empresa aprobada de QA.", state="approved", submitted_at=timezone.now())
 CandidateProfile.objects.create(candidate=candidate, professional_summary="Resumen de QA",
     education=[{"title": "Formación QA"}], experience=[{"title": "Experiencia QA"}], skills=["Flutter"])
 for index, title in enumerate(["QA · Desarrollador Flutter", "QA · Analista de datos"]):
@@ -71,4 +77,7 @@ state = {"database": str(run_path / "qa.sqlite3"), "mail": str(run_path / "mail"
 (qa_root / "latest.json").write_text(json.dumps(state), encoding="utf-8")
 print(f"QA aislada en http://127.0.0.1:{args.port}; correos a archivos locales, sin SMTP.")
 print("Credenciales y rutas privadas disponibles solo en frontend/.dart_tool/worknet_qa/latest.json")
+# Do not log signed verification/recovery query parameters during browser QA.
+from django.core.servers.basehttp import WSGIRequestHandler
+WSGIRequestHandler.log_message = lambda *args, **kwargs: None
 call_command("runserver", f"127.0.0.1:{args.port}", use_reloader=False)

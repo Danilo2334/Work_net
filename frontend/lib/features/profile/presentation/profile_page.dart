@@ -4,16 +4,23 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/api/worknet_api.dart';
-import '../../core/theme/worknet_theme.dart';
-import '../../core/widgets/error_notice.dart';
-import '../access/session.dart';
-import 'profile_data.dart';
+import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/features/profile/domain/profile.dart';
+import 'package:worknet/features/profile/domain/profile_validation.dart';
+import 'package:worknet/core/theme/worknet_theme.dart';
+import 'package:worknet/core/widgets/error_notice.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'profile_record_editor.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, required this.controller, this.pickPhoto});
+  const ProfilePage({
+    super.key,
+    required this.controller,
+    required this.repository,
+    this.pickPhoto,
+  });
   final SessionController controller;
+  final ProfileRepository repository;
   final Future<XFile?> Function()? pickPhoto;
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -23,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final _summary = TextEditingController();
   final _form = GlobalKey<FormState>();
   final _scroll = ScrollController();
-  ProfileData? _data;
+  CandidateProfile? _data;
   Uint8List? _photo;
   bool _loading = true, _busy = false, _picking = false, _photoLoading = false;
   String? _loadError, _error, _success, _photoError;
@@ -43,26 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.dispose();
   }
 
-  Future<Map<String, dynamic>> _request(
-    String suffix, {
-    String? method,
-    Map<String, dynamic>? data,
-  }) async {
-    try {
-      return await widget.controller.api.request(
-        'profile/candidate/$suffix',
-        token: _token,
-        method: method,
-        data: data,
-      );
-    } on ApiFailure catch (e) {
-      if (e.status == 401) await widget.controller.expire();
-      rethrow;
-    }
-  }
-
-  void _apply(Map<String, dynamic> response) {
-    final data = ProfileData(response);
+  void _apply(CandidateProfile data) {
     if (mounted) {
       setState(() {
         _data = data;
@@ -81,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
     try {
-      final photo = await widget.controller.api.profilePhoto(token: _token);
+      final photo = await widget.repository.photo(_token);
       if (mounted) setState(() => _photo = photo);
     } on ApiFailure catch (e) {
       if (e.status == 401) await widget.controller.expire();
@@ -97,9 +85,10 @@ class _ProfilePageState extends State<ProfilePage> {
       _loadError = null;
     });
     try {
-      _apply(await _request(''));
+      _apply(await widget.repository.load(_token));
       if (_data?.hasPhoto == true) await _loadPhoto();
     } on ApiFailure catch (e) {
+      if (e.status == 401) await widget.controller.expire();
       if (mounted) setState(() => _loadError = e.message);
     } on FormatException {
       if (mounted) {
@@ -129,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _run(
-    Future<Map<String, dynamic>> Function() action,
+    Future<CandidateProfile> Function() action,
     String success, {
     bool reloadPhoto = false,
   }) async {
@@ -191,23 +180,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ));
       if (!mounted || file == null) return;
-      if (await file.length() > 2 * 1024 * 1024) {
-        throw const ApiFailure('La fotografía no puede superar 2 MiB.');
-      }
-      if (!RegExp(
-        r'\.(jpg|jpeg|png)$',
-        caseSensitive: false,
-      ).hasMatch(file.name)) {
-        throw const ApiFailure('Selecciona una fotografía JPEG o PNG.');
-      }
+      validateProfilePhoto(file.name, await file.length());
       final bytes = await file.readAsBytes();
       if (!mounted) return;
       await _run(
-        () => widget.controller.api.uploadProfilePhoto(
-          bytes,
-          file.name,
-          token: _token,
-        ),
+        () => widget.repository.upload(_token, bytes, file.name),
         'Fotografía guardada correctamente.',
         reloadPhoto: true,
       );
@@ -254,13 +231,19 @@ class _ProfilePageState extends State<ProfilePage> {
         section: section,
         record: record,
         onSave: (values) async {
-          _apply(
-            await _request(
-              '$section/${record == null ? '' : '${record['id']}/'}',
-              method: record == null ? 'POST' : 'PATCH',
-              data: values,
-            ),
-          );
+          try {
+            _apply(
+              await widget.repository.saveRecord(
+                _token,
+                section,
+                values,
+                id: record?['id'] as String?,
+              ),
+            );
+          } on ApiFailure catch (e) {
+            if (e.status == 401) await widget.controller.expire();
+            rethrow;
+          }
         },
       ),
     );
@@ -344,7 +327,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ) &&
                         mounted) {
                       await _run(
-                        () => _request('photo/', method: 'DELETE'),
+                        () => widget.repository.removePhoto(_token),
                         'Fotografía eliminada.',
                       );
                     }
@@ -419,9 +402,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ) &&
                                 mounted) {
                               await _run(
-                                () => _request(
-                                  '$section/${row['id']}/',
-                                  method: 'DELETE',
+                                () => widget.repository.deleteRecord(
+                                  _token,
+                                  section,
+                                  row['id'] as String,
                                 ),
                                 'Registro eliminado correctamente.',
                               );
@@ -542,15 +526,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               : () {
                                   if (_form.currentState!.validate()) {
                                     _run(
-                                      () => _request(
-                                        '',
-                                        method: _data!.exists
-                                            ? 'PATCH'
-                                            : 'POST',
-                                        data: {
-                                          'professional_summary': _summary.text
-                                              .trim(),
-                                        },
+                                      () => widget.repository.summary(
+                                        _token,
+                                        _summary.text,
+                                        create: !_data!.exists,
                                       ),
                                       'Descripción guardada correctamente.',
                                     );
@@ -581,7 +560,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ) &&
                                         mounted) {
                                       await _run(
-                                        () => _request('', method: 'DELETE'),
+                                        () => widget.repository.clear(_token),
                                         'Perfil eliminado correctamente.',
                                       );
                                     }

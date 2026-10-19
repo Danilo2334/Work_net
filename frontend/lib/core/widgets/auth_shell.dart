@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/worknet_theme.dart';
+import 'package:worknet/core/theme/worknet_theme.dart';
 
 class AuthShell extends StatelessWidget {
   const AuthShell({
@@ -144,7 +144,7 @@ class _BrandPanel extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 17,
                       height: 1.6,
-                      color: Color(0xFFCEE2D9),
+                      color: WorkNetColors.onBrandMuted,
                     ),
                   ),
                 ],
@@ -152,7 +152,7 @@ class _BrandPanel extends StatelessWidget {
             ),
             const Text(
               'Conecta tu talento con tu próximo paso.',
-              style: TextStyle(color: Color(0xFFCEE2D9), height: 1.5),
+              style: TextStyle(color: WorkNetColors.onBrandMuted, height: 1.5),
             ),
           ],
         ),

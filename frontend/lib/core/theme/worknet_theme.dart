@@ -7,6 +7,7 @@ abstract final class WorkNetColors {
   static const muted = Color(0xFF526D65);
   static const line = Color(0xFFD6E2DC);
   static const mint = Color(0xFFE8F5EE);
+  static const onBrandMuted = Color(0xFFCEE2D9);
 }
 
 ThemeData workNetTheme() {
@@ -26,6 +27,15 @@ ThemeData workNetTheme() {
     useMaterial3: true,
     colorScheme: scheme,
     scaffoldBackgroundColor: WorkNetColors.background,
+    cardTheme: CardThemeData(
+      color: scheme.surface,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18),
+        side: const BorderSide(color: WorkNetColors.line),
+      ),
+    ),
     textTheme: const TextTheme(
       headlineLarge: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
       headlineMedium: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),

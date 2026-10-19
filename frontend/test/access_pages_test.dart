@@ -124,24 +124,6 @@ void main() {
     },
   );
 
-  testWidgets(
-    'empresa y administrador no reciben estados ni dashboards inventados',
-    (tester) async {
-      for (final role in ['empresa', 'admin']) {
-        await start(tester, (_) async => jsonResponse(sessionData(role: role)));
-        await fillLogin(tester);
-        await tap(tester, find.byKey(const Key('submit_login')));
-        expect(find.text('Inicio de sesión correcto'), findsOneWidget);
-        expect(
-          find.textContaining('todavía no está disponible'),
-          findsOneWidget,
-        );
-        expect(find.textContaining('Hola,'), findsNothing);
-        await tap(tester, find.text('Cerrar sesión'));
-      }
-    },
-  );
-
   testWidgets('dashboard permite reintentar y muestra vacío con datos de API', (
     tester,
   ) async {

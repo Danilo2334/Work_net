@@ -1,10 +1,11 @@
+import 'package:worknet/features/dashboard/data/dashboard_repository.dart';
+import 'package:worknet/features/access/data/access_repository.dart';
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:worknet/core/api/worknet_api.dart';
-import 'package:worknet/features/access/session.dart';
-import 'package:worknet/features/dashboard/candidate_dashboard.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'support/access_fakes.dart';
 
 void main() {
@@ -14,6 +15,10 @@ void main() {
       final store = MemorySessionStore();
       final api = WorkNetApi(
         client: MockClient((request) async {
+          if (request.url.path.endsWith('/logout/')) {
+            expect(request.headers['Authorization'], 'Token qa-token');
+            return jsonResponse({'message': 'Sesión cerrada.'});
+          }
           expect(request.url.path, '/api/login/');
           expect(jsonDecode(request.body), {
             'email': 'qa@example.com',
@@ -24,7 +29,9 @@ void main() {
         }),
       );
       addTearDown(api.close);
-      final controller = SessionController(api: api, store: store);
+      final controller = SessionController(
+        repository: HttpAccessRepository(api, store),
+      );
       addTearDown(controller.dispose);
       await controller.restore();
       await controller.login(
@@ -35,7 +42,9 @@ void main() {
       expect(controller.session!.role, 'candidato');
       expect(store.value, isNotNull);
       expect(store.value, isNot(contains('ClaveExacta')));
-      final restored = SessionController(api: api, store: store);
+      final restored = SessionController(
+        repository: HttpAccessRepository(api, store),
+      );
       addTearDown(restored.dispose);
       await restored.restore();
       expect(restored.session!.token, 'qa-token');
@@ -55,7 +64,9 @@ void main() {
     final store = MemorySessionStore()..value = '{"token":"invalid"}';
     final api = WorkNetApi();
     addTearDown(api.close);
-    final controller = SessionController(api: api, store: store);
+    final controller = SessionController(
+      repository: HttpAccessRepository(api, store),
+    );
     addTearDown(controller.dispose);
     await controller.restore();
     expect(controller.session, isNull);
@@ -71,7 +82,9 @@ void main() {
         client: MockClient((_) async => jsonResponse(sessionData())),
       );
       addTearDown(api.close);
-      final controller = SessionController(api: api, store: store);
+      final controller = SessionController(
+        repository: HttpAccessRepository(api, store),
+      );
       addTearDown(controller.dispose);
       await expectLater(
         controller.login('qa@example.com', 'Secreto!2026', remember: true),
@@ -97,14 +110,14 @@ void main() {
         }),
       );
       addTearDown(api.close);
-      final summary = CandidateSummary(
+      final summary = CandidateSummaryModel.parse(
         await api.request('dashboard/candidate/', token: 'real-qa'),
       );
       expect(summary.percentage, 67);
       expect(summary.applications, 2);
-      expect(summary.jobs.single['title'], 'Oferta QA desde API');
+      expect(summary.jobs.single.title, 'Oferta QA desde API');
       expect(
-        () => CandidateSummary({...dashboardData(), 'metrics': {}}),
+        () => CandidateSummaryModel.parse({...dashboardData(), 'metrics': {}}),
         throwsFormatException,
       );
     },

@@ -1,3 +1,4 @@
+import 'package:worknet/features/access/data/access_repository.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:worknet/app.dart';
 import 'package:worknet/core/api/worknet_api.dart';
-import 'package:worknet/features/access/session.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
 
 import 'support/access_fakes.dart';
 
@@ -251,7 +252,9 @@ void main() {
         final api = WorkNetApi(
           client: MockClient((_) async => jsonResponse(sessionData())),
         );
-        final controller = SessionController(api: api, store: store);
+        final controller = SessionController(
+          repository: HttpAccessRepository(api, store),
+        );
         await controller.restore();
         await controller.login(
           'qa@example.com',
@@ -262,7 +265,9 @@ void main() {
         expect(controller.session!.token, 'qa-nuevo');
         expect(controller.session!.name, 'QA actualizado');
         expect(store.value != null, remember);
-        final restored = SessionController(api: api, store: store);
+        final restored = SessionController(
+          repository: HttpAccessRepository(api, store),
+        );
         await restored.restore();
         expect(restored.session?.token, remember ? 'qa-nuevo' : null);
         restored.dispose();
@@ -279,7 +284,9 @@ void main() {
       final api = WorkNetApi(
         client: MockClient((_) async => jsonResponse(sessionData())),
       );
-      final controller = SessionController(api: api, store: store);
+      final controller = SessionController(
+        repository: HttpAccessRepository(api, store),
+      );
       await controller.login('qa@example.com', 'Clave!2026', remember: true);
       store.fail = true;
       await expectLater(

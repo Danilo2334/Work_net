@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'core/api/worknet_api.dart';
-import 'core/theme/worknet_theme.dart';
-import 'core/widgets/auth_shell.dart';
-import 'core/widgets/error_notice.dart';
-import 'features/access/login_page.dart';
-import 'features/access/recovery_pages.dart';
-import 'features/access/session.dart';
-import 'features/account/account_page.dart';
-import 'features/profile/profile_page.dart';
-import 'features/dashboard/candidate_dashboard.dart';
-import 'features/registration/data/registration_api.dart';
-import 'features/registration/presentation/registration_page.dart';
+import 'package:worknet/composition.dart';
+import 'package:worknet/core/api/worknet_api.dart';
+import 'package:worknet/core/theme/worknet_theme.dart';
+import 'package:worknet/features/access/data/access_repository.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
+import 'package:worknet/features/access/presentation/login_page.dart';
+import 'package:worknet/features/access/presentation/recovery_pages.dart';
+import 'package:worknet/features/access/presentation/choose_role_page.dart';
+import 'package:worknet/features/account/presentation/account_page.dart';
+import 'package:worknet/features/profile/presentation/profile_page.dart';
+import 'package:worknet/features/dashboard/presentation/candidate_dashboard_page.dart';
+import 'package:worknet/features/registration/data/registration_api.dart';
+import 'package:worknet/features/registration/presentation/registration_page.dart';
+import 'package:worknet/features/company/presentation/company_page.dart';
+import 'package:worknet/features/company/presentation/company_reviews_page.dart';
+import 'package:worknet/features/company/presentation/role_dashboard_page.dart';
 
 class WorkNetApp extends StatefulWidget {
   const WorkNetApp({
@@ -32,69 +35,78 @@ class WorkNetApp extends StatefulWidget {
 
 class _WorkNetAppState extends State<WorkNetApp> {
   late final WorkNetApi _api = widget.api ?? WorkNetApi();
-  late final SessionController _session = SessionController(
-    api: _api,
-    store: widget.sessionStore ?? const SecureSessionStore(),
+  late final AppDependencies _dependencies = AppDependencies(
+    _api,
+    widget.sessionStore ?? const SecureSessionStore(),
   );
+  late final RegistrationApi _registration =
+      widget.registrationApi ?? RegistrationApi();
+  SessionController get _session => _dependencies.session;
   late final GoRouter _router;
+  String _home() => switch (_session.session?.role) {
+    'candidato' => '/dashboard',
+    'empresa' =>
+      _session.session?.companyState == 'approved'
+          ? '/company-dashboard'
+          : '/company',
+    'admin' => '/admin-dashboard',
+    _ => '/choose-role',
+  };
+  Widget _protected(String? role, Widget Function() child) => ListenableBuilder(
+    listenable: _session,
+    builder: (_, _) =>
+        _session.restoring ||
+            _session.session == null ||
+            (role != null && _session.session?.role != role)
+        ? const Scaffold(body: Center(child: CircularProgressIndicator()))
+        : child(),
+  );
   @override
   void initState() {
     super.initState();
+    const protected = {
+      '/dashboard',
+      '/profile',
+      '/account',
+      '/company',
+      '/company-dashboard',
+      '/admin-dashboard',
+      '/company-reviews',
+      '/choose-role',
+      '/access-pending',
+    };
     _router = GoRouter(
       initialLocation: widget.initialLocation ?? '/login',
       overridePlatformDefaultLocation: widget.initialLocation != null,
       refreshListenable: _session,
-      redirect: (context, state) {
+      redirect: (_, state) {
         if (_session.restoring) return null;
-        final path = state.uri.path;
-        if (path == '/access-pending' &&
-            _session.session?.role == 'candidato') {
-          return '/dashboard';
-        }
-        if ([
-              '/dashboard',
-              '/access-pending',
-              '/account',
-              '/profile',
-            ].contains(path) &&
-            _session.session == null) {
-          return '/login';
-        }
-        if (path == '/login' && _session.session != null) {
-          return _session.session!.role == 'candidato'
-              ? '/dashboard'
-              : '/access-pending';
-        }
-        if (['/dashboard', '/profile'].contains(path) &&
-            _session.session?.role != 'candidato') {
-          return '/access-pending';
+        final path = state.uri.path, role = _session.session?.role;
+        if (protected.contains(path) && role == null) return '/login';
+        if (role != null) {
+          if (path == '/login' || path == '/access-pending') return _home();
+          if (role == 'unassigned' &&
+              protected.contains(path) &&
+              path != '/choose-role') {
+            return '/choose-role';
+          }
+          if (path == '/choose-role' && role != 'unassigned') return _home();
+          if (['/dashboard', '/profile'].contains(path) &&
+              role != 'candidato') {
+            return _home();
+          }
+          if (['/company', '/company-dashboard'].contains(path) &&
+              role != 'empresa') {
+            return _home();
+          }
+          if (['/admin-dashboard', '/company-reviews'].contains(path) &&
+              role != 'admin') {
+            return _home();
+          }
         }
         return null;
       },
       routes: [
-        GoRoute(
-          path: '/profile',
-          builder: (_, _) => ListenableBuilder(
-            listenable: _session,
-            builder: (_, _) =>
-                _session.restoring || _session.session?.role != 'candidato'
-                ? const Scaffold(
-                    body: Center(child: CircularProgressIndicator()),
-                  )
-                : ProfilePage(controller: _session),
-          ),
-        ),
-        GoRoute(
-          path: '/account',
-          builder: (_, _) => ListenableBuilder(
-            listenable: _session,
-            builder: (_, _) => _session.restoring || _session.session == null
-                ? const Scaffold(
-                    body: Center(child: CircularProgressIndicator()),
-                  )
-                : AccountPage(controller: _session),
-          ),
-        ),
         GoRoute(path: '/', redirect: (_, _) => '/login'),
         GoRoute(
           path: '/login',
@@ -103,20 +115,21 @@ class _WorkNetAppState extends State<WorkNetApp> {
         GoRoute(
           path: '/register',
           builder: (context, _) => RegistrationPage(
-            api: widget.registrationApi,
+            repository: _registration,
             onLogin: () => context.go('/login'),
           ),
         ),
         GoRoute(
           path: '/forgot-password',
-          builder: (_, _) => RecoveryRequestPage(api: _api),
+          builder: (_, _) =>
+              RecoveryRequestPage(repository: _dependencies.access),
         ),
         GoRoute(
           path: '/reset-password',
-          builder: (_, state) => ResetPasswordPage(
-            api: _api,
-            uid: state.uri.queryParameters['uid'],
-            token: state.uri.queryParameters['token'],
+          builder: (_, s) => ResetPasswordPage(
+            repository: _dependencies.access,
+            uid: s.uri.queryParameters['uid'],
+            token: s.uri.queryParameters['token'],
             onReset: () => _session.expire(announce: false),
           ),
         ),
@@ -125,39 +138,94 @@ class _WorkNetAppState extends State<WorkNetApp> {
           builder: (_, _) => const PasswordUpdatedPage(),
         ),
         GoRoute(
-          path: '/dashboard',
-          builder: (_, _) => ListenableBuilder(
-            listenable: _session,
-            builder: (_, _) => _session.restoring || _session.session == null
-                ? const Scaffold(
-                    body: Center(child: CircularProgressIndicator()),
-                  )
-                : CandidateDashboardPage(controller: _session),
+          path: '/choose-role',
+          builder: (_, _) => _protected(
+            'unassigned',
+            () => ChooseRolePage(
+              session: _session,
+              repository: _dependencies.access,
+            ),
           ),
         ),
         GoRoute(
-          path: '/access-pending',
-          builder: (_, _) => ListenableBuilder(
-            listenable: _session,
-            builder: (_, _) => _session.restoring || _session.session == null
-                ? const Scaffold(
-                    body: Center(child: CircularProgressIndicator()),
-                  )
-                : _PendingDestination(controller: _session),
+          path: '/dashboard',
+          builder: (_, _) => _protected(
+            'candidato',
+            () => CandidateDashboardPage(
+              controller: _session,
+              repository: _dependencies.dashboard,
+            ),
           ),
         ),
+        GoRoute(
+          path: '/account',
+          builder: (_, _) => _protected(
+            null,
+            () => AccountPage(
+              controller: _session,
+              repository: _dependencies.account,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/profile',
+          builder: (_, _) => _protected(
+            'candidato',
+            () => ProfilePage(
+              controller: _session,
+              repository: _dependencies.profile,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/company',
+          builder: (_, _) => _protected(
+            'empresa',
+            () => CompanyPage(
+              session: _session,
+              repository: _dependencies.company,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/company-dashboard',
+          builder: (_, _) => _protected(
+            'empresa',
+            () => RoleDashboardPage(
+              session: _session,
+              repository: _dependencies.company,
+              admin: false,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/admin-dashboard',
+          builder: (_, _) => _protected(
+            'admin',
+            () => RoleDashboardPage(
+              session: _session,
+              repository: _dependencies.company,
+              admin: true,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/company-reviews',
+          builder: (_, _) => _protected(
+            'admin',
+            () => CompanyReviewsPage(
+              session: _session,
+              repository: _dependencies.company,
+            ),
+          ),
+        ),
+        GoRoute(path: '/access-pending', redirect: (_, _) => _home()),
       ],
       errorBuilder: (context, _) => Scaffold(
         body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Esta página no está disponible.'),
-              TextButton(
-                onPressed: () => context.go('/login'),
-                child: const Text('Ir al inicio de sesión'),
-              ),
-            ],
+          child: TextButton(
+            onPressed: () => context.go('/login'),
+            child: const Text('Esta página no está disponible. Ir al inicio.'),
           ),
         ),
       ),
@@ -170,6 +238,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
     _router.dispose();
     _session.dispose();
     if (widget.api == null) _api.close();
+    if (widget.registrationApi == null) _registration.close();
     super.dispose();
   }
 
@@ -179,54 +248,5 @@ class _WorkNetAppState extends State<WorkNetApp> {
     debugShowCheckedModeBanner: false,
     theme: workNetTheme(),
     routerConfig: _router,
-  );
-}
-
-class _PendingDestination extends StatefulWidget {
-  const _PendingDestination({required this.controller});
-  final SessionController controller;
-  @override
-  State<_PendingDestination> createState() => _PendingDestinationState();
-}
-
-class _PendingDestinationState extends State<_PendingDestination> {
-  String? _error;
-  bool _busy = false;
-  @override
-  Widget build(BuildContext context) => AuthShell(
-    headline: 'Tu cuenta\nen WorkNet.',
-    description: 'El acceso corresponde al rol que confirma el servicio.',
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          'Inicio de sesión correcto',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        const SizedBox(height: 16),
-        Text(
-          widget.controller.session?.role == 'empresa'
-              ? 'El espacio de empresa todavía no está disponible. El estado de validación empresarial no está informado por el servicio actual.'
-              : 'El espacio de administración todavía no está disponible.',
-        ),
-        const SizedBox(height: 24),
-        ErrorNotice(_error),
-        OutlinedButton(
-          onPressed: _busy
-              ? null
-              : () async {
-                  setState(() => _busy = true);
-                  try {
-                    await widget.controller.logout();
-                  } on ApiFailure catch (e) {
-                    if (mounted) setState(() => _error = e.message);
-                  } finally {
-                    if (mounted) setState(() => _busy = false);
-                  }
-                },
-          child: Text(_busy ? 'Saliendo…' : 'Cerrar sesión'),
-        ),
-      ],
-    ),
   );
 }

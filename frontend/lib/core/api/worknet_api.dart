@@ -5,12 +5,8 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
-class ApiFailure implements Exception {
-  const ApiFailure(this.message, {this.status, this.fields = const {}});
-  final String message;
-  final int? status;
-  final Map<String, String> fields;
-}
+import 'package:worknet/core/domain/failure.dart';
+export 'package:worknet/core/domain/failure.dart';
 
 class WorkNetApi {
   WorkNetApi({
@@ -70,31 +66,34 @@ class WorkNetApi {
     Uint8List bytes,
     String filename, {
     required String token,
+    String path = 'profile/candidate/photo/',
   }) async {
-    final request =
-        http.MultipartRequest('PUT', _base.resolve('profile/candidate/photo/'))
-          ..headers['Authorization'] = 'Token $token'
-          ..files.add(
-            http.MultipartFile.fromBytes(
-              'photo',
-              bytes,
-              filename: filename,
-              contentType: MediaType(
-                'image',
-                filename.toLowerCase().endsWith('.png') ? 'png' : 'jpeg',
-              ),
-            ),
-          );
+    final request = http.MultipartRequest('PUT', _base.resolve(path))
+      ..headers['Authorization'] = 'Token $token'
+      ..files.add(
+        http.MultipartFile.fromBytes(
+          'photo',
+          bytes,
+          filename: filename,
+          contentType: MediaType(
+            'image',
+            filename.toLowerCase().endsWith('.png') ? 'png' : 'jpeg',
+          ),
+        ),
+      );
     final response = await _transport(
       () async => http.Response.fromStream(await _client.send(request)),
     );
     return _decode(response, 'profile/candidate/photo/');
   }
 
-  Future<Uint8List> profilePhoto({required String token}) async {
+  Future<Uint8List> profilePhoto({
+    required String token,
+    String path = 'profile/candidate/photo/',
+  }) async {
     final response = await _transport(
       () => _client.get(
-        _base.resolve('profile/candidate/photo/'),
+        _base.resolve(path),
         headers: {
           'Authorization': 'Token $token',
           'Accept': 'image/jpeg, application/json',
@@ -151,7 +150,7 @@ class WorkNetApi {
     }
     if (response.statusCode < 200 || response.statusCode >= 300) {
       final fields = <String, String>{};
-      final errors = body['errors'];
+      final errors = body['errors'] ?? body;
       if (errors is Map) {
         for (final entry in errors.entries) {
           if (entry.value is List) {

@@ -1,57 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/api/worknet_api.dart';
-import '../../core/theme/worknet_theme.dart';
-import '../../core/widgets/error_notice.dart';
-import '../access/session.dart';
-
-class CandidateSummary {
-  CandidateSummary(Map<String, dynamic> value) {
-    final user = value['user'],
-        profile = value['profile_completion'],
-        metrics = value['metrics'];
-    if (user is! Map ||
-        user['full_name'] is! String ||
-        user['role'] != 'candidato' ||
-        profile is! Map ||
-        metrics is! Map ||
-        value['recent_jobs'] is! List) {
-      throw const FormatException();
-    }
-    name = user['full_name'];
-    percentage = integer(profile['percentage']);
-    if (percentage > 100) throw const FormatException();
-    applications = integer(metrics['applications_count']);
-    saved = integer(metrics['saved_offers_count']);
-    notifications = integer(metrics['pending_notifications_count']);
-    jobs = (value['recent_jobs'] as List).map((job) {
-      if (job is! Map ||
-          job['id'] is! int ||
-          [
-            'title',
-            'company_name',
-            'location',
-            'contract_type',
-            'published_at',
-          ].any((key) => job[key] is! String)) {
-        throw const FormatException();
-      }
-      return Map<String, dynamic>.from(job);
-    }).toList();
-  }
-  static int integer(dynamic value) {
-    if (value is! int || value < 0) throw const FormatException();
-    return value;
-  }
-
-  late final String name;
-  late final int percentage, applications, saved, notifications;
-  late final List<Map<String, dynamic>> jobs;
-}
+import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/features/dashboard/domain/candidate_summary.dart';
+import 'package:worknet/core/theme/worknet_theme.dart';
+import 'package:worknet/core/widgets/error_notice.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
 
 class CandidateDashboardPage extends StatefulWidget {
-  const CandidateDashboardPage({super.key, required this.controller});
+  const CandidateDashboardPage({
+    super.key,
+    required this.controller,
+    required this.repository,
+  });
   final SessionController controller;
+  final CandidateDashboardRepository repository;
   @override
   State<CandidateDashboardPage> createState() => _CandidateDashboardPageState();
 }
@@ -76,12 +38,7 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
       _error = null;
     });
     try {
-      final summary = CandidateSummary(
-        await widget.controller.api.request(
-          'dashboard/candidate/',
-          token: session.token,
-        ),
-      );
+      final summary = await widget.repository.load(session.token);
       if (mounted && generation == _generation) {
         setState(() => _summary = summary);
       }
@@ -234,14 +191,14 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    job['title'],
+                    job.title,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 6),
-                  Text(job['company_name']),
+                  Text(job.companyName),
                   const SizedBox(height: 8),
                   Text(
-                    '${job['location']} · ${job['contract_type']}',
+                    '${job.location} · ${job.contractType}',
                     style: const TextStyle(color: WorkNetColors.muted),
                   ),
                 ],

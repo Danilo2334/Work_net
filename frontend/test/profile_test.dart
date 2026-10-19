@@ -1,3 +1,6 @@
+import 'package:worknet/features/profile/data/profile_repository.dart';
+import 'package:worknet/features/profile/domain/profile.dart';
+import 'package:worknet/features/access/data/access_repository.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -9,11 +12,11 @@ import 'package:http/testing.dart';
 import 'package:worknet/app.dart';
 import 'package:worknet/core/api/worknet_api.dart';
 import 'package:worknet/core/theme/worknet_theme.dart';
-import 'package:worknet/features/access/session.dart';
-import 'package:worknet/features/profile/profile_data.dart';
-import 'package:worknet/features/profile/profile_page.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
+import 'package:worknet/features/profile/presentation/profile_page.dart';
 
 import 'support/access_fakes.dart';
+import 'support/company_fakes.dart';
 
 Map<String, dynamic> profile({
   bool exists = false,
@@ -70,13 +73,19 @@ Future<void> photoPage(
   final api = WorkNetApi(client: MockClient(handler));
   addTearDown(api.close);
   final store = MemorySessionStore()..value = jsonEncode(sessionData());
-  final controller = SessionController(api: api, store: store);
+  final controller = SessionController(
+    repository: HttpAccessRepository(api, store),
+  );
   addTearDown(controller.dispose);
   await controller.restore();
   await tester.pumpWidget(
     MaterialApp(
       theme: workNetTheme(),
-      home: ProfilePage(controller: controller, pickPhoto: picker),
+      home: ProfilePage(
+        controller: controller,
+        repository: HttpProfileRepository(api),
+        pickPhoto: picker,
+      ),
     ),
   );
   await tester.pumpAndSettle();
@@ -90,8 +99,14 @@ void main() {
       jsonEncode(sessionData(role: 'admin')),
     ]) {
       var calls = 0;
-      await start(tester, (_) async {
-        calls++;
+      await start(tester, (request) async {
+        if (request.url.path.contains('/profile/')) calls++;
+        if (request.url.path == '/api/company/') {
+          return jsonResponse({'company': companyData()});
+        }
+        if (request.url.path == '/api/dashboard/admin/') {
+          return jsonResponse(adminSummary());
+        }
         return jsonResponse(profile());
       }, store: MemorySessionStore()..value = value);
       expect(calls, 0);

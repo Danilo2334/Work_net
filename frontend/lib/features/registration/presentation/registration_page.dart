@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/worknet_theme.dart';
-import '../../../core/widgets/auth_shell.dart';
-import '../data/registration_api.dart';
-import '../domain/registration.dart';
+import 'package:worknet/core/theme/worknet_theme.dart';
+import 'package:worknet/core/widgets/auth_shell.dart';
+import 'package:worknet/features/registration/domain/registration.dart';
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key, this.api, this.onLogin});
+  const RegistrationPage({super.key, required this.repository, this.onLogin});
 
-  final RegistrationApi? api;
+  final RegistrationRepository repository;
   final VoidCallback? onLogin;
 
   @override
@@ -21,7 +20,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   final _confirmation = TextEditingController();
-  late final RegistrationApi _api = widget.api ?? RegistrationApi();
+  RegisteredUser? _createdUser;
 
   Map<String, String> _serverErrors = {};
   String? _message;
@@ -37,7 +36,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
     for (final controller in [_fullName, _email, _password, _confirmation]) {
       controller.dispose();
     }
-    if (widget.api == null) _api.close();
     super.dispose();
   }
 
@@ -49,14 +47,41 @@ class _RegistrationPageState extends State<RegistrationPage> {
     });
   }
 
-  void _continueToRole() {
+  Future<void> _continueToRole() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    if (!(_formKey.currentState?.validate() ?? false)) return;
+    if (_busy || !(_formKey.currentState?.validate() ?? false)) return;
     setState(() {
-      _choosingRole = true;
+      _busy = true;
       _message = null;
       _serverErrors = {};
     });
+    try {
+      final user = await CreateAccount(widget.repository)(
+        RegistrationData(
+          fullName: _fullName.text,
+          email: _email.text,
+          password: _password.text,
+          passwordConfirmation: _confirmation.text,
+        ),
+      );
+      _password.clear();
+      _confirmation.clear();
+      if (mounted) {
+        setState(() {
+          _createdUser = user;
+          _choosingRole = true;
+        });
+      }
+    } on RegistrationFailure catch (e) {
+      if (mounted) {
+        setState(() {
+          _message = e.message;
+          _serverErrors = Map.of(e.fieldErrors);
+        });
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   Future<void> _register() async {
@@ -67,14 +92,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
       _serverErrors = {};
     });
     try {
-      final registered = await _api.register(
-        RegistrationData(
-          fullName: _fullName.text,
-          email: _email.text,
-          password: _password.text,
-          passwordConfirmation: _confirmation.text,
-          role: _role!,
-        ),
+      final registered = await widget.repository.chooseRole(
+        _createdUser!,
+        _role!,
       );
       if (!mounted) return;
       _password.clear();
@@ -199,7 +219,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           children: [
             _heading(
               'Crea tu cuenta',
-              'Empieza con tus datos. Después elegirás cómo usar WorkNet.',
+              'Crea tu cuenta con estos datos. Después elegirás cómo usar WorkNet.',
               step: 'Paso 1 de 2 · Tus datos',
             ),
             _errorNotice(),
@@ -263,8 +283,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
             const SizedBox(height: 10),
             FilledButton(
               key: const Key('continue_registration'),
-              onPressed: _continueToRole,
-              child: const Text('Continuar'),
+              onPressed: _busy ? null : _continueToRole,
+              child: Text(_busy ? 'Creando tu cuenta…' : 'Crear cuenta'),
             ),
             if (widget.onLogin != null) ...[
               const SizedBox(height: 16),
@@ -327,7 +347,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       children: [
         _heading(
           '¿Cómo usarás WorkNet?',
-          'Elige el rol con el que quieres crear tu cuenta.',
+          'Tu cuenta ya fue creada. Elige cómo quieres usarla.',
           step: 'Paso 2 de 2 · Tu rol',
         ),
         _errorNotice(),
@@ -359,22 +379,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                     SizedBox(width: 12),
-                    Flexible(child: Text('Creando tu cuenta…')),
+                    Flexible(child: Text('Guardando tu rol…')),
                   ],
                 )
-              : const Text('Crear cuenta'),
+              : const Text('Guardar rol'),
         ),
         const SizedBox(height: 12),
-        TextButton.icon(
-          key: const Key('edit_registration'),
-          onPressed: _busy
-              ? null
-              : () => setState(() {
-                  _choosingRole = false;
-                  _message = null;
-                }),
-          icon: const Icon(Icons.arrow_back_rounded, size: 18),
-          label: const Text('Editar mis datos'),
+        TextButton(
+          onPressed: _busy ? null : widget.onLogin,
+          child: const Text('Elegir más tarde. Ir a iniciar sesión'),
         ),
       ],
     );
@@ -480,7 +493,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ),
         ),
         const SizedBox(height: 24),
-        Text('Rol de la cuenta: ${registered.role.label}'),
+        Text('Rol de la cuenta: ${registered.role!.label}'),
         if (registered.role == PublicRole.company) ...[
           const SizedBox(height: 12),
           const Text(

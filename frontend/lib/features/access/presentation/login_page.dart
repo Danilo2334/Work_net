@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/api/worknet_api.dart';
-import '../../core/widgets/auth_shell.dart';
-import '../../core/widgets/error_notice.dart';
-import '../registration/domain/registration.dart';
-import 'session.dart';
+import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/core/widgets/auth_shell.dart';
+import 'package:worknet/core/widgets/error_notice.dart';
+import 'package:worknet/features/registration/domain/registration.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.controller});

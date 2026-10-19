@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/api/worknet_api.dart';
-import '../../core/theme/worknet_theme.dart';
-import '../../core/widgets/error_notice.dart';
-import '../access/session.dart';
+import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/features/account/domain/account.dart';
+import 'package:worknet/core/theme/worknet_theme.dart';
+import 'package:worknet/core/widgets/error_notice.dart';
+import 'package:worknet/features/access/presentation/session_controller.dart';
 
 class AccountPage extends StatefulWidget {
-  const AccountPage({super.key, required this.controller});
+  const AccountPage({
+    super.key,
+    required this.controller,
+    required this.repository,
+  });
   final SessionController controller;
+  final AccountRepository repository;
   @override
   State<AccountPage> createState() => _AccountPageState();
 }
@@ -23,7 +29,7 @@ class _AccountPageState extends State<AccountPage> {
   final _scroll = ScrollController();
   bool _loading = true, _busy = false;
   bool _push = false, _savedPush = false;
-  Map<String, dynamic>? _user;
+  AccountInfo? _user;
   Map<String, String> _fields = {};
   String? _loadError, _error, _success;
 
@@ -42,63 +48,21 @@ class _AccountPageState extends State<AccountPage> {
     super.dispose();
   }
 
-  Future<Map<String, dynamic>> _request(
-    String path, {
-    String? method,
-    Map<String, dynamic>? data,
-  }) async {
-    final token = widget.controller.session?.token;
-    if (token == null) {
-      throw const ApiFailure('Inicia sesión de nuevo.', status: 401);
-    }
-    return widget.controller.api.request(
-      path,
-      token: token,
-      method: method,
-      data: data,
-    );
-  }
-
-  Map<String, dynamic> _readUser(Map<String, dynamic> result) {
-    final user = result['user'];
-    final session = widget.controller.session;
-    if (user is! Map<String, dynamic> ||
-        user['id'] != session?.id ||
-        user['full_name'] is! String ||
-        user['email'] is! String ||
-        user['role'] != session?.role ||
-        user['email_verified'] is! bool) {
-      throw const ApiFailure('No pudimos interpretar los datos de la cuenta.');
-    }
-    return user;
-  }
-
-  bool _readPreference(Map<String, dynamic> result) {
-    final preferences = result['preferences'];
-    if (preferences is! Map || preferences['push_notifications'] is! bool) {
-      throw const ApiFailure('No pudimos interpretar las preferencias.');
-    }
-    return preferences['push_notifications'] as bool;
-  }
-
   Future<void> _load() async {
     setState(() {
       _loading = true;
       _loadError = null;
     });
     try {
-      final results = await Future.wait([
-        _request('account/'),
-        _request('account/notifications/'),
-      ]);
+      final result = await widget.repository.load(widget.controller.session!);
       if (!mounted) return;
-      final user = _readUser(results[0]);
-      final push = _readPreference(results[1]);
-      await widget.controller.update(name: user['full_name']);
+      final user = result.user;
+      final push = result.push;
+      await widget.controller.update(name: user.name);
       if (!mounted) return;
       setState(() {
         _user = user;
-        _name.text = user['full_name'];
+        _name.text = user.name;
         _push = _savedPush = push;
       });
     } on ApiFailure catch (e) {
@@ -144,18 +108,15 @@ class _AccountPageState extends State<AccountPage> {
   Future<void> _saveName() async {
     if (!_nameForm.currentState!.validate()) return;
     await _run(() async {
-      final user = _readUser(
-        await _request(
-          'account/',
-          method: 'PATCH',
-          data: {'full_name': _name.text.trim()},
-        ),
+      final user = await widget.repository.rename(
+        widget.controller.session!,
+        _name.text,
       );
-      await widget.controller.update(name: user['full_name']);
+      await widget.controller.update(name: user.name);
       if (mounted) {
         setState(() {
           _user = user;
-          _name.text = user['full_name'];
+          _name.text = user.name;
         });
       }
       return 'Nombre actualizado correctamente.';
@@ -165,21 +126,12 @@ class _AccountPageState extends State<AccountPage> {
   Future<void> _savePassword() async {
     if (!_passwordForm.currentState!.validate()) return;
     await _run(() async {
-      final response = await _request(
-        'account/password/',
-        data: {
-          'current_password': _current.text,
-          'new_password': _newPassword.text,
-          'new_password_confirm': _confirmation.text,
-        },
+      final token = await widget.repository.changePassword(
+        widget.controller.session!.token,
+        _current.text,
+        _newPassword.text,
+        _confirmation.text,
       );
-      final token = response['token'];
-      if (token is! String || token.isEmpty) {
-        await widget.controller.expire(announce: false);
-        throw const ApiFailure(
-          'El servicio no confirmó la nueva sesión. Inicia sesión de nuevo.',
-        );
-      }
       await widget.controller.update(token: token);
       if (mounted) {
         _current.clear();
@@ -191,12 +143,9 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Future<void> _savePreferences() => _run(() async {
-    final push = _readPreference(
-      await _request(
-        'account/notifications/',
-        method: 'PATCH',
-        data: {'push_notifications': _push},
-      ),
+    final push = await widget.repository.setPush(
+      widget.controller.session!.token,
+      _push,
     );
     if (mounted) setState(() => _push = _savedPush = push);
     return 'Preferencias guardadas correctamente.';
@@ -209,10 +158,9 @@ class _AccountPageState extends State<AccountPage> {
     );
     if (!mounted || password == null) return;
     await _run(() async {
-      await _request(
-        'account/delete/',
-        method: 'DELETE',
-        data: {'current_password': password, 'confirmation': true},
+      await widget.repository.delete(
+        widget.controller.session!.token,
+        password,
       );
       await widget.controller.expire(announce: false);
       if (mounted) {
@@ -265,19 +213,17 @@ class _AccountPageState extends State<AccountPage> {
     ),
     const SizedBox(height: 12),
     const Text('Correo electrónico'),
-    SelectableText(_user!['email'], key: const Key('account_email')),
+    SelectableText(_user!.email, key: const Key('account_email')),
     const SizedBox(height: 12),
     Text(
-      'Rol: ${switch (_user!['role']) {
+      'Rol: ${switch (_user!.role) {
         'candidato' => 'Candidato',
         'empresa' => 'Empresa',
         _ => 'Administrador',
       }}',
     ),
     Text(
-      _user!['email_verified'] == true
-          ? 'Correo verificado'
-          : 'Correo sin verificar',
+      _user!.verified == true ? 'Correo verificado' : 'Correo sin verificar',
     ),
     const SizedBox(height: 8),
     const Text(

@@ -14,22 +14,14 @@ class RegistrationData {
     required this.email,
     required this.password,
     required this.passwordConfirmation,
-    required this.role,
+    this.role,
   });
 
   final String fullName;
   final String email;
   final String password;
   final String passwordConfirmation;
-  final PublicRole role;
-
-  Map<String, String> toJson() => {
-    'full_name': fullName.trim(),
-    'email': email.trim().toLowerCase(),
-    'password': password,
-    'password_confirm': passwordConfirmation,
-    'role': role.apiValue,
-  };
+  final PublicRole? role;
 }
 
 class RegisteredUser {
@@ -37,11 +29,47 @@ class RegisteredUser {
     required this.email,
     required this.role,
     required this.emailVerified,
+    this.registrationToken,
   });
 
   final String email;
-  final PublicRole role;
+  final PublicRole? role;
   final bool emailVerified;
+  final String? registrationToken;
+}
+
+class RegistrationFailure implements Exception {
+  const RegistrationFailure(this.message, {this.fieldErrors = const {}});
+  final String message;
+  final Map<String, String> fieldErrors;
+}
+
+abstract interface class RegistrationRepository {
+  Future<RegisteredUser> register(RegistrationData data);
+  Future<RegisteredUser> chooseRole(RegisteredUser user, PublicRole role);
+}
+
+class CreateAccount {
+  const CreateAccount(this.repository);
+  final RegistrationRepository repository;
+  Future<RegisteredUser> call(RegistrationData data) async {
+    final errors = <String, String?>{
+      'full_name': RegistrationValidation.fullName(data.fullName),
+      'email': RegistrationValidation.email(data.email),
+      'password': RegistrationValidation.password(data.password),
+      'password_confirm': RegistrationValidation.confirmation(
+        data.passwordConfirmation,
+        data.password,
+      ),
+    }..removeWhere((_, v) => v == null);
+    if (errors.isNotEmpty) {
+      throw RegistrationFailure(
+        'Revisa tus datos.',
+        fieldErrors: errors.cast<String, String>(),
+      );
+    }
+    return repository.register(data);
+  }
 }
 
 abstract final class RegistrationValidation {
