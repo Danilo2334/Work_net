@@ -1,3 +1,5 @@
+> **Actualización posterior:** la configuración privada ya se completó y el registro se envió con SMTP real. Recepción y enlace recibido pendientes: [estado actual del correo](SMTP.md). El informe de abajo conserva el contexto de la ejecución previa a archivos.
+
 # Evidencia API — preparación de revisión
 
 19/10/2026, America/Bogota. QA registrado por **Danilo2334**, ejecución automática; revisión por otro integrante pendiente.

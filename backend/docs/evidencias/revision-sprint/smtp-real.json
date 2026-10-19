@@ -1,0 +1,14 @@
+{
+  "fecha": "2026-10-19",
+  "configuracion": "backend/.env ignorado; no se publican valores",
+  "entorno": "SQLite independiente de SMTP QA, Django 8007 y Flutter 55007",
+  "smtp_tls_autenticacion": "comprobados",
+  "registro_desde_flutter": 201,
+  "seleccion_posterior_rol": 200,
+  "envio_smtp": "aceptado sin error; backend SMTP real",
+  "recepcion_buzon": "pendiente de confirmación del usuario",
+  "apertura_enlace_recibido": "pendiente",
+  "email_verified": "pendiente",
+  "recuperacion_real": "pendiente",
+  "revision_humana_codigo": "pendiente"
+}
