@@ -1,3 +1,5 @@
+> **Historial del 18/10/2026.** El seguimiento actual está en [preparación de revisión](../revision-sprint/README.md). Las referencias a pendientes de rol, logout y estados empresariales de este informe ya fueron actualizadas allí. Se conserva este índice y sus enlaces para consultar la evidencia de esa fase.
+
 # Seguimiento vigente de evidencias — HU001, HU002, HU003, HU004, HU005 y HU008
 
 Normalización del **18/10/2026**, America/Bogota. Este índice reúne **25 tareas

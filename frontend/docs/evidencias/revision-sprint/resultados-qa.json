@@ -1,0 +1,1075 @@
+{
+  "fecha_contexto": "2026-10-19",
+  "zona": "America/Bogota",
+  "codigo_frontend": "04e7e5c",
+  "codigo_backend": "f9e4dea",
+  "entorno": "Chrome automatizado; Flutter localhost:55006, Django 127.0.0.1:8006, SQLite aislada; datos ficticios QA",
+  "responsable_qa": "Danilo2334",
+  "revision_humana": "pendiente",
+  "smtp_real": "bloqueado: falta backend/.env; correo solo a archivos",
+  "casos": [
+    {
+      "caso": "Registro Empresa: cuenta creada antes del selector",
+      "tipo": "Navegador + API",
+      "esperado": 201,
+      "obtenido": 201,
+      "tareas": [
+        29,
+        30,
+        32,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Registro Empresa: rol persistido",
+      "tipo": "Navegador + API",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        29,
+        30,
+        32,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Verificación Empresa con enlace capturado localmente",
+      "tipo": "API + correo a archivos",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        31,
+        32,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Verificación Empresa reutilizada es idempotente",
+      "tipo": "API",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        31,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa nueva: Pendiente sin solicitud enviada",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "state": "pending",
+        "submitted": false
+      },
+      "obtenido": {
+        "state": "pending",
+        "submitted": false
+      },
+      "tareas": [
+        36,
+        37,
+        38,
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Solicitud completa conserva datos y queda pendiente",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "name": "Empresa ficticia de revisión QA",
+        "state": "pending",
+        "submitted": true
+      },
+      "obtenido": {
+        "name": "Empresa ficticia de revisión QA",
+        "state": "pending",
+        "submitted": true
+      },
+      "tareas": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa pendiente no entra al dashboard",
+      "tipo": "API",
+      "esperado": 403,
+      "obtenido": 403,
+      "tareas": [
+        37,
+        38,
+        52,
+        54
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa no puede aprobar su propia solicitud",
+      "tipo": "API",
+      "esperado": 403,
+      "obtenido": 403,
+      "tareas": [
+        64,
+        66,
+        68,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa no puede asignar propietario desde el formulario",
+      "tipo": "API",
+      "esperado": 400,
+      "obtenido": 400,
+      "tareas": [
+        64,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout de empresa pendiente revoca el token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Administrador ve una solicitud pendiente real",
+      "tipo": "Navegador + API",
+      "esperado": 1,
+      "obtenido": 1,
+      "tareas": [
+        55,
+        56,
+        57,
+        58,
+        67,
+        69
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Rechazo sin motivo no se envía desde la pantalla",
+      "tipo": "Navegador",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        67,
+        69,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Solicitud rechazada sale del listado pendiente",
+      "tipo": "Navegador + API",
+      "esperado": 0,
+      "obtenido": 0,
+      "tareas": [
+        67,
+        68,
+        69,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout del administrador revoca el token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Login de empresa rechazada muestra estado y motivo reales",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "state": "rejected",
+        "reason": "Corrige la ubicación para identificar la sede."
+      },
+      "obtenido": {
+        "state": "rejected",
+        "reason": "Corrige la ubicación para identificar la sede."
+      },
+      "tareas": [
+        36,
+        37,
+        38,
+        65,
+        66,
+        69,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Corrección y reenvío persisten y vuelven a Pendiente",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "location": "Pasto · sede ficticia corregida",
+        "state": "pending"
+      },
+      "obtenido": {
+        "location": "Pasto · sede ficticia corregida",
+        "state": "pending"
+      },
+      "tareas": [
+        63,
+        64,
+        65,
+        66,
+        68,
+        69,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout de empresa corregida revoca el token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Aprobación administrativa retira la solicitud pendiente",
+      "tipo": "Navegador + API",
+      "esperado": 0,
+      "obtenido": 0,
+      "tareas": [
+        67,
+        68,
+        69,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Decisión sobre versión obsoleta no sobrescribe aprobación",
+      "tipo": "API",
+      "esperado": 409,
+      "obtenido": 409,
+      "tareas": [
+        68,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout del administrador tras aprobación revoca token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa aprobada recibe dashboard vacío real",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "active_offers": 0,
+        "closed_offers": 0,
+        "applications": 0
+      },
+      "obtenido": {
+        "active_offers": 0,
+        "closed_offers": 0,
+        "applications": 0
+      },
+      "tareas": [
+        36,
+        37,
+        38,
+        51,
+        52,
+        53,
+        54
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa aprobada conserva decisión y administrador",
+      "tipo": "API",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        64,
+        66,
+        68,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Empresa recibe aviso persistido del resultado",
+      "tipo": "API",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        68,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Sitio web y redes persisten después de aprobar",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "website": "https://example.org",
+        "social": [
+          "https://example.org/red"
+        ]
+      },
+      "obtenido": {
+        "website": "https://example.org",
+        "social": [
+          "https://example.org/red"
+        ]
+      },
+      "tareas": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout de empresa aprobada revoca token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard empresarial coincide con ofertas y postulaciones propias de QA",
+      "tipo": "Navegador + API",
+      "esperado": {
+        "active_offers": 2,
+        "closed_offers": 0,
+        "applications": 2
+      },
+      "obtenido": {
+        "active_offers": 2,
+        "closed_offers": 0,
+        "applications": 2
+      },
+      "tareas": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout de empresa con actividad revoca token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Registro Candidato: cuenta creada antes del selector",
+      "tipo": "Navegador + API",
+      "esperado": 201,
+      "obtenido": 201,
+      "tareas": [
+        29,
+        30,
+        32,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Registro Candidato: rol persistido",
+      "tipo": "Navegador + API",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        29,
+        30,
+        32,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Verificación Candidato con enlace capturado localmente",
+      "tipo": "API + correo a archivos",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        31,
+        32,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Verificación Candidato reutilizada es idempotente",
+      "tipo": "API",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        31,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Registro verificado permite login con destino candidato",
+      "tipo": "Navegador + API",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Perfil mantiene persistencia después de extraer repositorios",
+      "tipo": "Navegador + API",
+      "esperado": "Resumen ficticio QA después de la reorganización.",
+      "obtenido": "Resumen ficticio QA después de la reorganización.",
+      "tareas": [
+        59,
+        60,
+        61,
+        62
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard vuelve a consultar completitud del perfil editado",
+      "tipo": "Navegador + API",
+      "esperado": 33,
+      "obtenido": 33,
+      "tareas": [
+        47,
+        48,
+        49,
+        50,
+        61,
+        62
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout del candidato confirma revocación remota",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Recuperación solicitada desde Flutter",
+      "tipo": "Navegador + API",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Confirmación usa enlace capturado localmente y limpia su URL",
+      "tipo": "Navegador",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Contraseña anterior rechazada después de recuperación",
+      "tipo": "API",
+      "esperado": 400,
+      "obtenido": 400,
+      "tareas": [
+        40,
+        41,
+        42
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Nueva contraseña permite acceso después de recuperación",
+      "tipo": "API",
+      "esperado": 200,
+      "obtenido": 200,
+      "tareas": [
+        40,
+        41,
+        42
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Enlace de recuperación utilizado no se reutiliza",
+      "tipo": "API",
+      "esperado": 400,
+      "obtenido": 400,
+      "tareas": [
+        40,
+        41,
+        42
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout después de recuperación revoca token nuevo",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        36,
+        38
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Enlace de verificación inválido rechazado",
+      "tipo": "API",
+      "esperado": 400,
+      "obtenido": 400,
+      "tareas": [
+        31,
+        33
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Dashboard administrativo sin autenticación rechazado",
+      "tipo": "API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        56,
+        58
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Candidato no accede a revisión empresarial",
+      "tipo": "API",
+      "esperado": 403,
+      "obtenido": 403,
+      "tareas": [
+        58,
+        68,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Consulta empresarial de perfil continúa restringida sin selección autorizada",
+      "tipo": "API",
+      "esperado": 403,
+      "obtenido": 403,
+      "tareas": [
+        60,
+        62
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Sin errores JavaScript no controlados durante los recorridos",
+      "tipo": "Consola del navegador",
+      "esperado": 0,
+      "obtenido": 0,
+      "tareas": [
+        33,
+        38,
+        42,
+        54,
+        58,
+        66,
+        70
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logo opcional: archivo válido cargado desde Flutter y recuperado",
+      "tipo": "Navegador + API",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Archivo inválido rechazado sin perder el logo anterior",
+      "tipo": "Navegador + API",
+      "esperado": true,
+      "obtenido": true,
+      "tareas": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logo opcional eliminado desde Flutter",
+      "tipo": "Navegador + API",
+      "esperado": 404,
+      "obtenido": 404,
+      "tareas": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    },
+    {
+      "caso": "Logout posterior a edición del logo revoca su token",
+      "tipo": "Navegador + API",
+      "esperado": 401,
+      "obtenido": 401,
+      "tareas": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "resultado": "aprobado"
+    }
+  ],
+  "capturas": [
+    {
+      "archivo": "registro-empresa-rol-posterior.png",
+      "titulo": "Cuenta creada antes del rol",
+      "explicacion": "Selector mostrado después del HTTP 201. La contraseña no se vuelve a enviar al elegir el rol.",
+      "tareas": [
+        29,
+        32,
+        33
+      ]
+    },
+    {
+      "archivo": "registro-empresa-confirmado.png",
+      "titulo": "Registro y rol confirmados",
+      "explicacion": "Confirmación de creación y rol; no acredita recepción SMTP real.",
+      "tareas": [
+        29,
+        32,
+        33
+      ]
+    },
+    {
+      "archivo": "empresa-informacion-escritorio.png",
+      "titulo": "Información de empresa",
+      "explicacion": "Formulario conectado al estado inicial real de Django, antes de enviar la solicitud.",
+      "tareas": [
+        37,
+        63,
+        65
+      ]
+    },
+    {
+      "archivo": "empresa-pendiente-escritorio.png",
+      "titulo": "Solicitud pendiente",
+      "explicacion": "Solicitud completa guardada y aviso de revisión; la API rechaza el dashboard antes de aprobar.",
+      "tareas": [
+        36,
+        37,
+        38,
+        63,
+        65,
+        66
+      ]
+    },
+    {
+      "archivo": "administracion-escritorio.png",
+      "titulo": "Dashboard administrativo",
+      "explicacion": "Conteos, avisos y eventos provenientes de Django. El administrador no gestiona postulaciones.",
+      "tareas": [
+        55,
+        57,
+        58
+      ]
+    },
+    {
+      "archivo": "solicitudes-escritorio.png",
+      "titulo": "Datos de la solicitud",
+      "explicacion": "Listado administrativo con datos completos de la empresa y acciones de revisión.",
+      "tareas": [
+        67,
+        69,
+        70
+      ]
+    },
+    {
+      "archivo": "rechazo-motivo-obligatorio.png",
+      "titulo": "Motivo obligatorio",
+      "explicacion": "La pantalla bloquea la confirmación del rechazo sin explicar el motivo.",
+      "tareas": [
+        67,
+        69,
+        70
+      ]
+    },
+    {
+      "archivo": "empresa-rechazada-movil.png",
+      "titulo": "Empresa rechazada en móvil web",
+      "explicacion": "Motivo guardado por el administrador y posibilidad de corregir los datos.",
+      "tareas": [
+        37,
+        63,
+        65,
+        66,
+        70
+      ]
+    },
+    {
+      "archivo": "empresa-reenvio.png",
+      "titulo": "Solicitud reenviada",
+      "explicacion": "Datos corregidos conservados y nueva solicitud pendiente de revisión.",
+      "tareas": [
+        65,
+        66,
+        69,
+        70
+      ]
+    },
+    {
+      "archivo": "aprobacion-confirmacion.png",
+      "titulo": "Confirmación de aprobación",
+      "explicacion": "El administrador confirma expresamente la decisión sobre la solicitud.",
+      "tareas": [
+        67,
+        69,
+        70
+      ]
+    },
+    {
+      "archivo": "administracion-movil.png",
+      "titulo": "Administración en móvil web",
+      "explicacion": "Métricas y eventos actualizados después de la decisión.",
+      "tareas": [
+        55,
+        57,
+        58
+      ]
+    },
+    {
+      "archivo": "empresa-dashboard-vacio.png",
+      "titulo": "Dashboard de empresa sin actividad",
+      "explicacion": "Cero ofertas y postulaciones reales para esta cuenta recién aprobada; dependencias pendientes identificadas.",
+      "tareas": [
+        37,
+        51,
+        53,
+        54
+      ]
+    },
+    {
+      "archivo": "empresa-dashboard-escritorio.png",
+      "titulo": "Dashboard empresarial con actividad",
+      "explicacion": "Dos ofertas activas y dos postulaciones de las filas controladas de QA, sin datos inventados en Flutter.",
+      "tareas": [
+        51,
+        52,
+        53,
+        54
+      ]
+    },
+    {
+      "archivo": "empresa-dashboard-movil.png",
+      "titulo": "Dashboard empresarial en móvil web",
+      "explicacion": "Los mismos datos reales en viewport 390×844.",
+      "tareas": [
+        51,
+        53,
+        54
+      ]
+    },
+    {
+      "archivo": "registro-candidato-rol-posterior.png",
+      "titulo": "Cuenta creada antes del rol",
+      "explicacion": "Selector mostrado después del HTTP 201. La contraseña no se vuelve a enviar al elegir el rol.",
+      "tareas": [
+        29,
+        32,
+        33
+      ]
+    },
+    {
+      "archivo": "registro-candidato-confirmado.png",
+      "titulo": "Registro y rol confirmados",
+      "explicacion": "Confirmación de creación y rol; no acredita recepción SMTP real.",
+      "tareas": [
+        29,
+        32,
+        33
+      ]
+    },
+    {
+      "archivo": "candidato-regresion.png",
+      "titulo": "Regresión del candidato",
+      "explicacion": "Cuenta nueva, perfil guardado y completitud 33% calculada por Django después de editar.",
+      "tareas": [
+        34,
+        36,
+        38,
+        47,
+        49,
+        50,
+        61,
+        62
+      ]
+    },
+    {
+      "archivo": "recuperacion-confirmada.png",
+      "titulo": "Recuperación confirmada",
+      "explicacion": "Cambio mediante enlace capturado a archivos locales; la URL de éxito ya no contiene parámetros privados.",
+      "tareas": [
+        39,
+        41,
+        42
+      ]
+    },
+    {
+      "archivo": "login-error-vigente.png",
+      "titulo": "Error de acceso",
+      "explicacion": "Credenciales incorrectas rechazadas por Django y mostradas en español.",
+      "tareas": [
+        34,
+        36,
+        38
+      ]
+    },
+    {
+      "archivo": "registro-correo-duplicado.png",
+      "titulo": "Correo duplicado",
+      "explicacion": "La API devuelve el error junto al correo, antes de mostrar el selector de rol.",
+      "tareas": [
+        29,
+        30,
+        32,
+        33
+      ]
+    },
+    {
+      "archivo": "empresa-logo.png",
+      "titulo": "Logo y complementos de empresa aprobada",
+      "descripcion": "Fotografía ficticia de QA cargada desde el selector de archivos; sitio web y redes ya persistidos.",
+      "tareas": [
+        63,
+        65,
+        66
+      ]
+    },
+    {
+      "archivo": "empresa-logo-invalido.png",
+      "titulo": "Archivo inválido",
+      "descripcion": "La API rechaza un archivo sin contenido de imagen y conserva el logo válido anterior.",
+      "tareas": [
+        63,
+        65,
+        66
+      ]
+    }
+  ],
+  "respuestas_api": [
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/company/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/register/",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/register/role/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/profile/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/profile/candidate/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/profile/candidate/",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/password-recovery/request/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/password-recovery/request/",
+      "status": 200
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/password-recovery/confirm/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/password-recovery/confirm/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/register/",
+      "status": 400
+    }
+  ]
+}

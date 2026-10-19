@@ -1,3 +1,13 @@
+# HU008 — seguimiento actualizado
+
+19/10/2026. El CRUD estructurado, foto privada y completitud propios se conservan después de separar Domain/Data/Presentation. Se repitió persistencia de descripción y recálculo del dashboard en Chrome; las suites vigentes incluyen regresión de CRUD, foto y permisos. Sigue pendiente la consulta positiva de empresas autorizadas dentro de selección, revisión humana y validación nativa. Los estados empresariales generales ya están implementados en HU009/HU010; no sustituyen esa autorización de selección.
+
+[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Ejecución automatizada; revisión humana pendiente; PR #146 en borrador.
+
+Las capturas y resultados anteriores se conservan como evidencia de su fecha. Las referencias antiguas a selección previa del rol, logout solo local o destinos empresariales inexistentes quedan superadas por el seguimiento anterior.
+
+## Informe histórico conservado
+
 # HU008 — perfil profesional del candidato
 
 Fecha de seguimiento: **18/10/2026**, America/Bogota. Historia #9; tareas #59–#62.

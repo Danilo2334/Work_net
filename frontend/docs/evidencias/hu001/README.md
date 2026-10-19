@@ -1,3 +1,13 @@
+# HU001 — seguimiento actualizado
+
+19/10/2026. El registro actual crea la cuenta con HTTP 201 y después solicita Candidato/Empresa. El rol se guarda con un comprobante limitado; el registro público no permite administrador. El candidato verificado accede a su dashboard y la empresa utiliza información/validación reales. Persisten SMTP real y revisión humana pendientes.
+
+[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Ejecución automatizada; revisión humana pendiente; PR #146 en borrador.
+
+Las capturas y resultados anteriores se conservan como evidencia de su fecha. Las referencias antiguas a selección previa del rol, logout solo local o destinos empresariales inexistentes quedan superadas por el seguimiento anterior.
+
+## Informe histórico conservado
+
 # Reconstrucción de HU001 — evidencia local
 
 **Estado: validación parcial del nuevo frontend, 17 de octubre de 2026.**

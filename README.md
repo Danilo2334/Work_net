@@ -7,20 +7,23 @@ Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com
 
 - `develop`: backend consolidado; base de las tareas de backend.
 - `frontend`: nueva interfaz Flutter, dentro de `frontend/`, usando los criterios de las historias y los mockups revisados.
-- `feature/backend-sprint-2`: rama compartida para continuar el backend del Sprint 2; conserva el trabajo de HU005.
+- `feature/backend-sprint-2`: rama compartida del backend; su nombre no determina la asignación de Sprint del Project.
 - `main`: base estable; recibe las integraciones revisadas.
 
 La consolidación conserva los commits anteriores y retira los archivos del frontend antiguo de las versiones actuales. Los commits de Danilo y Francisco mantienen su autoría. Cambiar de cuenta de GitHub CLI no cambia el autor de los commits de Git.
 
 ## Backend disponible
 
-- HU001: registro, roles públicos candidato/empresa y verificación de correo.
-- HU002: login con token; rol efectivo de administrador para las cuentas administrativas.
+- HU001: creación de cuenta, selección posterior de rol público y verificación de correo.
+- HU002: login con token, estados empresariales reales y cierre de sesión con revocación remota.
 - HU003: recuperación de contraseña con token de un solo uso y revocación del acceso anterior.
 - HU004: consulta y edición de cuenta, cambio de contraseña, eliminación con confirmación y preferencias push.
 - HU005, tarea #48: resumen del candidato con métricas, completitud del perfil y ofertas recientes.
+- HU008: CRUD del perfil propio y fotografía privada, con datos estructurados para un futuro CV.
+- HU009/HU010: información empresarial, solicitud, revisión administrativa, rechazo con motivo, corrección, reenvío y aprobación; avisos dentro de WorkNet.
+- HU006/HU007: resúmenes de empresa aprobada y administrador, con datos reales y permisos por rol.
 
-Esto no declara terminado todo el Sprint 2. Los demás dashboards y las funciones restantes deben implementarse y revisarse según sus historias.
+La asignación real al Sprint 2 sigue sin comprobarse: el token de Danilo carece de `read:project`. Se preservan las asignaciones existentes. Los módulos futuros y la revisión humana siguen pendientes; el PR #146 permanece en borrador.
 
 ## Ejecutar en Windows / PowerShell
 
@@ -40,15 +43,17 @@ Se utiliza la base SQLite local configurada en el proyecto. El runner crea y eli
 
 La configuración SMTP de la integración se conserva. Para los envíos reales, completar `GMAIL_USER` y `GMAIL_APP_PASSWORD` en `backend/.env`, usando una contraseña de aplicación autorizada. Puede tomarse `backend/.env.example` como referencia. El archivo `.env` se mantiene fuera de Git.
 
-Configurar `PASSWORD_RESET_FRONTEND_URL` con la URL de la nueva pantalla de recuperación cuando exista. Mientras se reconstruye Flutter, el correo de recuperación no tendrá una pantalla funcional de destino. El endpoint para confirmar la nueva contraseña ya está disponible.
+La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` al ejecutar Flutter en ese puerto. Django instalado: 6.1.1; se conserva [MAILERS](https://docs.djangoproject.com/en/6.1/topics/email/#configuring-email). La recepción real de correo sigue pendiente de credenciales locales y comprobación en el buzón. El correo a archivos usado en QA no acredita entrega SMTP.
 
 ## API
 
 | Método | Ruta | Autenticación |
 |---|---|---|
 | POST | `/api/register/` | Pública |
+| POST | `/api/register/role/` | Autorización limitada del registro o sesión propia sin rol |
 | GET | `/api/verify-email/?token=...` | Enlace firmado |
 | POST | `/api/login/` | Pública |
+| POST | `/api/logout/` | Token que se revoca |
 | POST | `/api/password-recovery/request/` | Pública |
 | POST | `/api/password-recovery/confirm/` | UID y token de recuperación |
 | GET, PATCH | `/api/account/` | Token |
@@ -56,15 +61,24 @@ Configurar `PASSWORD_RESET_FRONTEND_URL` con la URL de la nueva pantalla de recu
 | DELETE | `/api/account/delete/` | Token y confirmación |
 | GET, PATCH | `/api/account/notifications/` | Token |
 | GET | `/api/dashboard/candidate/` | Token de candidato |
+| GET, PATCH | `/api/company/` | Token de la empresa propietaria |
+| POST | `/api/company/submit/` | Empresa con información completa |
+| PUT, GET, DELETE | `/api/company/logo/` | Empresa aprobada propietaria; JPEG/PNG privado |
+| GET | `/api/admin/companies/` | Administrador; listado paginado |
+| POST | `/api/admin/companies/{id}/review/` | Administrador; versión y motivo si rechaza |
+| GET | `/api/dashboard/company/` | Empresa aprobada |
+| GET | `/api/dashboard/admin/` | Administrador |
 
 Encabezado: `Authorization: Token <token>`. Después de cambiar la contraseña desde configuración, guardar el token nuevo. La recuperación de contraseña requiere un nuevo login.
 
 ## HU005 y futuras historias
 
-El resumen consulta datos persistentes en `candidate_dashboard`: perfil, ofertas, postulaciones, guardados y notificaciones. Las siguientes historias deberán extender o reutilizar esas entidades, evitando tablas paralelas para la misma información. La publicación y edición de ofertas, la edición del perfil y las otras operaciones de escritura aún deben desarrollarse en sus historias correspondientes.
+El resumen consulta datos persistentes en `candidate_dashboard`: perfil, ofertas, postulaciones, guardados y notificaciones. El perfil propio ya se edita desde Flutter. Las siguientes historias deben reutilizar las entidades existentes; la publicación/gestión de ofertas, búsqueda, CV, mensajes, estadísticas y gestión de postulantes siguen pendientes de sus módulos.
 
-Las empresas pendientes o rechazadas y los dashboards de empresa/administrador requieren completar sus historias. El login devuelve el rol; esto no equivale a tener esos flujos terminados.
+El login distingue empresa Pendiente/Aprobada/Rechazada. Solo la aprobada accede a su resumen. La revisión inicial de empresa no acredita una autorización de selección para consultar perfiles de candidatos: esa consulta sigue restringida. [Contrato empresarial y sesión](backend/accounts/COMPANY_API.md).
 
 ## Integración y evidencias
 
 Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas y el conjunto completo antes de integrar. Documentar resultados reales. Las capturas de UI y el resumen de una colección de API complementan la revisión; las operaciones de frontend deben verificarse contra la API real.
+
+[Guía para revisar la aplicación](frontend/docs/REVISION.md) · [Frontend y arquitectura](frontend/README.md).

@@ -1,3 +1,13 @@
+# HU003 — seguimiento actualizado
+
+19/10/2026. La solicitud y confirmación continúan conectadas a Django. Se repitió el recorrido en Chrome con enlace capturado a archivos: cambio confirmado, contraseña anterior rechazada y nueva aceptada. API adicional cubre vencimiento y reutilización. Recepción SMTP real y apertura desde el buzón siguen pendientes.
+
+[Informe vigente, casos nuevos y capturas](../revision-sprint/README.md). Código Flutter `04e7e5c`, backend `f9e4dea`: análisis limpio, **77 pruebas Flutter y 103 Django aprobadas en esta fase**. Estos totales no se atribuyen al informe histórico de abajo. Ejecución automatizada; revisión humana pendiente; PR #146 en borrador.
+
+Las capturas y resultados anteriores se conservan como evidencia de su fecha. Las referencias antiguas a selección previa del rol, logout solo local o destinos empresariales inexistentes quedan superadas por el seguimiento anterior.
+
+## Informe histórico conservado
+
 # HU003 — recuperación de contraseña
 
 Responsables: implementación e integración, francisco3788; QA, Danilo2334.
