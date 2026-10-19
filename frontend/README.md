@@ -105,9 +105,9 @@ Para correo real, completar localmente `backend/.env` a partir de `.env.example`
 `GMAIL_USER`, `GMAIL_APP_PASSWORD` y
 `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password`.
 No compartir ni versionar credenciales. El backend usa Django 6.1.1 y conserva
-MAILERS. Gmail ya autenticó y aceptó un registro desde Flutter en una instancia
-aislada; recepción efectiva, apertura del mensaje y recuperación real siguen
-pendientes. [Estado SMTP separado](../backend/docs/evidencias/revision-sprint/SMTP.md).
+MAILERS. Registro SMTP comprobado con el enlace recibido aportado por el usuario:
+verificación persistida y login/dashboard desde Flutter correctos. Recuperación
+SMTP solicitada; recepción, cambio y login con nueva contraseña pendientes. [Estado SMTP separado](../backend/docs/evidencias/revision-sprint/SMTP.md).
 Los enlaces de la QA anterior se capturaron a archivos y no acreditan recepción.
 
 El hosting debe resolver las rutas de Flutter a `index.html`. En desarrollo web
@@ -121,7 +121,7 @@ regresión backend pasó **103 pruebas** y sus comprobaciones de configuración 
 migraciones. El build web se generó correctamente; WASM no se utilizó para esta
 validación. [Evidencias de la revisión actual](docs/evidencias/revision-sprint/README.md).
 
-Siguen pendientes recepción real de correo, consulta de perfil por empresa
+Siguen pendientes completar la recuperación con correo real, consulta de perfil por empresa
 autorizada dentro de selección, módulos de CV/búsqueda/mensajes/historial y
 detalle/postulación, gestión empresarial de ofertas/postulantes/estadísticas y
 gestión de administradores/permisos. Los accesos inexistentes se identifican

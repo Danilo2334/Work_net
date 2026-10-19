@@ -46,12 +46,12 @@ El servidor `qa_backend.py` **siempre captura correo a archivos**. Para SMTP se 
 
 En `backend/.env`, ignorado por Git, configurar `GMAIL_USER` (remitente), `GMAIL_APP_PASSWORD` (contraseña de aplicación generada por Google, no contraseña normal) y `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` para Flutter en 55000. No compartir esas credenciales. La URL debe coincidir con el origen de la aplicación usada en esa comprobación.
 
-La configuración privada ya se completó en esta sesión: TLS/autenticación y registro HTTP 201 con SMTP real comprobados en una SQLite separada (Django 8007, Flutter 55007). Falta acreditar recepción efectiva en el buzón, abrir ambos correos recibidos (registro y recuperación) y completar sus recorridos. Una respuesta SMTP aceptada no demuestra recepción. Las evidencias públicas deben ocultar tokens y enlaces firmados.
+La configuración privada quedó completada. En la SQLite SMTP separada (Django 8007, Flutter 55007) el enlace de registro recibido y aportado por el usuario devolvió 200, guardó la verificación y permitió login/dashboard desde Flutter. También se solicitó recuperación por SMTP; falta completar recepción, apertura, cambio y nuevo login con el usuario. Una respuesta SMTP aceptada no demuestra recepción. Las evidencias públicas deben ocultar tokens y enlaces firmados.
 
 ## Pendientes que deben decirse claramente
 
 - Falta acceso `read:project` para confirmar qué issues pertenecen realmente al Sprint 2. La rama no define ese alcance; no se modificaron Sprint ni fechas.
-- SMTP ya autentica y acepta el registro; recepción en buzón, apertura y recuperación real siguen pendientes del usuario.
+- Registro SMTP/verificación/login comprobados. Recuperación SMTP enviada; recepción, cambio y login posterior pendientes del usuario.
 - Dashboard candidato: CV, búsqueda, mensajes, historial y detalle/postulación pertenecen a módulos todavía ausentes.
 - Dashboard empresa: crear/gestionar ofertas, gestionar postulantes, mensajes y estadísticas siguen pendientes. Las métricas y postulaciones recientes sí usan datos reales.
 - Administración: gestión de administradores y permisos pendiente. Revisión de empresas, métricas y eventos de validación sí están implementados.

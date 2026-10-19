@@ -4,7 +4,7 @@
 
 ## Actualización posterior de correo real
 
-Después de los casos a archivos, se completó la configuración privada, se comprobó TLS/autenticación Gmail y otro registro desde Flutter devolvió HTTP 201 mediante SMTP real. El rol posterior devolvió 200. **Recepción y apertura desde el buzón todavía pendientes**. [Registro separado de SMTP](../../../../backend/docs/evidencias/revision-sprint/SMTP.md). El contexto y resultados a archivos de esta página se conservan con su fecha; no se presentan como correo recibido.
+Después de los casos a archivos se completó la configuración privada y se envió un registro desde Flutter mediante SMTP real. El usuario aportó el enlace recibido: el agente comprobó HTTP 200, `email_verified=true` persistido y login/dashboard desde Flutter. Logout devolvió 200 y el token anterior 401. También se solicitó recuperación real desde Flutter con HTTP 200; **su recepción, apertura y cambio todavía pendientes del usuario**. [Registro separado de SMTP](../../../../backend/docs/evidencias/revision-sprint/SMTP.md). El contexto y resultados a archivos de esta página se conservan con su fecha; no se presentan como correo recibido.
 
 [Comentarios vigentes de las 42 tareas](seguimiento.md).
 
@@ -49,11 +49,11 @@ Todas conservan revisión humana pendiente. «Implementado» describe código y 
 
 | Tarea original | Responsable del registro | Avance y pendiente específico |
 | --- | --- | --- |
-| [#29 — TASK-HU001-01 Crear interfaz de registro en Flutter](https://github.com/Danilo2334/Work_net/issues/29) | francisco3788 | Registro: cuenta antes del rol; SMTP real pendiente; revisión pendiente |
-| [#30 — TASK-HU001-02 Implementar usuario, roles y API de registro](https://github.com/Danilo2334/Work_net/issues/30) | Danilo2334 | Registro: cuenta antes del rol; SMTP real pendiente; revisión pendiente |
-| [#31 — TASK-HU001-03 Implementar verificación de correo](https://github.com/Danilo2334/Work_net/issues/31) | Danilo2334 | Registro: cuenta antes del rol; SMTP real pendiente; revisión pendiente |
-| [#32 — TASK-HU001-04 Integrar registro Flutter con Django](https://github.com/Danilo2334/Work_net/issues/32) | francisco3788 | Registro: cuenta antes del rol; SMTP real pendiente; revisión pendiente |
-| [#33 — TASK-HU001-05 Probar criterios de aceptación de registro](https://github.com/Danilo2334/Work_net/issues/33) | Danilo2334 | Registro: cuenta antes del rol; SMTP real pendiente; revisión pendiente |
+| [#29 — TASK-HU001-01 Crear interfaz de registro en Flutter](https://github.com/Danilo2334/Work_net/issues/29) | francisco3788 | Registro: cuenta antes del rol; SMTP/verificación/login comprobados; revisión pendiente |
+| [#30 — TASK-HU001-02 Implementar usuario, roles y API de registro](https://github.com/Danilo2334/Work_net/issues/30) | Danilo2334 | Registro: cuenta antes del rol; SMTP/verificación/login comprobados; revisión pendiente |
+| [#31 — TASK-HU001-03 Implementar verificación de correo](https://github.com/Danilo2334/Work_net/issues/31) | Danilo2334 | Registro: cuenta antes del rol; SMTP/verificación/login comprobados; revisión pendiente |
+| [#32 — TASK-HU001-04 Integrar registro Flutter con Django](https://github.com/Danilo2334/Work_net/issues/32) | francisco3788 | Registro: cuenta antes del rol; SMTP/verificación/login comprobados; revisión pendiente |
+| [#33 — TASK-HU001-05 Probar criterios de aceptación de registro](https://github.com/Danilo2334/Work_net/issues/33) | Danilo2334 | Registro: cuenta antes del rol; SMTP/verificación/login comprobados; revisión pendiente |
 | [#34 — TASK-HU002-01 Crear pantalla de inicio de sesión en Flutter](https://github.com/Danilo2334/Work_net/issues/34) | francisco3788 | Acceso: sesión, destinos y estados empresariales reales; revisión pendiente |
 | [#35 — TASK-HU002-02 Implementar autenticación y endpoint de login](https://github.com/Danilo2334/Work_net/issues/35) | Danilo2334 | Acceso: sesión, destinos y estados empresariales reales; revisión pendiente |
 | [#36 — TASK-HU002-03 Implementar sesión y redirección por rol](https://github.com/Danilo2334/Work_net/issues/36) | francisco3788 | Acceso: sesión, destinos y estados empresariales reales; revisión pendiente |
@@ -287,7 +287,7 @@ La API rechaza un archivo sin contenido de imagen y conserva el logo válido ant
 
 Los informes [HU001](../hu001/README.md), [HU002](../hu002/README.md), [HU003](../hu003/README.md), [HU004](../hu004/README.md), [HU005](../hu005/README.md) y [HU008](../hu008/README.md) conservan casos/capturas históricos identificados. No se atribuyen sus conteos a nuevas ejecuciones. Registro antes del rol, estados empresariales, destinos de empresa/administrador y logout remoto ya se corrigieron; sus referencias antiguas se conservan como historial.
 
-- SMTP real, recepción y apertura de los mensajes recibidos: #31/#32/#33 y #40/#41/#42.
+- #31/#32/#33: registro SMTP/verificación/login comprobados mediante enlace aportado por el usuario, disponibles para revisión. #40/#41/#42: recuperación SMTP solicitada; recepción, apertura, cambio y nuevo login pendientes.
 - Dashboard candidato #47/#50: CV, búsqueda, mensajes, historial y detalle/postulación, pendientes de sus módulos. #48/#49 tienen resumen e integración disponibles para revisión.
 - Dashboard empresa #51–#54: métricas e integración implementadas; accesos funcionales de gestión de ofertas/postulantes, mensajes y estadísticas pendientes de módulos posteriores. La API #52 está disponible para revisión.
 - Administración #55/#58: gestión de administradores/permisos pendiente. #56/#57 y el recorrido de validación sí tienen evidencia.
