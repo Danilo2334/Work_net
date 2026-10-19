@@ -1,0 +1,7 @@
+{
+  "coleccion_ejecutada_sha256": "e74c78ee1c2f561db4118cad55b8ebb3e03f893d036358b307952947535da991",
+  "coleccion_git_sha256_lf": "99e3478327d8c5590ab428d6739298f487c5a29a7e826d8cbba6ff63d26545ef",
+  "contenido_json_identico": true,
+  "diferencia": "Git normaliza los finales CRLF de Windows a LF; no cambia peticiones, scripts ni resultados.",
+  "comprobacion": "Ambas ejecuciones conservaron el mismo archivo CRLF. El JSON publicado es igual al decodificarlo y también byte a byte después de normalizar CRLF a LF."
+}
