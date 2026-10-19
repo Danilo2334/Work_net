@@ -13,6 +13,11 @@ from .models import User
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    role = serializers.SerializerMethodField()
+
+    def get_role(self, user):
+        return "admin" if user.is_staff or user.is_superuser else user.role or "unassigned"
+
     class Meta:
         model = User
         fields = ("id", "full_name", "email", "role", "email_verified")
