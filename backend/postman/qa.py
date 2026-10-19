@@ -12,6 +12,7 @@ import shutil
 import socket
 import sys
 import os
+import uuid
 from urllib.parse import parse_qs, urlsplit
 
 HERE = Path(__file__).resolve().parent
@@ -103,6 +104,8 @@ def prepare(port):
     connection.close()
     shutil.copy2(path / 'qa.sqlite3', path / 'initial.sqlite3')
     env = json.loads((HERE / 'WorkNet.local.postman_environment.json').read_text(encoding='utf-8'))
+    # Cada importación debe conservar el entorno y los resultados del run anterior.
+    env['id'] = str(uuid.uuid4())
     values = {i['key']: i for i in env['values']}
     def set_value(key, value):
         values[key]['value'] = value

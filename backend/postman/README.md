@@ -2,17 +2,14 @@
 
 La colección contiene **212 peticiones con comprobaciones automáticas**, agrupadas en once fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
 
-Los resultados de las dos ejecuciones con **Newman 6.2.3** están en [el informe de evidencias](../docs/evidencias/postman/README.md). Newman ejecuta esta misma colección desde consola; no equivale a una ejecución visual en Postman.
+La evidencia vigente son **dos pasadas completas en Postman Desktop**, con 212 peticiones y 631 comprobaciones aprobadas cada una. [Resultados y capturas directas de Postman](../docs/evidencias/postman/README.md). Los informes de consola anteriores se conservan como historial técnico y no cuentan como evidencia de aceptación.
 
 ## Preparar la base y abrir Django
 
-Desde la raíz de Work_net, en PowerShell, con Python y Node.js instalados:
+Desde la raíz de Work_net, en PowerShell, con Python y la aplicación Postman instalados:
 
 ```powershell
 python -m pip install -r backend/requirements.txt
-Push-Location backend/postman
-npm.cmd ci --ignore-scripts --no-audit --no-fund
-Pop-Location
 python backend/postman/qa.py prepare --port 8008
 python backend/postman/qa.py serve
 ```
@@ -66,22 +63,11 @@ Copia únicamente `reset_uid` y `reset_token` al entorno activo. No compartas en
 
 Estos mensajes **no se envían a Gmail**. Para entrega real, usar un entorno de QA distinto con SMTP y un buzón autorizado: comprobar recepción, abrir su enlace y seguir el recorrido. No cambiar este servidor aislado a SMTP ni usar direcciones reales en la colección. La evidencia SMTP previa de WorkNet se conserva en [SMTP.md](../docs/evidencias/revision-sprint/SMTP.md); no se atribuye a esta ejecución de Postman.
 
-## Ejecutar la misma colección por consola
+## Evidencia que se registra
 
-Con el servidor anterior abierto, en otra terminal desde la raíz:
+Ejecutar en la aplicación Postman, usando Send o el Collection Runner. Capturar petición, respuesta y Test Results. Para frontend, guardar únicamente capturas directas de la app Flutter. Conservar los enlaces firmados, contraseñas y tokens fuera de las imágenes.
 
-```powershell
-node backend/postman/run.cjs
-```
-
-El runner ejecuta las once carpetas en orden y hace las dos lecturas de correo automáticamente entre fases. Exporta IDs y tokens a **su entorno privado**, sin imprimirlos. No añade endpoints ni altera la base para fabricar resultados. Si una fase falla, conserva el informe y detiene las siguientes; no se omiten casos para conseguir un resultado favorable.
-
-Archivos de cada run:
-
-- `resultado-sanitizado.json`: casos, códigos HTTP y comprobaciones, sin cuerpos, encabezados de autenticación ni enlaces firmados. Es el informe apto para publicar.
-- `privado-01.json` … `privado-11.json`: informes completos de Newman, **con datos sensibles; no publicar**.
-- `local.postman_environment.json`: contraseñas, IDs y tokens de ese run; **no publicar**.
-- `qa.sqlite3`, `initial.sqlite3`, `mail/`, `state.json`: base de ejecución, copia inicial y estado privado.
+Las ejecuciones anteriores del runner de consola y sus archivos `privado-*.json`/`resultado-sanitizado.json` son soporte técnico histórico. No sustituyen los resultados y capturas obtenidos en Postman ni se registran como la evidencia de aceptación.
 
 ## Repetir desde cero y conservar los resultados
 
@@ -94,7 +80,7 @@ python backend/postman/qa.py serve
 
 `prepare` restaura el **estado funcional inicial mediante una base nueva**, con las mismas cuentas, actividad y permisos. No borra ni sobrescribe la ejecución anterior. `initial.sqlite3` conserva además su fotografía inicial, pero no hay que copiarla sobre una base abierta. Los tokens, contraseñas y fechas cambian; los resultados funcionales esperados permanecen iguales.
 
-Para repetir en Postman, importa y selecciona el entorno privado **del nuevo run**; vuelve a empezar en 01. Para repetir en consola, usa otra terminal y ejecuta `node backend/postman/run.cjs`. El runner rechaza sobrescribir un informe existente. Si necesitas seleccionar un run concreto: `python backend/postman/qa.py serve --run run-…` y `node backend/postman/run.cjs run-…`.
+Para repetir en Postman, importa y selecciona el entorno privado **del nuevo run**; vuelve a empezar en 01. Cada entorno tiene un identificador propio para conservar la pasada anterior. Si necesitas abrir un run concreto: `python backend/postman/qa.py serve --run run-…`.
 
 ## Fotografías de prueba
 
