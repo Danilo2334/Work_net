@@ -4,7 +4,7 @@
 
 Se comprobó que los criterios literales, casillas, objetivos, títulos, autores originales, estados, responsables, etiquetas, hitos y fechas de creación/cierre permanecen iguales. Solo cambió el seguimiento documental de las descripciones; no se cerraron tareas ni se atribuyó revisión humana. No hubo escrituras en Project y sigue faltando `read:project`.
 
-Danilo registra backend, QA y la síntesis de historias. Francisco registra Flutter e integración. El actor de la edición no sustituye al autor original de la issue, que se conserva. #46 conserva la responsabilidad compartida y sus comentarios separados.
+Danilo registra backend, QA y la síntesis de historias. Francisco registra Flutter e integración. El actor de la edición no sustituye al autor original de la issue, que se conserva. #46 conserva la responsabilidad compartida en un comentario con atribución de ambas partes.
 
 | Referencia | Descripción | Actor de actualización | Apartados previos conservados como históricos |
 | --- | --- | --- | --- |

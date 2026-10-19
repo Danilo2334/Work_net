@@ -1,636 +1,508 @@
 {
-  "fecha_contexto": "2026-10-18",
+  "fecha_contexto": "2026-10-19",
   "zona_horaria": "America/Bogota",
   "tareas": [
     {
-      "historia": "HU001",
       "tarea": 29,
       "area": "Interfaz",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/29#issuecomment-6259568713",
-      "estado_y_pendientes": "Interfaz implementada y disponible para revisión de Danilo. La revisión del orden registro/rol continúa pendiente en HU001; no se declara la historia completa.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu001/formulario.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Formulario de registro",
-          "explicacion": "Diseño vigente y campos del registro; la validación se respalda además en pruebas, no solo en esta imagen."
+          "titulo": "Cuenta creada antes del rol",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu001/registro-exitoso.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Registro aceptado",
-          "explicacion": "Confirmación visual con correo y rol. No acredita entrega SMTP."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/hu001/correo-duplicado.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Correo duplicado",
-          "explicacion": "Error devuelto por Django mostrado junto al campo."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-correo-duplicado.png"
         }
       ]
     },
     {
-      "historia": "HU001",
       "tarea": 30,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/30#issuecomment-5945401868",
-      "estado_y_pendientes": "Implementación disponible para revisión de Francisco. La verificación de correo se sigue por separado en #31; no se cierra HU001 mediante este registro.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/30#issuecomment-6272919540",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-30.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #30",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Registro y correo duplicado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-registro-duplicado.png"
+        },
+        {
+          "titulo": "Adjunto original 1 de la tarea 30",
+          "url": "https://github.com/user-attachments/assets/f3fc3c45-77c8-457e-9805-592d5b5bd6ca"
+        },
+        {
+          "titulo": "Adjunto original 2 de la tarea 30",
+          "url": "https://github.com/user-attachments/assets/90bd5dc8-7342-4feb-9891-bf7cbf965cce"
+        },
+        {
+          "titulo": "Adjunto original 3 de la tarea 30",
+          "url": "https://github.com/user-attachments/assets/bc7abcc9-79ea-42ff-ac65-bc6b4316c203"
         }
       ]
     },
     {
-      "historia": "HU001",
       "tarea": 31,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6245223656",
-      "estado_y_pendientes": "La entrega SMTP real, la recepción en un buzón y la verificación desde ese correo siguen sin acreditarse. El correo capturado a archivos no demuestra recepción real. Pendiente revisión de Francisco.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-31.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #31",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Verificación: respuesta de Django",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-verificacion-respuesta.png"
+        },
+        {
+          "titulo": "Verificación: Test Results",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-verificacion-pruebas.png"
+        },
+        {
+          "titulo": "Adjunto original 1 de la tarea 31",
+          "url": "https://github.com/user-attachments/assets/a3f87b47-8bab-41c0-8bf5-0348304612fe"
+        },
+        {
+          "titulo": "Adjunto original 2 de la tarea 31",
+          "url": "https://github.com/user-attachments/assets/f3ba52c9-47af-4ee1-935a-f81541684a1e"
+        },
+        {
+          "titulo": "Adjunto original 3 de la tarea 31",
+          "url": "https://github.com/user-attachments/assets/2aaca649-7a12-4e7d-85a7-63aad5e4b036"
         }
       ]
     },
     {
-      "historia": "HU001",
       "tarea": 32,
       "area": "Integración",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/32#issuecomment-6245224132",
-      "estado_y_pendientes": "La entrega SMTP real, la recepción en un buzón y la verificación desde ese correo siguen sin acreditarse. El correo capturado a archivos no demuestra recepción real. El acceso del candidato ya existe; no se conserva como pendiente antiguo. Información/estados de empresa y revisión del orden registro/rol siguen pendientes (#64/#68). Revisión de Danilo pendiente.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu001/registro-exitoso.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Registro Flutter → Django",
-          "explicacion": "Resultado del POST registrado en la evidencia publicada; solo demuestra aceptación del registro."
+          "titulo": "Cuenta creada antes del rol",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu001/correo-duplicado.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Error de Django en Flutter",
-          "explicacion": "La validación de correo duplicado se muestra en el campo correspondiente."
-        },
-        {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-31.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #31",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Registro y rol confirmados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-confirmado.png"
         }
       ]
     },
     {
-      "historia": "HU001",
       "tarea": 33,
       "area": "QA",
       "responsable": "Danilo2334",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/33#issuecomment-6245223825",
-      "estado_y_pendientes": "QA parcial de HU001. La entrega SMTP real, la recepción en un buzón y la verificación desde ese correo siguen sin acreditarse. El correo capturado a archivos no demuestra recepción real. Falta completar/revisar información y estados de empresa y el orden registro/rol. El dashboard del candidato ya está implementado. No se declara revisión humana ni cierre de HU001.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu001/formulario.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Pantalla bajo prueba",
-          "explicacion": "Formulario de la reconstrucción. Las pruebas de validación se consultan en el informe."
+          "titulo": "Cuenta creada antes del rol",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu001/registro-exitoso.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Resultado válido",
-          "explicacion": "Aceptación de registro sin acreditar entrega SMTP."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/hu001/correo-duplicado.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Error funcional",
-          "explicacion": "Correo repetido rechazado con mensaje en español."
-        },
-        {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-31.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #31",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Correo duplicado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-correo-duplicado.png"
         }
       ]
     },
     {
-      "historia": "HU002",
       "tarea": 34,
       "area": "Interfaz",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/34#issuecomment-6245479135",
-      "estado_y_pendientes": "Pantalla implementada y disponible para revisión de Danilo. Los estados de empresa se siguen en #37 y no se presentan como resueltos por esta pantalla.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/login-escritorio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Inicio de sesión en escritorio",
-          "explicacion": "Campos y acceso a registro/recuperación en el diseño publicado."
+          "titulo": "Error de acceso",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-escritorio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Destino del candidato",
-          "explicacion": "El candidato autenticado recibe los datos del dashboard Django."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/login-error.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Credenciales incorrectas",
-          "explicacion": "Error real de Django mostrado en español."
+          "titulo": "Empresa rechazada en móvil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
         }
       ]
     },
     {
-      "historia": "HU002",
       "tarea": 35,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/35#issuecomment-5978133170",
-      "estado_y_pendientes": "Login básico disponible para revisión de Francisco. Los estados empresariales reales (#37, dependencias #64/#68) y los destinos Empresa/Administrador no se presentan como implementados.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/35#issuecomment-6272920507",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-35.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #35",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Logout y token revocado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu002-token-revocado.png"
+        },
+        {
+          "titulo": "Adjunto original 1 de la tarea 35",
+          "url": "https://github.com/user-attachments/assets/29cf9847-439c-4cbf-a5b2-a103a8ff3b12"
+        },
+        {
+          "titulo": "Adjunto original 2 de la tarea 35",
+          "url": "https://github.com/user-attachments/assets/0592617f-29bb-4aff-9ef4-06600897d1e2"
+        },
+        {
+          "titulo": "Adjunto original 3 de la tarea 35",
+          "url": "https://github.com/user-attachments/assets/6a8606ec-3597-4400-af5a-8d0a4eaedd4d"
         }
       ]
     },
     {
-      "historia": "HU002",
       "tarea": 36,
       "area": "Integración",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/36#issuecomment-6245479333",
-      "estado_y_pendientes": "Integración parcial: faltan estados empresariales reales y destinos Empresa/Administrador (#37/#64/#68). Cerrar sesión borra el acceso local; no hay endpoint de revocación para ese botón. Revisión de Danilo pendiente.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-escritorio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Sesión del candidato",
-          "explicacion": "Datos reales tras el login. La restauración se respalda en los casos del informe."
+          "titulo": "Error de acceso",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/empresa-destino-pendiente.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Destino empresarial pendiente",
-          "explicacion": "El aviso identifica el alcance pendiente sin atribuir estados aprobados a la empresa."
+          "titulo": "Empresa rechazada en móvil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
         }
       ]
     },
     {
-      "historia": "HU002",
       "tarea": 38,
       "area": "QA",
       "responsable": "Danilo2334",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/38#issuecomment-6245480254",
-      "estado_y_pendientes": "QA parcial: faltan recorridos y estados reales Empresa/Administrador. La salida local no acredita revocación del token en servidor. Revisión por otro integrante pendiente; este registro describe ejecución automatizada por agente.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/login-error.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Credenciales incorrectas",
-          "explicacion": "Error real de Django mostrado en español."
+          "titulo": "Error de acceso",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-escritorio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Destino del candidato",
-          "explicacion": "El candidato autenticado recibe los datos del dashboard Django."
-        },
-        {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-35.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #35",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Empresa rechazada en móvil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
         }
       ]
     },
     {
-      "historia": "HU003",
       "tarea": 39,
       "area": "Interfaz",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/39#issuecomment-6245479481",
-      "estado_y_pendientes": "Pantallas implementadas y disponibles para revisión de Danilo. La entrega real se acredita en integración/QA cuando exista; esta evidencia no demuestra SMTP.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-solicitud.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Solicitud de recuperación",
-          "explicacion": "Formulario y mensaje genérico para evitar revelar si un correo existe."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-exito.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Cambio confirmado",
-          "explicacion": "Confirmación tras el cambio validado contra Django con enlace local."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-contrasenas-distintas.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Confirmación distinta",
-          "explicacion": "Error que impide enviar contraseñas diferentes."
+          "titulo": "Recuperación confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
         }
       ]
     },
     {
-      "historia": "HU003",
       "tarea": 40,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/40#issuecomment-5982522310",
-      "estado_y_pendientes": "La entrega SMTP real, la recepción en un buzón y la verificación desde ese correo siguen sin acreditarse. El correo capturado a archivos no demuestra recepción real. Tokens, cambio y revocación están comprobados localmente; pendiente revisión de Francisco.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/40#issuecomment-6272921015",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-40.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #40",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Solicitud de recuperación",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu003-solicitud.png"
+        },
+        {
+          "titulo": "Cambio de contraseña confirmado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu003-cambio-confirmado.png"
+        },
+        {
+          "titulo": "Adjunto original 1 de la tarea 40",
+          "url": "https://github.com/user-attachments/assets/2bc7fca4-e1e7-4b09-8c3c-66b6afed7747"
+        },
+        {
+          "titulo": "Adjunto original 2 de la tarea 40",
+          "url": "https://github.com/user-attachments/assets/3d182b90-f7e4-430b-8eff-eef3d9fb82b8"
         }
       ]
     },
     {
-      "historia": "HU003",
       "tarea": 41,
       "area": "Integración",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/41#issuecomment-6245479640",
-      "estado_y_pendientes": "La entrega SMTP real, la recepción en un buzón y la verificación desde ese correo siguen sin acreditarse. El correo capturado a archivos no demuestra recepción real. Integración local comprobada; revisión de Danilo pendiente.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-correo-local.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Solicitud aceptada con correo local",
-          "explicacion": "Acredita el mensaje de la aplicación y la captura local descrita en el informe; no recepción en un buzón."
+          "titulo": "Recuperación con correo recibido — escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-escritorio.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-exito.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Cambio confirmado",
-          "explicacion": "Confirmación tras el cambio validado contra Django con enlace local."
+          "titulo": "Recuperación con correo recibido — móvil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-movil.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-enlace-vencido.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Enlace vencido",
-          "explicacion": "Django rechaza el enlace y Flutter muestra el error."
+          "titulo": "Recuperación confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
         }
       ]
     },
     {
-      "historia": "HU003",
       "tarea": 42,
       "area": "QA",
       "responsable": "Danilo2334",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/42#issuecomment-6245480431",
-      "estado_y_pendientes": "QA local aprobado; La entrega SMTP real, la recepción en un buzón y la verificación desde ese correo siguen sin acreditarse. El correo capturado a archivos no demuestra recepción real. Revisión por otro integrante pendiente; este registro describe ejecución automatizada por agente.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-contrasenas-distintas.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Confirmación distinta",
-          "explicacion": "Error que impide enviar contraseñas diferentes."
+          "titulo": "Recuperación con correo recibido — escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-escritorio.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/recuperacion-exito.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Cambio confirmado",
-          "explicacion": "Confirmación tras el cambio validado contra Django con enlace local."
+          "titulo": "Recuperación con correo recibido — móvil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-movil.png"
         },
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-40.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #40",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Recuperación confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
         }
       ]
     },
     {
-      "historia": "HU004",
       "tarea": 43,
       "area": "Interfaz",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/43#issuecomment-6245716590",
-      "estado_y_pendientes": "Implementada, pendiente revisión de Danilo. SMTP y estados empresariales no bloquean HU004. La revisión móvil corresponde a web; validación nativa sigue sin realizarse.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu004/cuenta-escritorio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Cuenta en escritorio",
-          "explicacion": "Datos recibidos del backend y controles de configuración."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/cuenta-escritorio.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu004/nombre-guardado.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Nombre guardado",
-          "explicacion": "Confirmación de la operación; la persistencia se comprueba mediante recarga/API en el informe."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/hu004/contrasena-actual-incorrecta.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Contraseña actual incorrecta",
-          "explicacion": "Error real del backend sin cambio de contraseña."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/nombre-guardado.png"
         }
       ]
     },
     {
-      "historia": "HU004",
       "tarea": 44,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/44#issuecomment-5988732139",
-      "estado_y_pendientes": "Disponible para revisión de Francisco. SMTP y estados empresariales pertenecen a otras historias y no bloquean la revisión de HU004.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/44#issuecomment-6272921535",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-44.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #44",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Nombre recuperado en otra consulta",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-nombre-persistente.png"
+        },
+        {
+          "titulo": "Token anterior rechazado al cambiar contraseña",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-token-anterior.png"
+        },
+        {
+          "titulo": "Eliminación de la cuenta desechable",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-eliminacion.png"
+        },
+        {
+          "titulo": "Sesión de cuenta eliminada rechazada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-cuenta-eliminada-401.png"
+        },
+        {
+          "titulo": "Adjunto original 1 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/e90908db-00d4-4ce1-a0e2-098be48ea585"
+        },
+        {
+          "titulo": "Adjunto original 2 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/6cd50d30-3fbe-4a3b-94db-f14189fe4554"
+        },
+        {
+          "titulo": "Adjunto original 3 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/0f9a31b5-afa4-410e-8b8f-8069a51c51cf"
+        },
+        {
+          "titulo": "Adjunto original 4 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/bc108269-77c6-4886-945b-c6e01102a554"
+        },
+        {
+          "titulo": "Adjunto original 5 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/c0e988c2-bfa6-413c-821a-21714914935e"
+        },
+        {
+          "titulo": "Adjunto original 6 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/f50a0ba9-4792-44b7-8635-4803a7440d62"
+        },
+        {
+          "titulo": "Adjunto original 7 de la tarea 44",
+          "url": "https://github.com/user-attachments/assets/e1b187b8-95e4-4a51-aefb-a9461e80c7b2"
+        },
+        {
+          "titulo": "Adjunto original 1 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/b8da4d07-f894-47dc-8bfd-cc8e02715fa4"
         }
       ]
     },
     {
-      "historia": "HU004",
       "tarea": 45,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/45#issuecomment-5988956782",
-      "estado_y_pendientes": "Disponible para revisión de Francisco. La preferencia persistida está comprobada; no se declara implementada la entrega de notificaciones a dispositivos.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/45#issuecomment-6272922011",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-45.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #45",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Preferencia false persistida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-preferencia-persistente.png"
+        },
+        {
+          "titulo": "Adjunto original 2 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/9f5c6eb8-76cb-4d33-9b8e-610adf9110ae"
+        },
+        {
+          "titulo": "Adjunto original 3 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/bff8f342-b5fb-45eb-9b35-66f37ef853cc"
+        },
+        {
+          "titulo": "Adjunto original 4 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/f3f0ab64-6f6a-4611-83aa-b9bb687d40ae"
+        },
+        {
+          "titulo": "Adjunto original 5 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/eea47bdc-aef3-4338-8f39-b54b912085e8"
+        },
+        {
+          "titulo": "Adjunto original 6 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/63edd6a3-fb72-460b-aaab-87e4a59d6c55"
+        },
+        {
+          "titulo": "Adjunto original 7 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/45f65439-b183-45c2-b384-9d0ea2651566"
+        },
+        {
+          "titulo": "Adjunto original 8 de la tarea 45",
+          "url": "https://github.com/user-attachments/assets/ff62008c-980a-45d9-9349-188110c724d1"
         }
       ]
     },
     {
-      "historia": "HU004",
       "tarea": 46,
-      "area": "QA",
-      "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/46#issuecomment-6245718106",
-      "estado_y_pendientes": "Casos de integración/QA documentados y disponibles para revisión humana. Danilo revisa #43 e integración de #46; Francisco revisa endpoints #44/#45. No se declara que esas revisiones ya ocurrieron ni se bloquea HU004 por SMTP.",
-      "capturas": [
-        {
-          "ruta": "frontend/docs/evidencias/hu004/eliminacion-confirmacion-movil.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Confirmación móvil web",
-          "explicacion": "Diálogo previo a la acción destructiva; no acredita por sí solo eliminación."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/hu004/eliminacion-completada.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Resultado de eliminación QA",
-          "explicacion": "Resultado visible con cuenta desechable; el informe añade las consultas posteriores."
-        },
-        {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-44.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #44",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
-        }
-      ]
-    },
-    {
-      "historia": "HU004",
-      "tarea": 46,
-      "area": "Integración",
+      "area": "Integración y QA",
       "responsable": "francisco3788",
+      "responsables_por_area": {
+        "integracion": "francisco3788",
+        "QA": "Danilo2334"
+      },
       "comentario": "https://github.com/Danilo2334/Work_net/issues/46#issuecomment-6245716821",
-      "estado_y_pendientes": "Integración implementada; Danilo debe realizar y registrar su revisión. SMTP y estados empresariales son de otras historias. La revisión nativa continúa pendiente; no se confunde con la prueba móvil web.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu004/nombre-guardado.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Nombre y sesión actualizados",
-          "explicacion": "Resultado visible; el informe contiene consulta posterior y saludo actualizado."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/nombre-guardado.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu004/preferencias-guardadas.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Preferencia guardada",
-          "explicacion": "Estado booleano leído y guardado en Django."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/preferencias-guardadas.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu004/eliminacion-completada.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Eliminación terminada",
-          "explicacion": "Resultado del recorrido con una cuenta desechable de QA."
+          "titulo": "Confirmación móvil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/eliminacion-confirmacion-movil.png"
+        },
+        {
+          "titulo": "Resultado de eliminación QA",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/eliminacion-completada.png"
         }
       ]
     },
     {
-      "historia": "HU005",
       "tarea": 47,
       "area": "Interfaz",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/47#issuecomment-6245479801",
-      "estado_y_pendientes": "Avance parcial del dashboard completo: siguen faltando módulos de CV, búsqueda, mensajes, historial y detalle/postulación. Los accesos pendientes se explican al usuario; no son módulos implementados. Revisión de Danilo pendiente.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu008/dashboard-completitud.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Dashboard después de editar perfil",
-          "explicacion": "Captura más reciente: acceso al perfil funcional y completitud calculada en Django."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-movil.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Dashboard en móvil web",
-          "explicacion": "Diseño móvil de la fase de acceso al candidato; el informe identifica su entorno y alcance original."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-error.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Error recuperable del servicio",
-          "explicacion": "Estado visible ante pérdida de conexión, con reintento."
+          "titulo": "Regresión del candidato",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
         }
       ]
     },
     {
-      "historia": "HU005",
       "tarea": 48,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/48#issuecomment-6259566675",
-      "estado_y_pendientes": "API disponible para revisión de Francisco. Los módulos de CV, búsqueda, mensajes, historial y detalle/postulación no se acreditan con la respuesta del resumen.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/48#issuecomment-6272922606",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-48.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #48",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Resumen del candidato",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu005-resumen.png"
         }
       ]
     },
     {
-      "historia": "HU005",
       "tarea": 49,
       "area": "Integración",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/49#issuecomment-6245479981",
-      "estado_y_pendientes": "Integración del resumen implementada y disponible para revisión de Danilo. Los destinos de los módulos aún ausentes no se acreditan mediante esta API. El acceso al perfil sí está implementado.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu008/dashboard-completitud.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Dashboard después de editar perfil",
-          "explicacion": "Captura más reciente: acceso al perfil funcional y completitud calculada en Django."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-vacio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Lista sin ofertas",
-          "explicacion": "Estado vacío obtenido desde la base QA sin ofertas publicadas."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-error.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Error recuperable del servicio",
-          "explicacion": "Estado visible ante pérdida de conexión, con reintento."
+          "titulo": "Regresión del candidato",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
         }
       ]
     },
     {
-      "historia": "HU005",
       "tarea": 50,
       "area": "QA",
       "responsable": "Danilo2334",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/50#issuecomment-6245480602",
-      "estado_y_pendientes": "QA parcial del dashboard completo. Pendientes los módulos de CV, búsqueda, mensajes, historial y detalle/postulación, validación nativa y revisión humana. Perfil ya disponible: se retira ese pendiente histórico.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-carga.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Carga del dashboard",
-          "explicacion": "Estado previo a la respuesta del servidor."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/acceso-candidato/dashboard-movil.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Dashboard en móvil web",
-          "explicacion": "Diseño móvil de la fase de acceso al candidato; el informe identifica su entorno y alcance original."
-        },
-        {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-48.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #48",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Regresión del candidato",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
         }
       ]
     },
     {
-      "historia": "HU008",
       "tarea": 59,
       "area": "Interfaz",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/59#issuecomment-6246221677",
-      "estado_y_pendientes": "Interfaz propia implementada, disponible para revisión de Danilo. Móvil web comprobado; ejecución nativa pendiente. No se acredita generación de CV ni consulta empresarial autorizada.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu008/perfil-completo-escritorio.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Perfil en escritorio",
-          "explicacion": "Descripción y foto ficticia en el formulario conectado a Django."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/perfil-completo-escritorio.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu008/registros-movil.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Registros en móvil web",
-          "explicacion": "Educación, experiencia, habilidades e idiomas con controles de edición."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/hu008/educacion-fecha-invalida.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Fecha inválida",
-          "explicacion": "La fecha imposible se rechaza antes de guardar."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/registros-movil.png"
         }
       ]
     },
     {
-      "historia": "HU008",
       "tarea": 60,
       "area": "Backend",
       "responsable": "Danilo2334",
-      "comentario": "https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6246223175",
-      "estado_y_pendientes": "CRUD y fotografía propia comprobados. La consulta empresarial autorizada depende del proceso de selección todavía ausente: el 403 demuestra restricción, no acceso autorizado. Pendiente revisión de Francisco.",
+      "comentario": "https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6272924156",
       "capturas": [
         {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-60.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #60",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "titulo": "Educación editada y recuperada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png"
+        },
+        {
+          "titulo": "Otro candidato no modifica el registro",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-permisos.png"
+        },
+        {
+          "titulo": "Fotografía corrupta rechazada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png"
         }
       ]
     },
     {
-      "historia": "HU008",
       "tarea": 61,
       "area": "Integración",
       "responsable": "francisco3788",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/61#issuecomment-6246221840",
-      "estado_y_pendientes": "Recorrido del candidato integrado y disponible para revisión de Danilo. Falta la dependencia de selección para consulta empresarial autorizada; se conserva el acceso restringido. SMTP no se utiliza para esta prueba.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu008/fotografia-guardada.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Fotografía guardada",
-          "explicacion": "Foto sintética de QA, cargada por API y mostrada desde el recurso privado."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-guardada.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu008/fotografia-invalida.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Archivo inválido",
-          "explicacion": "El error no reemplaza la fotografía anterior."
-        },
-        {
-          "ruta": "frontend/docs/evidencias/hu008/dashboard-completitud.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
-          "titulo": "Completitud actualizada",
-          "explicacion": "Dashboard consultado después de guardar el perfil, no un porcentaje fijo en Flutter."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-invalida.png"
         }
       ]
     },
     {
-      "historia": "HU008",
       "tarea": 62,
       "area": "QA",
       "responsable": "Danilo2334",
       "comentario": "https://github.com/Danilo2334/Work_net/issues/62#issuecomment-6246223309",
-      "estado_y_pendientes": "QA propio comprobado. Falta verificar consulta empresarial autorizada cuando exista el proceso de selección; el 403 actual no cubre ese criterio positivo. Revisión por otro integrante y validación nativa pendientes. No se declara HU008 cerrada.",
       "capturas": [
         {
-          "ruta": "frontend/docs/evidencias/hu008/registros-movil.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Registros comprobados en móvil web",
-          "explicacion": "Vista con datos ficticios del recorrido CRUD."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/registros-movil.png"
         },
         {
-          "ruta": "frontend/docs/evidencias/hu008/fotografia-invalida.png",
-          "commit": "2970dea6ae115177e7d6044ad1f084acf4818730",
           "titulo": "Validación de archivo",
-          "explicacion": "Error de archivo inválido; la persistencia se respalda en las consultas del informe."
-        },
-        {
-          "ruta": "backend/docs/evidencias/normalizacion/api-tarea-60.png",
-          "commit": "5173b1686817708ad5b09bfb22cd060ed9f16c33",
-          "titulo": "Informe automático de API — #60",
-          "explicacion": "Captura en Chrome del informe generado con respuestas HTTP reales y pruebas automáticas pertinentes. No es una prueba manual de Postman. Los extractos omiten credenciales."
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-invalida.png"
         }
       ]
     }

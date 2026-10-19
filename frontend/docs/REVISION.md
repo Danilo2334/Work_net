@@ -85,4 +85,4 @@ Orden sugerido para conservar cuentas útiles:
 
 Después de probar la app o los servicios en Postman, cada integrante deja en la tarea una explicación breve del resultado, las capturas necesarias y cualquier fallo encontrado.
 
-Para HU004, Danilo revisa #43/#46 y Francisco #44/#45. En #46 se mantienen separados integración y QA. Los cierres se decidirán después de revisar los criterios; el alcance del Sprint sigue pendiente de confirmación en el Project.
+Para HU004, Danilo revisa #43/#46 y Francisco #44/#45. En #46 hay un comentario que identifica la integración de Francisco y el QA de Danilo. Los cierres se decidirán después de revisar los criterios; el alcance del Sprint sigue pendiente de confirmación en el Project.
