@@ -5,6 +5,8 @@ La aplicación y sus pruebas están preparadas para revisión humana. El PR #146
 
 [Tabla de cierre por tarea y matriz de criterios](REVISION_CIERRE.md) · [Demostración comprobada y valores iniciales](evidencias/revision-cierre/README.md).
 
+El backend también tiene una [colección Postman con preparación e instrucciones](../../backend/postman/README.md) y un [informe por tarea](../../backend/docs/evidencias/postman/README.md): dos pasadas de Newman con 212 peticiones y 631 comprobaciones cada una, contra bases aisladas nuevas. La ejecución visual en Postman y sus capturas nuevas siguen pendientes; las capturas históricas se conservan. Este resultado no registra revisión humana ni cierra tareas.
+
 ## Abrir una demostración aislada
 
 Desde la raíz, con las dependencias Django instaladas:
