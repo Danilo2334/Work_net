@@ -1,6 +1,6 @@
 # Seguimiento publicado — QA reproducible del backend
 
-Seguimiento de QA como **Danilo2334**, con los comentarios históricos y sus capturas originales conservados. La evidencia vigente procede de **dos pasadas en Postman Desktop**, con 212 peticiones y 631 comprobaciones aprobadas cada una, y 22 capturas directas. Las ejecuciones de consola anteriores quedan como historial técnico, fuera de la evidencia de aceptación.
+Pruebas registradas como **Danilo2334**: dos ejecuciones en Postman, cada una con 212 peticiones y 631 comprobaciones aprobadas. Se conservan las 22 capturas de Postman y los adjuntos originales.
 
 | Tarea | Casos por ejecución | Comentario QA |
 |---|---:|---|
@@ -17,4 +17,4 @@ Seguimiento de QA como **Danilo2334**, con los comentarios históricos y sus cap
 | #64 | 26 | [Ver resultado y pendientes](https://github.com/Danilo2334/Work_net/issues/64#issuecomment-6272924656) |
 | #68 | 14 | [Ver resultado y pendientes](https://github.com/Danilo2334/Work_net/issues/68#issuecomment-6272925177) |
 
-[PR #146](https://github.com/Danilo2334/Work_net/pull/146): documentación actualizada como Francisco; permanece en borrador y sin fusionar. [Verificación de conservación](verificacion-publicacion.json).
+[PR #146](https://github.com/Danilo2334/Work_net/pull/146): en borrador, pendiente de revisión.

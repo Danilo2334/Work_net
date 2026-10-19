@@ -1,6 +1,6 @@
 # Correo real — registro y recuperación comprobados
 
-19/10/2026, America/Bogota. QA registrado como **Danilo2334**; comprobaciones automáticas por agente. El usuario aportó los enlaces de los mensajes recibidos de registro y recuperación. No se accedió directamente a su buzón y esto no se registra como revisión de código por otro integrante. [Resultados sanitizados](smtp-real.json).
+19/10/2026, America/Bogota. QA: **Danilo2334**. El usuario aportó los enlaces de los mensajes recibidos de registro y recuperación. Falta la revisión del código por otro integrante. [Resultados sanitizados](smtp-real.json).
 
 | Caso / etapa | Esperado | Obtenido | Tipo de evidencia |
 | --- | --- | --- | --- |
@@ -8,13 +8,13 @@
 | Conexión Gmail | TLS y autenticación correctos | Correctos | SMTP real |
 | Crear cuenta y después elegir rol | HTTP 201, después HTTP 200 | 201 y 200 | Flutter → API, SMTP real |
 | Recepción del mensaje de registro | Mensaje accesible por el usuario | Usuario aportó el enlace firmado de su mensaje | Evidencia del usuario; sin inspección directa del buzón |
-| Abrir el enlace recibido | HTTP 200 | HTTP 200 | API sobre el enlace aportado, ejecutada por agente |
+| Abrir el enlace recibido | HTTP 200 | HTTP 200 | Comprobación del enlace recibido |
 | Persistencia de la verificación | `email_verified=true` | `true` en SQLite independiente | Consulta directa de la base de QA |
 | Login después de verificar | HTTP 200 | HTTP 200 en API y desde Flutter | API + navegador |
 | Destino del candidato | Dashboard autenticado | HTTP 200 y dashboard candidato en Flutter | API + navegador |
 | Logout | Revocar el token utilizado | HTTP 200; ese token después recibe 401 | Flutter + API |
 | Solicitar recuperación | HTTP 200 y envío SMTP sin error | HTTP 200 desde Flutter; SMTP real aceptó el mensaje de la cuenta existente | Navegador + API |
-| Recepción/apertura de recuperación | Mensaje recibido y enlace válido | Usuario aportó el enlace; el agente lo abrió en Flutter y confirmó el cambio | Evidencia del usuario + navegador/API |
+| Recepción/apertura de recuperación | Mensaje recibido y enlace válido | Enlace recibido y abierto desde Flutter; cambio confirmado | Evidencia del usuario + navegador/API |
 | Cambiar contraseña desde el enlace recibido | HTTP 200, cambio persistido | HTTP 200; hash cambiado en SQLite | Flutter + API + base aislada |
 | URL después del cambio | Sin parámetros privados | `/password-updated` sin query | Navegador |
 | Contraseña anterior | Acceso rechazado | HTTP 400 | API |

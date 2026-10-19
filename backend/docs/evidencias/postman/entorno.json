@@ -1,7 +1,7 @@
 {
   "fecha": "2026-10-19",
   "tipo_evidencia_vigente": "Postman Desktop 12.31.7 contra la API real de Django 6.1.1",
-  "ejecucion_por": "agente en la interfaz de Postman; documentación de QA registrada como Danilo2334",
+  "ejecucion_por": "Postman Desktop; seguimiento de QA registrado como Danilo2334",
   "coleccion_sha256_importada": "99e3478327d8c5590ab428d6739298f487c5a29a7e826d8cbba6ff63d26545ef",
   "ejecuciones_postman": [
     {

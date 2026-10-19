@@ -3,7 +3,7 @@
 # Normalización de evidencias backend y QA
 
 Fecha de contexto: **18/10/2026 — America/Bogota**. Responsable de publicación:
-**Danilo2334**. Ejecución automatizada por agente; revisión humana pendiente.
+**Danilo2334**. Pruebas documentadas; falta revisión por otro integrante.
 
 Para ordenar los comentarios se detectó que faltaban evidencias visuales de API
 específicas y actuales. Se ejecutaron **60 comprobaciones HTTP reales** sobre
