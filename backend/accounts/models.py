@@ -54,7 +54,9 @@ class User(AbstractUser):
 
     role = models.CharField(
         max_length=20,
-        choices=Role.choices
+        choices=Role.choices,
+        blank=True,
+        default="",
     )
 
     email_verified = models.BooleanField(
@@ -70,3 +72,39 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class CompanyProfile(models.Model):
+    class State(models.TextChoices):
+        PENDING = "pending", "Pendiente"
+        APPROVED = "approved", "Aprobada"
+        REJECTED = "rejected", "Rechazada"
+
+    company = models.OneToOneField(User, on_delete=models.CASCADE)
+    legal_name = models.CharField(max_length=200, blank=True)
+    tax_id = models.CharField(max_length=20, blank=True)
+    sector = models.CharField(max_length=120, blank=True)
+    location = models.CharField(max_length=200, blank=True)
+    contact_email = models.EmailField(blank=True)
+    description = models.TextField(max_length=2000, blank=True)
+    website = models.URLField(blank=True)
+    social_links = models.JSONField(default=list, blank=True)
+    logo_data = models.BinaryField(default=bytes, blank=True, editable=False)
+    state = models.CharField(max_length=12, choices=State.choices, default=State.PENDING)
+    rejection_reason = models.TextField(blank=True)
+    submitted_at = models.DateTimeField(null=True, blank=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    reviewed_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name="company_decisions")
+    version = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["tax_id"], condition=~models.Q(tax_id=""), name="unique_company_tax_id")]
+
+
+class CompanyReview(models.Model):
+    profile = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE)
+    actor = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    action = models.CharField(max_length=12)
+    reason = models.TextField(blank=True)
+    snapshot = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
