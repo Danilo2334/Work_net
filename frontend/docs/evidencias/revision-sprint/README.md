@@ -8,6 +8,8 @@ Después de los casos a archivos se completó la configuración privada y se env
 
 [Comentarios vigentes de las 42 tareas](seguimiento.md).
 
+[Preparación actual de cierre, criterios y demostración renovada](../../REVISION_CIERRE.md). Este informe conserva los resultados de su ejecución; la preparación posterior actualiza los seguimientos de las descripciones sin cambiar criterios ni registrar revisión humana.
+
 ## Alcance comprobado y límite del Project
 
 Se leyeron los criterios originales de HU001–HU010 (historias #2–#11) y tareas #29–#70. No se pudo leer el campo Sprint ni la vista Sprint Backlog: la credencial de Danilo carece de `read:project`. Por tanto, esta entrega documenta el trabajo autorizado y sus dependencias, **no acredita que todas estas tareas pertenezcan al Sprint 2 ni que el Sprint esté terminado**. No se modificaron criterios, cuerpos de issues, responsables, estados, Sprints, fechas ni hitos.
@@ -41,7 +43,7 @@ Chrome automatizado: escritorio 1440×1200 (1440×1800 para mostrar los compleme
 
 La traza `respuestas_api` del informe de navegador corresponde al último segmento reanudado de la automatización; los casos individuales acreditan el recorrido completo. El comprobador HTTP independiente enlazado conserva sus 49 casos. Persistencia y permisos se respaldan en API/base y pruebas, no solo en imágenes.
 
-SMTP se mantuvo en MAILERS, Django 6.1.1. Falta `backend/.env` y no se comprobó recepción real. En esta fase los mensajes quedaron en archivos privados: se verificaron los enlaces locales y posterior acceso; **no se envió correo real ni se acreditó recepción en Gmail**. Los errores de envío se simularon en las pruebas Django.
+**Contexto histórico de los 50 casos a archivos:** SMTP se mantuvo en MAILERS, Django 6.1.1. En esa ejecución todavía faltaba `backend/.env`; se verificaron enlaces capturados localmente y no se envió correo real. Los errores de envío se simularon en Django. El registro y la recuperación SMTP se comprobaron después en otra SQLite, como acredita la actualización al inicio de esta página; ese bloqueo ya está resuelto.
 
 ## Tareas y pendiente propio
 

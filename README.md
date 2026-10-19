@@ -82,3 +82,5 @@ El login distingue empresa Pendiente/Aprobada/Rechazada. Solo la aprobada accede
 Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas y el conjunto completo antes de integrar. Documentar resultados reales. Las capturas de UI y el resumen de una colección de API complementan la revisión; las operaciones de frontend deben verificarse contra la API real.
 
 [Guía para revisar la aplicación](frontend/docs/REVISION.md) · [Frontend y arquitectura](frontend/README.md).
+
+[Revisión de cierre por tarea y criterio](frontend/docs/REVISION_CIERRE.md).

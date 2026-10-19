@@ -3,6 +3,8 @@
 Actualización: 19/10/2026. Código Flutter `04e7e5c`; backend `f9e4dea`.
 La aplicación y sus pruebas están preparadas para revisión humana. El PR #146 sigue en borrador.
 
+[Tabla de cierre por tarea y matriz de criterios](REVISION_CIERRE.md) · [Demostración comprobada y valores iniciales](evidencias/revision-cierre/README.md).
+
 ## Abrir una demostración aislada
 
 Desde la raíz, con las dependencias Django instaladas:
@@ -59,3 +61,37 @@ La configuración privada quedó completada. En la SQLite SMTP separada (Django 
 - Revisión por otro integrante y validación nativa pendientes. Ninguna prueba automática se registra como aprobación humana.
 
 [Resultados y capturas de esta fase](evidencias/revision-sprint/README.md). [Contratos empresariales](../../backend/accounts/COMPANY_API.md). [PR #146](https://github.com/Danilo2334/Work_net/pull/146).
+
+## Revisión cruzada de Danilo y Francisco
+
+La demostración se renovó el 19/10/2026 en otra SQLite. La base anterior se conserva; la cuenta SMTP y sus evidencias están en otra instancia y no se reiniciaron. Las cuentas de la tabla anterior están disponibles en `http://localhost:55006`. Las siete usan la contraseña aleatoria del `latest.json` privado de QA, sin publicarla ni incluirla en capturas.
+
+| Quién revisa | Trabajo que contrasta | Referencias |
+| --- | --- | --- |
+| Danilo | Pantallas, textos, navegación, integración y diseño de Francisco | #29/#32, #34/#36/#37, #39/#41, #43/#46, #47/#49, #51/#53, #55/#57, #59/#61, #63/#65, #67/#69 |
+| Francisco | Contratos, persistencia, permisos y estados del backend de Danilo | #30/#31/#35/#40/#44/#45/#48/#52/#56/#60/#64/#68 |
+| Francisco, como otro integrante | Contrastar los resultados de QA de Danilo y registrar observaciones | #33/#38/#42/#46/#50/#54/#58/#62/#66/#70 |
+
+Orden sugerido para conservar cuentas útiles:
+
+1. Abrir dos sesiones de navegador separadas para alternar empresa/administrador. Revisar primero los datos iniciales: candidato con 83%, dos postulaciones, un guardado y dos notificaciones; empresa aprobada con dos ofertas activas, cero cerradas y dos postulaciones; administrador con cuatro candidatos, dos empresas y cero solicitudes completas pendientes. Esos valores cambian legítimamente al crear o editar datos en esta base.
+2. Usar `perfil.qa@worknet.test` para crear, modificar y borrar registros/foto; volver al dashboard y comprobar la completitud. Probar archivo inválido y permiso de otra cuenta. No marcar cumplida la consulta empresarial autorizada: todavía no existe.
+3. Con `nueva.empresa.qa@worknet.test`, completar seis datos, solicitar validación y comprobar espera. Con `admin.qa@worknet.test`, rechazar con motivo. Volver a empresa, corregir/reenviar; aprobar desde administrador y comprobar dashboard/avisos/logo. Intentar decidir como empresa debe ser rechazado. La aprobación no implementa las funciones futuras de ofertas/postulantes/mensajes/estadísticas.
+4. Probar registro con un correo nuevo `@worknet.test` y una contraseña solo de prueba. Revisar que la cuenta se cree antes del rol. Abrir localmente el mensaje en la carpeta `mail` indicada por el archivo privado de QA; verificar, iniciar sesión y recuperar la contraseña de **esa cuenta nueva**. Estos mensajes de demostración van a archivos; el SMTP real ya tiene su informe separado.
+5. Dejar para el final `eliminar.qa@worknet.test`: nombre, preferencias, cambio de contraseña/token y eliminación cancelada/confirmada. No usar la cuenta candidata principal para eliminarla o cambiar su contraseña antes de terminar el resto de la demostración.
+6. Repetir las pantallas principales en móvil web. Android/iOS quedan pendientes de sus comprobaciones propias. Revisar los criterios de módulos faltantes como pendientes, aunque aparezcan sus avisos.
+
+Solo después de ejecutar una revisión real, cada integrante registra desde su cuenta:
+
+```text
+Revisor y fecha: por completar tras la revisión
+Tarea y commit revisados:
+Caso / tipo (navegador, API o prueba automática observada):
+Resultado esperado:
+Resultado obtenido:
+Evidencia sin credenciales ni enlaces firmados:
+Observaciones o dependencia:
+Decisión de cierre: por registrar después de revisar
+```
+
+Esta plantilla está vacía y no acredita revisión humana. Las casillas existentes no se modificaron en esta preparación. Para HU004, Danilo revisa #43/#46 y Francisco #44/#45; SMTP y otras historias no bloquean esa revisión. Mantener #46 con integración y QA separados. No cerrar historias con criterios funcionales parciales ni declarar el Sprint terminado antes de confirmar su asignación real en Project.

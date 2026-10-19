@@ -1,8 +1,10 @@
 # Comentarios vigentes de la reconstrucción
 
-Verificación: 19/10/2026. **43 comentarios en 42 tareas**; #46 mantiene integración y QA separados. Se comprobaron autores, contenido y fechas de creación. Cuerpos, criterios, estados, responsables, hitos y fechas de las issues se conservaron. No se realizaron escrituras en Project; falta `read:project` para confirmar el campo Sprint. PR #146 en borrador, sin fusionar.
+> Este índice conserva los enlaces de la normalización de comentarios. La [preparación actual de cierre](../../REVISION_CIERRE.md) contrasta cada criterio y actualiza los seguimientos desactualizados de las descripciones, conservando criterios, responsables, estados, fechas e historial. No acredita revisión humana.
 
-Los comentarios anteriores editados conservan su contenido previo plegado como historial; las evidencias de otras entregas no se suman al cierre vigente. Las capturas se enlazan a commits inmutables y las 33 imágenes distintas usadas en estos comentarios respondieron correctamente al verificar su acceso. Los totales de pruebas son conjuntos compartidos, no pruebas distintas por issue.
+Normalización del 19/10/2026: **43 comentarios en 42 tareas**; #46 mantiene integración y QA separados. En esa fase se comprobaron autores, contenido y fechas de creación y se conservaron cuerpos, criterios, estados, responsables, hitos y fechas de las issues. La preparación de cierre posterior modifica únicamente sus resúmenes de seguimiento y conserva la evidencia anterior como histórica. No se realizaron escrituras en Project; falta `read:project` para confirmar el campo Sprint. PR #146 en borrador, sin fusionar.
+
+Los comentarios anteriores editados conservan su contenido previo plegado como historial; las evidencias de otras entregas no se suman al cierre vigente. Las capturas se enlazan a commits inmutables: se comprobaron 33 imágenes en la normalización y se añadieron después las dos de recuperación SMTP. Los totales de pruebas son conjuntos compartidos, no pruebas distintas por issue.
 
 | Tarea original | Área | Autor y comentario |
 | --- | --- | --- |

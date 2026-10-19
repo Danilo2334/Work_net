@@ -130,3 +130,5 @@ claramente, sin aparentar que sus módulos están implementados. Falta revisión
 humana y validación nativa; no se declara terminado el Sprint.
 
 [Guía breve para revisar y explicar lo que funciona](docs/REVISION.md).
+
+[Preparación de cierre: tabla por tarea, criterios y pendientes](docs/REVISION_CIERRE.md).
