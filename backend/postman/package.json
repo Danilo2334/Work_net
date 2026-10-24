@@ -1,0 +1,15 @@
+{
+  "name": "worknet-postman-qa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ejecución local de la colección Postman v2.1 contra Django aislado",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "newman": "6.2.3"
+  },
+  "scripts": {
+    "qa": "node run.cjs"
+  }
+}

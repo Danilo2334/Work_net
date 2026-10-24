@@ -1,0 +1,1 @@
+Este archivo de QA no es una imagen. La API debe rechazarlo.

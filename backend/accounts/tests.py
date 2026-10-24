@@ -10,6 +10,39 @@ from .models import User
 @override_settings(MAILERS={"default": {
     "BACKEND": "django.core.mail.backends.locmem.EmailBackend"
 }})
+class RegistrationDuplicateEmailTests(TestCase):
+    def test_duplicate_email_returns_spanish_field_error(self):
+        User.objects.create_user(
+            email="persona@example.com", password="Original-Secret-472!",
+            full_name="Persona Ejemplo", role="candidato",
+        )
+        client = APIClient()
+
+        for email in (
+            "persona@example.com",
+            "PERSONA@EXAMPLE.COM",
+            " persona@example.com ",
+        ):
+            with self.subTest(email=email):
+                response = client.post("/api/register/", {
+                    "full_name": "Otra Persona",
+                    "email": email,
+                    "password": "Registration-Secret-839!",
+                    "password_confirm": "Registration-Secret-839!",
+                    "role": "candidato",
+                }, format="json")
+
+                self.assertEqual(response.status_code, 400)
+                self.assertEqual(response.data["errors"]["email"], [
+                    "Este correo ya está registrado."
+                ])
+                self.assertEqual(User.objects.count(), 1)
+                self.assertEqual(len(mail.outbox), 0)
+
+
+@override_settings(MAILERS={"default": {
+    "BACKEND": "django.core.mail.backends.locmem.EmailBackend"
+}})
 class PasswordRecoveryTests(TestCase):
     def setUp(self):
         self.client = APIClient()
