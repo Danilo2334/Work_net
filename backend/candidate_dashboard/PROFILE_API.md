@@ -5,7 +5,7 @@ sus listas JSON anteriores. Los registros nuevos son objetos con identificador
 estable y campos estructurados, reutilizables por un futuro generador de CV.
 La generación de CV no forma parte de esta API.
 
-Todas las rutas requieren `Authorization: Token …`, candidato verificado, sin
+Las rutas propias requieren `Authorization: Token …`, candidato verificado, sin
 privilegios staff/superusuario. Consultan únicamente al propietario del token.
 No existe una ruta pública ni un parámetro para seleccionar a otro candidato.
 
@@ -71,16 +71,34 @@ volúmenes mayores se podrá migrar a almacenamiento privado manteniendo el cont
 Referencias de implementación: [parsers multipart de DRF](https://www.django-rest-framework.org/api-guide/parsers/)
 y [validación y límites de imágenes de Pillow](https://pillow.readthedocs.io/en/stable/reference/Image.html).
 
-## Dependencia pendiente y revisión
+## Consulta empresarial dentro de selección
 
-**Consulta por empresas autorizadas dentro del proceso de selección: pendiente.**
-El backend solo contiene un registro básico `Application`, sin una autorización
-de consulta/consentimiento o proceso de selección implementado. Tener una postulación
-no se toma como permiso implícito. Incluso esa empresa recibe HTTP 403 en estas
-rutas. Se conserva el acceso restringido hasta implementar y probar la autorización.
+La regla de HU008 se concreta con la restricción de HU020: solo la empresa dueña
+de una oferta puede consultar el perfil de quienes se postularon a ella. Requiere
+cuenta empresarial verificada y aprobada; staff y administradores no usan esta ruta.
+No se admite elegir libremente un candidato ni una empresa mediante parámetros.
 
-La tarea #60 queda implementada para el candidato y con este criterio pendiente;
-también falta revisión por otro integrante. No se declara completa HU008.
-Las pruebas de `candidate_dashboard.test_profile` cubren CRUD, datos anteriores,
-validaciones, fotografías, acceso cruzado, roles, anonimato y completitud. Las
-evidencias integradas se registran en #61/#62 y `frontend/docs/evidencias/hu008/`.
+| Método | Ruta bajo `/api/` | Salida |
+| --- | --- | --- |
+| GET | `company/applications/<application_id>/profile/` | `application` con ID y oferta, `candidate` con ID y nombre, `profile` y completitud |
+| GET | `company/applications/<application_id>/profile/photo/` | JPEG privado; 404 si no hay fotografía |
+
+El ID procede de una postulación real, disponible en el resumen empresarial.
+Otra empresa aprobada recibe el mismo 404 que ante un ID inexistente. Sin sesión
+se devuelve 401; otro rol o empresa sin aprobación recibe 403. Estas rutas solo
+admiten lectura. Las rutas de edición anteriores siguen reservadas al candidato.
+La respuesta no incluye contraseña, token, correo de la cuenta ni preferencias.
+Las claves históricas no reconocidas se conservan en la edición propia, pero no
+se incluyen en la consulta empresarial.
+Perfil y foto usan `Cache-Control: private, no-store` y `Vary: Authorization`.
+
+Eliminar la postulación retira el acceso; la autorización se comprueba en cada
+petición. Una oferta cerrada o archivada conserva su historial de selección.
+Consultar un perfil vacío no crea filas. La consulta empresarial no implementa
+todavía la interfaz completa de gestión de postulantes de HU020.
+
+Las pruebas de `candidate_dashboard.test_profile` y
+`candidate_dashboard.test_selection` cubren CRUD propio, compatibilidad, imágenes,
+permisos de selección, aislamiento, lectura sin escrituras y revocación por
+eliminación de la postulación. La fase 12 de la colección Postman repite los
+recorridos HTTP disponibles; la guía distingue sus ejecuciones de apoyo y Desktop.

@@ -2825,5 +2825,897 @@
     "auth": "candidate_token",
     "cuerpo": null,
     "archivo": null
+  },
+  {
+    "id": "PM213",
+    "tarea": 60,
+    "objetivo": "Obtener postulación propia desde el dashboard empresarial",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 200. Dos postulaciones propias con identificador real",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM214",
+    "tarea": 60,
+    "objetivo": "Empresa dueña consulta el perfil del postulante",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 200. Perfil correcto sin datos de acceso ni preferencias",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM215",
+    "tarea": 60,
+    "objetivo": "Consulta sin sesión rechazada",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM216",
+    "tarea": 60,
+    "objetivo": "Candidato no usa la ruta empresarial",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM217",
+    "tarea": 60,
+    "objetivo": "Administrador no usa la ruta empresarial",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM218",
+    "tarea": 60,
+    "objetivo": "Empresa pendiente no consulta postulantes",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "other_company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM219",
+    "tarea": 60,
+    "objetivo": "Otra empresa aprobada no consulta la postulación ajena",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM220",
+    "tarea": 60,
+    "objetivo": "Postulación inexistente no revela otros candidatos",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/999999999/profile/",
+    "esperado": "HTTP 404. Misma respuesta para postulación ajena e inexistente",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM221",
+    "tarea": 60,
+    "objetivo": "Parámetros ajenos no cambian el candidato autorizado",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/?candidate={{other_id}}&company={{draft_id}}",
+    "esperado": "HTTP 200. Consulta sigue limitada a la postulación propia",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM222",
+    "tarea": 60,
+    "objetivo": "Empresa no recibe foto que aún no existe",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM223",
+    "tarea": 60,
+    "objetivo": "Candidato agrega foto para la consulta de selección",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. Fotografía guardada por su propietario",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": "fixtures/foto-qa.png"
+  },
+  {
+    "id": "PM224",
+    "tarea": 60,
+    "objetivo": "Empresa dueña recibe la foto privada del postulante",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 200. JPEG privado sin caché y sin URL pública",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM225",
+    "tarea": 60,
+    "objetivo": "Otra empresa aprobada no recibe la fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM226",
+    "tarea": 60,
+    "objetivo": "Fotografía de selección sin sesión rechazada",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM227",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar POST en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "POST",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM228",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PUT en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PUT",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM229",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PATCH en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PATCH",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM230",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar DELETE en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "DELETE",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM231",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar POST en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "POST",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM232",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PUT en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PUT",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM233",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PATCH en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PATCH",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM234",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar DELETE en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "DELETE",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM235",
+    "tarea": 60,
+    "objetivo": "Candidato conserva su perfil después de los intentos empresariales",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Resumen y foto propios intactos",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM236",
+    "tarea": 60,
+    "objetivo": "Candidato retira su fotografía opcional",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. Fotografía retirada por su propietario",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM237",
+    "tarea": 60,
+    "objetivo": "Empresa ya no recibe la fotografía retirada",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM238",
+    "tarea": 72,
+    "objetivo": "Currículums sin sesión rechazados",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM239",
+    "tarea": 72,
+    "objetivo": "Empresa no consulta CV privados del candidato",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM240",
+    "tarea": 72,
+    "objetivo": "Estado inicial sin CV y límite de cinco MiB",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 200. Sin opciones guardadas y límite explícito",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM241",
+    "tarea": 72,
+    "objetivo": "Consulta de PDF todavía ausente",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM242",
+    "tarea": 72,
+    "objetivo": "Cargar un PDF válido",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 201. Archivo y tamaño guardados",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": "fixtures/curriculum-valido.pdf"
+  },
+  {
+    "id": "PM243",
+    "tarea": 72,
+    "objetivo": "Recuperar el PDF privado guardado",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 200. PDF privado y respuesta con contenido",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM244",
+    "tarea": 72,
+    "objetivo": "Segundo candidato no recibe el PDF ajeno",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/uploaded/?candidate={{candidate_id}}",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM245",
+    "tarea": 72,
+    "objetivo": "Carga sin archivo rechazada",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM246",
+    "tarea": 72,
+    "objetivo": "Extensión diferente de PDF rechazado",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": "fixtures/no-imagen.txt"
+  },
+  {
+    "id": "PM247",
+    "tarea": 72,
+    "objetivo": "PDF corrupto rechazado",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": "fixtures/curriculum-corrupto.pdf"
+  },
+  {
+    "id": "PM248",
+    "tarea": 72,
+    "objetivo": "PDF con contraseña rechazado",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": ".local/fixtures/cifrado.pdf"
+  },
+  {
+    "id": "PM249",
+    "tarea": 72,
+    "objetivo": "PDF con contenido activo rechazado",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": ".local/fixtures/activo.pdf"
+  },
+  {
+    "id": "PM250",
+    "tarea": 72,
+    "objetivo": "PDF de más de cinco MiB rechazado",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": ".local/fixtures/exceso-cv.pdf"
+  },
+  {
+    "id": "PM251",
+    "tarea": 74,
+    "objetivo": "Los rechazos conservan el documento anterior",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 200. Mismo SHA-256 después de las cargas inválidas",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM252",
+    "tarea": 72,
+    "objetivo": "Reemplazar el currículum con otro PDF válido",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "PUT",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 200. Nuevo nombre persistido",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": "fixtures/curriculum-reemplazo.pdf"
+  },
+  {
+    "id": "PM253",
+    "tarea": 74,
+    "objetivo": "El reemplazo entrega un documento distinto",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 200. SHA-256 distinto y PDF privado",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM254",
+    "tarea": 74,
+    "objetivo": "Candidato conserva una única opción de CV subido",
+    "fase": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 200. Opción y nombre del reemplazo",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM255",
+    "tarea": 76,
+    "objetivo": "Precargar el CV desde el perfil sin guardarlo",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Borrador con los datos del perfil propio",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM256",
+    "tarea": 77,
+    "objetivo": "Vista previa de la plantilla Clásica",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "POST",
+    "ruta": "curriculum/generated/preview/",
+    "esperado": "HTTP 200. PDF privado y respuesta con contenido",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "clasica",
+      "data": "__OBJECT_cv_data__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM257",
+    "tarea": 79,
+    "objetivo": "La vista previa no crea un CV guardado",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Continúa como borrador",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM258",
+    "tarea": 76,
+    "objetivo": "Guardar el CV precargado con plantilla Clásica",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PUT",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 201. CV guardado con datos del perfil",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "clasica",
+      "data": "__OBJECT_cv_data__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM259",
+    "tarea": 76,
+    "objetivo": "Cambiar a plantilla moderna sin perder datos",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PATCH",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Plantilla cambiada y contenido idéntico",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "moderna"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM260",
+    "tarea": 76,
+    "objetivo": "Cambiar a plantilla minimalista sin perder datos",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PATCH",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Plantilla cambiada y contenido idéntico",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "minimalista"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM261",
+    "tarea": 76,
+    "objetivo": "Cambiar a plantilla clasica sin perder datos",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PATCH",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Plantilla cambiada y contenido idéntico",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "clasica"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM262",
+    "tarea": 76,
+    "objetivo": "Consultar nuevamente conserva el CV guardado",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Datos persistidos al reabrir",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM263",
+    "tarea": 76,
+    "objetivo": "Editar datos personales, resumen y secciones opcionales",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PATCH",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Edición y certificación persistidas",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "data": "__OBJECT_cv_data__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM264",
+    "tarea": 79,
+    "objetivo": "Editar el nombre del CV no cambia la cuenta",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Nombre de la cuenta conservado",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM265",
+    "tarea": 77,
+    "objetivo": "Generar PDF de vista previa clasica",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "POST",
+    "ruta": "curriculum/generated/preview/",
+    "esperado": "HTTP 200. PDF privado y respuesta con contenido",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "clasica",
+      "data": "__OBJECT_cv_data__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM266",
+    "tarea": 77,
+    "objetivo": "Generar PDF de vista previa moderna",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "POST",
+    "ruta": "curriculum/generated/preview/",
+    "esperado": "HTTP 200. PDF privado y respuesta con contenido",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "moderna",
+      "data": "__OBJECT_cv_data__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM267",
+    "tarea": 77,
+    "objetivo": "Generar PDF de vista previa minimalista",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "POST",
+    "ruta": "curriculum/generated/preview/",
+    "esperado": "HTTP 200. PDF privado y respuesta con contenido",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "minimalista",
+      "data": "__OBJECT_cv_data__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM268",
+    "tarea": 77,
+    "objetivo": "Descargar el PDF del CV guardado",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/pdf/",
+    "esperado": "HTTP 200. PDF descargable con contenido",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM269",
+    "tarea": 77,
+    "objetivo": "Descarga sin sesión rechazada",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/pdf/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM270",
+    "tarea": 77,
+    "objetivo": "Otra cuenta no descarga el CV ajeno",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/pdf/?candidate={{candidate_id}}",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM271",
+    "tarea": 76,
+    "objetivo": "Plantilla desconocida rechazada",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PATCH",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "inventada"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM272",
+    "tarea": 76,
+    "objetivo": "No se permite reasignar el propietario del CV",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PATCH",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "candidate": "{{other_id}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM273",
+    "tarea": 76,
+    "objetivo": "Fechas invertidas rechazadas al guardar",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PUT",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "moderna",
+      "data": {
+        "personal": {
+          "full_name": "QA"
+        },
+        "education": [
+          {
+            "qualification": "QA",
+            "start_date": "2025-01-01",
+            "end_date": "2020-01-01"
+          }
+        ]
+      }
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM274",
+    "tarea": 76,
+    "objetivo": "Nombre vacío rechazado al guardar",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "PUT",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "template": "moderna",
+      "data": {
+        "personal": {
+          "full_name": ""
+        }
+      }
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM275",
+    "tarea": 79,
+    "objetivo": "Errores no destruyen el CV guardado",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. Contenido idéntico después de errores",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM276",
+    "tarea": 79,
+    "objetivo": "Opciones de CV subido y generado coexisten",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 200. Ambas opciones disponibles para integración posterior",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM277",
+    "tarea": 76,
+    "objetivo": "Eliminar únicamente el CV generado",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "DELETE",
+    "ruta": "curriculum/generated/",
+    "esperado": "HTTP 200. CV generado retirado",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM278",
+    "tarea": 79,
+    "objetivo": "Eliminar el generado conserva el PDF subido",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 200. Solo permanece el CV subido",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM279",
+    "tarea": 72,
+    "objetivo": "Retirar el PDF subido",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "DELETE",
+    "ruta": "curriculum/uploaded/",
+    "esperado": "HTTP 200. PDF retirado",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM280",
+    "tarea": 74,
+    "objetivo": "Nueva consulta confirma que no hay currículums guardados",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "curriculum/",
+    "esperado": "HTTP 200. Sin opciones después de retirar ambos CV",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM281",
+    "tarea": 79,
+    "objetivo": "Retirar los CV conserva el perfil profesional",
+    "fase": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Perfil original intacto",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
   }
 ]

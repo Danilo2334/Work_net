@@ -70,6 +70,21 @@ def prepare(port):
         Image.new('RGB', (4097, 1), 'white').save(fixtures / 'ancha.png')
     if not (fixtures / 'exceso.png').exists():
         (fixtures / 'exceso.png').write_bytes(b'QA-no-es-imagen-' + b'0' * (2 * 1024 * 1024))
+    from io import BytesIO
+    from pypdf import PdfWriter
+    for filename, active in [('cifrado.pdf', False), ('activo.pdf', True)]:
+        if not (fixtures / filename).exists():
+            writer = PdfWriter()
+            writer.add_blank_page(width=595, height=842)
+            if active:
+                writer.add_js("app.alert('Solo fixture QA');")
+            else:
+                writer.encrypt('solo-fixture-qa')
+            document = BytesIO()
+            writer.write(document)
+            (fixtures / filename).write_bytes(document.getvalue())
+    if not (fixtures / 'exceso-cv.pdf').exists():
+        (fixtures / 'exceso-cv.pdf').write_bytes(b'%PDF-QA-invalido-' + b'0' * (5 * 1024 * 1024))
     state = {'qa_marker': 'WORKNET_POSTMAN_AISLADO', 'database': str(path / 'qa.sqlite3'),
              'port': port, 'signing_key': secrets.token_urlsafe(48), 'created_at': datetime.now(timezone.utc).isoformat()}
     write(path / 'state.json', state)
