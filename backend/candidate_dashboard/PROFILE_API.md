@@ -88,6 +88,8 @@ Otra empresa aprobada recibe el mismo 404 que ante un ID inexistente. Sin sesió
 se devuelve 401; otro rol o empresa sin aprobación recibe 403. Estas rutas solo
 admiten lectura. Las rutas de edición anteriores siguen reservadas al candidato.
 La respuesta no incluye contraseña, token, correo de la cuenta ni preferencias.
+Las claves históricas no reconocidas se conservan en la edición propia, pero no
+se incluyen en la consulta empresarial.
 Perfil y foto usan `Cache-Control: private, no-store` y `Vary: Authorization`.
 
 Eliminar la postulación retira el acceso; la autorización se comprueba en cada

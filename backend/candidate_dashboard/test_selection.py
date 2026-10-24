@@ -22,7 +22,7 @@ class ApplicationProfileTests(TestCase):
         self.application = Application.objects.create(candidate=self.candidate, offer=self.offer)
         self.profile = CandidateProfile.objects.create(
             candidate=self.candidate, professional_summary="Perfil para selección",
-            education=[{"qualification": "Ingeniería", "institution": "Instituto QA"}],
+            education=[{"qualification": "Ingeniería", "institution": "Instituto QA", "internal_note": "Conservar solo en los datos históricos propios"}],
             experience=[{"position": "Desarrollo", "company": "Empresa anterior"}],
             skills=[{"name": "Python", "level": "avanzado"}],
             languages=[{"name": "Español", "level": "nativo"}],
@@ -49,6 +49,9 @@ class ApplicationProfileTests(TestCase):
         self.assertEqual(result.data["profile"]["professional_summary"], self.profile.professional_summary)
         for section in ("education", "experience", "skills", "languages"):
             self.assertEqual(len(result.data["profile"][section]), 1)
+        self.assertNotIn("internal_note", result.data["profile"]["education"][0])
+        self.profile.refresh_from_db()
+        self.assertIn("internal_note", self.profile.education[0])
         for field in ("email", "password", "push_notifications", "token", "photo_data"):
             self.assertNotIn(field, result.json())
         self.assertIn("no-store", result["Cache-Control"])

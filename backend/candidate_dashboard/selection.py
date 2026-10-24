@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from accounts.company import company_state, require_company
 from accounts.models import CompanyProfile
 from .models import Application, CandidateProfile
-from .profile import payload, profile_photo_response
+from .profile import SERIALIZERS, payload, profile_photo_response
 
 
 class ApprovedCompanyPermission(BasePermission):
@@ -36,10 +36,18 @@ class ApplicationProfileView(APIView):
         application = self.application(request, application_id)
         candidate = application.candidate
         profile = CandidateProfile.objects.filter(candidate=candidate).first()
+        profile_data = payload(candidate, profile)
+        # Conservar las claves históricas en el perfil propio sin exponerlas a terceros.
+        for section, serializer in SERIALIZERS.items():
+            allowed = {"id", *serializer().fields}
+            profile_data["profile"][section] = [
+                {key: value for key, value in record.items() if key in allowed}
+                for record in profile_data["profile"][section]
+            ]
         response = Response({
             "application": {"id": application.pk, "offer_id": application.offer_id},
             "candidate": {"id": candidate.pk, "full_name": candidate.full_name},
-            **payload(candidate, profile),
+            **profile_data,
         })
         response["Cache-Control"] = "private, no-store"
         response["Vary"] = "Authorization"
