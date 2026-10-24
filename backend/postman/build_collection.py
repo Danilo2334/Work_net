@@ -39,7 +39,7 @@ def case(task, title, method, route, status=200, body=None, auth=None, check=Non
                    'Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo.')
     request['description'] = description
     scripts = [f'pm.test("HTTP {status}", () => pm.response.to.have.status({status}));']
-    binary = route == 'profile/candidate/photo/' and method == 'GET' and status == 200 or route == 'company/logo/' and method == 'GET' and status == 200
+    binary = method == 'GET' and status == 200 and (route.endswith('profile/photo/') or route in ('profile/candidate/photo/', 'company/logo/'))
     if not binary:
         scripts += ['let data;', 'pm.test("Respuesta JSON", () => { data = pm.response.json(); pm.expect(data).to.be.an("object"); });']
     scripts.append('const v = (key) => pm.environment.get(key);')
@@ -290,6 +290,29 @@ case(44, 'Token de cuenta eliminada rechazado', 'GET', 'account/', 401, auth='di
 case(44, 'Cuenta eliminada ya no inicia sesión', 'POST', 'login/', 400, {'email':'{{disposable_email}}','password':'{{qa_password}}'})
 case(44, 'Eliminar una cuenta no afecta a otra', 'GET', 'account/', auth='candidate_token', check=('Candidato principal permanece intacto', 'pm.expect(data.user.id).to.equal(v("candidate_id")); pm.expect(data.user.full_name).to.equal("Candidato actualizado Postman");'))
 
+folder('12 · HU008 #60 · Consulta autorizada por postulación', 'Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos.')
+case(60, 'Obtener postulación propia desde el dashboard empresarial', 'GET', 'dashboard/company/', auth='company_token', check=('Dos postulaciones propias con identificador real', 'pm.expect(data.recent_applications).to.have.lengthOf(2); pm.expect(data.recent_applications[0].id).to.be.a("number");'), save='pm.environment.set("selection_application_id", data.recent_applications[0].id);')
+selection = 'company/applications/{{selection_application_id}}/profile/'
+case(60, 'Empresa dueña consulta el perfil del postulante', 'GET', selection, auth='company_token', check=('Perfil correcto sin datos de acceso ni preferencias', 'pm.expect(data.candidate).to.deep.equal({id:v("candidate_id"),full_name:"Candidato actualizado Postman"}); pm.expect(data.profile.professional_summary).to.equal("Resumen ficticio QA"); for (const section of ["education","experience","skills"]) pm.expect(data.profile[section]).to.have.lengthOf(1); for (const key of ["password","token","push_notifications","email"]) pm.expect(data.candidate).not.to.have.property(key); pm.expect(pm.response.headers.get("Cache-Control")).to.include("no-store");'), required=['selection_application_id'])
+case(60, 'Consulta sin sesión rechazada', 'GET', selection, 401)
+case(60, 'Candidato no usa la ruta empresarial', 'GET', selection, 403, auth='candidate_token')
+case(60, 'Administrador no usa la ruta empresarial', 'GET', selection, 403, auth='admin_token')
+case(60, 'Empresa pendiente no consulta postulantes', 'GET', selection, 403, auth='other_company_token')
+case(60, 'Otra empresa aprobada no consulta la postulación ajena', 'GET', selection, 404, auth='draft_token', save='pm.environment.set("selection_not_found", data.detail);')
+case(60, 'Postulación inexistente no revela otros candidatos', 'GET', 'company/applications/999999999/profile/', 404, auth='draft_token', check=('Misma respuesta para postulación ajena e inexistente', 'pm.expect(data.detail).to.equal(v("selection_not_found"));'))
+case(60, 'Parámetros ajenos no cambian el candidato autorizado', 'GET', selection+'?candidate={{other_id}}&company={{draft_id}}', auth='company_token', check=('Consulta sigue limitada a la postulación propia', 'pm.expect(data.candidate.id).to.equal(v("candidate_id")); pm.expect(data.profile.professional_summary).to.equal("Resumen ficticio QA");'))
+case(60, 'Empresa no recibe foto que aún no existe', 'GET', selection+'photo/', 404, auth='company_token')
+case(60, 'Candidato agrega foto para la consulta de selección', 'PUT', 'profile/candidate/photo/', auth='candidate_token', file='fixtures/foto-qa.png', check=eq('Fotografía guardada por su propietario', 'data.profile.has_photo', True))
+case(60, 'Empresa dueña recibe la foto privada del postulante', 'GET', selection+'photo/', auth='company_token', check=photo_check)
+case(60, 'Otra empresa aprobada no recibe la fotografía', 'GET', selection+'photo/', 404, auth='draft_token')
+case(60, 'Fotografía de selección sin sesión rechazada', 'GET', selection+'photo/', 401)
+for suffix in ('', 'photo/'):
+    for method in ('POST','PUT','PATCH','DELETE'):
+        case(60, f'Empresa no puede usar {method} en '+('fotografía' if suffix else 'perfil'), method, selection+suffix, 405, {'professional_summary':'No modificar'}, 'company_token')
+case(60, 'Candidato conserva su perfil después de los intentos empresariales', 'GET', 'profile/candidate/', auth='candidate_token', check=('Resumen y foto propios intactos', 'pm.expect(data.profile.professional_summary).to.equal("Resumen ficticio QA"); pm.expect(data.profile.has_photo).to.equal(true);'))
+case(60, 'Candidato retira su fotografía opcional', 'DELETE', 'profile/candidate/photo/', auth='candidate_token', check=eq('Fotografía retirada por su propietario', 'data.profile.has_photo', False))
+case(60, 'Empresa ya no recibe la fotografía retirada', 'GET', selection+'photo/', 404, auth='company_token')
+
 # Las versiones se envían como números JSON, sin comillas alrededor de {{...}}.
 for f in folders:
     for item in f['item']:
@@ -300,7 +323,7 @@ for f in folders:
 collection={'info':{'name':'WorkNet · QA backend reproducible · Postman',
     '_postman_id':str(uuid.uuid5(uuid.NAMESPACE_URL,'worknet-postman-backend-qa-20261019')),
     'schema':'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
-    'description':'QA contra Django real y SQLite aislada. Ejecutar carpetas 01–11 en orden. Pausas obligatorias de correo después de 01 y 03. Ver backend/postman/README.md. No contiene mocks ni credenciales publicadas. No acredita revisión humana ni ejecución visual de Postman por usar Newman.'},
+    'description':'QA contra Django real y SQLite aislada. Ejecutar carpetas en orden. Pausas obligatorias de correo después de 01 y 03. Ver backend/postman/README.md. No contiene mocks ni credenciales publicadas. No acredita revisión humana ni ejecución visual de Postman por usar Newman.'},
     'event':[{'listen':'prerequest','script':{'type':'text/javascript','exec':[
         'const base=pm.environment.get("base_url") || "";',
         r'if (!/^http:\/\/(127\.0\.0\.1|localhost):\d+\/api$/.test(base) || pm.environment.get("qa_confirmation") !== "SOLO_BASE_AISLADA" || !/^run-/.test(pm.environment.get("qa_run_id") || "")) throw new Error("Importa el entorno privado generado por qa.py prepare. Solo base QA local.");']}}],
@@ -310,7 +333,7 @@ for key in ['candidate','other','company','draft','other_company','admin','dispo
     keys[key+'_email']=''
     keys[key+'_token']=''
     keys[key+'_id']=''
-for key in ['registration_ticket','verification_token','reset_uid','reset_token','revoked_token','old_candidate_token','old_registered_password','generic_recovery_message','company_profile_id','company_version']+ [s+'_id' for s in sections]:
+for key in ['registration_ticket','verification_token','reset_uid','reset_token','revoked_token','old_candidate_token','old_registered_password','generic_recovery_message','company_profile_id','company_version','selection_application_id','selection_not_found']+ [s+'_id' for s in sections]:
     keys[key]=''
 env={'id':str(uuid.uuid5(uuid.NAMESPACE_URL,'worknet-postman-env-example')),'name':'WorkNet · ejemplo SIN credenciales · generar entorno con qa.py prepare',
      'values':[{'key':key,'value':value,'type':'secret' if any(s in key for s in ('password','token','ticket')) else 'default','enabled':True} for key,value in keys.items()], '_postman_variable_scope':'environment'}

@@ -216,3 +216,28 @@ Generado por `python backend/postman/build_collection.py`. Cada petición conser
 | PM210 | #44 | Token de cuenta eliminada rechazado | `GET account/` | HTTP 401. Rechazo con explicación en JSON. |
 | PM211 | #44 | Cuenta eliminada ya no inicia sesión | `POST login/` | HTTP 400. Rechazo con explicación en JSON. |
 | PM212 | #44 | Eliminar una cuenta no afecta a otra | `GET account/` | HTTP 200. Candidato principal permanece intacto |
+| PM213 | #60 | Obtener postulación propia desde el dashboard empresarial | `GET dashboard/company/` | HTTP 200. Dos postulaciones propias con identificador real |
+| PM214 | #60 | Empresa dueña consulta el perfil del postulante | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 200. Perfil correcto sin datos de acceso ni preferencias |
+| PM215 | #60 | Consulta sin sesión rechazada | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 401. Rechazo con explicación en JSON. |
+| PM216 | #60 | Candidato no usa la ruta empresarial | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM217 | #60 | Administrador no usa la ruta empresarial | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM218 | #60 | Empresa pendiente no consulta postulantes | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM219 | #60 | Otra empresa aprobada no consulta la postulación ajena | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM220 | #60 | Postulación inexistente no revela otros candidatos | `GET company/applications/999999999/profile/` | HTTP 404. Misma respuesta para postulación ajena e inexistente |
+| PM221 | #60 | Parámetros ajenos no cambian el candidato autorizado | `GET company/applications/{{selection_application_id}}/profile/?candidate={{other_id}}&company={{draft_id}}` | HTTP 200. Consulta sigue limitada a la postulación propia |
+| PM222 | #60 | Empresa no recibe foto que aún no existe | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM223 | #60 | Candidato agrega foto para la consulta de selección | `PUT profile/candidate/photo/` | HTTP 200. Fotografía guardada por su propietario |
+| PM224 | #60 | Empresa dueña recibe la foto privada del postulante | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 200. JPEG privado sin caché y sin URL pública |
+| PM225 | #60 | Otra empresa aprobada no recibe la fotografía | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM226 | #60 | Fotografía de selección sin sesión rechazada | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 401. Rechazo con explicación en JSON. |
+| PM227 | #60 | Empresa no puede usar POST en perfil | `POST company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM228 | #60 | Empresa no puede usar PUT en perfil | `PUT company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM229 | #60 | Empresa no puede usar PATCH en perfil | `PATCH company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM230 | #60 | Empresa no puede usar DELETE en perfil | `DELETE company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM231 | #60 | Empresa no puede usar POST en fotografía | `POST company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM232 | #60 | Empresa no puede usar PUT en fotografía | `PUT company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM233 | #60 | Empresa no puede usar PATCH en fotografía | `PATCH company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM234 | #60 | Empresa no puede usar DELETE en fotografía | `DELETE company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM235 | #60 | Candidato conserva su perfil después de los intentos empresariales | `GET profile/candidate/` | HTTP 200. Resumen y foto propios intactos |
+| PM236 | #60 | Candidato retira su fotografía opcional | `DELETE profile/candidate/photo/` | HTTP 200. Fotografía retirada por su propietario |
+| PM237 | #60 | Empresa ya no recibe la fotografía retirada | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 404. Rechazo con explicación en JSON. |

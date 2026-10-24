@@ -2825,5 +2825,321 @@
     "auth": "candidate_token",
     "cuerpo": null,
     "archivo": null
+  },
+  {
+    "id": "PM213",
+    "tarea": 60,
+    "objetivo": "Obtener postulación propia desde el dashboard empresarial",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 200. Dos postulaciones propias con identificador real",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM214",
+    "tarea": 60,
+    "objetivo": "Empresa dueña consulta el perfil del postulante",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 200. Perfil correcto sin datos de acceso ni preferencias",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM215",
+    "tarea": 60,
+    "objetivo": "Consulta sin sesión rechazada",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM216",
+    "tarea": 60,
+    "objetivo": "Candidato no usa la ruta empresarial",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM217",
+    "tarea": 60,
+    "objetivo": "Administrador no usa la ruta empresarial",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM218",
+    "tarea": 60,
+    "objetivo": "Empresa pendiente no consulta postulantes",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "other_company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM219",
+    "tarea": 60,
+    "objetivo": "Otra empresa aprobada no consulta la postulación ajena",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM220",
+    "tarea": 60,
+    "objetivo": "Postulación inexistente no revela otros candidatos",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/999999999/profile/",
+    "esperado": "HTTP 404. Misma respuesta para postulación ajena e inexistente",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM221",
+    "tarea": 60,
+    "objetivo": "Parámetros ajenos no cambian el candidato autorizado",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/?candidate={{other_id}}&company={{draft_id}}",
+    "esperado": "HTTP 200. Consulta sigue limitada a la postulación propia",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM222",
+    "tarea": 60,
+    "objetivo": "Empresa no recibe foto que aún no existe",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM223",
+    "tarea": 60,
+    "objetivo": "Candidato agrega foto para la consulta de selección",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. Fotografía guardada por su propietario",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": "fixtures/foto-qa.png"
+  },
+  {
+    "id": "PM224",
+    "tarea": 60,
+    "objetivo": "Empresa dueña recibe la foto privada del postulante",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 200. JPEG privado sin caché y sin URL pública",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM225",
+    "tarea": 60,
+    "objetivo": "Otra empresa aprobada no recibe la fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM226",
+    "tarea": 60,
+    "objetivo": "Fotografía de selección sin sesión rechazada",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM227",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar POST en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "POST",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM228",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PUT en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PUT",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM229",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PATCH en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PATCH",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM230",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar DELETE en perfil",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "DELETE",
+    "ruta": "company/applications/{{selection_application_id}}/profile/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM231",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar POST en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "POST",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM232",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PUT en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PUT",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM233",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar PATCH en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "PATCH",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM234",
+    "tarea": 60,
+    "objetivo": "Empresa no puede usar DELETE en fotografía",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "DELETE",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": {
+      "professional_summary": "No modificar"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM235",
+    "tarea": 60,
+    "objetivo": "Candidato conserva su perfil después de los intentos empresariales",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Resumen y foto propios intactos",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM236",
+    "tarea": 60,
+    "objetivo": "Candidato retira su fotografía opcional",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. Fotografía retirada por su propietario",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM237",
+    "tarea": 60,
+    "objetivo": "Empresa ya no recibe la fotografía retirada",
+    "fase": "12 · HU008 #60 · Consulta autorizada por postulación",
+    "metodo": "GET",
+    "ruta": "company/applications/{{selection_application_id}}/profile/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
   }
 ]

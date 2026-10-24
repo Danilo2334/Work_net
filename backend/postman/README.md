@@ -1,6 +1,6 @@
 # Pruebas del backend en Postman
 
-La colección contiene **212 peticiones con comprobaciones automáticas**, agrupadas en once fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
+La colección contiene **237 peticiones con comprobaciones automáticas**, agrupadas en doce fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
 
 Los resultados y capturas se conservan en el comentario único de cada tarea en GitHub. Esta guía explica cómo preparar y repetir los casos desde Postman.
 
@@ -25,7 +25,7 @@ Las contraseñas aleatorias y los tokens permanecen en `.local/`, ignorado por G
 1. Abre tu Postman habitual y usa **Import** para cargar `backend/postman/WorkNet.postman_collection.json`. Se llama **WorkNet · QA backend reproducible · Postman** y se añade como colección nueva. Conserva tus tres colecciones originales.
 2. Importa el archivo privado **`local.postman_environment.json` de la carpeta run-… que indicó prepare** y selecciónalo como entorno activo. Usa los valores locales de Postman; no los compartas con el equipo ni publiques el entorno exportado. Las variables sensibles están marcadas como secretas.
 3. En Settings → General → Working directory, selecciona la ruta absoluta de `backend/postman`. Así los archivos multipart se resuelven dentro de esa carpeta. Si tu versión no conserva la ruta relativa, selecciona el archivo indicado manualmente en Body → form-data → photo.
-4. Ejecuta las carpetas **01 a 11 en orden**, con una iteración y sin paralelismo. Puedes usar Run folder o enviar cada petición con Send. Conserva los valores del entorno entre carpetas. Las fases cambian contraseñas, roles y tokens, por lo que no se deben repetir sobre una base ya usada.
+4. Ejecuta las carpetas **01 a 12 en orden**, con una iteración y sin paralelismo. Puedes usar Run folder o enviar cada petición con Send. Conserva los valores del entorno entre carpetas. Las fases cambian contraseñas, roles y tokens, por lo que no se deben repetir sobre una base ya usada.
 5. Haz las dos pausas de correo indicadas en la tabla. En Postman, abre el entorno y cambia **solo las variables indicadas**. No reimportes el entorno entero a mitad de la ejecución: perderías IDs y tokens que Postman acaba de obtener.
 6. Revisa **Test Results** en cada respuesta y el resumen del Runner. Un HTTP 400, 401, 403, 404, 405 o 409 es correcto únicamente donde el caso lo espera; el script también comprueba el contenido pertinente.
 
@@ -42,6 +42,7 @@ Las contraseñas aleatorias y los tokens permanecen en `.local/`, ignorado por G
 | 09 | #64: información empresarial y envío completo | Empresa `draft`, todavía sin enviar |
 | 10 | #68: revisión, rechazo, corrección, reenvío y aprobación; #35/#52/#56: efectos reales | ID y versión de 09; token administrativo de 02 |
 | 11 | #44: eliminación cancelada, inválida y confirmada | Solo la cuenta desechable `disposable` |
+| 12 | #60: lectura del perfil y foto de un postulante por la empresa dueña; aislamiento y bloqueo de escritura | ID real obtenido de su dashboard; `draft` ya aprobada, sin postulaciones propias |
 
 ### Leer los enlaces del correo local
 
@@ -105,6 +106,8 @@ python manage.py test accounts.test_company_access.CompanyAccessTests.test_regis
 Pop-Location
 ```
 
-El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. Tampoco se inventa acceso empresarial autorizado al perfil: esa dependencia sigue pendiente y aquí se comprueba su restricción. Módulos futuros, validación nativa y revisión humana conservan su estado anterior.
+El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. La fase 12 consulta perfiles únicamente mediante una postulación a una oferta de la empresa autenticada y aprobada. La empresa ajena recibe 404; no se habilitan escrituras empresariales sobre perfiles. El proceso completo de gestión de postulantes pertenece a HU020.
+
+Las capturas previas de Postman Desktop corresponden a las 212 peticiones originales. Los 25 casos de fase 12 se añadieron posteriormente: su ejecución con Newman sirve como apoyo y no acredita una nueva pasada en Postman Desktop. Al repetirlos allí, conservar las capturas reales en el comentario de la tarea.
 
 La colección usa JSON **v2.1**, importación normal y Newman fijado en `package-lock.json`; no es el formato Native Git v3. Referencias oficiales: [importar en Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/), [valores locales de entorno](https://learning.postman.com/docs/use/send-requests/variables/environment-variables/), [Newman como biblioteca](https://github.com/postmanlabs/newman#using-newman-as-a-library). Si cambias casos, edita `build_collection.py` y vuelve a generar colección y catálogo; conserva y vuelve a ejecutar la evidencia que corresponda.
