@@ -43,7 +43,7 @@ Se utiliza la base SQLite local configurada en el proyecto. El runner crea y eli
 
 La configuración SMTP de la integración se conserva. Para los envíos reales, completar `GMAIL_USER` y `GMAIL_APP_PASSWORD` en `backend/.env`, usando una contraseña de aplicación autorizada. Puede tomarse `backend/.env.example` como referencia. El archivo `.env` se mantiene fuera de Git.
 
-La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` al ejecutar Flutter en ese puerto. Django instalado: 6.1.1; se conserva [MAILERS](https://docs.djangoproject.com/en/6.1/topics/email/#configuring-email). Registro SMTP verificado mediante el enlace recibido que aportó el usuario: HTTP 200, verificación persistida y login/dashboard desde Flutter correctos. Recuperación completada con el enlace recibido aportado por el usuario: cambio persistido, nueva contraseña aceptada desde Flutter, anterior y enlace usado rechazados; sesiones revocadas. [Estado del correo](backend/docs/evidencias/revision-sprint/SMTP.md). El correo a archivos usado en la QA anterior no acredita entrega SMTP.
+La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` al ejecutar Flutter en ese puerto. Django instalado: 6.1.1; se conserva [MAILERS](https://docs.djangoproject.com/en/6.1/topics/email/#configuring-email). Registro SMTP verificado mediante el enlace recibido que aportó el usuario: HTTP 200, verificación persistida y login/dashboard desde Flutter correctos. Recuperación completada con el enlace recibido aportado por el usuario: cambio persistido, nueva contraseña aceptada desde Flutter, anterior y enlace usado rechazados; sesiones revocadas. [Estado del correo](https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035). El correo a archivos usado en la QA anterior no acredita entrega SMTP.
 
 ## API
 
@@ -83,4 +83,4 @@ Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas
 
 [Guía para revisar la aplicación](frontend/docs/REVISION.md) · [Frontend y arquitectura](frontend/README.md).
 
-[Revisión de cierre por tarea y criterio](frontend/docs/REVISION_CIERRE.md).
+[Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues).

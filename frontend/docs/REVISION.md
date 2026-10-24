@@ -1,11 +1,11 @@
 # Guía para revisar WorkNet
 
-Actualización: 19/10/2026. Código Flutter `04e7e5c`; backend `f9e4dea`.
-La aplicación y sus pruebas están preparadas para la revisión de Danilo y Francisco. El PR #146 sigue en borrador.
+Actualización de la guía: 24/10/2026. Código Flutter `04e7e5c`; backend `f9e4dea`.
+Esta guía permite iniciar la demostración y recorrer las funciones disponibles. El PR #146 sigue en borrador.
 
-[Tabla de cierre por tarea y matriz de criterios](REVISION_CIERRE.md) · [Demostración comprobada y valores iniciales](evidencias/revision-cierre/README.md).
+[Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues).
 
-Las pruebas de interfaz tienen capturas de la app Flutter; las del backend se realizaron en Postman. Sus dos ejecuciones terminaron con 212 peticiones y 631 comprobaciones aprobadas cada una. [Ver resultados, capturas e instrucciones de Postman](../../backend/docs/evidencias/postman/README.md).
+Los resultados y capturas se registran en el comentario existente de cada tarea. Las pruebas de interfaz usan la app Flutter y las del backend, Postman. [Instrucciones para preparar y repetir los casos en Postman](../../backend/postman/README.md).
 
 ## Abrir una demostración aislada
 
@@ -50,7 +50,7 @@ El servidor `qa_backend.py` **siempre captura correo a archivos**. Para SMTP se 
 
 En `backend/.env`, ignorado por Git, configurar `GMAIL_USER` (remitente), `GMAIL_APP_PASSWORD` (contraseña de aplicación generada por Google, no contraseña normal) y `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` para Flutter en 55000. No compartir esas credenciales. La URL debe coincidir con el origen de la aplicación usada en esa comprobación.
 
-La configuración privada quedó completada. En la SQLite SMTP separada (Django 8007, Flutter 55007) el enlace de registro recibido y aportado por el usuario devolvió 200, guardó la verificación y permitió login/dashboard desde Flutter. La recuperación también se completó usando el enlace recibido aportado por el usuario: cambio persistido, login/dashboard con la nueva contraseña y rechazo de anterior, sesión previa y enlace usado. [Capturas y casos](evidencias/correo-real/README.md). Una respuesta SMTP aceptada no demuestra recepción. Las evidencias públicas deben ocultar tokens y enlaces firmados.
+La configuración privada quedó completada. En la SQLite SMTP separada (Django 8007, Flutter 55007) el enlace de registro recibido y aportado por el usuario devolvió 200, guardó la verificación y permitió login/dashboard desde Flutter. La recuperación también se completó usando el enlace recibido aportado por el usuario: cambio persistido, login/dashboard con la nueva contraseña y rechazo de anterior, sesión previa y enlace usado. [Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues). Una respuesta SMTP aceptada no demuestra recepción. Las evidencias públicas deben ocultar tokens y enlaces firmados.
 
 ## Pendientes que deben decirse claramente
 
@@ -62,7 +62,7 @@ La configuración privada quedó completada. En la SQLite SMTP separada (Django 
 - Perfil candidato: falta consulta positiva por empresas con autorización dentro de selección. Hoy se conserva el acceso restringido; un HTTP 403 no cumple ese criterio positivo.
 - Revisión por otro integrante y pruebas en Android/iOS pendientes.
 
-[Resultados y capturas de esta fase](evidencias/revision-sprint/README.md). [Contratos empresariales](../../backend/accounts/COMPANY_API.md). [PR #146](https://github.com/Danilo2334/Work_net/pull/146).
+[Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues). [Contratos empresariales](../../backend/accounts/COMPANY_API.md). [PR #146](https://github.com/Danilo2334/Work_net/pull/146).
 
 ## Revisión cruzada de Danilo y Francisco
 
@@ -83,6 +83,6 @@ Orden sugerido para conservar cuentas útiles:
 5. Dejar para el final `eliminar.qa@worknet.test`: nombre, preferencias, cambio de contraseña/token y eliminación cancelada/confirmada. No usar la cuenta candidata principal para eliminarla o cambiar su contraseña antes de terminar el resto de la demostración.
 6. Repetir las pantallas principales en móvil web. Android/iOS quedan pendientes de sus comprobaciones propias. Revisar los criterios de módulos faltantes como pendientes, aunque aparezcan sus avisos.
 
-Después de probar la app o los servicios en Postman, cada integrante deja en la tarea una explicación breve del resultado, las capturas necesarias y cualquier fallo encontrado.
+Después de probar la app o los servicios en Postman, cada integrante actualiza el comentario existente de la tarea con una explicación breve del resultado, las capturas necesarias y cualquier fallo encontrado.
 
 Para HU004, Danilo revisa #43/#46 y Francisco #44/#45. En #46 hay un comentario que identifica la integración de Francisco y el QA de Danilo. Los cierres se decidirán después de revisar los criterios; el alcance del Sprint sigue pendiente de confirmación en el Project.

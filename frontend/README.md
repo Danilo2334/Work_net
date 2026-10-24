@@ -108,7 +108,7 @@ No compartir ni versionar credenciales. El backend usa Django 6.1.1 y conserva
 MAILERS. Registro SMTP comprobado con el enlace recibido aportado por el usuario:
 verificación persistida y login/dashboard desde Flutter correctos. Recuperación
 SMTP completada con el enlace recibido aportado por el usuario: cambio persistido,
-login nuevo correcto, contraseña anterior y enlace usado rechazados. [Estado SMTP separado](../backend/docs/evidencias/revision-sprint/SMTP.md).
+login nuevo correcto, contraseña anterior y enlace usado rechazados. [Estado SMTP separado](https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035).
 Los enlaces de la QA anterior se capturaron a archivos y no acreditan recepción.
 
 El hosting debe resolver las rutas de Flutter a `index.html`. En desarrollo web
@@ -117,10 +117,7 @@ visual corresponde a escritorio y **móvil web**, no ejecución nativa.
 
 ## Pruebas y límites
 
-Esta fase pasó `flutter analyze` sin incidencias y **77 pruebas Flutter**. La
-regresión backend pasó **103 pruebas** y sus comprobaciones de configuración y
-migraciones. El build web se generó correctamente; WASM no se utilizó para esta
-validación. [Evidencias de la revisión actual](docs/evidencias/revision-sprint/README.md).
+Los resultados y las capturas de Flutter y Postman se conservan en el comentario único de cada tarea en GitHub. Las instrucciones de ejecución anteriores permiten iniciar la aplicación; las cuentas y datos de QA se describen en la guía de revisión.
 
 Siguen pendientes consulta de perfil por empresa
 autorizada dentro de selección, módulos de CV/búsqueda/mensajes/historial y
@@ -131,4 +128,4 @@ humana y validación nativa; no se declara terminado el Sprint.
 
 [Guía breve para revisar y explicar lo que funciona](docs/REVISION.md).
 
-[Preparación de cierre: tabla por tarea, criterios y pendientes](docs/REVISION_CIERRE.md).
+[Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues).
