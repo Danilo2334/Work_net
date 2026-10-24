@@ -2,7 +2,7 @@
 
 La colección contiene **212 peticiones con comprobaciones automáticas**, agrupadas en once fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
 
-La evidencia vigente son **dos pasadas completas en Postman Desktop**, con 212 peticiones y 631 comprobaciones aprobadas cada una. [Resultados y capturas directas de Postman](../docs/evidencias/postman/README.md). Los informes de consola anteriores se conservan como historial técnico y no cuentan como evidencia de aceptación.
+Los resultados y capturas se conservan en el comentario único de cada tarea en GitHub. Esta guía explica cómo preparar y repetir los casos desde Postman.
 
 ## Preparar la base y abrir Django
 
@@ -61,13 +61,11 @@ python backend/postman/qa.py mail recovery
 
 Copia únicamente `reset_uid` y `reset_token` al entorno activo. No compartas enlaces firmados ni capturas de sus valores. La API de confirmación recibe los parámetros del enlace; el recorrido visual del formulario Flutter se documenta por separado.
 
-Estos mensajes **no se envían a Gmail**. Para entrega real, usar un entorno de QA distinto con SMTP y un buzón autorizado: comprobar recepción, abrir su enlace y seguir el recorrido. No cambiar este servidor aislado a SMTP ni usar direcciones reales en la colección. La evidencia SMTP previa de WorkNet se conserva en [SMTP.md](../docs/evidencias/revision-sprint/SMTP.md); no se atribuye a esta ejecución de Postman.
+Estos mensajes **no se envían a Gmail**. Para entrega real, usar un entorno de QA distinto con SMTP y un buzón autorizado: comprobar recepción, abrir su enlace y seguir el recorrido. No cambiar este servidor aislado a SMTP ni usar direcciones reales en la colección. La evidencia SMTP previa de WorkNet se conserva en [SMTP.md](https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035); no se atribuye a esta ejecución de Postman.
 
 ## Evidencia que se registra
 
 Ejecutar en la aplicación Postman, usando Send o el Collection Runner. Capturar petición, respuesta y Test Results. Para frontend, guardar únicamente capturas directas de la app Flutter. Conservar los enlaces firmados, contraseñas y tokens fuera de las imágenes.
-
-Las ejecuciones anteriores del runner de consola y sus archivos `privado-*.json`/`resultado-sanitizado.json` son soporte técnico histórico. No sustituyen los resultados y capturas obtenidos en Postman ni se registran como la evidencia de aceptación.
 
 ## Repetir desde cero y conservar los resultados
 
@@ -98,7 +96,7 @@ La colección comprueba también que un archivo rechazado conserve la fotografí
 
 La colección comprueba enlaces inválidos y recuperación reutilizada. La verificación de correo es idempotente: repetir su enlace devuelve 200, conforme al contrato actual. Forzar el reloj para crear firmas vencidas y simular fallos SMTP son **pruebas internas de Django**, no endpoints públicos de QA.
 
-Tres pruebas internas se ejecutaron como apoyo en esta entrega: dos de vencimiento y una de fallos de envío que comprueba rollback del registro y respuesta de recuperación.
+Las pruebas internas de apoyo incluyen dos casos de vencimiento y uno de fallos de envío que comprueba rollback del registro y respuesta de recuperación. Se pueden repetir con estos comandos:
 
 ```powershell
 Push-Location backend
