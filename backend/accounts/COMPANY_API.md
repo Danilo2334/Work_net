@@ -32,18 +32,9 @@ recuperación mediante SMTP real están comprobados en una SQLite independiente.
 El usuario aportó los dos enlaces recibidos; el agente comprobó verificación
 persistida, cambio de contraseña, login/dashboard desde Flutter y revocación.
 No se accedió directamente al buzón ni se registró revisión humana del código.
-[Resultados sanitizados y alcance](../docs/evidencias/revision-sprint/SMTP.md).
+[Resultados sanitizados y alcance](https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035).
 Un 201, un SMTP aceptado o correo a archivos por sí solos no acreditan recepción.
 No se publican autorizaciones, contraseñas ni enlaces firmados.
-
-<details>
-<summary>Historial: pendiente de correo anterior a la comprobación SMTP</summary>
-
-Falta configurar `.env` y acreditar recepción real en el buzón indicado por el
-usuario. Un 201, un SMTP aceptado o correo a archivos no acreditan esa recepción.
-No se publican autorizaciones, contraseñas ni enlaces firmados.
-
-</details>
 
 ## Sesión
 
