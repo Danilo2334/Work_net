@@ -1,0 +1,15 @@
+{
+  "backend_tested": "84746c36efb8ef49e044e2889e677a1f70e9fb25",
+  "frontend_base": "0eb65d495b20157a910ff18e1e68cfaf5d75b7ae",
+  "flutter_tests_date": "2026-10-24",
+  "flutter_tests_passed": 91,
+  "new_tests_with_test_doubles": 14,
+  "analyze": "Sin avisos",
+  "web_build": "JavaScript release correcta; avisos Wasm de flutter_secure_storage_web y fuente Cupertino",
+  "real_app": "Flutter Web conectado a Django aislado; escritorio y viewport movil 390x844 en Chrome Windows",
+  "native_dialog_date": "2026-10-25",
+  "native_cancel_empty": "Usuario confirmo dos cancelaciones; tambien se comprobo mediante automatizacion de escritorio sobre el dialogo real.",
+  "native_cancel_saved": "Agente: boton Cancelar del dialogo real de Windows, sin solicitudes de carga; nombre y SHA-256 conservados; GET 200 y visor con contenido anterior.",
+  "human_review": "La revision posterior del usuario y la revision cruzada de codigo no se han registrado.",
+  "native_cancel_upload_requests": 0
+}
