@@ -101,6 +101,23 @@ Para repetir en Postman, importa y selecciona el entorno privado **del nuevo run
 
 La colección comprueba también que un archivo rechazado conserve la fotografía anterior, que otro usuario no la reciba, que quitarla persista y que no reduzca la completitud del perfil.
 
+## Repetir únicamente HU011: PDF subido
+
+Código de producto probado: `84746c36efb8ef49e044e2889e677a1f70e9fb25`.
+El 24/10/2026 se ejecutaron en **Postman Desktop 12.33.3** cuatro peticiones de preparación/12 comprobaciones, 17 casos principales/48 comprobaciones y 20 adicionales/54 comprobaciones; todos aprobados. Ese día también pasaron 133 pruebas Django. Los resultados originales se conservan privados; el resumen sin credenciales y las capturas están en `backend/docs/evidencias/hu011/`. Publicar esos materiales no constituye otra ejecución.
+
+1. Desde la raíz de este backend, con sus dependencias fijadas instaladas, ejecutar `python backend/postman/qa.py prepare --port 8016`. Anotar el `run-...` generado. Cada preparación crea otra base sin sobrescribir la anterior. Iniciar `python backend/postman/qa.py serve --run RUN_NUEVO` en una terminal que permanezca abierta.
+2. Ejecutar `python backend/postman/hu011_qa.py fixtures --run RUN_NUEVO`. Genera los PDF de 50 y 51 páginas y el archivo con estructura de formulario en `.local/hu011-extra/`, sin sobrescribir contenidos diferentes. Los demás archivos proceden de `fixtures/` y de `qa.py prepare`.
+3. Importar `WorkNet.HU011.postman_collection.json`, `WorkNet.HU011.adicional.postman_collection.json` y **el entorno privado del nuevo run**. Directorio de trabajo de Postman: la ruta absoluta de `backend/postman`. Las contraseñas permanecen en el entorno local; los cuatro login obtienen tokens nuevos. No copiar tokens de una exportación anterior.
+4. Ejecutar la carpeta **00 — sesiones** (4/12) y después **13 — carga y reemplazo** (17/48), con una iteración y conservando variables y respuestas. Son copias de PM025, PM026, PM027, PM030 y PM238–PM254, sin modificar sus IDs ni comprobaciones. La colección original de 281 peticiones se conserva intacta. Para este bloque no hacen falta las fases de correo ni las de currículum generado.
+5. Ejecutar la carpeta adicional **A** (13 peticiones/35 comprobaciones): permisos, separación entre usuarios, reemplazos rechazados y límites de páginas. Requiere haber terminado los 17 casos, que dejan guardado `curriculum-reemplazo.pdf`.
+6. Pausar Postman y ejecutar `python backend/postman/hu011_qa.py unverified --run RUN_NUEVO`. Ejecutar **B** (2/6): el candidato sin verificar recibe 403 al consultar o reemplazar. Restaurar inmediatamente con `python backend/postman/hu011_qa.py verified --run RUN_NUEVO`, incluso si B falla. Estos comandos solo admiten una SQLite con el marcador QA creado por `qa.py`; no son endpoints públicos.
+7. Ejecutar **C** (5/13): lectura posterior, eliminación propia, consulta 404, metadata vacía y documento del otro candidato conservado. `python backend/postman/hu011_qa.py inspect --run RUN_NUEVO` permite contrastar filas, tamaños y SHA-256 sin mostrar contraseñas ni tokens. Al finalizar queda únicamente el PDF del segundo candidato.
+
+El envío es **PUT `/api/curriculum/uploaded/`**, multipart con un único campo `file`: 201 al crear y 200 al reemplazar. GET del mismo endpoint devuelve PDF privado; GET `/api/curriculum/` devuelve metadata. Las comprobaciones comparan los bytes recuperados; un reemplazo inválido debe conservarlos. Un parámetro `candidate` no cambia al propietario: cada candidato opera exclusivamente sobre su propio documento.
+
+El requisito original exige PDF válido y un tamaño máximo, pero no fija su número. **5 MiB**, **50 páginas** y el rechazo de documentos cifrados, formularios, acciones y adjuntos son políticas de la implementación validada. A acepta 50 páginas y rechaza 51; no transforma esas políticas en nuevos criterios originales. La selección del CV durante una postulación sigue dependiendo de HU018.
+
 ## Casos internos y límites
 
 La colección comprueba enlaces inválidos y recuperación reutilizada. La verificación de correo es idempotente: repetir su enlace devuelve 200, conforme al contrato actual. Forzar el reloj para crear firmas vencidas y simular fallos SMTP son **pruebas internas de Django**, no endpoints públicos de QA.
@@ -116,7 +133,7 @@ Pop-Location
 
 El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. La fase 12 consulta perfiles únicamente mediante una postulación a una oferta de la empresa autenticada y aprobada. La empresa ajena recibe 404; no se habilitan escrituras empresariales sobre perfiles. El proceso completo de gestión de postulantes pertenece a HU020.
 
-Las capturas previas de Postman Desktop corresponden a las 212 peticiones originales. Los 69 casos de fases 12 a 14 se añadieron posteriormente: su ejecución con Newman sirve como apoyo y no acredita una nueva pasada en Postman Desktop. Al repetirlos allí, conservar las capturas reales en el comentario de la tarea. El total de comprobaciones de una pasada completa es compartido entre las tareas; no se suma como si fuera una ejecución independiente por cada una.
+Las 212 peticiones originales tienen sus ejecuciones anteriores en Postman Desktop. El 24/10/2026 se acreditaron también los casos del perfil empresarial de HU008 (25 principales/75 comprobaciones y 15 adicionales/44; evidencia publicada en `d18bbbd`) y los de HU011 descritos arriba. Los 27 casos de la fase 14, de HU012, continúan pendientes de Postman Desktop; su ejecución previa con Newman se mantiene como apoyo. Estos resultados pertenecen a corridas y versiones identificadas, no a una nueva pasada completa de 281 peticiones.
 
 Las fases 13 y 14 comprueban las opciones de CV disponibles, pero no una postulación con CV: ese recorrido depende de HU018. La selección del documento dentro de una postulación y su consulta empresarial deben probarse cuando exista ese flujo. No se da por cumplido ese criterio por recibir una lista de opciones.
 
