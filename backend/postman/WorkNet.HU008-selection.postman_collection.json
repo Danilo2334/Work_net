@@ -1,0 +1,515 @@
+{
+  "info": {
+    "_postman_id": "6ac6bf85-4108-4901-b2e0-f3de7e3f041b",
+    "name": "WorkNet HU008 - comprobaciones complementarias 2547c37",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const base=pm.environment.get(\"base_url\") || \"\";",
+          "if (!/^http:\\/\\/(127\\.0\\.0\\.1|localhost):\\d+\\/api$/.test(base) || pm.environment.get(\"qa_confirmation\") !== \"SOLO_BASE_AISLADA\" || !/^run-/.test(pm.environment.get(\"qa_run_id\") || \"\")) throw new Error(\"Importa el entorno privado generado por qa.py prepare. Solo base QA local.\");"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "A - HU008 Datos permitidos y lectura",
+      "item": [
+        {
+          "id": "7efd1fe5-d7a6-4b15-b43f-5eb41122fa82",
+          "name": "QA01 - Filtrar campos historicos privados",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Solo campos de perfil permitidos\",()=>{pm.expect(Object.keys(j).sort()).to.eql([\"application\",\"candidate\",\"profile\",\"profile_completion\"]);pm.expect(Object.keys(j.candidate).sort()).to.eql([\"full_name\",\"id\"]);pm.expect(j.candidate.id).to.equal(pm.environment.get(\"candidate_id\"));const allowed={education:[\"id\",\"qualification\",\"institution\",\"start_date\",\"end_date\",\"description\"],experience:[\"id\",\"position\",\"company\",\"start_date\",\"end_date\",\"description\"],skills:[\"id\",\"name\",\"level\"],languages:[\"id\",\"name\",\"level\"]};for(const [s,keys] of Object.entries(allowed)){for(const row of j.profile[s]){pm.expect(Object.keys(row).every(k=>keys.includes(k))).to.equal(true);pm.expect(row).not.to.have.property(\"internal_note\");}}});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a7a2d625-7d96-44db-8571-7d372a1a16e1",
+          "name": "QA02 - Empresa ajena no elude permiso con parametros",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/?company={{company_id}}&candidate={{candidate_id}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{draft_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\",()=>pm.response.to.have.status(404));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "be729add-2250-4102-bed0-4ab1cedbfc11",
+          "name": "QA03 - Candidato no lee foto por ruta empresarial",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "199d427d-01e9-4c30-8b97-63a7743a2353",
+          "name": "QA04 - Administrador no lee foto por ruta empresarial",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{admin_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "0daddfea-57bd-420d-a96f-bdc0d478703d",
+          "name": "QA05 - Consulta repetida mantiene el perfil autorizado",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Sigue siendo el mismo candidato\",()=>{pm.expect(j.candidate.id).to.equal(pm.environment.get(\"candidate_id\"));pm.expect(j.profile.professional_summary).to.equal(\"Resumen ficticio QA\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B - HU008 Empresa sin verificar",
+      "item": [
+        {
+          "id": "8e29bc29-e33e-49c6-88cb-9687a470ab99",
+          "name": "QA06 - Empresa aprobada sin verificar",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fe02b7cd-b92d-4583-8d5d-fb5d808aa315",
+          "name": "QA07 - Foto denegada sin verificar",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C - HU008 Empresa rechazada",
+      "item": [
+        {
+          "id": "02b374eb-19d4-4125-ae9c-f5eb38e7b635",
+          "name": "QA08 - Empresa rechazada pierde acceso",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "31163630-4e85-4d46-a0fc-983442b5bc32",
+          "name": "QA09 - Foto denegada tras rechazo",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "D - HU008 Postulacion retirada",
+      "item": [
+        {
+          "id": "7637eca0-409b-41de-9b9f-eb984e16eb62",
+          "name": "QA10 - Postulacion eliminada revoca perfil",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\",()=>pm.response.to.have.status(404));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "0f0770cf-79ab-473f-bec1-825c1bd1225e",
+          "name": "QA11 - Postulacion eliminada revoca foto",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\",()=>pm.response.to.have.status(404));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "E - HU008 Candidato sin perfil",
+      "item": [
+        {
+          "id": "9018f41a-1e08-4abd-8c71-c65df60fe802",
+          "name": "QA12 - Consultar no crea perfil inexistente",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Perfil inexistente\",()=>{pm.expect(j.profile.exists).to.equal(false);pm.expect(j.profile.has_photo).to.equal(false);});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "2d41bcdd-b5d9-46d8-aedf-4e151ed68fdf",
+          "name": "QA13 - Sin perfil no existe foto",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\",()=>pm.response.to.have.status(404));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo sin perfil ni fotografia\",()=>{pm.expect(j).to.have.property(\"detail\");pm.expect(j).not.to.have.property(\"profile\");pm.expect(j).not.to.have.property(\"candidate\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "F - HU008 Acceso restaurado",
+      "item": [
+        {
+          "id": "963fa2b8-e7f1-4833-b5e7-ffb74b507f50",
+          "name": "QA14 - Perfil restaurado sin fuga historica",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Solo campos de perfil permitidos\",()=>{pm.expect(Object.keys(j).sort()).to.eql([\"application\",\"candidate\",\"profile\",\"profile_completion\"]);pm.expect(Object.keys(j.candidate).sort()).to.eql([\"full_name\",\"id\"]);pm.expect(j.candidate.id).to.equal(pm.environment.get(\"candidate_id\"));const allowed={education:[\"id\",\"qualification\",\"institution\",\"start_date\",\"end_date\",\"description\"],experience:[\"id\",\"position\",\"company\",\"start_date\",\"end_date\",\"description\"],skills:[\"id\",\"name\",\"level\"],languages:[\"id\",\"name\",\"level\"]};for(const [s,keys] of Object.entries(allowed)){for(const row of j.profile[s]){pm.expect(Object.keys(row).every(k=>keys.includes(k))).to.equal(true);pm.expect(row).not.to.have.property(\"internal_note\");}}});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "4158fed2-68a9-4bc0-86ce-571d0a399da8",
+          "name": "QA15 - Foto restaurada sigue siendo privada",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "description": "HU008 #60/#62. Datos aislados; ejecutar solo la carpeta correspondiente al estado preparado por selection_qa.py. Commit 2547c37. No es un endpoint de preparacion de QA."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "pm.test(\"Foto JPEG privada\",()=>{pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"image/jpeg\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\");pm.expect(pm.response.text().length).to.be.above(0);});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

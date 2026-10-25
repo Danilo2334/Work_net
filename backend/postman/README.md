@@ -44,6 +44,46 @@ Las contraseñas aleatorias y los tokens permanecen en `.local/`, ignorado por G
 | 11 | #44: eliminación cancelada, inválida y confirmada | Solo la cuenta desechable `disposable` |
 | 12 | #60: lectura del perfil y foto de un postulante por la empresa dueña; aislamiento y bloqueo de escritura | ID real obtenido de su dashboard; `draft` ya aprobada, sin postulaciones propias |
 
+### Quince casos adicionales de consulta empresarial — #60 y #62
+
+Después de completar las fases 01–12, importa también **`WorkNet.HU008-selection.postman_collection.json`**. Conserva la colección anterior y selecciona **el mismo entorno privado**, sin reimportarlo: Postman ya obtuvo las sesiones y `selection_application_id` mediante respuestas reales. Esta segunda colección contiene **15 casos con 44 comprobaciones**, separados en carpetas A–F.
+
+Desde la raíz del checkout, utiliza el mismo Python con el que preparaste QA. Si usas un entorno virtual, actívalo antes. En PowerShell:
+
+```powershell
+$qaRun = (Get-Content backend/postman/.local/latest.txt).Trim()
+$applicationId = [int](Read-Host 'ID selection_application_id obtenido en PM213')
+python backend/postman/selection_qa.py prepare --run $qaRun --application-id $applicationId
+python backend/postman/selection_qa.py before A --run $qaRun
+```
+
+Confirma que `$qaRun` sea el valor `qa_run_id` del entorno activo y que el identificador impreso por la preparación coincida con `selection_application_id`. Ejecuta **solo la carpeta A** en Postman Desktop, con una iteración, conservando los valores del entorno y las respuestas. Después:
+
+```powershell
+python backend/postman/selection_qa.py after A --run $qaRun
+```
+
+Continúa en el orden siguiente. **Antes de cada carpeta**, ejecuta su preparación y `before` con la letra correspondiente; **al terminarla**, ejecuta `after` con esa misma letra. No ejecutes las seis carpetas juntas: los cambios de estado necesitan estas pausas.
+
+| Carpeta | Preparación: `python backend/postman/selection_qa.py ACCIÓN --run $qaRun` | Casos | Resultado esperado |
+|---|---|---:|---|
+| A | `prepare --application-id $applicationId` — ya realizada arriba | 5 | Perfil propio de la postulación: 200 y solo campos permitidos. Empresa ajena con parámetros manipulados: 404. Candidato y administrador en la ruta empresarial de foto: 403. |
+| B | `unverified` | 2 | Empresa propietaria aprobada, pero sin correo verificado: 403 para perfil y foto. |
+| C | `rejected` | 2 | Empresa verificada, pero rechazada: 403 para perfil y foto. |
+| D | `removed` | 2 | Al retirar esa postulación: 404 para perfil y foto, aunque permanece otra postulación del candidato a la misma empresa. |
+| E | `missing` | 2 | Se restablece la postulación y se retira el perfil de prueba: 200 con `exists: false`; foto 404. Consultar no crea un perfil. |
+| F | `restore` | 2 | Perfil y foto de QA restablecidos: 200, campos históricos privados filtrados y JPEG con protección de caché. |
+
+Por ejemplo, para B ejecuta `selection_qa.py unverified --run $qaRun`, luego `selection_qa.py before B --run $qaRun`; ejecuta B en Postman y termina con `selection_qa.py after B --run $qaRun`. El procedimiento es el mismo para C–F.
+
+Todas estas peticiones son `GET` sin cuerpo, con `Authorization: Token {{variable_del_rol}}`, sobre `/company/applications/{{selection_application_id}}/profile/` o su subruta `photo/`. Las variables `company_token`, `draft_token`, `candidate_token` y `admin_token` proceden de la colección principal; no deben copiarse al código ni compartirse. El caso de parámetros manipulados utiliza la sesión de `draft`, ya aprobada y ajena a las ofertas consultadas. Los 25 casos principales incluyen además sesión ausente, identificadores inexistentes y métodos de escritura rechazados.
+
+`selection_qa.py` lee las cuentas ficticias del entorno local generado por `qa.py`. Verifica el marcador, la ruta de SQLite, el run y las relaciones de propiedad antes de cambiar datos. Solo modifica la base aislada indicada; no modifica `db.sqlite3`, no cambia contraseñas ni publica credenciales. La foto requerida es `fixtures/foto-qa.png`, ya utilizada por la colección principal. La preparación conserva una copia previa de SQLite y las fixtures en `.local/run-…/selection/`. `before` y `after` comparan las huellas y los recuentos de todas las tablas; no exportan filas y rechazan una lectura que escriba datos.
+
+Conserva esa carpeta y las exportaciones de Postman en privado. Para otra pasada, crea una base nueva con `qa.py prepare`, importa su nuevo entorno y repite desde 01. La preparación adicional rechaza reutilizar su carpeta o saltar etapas. Los datos sembrados de ofertas y postulaciones sirven para comprobar permisos; no implementan todo HU018/HU020.
+
+**Ejecución conservada del 24/10/2026:** código de producto `2547c3786bbbe8abcc1b887a3767ba9223c123aa`, Python 3.12.10, Django 6.1.1 y Postman Desktop 12.33.3, contra `127.0.0.1:8012` y SQLite aislada. Pasaron 114 pruebas Django; en Postman, 212 peticiones previas/631 comprobaciones, 25 casos principales/75 comprobaciones y 15 casos adicionales/44 comprobaciones, sin fallos ni errores. No se sustituyó Postman por Newman. Las capturas públicas están en `backend/docs/evidencias/postman/capturas/hu008-seleccion/` y en los comentarios únicos de #60/#62. Las exportaciones originales permanecen privadas. La preparación publicada se comprobó posteriormente en otra base aislada, incluyendo sus seis etapas y el rechazo de entradas incorrectas; esa comprobación local no es una nueva corrida de Postman ni reemplaza la evidencia del 24/10.
+
 ### Leer los enlaces del correo local
 
 Después de fase 01, desde otra terminal en la raíz:
@@ -108,6 +148,6 @@ Pop-Location
 
 El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. La fase 12 consulta perfiles únicamente mediante una postulación a una oferta de la empresa autenticada y aprobada. La empresa ajena recibe 404; no se habilitan escrituras empresariales sobre perfiles. El proceso completo de gestión de postulantes pertenece a HU020.
 
-Las capturas previas de Postman Desktop corresponden a las 212 peticiones originales. Los 25 casos de fase 12 se añadieron posteriormente: su ejecución con Newman sirve como apoyo y no acredita una nueva pasada en Postman Desktop. Al repetirlos allí, conservar las capturas reales en el comentario de la tarea.
+Las capturas anteriores de Postman Desktop corresponden a las 212 peticiones originales del 19/10. La ejecución intermedia con Newman se conserva como antecedente. El 24/10 se ejecutaron en Postman Desktop los 25 casos de fase 12 y los 15 adicionales descritos arriba; esa evidencia nueva no cambia la fecha ni el alcance de las capturas anteriores.
 
 La colección usa JSON **v2.1**, importación normal y Newman fijado en `package-lock.json`; no es el formato Native Git v3. Referencias oficiales: [importar en Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/), [valores locales de entorno](https://learning.postman.com/docs/use/send-requests/variables/environment-variables/), [Newman como biblioteca](https://github.com/postmanlabs/newman#using-newman-as-a-library). Si cambias casos, edita `build_collection.py` y vuelve a generar colección y catálogo; conserva y vuelve a ejecutar la evidencia que corresponda.
