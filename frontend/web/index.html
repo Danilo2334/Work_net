@@ -41,6 +41,15 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
-  <script src="flutter_bootstrap.js" async></script>
+  <script type="module">
+    import * as pdfjsLib from './vendor/pdfjs/pdf.min.mjs';
+    globalThis.pdfjsLib = pdfjsLib;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+      './vendor/pdfjs/pdf.worker.min.mjs', document.baseURI
+    ).href;
+    const bootstrap = document.createElement('script');
+    bootstrap.src = 'flutter_bootstrap.js';
+    document.body.appendChild(bootstrap);
+  </script>
 </body>
 </html>

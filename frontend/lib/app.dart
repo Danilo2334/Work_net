@@ -10,6 +10,7 @@ import 'package:worknet/features/access/presentation/recovery_pages.dart';
 import 'package:worknet/features/access/presentation/choose_role_page.dart';
 import 'package:worknet/features/account/presentation/account_page.dart';
 import 'package:worknet/features/profile/presentation/profile_page.dart';
+import 'package:worknet/features/curriculum/presentation/curriculum_page.dart';
 import 'package:worknet/features/dashboard/presentation/candidate_dashboard_page.dart';
 import 'package:worknet/features/registration/data/registration_api.dart';
 import 'package:worknet/features/registration/presentation/registration_page.dart';
@@ -67,6 +68,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
     const protected = {
       '/dashboard',
       '/profile',
+      '/curriculum',
       '/account',
       '/company',
       '/company-dashboard',
@@ -91,7 +93,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
             return '/choose-role';
           }
           if (path == '/choose-role' && role != 'unassigned') return _home();
-          if (['/dashboard', '/profile'].contains(path) &&
+          if (['/dashboard', '/profile', '/curriculum'].contains(path) &&
               role != 'candidato') {
             return _home();
           }
@@ -107,6 +109,18 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/curriculum',
+          builder: (_, _) => _protected(
+            'candidato',
+            () => CurriculumPage(
+              key: ValueKey(_session.session?.token),
+              session: _session,
+              repository: _dependencies.curriculum,
+              picker: _dependencies.pdfPicker,
+            ),
+          ),
+        ),
         GoRoute(path: '/', redirect: (_, _) => '/login'),
         GoRoute(
           path: '/login',

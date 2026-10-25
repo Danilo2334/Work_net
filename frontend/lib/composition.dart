@@ -5,6 +5,8 @@ import 'package:worknet/features/account/data/account_repository.dart';
 import 'package:worknet/features/dashboard/data/dashboard_repository.dart';
 import 'package:worknet/features/profile/data/profile_repository.dart';
 import 'package:worknet/features/company/data/company_repository.dart';
+import 'package:worknet/features/curriculum/data/curriculum_repository.dart';
+import 'package:worknet/features/curriculum/data/pdf_picker.dart';
 
 /// Composition root: concrete HTTP/storage adapters are selected only here.
 class AppDependencies {
@@ -15,6 +17,7 @@ class AppDependencies {
     dashboard = HttpCandidateDashboardRepository(api);
     profile = HttpProfileRepository(api);
     company = HttpCompanyRepository(api);
+    curriculum = HttpCurriculumRepository(api);
   }
   late final HttpAccessRepository access;
   late final SessionController session;
@@ -22,4 +25,6 @@ class AppDependencies {
   late final HttpCandidateDashboardRepository dashboard;
   late final HttpProfileRepository profile;
   late final HttpCompanyRepository company;
+  late final HttpCurriculumRepository curriculum;
+  final pdfPicker = const FileSelectorPdfPicker();
 }

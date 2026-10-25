@@ -117,13 +117,19 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
           label: const Text('Perfil del candidato'),
         ),
         const SizedBox(height: 12),
+        TextButton.icon(
+          key: const Key('open_curriculum'),
+          onPressed: () => context.go('/curriculum'),
+          icon: const Icon(Icons.description_outlined),
+          label: const Text('Mi currículum'),
+        ),
+        const SizedBox(height: 12),
         const Text(
           'Los siguientes módulos todavía no están disponibles. Aquí podrás encontrar sus accesos cuando estén implementados.',
           style: TextStyle(color: WorkNetColors.muted),
         ),
         const SizedBox(height: 16),
         for (final entry in const [
-          (Icons.description_outlined, 'Currículum', 'Módulo de CV'),
           (Icons.search, 'Buscar ofertas', 'Búsqueda de ofertas'),
           (Icons.chat_bubble_outline, 'Mensajes', 'Mensajería'),
           (Icons.history, 'Historial de postulaciones', 'Postulaciones'),
