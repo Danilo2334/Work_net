@@ -87,6 +87,53 @@ class WorkNetApi {
     return _decode(response, 'profile/candidate/photo/');
   }
 
+  Future<Map<String, dynamic>> uploadPdf(
+    Uint8List bytes,
+    String filename, {
+    required String token,
+  }) async {
+    final request =
+        http.MultipartRequest('PUT', _base.resolve('curriculum/uploaded/'))
+          ..headers['Authorization'] = 'Token $token'
+          ..files.add(
+            http.MultipartFile.fromBytes(
+              'file',
+              bytes,
+              filename: filename,
+              contentType: MediaType('application', 'pdf'),
+            ),
+          );
+    final response = await _transport(
+      () async => http.Response.fromStream(await _client.send(request)),
+    );
+    return _decode(response, 'curriculum/uploaded/');
+  }
+
+  Future<Uint8List> curriculumPdf({required String token}) async {
+    final response = await _transport(
+      () => _client.get(
+        _base.resolve('curriculum/uploaded/'),
+        headers: {
+          'Authorization': 'Token $token',
+          'Accept': 'application/pdf, application/json',
+        },
+      ),
+    );
+    if (response.statusCode != 200) {
+      _decode(response, 'curriculum/uploaded/');
+    }
+    if (response.headers['content-type']?.split(';').first !=
+            'application/pdf' ||
+        response.bodyBytes.length < 5 ||
+        ascii.decode(response.bodyBytes.take(5).toList(), allowInvalid: true) !=
+            '%PDF-') {
+      throw const ApiFailure(
+        'No pudimos interpretar el PDF. Vuelve a intentarlo.',
+      );
+    }
+    return response.bodyBytes;
+  }
+
   Future<Uint8List> profilePhoto({
     required String token,
     String path = 'profile/candidate/photo/',
