@@ -216,3 +216,72 @@ Generado por `python backend/postman/build_collection.py`. Cada petición conser
 | PM210 | #44 | Token de cuenta eliminada rechazado | `GET account/` | HTTP 401. Rechazo con explicación en JSON. |
 | PM211 | #44 | Cuenta eliminada ya no inicia sesión | `POST login/` | HTTP 400. Rechazo con explicación en JSON. |
 | PM212 | #44 | Eliminar una cuenta no afecta a otra | `GET account/` | HTTP 200. Candidato principal permanece intacto |
+| PM213 | #60 | Obtener postulación propia desde el dashboard empresarial | `GET dashboard/company/` | HTTP 200. Dos postulaciones propias con identificador real |
+| PM214 | #60 | Empresa dueña consulta el perfil del postulante | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 200. Perfil correcto sin datos de acceso ni preferencias |
+| PM215 | #60 | Consulta sin sesión rechazada | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 401. Rechazo con explicación en JSON. |
+| PM216 | #60 | Candidato no usa la ruta empresarial | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM217 | #60 | Administrador no usa la ruta empresarial | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM218 | #60 | Empresa pendiente no consulta postulantes | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM219 | #60 | Otra empresa aprobada no consulta la postulación ajena | `GET company/applications/{{selection_application_id}}/profile/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM220 | #60 | Postulación inexistente no revela otros candidatos | `GET company/applications/999999999/profile/` | HTTP 404. Misma respuesta para postulación ajena e inexistente |
+| PM221 | #60 | Parámetros ajenos no cambian el candidato autorizado | `GET company/applications/{{selection_application_id}}/profile/?candidate={{other_id}}&company={{draft_id}}` | HTTP 200. Consulta sigue limitada a la postulación propia |
+| PM222 | #60 | Empresa no recibe foto que aún no existe | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM223 | #60 | Candidato agrega foto para la consulta de selección | `PUT profile/candidate/photo/` | HTTP 200. Fotografía guardada por su propietario |
+| PM224 | #60 | Empresa dueña recibe la foto privada del postulante | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 200. JPEG privado sin caché y sin URL pública |
+| PM225 | #60 | Otra empresa aprobada no recibe la fotografía | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM226 | #60 | Fotografía de selección sin sesión rechazada | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 401. Rechazo con explicación en JSON. |
+| PM227 | #60 | Empresa no puede usar POST en perfil | `POST company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM228 | #60 | Empresa no puede usar PUT en perfil | `PUT company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM229 | #60 | Empresa no puede usar PATCH en perfil | `PATCH company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM230 | #60 | Empresa no puede usar DELETE en perfil | `DELETE company/applications/{{selection_application_id}}/profile/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM231 | #60 | Empresa no puede usar POST en fotografía | `POST company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM232 | #60 | Empresa no puede usar PUT en fotografía | `PUT company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM233 | #60 | Empresa no puede usar PATCH en fotografía | `PATCH company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM234 | #60 | Empresa no puede usar DELETE en fotografía | `DELETE company/applications/{{selection_application_id}}/profile/photo/` | HTTP 405. Rechazo con explicación en JSON. |
+| PM235 | #60 | Candidato conserva su perfil después de los intentos empresariales | `GET profile/candidate/` | HTTP 200. Resumen y foto propios intactos |
+| PM236 | #60 | Candidato retira su fotografía opcional | `DELETE profile/candidate/photo/` | HTTP 200. Fotografía retirada por su propietario |
+| PM237 | #60 | Empresa ya no recibe la fotografía retirada | `GET company/applications/{{selection_application_id}}/profile/photo/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM238 | #72 | Currículums sin sesión rechazados | `GET curriculum/` | HTTP 401. Rechazo con explicación en JSON. |
+| PM239 | #72 | Empresa no consulta CV privados del candidato | `GET curriculum/` | HTTP 403. Rechazo con explicación en JSON. |
+| PM240 | #72 | Estado inicial sin CV y límite de cinco MiB | `GET curriculum/` | HTTP 200. Sin opciones guardadas y límite explícito |
+| PM241 | #72 | Consulta de PDF todavía ausente | `GET curriculum/uploaded/` | HTTP 404. Rechazo con explicación en JSON. |
+| PM242 | #72 | Cargar un PDF válido | `PUT curriculum/uploaded/` | HTTP 201. Archivo y tamaño guardados |
+| PM243 | #72 | Recuperar el PDF privado guardado | `GET curriculum/uploaded/` | HTTP 200. PDF privado y respuesta con contenido |
+| PM244 | #72 | Segundo candidato no recibe el PDF ajeno | `GET curriculum/uploaded/?candidate={{candidate_id}}` | HTTP 404. Rechazo con explicación en JSON. |
+| PM245 | #72 | Carga sin archivo rechazada | `PUT curriculum/uploaded/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM246 | #72 | Extensión diferente de PDF rechazado | `PUT curriculum/uploaded/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM247 | #72 | PDF corrupto rechazado | `PUT curriculum/uploaded/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM248 | #72 | PDF con contraseña rechazado | `PUT curriculum/uploaded/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM249 | #72 | PDF con contenido activo rechazado | `PUT curriculum/uploaded/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM250 | #72 | PDF de más de cinco MiB rechazado | `PUT curriculum/uploaded/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM251 | #74 | Los rechazos conservan el documento anterior | `GET curriculum/uploaded/` | HTTP 200. Mismo SHA-256 después de las cargas inválidas |
+| PM252 | #72 | Reemplazar el currículum con otro PDF válido | `PUT curriculum/uploaded/` | HTTP 200. Nuevo nombre persistido |
+| PM253 | #74 | El reemplazo entrega un documento distinto | `GET curriculum/uploaded/` | HTTP 200. SHA-256 distinto y PDF privado |
+| PM254 | #74 | Candidato conserva una única opción de CV subido | `GET curriculum/` | HTTP 200. Opción y nombre del reemplazo |
+| PM255 | #76 | Precargar el CV desde el perfil sin guardarlo | `GET curriculum/generated/` | HTTP 200. Borrador con los datos del perfil propio |
+| PM256 | #77 | Vista previa de la plantilla Clásica | `POST curriculum/generated/preview/` | HTTP 200. PDF privado y respuesta con contenido |
+| PM257 | #79 | La vista previa no crea un CV guardado | `GET curriculum/generated/` | HTTP 200. Continúa como borrador |
+| PM258 | #76 | Guardar el CV precargado con plantilla Clásica | `PUT curriculum/generated/` | HTTP 201. CV guardado con datos del perfil |
+| PM259 | #76 | Cambiar a plantilla moderna sin perder datos | `PATCH curriculum/generated/` | HTTP 200. Plantilla cambiada y contenido idéntico |
+| PM260 | #76 | Cambiar a plantilla minimalista sin perder datos | `PATCH curriculum/generated/` | HTTP 200. Plantilla cambiada y contenido idéntico |
+| PM261 | #76 | Cambiar a plantilla clasica sin perder datos | `PATCH curriculum/generated/` | HTTP 200. Plantilla cambiada y contenido idéntico |
+| PM262 | #76 | Consultar nuevamente conserva el CV guardado | `GET curriculum/generated/` | HTTP 200. Datos persistidos al reabrir |
+| PM263 | #76 | Editar datos personales, resumen y secciones opcionales | `PATCH curriculum/generated/` | HTTP 200. Edición y certificación persistidas |
+| PM264 | #79 | Editar el nombre del CV no cambia la cuenta | `GET account/` | HTTP 200. Nombre de la cuenta conservado |
+| PM265 | #77 | Generar PDF de vista previa clasica | `POST curriculum/generated/preview/` | HTTP 200. PDF privado y respuesta con contenido |
+| PM266 | #77 | Generar PDF de vista previa moderna | `POST curriculum/generated/preview/` | HTTP 200. PDF privado y respuesta con contenido |
+| PM267 | #77 | Generar PDF de vista previa minimalista | `POST curriculum/generated/preview/` | HTTP 200. PDF privado y respuesta con contenido |
+| PM268 | #77 | Descargar el PDF del CV guardado | `GET curriculum/generated/pdf/` | HTTP 200. PDF descargable con contenido |
+| PM269 | #77 | Descarga sin sesión rechazada | `GET curriculum/generated/pdf/` | HTTP 401. Rechazo con explicación en JSON. |
+| PM270 | #77 | Otra cuenta no descarga el CV ajeno | `GET curriculum/generated/pdf/?candidate={{candidate_id}}` | HTTP 404. Rechazo con explicación en JSON. |
+| PM271 | #76 | Plantilla desconocida rechazada | `PATCH curriculum/generated/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM272 | #76 | No se permite reasignar el propietario del CV | `PATCH curriculum/generated/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM273 | #76 | Fechas invertidas rechazadas al guardar | `PUT curriculum/generated/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM274 | #76 | Nombre vacío rechazado al guardar | `PUT curriculum/generated/` | HTTP 400. Rechazo con explicación en JSON. |
+| PM275 | #79 | Errores no destruyen el CV guardado | `GET curriculum/generated/` | HTTP 200. Contenido idéntico después de errores |
+| PM276 | #79 | Opciones de CV subido y generado coexisten | `GET curriculum/` | HTTP 200. Ambas opciones disponibles para integración posterior |
+| PM277 | #76 | Eliminar únicamente el CV generado | `DELETE curriculum/generated/` | HTTP 200. CV generado retirado |
+| PM278 | #79 | Eliminar el generado conserva el PDF subido | `GET curriculum/` | HTTP 200. Solo permanece el CV subido |
+| PM279 | #72 | Retirar el PDF subido | `DELETE curriculum/uploaded/` | HTTP 200. PDF retirado |
+| PM280 | #74 | Nueva consulta confirma que no hay currículums guardados | `GET curriculum/` | HTTP 200. Sin opciones después de retirar ambos CV |
+| PM281 | #79 | Retirar los CV conserva el perfil profesional | `GET profile/candidate/` | HTTP 200. Perfil original intacto |

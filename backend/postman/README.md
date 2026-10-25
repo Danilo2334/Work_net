@@ -1,6 +1,6 @@
 # Pruebas del backend en Postman
 
-La colección contiene **212 peticiones con comprobaciones automáticas**, agrupadas en once fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
+La colección contiene **281 peticiones con comprobaciones automáticas**, agrupadas en catorce fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
 
 Los resultados y capturas se conservan en el comentario único de cada tarea en GitHub. Esta guía explica cómo preparar y repetir los casos desde Postman.
 
@@ -25,7 +25,7 @@ Las contraseñas aleatorias y los tokens permanecen en `.local/`, ignorado por G
 1. Abre tu Postman habitual y usa **Import** para cargar `backend/postman/WorkNet.postman_collection.json`. Se llama **WorkNet · QA backend reproducible · Postman** y se añade como colección nueva. Conserva tus tres colecciones originales.
 2. Importa el archivo privado **`local.postman_environment.json` de la carpeta run-… que indicó prepare** y selecciónalo como entorno activo. Usa los valores locales de Postman; no los compartas con el equipo ni publiques el entorno exportado. Las variables sensibles están marcadas como secretas.
 3. En Settings → General → Working directory, selecciona la ruta absoluta de `backend/postman`. Así los archivos multipart se resuelven dentro de esa carpeta. Si tu versión no conserva la ruta relativa, selecciona el archivo indicado manualmente en Body → form-data → photo.
-4. Ejecuta las carpetas **01 a 11 en orden**, con una iteración y sin paralelismo. Puedes usar Run folder o enviar cada petición con Send. Conserva los valores del entorno entre carpetas. Las fases cambian contraseñas, roles y tokens, por lo que no se deben repetir sobre una base ya usada.
+4. Ejecuta las carpetas **01 a 14 en orden**, con una iteración y sin paralelismo. Puedes usar Run folder o enviar cada petición con Send. Conserva los valores del entorno entre carpetas. Las fases cambian contraseñas, roles y tokens, por lo que no se deben repetir sobre una base ya usada.
 5. Haz las dos pausas de correo indicadas en la tabla. En Postman, abre el entorno y cambia **solo las variables indicadas**. No reimportes el entorno entero a mitad de la ejecución: perderías IDs y tokens que Postman acaba de obtener.
 6. Revisa **Test Results** en cada respuesta y el resumen del Runner. Un HTTP 400, 401, 403, 404, 405 o 409 es correcto únicamente donde el caso lo espera; el script también comprueba el contenido pertinente.
 
@@ -42,6 +42,9 @@ Las contraseñas aleatorias y los tokens permanecen en `.local/`, ignorado por G
 | 09 | #64: información empresarial y envío completo | Empresa `draft`, todavía sin enviar |
 | 10 | #68: revisión, rechazo, corrección, reenvío y aprobación; #35/#52/#56: efectos reales | ID y versión de 09; token administrativo de 02 |
 | 11 | #44: eliminación cancelada, inválida y confirmada | Solo la cuenta desechable `disposable` |
+| 12 | #60: lectura del perfil y foto de un postulante por la empresa dueña; aislamiento y bloqueo de escritura | ID real obtenido de su dashboard; `draft` ya aprobada, sin postulaciones propias |
+| 13 | #72/#74: PDF válido, corrupto, cifrado, activo, tamaño, aislamiento y reemplazo | Campo multipart `file`; fixtures PDF descritos debajo |
+| 14 | #76/#77/#79: precarga real, edición, tres plantillas, vista previa, persistencia, PDF y permisos | `cv_data` procede de la respuesta de Django; no requiere editar JSON manualmente |
 
 ### Leer los enlaces del correo local
 
@@ -89,8 +92,31 @@ Para repetir en Postman, importa y selecciona el entorno privado **del nuevo run
 | `fixtures/corrupta.png` | Archivo con extensión PNG y contenido inválido: HTTP 400 |
 | `.local/fixtures/ancha.png` | Imagen de 4097 × 1 generada por prepare: HTTP 400 |
 | `.local/fixtures/exceso.png` | Archivo de más de 2 MiB generado por prepare: HTTP 400 por tamaño |
+| `fixtures/curriculum-valido.pdf` | CV ficticio de una página: primera carga HTTP 201 |
+| `fixtures/curriculum-reemplazo.pdf` | CV ficticio diferente: reemplazo HTTP 200; el SHA-256 debe cambiar |
+| `fixtures/curriculum-corrupto.pdf` | Cabecera PDF con estructura inválida: HTTP 400 |
+| `.local/fixtures/cifrado.pdf` | PDF con contraseña generado por prepare: HTTP 400 |
+| `.local/fixtures/activo.pdf` | PDF con JavaScript de prueba generado por prepare: HTTP 400; no abrirlo ni ejecutarlo |
+| `.local/fixtures/exceso-cv.pdf` | Archivo de más de 5 MiB generado por prepare: HTTP 400 |
 
 La colección comprueba también que un archivo rechazado conserve la fotografía anterior, que otro usuario no la reciba, que quitarla persista y que no reduzca la completitud del perfil.
+
+## Repetir únicamente HU011: PDF subido
+
+Código de producto probado: `84746c36efb8ef49e044e2889e677a1f70e9fb25`.
+El 24/10/2026 se ejecutaron en **Postman Desktop 12.33.3** cuatro peticiones de preparación/12 comprobaciones, 17 casos principales/48 comprobaciones y 20 adicionales/54 comprobaciones; todos aprobados. Ese día también pasaron 133 pruebas Django. Los resultados originales se conservan privados; el resumen sin credenciales y las capturas están en `backend/docs/evidencias/hu011/`. Publicar esos materiales no constituye otra ejecución.
+
+1. Desde la raíz de este backend, con sus dependencias fijadas instaladas, ejecutar `python backend/postman/qa.py prepare --port 8016`. Anotar el `run-...` generado. Cada preparación crea otra base sin sobrescribir la anterior. Iniciar `python backend/postman/qa.py serve --run RUN_NUEVO` en una terminal que permanezca abierta.
+2. Ejecutar `python backend/postman/hu011_qa.py fixtures --run RUN_NUEVO`. Genera los PDF de 50 y 51 páginas y el archivo con estructura de formulario en `.local/hu011-extra/`, sin sobrescribir contenidos diferentes. Los demás archivos proceden de `fixtures/` y de `qa.py prepare`.
+3. Importar `WorkNet.HU011.postman_collection.json`, `WorkNet.HU011.adicional.postman_collection.json` y **el entorno privado del nuevo run**. Directorio de trabajo de Postman: la ruta absoluta de `backend/postman`. Las contraseñas permanecen en el entorno local; los cuatro login obtienen tokens nuevos. No copiar tokens de una exportación anterior.
+4. Ejecutar la carpeta **00 — sesiones** (4/12) y después **13 — carga y reemplazo** (17/48), con una iteración y conservando variables y respuestas. Son copias de PM025, PM026, PM027, PM030 y PM238–PM254, sin modificar sus IDs ni comprobaciones. La colección original de 281 peticiones se conserva intacta. Para este bloque no hacen falta las fases de correo ni las de currículum generado.
+5. Ejecutar la carpeta adicional **A** (13 peticiones/35 comprobaciones): permisos, separación entre usuarios, reemplazos rechazados y límites de páginas. Requiere haber terminado los 17 casos, que dejan guardado `curriculum-reemplazo.pdf`.
+6. Pausar Postman y ejecutar `python backend/postman/hu011_qa.py unverified --run RUN_NUEVO`. Ejecutar **B** (2/6): el candidato sin verificar recibe 403 al consultar o reemplazar. Restaurar inmediatamente con `python backend/postman/hu011_qa.py verified --run RUN_NUEVO`, incluso si B falla. Estos comandos solo admiten una SQLite con el marcador QA creado por `qa.py`; no son endpoints públicos.
+7. Ejecutar **C** (5/13): lectura posterior, eliminación propia, consulta 404, metadata vacía y documento del otro candidato conservado. `python backend/postman/hu011_qa.py inspect --run RUN_NUEVO` permite contrastar filas, tamaños y SHA-256 sin mostrar contraseñas ni tokens. Al finalizar queda únicamente el PDF del segundo candidato.
+
+El envío es **PUT `/api/curriculum/uploaded/`**, multipart con un único campo `file`: 201 al crear y 200 al reemplazar. GET del mismo endpoint devuelve PDF privado; GET `/api/curriculum/` devuelve metadata. Las comprobaciones comparan los bytes recuperados; un reemplazo inválido debe conservarlos. Un parámetro `candidate` no cambia al propietario: cada candidato opera exclusivamente sobre su propio documento.
+
+El requisito original exige PDF válido y un tamaño máximo, pero no fija su número. **5 MiB**, **50 páginas** y el rechazo de documentos cifrados, formularios, acciones y adjuntos son políticas de la implementación validada. A acepta 50 páginas y rechaza 51; no transforma esas políticas en nuevos criterios originales. La selección del CV durante una postulación sigue dependiendo de HU018.
 
 ## Casos internos y límites
 
@@ -105,6 +131,10 @@ python manage.py test accounts.test_company_access.CompanyAccessTests.test_regis
 Pop-Location
 ```
 
-El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. Tampoco se inventa acceso empresarial autorizado al perfil: esa dependencia sigue pendiente y aquí se comprueba su restricción. Módulos futuros, validación nativa y revisión humana conservan su estado anterior.
+El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. La fase 12 consulta perfiles únicamente mediante una postulación a una oferta de la empresa autenticada y aprobada. La empresa ajena recibe 404; no se habilitan escrituras empresariales sobre perfiles. El proceso completo de gestión de postulantes pertenece a HU020.
+
+Las 212 peticiones originales tienen sus ejecuciones anteriores en Postman Desktop. El 24/10/2026 se acreditaron también los casos del perfil empresarial de HU008 (25 principales/75 comprobaciones y 15 adicionales/44; evidencia publicada en `d18bbbd`) y los de HU011 descritos arriba. Los 27 casos de la fase 14, de HU012, continúan pendientes de Postman Desktop; su ejecución previa con Newman se mantiene como apoyo. Estos resultados pertenecen a corridas y versiones identificadas, no a una nueva pasada completa de 281 peticiones.
+
+Las fases 13 y 14 comprueban las opciones de CV disponibles, pero no una postulación con CV: ese recorrido depende de HU018. La selección del documento dentro de una postulación y su consulta empresarial deben probarse cuando exista ese flujo. No se da por cumplido ese criterio por recibir una lista de opciones.
 
 La colección usa JSON **v2.1**, importación normal y Newman fijado en `package-lock.json`; no es el formato Native Git v3. Referencias oficiales: [importar en Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/), [valores locales de entorno](https://learning.postman.com/docs/use/send-requests/variables/environment-variables/), [Newman como biblioteca](https://github.com/postmanlabs/newman#using-newman-as-a-library). Si cambias casos, edita `build_collection.py` y vuelve a generar colección y catálogo; conserva y vuelve a ejecutar la evidencia que corresponda.

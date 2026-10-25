@@ -1,0 +1,50 @@
+{
+  "backend_commit": "84746c36efb8ef49e044e2889e677a1f70e9fb25",
+  "executed_local_date": "2026-10-24",
+  "timezone": "America/Bogota",
+  "django_passed": 133,
+  "postman_desktop_version": "12.33.3",
+  "runs": [
+    {
+      "run": "postman-17-principales",
+      "requests": 17,
+      "passed_assertions": 48,
+      "failed_assertions": 0
+    },
+    {
+      "run": "postman-adicional-A",
+      "requests": 13,
+      "passed_assertions": 35,
+      "failed_assertions": 0
+    },
+    {
+      "run": "postman-adicional-B",
+      "requests": 2,
+      "passed_assertions": 6,
+      "failed_assertions": 0
+    },
+    {
+      "run": "postman-adicional-C",
+      "requests": 5,
+      "passed_assertions": 13,
+      "failed_assertions": 0
+    },
+    {
+      "run": "postman-preparacion",
+      "requests": 4,
+      "passed_assertions": 12,
+      "failed_assertions": 0
+    }
+  ],
+  "source": "Resultados de Postman Desktop conservados localmente. Exportaciones originales privadas; no se publican tokens, entornos ni cuerpos de login.",
+  "case_groups": {
+    "preparation": [
+      "PM025",
+      "PM026",
+      "PM027",
+      "PM030"
+    ],
+    "main": "PM238-PM254",
+    "additional": "HU011-QA01-HU011-QA20"
+  }
+}
