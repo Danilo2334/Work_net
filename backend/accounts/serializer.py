@@ -36,6 +36,13 @@ class RegisterSerializer(serializers.ModelSerializer):
             "id"
         ]
 
+        # validate_email handles uniqueness without case sensitivity and
+        # returns the Spanish message instead of DRF's default validator.
+        extra_kwargs = {
+            "email": {"validators": []},
+            "role": {"required": False, "allow_blank": False},
+        }
+
     def validate_email(self, value):
 
         email = value.strip().lower()

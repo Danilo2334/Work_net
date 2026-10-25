@@ -1,10 +1,13 @@
 from django.conf import settings
 from django.core import signing
+from django.db import transaction
+from smtplib import SMTPException
 
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 from .email_verification import (
     EMAIL_VERIFICATION_SALT,
@@ -38,18 +41,20 @@ class RegisterView(APIView):
 
         if serializer.is_valid():
 
-            user = serializer.save()
-
-            send_verification_email(
-                user,
-                request
-            )
+            try:
+                with transaction.atomic():
+                    user = serializer.save()
+                    send_verification_email(user, request)
+            except (SMTPException, OSError):
+                return Response({"message": "No pudimos enviar el correo de verificación. Intenta registrarte de nuevo más tarde."}, status=503)
 
             return Response(
                 {
                     "message":
                         "Usuario registrado correctamente. "
                         "Revisa tu correo para verificar la cuenta.",
+
+                    "registration_token": signing.dumps({"user_id": user.pk}, salt="worknet-role-choice") if not user.role else None,
 
                     "user": {
                         "id": user.id,
@@ -194,7 +199,7 @@ class LoginView(APIView):
             effective_role = (
                 "admin"
                 if user.is_staff or user.is_superuser
-                else user.role
+                else user.role or "unassigned"
             )
 
             return Response(
@@ -220,6 +225,7 @@ class LoginView(APIView):
 
                         "email_verified":
                             user.email_verified,
+                        "company_state": self._company_state(user),
                     }
                 },
                 status=status.HTTP_200_OK
@@ -235,6 +241,13 @@ class LoginView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+
+    @staticmethod
+    def _company_state(user):
+        if user.role == "empresa":
+            from .company import company_state
+            return company_state(user)
+        return None
 
 
 class PasswordRecoveryRequestView(APIView):
@@ -274,9 +287,10 @@ class PasswordRecoveryRequestView(APIView):
             user
             and user.has_usable_password()
         ):
-            send_password_recovery_email(
-                user
-            )
+            try:
+                send_password_recovery_email(user)
+            except (SMTPException, OSError):
+                return Response({"message": "No pudimos enviar el enlace de recuperación. Inténtalo de nuevo más tarde."}, status=503)
 
         return Response(
             {
@@ -329,3 +343,37 @@ class PasswordRecoveryConfirmView(APIView):
             },
             status=status.HTTP_200_OK
         )
+
+
+class SelectRoleView(APIView):
+    """Limited signed registration ticket or authenticated unassigned owner only."""
+    permission_classes = []
+
+    @transaction.atomic
+    def post(self, request):
+        role = request.data.get("role")
+        if role not in ("candidato", "empresa"):
+            return Response({"message": "Selecciona Candidato o Empresa."}, status=400)
+        if request.user.is_authenticated:
+            owner = request.user.pk
+        else:
+            try:
+                owner = signing.loads(request.data.get("registration_token", ""), salt="worknet-role-choice", max_age=settings.EMAIL_VERIFICATION_TIMEOUT)["user_id"]
+            except (signing.BadSignature, TypeError, ValueError, KeyError):
+                return Response({"message": "La autorización de registro no es válida o venció. Verifica tu correo e inicia sesión para elegir tu rol."}, status=400)
+        user = User.objects.select_for_update().filter(pk=owner, is_active=True).first()
+        if not user:
+            return Response({"message": "Cuenta no encontrada."}, status=404)
+        if user.role or user.is_staff or user.is_superuser:
+            return Response({"message": "El rol de esta cuenta ya está definido."}, status=409)
+        user.role = role
+        user.save(update_fields=["role"])
+        return Response({"user": {"id": user.pk, "full_name": user.full_name, "email": user.email, "role": user.role, "email_verified": user.email_verified}})
+
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        request.auth.delete()
+        return Response({"message": "Sesión cerrada en el servidor."})

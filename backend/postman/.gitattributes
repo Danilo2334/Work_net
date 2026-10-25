@@ -1,0 +1,3 @@
+# La evidencia identifica el JSON ejecutado por SHA-256, también en Windows.
+*.json text eol=lf
+*.png binary
