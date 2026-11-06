@@ -160,8 +160,26 @@ Pop-Location
 
 El fallo de envío se provoca internamente mediante mock, separado de las peticiones reales de la colección; no acredita una incidencia SMTP real. La fase 12 consulta perfiles únicamente mediante una postulación a una oferta de la empresa autenticada y aprobada. La empresa ajena recibe 404; no se habilitan escrituras empresariales sobre perfiles. El proceso completo de gestión de postulantes pertenece a HU020.
 
-Las 212 peticiones originales tienen sus ejecuciones anteriores en Postman Desktop. El 24/10/2026 se acreditaron también los casos del perfil empresarial de HU008 (25 principales/75 comprobaciones y 15 adicionales/44; evidencia publicada en `d18bbbd`) y los de HU011 descritos arriba. Los 27 casos de la fase 14, de HU012, continúan pendientes de Postman Desktop; su ejecución previa con Newman se mantiene como apoyo. Estos resultados pertenecen a corridas y versiones identificadas, no a una nueva pasada completa de 281 peticiones.
+Las 212 peticiones originales tienen sus ejecuciones anteriores en Postman Desktop. El 24/10/2026 se acreditaron también los casos del perfil empresarial de HU008 (25 principales/75 comprobaciones y 15 adicionales/44; evidencia publicada en `d18bbbd`) y los de HU011 descritos arriba. Los 27 casos de la fase 14, de HU012, se ejecutaron en Desktop el 06/11/2026 con la preparación descrita arriba; Newman se conserva como resultado histórico independiente. Estos resultados pertenecen a corridas y versiones identificadas, no a una nueva pasada completa de 281 peticiones.
 
 Las fases 13 y 14 comprueban las opciones de CV disponibles, pero no una postulación con CV: ese recorrido depende de HU018. La selección del documento dentro de una postulación y su consulta empresarial deben probarse cuando exista ese flujo. No se da por cumplido ese criterio por recibir una lista de opciones.
 
 La colección usa JSON **v2.1**, importación normal y Newman fijado en `package-lock.json`; no es el formato Native Git v3. Referencias oficiales: [importar en Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/), [valores locales de entorno](https://learning.postman.com/docs/use/send-requests/variables/environment-variables/), [Newman como biblioteca](https://github.com/postmanlabs/newman#using-newman-as-a-library). Si cambias casos, edita `build_collection.py` y vuelve a generar colección y catálogo; conserva y vuelve a ejecutar la evidencia que corresponda.
+
+### Resultado Desktop de HU012, 06/11/2026
+
+Postman Desktop 12.35.4, corrida privada `run-20261106T051118-392cde12`,
+Django `http://127.0.0.1:8020/api`: una iteración de las 31 solicitudes
+(4 de preparación y 27 originales de fase 14), 87 aserciones aprobadas,
+0 fallos, 0 errores y 0 omitidas. Duración mostrada: 9 s 20 ms;
+respuesta media: 131 ms. Se conservaron las variables y el directorio
+de trabajo fue `Work_net_backend/backend/postman`.
+
+[Captura del Runner](../docs/evidencias/hu012/desktop-resumen-20261106.png):
+muestra entorno, fuente Runner, una iteración, totales y solicitudes
+contra 8020 sin valores de autenticación. La exportación JSON original
+no estuvo disponible: Postman exigió un plan de pago; no se cambió el plan.
+La captura original permanece también en la carpeta privada de la corrida.
+Esta ejecución no acredita recorridos Flutter pendientes, revisión humana
+ni selección del CV durante postulación (HU018). No se repitió la suite
+completa ni se alteraron QA 8015/55008, SMTP 8017/55017 o la demo 8019/55019.
