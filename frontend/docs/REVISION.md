@@ -62,7 +62,7 @@ previa. Una consulta posterior de la SQLite confirmó el resumen modificado y la
 plantilla guardada. Francisco confirmó después que guardó, descargó y abrió el
 archivo: contiene la frase editada y la plantilla elegida. La lectura local del
 PDF descargado confirmó un documento válido de una página y el resumen guardado.
-El resto de aceptación, las capturas explicadas y Desktop siguen pendientes. La revisión del código frontend por
+El resto de aceptación visual y sus capturas siguen pendientes. Desktop HU012 ya pasó 31 solicitudes/87 aserciones el 06/11/2026; evidencia en backend 3959d08. La revisión del código frontend por
 Danilo y del backend por Francisco se registran por separado de ese recorrido.
 HU008 #62 conserva el seguimiento de la reutilización efectiva del perfil.
 Seleccionar el CV al postular depende de HU018; HU011/HU012 permanecen abiertas.
@@ -75,7 +75,7 @@ y colecciones, pero mostró «Editor failed to load»; no se ejecutaron coleccio
 durante esa comprobación. Francisco no completó Retry. En la preparación
 automatizada posterior, el agente pudo controlar la interfaz principal e importar
 la colección pública HU012; esto no acredita solicitudes ejecutadas. La importación
-del entorno privado y la ejecución Desktop siguen pendientes.
+del entorno privado se completó y la ejecución Desktop HU012 pasó 87 aserciones. Chrome permanece bloqueado por verificación de URL; no se acredita el resto del recorrido visual.
 
 ## Abrir la demostración anterior de acceso, perfiles y empresas
 
@@ -156,3 +156,28 @@ Orden sugerido para conservar cuentas útiles:
 Después de probar la app o los servicios en Postman, cada integrante actualiza el comentario existente de la tarea con una explicación breve del resultado, las capturas necesarias y cualquier fallo encontrado.
 
 Para HU004, Danilo revisa #43/#46 y Francisco #44/#45. En #46 hay un comentario que identifica la integración de Francisco y el QA de Danilo. Los cierres se decidirán después de revisar los criterios; el alcance del Sprint sigue pendiente de confirmación en el Project.
+
+## Revisar HU013: publicar una oferta
+
+Con el backend HU013 y su migración, preparar una base nueva en 8021
+según la guía de Postman. Configurar Flutter con
+`--dart-define=API_BASE_URL=http://127.0.0.1:8021/api/`. Entrar como
+empresa aprobada del entorno privado; Dashboard de empresa → Publicar oferta.
+Completar título, descripción, requisitos, salario, ubicación, categoría
+y contrato. Catálogos se consultan a Django, no se duplican en Flutter.
+Campos vacíos/salario inválido impiden enviar. Publicar muestra confirmación
+e identificador y bloquea un segundo envío desde esa pantalla. Volver
+al dashboard consulta las métricas actualizadas.
+
+Ante un fallo de red, conservar los campos y permitir reintento; un 401
+expira la sesión. Empresa sin aprobación no publica aunque llegue por URL
+directa: el backend valida permisos en cada solicitud. No se implementa
+gestión/edición HU014 en este bloque.
+
+06/11/2026: 110 pruebas Flutter aprobadas (5 nuevas), análisis limpio.
+`dart run tool/hu013_api_smoke.dart RUTA_ENTORNO_PRIVADO` hizo 7
+comprobaciones HTTP con el adaptador real contra Django 8021; agrega una
+oferta ficticia por ejecución y verifica denegaciones sin escritura.
+No es navegador real ni Postman. Desktop HU013 pasó por separado
+10 solicitudes/21 aserciones. Aceptación visual real, capturas de la
+interfaz y revisiones humanas continúan pendientes.

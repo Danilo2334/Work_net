@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/composition.dart';
 import 'package:worknet/core/api/worknet_api.dart';
@@ -75,6 +76,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       '/account',
       '/company',
       '/company-dashboard',
+      '/company/offers/new',
       '/admin-dashboard',
       '/company-reviews',
       '/choose-role',
@@ -105,7 +107,11 @@ class _WorkNetAppState extends State<WorkNetApp> {
               role != 'candidato') {
             return _home();
           }
-          if (['/company', '/company-dashboard'].contains(path) &&
+          if ([
+                '/company',
+                '/company-dashboard',
+                '/company/offers/new',
+              ].contains(path) &&
               role != 'empresa') {
             return _home();
           }
@@ -117,6 +123,17 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/company/offers/new',
+          builder: (_, _) => _protected(
+            'empresa',
+            () => PublishOfferPage(
+              key: ValueKey(_session.session?.token),
+              session: _session,
+              repository: _dependencies.offers,
+            ),
+          ),
+        ),
         GoRoute(
           path: '/curriculum/create',
           onExit: (_, _) =>
