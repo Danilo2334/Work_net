@@ -23,7 +23,11 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 - HU009/HU010: información empresarial, solicitud, revisión administrativa, rechazo con motivo, corrección, reenvío y aprobación; avisos dentro de WorkNet.
 - HU006/HU007: resúmenes de empresa aprobada y administrador, con datos reales y permisos por rol.
 
-La asignación real al Sprint 2 sigue sin comprobarse: el token de Danilo carece de `read:project`. Se preservan las asignaciones existentes. Los módulos futuros y la revisión humana siguen pendientes; el PR #146 permanece en borrador.
+El Project WORK_NET se consultó con Francisco y `read:project`: Sprint 1 contiene
+HU001–HU004 y #29–#46; Sprint 2, HU005–HU010 y #47–#70; Sprint 3, HU011–HU017 y
+#71–#79. Las tareas #80–#99 aún no tienen Sprint asignado. Se conservaron esas
+asignaciones. Los módulos futuros y la revisión humana siguen pendientes;
+el PR #146 permanece en borrador.
 
 ## Ejecutar en Windows / PowerShell
 

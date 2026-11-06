@@ -46,6 +46,7 @@ class WorkNetApi {
       response = await (switch (method ?? (data == null ? 'GET' : 'POST')) {
         'GET' => _client.get(uri, headers: headers),
         'POST' => _client.post(uri, headers: headers, body: body),
+        'PUT' => _client.put(uri, headers: headers, body: body),
         'PATCH' => _client.patch(uri, headers: headers, body: body),
         'DELETE' => _client.delete(uri, headers: headers, body: body),
         _ => throw ArgumentError.value(method, 'method'),
@@ -109,18 +110,27 @@ class WorkNetApi {
     return _decode(response, 'curriculum/uploaded/');
   }
 
-  Future<Uint8List> curriculumPdf({required String token}) async {
+  Future<Uint8List> curriculumPdf({
+    required String token,
+    String path = 'curriculum/uploaded/',
+    Map<String, dynamic>? data,
+  }) async {
+    final headers = {
+      'Authorization': 'Token $token',
+      'Accept': 'application/pdf, application/json',
+      if (data != null) 'Content-Type': 'application/json; charset=UTF-8',
+    };
     final response = await _transport(
-      () => _client.get(
-        _base.resolve('curriculum/uploaded/'),
-        headers: {
-          'Authorization': 'Token $token',
-          'Accept': 'application/pdf, application/json',
-        },
-      ),
+      () => data == null
+          ? _client.get(_base.resolve(path), headers: headers)
+          : _client.post(
+              _base.resolve(path),
+              headers: headers,
+              body: jsonEncode(data),
+            ),
     );
     if (response.statusCode != 200) {
-      _decode(response, 'curriculum/uploaded/');
+      _decode(response, path);
     }
     if (response.headers['content-type']?.split(';').first !=
             'application/pdf' ||

@@ -11,6 +11,7 @@ import 'package:worknet/features/access/presentation/choose_role_page.dart';
 import 'package:worknet/features/account/presentation/account_page.dart';
 import 'package:worknet/features/profile/presentation/profile_page.dart';
 import 'package:worknet/features/curriculum/presentation/curriculum_page.dart';
+import 'package:worknet/features/curriculum/presentation/generated_curriculum_page.dart';
 import 'package:worknet/features/dashboard/presentation/candidate_dashboard_page.dart';
 import 'package:worknet/features/registration/data/registration_api.dart';
 import 'package:worknet/features/registration/presentation/registration_page.dart';
@@ -44,6 +45,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       widget.registrationApi ?? RegistrationApi();
   SessionController get _session => _dependencies.session;
   late final GoRouter _router;
+  final _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
   String _home() => switch (_session.session?.role) {
     'candidato' => '/dashboard',
     'empresa' =>
@@ -69,6 +71,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       '/dashboard',
       '/profile',
       '/curriculum',
+      '/curriculum/create',
       '/account',
       '/company',
       '/company-dashboard',
@@ -93,7 +96,12 @@ class _WorkNetAppState extends State<WorkNetApp> {
             return '/choose-role';
           }
           if (path == '/choose-role' && role != 'unassigned') return _home();
-          if (['/dashboard', '/profile', '/curriculum'].contains(path) &&
+          if ([
+                '/dashboard',
+                '/profile',
+                '/curriculum',
+                '/curriculum/create',
+              ].contains(path) &&
               role != 'candidato') {
             return _home();
           }
@@ -109,6 +117,20 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/curriculum/create',
+          onExit: (_, _) =>
+              _generatedKey.currentState?.confirmLeave() ?? Future.value(true),
+          builder: (_, _) => _protected(
+            'candidato',
+            () => GeneratedCurriculumPage(
+              key: _generatedKey,
+              session: _session,
+              repository: _dependencies.generatedCurriculum,
+              download: _dependencies.curriculumDownload,
+            ),
+          ),
+        ),
         GoRoute(
           path: '/curriculum',
           builder: (_, _) => _protected(

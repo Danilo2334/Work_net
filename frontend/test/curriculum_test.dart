@@ -281,10 +281,12 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text('Todavía no has subido un currículum'), findsOneWidget);
+    await tester.ensureVisible(find.byKey(const Key('choose_curriculum')));
     await tester.tap(find.byKey(const Key('choose_curriculum')));
     await tester.pumpAndSettle();
     expect(find.text('nuevo.pdf'), findsOneWidget);
     repo.failure = const ApiFailure('Archivo corrupto', status: 400);
+    await tester.ensureVisible(find.byKey(const Key('choose_curriculum')));
     await tester.tap(find.byKey(const Key('choose_curriculum')));
     await tester.pumpAndSettle();
     expect(find.text('nuevo.pdf'), findsOneWidget);

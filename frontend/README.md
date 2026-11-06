@@ -5,9 +5,10 @@ están conectados a Django. La empresa completa su información, envía la solic
 consulta su estado y puede corregir un rechazo. El administrador revisa solicitudes
 y aprueba o rechaza con motivo. Los dashboards usan métricas reales del backend.
 
-La revisión humana sigue pendiente y el PR #146 permanece en borrador. La
-pertenencia real de las tareas al Sprint 2 no se ha confirmado por falta del
-alcance `read:project` en GitHub CLI. El nombre de una rama no acredita esa asignación.
+La revisión humana sigue pendiente y el PR #146 permanece en borrador.
+El Project WORK_NET se consultó con Francisco y `read:project`: HU005–HU010
+y #47–#70 están en Sprint 2; HU011–HU017 y #71–#79, en Sprint 3.
+Las tareas #80–#99 todavía no tienen Sprint asignado, aunque sus historias sí.
 
 ## Recorrido actual
 
@@ -44,7 +45,7 @@ sesión. La recuperación invalida los tokens anteriores y exige nuevo login.
 ## Arquitectura
 
 Cada funcionalidad usa `features/<funcionalidad>/data`, `domain` y `presentation`:
-`registration`, `access`, `account`, `dashboard`, `profile` y `company`.
+`registration`, `access`, `account`, `dashboard`, `profile`, `company` y `curriculum`.
 
 - **Domain** define entidades, contratos de repositorio y reglas independientes
   de Flutter/HTTP. `SessionLifecycle` establece restauración, persistencia, salida
@@ -66,7 +67,10 @@ Cada funcionalidad usa `features/<funcionalidad>/data`, `domain` y `presentation
 
 No se añadieron paquetes para esta reorganización ni casos de uso que solo
 dupliquen cada método CRUD. Los registros profesionales conservan sus campos
-estructurados para reutilizarlos en un futuro CV; todavía no se genera ese CV.
+estructurados para reutilizarlos en CV. El editor de HU012 usa la precarga del
+backend, conserva una copia independiente y ofrece tres plantillas, vista previa
+y descarga del PDF guardado. La aceptación visual y de Postman Desktop de este
+nuevo recorrido sigue pendiente; las pruebas automáticas no la sustituyen.
 
 `WorkNetColors`, `ThemeData` y `ColorScheme` siguen en
 `lib/core/theme/worknet_theme.dart`. Los colores compartidos, incluido el texto
@@ -83,6 +87,8 @@ consumen el tema y los componentes comunes.
 | /forgot-password, /reset-password | Solicitar correo y confirmar contraseña |
 | /password-updated | Resultado sin parámetros privados en la URL |
 | /dashboard, /profile | Resumen y perfil del candidato |
+| /curriculum | PDF subido y acceso al creador |
+| /curriculum/create | Edición del CV generado, plantillas, vista previa y descarga |
 | /account | Configuración de cuenta autenticada |
 | /company | Información, estado, corrección y complementos de la empresa |
 | /company-dashboard | Resumen de empresa aprobada |
@@ -119,8 +125,9 @@ visual corresponde a escritorio y **móvil web**, no ejecución nativa.
 
 Los resultados y las capturas de Flutter y Postman se conservan en el comentario único de cada tarea en GitHub. Las instrucciones de ejecución anteriores permiten iniciar la aplicación; las cuentas y datos de QA se describen en la guía de revisión.
 
-Siguen pendientes consulta de perfil por empresa
-autorizada dentro de selección, módulos de CV/búsqueda/mensajes/historial y
+La consulta de perfil por empresa autorizada ya tiene backend y evidencia
+en `feature/backend-sprint-3`; falta su recorrido empresarial en Flutter.
+Siguen pendientes búsqueda/mensajes/historial y
 detalle/postulación, gestión empresarial de ofertas/postulantes/estadísticas y
 gestión de administradores/permisos. Los accesos inexistentes se identifican
 claramente, sin aparentar que sus módulos están implementados. Falta revisión

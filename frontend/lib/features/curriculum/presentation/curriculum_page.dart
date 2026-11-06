@@ -65,6 +65,26 @@ class _CurriculumPageState extends State<CurriculumPage> {
           ),
         ],
         children: [
+          WorkspacePanel(
+            title: 'Crea tu currículum',
+            children: [
+              const Text(
+                'Usa la información de tu perfil, elige una plantilla y edita tu CV.',
+              ),
+              const SizedBox(height: 12),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: FilledButton.icon(
+                  key: const Key('create_curriculum'),
+                  onPressed: c.busy
+                      ? null
+                      : () => context.go('/curriculum/create'),
+                  icon: const Icon(Icons.edit_document),
+                  label: const Text('Crear mi CV'),
+                ),
+              ),
+            ],
+          ),
           if (c.notice != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),

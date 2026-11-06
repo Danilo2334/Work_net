@@ -26,6 +26,40 @@ El 24/10/2026 pasaron 91 pruebas Flutter (14 nuevas), análisis y compilación w
 
 Los 5 MiB, 50 páginas y las restricciones de documentos cifrados o interactivos son políticas actuales del backend. El editor de plantillas corresponde a HU012 y seleccionar el CV en una postulación depende de HU018.
 
+## Revisar HU012: crear y editar un CV
+
+La interfaz usa los endpoints existentes de `feature/backend-sprint-3`; el backend
+que todavía acompaña a la rama `frontend` no contiene esas APIs. Conservar los
+servicios y las bases de las demostraciones anteriores. Para una corrida nueva,
+usar `qa.py prepare --port 8019` desde un checkout con ese backend y
+`qa.py serve --run RUN_NUEVO`; desde Flutter ejecutar
+`flutter run -d chrome --web-port 55019 --dart-define=API_BASE_URL=http://127.0.0.1:8019/api/`.
+Consultar `qa_password` solamente en el entorno privado de esa corrida.
+
+1. Entrar como `candidate.postman@worknet.test`, abrir Mi currículum → Crear mi CV.
+   Contrastar nombre, correo, resumen y secciones precargadas con el perfil de
+   esa misma cuenta. La consulta inicial no guarda un CV.
+2. Editar información personal, educación, experiencia, habilidades e idiomas;
+   agregar certificación y otra sección. Cambiar entre Clásica, Moderna y
+   Minimalista: los datos deben conservarse. Abrir Vista previa: muestra el PDF
+   del borrador sin guardarlo.
+3. Guardar, volver a consultar y regresar al editor. Descargar PDF guardado;
+   comprobar su texto. La descarga requiere guardar la última edición y no debe
+   confundirse con la vista previa. La edición del CV no modifica el perfil ni
+   la cuenta de origen.
+4. Probar campos obligatorios, fechas invertidas y un fallo de red. Conservar el
+   borrador y permitir reintento. Salir con cambios pide confirmación. Expirar la
+   sesión o cambiar de cuenta debe retirar datos y PDF privados.
+5. Contrastar el recorrido en escritorio y móvil web. Ejecutar los 27 casos de
+   fase 14 en Postman Desktop con su preparación completa de la guía backend;
+   las pruebas automáticas de Flutter no sustituyen esa ejecución.
+
+Resultados automáticos nuevos y límites se registran en #75/#78. La revisión
+humana, capturas del recorrido real y aceptación Desktop permanecen pendientes
+hasta realizarlas. HU008 #62 depende de contrastar la reutilización efectiva del
+perfil en ese recorrido. Seleccionar el CV al postular depende de HU018, por lo
+que HU011/HU012 no se cierran por tener el editor o un PDF.
+
 ## Abrir la demostración anterior de acceso, perfiles y empresas
 
 Desde la raíz, con las dependencias Django instaladas:
@@ -73,12 +107,12 @@ La configuración privada quedó completada. En la SQLite SMTP separada (Django 
 
 ## Pendientes que deben decirse claramente
 
-- Falta acceso `read:project` para confirmar qué issues pertenecen realmente al Sprint 2. La rama no define ese alcance; no se modificaron Sprint ni fechas.
+- Project consultado: HU005–HU010 y #47–#70 en Sprint 2; HU011–HU017 y #71–#79 en Sprint 3. #80–#99 sin Sprint asignado. No se cambiaron esas asignaciones.
 - Registro y recuperación mediante correo real comprobados con los enlaces recibidos. Falta la revisión del código por otro integrante.
-- Dashboard candidato: el PDF subido está disponible mediante el backend de HU011 indicado arriba. El editor de CV de HU012, búsqueda, mensajes, historial y detalle/postulación continúan pendientes en Flutter.
+- Dashboard candidato: PDF subido y editor de HU012 disponibles con el backend indicado. La nueva aceptación visual/Desktop del editor sigue pendiente; búsqueda, mensajes, historial y detalle/postulación continúan pendientes.
 - Dashboard empresa: crear/gestionar ofertas, gestionar postulantes, mensajes y estadísticas siguen pendientes. Las métricas y postulaciones recientes sí usan datos reales.
 - Administración: gestión de administradores y permisos pendiente. Revisión de empresas, métricas y eventos de validación sí están implementados.
-- Perfil candidato: falta consulta positiva por empresas con autorización dentro de selección. Hoy se conserva el acceso restringido; un HTTP 403 no cumple ese criterio positivo.
+- Perfil candidato: la consulta empresarial positiva y sus restricciones ya tienen API y evidencia en #60/#62; falta revisión cruzada y el recorrido empresarial Flutter. La reutilización efectiva para CV se contrasta con HU012.
 - Revisión por otro integrante y pruebas en Android/iOS pendientes.
 
 [Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues). [Contratos empresariales](../../backend/accounts/COMPANY_API.md). [PR #146](https://github.com/Danilo2334/Work_net/pull/146).
