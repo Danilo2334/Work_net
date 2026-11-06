@@ -54,11 +54,23 @@ Consultar `qa_password` solamente en el entorno privado de esa corrida.
    fase 14 en Postman Desktop con su preparación completa de la guía backend;
    las pruebas automáticas de Flutter no sustituyen esa ejecución.
 
-Resultados automáticos nuevos y límites se registran en #75/#78. La revisión
-humana, capturas del recorrido real y aceptación Desktop permanecen pendientes
-hasta realizarlas. HU008 #62 depende de contrastar la reutilización efectiva del
-perfil en ese recorrido. Seleccionar el CV al postular depende de HU018, por lo
-que HU011/HU012 no se cierran por tener el editor o un PDF.
+Resultados automáticos nuevos y límites se registran en #75/#78.
+El 06/11/2026 Francisco confirmó manualmente en la corrida aislada de integración:
+login, datos ficticios del CV, edición y guardado del perfil profesional, cambio
+de plantilla sin pérdida de datos y frase editada visible en el PDF de vista
+previa. Una consulta posterior de la SQLite confirmó el resumen modificado y la
+plantilla guardada. La descarga del archivo, el resto de aceptación, las capturas
+explicadas y Desktop siguen pendientes. La revisión del código frontend por
+Danilo y del backend por Francisco se registran por separado de ese recorrido.
+HU008 #62 conserva el seguimiento de la reutilización efectiva del perfil.
+Seleccionar el CV al postular depende de HU018; HU011/HU012 permanecen abiertas.
+
+En la preparación original 8015/55008, corrida
+`run-20261106T031216-109fd1a7`, Francisco confirmó manualmente login y dashboard:
+83 % de completitud, dos postulaciones, un guardado y dos notificaciones. Este
+control mínimo no repite la batería histórica. Postman Desktop abrió su workspace
+y colecciones, pero mostró «Editor failed to load»; no se ejecutaron colecciones
+durante esa comprobación. Retry y la ejecución Desktop siguen pendientes.
 
 ## Abrir la demostración anterior de acceso, perfiles y empresas
 
