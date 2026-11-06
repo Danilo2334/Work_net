@@ -59,8 +59,10 @@ El 06/11/2026 Francisco confirmó manualmente en la corrida aislada de integraci
 login, datos ficticios del CV, edición y guardado del perfil profesional, cambio
 de plantilla sin pérdida de datos y frase editada visible en el PDF de vista
 previa. Una consulta posterior de la SQLite confirmó el resumen modificado y la
-plantilla guardada. La descarga del archivo, el resto de aceptación, las capturas
-explicadas y Desktop siguen pendientes. La revisión del código frontend por
+plantilla guardada. Francisco confirmó después que guardó, descargó y abrió el
+archivo: contiene la frase editada y la plantilla elegida. La lectura local del
+PDF descargado confirmó un documento válido de una página y el resumen guardado.
+El resto de aceptación, las capturas explicadas y Desktop siguen pendientes. La revisión del código frontend por
 Danilo y del backend por Francisco se registran por separado de ese recorrido.
 HU008 #62 conserva el seguimiento de la reutilización efectiva del perfil.
 Seleccionar el CV al postular depende de HU018; HU011/HU012 permanecen abiertas.
@@ -70,7 +72,10 @@ En la preparación original 8015/55008, corrida
 83 % de completitud, dos postulaciones, un guardado y dos notificaciones. Este
 control mínimo no repite la batería histórica. Postman Desktop abrió su workspace
 y colecciones, pero mostró «Editor failed to load»; no se ejecutaron colecciones
-durante esa comprobación. Retry y la ejecución Desktop siguen pendientes.
+durante esa comprobación. Francisco no completó Retry. En la preparación
+automatizada posterior, el agente pudo controlar la interfaz principal e importar
+la colección pública HU012; esto no acredita solicitudes ejecutadas. La importación
+del entorno privado y la ejecución Desktop siguen pendientes.
 
 ## Abrir la demostración anterior de acceso, perfiles y empresas
 
