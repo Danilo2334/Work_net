@@ -2,8 +2,9 @@
 
 Implementación de las dependencias #64/#68, resúmenes #52/#56 y ajustes de
 #30–#33/#35/#36/#38. Publicación backend: Danilo2334. Revisión humana pendiente.
-La pertenencia a Sprint 2 no se ha confirmado: GitHub CLI carece de `read:project`.
-Se implementa el alcance autorizado en las issues, sin reasignarlas ni cerrarlas.
+El Project fue consultado con Francisco y `read:project`: HU005–HU010 y
+#47–#70 pertenecen a Sprint 2. La lectura está autorizada; escribir estados
+requiere el alcance OAuth `project`. Se conservan asignaciones y fechas.
 
 ## Registro y correo
 

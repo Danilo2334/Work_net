@@ -2,8 +2,8 @@
 
 Responsable backend: Danilo2334, tarea #60. Usa el perfil existente sin borrar
 sus listas JSON anteriores. Los registros nuevos son objetos con identificador
-estable y campos estructurados, reutilizables por un futuro generador de CV.
-La generación de CV no forma parte de esta API.
+estable y campos estructurados, reutilizados por el generador de HU012.
+La generación se ofrece en la API de currículums; no modifica este perfil.
 
 Las rutas propias requieren `Authorization: Token …`, candidato verificado, sin
 privilegios staff/superusuario. Consultan únicamente al propietario del token.
@@ -102,3 +102,19 @@ Las pruebas de `candidate_dashboard.test_profile` y
 permisos de selección, aislamiento, lectura sin escrituras y revocación por
 eliminación de la postulación. La fase 12 de la colección Postman repite los
 recorridos HTTP disponibles; la guía distingue sus ejecuciones de apoyo y Desktop.
+
+## Contraste pendiente por otro integrante
+
+Para la revisión de #60, contrastar `ApprovedCompanyPermission` y el filtro por
+`offer__company` en `selection.py`: correo verificado, empresa aprobada, propiedad
+de la oferta y rechazo de otros roles. Revisar también el filtrado de campos
+históricos, la ausencia de escrituras en GET y la revocación al retirar la
+postulación. La fotografía reutiliza la misma consulta autorizada. Las pruebas
+publicadas y el contraste automático del agente son material para esa revisión;
+no constituyen la revisión humana de Francisco.
+
+En #62, el adaptador Dart contra Django real comprobó precarga y separación entre
+perfil y CV; Francisco confirmó manualmente edición, guardado, cambio de plantilla
+y texto del PDF de vista previa en la interfaz nueva. La descarga y aceptación
+restantes de HU012, Desktop y revisiones aplicables siguen identificadas en sus
+comentarios únicos. No se amplía con ello la gestión de postulantes de HU020.
