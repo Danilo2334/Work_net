@@ -183,3 +183,27 @@ La captura original permanece también en la carpeta privada de la corrida.
 Esta ejecución no acredita recorridos Flutter pendientes, revisión humana
 ni selección del CV durante postulación (HU018). No se repitió la suite
 completa ni se alteraron QA 8015/55008, SMTP 8017/55017 o la demo 8019/55019.
+
+## HU013: publicar ofertas en una base aislada
+
+Preparar una corrida nueva con `qa.py prepare --port 8021` y servirla con
+`qa.py serve --run RUN_NUEVO`. Importar `WorkNet.HU013.postman_collection.json`
+y el entorno privado de esa corrida. Seleccionar dicho entorno; ejecutar sus
+10 solicitudes una sola vez. Publica una oferta ficticia y no elimina datos.
+El guard previo admite exclusivamente localhost 8021 y una corrida run-*;
+no utilizar las bases de demostración o SMTP. La empresa aprobada publica;
+candidato y empresa pendiente reciben 403; campos inválidos y propietario/estado
+inyectados reciben 400. El catálogo proviene de Django.
+
+El 06/11/2026 Postman Desktop 12.35.4 ejecutó 10 solicitudes/21 aserciones,
+todas aprobadas, 0 errores y 0 omitidas, corrida `run-20261106T070043-c835b517`.
+Duración: 4 s 285 ms; media 279 ms. [Captura del Runner](../docs/evidencias/hu013/desktop-resumen-20261106.png):
+muestra entorno, totales, persistencia y validación, sin secretos. La primera
+pasada tuvo 15 aserciones aprobadas y 6 fallidas: una categoría de la colección
+quedó `Tecnolog?a` al generarse por consola. Se corrigió la serialización JSON
+con escapes Unicode, sin cambiar producto. La pasada corregida es la acreditada.
+La exportación original JSON del Runner exige un plan de pago; no se cambió el plan.
+
+La suite Django nueva pasó 141 pruebas (8 nuevas HU013). Esto no acredita
+la interfaz en navegador ni revisión humana. La colección completa anterior
+permanece sin cambios.
