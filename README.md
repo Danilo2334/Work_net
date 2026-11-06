@@ -26,7 +26,8 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 - HU011: carga, consulta, reemplazo y retirada de un CV PDF privado.
 - HU012: precarga del perfil, guardado y edición del CV, tres plantillas y generación de PDF.
 
-Las dos últimas APIs están preparadas para integrar las pantallas Flutter del Sprint 3.
+Las dos últimas APIs se integran con las pantallas Flutter de la rama `frontend`.
+El nuevo editor de HU012 conserva pendientes su aceptación visual/Desktop y revisión humana.
 Los dashboards conservan accesos pendientes a sus módulos futuros. La selección
 del CV dentro de una postulación depende de HU018; no queda implementada por
 tener un documento guardado o una lista de opciones.

@@ -118,6 +118,33 @@ El envío es **PUT `/api/curriculum/uploaded/`**, multipart con un único campo 
 
 El requisito original exige PDF válido y un tamaño máximo, pero no fija su número. **5 MiB**, **50 páginas** y el rechazo de documentos cifrados, formularios, acciones y adjuntos son políticas de la implementación validada. A acepta 50 páginas y rechaza 51; no transforma esas políticas en nuevos criterios originales. La selección del CV durante una postulación sigue dependiendo de HU018.
 
+## Repetir únicamente HU012: CV generado
+
+Para evitar repetir 01–13, usar `WorkNet.HU012.postman_collection.json`. Se deriva
+con `python backend/postman/build_hu012_collection.py` y conserva sin cambios los
+27 casos PM255–PM281 de la colección completa. El generador no ejecuta peticiones.
+
+1. Crear otra base con `qa.py prepare --port 8020` y servir el `run-...` explícito
+   con `qa.py serve --run RUN_DESKTOP`. No usar la base de la revisión Flutter:
+   los casos requieren comenzar sin CV y terminan retirando ambos documentos.
+2. Importar en Postman Desktop la colección específica y el entorno privado de
+   ese run. Directorio de trabajo: la ruta absoluta de `backend/postman`.
+3. Ejecutar **00**, una iteración: dos login, nombre esperado por los casos y
+   carga del PDF ficticio. Son **4 peticiones/11 comprobaciones previstas**.
+4. Ejecutar **14**, conservando las variables de 00: **27 peticiones/76
+   comprobaciones previstas**. Revisar el Runner y conservar la exportación
+   original solo en `.local/`; publicar únicamente resumen y capturas sin tokens.
+5. Contrastar la precarga del perfil, las tres plantillas, la independencia de
+   la cuenta y perfil, PDF real, permisos, errores que conservan datos y
+   coexistencia con PDF subido. Eliminar el generado debe conservar el subido;
+   los dos últimos casos de retirada conservan sus IDs originales de HU011.
+
+Estos números describen los scripts; no son una ejecución Desktop nueva.
+HU018 sigue pendiente para seleccionar el CV durante una postulación. La nueva
+interfaz del editor se revisa con la guía de `frontend/docs/REVISION.md` en su
+rama correspondiente. La evidencia histórica de HU008/HU011 no se reemplaza ni
+se presenta como una pasada de HU012.
+
 ## Casos internos y límites
 
 La colección comprueba enlaces inválidos y recuperación reutilizada. La verificación de correo es idempotente: repetir su enlace devuelve 200, conforme al contrato actual. Forzar el reloj para crear firmas vencidas y simular fallos SMTP son **pruebas internas de Django**, no endpoints públicos de QA.
