@@ -1,7 +1,8 @@
 """Perfil profesional HU008 y actividad del resumen HU005."""
 
 from django.conf import settings
-from django.db import models
+from django.core.exceptions import ValidationError
+from django.db import models, transaction
 from django.db.models import Q
 from django.utils import timezone
 
@@ -40,16 +41,54 @@ class JobOffer(models.Model):
 
 
 def active_offers(queryset, *, at=None):
-    """Definición compartida por resumen empresarial y edición HU014."""
+    """Oferta publicada y no vencida: consultas activas y nuevas postulaciones."""
     return queryset.filter(status=JobOffer.Status.PUBLISHED).filter(
         Q(expires_at__isnull=True) | Q(expires_at__gt=at or timezone.now())
     )
+
+
+def lock_accepting_offers(offer_ids, using):
+    """Comparte bloqueo de oferta con cierre/archivado, sin crear una API HU018."""
+    ids = set(offer_ids)
+    locked = list(JobOffer.objects.using(using).select_for_update().filter(pk__in=ids).order_by("pk"))
+    accepting = set(active_offers(JobOffer.objects.using(using).filter(pk__in=[o.pk for o in locked])).values_list("pk", flat=True))
+    if accepting != ids:
+        raise ValidationError("La oferta no está activa y no recibe nuevas postulaciones.")
+
+
+class ApplicationQuerySet(models.QuerySet):
+    def bulk_create(self, objs, batch_size=None, ignore_conflicts=False,
+                    update_conflicts=False, update_fields=None, unique_fields=None):
+        if update_conflicts:
+            raise ValidationError("No se pueden sobrescribir postulaciones existentes mediante inserción masiva.")
+        objs = list(objs)
+        with transaction.atomic(using=self.db):
+            lock_accepting_offers([o.offer_id for o in objs], self.db)
+            return super().bulk_create(objs, batch_size=batch_size, ignore_conflicts=ignore_conflicts,
+                                       update_conflicts=False, update_fields=update_fields, unique_fields=unique_fields)
+
+    def update(self, **kwargs):
+        if {"offer", "offer_id", "candidate", "candidate_id"} & kwargs.keys():
+            raise ValidationError("No se pueden reasignar las relaciones de una postulación.")
+        return super().update(**kwargs)
 
 
 class Application(models.Model):
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    objects = ApplicationQuerySet.as_manager()
+
+    def save(self, *args, **kwargs):
+        using = kwargs.get("using") or self._state.db or "default"
+        with transaction.atomic(using=using):
+            if self._state.adding:
+                lock_accepting_offers([self.offer_id], using)
+            else:
+                original = type(self).objects.using(using).filter(pk=self.pk).values("offer_id", "candidate_id").first()
+                if original is None or original != {"offer_id": self.offer_id, "candidate_id": self.candidate_id}:
+                    raise ValidationError("No se pueden reasignar las relaciones de una postulación.")
+            return super().save(*args, **kwargs)
 
     class Meta:
         constraints = [models.UniqueConstraint(
