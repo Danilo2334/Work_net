@@ -36,12 +36,74 @@ En la entrega integrada ambos componentes se toman del HEAD confirmado:
 python frontend/tool/browser_qa/run.py --suite hu014
 ```
 
-**Pruebas iniciales.** 33 pruebas Django pertinentes, 120 Flutter y 10 guards
-aprobados; análisis sin incidencias y migraciones sin cambios. Las pruebas de
-widget/HTTP simulado no sustituyen el navegador. La corrida real, compilación,
-capturas y revisión de los PR se completan antes de cerrar #84–#87 y la historia.
-Los resultados y enlaces de esa corrida se incorporarán a este mismo apartado.
-HU011/HU012/#79 mantienen pendiente seleccionar CV al postular por HU018.
+**Resultados y pruebas.** Fuente API `344606382c98274edb701627108ed4700430c236`
+y Flutter/suite `6484120a49e58a269f09eb96abeafad1c8babfbd`. Los cambios siguientes
+solo documentan esta ejecución. Pasaron 150 pruebas Django, 120 Flutter y 10
+guards, sintaxis Node, análisis y compilación web JavaScript release. No hay
+migraciones nuevas ni pendientes; la nueva base QA se migró antes de los casos.
+La suite aprobó 16 casos (login más 15 HU014) y produjo 21 capturas originales.
+Chromium 158.0.8127.18 / Playwright 1.65.0; escritorio 1440×1000 y móvil web
+390×844 con ratón/teclado, sin dispositivo físico. No se ejecutaron binarios nativos.
+
+Identidad, empresa, fechas, estado y relaciones de la oferta conservados;
+otras ofertas intactas y aprobación/revisiones empresariales sin cambios.
+El perfil/cuenta de origen también se conservaron. Las filas ajenas y los
+estados no editables solo se prepararon como fixtures; no se creó ninguna
+acción de cierre/archivado. Guardado y edición se ejecutaron mediante UI.
+Los abortos de red y 400/503 están identificados como inyectados; los 200,
+401, 403, 404 y 409 proceden del Django QA real. Ningún error probado guardó
+parcialmente el borrador. El servidor y navegador propios se cerraron; un
+intento de reiniciar la corrida consumida fue rechazado sin cambiar su SQLite.
+Contraseñas, sesiones, manifest, bases y entornos permanecen privados.
+
+[Resultados, respuestas sanitizadas y hashes de todas las capturas](evidencias/hu014-20261107/resultados.json).
+Se inspeccionaron directamente las imágenes enlazadas en esta tabla; las demás
+se conservan junto al resultado y las aserciones de UI cubren los 16 casos.
+
+| Caso / captura | Comprobación |
+|---|---|
+| [V01 listado](evidencias/hu014-20261107/HU014-V01-ofertas-propias.png) | Solo dos ofertas propias activas; ajenas y no editables ausentes |
+| [V02 precarga](evidencias/hu014-20261107/HU014-V02-precarga.png) | Datos iniciales y selecciones de la oferta recibidos de Django |
+| [V04 escritorio](evidencias/hu014-20261107/HU014-V04-persistencia.png) | Siete campos modificados, guardados y reconsultados después de recargar |
+| [V05 móvil](evidencias/hu014-20261107/HU014-V05-persistencia-movil.png) | Modificación y persistencia de los siete campos en móvil web |
+| [V08 red](evidencias/hu014-20261107/HU014-V08-red-borrador.png) | Borrador conservado y base intacta durante el fallo inyectado, antes de reintentar |
+| [V12 archivada](evidencias/hu014-20261107/HU014-V12-no-editable-4.png) | Respuesta real 409, sin formulario de edición |
+| [V15 sesión](evidencias/hu014-20261107/HU014-V15-sesion-401.png) | 401 real después de revocar el token QA; login sin datos del borrador y sin escritura |
+
+V03 cubre obligatorios y salario inválido sin PATCH. V06/V07, error y reintento
+en listado/precarga. V09/V10, 503/400 con borrador conservado. V11, oferta ajena
+404. V12 cubre archivada, cerrada, borrador y vencida. V13/V14, candidato y
+empresa pendiente; las rutas por rol se comprueban en escritorio y la sesión
+vencida en móvil. Los tests API verifican también PATCH no autorizado, campos
+protegidos, atomicidad y conservación de relaciones.
+
+**Preparaciones conservadas.** Los ensayos anteriores no se cuentan como
+aceptación aprobada. Se ajustó el selector de catálogos con valor precargado,
+se guardó la sesión QA antes de navegar a URLs completas y se esperó el control
+Recordar sesión después de desplazarse y se activó con foco/barra espaciadora;
+los casos de rol fijan escritorio.
+Sus fuentes y casos de fallo constan en el JSON. Estos ajustes pertenecen al
+ejecutor; no se atribuyen a defectos del producto ni a revisiones humanas.
+
+El diagnóstico focalizado comprobó activación/desactivación por teclado y
+restauración de dos sesiones después de recargar contra otra base Django nueva.
+Solo ese diagnóstico reutilizó el artefacto JavaScript de `ab86653`, cuya UI no
+cambió. La aceptación de 16 casos exportó las fuentes indicadas arriba, instaló
+dependencias y compiló de nuevo; no reutilizó una base ni un navegador anterior.
+
+**Revisión e integración.** [#151 API](https://github.com/Danilo2334/Work_net/pull/151)
+y [#152 Flutter/QA](https://github.com/Danilo2334/Work_net/pull/152). Flujo:
+API→backend-sprint-3→develop; Flutter→frontend; incorporar backend revisado a
+frontend por PR y comprobar la cabecera antes de main. Se coteja cada árbol
+resultante con estas fuentes funcionales; los cambios posteriores de esta
+aportación son documentación y capturas. Los PR y comentarios únicos de
+#84–#87 registran los SHA definitivos y su cierre tras la entrega remota.
+No se cambian protecciones ni se usa bypass. Las cuentas de publicación,
+autores y committers se comprueban por separado; los commits de fusión del
+servidor tienen committer GitHub. La revisión técnica es del agente por
+delegación, sin aprobación personal atribuida a los integrantes.
+HU011/HU012/#79 conservan selección de CV pendiente por HU018.
+HU015–HU027 no se iniciaron. Los cortes HU013 siguientes son históricos.
 
 ## Integración revisada hasta HU013 — 07/11/2026
 
