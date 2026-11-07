@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.authentication import TokenAuthentication
@@ -7,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accounts.models import User
-from .models import Application, CandidateProfile, JobOffer, Notification, SavedOffer
+from .models import Application, CandidateProfile, JobOffer, Notification, SavedOffer, active_offers
 
 
 class IsCandidate(BasePermission):
@@ -52,12 +51,11 @@ class CandidateDashboardView(APIView):
         user = request.user
         profile = CandidateProfile.objects.filter(candidate=user).first()
         now = timezone.now()
-        offers = JobOffer.objects.filter(
-            status=JobOffer.Status.PUBLISHED,
+        offers = active_offers(JobOffer.objects.filter(
             published_at__lte=now,
             company__role=User.Role.EMPRESA,
             company__is_active=True,
-        ).filter(Q(expires_at__isnull=True) | Q(expires_at__gt=now)).order_by("-published_at", "-pk")[:5]
+        ), at=now).order_by("-published_at", "-pk")[:5]
         return Response({
             "user": {"id": user.pk, "full_name": user.full_name, "role": user.role},
             "profile_completion": profile_completion(user, profile),

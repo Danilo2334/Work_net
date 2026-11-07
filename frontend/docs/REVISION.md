@@ -100,6 +100,35 @@ Autor, committer y cuenta de publicación se verifican por separado; las fusione
 del servidor conservan committer GitHub. Contrato y pruebas backend en
 [COMPANY_API.md](../../backend/accounts/COMPANY_API.md#hu015-cierre-y-archivado-sin-eliminar-historial--07112026).
 
+**Verificación de la entrega combinada.** Tras #156→backend-sprint-3,
+[#158→develop](https://github.com/Danilo2334/Work_net/pull/158) y #157→frontend,
+se incorporó el backend en `8a1d4fc7bd130b0c3f395b5f2868810876f837f5`.
+Su backend coincide con `79d45e3` y su Flutter con `abc496d` (código de `fd5ad27`).
+Otra ejecución de `--suite hu015 --backend-ref HEAD` exportó ambos componentes
+de ese mismo commit: **18/18 aprobados y otras 26 capturas**. Son los mismos 18
+casos repetidos en otra base, no 36 casos distintos. Preparador y dependencias
+desde Git, venv/SQLite/Chromium/puertos nuevos, compilación release y migración
+desde cero, correo a archivos. Las comprobaciones técnicas válidas anteriores
+se reutilizan al coincidir los árboles funcionales; no se repite una auditoría general.
+
+[Resultados integrados, versiones, respuestas y hashes](evidencias/hu015-20261107/integracion/resultados.json).
+La primera evidencia permanece intacta con sus fechas y fuentes. En esta segunda
+se inspeccionaron directamente [V03 cierre y exclusión](evidencias/hu015-20261107/integracion/HU015-V03-cerrada-excluida.png),
+[V05 confirmación en móvil web](evidencias/hu015-20261107/integracion/HU015-V05-confirmacion-movil.png)
+y [V17 sesión vencida](evidencias/hu015-20261107/integracion/HU015-V17-sesion-401.png):
+confirman presentación del resultado, efectos/cancelación accesibles y login vacío.
+La persistencia y conservación de datos/relaciones se contrastan además con Django.
+Se rechazó reutilizar la corrida consumida sin cambiar su base y se comprobaron
+cerrados los servicios propios. Ninguna credencial, sesión ni base se publica.
+
+La integración conjunta se entrega por [#159](https://github.com/Danilo2334/Work_net/pull/159)
+y la cabecera resultante se coteja antes de [#160 hacia main](https://github.com/Danilo2334/Work_net/pull/160).
+Los cambios posteriores a `8a1d4fc` solo agregan documentación y esta segunda
+evidencia, comprobados por diff. Los PR y comentarios de seguimiento registran
+los SHA remotos definitivos y los cierres únicamente después de verificarlos.
+Backend publicado como Danilo2334; Flutter/integración/QA como francisco3788.
+La revisión es técnica y delegada; no se registran aprobaciones personales.
+
 **Criterios pendientes reales.** HU016 no tiene buscador completo y HU018 no
 tiene API/pantalla de postulación. Se verifica la exclusión de las consultas
 activas existentes y el bloqueo de escrituras `Application` (creación individual
