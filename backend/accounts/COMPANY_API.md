@@ -1,5 +1,46 @@
 # Empresa, registro y sesión
 
+## HU014: consulta y edición de ofertas activas
+
+**Alcance y responsable:** Danilo2334, API y definición compartida de oferta activa.
+Parte del mismo árbol backend de la entrega `15833c8`; no cambia modelos ni requiere
+migración. No implementa cierre, archivado ni otra función de HU015.
+
+| Método y ruta | Resultado |
+|---|---|
+| GET `/api/company/offers/active/?page=1` | Ofertas propias activas, 20 por página; `count`, `next_page`, `previous_page`, `offers` |
+| GET `/api/company/offers/{id}/` | Precarga propia editable en `offer` |
+| PATCH `/api/company/offers/{id}/` | Actualiza únicamente los campos enviados y devuelve `offer`; HTTP 200 |
+
+Los tres requieren token, rol empresa sin privilegios administrativos, correo
+verificado y empresa aprobada. «Activa» comparte exactamente el filtro del
+dashboard: `published` y vencimiento nulo o futuro. Una oferta ajena o inexistente
+devuelve 404, sin revelar su existencia. Una oferta propia archivada, cerrada,
+borrador, vencida u otro estado no editable devuelve 409 en consulta/edición.
+
+PATCH admite título, descripción, requisitos, salario, ubicación, categoría y
+contrato con las mismas validaciones de publicación. Cuerpo vacío o campos
+desconocidos/protegidos: 400. Se validan todos los campos antes de asignar/guardar,
+dentro de una transacción que bloquea empresa y oferta y revalida aprobación y
+estado. Se conservan ID, propietario, nombre empresarial, publicación, vencimiento
+y relaciones; no se crea otra oferta, revisión administrativa ni cambio de estado.
+GET es de solo lectura y las respuestas privadas llevan `no-store`/`Vary`.
+
+**Preparación y pasos de comprobación:** entorno Python con requirements publicados;
+`python manage.py test candidate_dashboard.test_edit_offers candidate_dashboard.test_offers accounts.test_company_access --noinput`.
+Las bases de test son independientes; no se envían correos. Comprobar listado y
+precarga, PATCH válido, reconsulta, invalidez combinada sin escrituras parciales,
+campos protegidos, roles/aprobación, ofertas ajenas y estados no editables. Incluye
+paginación y conservación de relaciones y aprobación. Resultado: 33 pruebas
+aprobadas en la ejecución pertinente inicial; `makemigrations --check --dry-run`
+sin cambios. El primer comando incluía un nombre de módulo de test inexistente;
+se corrigió la selección y se repitió, sin atribuir ese intento a un defecto del producto.
+
+**Revisión e integración:** comprobación técnica por agente autorizado por el
+titular, sin revisión personal atribuida a los integrantes. El seguimiento y
+resultado de integración conjunta se conservan en #85, los PR y la
+[guía de aceptación existente](../../frontend/docs/REVISION.md).
+
 Implementación de las dependencias #64/#68, resúmenes #52/#56 y ajustes de
 #30–#33/#35/#36/#38. Publicación backend: Danilo2334. Revisión humana pendiente.
 El Project fue consultado con Francisco y `read:project`: HU005–HU010 y
