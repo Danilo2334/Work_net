@@ -16,7 +16,7 @@ def folder(name, preparation):
     folders.append(current)
 
 
-def case(task, title, method, route, status=200, body=None, auth=None, check=None, save='', file=None, required=()):
+def case(task, title, method, route, status=200, body=None, auth=None, check=None, save='', file=None, required=(), file_field='photo', binary=False):
     number = f'PM{len(catalog)+1:03}'
     name = f'{number} · #{task} · {title}'
     headers = [{'key': 'Accept', 'value': 'application/json'}]
@@ -29,7 +29,7 @@ def case(task, title, method, route, status=200, body=None, auth=None, check=Non
         request['body'] = {'mode': 'raw', 'raw': json.dumps(body, ensure_ascii=False, indent=2),
                            'options': {'raw': {'language': 'json'}}}
     if file:
-        request['body'] = {'mode': 'formdata', 'formdata': [{'key': 'photo', 'type': 'file', 'src': file}]}
+        request['body'] = {'mode': 'formdata', 'formdata': [{'key': file_field, 'type': 'file', 'src': file}]}
     expected = f'HTTP {status}. ' + (check[0] if check else ('Rechazo con explicación en JSON.' if status >= 400 else 'Respuesta JSON válida.'))
     description = (f'**Tarea:** [#{task}](https://github.com/Danilo2334/Work_net/issues/{task})\n\n'
                    f'**Objetivo:** {title}.\n\n**Preparación:** {current["description"]} '
@@ -39,7 +39,7 @@ def case(task, title, method, route, status=200, body=None, auth=None, check=Non
                    'Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo.')
     request['description'] = description
     scripts = [f'pm.test("HTTP {status}", () => pm.response.to.have.status({status}));']
-    binary = route == 'profile/candidate/photo/' and method == 'GET' and status == 200 or route == 'company/logo/' and method == 'GET' and status == 200
+    binary = binary or method == 'GET' and status == 200 and (route.endswith('profile/photo/') or route in ('profile/candidate/photo/', 'company/logo/'))
     if not binary:
         scripts += ['let data;', 'pm.test("Respuesta JSON", () => { data = pm.response.json(); pm.expect(data).to.be.an("object"); });']
     scripts.append('const v = (key) => pm.environment.get(key);')
@@ -50,7 +50,8 @@ def case(task, title, method, route, status=200, body=None, auth=None, check=Non
     if save:
         scripts.append(f'if (pm.response.code === {status}) {{ {save} }}')
     # Postman ya expone un global legado llamado `data` (iteration data).
-    scripts = [re.sub(r'\bdata\b', 'payloadQA', line) for line in scripts]
+    # Cambiar solo la variable raíz: curriculum.data es un campo de la API.
+    scripts = [re.sub(r'(?<![.\w])\bdata\b', 'payloadQA', line) for line in scripts]
     event = [{'listen': 'test', 'script': {'type': 'text/javascript', 'exec': scripts}}]
     if required:
         event.insert(0, {'listen': 'prerequest', 'script': {'type': 'text/javascript', 'exec': [
@@ -290,17 +291,87 @@ case(44, 'Token de cuenta eliminada rechazado', 'GET', 'account/', 401, auth='di
 case(44, 'Cuenta eliminada ya no inicia sesión', 'POST', 'login/', 400, {'email':'{{disposable_email}}','password':'{{qa_password}}'})
 case(44, 'Eliminar una cuenta no afecta a otra', 'GET', 'account/', auth='candidate_token', check=('Candidato principal permanece intacto', 'pm.expect(data.user.id).to.equal(v("candidate_id")); pm.expect(data.user.full_name).to.equal("Candidato actualizado Postman");'))
 
+folder('12 · HU008 #60 · Consulta autorizada por postulación', 'Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos.')
+case(60, 'Obtener postulación propia desde el dashboard empresarial', 'GET', 'dashboard/company/', auth='company_token', check=('Dos postulaciones propias con identificador real', 'pm.expect(data.recent_applications).to.have.lengthOf(2); pm.expect(data.recent_applications[0].id).to.be.a("number");'), save='pm.environment.set("selection_application_id", data.recent_applications[0].id);')
+selection = 'company/applications/{{selection_application_id}}/profile/'
+case(60, 'Empresa dueña consulta el perfil del postulante', 'GET', selection, auth='company_token', check=('Perfil correcto sin datos de acceso ni preferencias', 'pm.expect(data.candidate).to.deep.equal({id:v("candidate_id"),full_name:"Candidato actualizado Postman"}); pm.expect(data.profile.professional_summary).to.equal("Resumen ficticio QA"); for (const section of ["education","experience","skills"]) pm.expect(data.profile[section]).to.have.lengthOf(1); for (const key of ["password","token","push_notifications","email"]) pm.expect(data.candidate).not.to.have.property(key); pm.expect(pm.response.headers.get("Cache-Control")).to.include("no-store");'), required=['selection_application_id'])
+case(60, 'Consulta sin sesión rechazada', 'GET', selection, 401)
+case(60, 'Candidato no usa la ruta empresarial', 'GET', selection, 403, auth='candidate_token')
+case(60, 'Administrador no usa la ruta empresarial', 'GET', selection, 403, auth='admin_token')
+case(60, 'Empresa pendiente no consulta postulantes', 'GET', selection, 403, auth='other_company_token')
+case(60, 'Otra empresa aprobada no consulta la postulación ajena', 'GET', selection, 404, auth='draft_token', save='pm.environment.set("selection_not_found", data.detail);')
+case(60, 'Postulación inexistente no revela otros candidatos', 'GET', 'company/applications/999999999/profile/', 404, auth='draft_token', check=('Misma respuesta para postulación ajena e inexistente', 'pm.expect(data.detail).to.equal(v("selection_not_found"));'))
+case(60, 'Parámetros ajenos no cambian el candidato autorizado', 'GET', selection+'?candidate={{other_id}}&company={{draft_id}}', auth='company_token', check=('Consulta sigue limitada a la postulación propia', 'pm.expect(data.candidate.id).to.equal(v("candidate_id")); pm.expect(data.profile.professional_summary).to.equal("Resumen ficticio QA");'))
+case(60, 'Empresa no recibe foto que aún no existe', 'GET', selection+'photo/', 404, auth='company_token')
+case(60, 'Candidato agrega foto para la consulta de selección', 'PUT', 'profile/candidate/photo/', auth='candidate_token', file='fixtures/foto-qa.png', check=eq('Fotografía guardada por su propietario', 'data.profile.has_photo', True))
+case(60, 'Empresa dueña recibe la foto privada del postulante', 'GET', selection+'photo/', auth='company_token', check=photo_check)
+case(60, 'Otra empresa aprobada no recibe la fotografía', 'GET', selection+'photo/', 404, auth='draft_token')
+case(60, 'Fotografía de selección sin sesión rechazada', 'GET', selection+'photo/', 401)
+for suffix in ('', 'photo/'):
+    for method in ('POST','PUT','PATCH','DELETE'):
+        case(60, f'Empresa no puede usar {method} en '+('fotografía' if suffix else 'perfil'), method, selection+suffix, 405, {'professional_summary':'No modificar'}, 'company_token')
+case(60, 'Candidato conserva su perfil después de los intentos empresariales', 'GET', 'profile/candidate/', auth='candidate_token', check=('Resumen y foto propios intactos', 'pm.expect(data.profile.professional_summary).to.equal("Resumen ficticio QA"); pm.expect(data.profile.has_photo).to.equal(true);'))
+case(60, 'Candidato retira su fotografía opcional', 'DELETE', 'profile/candidate/photo/', auth='candidate_token', check=eq('Fotografía retirada por su propietario', 'data.profile.has_photo', False))
+case(60, 'Empresa ya no recibe la fotografía retirada', 'GET', selection+'photo/', 404, auth='company_token')
+
+folder('13 · HU011 #72 #74 · Carga y reemplazo de CV', 'Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file.')
+pdf_check = ('PDF privado y respuesta con contenido', 'pm.expect(pm.response.headers.get("Content-Type")).to.include("application/pdf"); pm.expect(pm.response.headers.get("Cache-Control")).to.include("no-store"); pm.expect(pm.response.headers.get("X-Content-Type-Options")).to.equal("nosniff"); pm.expect(pm.response.text().startsWith("%PDF-")).to.equal(true);')
+pdf_fingerprint = 'const crypto=require("crypto-js"); const bytes=Array.from(pm.response.stream); const words=[]; bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));}); const fingerprint=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();'
+case(72, 'Currículums sin sesión rechazados', 'GET', 'curriculum/', 401)
+case(72, 'Empresa no consulta CV privados del candidato', 'GET', 'curriculum/', 403, auth='company_token')
+case(72, 'Estado inicial sin CV y límite de cinco MiB', 'GET', 'curriculum/', auth='candidate_token', check=('Sin opciones guardadas y límite explícito', 'pm.expect(data.options).to.deep.equal([]); pm.expect(data.limits.max_upload_bytes).to.equal(5242880);'))
+case(72, 'Consulta de PDF todavía ausente', 'GET', 'curriculum/uploaded/', 404, auth='candidate_token')
+case(72, 'Cargar un PDF válido', 'PUT', 'curriculum/uploaded/', 201, auth='candidate_token', file='fixtures/curriculum-valido.pdf', file_field='file', check=('Archivo y tamaño guardados', 'pm.expect(data.uploaded.filename).to.equal("curriculum-valido.pdf"); pm.expect(data.uploaded.size_bytes).to.be.above(100);'))
+case(72, 'Recuperar el PDF privado guardado', 'GET', 'curriculum/uploaded/', auth='candidate_token', check=pdf_check, save=pdf_fingerprint+' pm.environment.set("cv_uploaded_hash",fingerprint);', binary=True)
+case(72, 'Segundo candidato no recibe el PDF ajeno', 'GET', 'curriculum/uploaded/?candidate={{candidate_id}}', 404, auth='other_token')
+case(72, 'Carga sin archivo rechazada', 'PUT', 'curriculum/uploaded/', 400, auth='candidate_token')
+for title, fixture in [('Extensión diferente de PDF','fixtures/no-imagen.txt'), ('PDF corrupto','fixtures/curriculum-corrupto.pdf'), ('PDF con contraseña','.local/fixtures/cifrado.pdf'), ('PDF con contenido activo','.local/fixtures/activo.pdf'), ('PDF de más de cinco MiB','.local/fixtures/exceso-cv.pdf')]:
+    case(72, title+' rechazado', 'PUT', 'curriculum/uploaded/', 400, auth='candidate_token', file=fixture, file_field='file')
+case(74, 'Los rechazos conservan el documento anterior', 'GET', 'curriculum/uploaded/', auth='candidate_token', check=('Mismo SHA-256 después de las cargas inválidas', pdf_fingerprint+' pm.expect(fingerprint).to.equal(v("cv_uploaded_hash"));'), binary=True)
+case(72, 'Reemplazar el currículum con otro PDF válido', 'PUT', 'curriculum/uploaded/', auth='candidate_token', file='fixtures/curriculum-reemplazo.pdf', file_field='file', check=eq('Nuevo nombre persistido', 'data.uploaded.filename', 'curriculum-reemplazo.pdf'))
+case(74, 'El reemplazo entrega un documento distinto', 'GET', 'curriculum/uploaded/', auth='candidate_token', check=('SHA-256 distinto y PDF privado', pdf_fingerprint+' pm.expect(fingerprint).not.to.equal(v("cv_uploaded_hash")); pm.expect(pm.response.headers.get("Content-Type")).to.include("application/pdf");'), binary=True)
+case(74, 'Candidato conserva una única opción de CV subido', 'GET', 'curriculum/', auth='candidate_token', check=('Opción y nombre del reemplazo', 'pm.expect(data.options).to.deep.equal([{source:"uploaded",label:"curriculum-reemplazo.pdf"}]); pm.expect(data.uploaded.filename).to.equal("curriculum-reemplazo.pdf");'))
+
+folder('14 · HU012 #76 #77 #79 · CV con plantillas y PDF', 'Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV.')
+case(76, 'Precargar el CV desde el perfil sin guardarlo', 'GET', 'curriculum/generated/', auth='candidate_token', check=('Borrador con los datos del perfil propio', 'pm.expect(data.exists).to.equal(false); pm.expect(data.curriculum.data.personal.full_name).to.equal("Candidato actualizado Postman"); pm.expect(data.curriculum.data.professional_summary).to.equal("Resumen ficticio QA"); pm.expect(data.curriculum.data.education[0].qualification).to.equal("Formación QA"); pm.expect(data.curriculum.data.skills[0].name).to.equal("Django");'), save='pm.environment.set("cv_data",JSON.stringify(data.curriculum.data));')
+cv_body = {'template':'clasica','data':'__OBJECT_cv_data__'}
+case(77, 'Vista previa de la plantilla Clásica', 'POST', 'curriculum/generated/preview/', body=cv_body, auth='candidate_token', check=pdf_check, binary=True, required=['cv_data'])
+case(79, 'La vista previa no crea un CV guardado', 'GET', 'curriculum/generated/', auth='candidate_token', check=eq('Continúa como borrador', 'data.exists', False))
+case(76, 'Guardar el CV precargado con plantilla Clásica', 'PUT', 'curriculum/generated/', 201, cv_body, 'candidate_token', check=('CV guardado con datos del perfil', 'pm.expect(data.exists).to.equal(true); pm.expect(data.curriculum.template).to.equal("clasica"); pm.expect(data.curriculum.data.skills[0].name).to.equal("Django");'), save='pm.environment.set("cv_saved_data",JSON.stringify(data.curriculum.data));')
+for template in ('moderna','minimalista','clasica'):
+    case(76, 'Cambiar a plantilla '+template+' sin perder datos', 'PATCH', 'curriculum/generated/', body={'template':template}, auth='candidate_token', check=('Plantilla cambiada y contenido idéntico', 'pm.expect(data.curriculum.template).to.equal("'+template+'"); pm.expect(data.curriculum.data).to.deep.equal(JSON.parse(v("cv_saved_data")));'))
+case(76, 'Consultar nuevamente conserva el CV guardado', 'GET', 'curriculum/generated/', auth='candidate_token', check=('Datos persistidos al reabrir', 'pm.expect(data.curriculum.data).to.deep.equal(JSON.parse(v("cv_saved_data")));'), save='const edited=data.curriculum.data; edited.personal.full_name="Nombre editado solo en CV"; edited.professional_summary="Resumen editado del currículum QA"; edited.languages=[{name:"Español",level:"nativo"}]; edited.certifications=[{title:"Pruebas de software",issuer:"Instituto QA",issue_date:"2025-01-01"}]; edited.extra_sections=[{title:"Voluntariado",content:"Talleres de programación QA"}]; pm.environment.set("cv_data",JSON.stringify(edited));')
+case(76, 'Editar datos personales, resumen y secciones opcionales', 'PATCH', 'curriculum/generated/', body={'data':'__OBJECT_cv_data__'}, auth='candidate_token', check=('Edición y certificación persistidas', 'pm.expect(data.curriculum.data.personal.full_name).to.equal("Nombre editado solo en CV"); pm.expect(data.curriculum.data.certifications[0].title).to.equal("Pruebas de software"); pm.expect(data.curriculum.data.extra_sections[0].title).to.equal("Voluntariado");'), save='pm.environment.set("cv_saved_data",JSON.stringify(data.curriculum.data));')
+case(79, 'Editar el nombre del CV no cambia la cuenta', 'GET', 'account/', auth='candidate_token', check=eq('Nombre de la cuenta conservado', 'data.user.full_name', 'Candidato actualizado Postman'))
+for template in ('clasica','moderna','minimalista'):
+    case(77, 'Generar PDF de vista previa '+template, 'POST', 'curriculum/generated/preview/', body={**cv_body,'template':template}, auth='candidate_token', check=pdf_check, binary=True)
+case(77, 'Descargar el PDF del CV guardado', 'GET', 'curriculum/generated/pdf/', auth='candidate_token', check=('PDF descargable con contenido', pdf_check[1]+' pm.expect(pm.response.headers.get("Content-Disposition")).to.include("attachment");'), binary=True)
+case(77, 'Descarga sin sesión rechazada', 'GET', 'curriculum/generated/pdf/', 401)
+case(77, 'Otra cuenta no descarga el CV ajeno', 'GET', 'curriculum/generated/pdf/?candidate={{candidate_id}}', 404, auth='other_token')
+case(76, 'Plantilla desconocida rechazada', 'PATCH', 'curriculum/generated/', 400, {'template':'inventada'}, 'candidate_token')
+case(76, 'No se permite reasignar el propietario del CV', 'PATCH', 'curriculum/generated/', 400, {'candidate':'{{other_id}}'}, 'candidate_token')
+case(76, 'Fechas invertidas rechazadas al guardar', 'PUT', 'curriculum/generated/', 400, {'template':'moderna','data':{'personal':{'full_name':'QA'},'education':[{'qualification':'QA','start_date':'2025-01-01','end_date':'2020-01-01'}]}}, 'candidate_token')
+case(76, 'Nombre vacío rechazado al guardar', 'PUT', 'curriculum/generated/', 400, {'template':'moderna','data':{'personal':{'full_name':''}}}, 'candidate_token')
+case(79, 'Errores no destruyen el CV guardado', 'GET', 'curriculum/generated/', auth='candidate_token', check=('Contenido idéntico después de errores', 'pm.expect(data.curriculum.data).to.deep.equal(JSON.parse(v("cv_saved_data")));'))
+case(79, 'Opciones de CV subido y generado coexisten', 'GET', 'curriculum/', auth='candidate_token', check=('Ambas opciones disponibles para integración posterior', 'pm.expect(data.options.map(c=>c.source)).to.deep.equal(["uploaded","generated"]);'))
+case(76, 'Eliminar únicamente el CV generado', 'DELETE', 'curriculum/generated/', auth='candidate_token', check=eq('CV generado retirado', 'data.exists', False))
+case(79, 'Eliminar el generado conserva el PDF subido', 'GET', 'curriculum/', auth='candidate_token', check=('Solo permanece el CV subido', 'pm.expect(data.generated).to.equal(null); pm.expect(data.options.map(c=>c.source)).to.deep.equal(["uploaded"]);'))
+case(72, 'Retirar el PDF subido', 'DELETE', 'curriculum/uploaded/', auth='candidate_token', check=eq('PDF retirado', 'data.uploaded', None))
+case(74, 'Nueva consulta confirma que no hay currículums guardados', 'GET', 'curriculum/', auth='candidate_token', check=eq('Sin opciones después de retirar ambos CV', 'data.options', []))
+case(79, 'Retirar los CV conserva el perfil profesional', 'GET', 'profile/candidate/', auth='candidate_token', check=eq('Perfil original intacto', 'data.profile.professional_summary', 'Resumen ficticio QA'))
+
 # Las versiones se envían como números JSON, sin comillas alrededor de {{...}}.
 for f in folders:
     for item in f['item']:
         body=item['request'].get('body',{})
         if body.get('mode')=='raw':
             body['raw']=body['raw'].replace('"__NUMBER_company_version__"','{{company_version}}')
+            body['raw']=body['raw'].replace('"__OBJECT_cv_data__"','{{cv_data}}')
 
 collection={'info':{'name':'WorkNet · QA backend reproducible · Postman',
     '_postman_id':str(uuid.uuid5(uuid.NAMESPACE_URL,'worknet-postman-backend-qa-20261019')),
     'schema':'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
-    'description':'QA contra Django real y SQLite aislada. Ejecutar carpetas 01–11 en orden. Pausas obligatorias de correo después de 01 y 03. Ver backend/postman/README.md. No contiene mocks ni credenciales publicadas. No acredita revisión humana ni ejecución visual de Postman por usar Newman.'},
+    'description':'QA contra Django real y SQLite aislada. Ejecutar carpetas en orden. Pausas obligatorias de correo después de 01 y 03. Ver backend/postman/README.md. No contiene mocks ni credenciales publicadas. No acredita revisión humana ni ejecución visual de Postman por usar Newman.'},
     'event':[{'listen':'prerequest','script':{'type':'text/javascript','exec':[
         'const base=pm.environment.get("base_url") || "";',
         r'if (!/^http:\/\/(127\.0\.0\.1|localhost):\d+\/api$/.test(base) || pm.environment.get("qa_confirmation") !== "SOLO_BASE_AISLADA" || !/^run-/.test(pm.environment.get("qa_run_id") || "")) throw new Error("Importa el entorno privado generado por qa.py prepare. Solo base QA local.");']}}],
@@ -310,7 +381,7 @@ for key in ['candidate','other','company','draft','other_company','admin','dispo
     keys[key+'_email']=''
     keys[key+'_token']=''
     keys[key+'_id']=''
-for key in ['registration_ticket','verification_token','reset_uid','reset_token','revoked_token','old_candidate_token','old_registered_password','generic_recovery_message','company_profile_id','company_version']+ [s+'_id' for s in sections]:
+for key in ['registration_ticket','verification_token','reset_uid','reset_token','revoked_token','old_candidate_token','old_registered_password','generic_recovery_message','company_profile_id','company_version','selection_application_id','selection_not_found','cv_uploaded_hash','cv_data','cv_saved_data']+ [s+'_id' for s in sections]:
     keys[key]=''
 env={'id':str(uuid.uuid5(uuid.NAMESPACE_URL,'worknet-postman-env-example')),'name':'WorkNet · ejemplo SIN credenciales · generar entorno con qa.py prepare',
      'values':[{'key':key,'value':value,'type':'secret' if any(s in key for s in ('password','token','ticket')) else 'default','enabled':True} for key,value in keys.items()], '_postman_variable_scope':'environment'}

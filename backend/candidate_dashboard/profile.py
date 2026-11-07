@@ -254,6 +254,15 @@ def validated_photo(upload):
         raise ValidationError({"photo": "La imagen está dañada, no coincide con su formato o supera 4096 px / 16 MP."})
 
 
+def profile_photo_response(photo_data):
+    response = HttpResponse(bytes(photo_data), content_type="image/jpeg")
+    response["Cache-Control"] = "private, no-store"
+    response["Vary"] = "Authorization"
+    response["X-Content-Type-Options"] = "nosniff"
+    response["Content-Disposition"] = 'inline; filename="profile.jpg"'
+    return response
+
+
 class ProfilePhotoView(OwnProfileView):
     parser_classes = [MultiPartParser]
 
@@ -261,12 +270,7 @@ class ProfilePhotoView(OwnProfileView):
         profile = self.profile(request)
         if not profile or not profile.photo_data:
             raise NotFound("Todavía no has agregado una fotografía.")
-        response = HttpResponse(bytes(profile.photo_data), content_type="image/jpeg")
-        response["Cache-Control"] = "private, no-store"
-        response["Vary"] = "Authorization"
-        response["X-Content-Type-Options"] = "nosniff"
-        response["Content-Disposition"] = 'inline; filename="profile.jpg"'
-        return response
+        return profile_photo_response(profile.photo_data)
 
     @transaction.atomic
     def put(self, request):

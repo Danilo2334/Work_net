@@ -1,0 +1,777 @@
+{
+  "info": {
+    "_postman_id": "bbd3227a-b408-4db2-8bf8-7b4cedc2fe97",
+    "name": "WorkNet HU011 QA adicional - 84746c3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const base=pm.environment.get(\"base_url\") || \"\";",
+          "if (!/^http:\\/\\/(127\\.0\\.0\\.1|localhost):\\d+\\/api$/.test(base) || pm.environment.get(\"qa_confirmation\") !== \"SOLO_BASE_AISLADA\" || !/^run-/.test(pm.environment.get(\"qa_run_id\") || \"\")) throw new Error(\"Importa el entorno privado generado por qa.py prepare. Solo base QA local.\");"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "A - HU011 Propiedad y politicas PDF",
+      "item": [
+        {
+          "id": "a1018b48-0764-4a7b-b784-c4e221df623a",
+          "name": "HU011-QA01 - Contenido del reemplazo persistido",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const crypto=require(\"crypto-js\");const bytes=Array.from(pm.response.stream);const words=[];bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));});const hash=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();",
+                  "pm.test(\"Contenido PDF exacto y privado\",()=>{pm.expect(hash).to.equal(\"4ece58b1eddc03ac323fc7b4cac05327757c9653f8972c86f11ad3d5835d5399\");pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "8a6e4386-dcdd-49c4-aa09-1802a740bf00",
+          "name": "HU011-QA02 - Documento sin sesion",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\",()=>pm.response.to.have.status(401));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "d79d1e85-44a8-4dce-81f8-36ecf8e9d8ba",
+          "name": "HU011-QA03 - Administrador sin acceso",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{admin_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "b1df1ac7-981c-4a9d-b2fc-0d2a1f1b6092",
+          "name": "HU011-QA04 - Empresa sin acceso al documento",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "42d5c454-d1c4-40c2-a704-3660624c6e3d",
+          "name": "HU011-QA05 - Otro candidato no elimina el CV ajeno",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/curriculum/uploaded/?candidate={{candidate_id}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{other_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Solo opera sobre su cuenta\",()=>pm.expect(j.uploaded).to.equal(null));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "8a2bafd0-dd72-4328-b1df-1af83bf7a9b4",
+          "name": "HU011-QA06 - Otro candidato solo crea su propio CV",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/curriculum/uploaded/?candidate={{candidate_id}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{other_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/curriculum-valido.pdf"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Archivo de su cuenta\",()=>pm.expect(j.uploaded.filename).to.equal(\"curriculum-valido.pdf\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "c32dfa7b-8e48-4d0b-85c0-e89a2e75dec6",
+          "name": "HU011-QA07 - El titular conserva su reemplazo",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const crypto=require(\"crypto-js\");const bytes=Array.from(pm.response.stream);const words=[];bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));});const hash=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();",
+                  "pm.test(\"Contenido PDF exacto y privado\",()=>{pm.expect(hash).to.equal(\"4ece58b1eddc03ac323fc7b4cac05327757c9653f8972c86f11ad3d5835d5399\");pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "eac7adf3-869c-4387-ab0d-9b98eafab57d",
+          "name": "HU011-QA08 - Campo candidato adicional rechazado",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/curriculum-valido.pdf"
+                },
+                {
+                  "key": "candidate",
+                  "type": "text",
+                  "value": "{{other_id}}"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "f93d595e-af5b-43e0-9aeb-ee37e746faf8",
+          "name": "HU011-QA09 - PDF con formulario rechazado",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ".local/hu011-extra/formulario.pdf"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "db42b825-6f93-4263-9797-86de00900591",
+          "name": "HU011-QA10 - PDF de 51 paginas rechazado",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ".local/hu011-extra/51-paginas.pdf"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "d1693bb6-2ff6-4f07-8c4b-5febbf135c03",
+          "name": "HU011-QA11 - Los rechazos conservan todos los bytes",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const crypto=require(\"crypto-js\");const bytes=Array.from(pm.response.stream);const words=[];bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));});const hash=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();",
+                  "pm.test(\"Contenido PDF exacto y privado\",()=>{pm.expect(hash).to.equal(\"4ece58b1eddc03ac323fc7b4cac05327757c9653f8972c86f11ad3d5835d5399\");pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "0f7c3d16-f384-4a42-86ce-0621dfe8d7fe",
+          "name": "HU011-QA12 - Limite implementado de 50 paginas aceptado",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ".local/hu011-extra/50-paginas.pdf"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Documento de 50 paginas guardado\",()=>pm.expect(j.uploaded.filename).to.equal(\"50-paginas.pdf\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "f67f6e62-a2cd-481d-8684-391b58ea925e",
+          "name": "HU011-QA13 - Recuperacion exacta de las 50 paginas",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const crypto=require(\"crypto-js\");const bytes=Array.from(pm.response.stream);const words=[];bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));});const hash=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();",
+                  "pm.test(\"Contenido PDF exacto y privado\",()=>{pm.expect(hash).to.equal(\"ff13d7cf11b533af28730c07a5cf458e6ff270b77eb3fc5d233e1050cf95afd0\");pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B - HU011 Candidato sin verificar",
+      "item": [
+        {
+          "id": "eef1190f-1abb-4343-a2df-ce317fa937c8",
+          "name": "HU011-QA14 - Candidato sin verificar no lee documento",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "d755af04-bc8d-415f-b584-fce69a40d422",
+          "name": "HU011-QA15 - Candidato sin verificar no reemplaza documento",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/curriculum-valido.pdf"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C - HU011 Eliminacion y aislamiento",
+      "item": [
+        {
+          "id": "1c96422a-17ae-4a58-b1ff-09e14a241ee4",
+          "name": "HU011-QA16 - Restaurar verificacion conserva documento",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const crypto=require(\"crypto-js\");const bytes=Array.from(pm.response.stream);const words=[];bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));});const hash=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();",
+                  "pm.test(\"Contenido PDF exacto y privado\",()=>{pm.expect(hash).to.equal(\"ff13d7cf11b533af28730c07a5cf458e6ff270b77eb3fc5d233e1050cf95afd0\");pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "ead63949-a233-4581-8d8b-570691cacb0e",
+          "name": "HU011-QA17 - Eliminar documento propio",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Documento eliminado\",()=>pm.expect(j.uploaded).to.equal(null));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "d5b59172-c34c-4eed-911c-f4b31f1e2b27",
+          "name": "HU011-QA18 - Lectura despues de eliminar",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\",()=>pm.response.to.have.status(404));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Rechazo con mensaje\",()=>pm.expect(Object.keys(j)).not.to.be.empty);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "eaa5aedf-cb38-4a20-a5a4-faa05d327e40",
+          "name": "HU011-QA19 - Metadata vacia despues de eliminar",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const j=pm.response.json();pm.test(\"Respuesta JSON\",()=>pm.expect(j).to.be.an(\"object\"));",
+                  "pm.test(\"Sin documento ni opciones\",()=>{pm.expect(j.uploaded).to.equal(null);pm.expect(j.options).to.eql([]);});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "671ff198-a4a4-4397-80dc-2d8adebb3e0a",
+          "name": "HU011-QA20 - El segundo candidato conserva su archivo",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{other_token}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+                  "const crypto=require(\"crypto-js\");const bytes=Array.from(pm.response.stream);const words=[];bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));});const hash=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString();",
+                  "pm.test(\"Contenido PDF exacto y privado\",()=>{pm.expect(hash).to.equal(\"71bb03ce24a0563d60274dccb493206336d49eff67dd2ad891bc15c00b84b366\");pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\");pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\");pm.expect(pm.response.headers.get(\"Vary\")).to.include(\"Authorization\");});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

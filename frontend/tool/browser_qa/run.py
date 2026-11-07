@@ -17,7 +17,7 @@ import threading
 from urllib.parse import urlsplit
 from wsgiref.simple_server import make_server, WSGIRequestHandler
 
-BACKEND = '2f1b2f78e01e5e8da69295c5bca97c51e09fb04b'
+BACKEND = 'HEAD'
 
 
 def git(repo, *args):
@@ -60,7 +60,7 @@ def export(repo, sha, name, destination, archive):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--frontend-ref', default='HEAD', help='Fuente Flutter y suite versionada; no copia cambios sin commit.')
-    parser.add_argument('--backend-ref', default=BACKEND, help='Commit backend HU013 publicado; se exporta en otra carpeta.')
+    parser.add_argument('--backend-ref', default=BACKEND, help='Fuente backend confirmada del checkout integrado; se exporta en otra carpeta.')
     parser.add_argument('--api-port', type=int, default=0, help='0 elige puerto libre; nunca reutiliza un servicio anterior.')
     parser.add_argument('--web-port', type=int, default=0)
     parser.add_argument('--python', default=sys.executable, help='Python 3.12+ para crear un venv nuevo.')

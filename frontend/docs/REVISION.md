@@ -1,5 +1,119 @@
 # Guía para revisar WorkNet
 
+## Integración revisada hasta HU013 — 07/11/2026
+
+**Alcance y responsables.** Revisión de los diffs vigentes #146–#149 y de la
+entrega combinada #150. Danilo2334 conserva Django, modelos, APIs, migraciones
+y servicios; francisco3788 publica Flutter, integración y nuevo QA/evidencias.
+La revisión técnica fue realizada por el agente por delegación expresa del titular,
+que sustituyó la espera manual anterior. No se presentan aprobaciones GitHub ni
+comprobaciones personales de los integrantes. Sus comprobaciones históricas
+conservan abajo sus fechas, versiones y atribuciones.
+
+**Preparación.** Se conservaron los checkouts y entornos previos. La fuente
+combinada confirmada y publicada es `940f8a917511da833755f24a8071f4849e0dedf0`:
+backend idéntico a `develop` después de #148/#147, Flutter después de #149 y la
+corrección `c2c19d0`. Solo README tuvo conflictos; se conservaron contratos,
+resultados y enlaces de ambas aportaciones. La cuenta de publicación y autor/
+committer de esos dos commits se comprobaron por separado como Francisco.
+Los commits de fusión del servidor tienen el autor de la cuenta que integra y
+committer GitHub (`web-flow`), distinto de la cuenta autenticada.
+
+| Paquete | Cabecera evaluada / resultado |
+|---|---|
+| [#148](https://github.com/Danilo2334/Work_net/pull/148) | `2f1b2f7`; migración aditiva, catálogo y publicación; propietario, estado y fecha de servidor; empresa aprobada/verificada. Integrado en backend-sprint-3: `e037d85` |
+| [#147](https://github.com/Danilo2334/Work_net/pull/147) | Se comprobó `e037d85` después de #148; árbol igual al backend probado. Perfil propio y consulta empresarial por oferta propia, validación PDF, privacidad, modelos y migraciones. Integrado en develop: `b897123` |
+| [#149](https://github.com/Danilo2334/Work_net/pull/149) | `c2c19d0`; formulario, contrato, reentrada del editor, sesión/navegación, aislamiento y dependencias del ejecutor. Integrado en frontend: `e15b3d6` |
+| [#150](https://github.com/Danilo2334/Work_net/pull/150) | Incorporación del backend a entrega. Fuente funcional evaluada `940f8a9`; el resto de esta aportación documenta y conserva sus resultados |
+| [#146](https://github.com/Danilo2334/Work_net/pull/146) | Entrega a main después de #150. La cabecera y el árbol definitivos se verifican contra esta fuente; los SHA de las fusiones constan en el PR y el seguimiento de las tareas |
+
+Se contrastaron permisos por rol/propietario, ausencia de acceso empresarial al
+PDF privado, `no-store`/`Vary: Authorization`, texto escapado y ausencia de recursos
+externos en generación; límites y rechazo de PDF activo/cifrado; precarga sin
+escritura y separación CV/perfil/cuenta. La publicación valida los campos y
+vuelve a comprobar aprobación dentro de la transacción. No se encontró otro
+defecto de backend en los cambios examinados.
+
+**Hallazgo y corrección.** Respuestas 200/201 de HU013 con estructura inválida
+provocaban errores de tipos no controlados en el adaptador. Dos pruebas fallaron
+antes de la corrección. `c2c19d0` valida catálogos no vacíos e ID entero positivo,
+genera un error controlado y permite recargar el catálogo. Si no puede confirmar
+la publicación, indica consultar el dashboard antes de reenviar. Ocho pruebas
+de ofertas, incluida la recuperación de pantalla, pasaron después. Son respuestas
+simuladas y widgets, separadas del recorrido real descrito abajo.
+
+**Pasos y resultados.** Desde la raíz de la fuente integrada confirmada:
+
+```powershell
+python frontend/tool/browser_qa/run.py
+python -m unittest discover -s frontend/tool/browser_qa -p test_safety.py
+node --check frontend/tool/browser_qa/suite.cjs
+cd frontend
+flutter test --no-pub
+flutter analyze --no-pub
+```
+
+El ejecutor exportó **ambos componentes del HEAD confirmado**, creó otro venv,
+instaló requirements y npm desde sus versiones fijadas, compiló web JavaScript
+con recursos locales y reutilizó `backend/postman/qa.py prepare` para otra SQLite.
+Credenciales desde el entorno privado, correo a archivos y Chromium temporal;
+sin perfil personal, SMTP, traces, HAR ni sesiones publicadas. Conserva todas las
+corridas anteriores. Los puertos propios quedaron cerrados y un nuevo inicio
+sobre la corrida consumida fue rechazado sin cambiar su base.
+
+| Comprobación nueva del conjunto | Resultado |
+|---|---|
+| Django accounts/candidate_dashboard/curriculum | 141 aprobadas, en entorno QA y base de test independiente |
+| `check`, `makemigrations --check --dry-run` y plan aplicado | Sin incidencias ni cambios pendientes |
+| Migración HU013 con datos previos | Se descendió a `0002_candidateprofile_photo_data` en otra base QA y se reaplicó `0003`; dos ofertas previas conservaron ID, título, empresa y estado |
+| Flutter unidad/widgets | 114 aprobadas |
+| Análisis Flutter | Sin incidencias |
+| Guard QA / sintaxis Node | 8 aprobadas / correcto |
+| Compilación release del ejecutor | Web JavaScript correcta; no acredita Wasm ni binarios nativos |
+| Navegador real | 25/25 casos; Chromium 158.0.8127.18 con Playwright 1.65.0; 31 capturas originales nuevas |
+| Persistencia y PDF | Cuatro ofertas y un CV generado; perfil/cuenta de origen intactos; texto de vista previa y descarga coincidente |
+
+El primer ensayo auxiliar de migración usó un nombre de migración inexistente.
+Se corrigió el comprobador y se repitió en otra base nueva; no fue un defecto del
+producto ni se cuenta ese ensayo como aprobado. Las pruebas anteriores de HTTP,
+Newman y Postman Desktop conservan su alcance: no se repitió Desktop aquí.
+
+**Capturas y recorrido.** [Resultados, 25 identificadores, respuestas y hashes](evidencias/retoma-20261107/integracion/resultados.json).
+Las 31 imágenes se conservan junto a ese JSON. Se inspeccionaron directamente
+estas seis; los 25 casos incorporan además aserciones de controles y respuestas:
+
+| Captura | Qué se comprobó |
+|---|---|
+| [Salida del editor](evidencias/retoma-20261107/integracion/HU012-V05-salida.png) | Diálogo que permite seguir editando el borrador |
+| [PDF móvil](evidencias/retoma-20261107/integracion/HU012-V07-pdf-movil.png) | Vista previa del CV con datos ficticios; texto contrastado con la descarga |
+| [Publicación escritorio](evidencias/retoma-20261107/integracion/HU013-V05-confirmacion.png) | Confirmación de oferta 3, HTTP 201 y fila de la empresa QA; dashboard pasa a 3 |
+| [Publicación móvil](evidencias/retoma-20261107/integracion/HU013-V09-confirmacion.png) | Confirmación de oferta 4 y dashboard actualizado a 4 |
+| [Sesión vencida](evidencias/retoma-20261107/integracion/HU013-V10-401.png) | Login sin credenciales visibles tras 401 real; no se creó otra oferta |
+| [Empresa sin aprobar](evidencias/retoma-20261107/integracion/HU013-V11-403.png) | Mensaje de permiso y ausencia de formulario tras 403 real |
+
+HU012-V01–V13 cubren precarga, obligatorios, fechas, plantillas, salida/borrador,
+red, PDF, opcionales, 503, sesión/segunda cuenta, error de carga, reentrada rápida
+y retroceso después de 401. HU013-V01–V11 cubren acceso, campos, catálogos,
+obligatorios, salario, publicación, dashboard, errores de carga/red/400 y sesión/
+aprobación. NAVEGADOR-01 comprobó login, URL y captura antes del recorrido.
+Los abortos de red y respuestas 400/503 son inyectados e identificados; 401/403,
+guardados y publicaciones proceden del Django QA real. Móvil es un viewport web
+390×844 con ratón/teclado, no un teléfono físico. Los PDF/SQLite/entornos quedan
+privados; las imágenes contienen únicamente datos ficticios de QA.
+
+**Entrega y pendientes reales.** Orden autorizado: #148→#147, #149→frontend,
+#150→frontend y comprobación de #146→main. GitHub no mostraba protecciones activas;
+se usa la fusión normal, sin cambiar reglas ni bypass. Consultar el estado y SHA
+final de cada operación en sus PR y en el comentario único de cada subtarea.
+La aprobación técnica delegada permite integrar; no crea una revisión humana.
+Crear ofertas está implementado y aceptado. HU008 incluye la consulta empresarial
+API por postulación propia; no implementa la futura gestión HU020. HU011/HU012 y
+#79 conservan abierto seleccionar el CV en una postulación por HU018. HU005
+conserva búsqueda/mensajes/historial; HU006 gestión de ofertas/postulantes,
+mensajes/estadísticas; HU007 gestión de administradores/permisos. HU014–HU027 no
+se iniciaron. Los apartados siguientes son históricos y sus esperas anteriores
+no sustituyen este estado.
+
 ## Revisión técnica de HU013 — 07/11/2026
 
 **Alcance y responsable:** contrato del formulario de ofertas de #149; publicación
@@ -25,7 +139,10 @@ Los recorridos reales y sus capturas conservan abajo sus fechas y versiones.
 [adaptador](../lib/features/offers/data/offer_repository.dart) y
 [pruebas](../test/publish_offer_test.dart).
 
-> **Estado vigente:** consultar «Aceptación visual y revisiones preparadas — 07/11/2026» al final. Los apartados fechados anteriores conservan su evidencia histórica; sus bloqueos visuales describen esas ejecuciones. Publicado e implementado no significa integrado ni revisado por otro integrante.
+> **Estado vigente:** consultar «Integración revisada hasta HU013 — 07/11/2026».
+> Los apartados anteriores a ese corte conservan las versiones y condiciones de
+> sus ejecuciones, incluida la espera de revisión personal que el titular sustituyó
+> después por una revisión técnica delegada. No acreditan aprobaciones humanas nuevas.
 
 Actualización de HU011: 25/10/2026. Backend de PDF probado: `84746c3`; Flutter de HU011 en el PR #146.
 La demostración anterior de acceso, perfiles y empresas usaba Flutter `04e7e5c` y backend `f9e4dea`; se conserva abajo con sus cuentas y puertos propios.
@@ -385,12 +502,12 @@ git fetch origin --prune
 python frontend/tool/browser_qa/run.py
 ```
 
-Por defecto exporta **el HEAD confirmado** de Flutter/suite y el backend HU013
-publicado `2f1b2f78e01e5e8da69295c5bca97c51e09fb04b`. No copia modificaciones
-sin commit, archivos privados ni entornos del checkout. Así prueba ambas fuentes
-sin fusionar PR ni sustituir el backend de ninguna rama. La referencia backend
-debe estar disponible después de fetch. Para fijar explícitamente fuentes y
-puertos libres:
+En la entrega integrada, por defecto exporta **el HEAD confirmado** tanto de
+Flutter/suite como del backend. No copia modificaciones sin commit, archivos
+privados ni entornos del checkout. Debe ejecutarse desde una versión que contenga
+ambos componentes. La primera reproducción, conservada abajo, fijaba el backend
+`2f1b2f78e01e5e8da69295c5bca97c51e09fb04b`; ese valor ya no es el predeterminado.
+Para repetir explícitamente aquella combinación y elegir puertos libres:
 
 ```powershell
 python frontend/tool/browser_qa/run.py --frontend-ref HEAD --backend-ref 2f1b2f78e01e5e8da69295c5bca97c51e09fb04b --api-port 8025 --web-port 55032
@@ -460,7 +577,7 @@ y usa foco/teclado para campos, manteniendo los controles reales y las asercione
 de UI. No se repitieron Postman, la auditoría general ni las suites técnicas del
 producto; no se solicitó una comprobación manual adicional.
 
-### Paquetes de revisión que siguen pendientes
+### Historial: paquetes de revisión preparados antes de la delegación
 
 | Persona / PR | Alcance concreto del paquete |
 |---|---|

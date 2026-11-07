@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'candidate_dashboard',
+    'curriculum',
 ]
 
 
