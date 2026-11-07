@@ -56,15 +56,17 @@ async function main() {
     await target.click();
   };
   const write = async (name, value) => {
-    await click(name, 'textbox');
-    await page.waitForTimeout(150); // Flutter conecta aquí el input al valor precargado.
+    phase = 'escribir campo: ' + name;
+    await page.getByRole('textbox', { name, exact: true }).focus();
+    await page.waitForTimeout(300); // Flutter conecta el input y desplaza su canvas.
     await page.keyboard.press('ControlOrMeta+A');
     await page.keyboard.press('Backspace');
     if (value) await page.keyboard.insertText(value);
   };
   const read = async name => {
-    await click(name, 'textbox');
-    await page.waitForTimeout(150);
+    phase = 'leer campo: ' + name;
+    await page.getByRole('textbox', { name, exact: true }).focus();
+    await page.waitForTimeout(300);
     return page.getByRole('textbox', { name, exact: true }).inputValue();
   };
   const top = async () => {
