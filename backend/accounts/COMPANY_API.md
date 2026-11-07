@@ -2,8 +2,9 @@
 
 Implementación de las dependencias #64/#68, resúmenes #52/#56 y ajustes de
 #30–#33/#35/#36/#38. Publicación backend: Danilo2334. Revisión humana pendiente.
-La pertenencia a Sprint 2 no se ha confirmado: GitHub CLI carece de `read:project`.
-Se implementa el alcance autorizado en las issues, sin reasignarlas ni cerrarlas.
+El Project fue consultado con Francisco y `read:project`: HU005–HU010 y
+#47–#70 pertenecen a Sprint 2. La lectura está autorizada; escribir estados
+requiere el alcance OAuth `project`. Se conservan asignaciones y fechas.
 
 ## Registro y correo
 
@@ -104,3 +105,25 @@ logout remoto, solicitud completa/incompleta, persistencia, NIT duplicado,
 autoaprobación/acceso cruzado rechazados, motivo, corrección/reenvío, decisión
 obsoleta, notificaciones/eventos, métricas por propietario y logo privado/inválido.
 Los recorridos de Flutter y sus capturas se documentan en su entrega correspondiente.
+
+## HU013: publicación directa de ofertas
+
+`GET /api/company/offers/` devuelve `categories` y `contract_types`.
+`POST /api/company/offers/` exige `title`, `description`, `requirements`,
+`salary`, `location`, `category` y `contract_type`; retorna 201,
+`message` y `offer` con identificador, datos guardados, empresa, estado
+`published` y fecha del servidor. Salario: decimal no negativo, hasta
+10 enteros y 2 decimales; texto título/ubicación hasta 200,
+descripción/requisitos hasta 10000. Son límites de implementación.
+Las opciones proceden del catálogo; no se atribuyen a requisitos originales.
+
+Solo cuenta de empresa con correo verificado y aprobación vigente;
+no administradores, candidatos o empresas pendientes/rechazadas (403).
+Sin token: 401. Obligatorios, opciones y campos desconocidos: 400.
+Propietario, nombre legal, estado y fecha se fijan en servidor.
+No hay edición/eliminación en esta ruta (405); pertenecen a HU014.
+
+La migración 0003 amplía `JobOffer` con descripción, requisitos, salario
+y categoría. Conserva ofertas históricas con texto vacío y salario nulo;
+el endpoint exige los siete campos para las nuevas. No sustituye el modelo
+ni altera relaciones de postulaciones/guardados. Revisión humana pendiente.

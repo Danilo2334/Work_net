@@ -1,0 +1,374 @@
+{
+  "info": {
+    "name": "WorkNet HU013 - publicacion aislada corregida",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "HU013-01 Login empresa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/login/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"{{company_email}}\", \"password\": \"{{qa_password}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Token recibido\",()=>pm.expect(pm.response.json().token).to.be.a(\"string\"));",
+              "pm.environment.set(\"company_token\",pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-02 Catalogos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Catalogos\",()=>{const j=pm.response.json();pm.expect(j.categories).to.include(\"Tecnolog\u00eda\");pm.expect(j.contract_types).to.include(\"Indefinido\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-03 Publicar oferta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta ficticia HU013 Desktop\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"3000000.50\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+              "const o=pm.response.json().offer;",
+              "pm.test(\"Publicada\",()=>pm.expect(o.status).to.eql(\"published\"));",
+              "pm.test(\"Fecha\",()=>pm.expect(o.published_at).to.be.a(\"string\"));",
+              "pm.test(\"Datos conservados\",()=>{pm.expect(o.title).to.eql(\"Oferta ficticia HU013 Desktop\");pm.expect(o.salary).to.eql(\"3000000.50\");});",
+              "pm.test(\"Identificador\",()=>pm.expect(o.id).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-04 Dashboard actualizado",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/dashboard/company/"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Oferta activa\",()=>pm.expect(pm.response.json().metrics.active_offers).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-05 Rechazar obligatorios",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"-1\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"Campos invalidos\",()=>{pm.expect(pm.response.json()).to.have.property(\"title\");pm.expect(pm.response.json()).to.have.property(\"salary\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-06 Login candidato",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/login/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"{{candidate_email}}\", \"password\": \"{{qa_password}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Token recibido\",()=>pm.expect(pm.response.json().token).to.be.a(\"string\"));",
+              "pm.environment.set(\"candidate_token\",pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-07 Candidato rechazado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta ficticia HU013 Desktop\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"3000000.50\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-08 Login empresa pendiente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/login/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"{{draft_email}}\", \"password\": \"{{qa_password}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Token recibido\",()=>pm.expect(pm.response.json().token).to.be.a(\"string\"));",
+              "pm.environment.set(\"draft_token\",pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-09 Empresa pendiente rechazada",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta ficticia HU013 Desktop\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"3000000.50\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-10 Propietario y estado no manipulables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta ficticia HU013 Desktop\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"3000000.50\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\", \"company\": 999999, \"status\": \"draft\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"Campos protegidos\",()=>{pm.expect(pm.response.json()).to.have.property(\"company\");pm.expect(pm.response.json()).to.have.property(\"status\");});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get(\"base_url\")!==\"http://127.0.0.1:8021/api\" || !String(pm.environment.get(\"qa_run_id\")).startsWith(\"run-\")) throw new Error(\"Usar solo QA HU013 aislado 8021\");"
+        ]
+      }
+    }
+  ]
+}

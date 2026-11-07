@@ -3,7 +3,7 @@
     "name": "WorkNet · QA backend reproducible · Postman",
     "_postman_id": "c3bbb0b5-e10c-5436-9384-8bb8efdc6a3b",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "QA contra Django real y SQLite aislada. Ejecutar carpetas 01–11 en orden. Pausas obligatorias de correo después de 01 y 03. Ver backend/postman/README.md. No contiene mocks ni credenciales publicadas. No acredita revisión humana ni ejecución visual de Postman por usar Newman."
+    "description": "QA contra Django real y SQLite aislada. Ejecutar carpetas en orden. Pausas obligatorias de correo después de 01 y 03. Ver backend/postman/README.md. No contiene mocks ni credenciales publicadas. No acredita revisión humana ni ejecución visual de Postman por usar Newman."
   },
   "event": [
     {
@@ -9352,6 +9352,2991 @@
                   "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
                   "const v = (key) => pm.environment.get(key);",
                   "pm.test(\"Candidato principal permanece intacto\", () => { pm.expect(payloadQA.user.id).to.equal(v(\"candidate_id\")); pm.expect(payloadQA.user.full_name).to.equal(\"Candidato actualizado Postman\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "12 · HU008 #60 · Consulta autorizada por postulación",
+      "description": "Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos.",
+      "item": [
+        {
+          "id": "702884c8-6817-58cf-909c-515f2ba46914",
+          "name": "PM213 · #60 · Obtener postulación propia desde el dashboard empresarial",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/dashboard/company/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Obtener postulación propia desde el dashboard empresarial.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/dashboard/company/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Dos postulaciones propias con identificador real\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Dos postulaciones propias con identificador real\", () => { pm.expect(payloadQA.recent_applications).to.have.lengthOf(2); pm.expect(payloadQA.recent_applications[0].id).to.be.a(\"number\"); });",
+                  "if (pm.response.code === 200) { pm.environment.set(\"selection_application_id\", payloadQA.recent_applications[0].id); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "7b8f6c06-82d8-542d-b434-78180a31a548",
+          "name": "PM214 · #60 · Empresa dueña consulta el perfil del postulante",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa dueña consulta el perfil del postulante.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Perfil correcto sin datos de acceso ni preferencias\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "for (const key of [\"selection_application_id\"]) { if (!pm.environment.get(key)) { throw new Error(\"Falta variable local: \" + key + \". Consulta README antes de esta fase.\"); } }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Perfil correcto sin datos de acceso ni preferencias\", () => { pm.expect(payloadQA.candidate).to.deep.equal({id:v(\"candidate_id\"),full_name:\"Candidato actualizado Postman\"}); pm.expect(payloadQA.profile.professional_summary).to.equal(\"Resumen ficticio QA\"); for (const section of [\"education\",\"experience\",\"skills\"]) pm.expect(payloadQA.profile[section]).to.have.lengthOf(1); for (const key of [\"password\",\"token\",\"push_notifications\",\"email\"]) pm.expect(payloadQA.candidate).not.to.have.property(key); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "49c5f6c6-a33b-548c-b86e-9de986166e83",
+          "name": "PM215 · #60 · Consulta sin sesión rechazada",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Consulta sin sesión rechazada.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 401. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "22ace1b9-aa23-553c-8d9e-95b3687e1094",
+          "name": "PM216 · #60 · Candidato no usa la ruta empresarial",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Candidato no usa la ruta empresarial.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 403. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "4e8905b7-4657-582b-bbc3-fd7c77c8645d",
+          "name": "PM217 · #60 · Administrador no usa la ruta empresarial",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{admin_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Administrador no usa la ruta empresarial.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 403. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "f79cb723-ec2e-51c5-b1b2-3afb22b07457",
+          "name": "PM218 · #60 · Empresa pendiente no consulta postulantes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{other_company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa pendiente no consulta postulantes.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 403. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "7599adb0-f313-5866-ace4-648bbb00a864",
+          "name": "PM219 · #60 · Otra empresa aprobada no consulta la postulación ajena",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{draft_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Otra empresa aprobada no consulta la postulación ajena.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);",
+                  "if (pm.response.code === 404) { pm.environment.set(\"selection_not_found\", payloadQA.detail); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "4b9cadf2-ec60-5457-932c-b9e4db3ab70d",
+          "name": "PM220 · #60 · Postulación inexistente no revela otros candidatos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{draft_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/999999999/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Postulación inexistente no revela otros candidatos.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/999999999/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Misma respuesta para postulación ajena e inexistente\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);",
+                  "pm.test(\"Misma respuesta para postulación ajena e inexistente\", () => { pm.expect(payloadQA.detail).to.equal(v(\"selection_not_found\")); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "97c106f2-1428-54ad-895e-01ecdba00fec",
+          "name": "PM221 · #60 · Parámetros ajenos no cambian el candidato autorizado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/?candidate={{other_id}}&company={{draft_id}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Parámetros ajenos no cambian el candidato autorizado.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/?candidate={{other_id}}&company={{draft_id}}`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Consulta sigue limitada a la postulación propia\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Consulta sigue limitada a la postulación propia\", () => { pm.expect(payloadQA.candidate.id).to.equal(v(\"candidate_id\")); pm.expect(payloadQA.profile.professional_summary).to.equal(\"Resumen ficticio QA\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "2ed9fa6f-b0f5-5e76-aab0-7904ff4476eb",
+          "name": "PM222 · #60 · Empresa no recibe foto que aún no existe",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no recibe foto que aún no existe.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "062c4a90-d561-5d8b-a0db-4b1639df9bf1",
+          "name": "PM223 · #60 · Candidato agrega foto para la consulta de selección",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/profile/candidate/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": "fixtures/foto-qa.png"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Candidato agrega foto para la consulta de selección.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/profile/candidate/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Fotografía guardada por su propietario\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Fotografía guardada por su propietario\", () => { pm.expect(payloadQA.profile.has_photo).to.deep.equal(true); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "c2f0d63e-fb6e-547e-b65d-86601d0db297",
+          "name": "PM224 · #60 · Empresa dueña recibe la foto privada del postulante",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa dueña recibe la foto privada del postulante.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. JPEG privado sin caché y sin URL pública\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"JPEG privado sin caché y sin URL pública\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"image/jpeg\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"private\"); pm.expect(pm.response.text().length).to.be.above(0); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "f241fe45-b5fa-525c-bf26-f5d109408d88",
+          "name": "PM225 · #60 · Otra empresa aprobada no recibe la fotografía",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{draft_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Otra empresa aprobada no recibe la fotografía.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "1bcc33ee-8c32-531d-a7ff-e41803c0065a",
+          "name": "PM226 · #60 · Fotografía de selección sin sesión rechazada",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Fotografía de selección sin sesión rechazada.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 401. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "635e4efb-1fd5-542a-8195-cf1d718e1ef4",
+          "name": "PM227 · #60 · Empresa no puede usar POST en perfil",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar POST en perfil.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `POST {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "ea92f5b5-5657-5cdb-907f-bc07d03acfe3",
+          "name": "PM228 · #60 · Empresa no puede usar PUT en perfil",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar PUT en perfil.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "3d9426e0-4829-5364-b72e-7f712df698f6",
+          "name": "PM229 · #60 · Empresa no puede usar PATCH en perfil",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar PATCH en perfil.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "88a203c6-bb5d-585e-bb25-779139f0185c",
+          "name": "PM230 · #60 · Empresa no puede usar DELETE en perfil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar DELETE en perfil.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `DELETE {{base_url}}/company/applications/{{selection_application_id}}/profile/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "40c55f0b-a245-5902-897d-bd05c2d850c1",
+          "name": "PM231 · #60 · Empresa no puede usar POST en fotografía",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar POST en fotografía.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `POST {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "ce651248-c886-5c84-851f-826fbb702166",
+          "name": "PM232 · #60 · Empresa no puede usar PUT en fotografía",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar PUT en fotografía.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "08687289-b244-5203-b553-1ecf907fab81",
+          "name": "PM233 · #60 · Empresa no puede usar PATCH en fotografía",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar PATCH en fotografía.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "08178f9e-b4a7-59f0-81a1-e2f11b8939a9",
+          "name": "PM234 · #60 · Empresa no puede usar DELETE en fotografía",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"professional_summary\": \"No modificar\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa no puede usar DELETE en fotografía.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `DELETE {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 405. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 405\", () => pm.response.to.have.status(405));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "62584b0d-e5cd-5fd3-85e8-1d33de063d07",
+          "name": "PM235 · #60 · Candidato conserva su perfil después de los intentos empresariales",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/profile/candidate/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Candidato conserva su perfil después de los intentos empresariales.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/profile/candidate/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Resumen y foto propios intactos\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Resumen y foto propios intactos\", () => { pm.expect(payloadQA.profile.professional_summary).to.equal(\"Resumen ficticio QA\"); pm.expect(payloadQA.profile.has_photo).to.equal(true); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "91dbb458-26fb-53f4-b74b-ed79c6d110bf",
+          "name": "PM236 · #60 · Candidato retira su fotografía opcional",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/profile/candidate/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Candidato retira su fotografía opcional.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `DELETE {{base_url}}/profile/candidate/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Fotografía retirada por su propietario\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Fotografía retirada por su propietario\", () => { pm.expect(payloadQA.profile.has_photo).to.deep.equal(false); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "e6c8c43c-c5e3-53ff-ac09-6c2ad4cfc42f",
+          "name": "PM237 · #60 · Empresa ya no recibe la fotografía retirada",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/company/applications/{{selection_application_id}}/profile/photo/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#60](https://github.com/Danilo2334/Work_net/issues/60)\n\n**Objetivo:** Empresa ya no recibe la fotografía retirada.\n\n**Preparación:** Fases anteriores completas. company es dueña de las dos ofertas; draft ya fue aprobada, pero no tiene postulaciones propias. other_company continúa pendiente. Se obtiene la postulación desde el dashboard, sin IDs fijos. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/company/applications/{{selection_application_id}}/profile/photo/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "13 · HU011 #72 #74 · Carga y reemplazo de CV",
+      "description": "Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file.",
+      "item": [
+        {
+          "id": "08fd0f0a-2e37-5bb0-8e79-ba8c3990ab39",
+          "name": "PM238 · #72 · Currículums sin sesión rechazados",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Currículums sin sesión rechazados.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 401. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "da025622-8016-5aca-bf60-98f7fc5d7b86",
+          "name": "PM239 · #72 · Empresa no consulta CV privados del candidato",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{company_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Empresa no consulta CV privados del candidato.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 403. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "eb54e73d-0da6-5a0b-8cac-11271fdbd319",
+          "name": "PM240 · #72 · Estado inicial sin CV y límite de cinco MiB",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Estado inicial sin CV y límite de cinco MiB.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Sin opciones guardadas y límite explícito\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Sin opciones guardadas y límite explícito\", () => { pm.expect(payloadQA.options).to.deep.equal([]); pm.expect(payloadQA.limits.max_upload_bytes).to.equal(5242880); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "c607d15e-b2df-5ee1-8e55-15685f872aa0",
+          "name": "PM241 · #72 · Consulta de PDF todavía ausente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Consulta de PDF todavía ausente.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "3d2f7ab4-d23d-5a9d-bc04-039c9f67b68c",
+          "name": "PM242 · #72 · Cargar un PDF válido",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/curriculum-valido.pdf"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Cargar un PDF válido.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 201. Archivo y tamaño guardados\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Archivo y tamaño guardados\", () => { pm.expect(payloadQA.uploaded.filename).to.equal(\"curriculum-valido.pdf\"); pm.expect(payloadQA.uploaded.size_bytes).to.be.above(100); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "8f762431-e7a9-53c1-9964-1ef7fc1b817a",
+          "name": "PM243 · #72 · Recuperar el PDF privado guardado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Recuperar el PDF privado guardado.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF privado y respuesta con contenido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF privado y respuesta con contenido\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\"); pm.expect(pm.response.text().startsWith(\"%PDF-\")).to.equal(true); });",
+                  "if (pm.response.code === 200) { const crypto=require(\"crypto-js\"); const bytes=Array.from(pm.response.stream); const words=[]; bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));}); const fingerprint=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString(); pm.environment.set(\"cv_uploaded_hash\",fingerprint); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "824087dd-77ab-5dd1-ba6a-421b85945480",
+          "name": "PM244 · #72 · Segundo candidato no recibe el PDF ajeno",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{other_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/?candidate={{candidate_id}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Segundo candidato no recibe el PDF ajeno.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/uploaded/?candidate={{candidate_id}}`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "08393f1b-5235-55b9-a1e6-61502ff10cb2",
+          "name": "PM245 · #72 · Carga sin archivo rechazada",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Carga sin archivo rechazada.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "83e8f667-746e-5750-8e71-33dcfc4631db",
+          "name": "PM246 · #72 · Extensión diferente de PDF rechazado",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/no-imagen.txt"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Extensión diferente de PDF rechazado.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "5a2d4c4b-edac-5853-ba09-0806c4697c82",
+          "name": "PM247 · #72 · PDF corrupto rechazado",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/curriculum-corrupto.pdf"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** PDF corrupto rechazado.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "5502322f-efc0-5f19-aa90-c5ac9b78b2a2",
+          "name": "PM248 · #72 · PDF con contraseña rechazado",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ".local/fixtures/cifrado.pdf"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** PDF con contraseña rechazado.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "a1dd30f5-2925-5e75-984a-9c13e2f55858",
+          "name": "PM249 · #72 · PDF con contenido activo rechazado",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ".local/fixtures/activo.pdf"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** PDF con contenido activo rechazado.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "616ec5e5-7f31-5cee-a199-c3e2066f6cef",
+          "name": "PM250 · #72 · PDF de más de cinco MiB rechazado",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ".local/fixtures/exceso-cv.pdf"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** PDF de más de cinco MiB rechazado.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "188544bb-033c-5712-b27d-534d7b826925",
+          "name": "PM251 · #74 · Los rechazos conservan el documento anterior",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#74](https://github.com/Danilo2334/Work_net/issues/74)\n\n**Objetivo:** Los rechazos conservan el documento anterior.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Mismo SHA-256 después de las cargas inválidas\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Mismo SHA-256 después de las cargas inválidas\", () => { const crypto=require(\"crypto-js\"); const bytes=Array.from(pm.response.stream); const words=[]; bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));}); const fingerprint=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString(); pm.expect(fingerprint).to.equal(v(\"cv_uploaded_hash\")); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "cf0a4871-3f64-54e8-98c5-80e30bbf27d5",
+          "name": "PM252 · #72 · Reemplazar el currículum con otro PDF válido",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "fixtures/curriculum-reemplazo.pdf"
+                }
+              ]
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Reemplazar el currículum con otro PDF válido.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Nuevo nombre persistido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Nuevo nombre persistido\", () => { pm.expect(payloadQA.uploaded.filename).to.deep.equal(\"curriculum-reemplazo.pdf\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "71a2d99f-217c-52e5-bd58-a0ccd08b0f1b",
+          "name": "PM253 · #74 · El reemplazo entrega un documento distinto",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#74](https://github.com/Danilo2334/Work_net/issues/74)\n\n**Objetivo:** El reemplazo entrega un documento distinto.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. SHA-256 distinto y PDF privado\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"SHA-256 distinto y PDF privado\", () => { const crypto=require(\"crypto-js\"); const bytes=Array.from(pm.response.stream); const words=[]; bytes.forEach((b,i)=>{words[i>>>2]=(words[i>>>2]||0)|(b<<(24-(i%4)*8));}); const fingerprint=crypto.SHA256(crypto.lib.WordArray.create(words,bytes.length)).toString(); pm.expect(fingerprint).not.to.equal(v(\"cv_uploaded_hash\")); pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "9f331f4a-12a9-5626-925b-f1c93c325b6d",
+          "name": "PM254 · #74 · Candidato conserva una única opción de CV subido",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#74](https://github.com/Danilo2334/Work_net/issues/74)\n\n**Objetivo:** Candidato conserva una única opción de CV subido.\n\n**Preparación:** Base nueva con fases 01 a 12 completas. El candidato principal no tiene CV. Los PDF de fixtures son ficticios; prepare genera los archivos cifrado, activo y de exceso de tamaño. Multipart usa el campo file. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Opción y nombre del reemplazo\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Opción y nombre del reemplazo\", () => { pm.expect(payloadQA.options).to.deep.equal([{source:\"uploaded\",label:\"curriculum-reemplazo.pdf\"}]); pm.expect(payloadQA.uploaded.filename).to.equal(\"curriculum-reemplazo.pdf\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "14 · HU012 #76 #77 #79 · CV con plantillas y PDF",
+      "description": "Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV.",
+      "item": [
+        {
+          "id": "01af5331-84e6-56b2-9258-b93322ea19b3",
+          "name": "PM255 · #76 · Precargar el CV desde el perfil sin guardarlo",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Precargar el CV desde el perfil sin guardarlo.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Borrador con los datos del perfil propio\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Borrador con los datos del perfil propio\", () => { pm.expect(payloadQA.exists).to.equal(false); pm.expect(payloadQA.curriculum.data.personal.full_name).to.equal(\"Candidato actualizado Postman\"); pm.expect(payloadQA.curriculum.data.professional_summary).to.equal(\"Resumen ficticio QA\"); pm.expect(payloadQA.curriculum.data.education[0].qualification).to.equal(\"Formación QA\"); pm.expect(payloadQA.curriculum.data.skills[0].name).to.equal(\"Django\"); });",
+                  "if (pm.response.code === 200) { pm.environment.set(\"cv_data\",JSON.stringify(payloadQA.curriculum.data)); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "09d431e8-2202-5337-a75f-7a1c545fff56",
+          "name": "PM256 · #77 · Vista previa de la plantilla Clásica",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/preview/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"clasica\",\n  \"data\": {{cv_data}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Vista previa de la plantilla Clásica.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `POST {{base_url}}/curriculum/generated/preview/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF privado y respuesta con contenido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "for (const key of [\"cv_data\"]) { if (!pm.environment.get(key)) { throw new Error(\"Falta variable local: \" + key + \". Consulta README antes de esta fase.\"); } }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF privado y respuesta con contenido\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\"); pm.expect(pm.response.text().startsWith(\"%PDF-\")).to.equal(true); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "09b82528-4f91-5855-9faf-6c089a9d3308",
+          "name": "PM257 · #79 · La vista previa no crea un CV guardado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#79](https://github.com/Danilo2334/Work_net/issues/79)\n\n**Objetivo:** La vista previa no crea un CV guardado.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Continúa como borrador\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Continúa como borrador\", () => { pm.expect(payloadQA.exists).to.deep.equal(false); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "20085a4f-88d3-5d7f-a972-9002dcdb94fa",
+          "name": "PM258 · #76 · Guardar el CV precargado con plantilla Clásica",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"clasica\",\n  \"data\": {{cv_data}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Guardar el CV precargado con plantilla Clásica.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 201. CV guardado con datos del perfil\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 201\", () => pm.response.to.have.status(201));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"CV guardado con datos del perfil\", () => { pm.expect(payloadQA.exists).to.equal(true); pm.expect(payloadQA.curriculum.template).to.equal(\"clasica\"); pm.expect(payloadQA.curriculum.data.skills[0].name).to.equal(\"Django\"); });",
+                  "if (pm.response.code === 201) { pm.environment.set(\"cv_saved_data\",JSON.stringify(payloadQA.curriculum.data)); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "5413e1f5-a203-58b3-b72d-96b94cb4321a",
+          "name": "PM259 · #76 · Cambiar a plantilla moderna sin perder datos",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"moderna\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Cambiar a plantilla moderna sin perder datos.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Plantilla cambiada y contenido idéntico\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Plantilla cambiada y contenido idéntico\", () => { pm.expect(payloadQA.curriculum.template).to.equal(\"moderna\"); pm.expect(payloadQA.curriculum.data).to.deep.equal(JSON.parse(v(\"cv_saved_data\"))); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "869a61b1-b9bc-5caa-bb4e-98d0672240a6",
+          "name": "PM260 · #76 · Cambiar a plantilla minimalista sin perder datos",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"minimalista\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Cambiar a plantilla minimalista sin perder datos.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Plantilla cambiada y contenido idéntico\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Plantilla cambiada y contenido idéntico\", () => { pm.expect(payloadQA.curriculum.template).to.equal(\"minimalista\"); pm.expect(payloadQA.curriculum.data).to.deep.equal(JSON.parse(v(\"cv_saved_data\"))); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "d47d307e-c1d0-57ea-b9f8-14f92595bbc8",
+          "name": "PM261 · #76 · Cambiar a plantilla clasica sin perder datos",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"clasica\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Cambiar a plantilla clasica sin perder datos.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Plantilla cambiada y contenido idéntico\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Plantilla cambiada y contenido idéntico\", () => { pm.expect(payloadQA.curriculum.template).to.equal(\"clasica\"); pm.expect(payloadQA.curriculum.data).to.deep.equal(JSON.parse(v(\"cv_saved_data\"))); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "ead4ed76-3096-5064-b26e-57e7eb8841fb",
+          "name": "PM262 · #76 · Consultar nuevamente conserva el CV guardado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Consultar nuevamente conserva el CV guardado.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Datos persistidos al reabrir\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Datos persistidos al reabrir\", () => { pm.expect(payloadQA.curriculum.data).to.deep.equal(JSON.parse(v(\"cv_saved_data\"))); });",
+                  "if (pm.response.code === 200) { const edited=payloadQA.curriculum.data; edited.personal.full_name=\"Nombre editado solo en CV\"; edited.professional_summary=\"Resumen editado del currículum QA\"; edited.languages=[{name:\"Español\",level:\"nativo\"}]; edited.certifications=[{title:\"Pruebas de software\",issuer:\"Instituto QA\",issue_date:\"2025-01-01\"}]; edited.extra_sections=[{title:\"Voluntariado\",content:\"Talleres de programación QA\"}]; pm.environment.set(\"cv_data\",JSON.stringify(edited)); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "c3372a72-7026-5d0f-9692-696313a89f68",
+          "name": "PM263 · #76 · Editar datos personales, resumen y secciones opcionales",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {{cv_data}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Editar datos personales, resumen y secciones opcionales.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Edición y certificación persistidas\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Edición y certificación persistidas\", () => { pm.expect(payloadQA.curriculum.data.personal.full_name).to.equal(\"Nombre editado solo en CV\"); pm.expect(payloadQA.curriculum.data.certifications[0].title).to.equal(\"Pruebas de software\"); pm.expect(payloadQA.curriculum.data.extra_sections[0].title).to.equal(\"Voluntariado\"); });",
+                  "if (pm.response.code === 200) { pm.environment.set(\"cv_saved_data\",JSON.stringify(payloadQA.curriculum.data)); }"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "451a5c24-ff11-5b03-9f0f-4273de668d7f",
+          "name": "PM264 · #79 · Editar el nombre del CV no cambia la cuenta",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/account/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#79](https://github.com/Danilo2334/Work_net/issues/79)\n\n**Objetivo:** Editar el nombre del CV no cambia la cuenta.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/account/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Nombre de la cuenta conservado\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Nombre de la cuenta conservado\", () => { pm.expect(payloadQA.user.full_name).to.deep.equal(\"Candidato actualizado Postman\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "4cf0dfd3-b21e-52ed-9c20-48e0b2ba75fc",
+          "name": "PM265 · #77 · Generar PDF de vista previa clasica",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/preview/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"clasica\",\n  \"data\": {{cv_data}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Generar PDF de vista previa clasica.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `POST {{base_url}}/curriculum/generated/preview/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF privado y respuesta con contenido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF privado y respuesta con contenido\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\"); pm.expect(pm.response.text().startsWith(\"%PDF-\")).to.equal(true); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "bdc808e2-2d9f-545b-96fa-7cfc74a3a5da",
+          "name": "PM266 · #77 · Generar PDF de vista previa moderna",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/preview/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"moderna\",\n  \"data\": {{cv_data}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Generar PDF de vista previa moderna.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `POST {{base_url}}/curriculum/generated/preview/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF privado y respuesta con contenido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF privado y respuesta con contenido\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\"); pm.expect(pm.response.text().startsWith(\"%PDF-\")).to.equal(true); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "5e05eded-5ea8-508d-8821-44653faa38f2",
+          "name": "PM267 · #77 · Generar PDF de vista previa minimalista",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/preview/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"minimalista\",\n  \"data\": {{cv_data}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Generar PDF de vista previa minimalista.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `POST {{base_url}}/curriculum/generated/preview/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF privado y respuesta con contenido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF privado y respuesta con contenido\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\"); pm.expect(pm.response.text().startsWith(\"%PDF-\")).to.equal(true); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "048c1ed9-dbe7-5317-b306-90575e5283f9",
+          "name": "PM268 · #77 · Descargar el PDF del CV guardado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/pdf/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Descargar el PDF del CV guardado.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/pdf/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF descargable con contenido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF descargable con contenido\", () => { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/pdf\"); pm.expect(pm.response.headers.get(\"Cache-Control\")).to.include(\"no-store\"); pm.expect(pm.response.headers.get(\"X-Content-Type-Options\")).to.equal(\"nosniff\"); pm.expect(pm.response.text().startsWith(\"%PDF-\")).to.equal(true); pm.expect(pm.response.headers.get(\"Content-Disposition\")).to.include(\"attachment\"); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "9fcd0cf6-7714-5e43-9bf9-8adc9cd02fc8",
+          "name": "PM269 · #77 · Descarga sin sesión rechazada",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/pdf/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Descarga sin sesión rechazada.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/pdf/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 401. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "bbdd30ee-49c6-5089-944e-58458142c2a2",
+          "name": "PM270 · #77 · Otra cuenta no descarga el CV ajeno",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{other_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/pdf/?candidate={{candidate_id}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#77](https://github.com/Danilo2334/Work_net/issues/77)\n\n**Objetivo:** Otra cuenta no descarga el CV ajeno.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/pdf/?candidate={{candidate_id}}`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 404. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", () => pm.response.to.have.status(404));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "35ab6856-8193-5cfc-a1bc-d2970a4b0a92",
+          "name": "PM271 · #76 · Plantilla desconocida rechazada",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"inventada\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Plantilla desconocida rechazada.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "084ecc3f-1e8c-5f41-a1aa-a8607491a568",
+          "name": "PM272 · #76 · No se permite reasignar el propietario del CV",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidate\": \"{{other_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** No se permite reasignar el propietario del CV.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PATCH {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "2940dbc3-757c-5b67-a922-a5780f79f706",
+          "name": "PM273 · #76 · Fechas invertidas rechazadas al guardar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"moderna\",\n  \"data\": {\n    \"personal\": {\n      \"full_name\": \"QA\"\n    },\n    \"education\": [\n      {\n        \"qualification\": \"QA\",\n        \"start_date\": \"2025-01-01\",\n        \"end_date\": \"2020-01-01\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Fechas invertidas rechazadas al guardar.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "d6dedca0-4459-594c-975a-997e9e621d56",
+          "name": "PM274 · #76 · Nombre vacío rechazado al guardar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": \"moderna\",\n  \"data\": {\n    \"personal\": {\n      \"full_name\": \"\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Nombre vacío rechazado al guardar.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `PUT {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 400. Rechazo con explicación en JSON.\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"El rechazo explica el problema\", () => pm.expect(Object.keys(payloadQA || {})).not.to.be.empty);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "c3c5a8d0-d825-58fa-ad69-59eeebef1773",
+          "name": "PM275 · #79 · Errores no destruyen el CV guardado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#79](https://github.com/Danilo2334/Work_net/issues/79)\n\n**Objetivo:** Errores no destruyen el CV guardado.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Contenido idéntico después de errores\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Contenido idéntico después de errores\", () => { pm.expect(payloadQA.curriculum.data).to.deep.equal(JSON.parse(v(\"cv_saved_data\"))); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "669db9a4-f34d-5368-9682-c0cc74b9a62f",
+          "name": "PM276 · #79 · Opciones de CV subido y generado coexisten",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#79](https://github.com/Danilo2334/Work_net/issues/79)\n\n**Objetivo:** Opciones de CV subido y generado coexisten.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Ambas opciones disponibles para integración posterior\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Ambas opciones disponibles para integración posterior\", () => { pm.expect(payloadQA.options.map(c=>c.source)).to.deep.equal([\"uploaded\",\"generated\"]); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "e2e7f885-b45f-597c-bf82-afb8c4b57cdb",
+          "name": "PM277 · #76 · Eliminar únicamente el CV generado",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/generated/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#76](https://github.com/Danilo2334/Work_net/issues/76)\n\n**Objetivo:** Eliminar únicamente el CV generado.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `DELETE {{base_url}}/curriculum/generated/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. CV generado retirado\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"CV generado retirado\", () => { pm.expect(payloadQA.exists).to.deep.equal(false); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "fea8bc4c-0a4b-5711-9016-63994e1513f0",
+          "name": "PM278 · #79 · Eliminar el generado conserva el PDF subido",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#79](https://github.com/Danilo2334/Work_net/issues/79)\n\n**Objetivo:** Eliminar el generado conserva el PDF subido.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Solo permanece el CV subido\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Solo permanece el CV subido\", () => { pm.expect(payloadQA.generated).to.equal(null); pm.expect(payloadQA.options.map(c=>c.source)).to.deep.equal([\"uploaded\"]); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "870997d5-5805-5832-8782-308134543c86",
+          "name": "PM279 · #72 · Retirar el PDF subido",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/uploaded/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#72](https://github.com/Danilo2334/Work_net/issues/72)\n\n**Objetivo:** Retirar el PDF subido.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `DELETE {{base_url}}/curriculum/uploaded/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. PDF retirado\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"PDF retirado\", () => { pm.expect(payloadQA.uploaded).to.deep.equal(null); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "b74f88d9-28ae-59c6-9c7e-b65a67f00721",
+          "name": "PM280 · #74 · Nueva consulta confirma que no hay currículums guardados",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/curriculum/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#74](https://github.com/Danilo2334/Work_net/issues/74)\n\n**Objetivo:** Nueva consulta confirma que no hay currículums guardados.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/curriculum/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Sin opciones después de retirar ambos CV\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Sin opciones después de retirar ambos CV\", () => { pm.expect(payloadQA.options).to.deep.equal([]); });"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "id": "0dd9db2e-cbc5-5916-9a5c-e56bdb02368a",
+          "name": "PM281 · #79 · Retirar los CV conserva el perfil profesional",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{candidate_token}}"
+              }
+            ],
+            "url": "{{base_url}}/profile/candidate/",
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "**Tarea:** [#79](https://github.com/Danilo2334/Work_net/issues/79)\n\n**Objetivo:** Retirar los CV conserva el perfil profesional.\n\n**Preparación:** Continuar después de fase 13. El perfil principal contiene resumen, educación, experiencia y habilidades. cv_data se obtiene de la precarga real; no se inventa otro candidato. La vista previa no debe guardar el CV. Ejecutar las peticiones anteriores de esta fase en orden; usar exclusivamente el entorno privado del run aislado.\n\n**Petición:** `GET {{base_url}}/profile/candidate/`. Encabezados y cuerpo en las pestañas de esta petición.\n\n**Esperado:** HTTP 200. Perfil original intacto\n\n**Automatización:** scripts Post-response verifican el estado y los datos descritos. Los identificadores y tokens se guardan desde respuestas reales. Véase README.md para reiniciar y para las pausas de correo."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "let payloadQA;",
+                  "pm.test(\"Respuesta JSON\", () => { payloadQA = pm.response.json(); pm.expect(payloadQA).to.be.an(\"object\"); });",
+                  "const v = (key) => pm.environment.get(key);",
+                  "pm.test(\"Perfil original intacto\", () => { pm.expect(payloadQA.profile.professional_summary).to.deep.equal(\"Resumen ficticio QA\"); });"
                 ]
               }
             }
