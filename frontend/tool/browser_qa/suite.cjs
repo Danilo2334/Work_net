@@ -121,7 +121,10 @@ async function main() {
       const checkbox = page.getByRole('checkbox', { name: 'Recordar sesión', exact: true });
       await checkbox.scrollIntoViewIfNeeded();
       await page.waitForTimeout(350);
-      await checkbox.check();
+      await checkbox.focus();
+      await page.waitForTimeout(300);
+      if (!(await checkbox.isChecked())) await page.keyboard.press('Space');
+      await page.waitForTimeout(350);
       assert.equal(await checkbox.isChecked(), true);
     }
     await write('Correo electrónico', values[account + '_email']);
