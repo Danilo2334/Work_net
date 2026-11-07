@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from candidate_dashboard.models import Application, JobOffer, Notification
+from candidate_dashboard.models import Application, JobOffer, Notification, active_offers
 from candidate_dashboard.profile import validated_photo
 from .models import CompanyProfile, CompanyReview, User
 
@@ -221,7 +221,7 @@ class CompanyDashboardView(APIView):
             raise PermissionDenied("Tu empresa necesita aprobación para acceder al dashboard.")
         offers = JobOffer.objects.filter(company=request.user)
         applications = Application.objects.filter(offer__company=request.user)
-        active = offers.filter(status="published").filter(Q(expires_at__isnull=True) | Q(expires_at__gt=timezone.now()))
+        active = active_offers(offers)
         return Response({
             "metrics": {"active_offers": active.count(), "closed_offers": offers.filter(status="closed").count(), "applications": applications.count()},
             "recent_applications": list(applications.select_related("candidate", "offer").order_by("-created_at", "-id").values("id", "candidate__full_name", "offer__title", "created_at")[:10]),
