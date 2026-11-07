@@ -18,7 +18,7 @@ def execute(root, run, config, action):
             company=db.execute("SELECT id FROM accounts_user WHERE email='company.postman@worknet.test'").fetchone()[0]
             for title,owner,state,expiry in [('Oferta ajena QA',other,'published',None),('Oferta archivada QA',company,'archived',None),('Oferta cerrada QA',company,'closed',None),('Borrador QA',company,'draft',None),('Oferta vencida QA',company,'published','2000-01-01 00:00:00'),('Oferta errores QA',company,'published',None)]:
                 db.execute('INSERT INTO candidate_dashboard_joboffer (title,company_id,company_name,status,published_at,expires_at,description,requirements,salary,location,category,contract_type) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
-                           (title,owner,'Empresa ficticia QA',state,datetime.now(timezone.utc).isoformat(),expiry,'Descripción QA','Requisitos QA',1000000,'Pasto','Tecnología','Indefinido'))
+                           (title,owner,'Empresa ficticia QA',state,datetime.now(timezone.utc).replace(tzinfo=None).isoformat(sep=' '),expiry,'Descripción QA','Requisitos QA',1000000,'Pasto','Tecnología','Indefinido'))
         shutil.copy2(run/'qa.sqlite3',run/'initial.sqlite3')
         return {'prepared':True,'offers':8}
     require((root/'.hu015-prepared').is_file())
