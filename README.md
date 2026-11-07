@@ -3,6 +3,13 @@
 Bolsa de empleo con backend Django REST y frontend Flutter.
 Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com/Danilo2334/Work_net/issues).
 
+Estado del 07/11/2026: entrega combinada hasta HU013 revisada por delegación del
+titular, con 141 pruebas Django, 114 Flutter y 25 casos de navegador aprobados.
+[Guía vigente, capturas y alcance](frontend/docs/REVISION.md#integración-revisada-hasta-hu013--07112026).
+El flujo de incorporación queda registrado en #148/#147, #149, #150 y #146;
+sus PR contienen los SHA definitivos. Los apartados históricos conservan sus
+versiones y la espera personal anterior, sustituida por esta delegación técnica.
+
 ## Ramas
 
 - `develop`: backend consolidado; base de las tareas de backend.
@@ -21,19 +28,18 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 - HU003: recuperación de contraseña con token de un solo uso y revocación del acceso anterior.
 - HU004: consulta y edición de cuenta, cambio de contraseña, eliminación con confirmación y preferencias push.
 - HU005, tarea #48: resumen del candidato con métricas, completitud del perfil y ofertas recientes.
-- HU008: CRUD del perfil propio y fotografía privada, con datos estructurados para un futuro CV.
+- HU008: CRUD del perfil propio, fotografía privada y reutilización efectiva para CV; consulta empresarial autorizada por postulación propia.
 - HU009/HU010: información empresarial, solicitud, revisión administrativa, rechazo con motivo, corrección, reenvío y aprobación; avisos dentro de WorkNet.
 - HU006/HU007: resúmenes de empresa aprobada y administrador, con datos reales y permisos por rol.
+- HU011: carga, consulta, reemplazo y retirada de un CV PDF privado.
+- HU012: precarga del perfil, guardado y edición del CV, tres plantillas y generación de PDF.
+- HU013: catálogos y publicación de ofertas por la empresa aprobada propietaria.
 
 El Project WORK_NET se consultó con Francisco y `read:project`: Sprint 1 contiene
 HU001–HU004 y #29–#46; Sprint 2, HU005–HU010 y #47–#70; Sprint 3, HU011–HU017 y
 #71–#79. La consulta del 07/11/2026 confirma #80–#83 en Sprint 3; no se modificaron los Sprint de las tareas futuras. Se conservaron esas
 asignaciones. La revisión técnica delegada y su integración se documentan en la
 guía vigente; los módulos futuros conservan su alcance pendiente.
-
-- HU011: carga, consulta, reemplazo y retirada de un CV PDF privado.
-- HU012: precarga del perfil, guardado y edición del CV, tres plantillas y generación de PDF.
-- HU013: catálogos y publicación de ofertas por la empresa aprobada propietaria.
 
 La selección de CV al postular sigue pendiente de HU018.
 
