@@ -5,11 +5,13 @@ Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com
 
 Estado del 07/11/2026: cierre y archivado HU015 implementados y revisados por
 delegación del titular; 159 Django, 124 Flutter y 18 casos nuevos de navegador
-aprobados. La historia mantiene pendientes los recorridos completos del buscador
+aprobados, con los mismos 18 casos repetidos en dos bases QA nuevas. La historia
+mantiene pendientes los recorridos completos del buscador
 HU016 y postulación HU018, todavía no implementados.
 [Guía vigente, capturas y alcance](frontend/docs/REVISION.md#hu015-cierre-y-archivado-de-ofertas--07112026).
-API en #156 y Flutter/integración/QA en #157; las cabeceras y fusiones definitivas
-se registran en esos PR y en el seguimiento. Los apartados históricos conservan
+API en #156/#158, Flutter/QA en #157, entrega conjunta en #159 y main en #160;
+las cabeceras y fusiones definitivas se registran en esos PR y en el seguimiento.
+Los apartados históricos conservan
 sus versiones y la procedencia de sus comprobaciones.
 
 ## Ramas
