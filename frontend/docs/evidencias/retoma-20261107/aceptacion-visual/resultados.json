@@ -26,7 +26,7 @@
       "84076191ee264f8d75e7b1acfa32ca4af93da200"
     ],
     "combinacion_antes": "f188c767c488ca52af45ecc394c036625d90e69e",
-    "combinacion_corregida": "33ec3fc",
+    "combinacion_corregida": "33ec3fcedaa3768afd17529949e01bdd1cc39732",
     "frontend_base": "5cfb9a2fe355e544e9deba012a3409414f2014c7",
     "backend": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
     "fuente": "La combinación sigue local; este bloque se publica sobre 8407619 en #149"
@@ -281,187 +281,224 @@
     {
       "archivo": "00-login.png",
       "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "01-candidato-dashboard.png",
       "sha256": "37713fa67d34404aa7268880fa6d9169b32238d191a98b0b9c103b1b1a54a91e",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "02-hu012-movil-precarga.png",
       "sha256": "591ab1ca715a759206a5cc94dd637fe16f959c8d38bf7c1269a431827a53db34",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "03-hu012-movil-validacion.png",
       "sha256": "7b66a6d66e998bf3e0826646c32287608475b45f5de9423c098b0579d88bee37",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "04-hu012-movil-fechas.png",
       "sha256": "0fcb46545fbf37a55c5d62cb37a424d4940ac46e8f1d52b83e82ccdf221e46df",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "05-hu012-movil-plantillas.png",
       "sha256": "9d3bccf21c55f51e918c852e59839e950082c17711da3a2e43490a5138f1c407",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "06-hu012-movil-salida.png",
       "sha256": "cf60ff6a488549ecccbea313a670613a55dc73d96ce4775db48c6b1801e447c5",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "07-hu012-movil-red-borrador.png",
       "sha256": "8d3684cedb9b2ab53779c918e90be2aced561bede7aea0255f5c017fc7b31cce",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "08-hu012-movil-error-red.png",
       "sha256": "e198777c356b68aa875a6267693776a41ff89aa94f6daea7ac1ad3bc5259d59c",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "09-hu012-movil-pdf.png",
       "sha256": "93bb4844dd46a63384701050365d0e4e9bdd0c35df6a84727dec2f4e79408641",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "10-hu012-reabrir.png",
       "sha256": "729c6fbb69688e1f53592a888b6c44975a058e34df208dce8d71de7f32e9a7d1",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "11-hu012-error-servidor-simulado.png",
       "sha256": "e7eef2e9d580dbf891a5f245737108aa68a668ce52b7a07338e38dd1b37bd14d",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "12-hu012-escritorio-pdf-secciones.png",
       "sha256": "d4450b8eab3b3e6d8726a5c9eaa1843377241a880e68b335ba913df31ae78ccd",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "13-hu012-escritorio-pdf-completo.png",
       "sha256": "a32aede1f2b140ffbbc6662e95bf5b3b385f717f80906df295fcdfa866310dd1",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "14-hu012-sesion-expirada.png",
       "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "15-hu012-otra-cuenta.png",
       "sha256": "2ef9071ec8b307d79cf131c30326a3d7e8496e890d739c0be8e2051215ed11e8",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "16-hu013-dashboard-inicial.png",
       "sha256": "bef063b25ab76c0025cbafb80c69c98451a2be33a2d46edfb8987661ceb5d41b",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "17-hu013-escritorio-formulario.png",
       "sha256": "efd67eb2313325b8d382f01562bcf3cf4ea811714117b7b2fdac6d9f68c29db6",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "18-hu013-escritorio-obligatorios.png",
       "sha256": "de74bb2d18fe0a15a1d021490a356572cdb6303ae2c145c6a42fc867acad054e",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "19-hu013-catalogo-categorias.png",
       "sha256": "acc93ed71897726e80cf3eb3ed30544dcff67cbdb4db1563c3b3ae20402d66ae",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "20-hu013-catalogo-contratos.png",
       "sha256": "ee7a06f96393181881852fa7ffd5813e3fa8a0afef85cf7b973822da26a79245",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "21-hu013-salario-invalido.png",
       "sha256": "4a08356bea07e858ae1507919e03e925a0f972209f9384b791a8a623bf30b497",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "22-hu013-escritorio-confirmacion.png",
       "sha256": "ad113d2aa4057ecbe186f8413020baa99dfc29d5455071c70883d09149beacd7",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "23-hu013-movil-dashboard-3.png",
       "sha256": "513faacfed1123bbebdf80dff4fd2d6fa0a2c1544290b0d527ffb36af8045553",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "24-hu013-movil-catalogo-red.png",
       "sha256": "782a19c7b89ad75ec275c7c31054f377a9d06f8b84ed88980f4753d8e72892b0",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "25-hu013-movil-obligatorios.png",
       "sha256": "347266fe0388fdb0ae5f466fc83071e4e8c9b5b0dd66d759273213c147aab58d",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "26-hu013-movil-error-red-borrador.png",
       "sha256": "21cba29b94e95a9e904372801c9550a5a71fd35dc5517b3ef7bbe1dc91caee6b",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "27-hu013-movil-error-campo-simulado.png",
       "sha256": "0ab41da1f2ea978ffe3ce294b4ae1cd55351ef01c82bc8925ec975c25ab1b513",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "28-hu013-movil-confirmacion.png",
       "sha256": "cbaf9c0627bf6e4050af56febb42925b3fa002d8250f72f7d7235963926b5c4b",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "29-hu013-movil-dashboard-4.png",
       "sha256": "1be4982ccd7505e2fcc398eedbbf2ef121f0ee4aa678f54057c690c4b3346256",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "30-hu013-movil-sesion-expirada.png",
       "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "31-hu013-empresa-no-aprobada.png",
       "sha256": "6ebf32f7ee067d1ef1d6913599aac0354346b7e03c49323558df0f1b2b15a0fd",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
     },
     {
       "archivo": "32-hu013-acceso-directo-denegado.png",
       "sha256": "d053483e3a5ac34471ad448b3bae02ae789322b72d2e2ec5945cb4944912b021",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "33-hu012-carga-red.png",
       "sha256": "7bcc28d67b819e37fceeb34a17b8f487c20fd77f051fa36102b874b24685c152",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "34-hu012-descarte-corregido.png",
       "sha256": "fb93dbf2bea16f3c9f1afb2fcdf09e420ffa15d03b7a9fa95c2cbbca3984abc1",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "35-hu012-movil-sesion-y-atras.png",
       "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     },
     {
       "archivo": "36-hu013-formulario-version-corregida.png",
       "sha256": "8812cdf2b9e14ee80c0da168b5c1eac9c65dd3cac2f34ba08c5feba71f522790",
-      "inspeccionada": true
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
     }
   ],
   "pdf": {

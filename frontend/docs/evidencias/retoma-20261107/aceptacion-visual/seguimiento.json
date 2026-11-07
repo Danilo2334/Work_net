@@ -1,0 +1,515 @@
+{
+  "fecha": "2026-11-07",
+  "commit_QA": "2d8590aaeebf06fad0dc97f17e2541d276703a26",
+  "cuenta_publicacion": "francisco3788",
+  "autor_y_committer": "Francisco Molina <francisco3788@users.noreply.github.com>",
+  "Project_actualizado_como": "Danilo2334",
+  "asignaciones_preservadas": true,
+  "Sprint_fechas_otros_campos_preservados": true,
+  "relaciones_padre_subtarea_preservadas": true,
+  "HU014_HU027_sin_cambios": true,
+  "comentarios_exactamente_uno_por_subtarea_29_83": true,
+  "subtareas_comentarios": {
+    "29": {
+      "comment_id": 6259568713,
+      "url": "https://github.com/Danilo2334/Work_net/issues/29#issuecomment-6259568713",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "30": {
+      "comment_id": 6272919540,
+      "url": "https://github.com/Danilo2334/Work_net/issues/30#issuecomment-6272919540",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "31": {
+      "comment_id": 6272920035,
+      "url": "https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "32": {
+      "comment_id": 6245224132,
+      "url": "https://github.com/Danilo2334/Work_net/issues/32#issuecomment-6245224132",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "33": {
+      "comment_id": 6245223825,
+      "url": "https://github.com/Danilo2334/Work_net/issues/33#issuecomment-6245223825",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "34": {
+      "comment_id": 6245479135,
+      "url": "https://github.com/Danilo2334/Work_net/issues/34#issuecomment-6245479135",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "35": {
+      "comment_id": 6272920507,
+      "url": "https://github.com/Danilo2334/Work_net/issues/35#issuecomment-6272920507",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "36": {
+      "comment_id": 6245479333,
+      "url": "https://github.com/Danilo2334/Work_net/issues/36#issuecomment-6245479333",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "37": {
+      "comment_id": 6260288501,
+      "url": "https://github.com/Danilo2334/Work_net/issues/37#issuecomment-6260288501",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "38": {
+      "comment_id": 6245480254,
+      "url": "https://github.com/Danilo2334/Work_net/issues/38#issuecomment-6245480254",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "39": {
+      "comment_id": 6245479481,
+      "url": "https://github.com/Danilo2334/Work_net/issues/39#issuecomment-6245479481",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "40": {
+      "comment_id": 6272921015,
+      "url": "https://github.com/Danilo2334/Work_net/issues/40#issuecomment-6272921015",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "41": {
+      "comment_id": 6245479640,
+      "url": "https://github.com/Danilo2334/Work_net/issues/41#issuecomment-6245479640",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "42": {
+      "comment_id": 6245480431,
+      "url": "https://github.com/Danilo2334/Work_net/issues/42#issuecomment-6245480431",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "43": {
+      "comment_id": 6245716590,
+      "url": "https://github.com/Danilo2334/Work_net/issues/43#issuecomment-6245716590",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "44": {
+      "comment_id": 6272921535,
+      "url": "https://github.com/Danilo2334/Work_net/issues/44#issuecomment-6272921535",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "45": {
+      "comment_id": 6272922011,
+      "url": "https://github.com/Danilo2334/Work_net/issues/45#issuecomment-6272922011",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "46": {
+      "comment_id": 6245716821,
+      "url": "https://github.com/Danilo2334/Work_net/issues/46#issuecomment-6245716821",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "47": {
+      "comment_id": 6245479801,
+      "url": "https://github.com/Danilo2334/Work_net/issues/47#issuecomment-6245479801",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "48": {
+      "comment_id": 6272922606,
+      "url": "https://github.com/Danilo2334/Work_net/issues/48#issuecomment-6272922606",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "49": {
+      "comment_id": 6245479981,
+      "url": "https://github.com/Danilo2334/Work_net/issues/49#issuecomment-6245479981",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "50": {
+      "comment_id": 6245480602,
+      "url": "https://github.com/Danilo2334/Work_net/issues/50#issuecomment-6245480602",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "51": {
+      "comment_id": 6260291090,
+      "url": "https://github.com/Danilo2334/Work_net/issues/51#issuecomment-6260291090",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "52": {
+      "comment_id": 6272923113,
+      "url": "https://github.com/Danilo2334/Work_net/issues/52#issuecomment-6272923113",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "53": {
+      "comment_id": 6260291383,
+      "url": "https://github.com/Danilo2334/Work_net/issues/53#issuecomment-6260291383",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "54": {
+      "comment_id": 6260276785,
+      "url": "https://github.com/Danilo2334/Work_net/issues/54#issuecomment-6260276785",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "55": {
+      "comment_id": 6260291727,
+      "url": "https://github.com/Danilo2334/Work_net/issues/55#issuecomment-6260291727",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "56": {
+      "comment_id": 6272923641,
+      "url": "https://github.com/Danilo2334/Work_net/issues/56#issuecomment-6272923641",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "57": {
+      "comment_id": 6260292130,
+      "url": "https://github.com/Danilo2334/Work_net/issues/57#issuecomment-6260292130",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "58": {
+      "comment_id": 6260277494,
+      "url": "https://github.com/Danilo2334/Work_net/issues/58#issuecomment-6260277494",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "59": {
+      "comment_id": 6246221677,
+      "url": "https://github.com/Danilo2334/Work_net/issues/59#issuecomment-6246221677",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "60": {
+      "comment_id": 6272924156,
+      "url": "https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6272924156",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "61": {
+      "comment_id": 6246221840,
+      "url": "https://github.com/Danilo2334/Work_net/issues/61#issuecomment-6246221840",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "62": {
+      "comment_id": 6246223309,
+      "url": "https://github.com/Danilo2334/Work_net/issues/62#issuecomment-6246223309",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "63": {
+      "comment_id": 6260293510,
+      "url": "https://github.com/Danilo2334/Work_net/issues/63#issuecomment-6260293510",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "64": {
+      "comment_id": 6272924656,
+      "url": "https://github.com/Danilo2334/Work_net/issues/64#issuecomment-6272924656",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "65": {
+      "comment_id": 6260293907,
+      "url": "https://github.com/Danilo2334/Work_net/issues/65#issuecomment-6260293907",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "66": {
+      "comment_id": 6260278891,
+      "url": "https://github.com/Danilo2334/Work_net/issues/66#issuecomment-6260278891",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "67": {
+      "comment_id": 6260294278,
+      "url": "https://github.com/Danilo2334/Work_net/issues/67#issuecomment-6260294278",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "68": {
+      "comment_id": 6272925177,
+      "url": "https://github.com/Danilo2334/Work_net/issues/68#issuecomment-6272925177",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "69": {
+      "comment_id": 6260294733,
+      "url": "https://github.com/Danilo2334/Work_net/issues/69#issuecomment-6260294733",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "70": {
+      "comment_id": 6260279554,
+      "url": "https://github.com/Danilo2334/Work_net/issues/70#issuecomment-6260279554",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "71": {
+      "comment_id": 6393908663,
+      "url": "https://github.com/Danilo2334/Work_net/issues/71#issuecomment-6393908663",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "72": {
+      "comment_id": 6393909036,
+      "url": "https://github.com/Danilo2334/Work_net/issues/72#issuecomment-6393909036",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "73": {
+      "comment_id": 6393908849,
+      "url": "https://github.com/Danilo2334/Work_net/issues/73#issuecomment-6393908849",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "74": {
+      "comment_id": 6393909202,
+      "url": "https://github.com/Danilo2334/Work_net/issues/74#issuecomment-6393909202",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "75": {
+      "comment_id": 6677450277,
+      "url": "https://github.com/Danilo2334/Work_net/issues/75#issuecomment-6677450277",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "76": {
+      "comment_id": 6677473873,
+      "url": "https://github.com/Danilo2334/Work_net/issues/76#issuecomment-6677473873",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "77": {
+      "comment_id": 6677474163,
+      "url": "https://github.com/Danilo2334/Work_net/issues/77#issuecomment-6677474163",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "78": {
+      "comment_id": 6677451237,
+      "url": "https://github.com/Danilo2334/Work_net/issues/78#issuecomment-6677451237",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "79": {
+      "comment_id": 6677474473,
+      "url": "https://github.com/Danilo2334/Work_net/issues/79#issuecomment-6677474473",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "80": {
+      "comment_id": 6679336067,
+      "url": "https://github.com/Danilo2334/Work_net/issues/80#issuecomment-6679336067",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "81": {
+      "comment_id": 6679337039,
+      "url": "https://github.com/Danilo2334/Work_net/issues/81#issuecomment-6679337039",
+      "author": "Danilo2334",
+      "count": 1
+    },
+    "82": {
+      "comment_id": 6679338031,
+      "url": "https://github.com/Danilo2334/Work_net/issues/82#issuecomment-6679338031",
+      "author": "francisco3788",
+      "count": 1
+    },
+    "83": {
+      "comment_id": 6679338987,
+      "url": "https://github.com/Danilo2334/Work_net/issues/83#issuecomment-6679338987",
+      "author": "Danilo2334",
+      "count": 1
+    }
+  },
+  "estados": [
+    {
+      "numero": 13,
+      "status": "QA / Testing",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788",
+        "Danilo2334"
+      ]
+    },
+    {
+      "numero": 14,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788",
+        "Danilo2334"
+      ]
+    },
+    {
+      "numero": 54,
+      "status": "QA / Testing",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 62,
+      "status": "QA / Testing",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 75,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 76,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "numero": 77,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "numero": 78,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 79,
+      "status": "QA / Testing",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 80,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 81,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "numero": 82,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    },
+    {
+      "numero": 83,
+      "status": "In review",
+      "issue_state": "OPEN",
+      "responsables": [
+        "francisco3788"
+      ]
+    }
+  ],
+  "PR": [
+    {
+      "numero": 146,
+      "head": "91207ad37f13f1dd9f647264b48717ae514cb2f7",
+      "destino": "main",
+      "abierto": true,
+      "borrador": true,
+      "fusionado": false,
+      "revisiones_humanas": 0,
+      "revisor_solicitado": "Danilo2334",
+      "checks": [],
+      "contextos_status": 0,
+      "mergeable": true,
+      "mergeable_state": "clean"
+    },
+    {
+      "numero": 147,
+      "head": "3959d08385a8fd14161c53216179f3a01e769d42",
+      "destino": "develop",
+      "abierto": true,
+      "borrador": true,
+      "fusionado": false,
+      "revisiones_humanas": 0,
+      "revisor_solicitado": "francisco3788",
+      "checks": [],
+      "contextos_status": 0,
+      "mergeable": true,
+      "mergeable_state": "clean"
+    },
+    {
+      "numero": 148,
+      "head": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+      "destino": "feature/backend-sprint-3",
+      "abierto": true,
+      "borrador": true,
+      "fusionado": false,
+      "revisiones_humanas": 0,
+      "revisor_solicitado": "francisco3788",
+      "checks": [],
+      "contextos_status": 0,
+      "mergeable": true,
+      "mergeable_state": "clean"
+    },
+    {
+      "numero": 149,
+      "head": "2d8590aaeebf06fad0dc97f17e2541d276703a26",
+      "destino": "frontend",
+      "abierto": true,
+      "borrador": true,
+      "fusionado": false,
+      "revisiones_humanas": 0,
+      "revisor_solicitado": "Danilo2334",
+      "checks": [],
+      "contextos_status": 0,
+      "mergeable": true,
+      "mergeable_state": "clean"
+    }
+  ],
+  "pendientes": [
+    "HU018: selección del CV en postulación; HU011/HU012/#79 abiertas.",
+    "Revisiones humanas Danilo #146/#149 y Francisco #147/#148. Casillas y solicitudes pendientes, cero aprobaciones.",
+    "Integración #148 antes de #147; #149 a frontend; incorporar backend revisado y comprobar resultado antes de #146 a main. No se fusionó ningún PR."
+  ]
+}

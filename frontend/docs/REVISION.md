@@ -330,3 +330,9 @@ Orden intacto: #148 → backend-sprint-3 antes de #147 → develop; #149 → fro
 incorporar el backend revisado a entrega y verificar después antes de #146 → main.
 Ni estar mergeable ni completar aceptación suplen revisión o integración. No se
 inició HU014–HU027, no se fusionó ni aprobó ningún PR y este bloque termina aquí.
+
+[Verificación final de estados, revisores y comentarios](evidencias/retoma-20261107/aceptacion-visual/seguimiento.json):
+55 subtareas con un único comentario cada una; asignaciones, Sprint, fechas y
+relaciones intactas. Cuenta, autor y committer del bloque publicados como Francisco.
+Project actualizado con la autorización existente de Danilo. Navegador y servicios
+de esta corrida cerrados; bases y entornos anteriores y la nueva SQLite conservados.
