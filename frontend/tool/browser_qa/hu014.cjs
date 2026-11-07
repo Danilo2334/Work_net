@@ -76,6 +76,7 @@ module.exports = async ({ page, cfg, run, capture, bridge, ui, write, read, clic
     }
   });
   await run('HU014-V13', async () => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(cfg.web_origin + '/company-dashboard'); await semantics(); await logout(); await login('candidate', '/dashboard', true);
     await page.goto(cfg.web_origin + '/company/offers/1/edit'); await semantics(); await page.waitForURL(cfg.web_origin + '/dashboard'); assert.ok(!(await ui()).includes('Guardar cambios')); await capture('candidato'); await logout();
   });
@@ -86,7 +87,7 @@ module.exports = async ({ page, cfg, run, capture, bridge, ui, write, read, clic
     await page.goto(cfg.web_origin + '/company'); await semantics(); await logout();
   });
   await run('HU014-V15', async () => {
-    await login('company', '/company-dashboard', true); await openList(); await openOne(); await write('Título', 'No guardar sesión vencida'); const before = snap().offers;
+    await login('company', '/company-dashboard', true); await openList(); await openOne(); await page.setViewportSize({ width: 390, height: 844 }); await write('Título', 'No guardar sesión vencida'); const before = snap().offers;
     bridge('revoke_company'); const pending = response('PATCH'); await click('Guardar cambios'); assert.equal((await pending).status(), 401); await page.waitForURL(cfg.web_origin + '/login'); await waitText('Tu sesión ya no es válida.'); assert.deepEqual(snap().offers, before); await capture('sesion-401');
     await page.goBack(); await page.waitForURL(cfg.web_origin + '/login'); assert.equal(await page.getByRole('textbox', { name: 'Título', exact: true }).count(), 0);
     const state = snap(); for (const key of ['identity_unchanged','relations_unchanged','other_offers_unchanged','company_approval_unchanged','reviews_unchanged']) assert.equal(state[key], true);

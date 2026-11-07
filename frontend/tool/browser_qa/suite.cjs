@@ -116,7 +116,14 @@ async function main() {
   };
   const login = async (account, home, remember = false) => {
     authenticating = true;
-    if (remember) await page.getByRole('checkbox', { name: 'Recordar sesión', exact: true }).check();
+    if (remember) {
+      phase = 'marcar Recordar sesión';
+      const checkbox = page.getByRole('checkbox', { name: 'Recordar sesión', exact: true });
+      await checkbox.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(350);
+      await checkbox.check();
+      assert.equal(await checkbox.isChecked(), true);
+    }
     await write('Correo electrónico', values[account + '_email']);
     await write('Contraseña', values.qa_password);
     const response = page.waitForResponse(r => endpoint(r, 'POST', 'login/'));
