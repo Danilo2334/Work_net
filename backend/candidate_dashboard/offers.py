@@ -95,8 +95,11 @@ class ActiveOffersView(PublishOfferView):
     permission_classes = [IsAuthenticated, EditCompanyPermission]
     http_method_names = ["get", "head", "options"]
 
+    def queryset(self, request):
+        return active_offers(JobOffer.objects.filter(company=request.user))
+
     def get(self, request):
-        offers = active_offers(JobOffer.objects.filter(company=request.user)).order_by("-published_at", "-id")
+        offers = self.queryset(request).order_by("-published_at", "-id")
         paginator = PageNumberPagination()
         paginator.page_size = 20
         page = paginator.paginate_queryset(offers, request, view=self)
@@ -104,6 +107,50 @@ class ActiveOffersView(PublishOfferView):
                          "next_page": paginator.page.next_page_number() if paginator.page.has_next() else None,
                          "previous_page": paginator.page.previous_page_number() if paginator.page.has_previous() else None,
                          "offers": [offer_data(offer) for offer in page]},
+                        headers={"Cache-Control": "private, no-store", "Vary": "Authorization"})
+
+
+class LifecycleCompanyPermission(PublishCompanyPermission):
+    message = "Verifica tu correo y espera la aprobación de tu empresa para gestionar ofertas."
+
+
+class PreservedOffersView(ActiveOffersView):
+    permission_classes = [IsAuthenticated, LifecycleCompanyPermission]
+
+    def queryset(self, request):
+        return JobOffer.objects.filter(company=request.user, status__in=[
+            JobOffer.Status.CLOSED, JobOffer.Status.ARCHIVED,
+        ])
+
+
+class TransitionOfferView(PublishOfferView):
+    permission_classes = [IsAuthenticated, LifecycleCompanyPermission]
+    http_method_names = ["post", "options"]
+
+    @transaction.atomic
+    def post(self, request, offer_id):
+        company = CompanyProfile.objects.select_for_update().filter(company=request.user).first()
+        if company is None or company.state != CompanyProfile.State.APPROVED:
+            raise PermissionDenied(LifecycleCompanyPermission.message)
+        offer = JobOffer.objects.select_for_update().filter(pk=offer_id, company=request.user).first()
+        if offer is None:
+            raise NotFound("No encontramos esa oferta entre las de tu empresa.")
+        data = request.data
+        if not isinstance(data, dict) or set(data) - {"action", "confirm"} or data.get("action") not in ("close", "archive"):
+            raise ValidationError({"message": "Indica una acción de cierre o archivado válida, sin otros campos."})
+        archive = data["action"] == "archive"
+        if archive and data.get("confirm") is not True:
+            raise ValidationError({"confirm": "Confirma el archivado de esta oferta."})
+        target = JobOffer.Status.ARCHIVED if archive else JobOffer.Status.CLOSED
+        allowed = {JobOffer.Status.PUBLISHED, JobOffer.Status.CLOSED} if archive else {JobOffer.Status.PUBLISHED}
+        # Reintentos tras perder la respuesta son idempotentes. Nunca reabrir.
+        if offer.status != target:
+            if offer.status not in allowed:
+                raise OfferNotEditable("El estado de esta oferta no permite esa transición.")
+            offer.status = target
+            offer.save(update_fields=["status"])
+        return Response({"message": "Oferta archivada correctamente." if archive else "Oferta cerrada correctamente.",
+                         "offer": offer_data(offer)},
                         headers={"Cache-Control": "private, no-store", "Vary": "Authorization"})
 
 

@@ -1,5 +1,52 @@
 # Empresa, registro y sesión
 
+## HU015: cierre y archivado sin eliminar historial — 07/11/2026
+
+**Alcance y responsable:** Danilo2334, estados y reglas (#89). Base funcional
+`b0351ec`, sin avances posteriores al iniciar. Nuevo checkout sobre el mismo
+árbol backend de main; se conservan los entornos y bases anteriores.
+
+| Método y ruta | Contrato |
+|---|---|
+| POST `/api/company/offers/{id}/transition/` | `{"action":"close"}` o `{"action":"archive","confirm":true}`; 200 con `message` y `offer` |
+| GET `/api/company/offers/preserved/?page=1` | Propias cerradas/archivadas; mismos campos y paginación de 20 que la consulta activa |
+
+**Reglas.** Token, empresa sin privilegios administrativos, correo verificado y
+perfil aprobado. Ajena/inexistente: 404 indistinguible. Transiciones: publicada
+(también vencida) → cerrada o archivada; cerrada → archivada. Repetir el mismo
+destino devuelve 200 sin modificar datos, para recuperar respuestas perdidas.
+No se reabre; archivada → cerrada, borrador y estados desconocidos: 409.
+Archivar exige booleano `true`; cuerpo inválido o campos adicionales: 400 sin
+escrituras. No hay DELETE. Transacción con bloqueo empresa→oferta y nueva
+comprobación de aprobación; se guarda solo `status`.
+
+**Conservación y puntos efectivos.** Se mantienen ID, propietario, los siete
+campos, fechas, relaciones y aprobación empresarial. No se eliminan ofertas,
+postulaciones, guardados ni revisiones. Listado activo, métrica empresarial y
+ofertas recientes del candidato comparten `active_offers`: publicada y no
+vencida. Las cerradas/archivadas no pueden editarse por HU014. La creación
+actual de `Application` (`save`/`objects.create` y `bulk_create`) bloquea la oferta
+y valida que siga activa antes de insertar; lotes inválidos no escriben parcialmente.
+Las relaciones de postulaciones existentes no se reasignan con `save`, `update`
+o `bulk_update`; su consulta histórica permanece disponible. No es una restricción
+SQL frente a escrituras directas de mantenimiento.
+
+**Preparación, pasos y pruebas.** Preparador `backend/postman/qa.py` en otra base
+QA, correo a archivos. Cerrar, reconsultar activos/conservadas, archivar con
+confirmación, reconsultar y contrastar todos los campos y relaciones. Pruebas:
+`python manage.py test candidate_dashboard.test_lifecycle_offers candidate_dashboard.test_edit_offers candidate_dashboard.test_offers accounts.test_company_access --noinput`.
+Regresión completa: 158 Django aprobadas; sistema sin incidencias, sin cambios
+de modelos ni migraciones pendientes. Los fixtures históricos que creaban
+postulaciones sobre borradores pasan a crearlas antes de inactivar la oferta.
+
+**Límite de aceptación.** HU016 aún no proporciona buscador completo y HU018
+no proporciona API/pantalla de postulación. Se prueba la exclusión de las
+consultas activas existentes y el bloqueo de escritura del dominio; los criterios
+de esos dos recorridos completos continúan pendientes. No se implementan en HU015.
+Revisión técnica por agente autorizado; ninguna aprobación personal atribuida.
+Evidencias conjuntas y PR en la [guía existente](../../frontend/docs/REVISION.md)
+y seguimiento único de #89. Los apartados siguientes conservan cortes anteriores.
+
 ## HU014: consulta y edición de ofertas activas
 
 **Alcance y responsable:** Danilo2334, API y definición compartida de oferta activa.
