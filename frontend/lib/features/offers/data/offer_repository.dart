@@ -7,9 +7,21 @@ class HttpOfferRepository implements OfferRepository {
   @override
   Future<OfferCatalog> catalog(String token) async {
     final data = await api.request('company/offers/', token: token);
+    List<String> choices(String key) {
+      final value = data[key];
+      if (value is! List ||
+          value.isEmpty ||
+          value.any((item) => item is! String || item.trim().isEmpty)) {
+        throw const ApiFailure(
+          'Recibimos un catálogo de ofertas no válido. Vuelve a intentarlo.',
+        );
+      }
+      return List<String>.from(value).toSet().toList();
+    }
+
     return OfferCatalog(
-      categories: List<String>.from(data['categories'] as List),
-      contractTypes: List<String>.from(data['contract_types'] as List),
+      categories: choices('categories'),
+      contractTypes: choices('contract_types'),
     );
   }
 
@@ -20,6 +32,13 @@ class HttpOfferRepository implements OfferRepository {
       token: token,
       data: draft.toJson(),
     );
-    return (data['offer'] as Map<String, dynamic>)['id'] as int;
+    final offer = data['offer'];
+    final id = offer is Map<String, dynamic> ? offer['id'] : null;
+    if (id is! int || id <= 0) {
+      throw const ApiFailure(
+        'No pudimos confirmar la publicación. Consulta el dashboard antes de volver a intentarlo.',
+      );
+    }
+    return id;
   }
 }

@@ -74,6 +74,59 @@ Future<void> submit(WidgetTester t) async {
 }
 
 void main() {
+  test('malformed catalogs become a recoverable API failure', () async {
+    for (final body in [
+      <String, dynamic>{},
+      {
+        'categories': ['QA', 1],
+        'contract_types': ['Temporal'],
+      },
+      {
+        'categories': <String>[],
+        'contract_types': ['Temporal'],
+      },
+    ]) {
+      final api = WorkNetApi(
+        client: MockClient((_) async => jsonResponse(body)),
+      );
+      await expectLater(
+        HttpOfferRepository(api).catalog('local'),
+        throwsA(isA<ApiFailure>()),
+      );
+      api.close();
+    }
+  });
+  test('malformed publication cannot confirm an offer', () async {
+    for (final body in [
+      <String, dynamic>{},
+      {
+        'offer': {'id': '7'},
+      },
+      {
+        'offer': {'id': 0},
+      },
+    ]) {
+      final api = WorkNetApi(
+        client: MockClient((_) async => jsonResponse(body, 201)),
+      );
+      await expectLater(
+        HttpOfferRepository(api).publish(
+          'local',
+          const OfferDraft(
+            title: 'QA',
+            description: 'QA',
+            requirements: 'QA',
+            salary: '1',
+            location: 'QA',
+            category: 'QA',
+            contractType: 'Temporal',
+          ),
+        ),
+        throwsA(isA<ApiFailure>()),
+      );
+      api.close();
+    }
+  });
   test(
     'HTTP adapter sends authenticated fields and reads catalog/result',
     () async {
@@ -129,6 +182,41 @@ void main() {
     await submit(t);
     expect(repo.calls, 0);
     expect(find.text('Completa este campo.'), findsWidgets);
+  });
+  testWidgets('invalid catalog shows a retry that reloads the form', (t) async {
+    var calls = 0;
+    final api = WorkNetApi(
+      client: MockClient((_) async {
+        calls++;
+        return jsonResponse(
+          calls == 1
+              ? <String, dynamic>{}
+              : {
+                  'categories': ['QA'],
+                  'contract_types': ['Temporal'],
+                },
+        );
+      }),
+    );
+    addTearDown(api.close);
+    final session = await companySession();
+    await t.pumpWidget(
+      MaterialApp(
+        home: PublishOfferPage(
+          session: session,
+          repository: HttpOfferRepository(api),
+        ),
+      ),
+    );
+    await t.pumpAndSettle();
+    expect(t.takeException(), isNull);
+    expect(find.text('Reintentar'), findsOneWidget);
+    expect(find.byKey(const Key('offer_title')), findsNothing);
+    await t.tap(find.text('Reintentar'));
+    await t.pumpAndSettle();
+    expect(calls, 2);
+    expect(find.byKey(const Key('offer_title')), findsOneWidget);
+    expect(find.text('Reintentar'), findsNothing);
   });
   testWidgets('publishes once and shows confirmation', (t) async {
     final repo = FakeOffers();

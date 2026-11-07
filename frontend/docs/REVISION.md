@@ -1,5 +1,30 @@
 # Guía para revisar WorkNet
 
+## Revisión técnica de HU013 — 07/11/2026
+
+**Alcance y responsable:** contrato del formulario de ofertas de #149; publicación
+Flutter e integración a cargo de francisco3788. La comprobación la ejecutó el
+agente por delegación del titular; no se registra una revisión personal de Danilo
+ni de Francisco. Esta autorización sustituye la espera de revisión manual.
+
+**Preparación y pasos:** checkout separado de `4851c3e`, sin modificar los entornos
+anteriores. Se inyectaron respuestas HTTP 200/201 sin catálogo, con elementos de
+tipo incorrecto y sin identificador válido. Dos pruebas reprodujeron errores de
+tipos que escapaban al manejo de errores de la pantalla.
+
+**Corrección y resultados:** el adaptador valida catálogos no vacíos y el ID
+entero positivo de publicación. Los fallos se convierten en mensajes recuperables;
+una respuesta inválida no confirma una oferta. Si la confirmación es ambigua,
+el mensaje indica consultar el dashboard antes de volver a enviar. El caso de
+catálogo inválido permite reintentar y cargar el formulario sin una excepción
+no controlada. `flutter test test/publish_offer_test.dart --no-pub`: 8 aprobadas.
+Son pruebas HTTP simuladas y widgets, sin capturas nuevas ni correos enviados.
+Los recorridos reales y sus capturas conservan abajo sus fechas y versiones.
+
+**Enlaces:** [diff vigente #149](https://github.com/Danilo2334/Work_net/pull/149/files),
+[adaptador](../lib/features/offers/data/offer_repository.dart) y
+[pruebas](../test/publish_offer_test.dart).
+
 > **Estado vigente:** consultar «Aceptación visual y revisiones preparadas — 07/11/2026» al final. Los apartados fechados anteriores conservan su evidencia histórica; sus bloqueos visuales describen esas ejecuciones. Publicado e implementado no significa integrado ni revisado por otro integrante.
 
 Actualización de HU011: 25/10/2026. Backend de PDF probado: `84746c3`; Flutter de HU011 en el PR #146.
