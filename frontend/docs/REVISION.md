@@ -38,11 +38,66 @@ HU015 añade cancelación, cierre/archivado persistidos, exclusión activa,
 conservación de historial, errores, sesión y regresión de publicación/edición.
 Móvil web emulado a 390×844 con ratón/teclado; no dispositivo físico.
 
-**Pruebas y estado de esta preparación.** 158 Django, 124 Flutter y 12 guards
-aprobados. Análisis Flutter limpio y sintaxis Node correcta. Migraciones aplicadas
-en otra QA, sin pendientes ni cambios de modelos. La aceptación de navegador y
-las capturas se incorporarán tras ejecutar y revisar la nueva corrida; este
-apartado no anticipa su resultado. Contrato backend en
+**Resultados y pruebas.** API `79d45e30422f0973a86e53e34919f071895c1499` y Flutter/suite
+`fd5ad27695c231131ea1f73dffeb5e837cccd446`: 159 Django, 124 Flutter y 12 guards aprobados;
+análisis limpio, sintaxis Node y compilación JavaScript release correctos.
+Migraciones aplicadas en otra QA, sin pendientes ni cambios de modelos.
+18 casos de navegador (login y 17 HU015) aprobados, 26 capturas originales.
+Chromium 158.0.8127.18 / Playwright 1.65.0, escritorio 1440×1000 y móvil web
+390×844 emulado. Los cambios posteriores de esta aportación solo documentan
+el resultado; no se atribuye una prueba de dispositivo físico.
+
+Se conservaron la información y relaciones de las ocho ofertas iniciales:
+solo cambiaron los estados de las seleccionadas. Las dos postulaciones y el
+guardado permanecen intactos, así como aprobación y revisiones empresariales;
+las ofertas ajenas/no seleccionadas, el perfil y la cuenta de origen no cambian.
+Una novena oferta se publicó y editó por la interfaz para regresión HU013/HU014,
+con reconsulta y recarga. Las cerradas/archivadas desaparecen de las consultas
+activas y su edición recibe 409. Las pruebas Django comprueban los permisos,
+ofertas ajenas 404, transiciones inválidas, confirmación inválida sin escrituras,
+paginación, historial consultable y bloqueo de creación individual/masiva de
+postulaciones en inactivas. Esta última comprobación es del dominio actual;
+no existe aún la API/pantalla de HU018.
+
+V07–V11 usan abortos y 400/503 **inyectados** y comprueban que no cambia la base.
+V14 realiza un POST real, comprueba 200 de Django, descarta su respuesta y
+verifica el estado persistido; repetir desde UI devuelve 200 sin duplicar ni
+reabrir. V16/V17 reciben 403/401 reales de la QA. Tras revocar el token de
+prueba, el login queda vacío y volver atrás no muestra ofertas protegidas.
+El navegador y los dos servicios propios se cerraron; reutilizar la corrida
+consumida fue rechazado sin modificar la base. Credenciales, sesiones y entornos
+permanecen privados. [Resultado, respuestas sanitizadas y hashes](evidencias/hu015-20261107/resultados.json).
+
+Se inspeccionaron directamente estas siete imágenes; las otras se conservan
+junto al resultado y están asociadas a las aserciones de los 18 casos:
+
+| Captura | Resultado comprobado |
+|---|---|
+| [V02 confirmación](evidencias/hu015-20261107/HU015-V02-confirmacion-archivar.png) | Identifica oferta y efectos; cancelar no envía POST ni cambia la base |
+| [V03 cierre](evidencias/hu015-20261107/HU015-V03-cerrada-excluida.png) | Confirmación y dos activas restantes; la cerrada desaparece |
+| [V04 conservadas](evidencias/hu015-20261107/HU015-V04-archivada-persistida.png) | Cerradas/archivadas con información después de recargar, sin edición |
+| [V05 móvil](evidencias/hu015-20261107/HU015-V05-conservadas-movil.png) | Listado de conservadas legible en móvil web; archivado directo persistido |
+| [V07 red](evidencias/hu015-20261107/HU015-V07-red-cierre.png) | Error visible, oferta conservada y acción recuperable mediante consulta |
+| [V14 reintento](evidencias/hu015-20261107/HU015-V14-reintento-idempotente.png) | Cierre confirmado tras perder la primera respuesta real, sin duplicados |
+| [V17 sesión](evidencias/hu015-20261107/HU015-V17-sesion-401.png) | 401 real; login sin credenciales y sin escritura de la transición |
+
+**Hallazgos y procedencia.** La revisión reprodujo una reasignación de postulación
+mediante `bulk_create(update_conflicts=True)`; se rechaza ese modo y la nueva
+prueba pasa dentro de las 159 Django. Se conserva el ensayo de navegador
+`0d47453`/`149de96`, fallido en V13: las fixtures usaban fechas ISO con T y
+alteraban el orden frente a las fechas SQLite de Django; se normalizó el
+preparador en `fd5ad27`. No se presenta ese fallo QA como defecto de producto.
+Fechas/versiones del ensayo y de la corrida aprobada constan en el JSON.
+
+**Revisión e integración.** [#156 backend](https://github.com/Danilo2334/Work_net/pull/156)
+y [#157 Flutter/QA](https://github.com/Danilo2334/Work_net/pull/157). Se verificaron
+contratos, permisos, bloqueos de empresa/oferta, conservación de relaciones,
+sesión/navegación y aislamiento del ejecutor. Flujo: API→backend-sprint-3→develop;
+Flutter→frontend; backend revisado→entrega→frontend; verificar otra corrida QA
+del conjunto antes de main. Los PR y el comentario único de cada subtarea
+registran las cabeceras y SHA resultantes. Sin modificar protecciones ni bypass.
+Autor, committer y cuenta de publicación se verifican por separado; las fusiones
+del servidor conservan committer GitHub. Contrato y pruebas backend en
 [COMPANY_API.md](../../backend/accounts/COMPANY_API.md#hu015-cierre-y-archivado-sin-eliminar-historial--07112026).
 
 **Criterios pendientes reales.** HU016 no tiene buscador completo y HU018 no
