@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-07",
+  "qa_responsible": "francisco3788",
+  "executed_by": "agente autorizado; no acredita revisión humana",
+  "sources": {
+    "frontend": "5cfb9a2fe355e544e9deba012a3409414f2014c7",
+    "backend": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+    "isolated_local_combination": "f188c767c488ca52af45ecc394c036625d90e69e",
+    "backend_unchanged_from_source": true
+  },
+  "checks": [
+    {
+      "kind": "Django",
+      "command": "python manage.py test accounts candidate_dashboard curriculum --noinput",
+      "passed": 141,
+      "failed": 0
+    },
+    {
+      "kind": "Flutter unit/widget",
+      "command": "flutter test",
+      "passed": 110,
+      "failed": 0,
+      "real_browser": false
+    },
+    {
+      "kind": "Flutter analysis",
+      "command": "flutter analyze --no-pub",
+      "result": "No issues found"
+    },
+    {
+      "kind": "Flutter web JavaScript release",
+      "command": "flutter build web --release",
+      "result": "build/web generado",
+      "warnings": [
+        "Wasm incompatible en flutter_secure_storage_web",
+        "fuente Cupertino ausente"
+      ],
+      "wasm_or_native_verified": false
+    },
+    {
+      "kind": "Django migrations consistency",
+      "command": "python manage.py makemigrations --check --dry-run",
+      "result": "No changes detected"
+    },
+    {
+      "kind": "Dart adapter -> Django HTTP real HU013",
+      "command": "dart run tool/hu013_api_smoke.dart ENTORNO_QA_NUEVO",
+      "passed": 7,
+      "real_browser": false
+    },
+    {
+      "kind": "Newman 6.2.3 HU013",
+      "requests": 10,
+      "assertions": 21,
+      "failed": 0,
+      "postman_desktop": false
+    },
+    {
+      "kind": "Dart adapter -> Django HTTP real HU008/HU012",
+      "command": "dart run tool/hu012_api_smoke.dart ENTORNO_QA_NUEVO",
+      "passed": 18,
+      "real_browser": false
+    },
+    {
+      "kind": "PDF text extraction with pypdf",
+      "templates": [
+        "clasica",
+        "moderna",
+        "minimalista"
+      ],
+      "documents": 3,
+      "pages_each": 1,
+      "source_profile_text_present": true
+    }
+  ],
+  "harness_preparation": {
+    "initial_python_attempt": "No ejecutó la suite: el Python global no tenía reportlab. Se creó otro venv con requirements.txt; la suite completa pasó después.",
+    "initial_hu012_comparison": "Dos preparaciones locales del comprobador rechazaron la normalización de fechas opcionales omitidas a null. Se contrastó la SQLite aislada: no había pérdida de información. Se normalizó únicamente esa equivalencia y el orden de claves en el comprobador, sin cambiar el producto; se ejecutó en una tercera base nueva."
+  },
+  "isolation": "SQLite, claves, contraseñas, entornos, correos y PDFs ficticios permanecen locales; se preservaron las demostraciones anteriores.",
+  "limitations": [
+    "Computer Use native pipe is unavailable: failed to connect native pipe (os error 2). No se controló Chrome ni Postman Desktop en esta sesión.",
+    "Las capturas y Desktop anteriores conservan sus fechas, versiones y alcance; no se presentan como nuevas.",
+    "HU011/HU012: selección del CV al postular depende de HU018.",
+    "No hay revisiones humanas nuevas ni PR fusionados por estas pruebas."
+  ],
+  "project": {
+    "title": "WORK_NET",
+    "account": "Danilo2334",
+    "viewerCanUpdate": true,
+    "sprint_1": "HU001–HU004 y #29–#46",
+    "sprint_2": "HU005–HU010 y #47–#70",
+    "sprint_3": "HU011–HU013 y #71–#83, incluido HU013 ya asignado",
+    "sprint_changes": false
+  }
+}

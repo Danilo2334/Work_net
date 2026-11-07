@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:worknet/core/api/worknet_api.dart';
@@ -127,6 +128,52 @@ Future<GeneratedCurriculumController> makeController(
 }
 
 void main() {
+  testWidgets('reentrada rapida no recupera un borrador descartado', (
+    tester,
+  ) async {
+    var loads = 0;
+    final api = WorkNetApi(
+      client: MockClient((r) async {
+        if (r.url.path == '/api/curriculum/generated/') {
+          loads++;
+          return jsonResponse({
+            'exists': false,
+            'curriculum': initial().payload,
+          });
+        }
+        return jsonResponse({
+          'uploaded': null,
+          'limits': {'max_upload_bytes': 5242880, 'max_upload_pages': 50},
+        });
+      }),
+    );
+    addTearDown(api.close);
+    await tester.pumpWidget(
+      WorkNetApp(
+        api: api,
+        sessionStore: MemorySessionStore()..value = jsonEncode(sessionData()),
+        initialLocation: '/curriculum/create',
+      ),
+    );
+    await tester.pumpAndSettle();
+    final editor = find.byType(GeneratedCurriculumPage);
+    final router = GoRouter.of(tester.element(editor));
+    final name = find.byKey(const ValueKey('cv_full_name_0'));
+    await tester.ensureVisible(name);
+    await tester.enterText(name, 'Borrador descartado QA');
+    router.go('/curriculum');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Salir sin guardar'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 80));
+    // Volver mientras la página saliente aún anima su transición.
+    router.go('/curriculum/create');
+    await tester.pumpAndSettle();
+    expect(loads, 2);
+    expect(find.text('Borrador descartado QA'), findsNothing);
+    expect(find.text('Candidata QA'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
   test(
     'doble guardado se bloquea y respuesta tardia no cambia de propietario',
     () async {

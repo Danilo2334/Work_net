@@ -1,0 +1,1383 @@
+{
+  "date": "2026-11-07",
+  "verified_project_write_account": "Danilo2334",
+  "sprint_and_dates_unchanged": true,
+  "future_stories_and_assignees_unchanged": true,
+  "native_parent_relations_unchanged": true,
+  "exactly_one_comment_per_subtask_29_83": true,
+  "newly_closed": [
+    10
+  ],
+  "historical_closed_unchanged": [
+    2,
+    3,
+    4,
+    5,
+    11
+  ],
+  "no_pr_merged": true,
+  "pr_references_confirmed_in_timeline": {
+    "50": [
+      146,
+      149
+    ],
+    "62": [
+      146,
+      147,
+      149
+    ],
+    "79": [
+      146,
+      147,
+      149
+    ],
+    "83": [
+      146,
+      147,
+      148,
+      149
+    ]
+  },
+  "assignments": {
+    "50": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "54": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "58": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "62": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "74": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "79": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "83": {
+      "previous": [
+        "Danilo2334"
+      ],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "QA de aceptación pendiente, nueva distribución autorizada el 07/11/2026; la QA histórica conserva su responsable.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "63": {
+      "previous": [],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "65": {
+      "previous": [],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "66": {
+      "previous": [],
+      "expected": [
+        "Danilo2334"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "Danilo2334"
+      ]
+    },
+    "67": {
+      "previous": [],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "68": {
+      "previous": [],
+      "expected": [
+        "Danilo2334"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "Danilo2334"
+      ]
+    },
+    "69": {
+      "previous": [],
+      "expected": [
+        "francisco3788"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "francisco3788"
+      ]
+    },
+    "70": {
+      "previous": [],
+      "expected": [
+        "Danilo2334"
+      ],
+      "reason": "Responsabilidad histórica confirmada por autor del comentario existente, commits y alcance; no cambia el cierre.",
+      "verified": true,
+      "actual": [
+        "Danilo2334"
+      ]
+    },
+    "10": {
+      "previous": [],
+      "expected": [
+        "Danilo2334",
+        "francisco3788"
+      ],
+      "reason": "Historia con implementación Django de Danilo e interfaz/integración de Francisco.",
+      "verified": true,
+      "actual": [
+        "francisco3788",
+        "Danilo2334"
+      ]
+    },
+    "11": {
+      "previous": [],
+      "expected": [
+        "Danilo2334",
+        "francisco3788"
+      ],
+      "reason": "Historia con implementación Django de Danilo e interfaz/integración de Francisco.",
+      "verified": true,
+      "actual": [
+        "francisco3788",
+        "Danilo2334"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "number": 2,
+      "title": "HU001 Registro de Usuario y Selección de Rol",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/2"
+    },
+    {
+      "number": 3,
+      "title": "HU002 Inicio de Sesión",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/3"
+    },
+    {
+      "number": 4,
+      "title": "HU003 Recuperación de Contraseña",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/4"
+    },
+    {
+      "number": 5,
+      "title": "HU004 Configuración de Cuenta",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        43,
+        44,
+        45,
+        46
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/5"
+    },
+    {
+      "number": 6,
+      "title": "HU005 Dashboard del Candidato",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        47,
+        48,
+        49,
+        50
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/6"
+    },
+    {
+      "number": 7,
+      "title": "HU006 Dashboard de Empresa",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/7"
+    },
+    {
+      "number": 8,
+      "title": "HU007 Dashboard de Administrador",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        55,
+        56,
+        57,
+        58
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/8"
+    },
+    {
+      "number": 9,
+      "title": "HU008 Perfil de Candidato",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        59,
+        60,
+        61,
+        62
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/9"
+    },
+    {
+      "number": 10,
+      "title": "HU009 Registro de Información de Empresa",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/10"
+    },
+    {
+      "number": 11,
+      "title": "HU010 Validación de Cuenta de Empresa",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        67,
+        68,
+        69,
+        70
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/11"
+    },
+    {
+      "number": 12,
+      "title": "HU011 Subir Currículum",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        71,
+        72,
+        73,
+        74
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/12"
+    },
+    {
+      "number": 13,
+      "title": "HU012 Crear y Editar Currículum con Plantillas",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/13"
+    },
+    {
+      "number": 14,
+      "title": "HU013 Publicación de Oferta de Empleo",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": null,
+      "children": [
+        80,
+        81,
+        82,
+        83
+      ],
+      "comment_count": 0,
+      "url": "https://github.com/Danilo2334/Work_net/issues/14"
+    },
+    {
+      "number": 29,
+      "title": "TASK-HU001-01 Crear interfaz de registro en Flutter",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 2
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/29"
+    },
+    {
+      "number": 30,
+      "title": "TASK-HU001-02 Implementar usuario, roles y API de registro",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 2
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/30"
+    },
+    {
+      "number": 31,
+      "title": "TASK-HU001-03 Implementar verificación de correo",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 2
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/31"
+    },
+    {
+      "number": 32,
+      "title": "TASK-HU001-04 Integrar registro Flutter con Django",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 2
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/32"
+    },
+    {
+      "number": 33,
+      "title": "TASK-HU001-05 Probar criterios de aceptación de registro",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 2
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/33"
+    },
+    {
+      "number": 34,
+      "title": "TASK-HU002-01 Crear pantalla de inicio de sesión en Flutter",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 3
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/34"
+    },
+    {
+      "number": 35,
+      "title": "TASK-HU002-02 Implementar autenticación y endpoint de login",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 3
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/35"
+    },
+    {
+      "number": 36,
+      "title": "TASK-HU002-03 Implementar sesión y redirección por rol",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 3
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/36"
+    },
+    {
+      "number": 37,
+      "title": "TASK-HU002-04 Manejar estados especiales de empresa",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 3
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/37"
+    },
+    {
+      "number": 38,
+      "title": "TASK-HU002-05 Probar criterios de aceptación del login",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 3
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/38"
+    },
+    {
+      "number": 39,
+      "title": "TASK-HU003-01 Crear pantallas de recuperación de contraseña",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 4
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/39"
+    },
+    {
+      "number": 40,
+      "title": "TASK-HU003-02 Implementar tokens y correo de recuperación",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 4
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/40"
+    },
+    {
+      "number": 41,
+      "title": "TASK-HU003-03 Integrar recuperación Flutter-Django",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 4
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/41"
+    },
+    {
+      "number": 42,
+      "title": "TASK-HU003-04 Probar recuperación y expiración",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 4
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/42"
+    },
+    {
+      "number": 43,
+      "title": "TASK-HU004-01 Crear interfaz de configuración de cuenta",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 5
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/43"
+    },
+    {
+      "number": 44,
+      "title": "TASK-HU004-02 Implementar endpoints de configuración",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 5
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/44"
+    },
+    {
+      "number": 45,
+      "title": "TASK-HU004-03 Implementar preferencias de notificaciones",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 5
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/45"
+    },
+    {
+      "number": 46,
+      "title": "TASK-HU004-04 Integrar y probar configuración",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 1 - Acceso y Autenticación",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 5
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/46"
+    },
+    {
+      "number": 47,
+      "title": "TASK-HU005-01 Diseñar Dashboard del Candidato",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 6
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/47"
+    },
+    {
+      "number": 48,
+      "title": "TASK-HU005-02 Crear API resumen del candidato",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 6
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/48"
+    },
+    {
+      "number": 49,
+      "title": "TASK-HU005-03 Integrar datos reales en el dashboard",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 6
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/49"
+    },
+    {
+      "number": 50,
+      "title": "TASK-HU005-04 Probar Dashboard del Candidato",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 6
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/50"
+    },
+    {
+      "number": 51,
+      "title": "TASK-HU006-01 Diseñar Dashboard de Empresa",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 7
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/51"
+    },
+    {
+      "number": 52,
+      "title": "TASK-HU006-02 Crear API resumen de empresa",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 7
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/52"
+    },
+    {
+      "number": 53,
+      "title": "TASK-HU006-03 Integrar dashboard con datos reales",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 7
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/53"
+    },
+    {
+      "number": 54,
+      "title": "TASK-HU006-04 Probar Dashboard de Empresa",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 7
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/54"
+    },
+    {
+      "number": 55,
+      "title": "TASK-HU007-01 Diseñar Dashboard de Administrador",
+      "issue_state": "OPEN",
+      "project_status": "In progress",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 8
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/55"
+    },
+    {
+      "number": 56,
+      "title": "TASK-HU007-02 Crear API de métricas administrativas",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 8
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/56"
+    },
+    {
+      "number": 57,
+      "title": "TASK-HU007-03 Integrar avisos de nuevas empresas",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 8
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/57"
+    },
+    {
+      "number": 58,
+      "title": "TASK-HU007-04 Probar permisos del administrador",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 8
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/58"
+    },
+    {
+      "number": 59,
+      "title": "TASK-HU008-01 Crear formulario de Perfil de Candidato",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 9
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/59"
+    },
+    {
+      "number": 60,
+      "title": "TASK-HU008-02 Crear modelos y API del perfil",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 9
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/60"
+    },
+    {
+      "number": 61,
+      "title": "TASK-HU008-03 Integrar perfil y fotografía",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 9
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/61"
+    },
+    {
+      "number": 62,
+      "title": "TASK-HU008-04 Probar perfil de candidato",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 9
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/62"
+    },
+    {
+      "number": 63,
+      "title": "TASK-HU009-01 Crear formulario de información empresarial",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 10
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/63"
+    },
+    {
+      "number": 64,
+      "title": "TASK-HU009-02 Crear modelo y API empresarial",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 10
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/64"
+    },
+    {
+      "number": 65,
+      "title": "TASK-HU009-03 Integrar envío y pantalla de espera",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 10
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/65"
+    },
+    {
+      "number": 66,
+      "title": "TASK-HU009-04 Probar registro empresarial",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 10
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/66"
+    },
+    {
+      "number": 67,
+      "title": "TASK-HU010-01 Crear vista de empresas pendientes",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 11
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/67"
+    },
+    {
+      "number": 68,
+      "title": "TASK-HU010-02 Implementar aprobación/rechazo",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 11
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/68"
+    },
+    {
+      "number": 69,
+      "title": "TASK-HU010-03 Integrar validación y notificación",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 11
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/69"
+    },
+    {
+      "number": 70,
+      "title": "TASK-HU010-04 Probar validación empresarial",
+      "issue_state": "CLOSED",
+      "project_status": "Done",
+      "sprint": "Sprint 2 - Dashboards, Perfiles y Validación",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 11
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/70"
+    },
+    {
+      "number": 71,
+      "title": "TASK-HU011-01 Crear interfaz para subir CV",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 12
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/71"
+    },
+    {
+      "number": 72,
+      "title": "TASK-HU011-02 Implementar almacenamiento y validación de PDF",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 12
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/72"
+    },
+    {
+      "number": 73,
+      "title": "TASK-HU011-03 Integrar carga y reemplazo",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 12
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/73"
+    },
+    {
+      "number": 74,
+      "title": "TASK-HU011-04 Probar carga de currículum",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 12
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/74"
+    },
+    {
+      "number": 75,
+      "title": "TASK-HU012-01 Diseñar selector y editor de plantillas de CV",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 13
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/75"
+    },
+    {
+      "number": 76,
+      "title": "TASK-HU012-02 Crear modelo de currículum generado",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 13
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/76"
+    },
+    {
+      "number": 77,
+      "title": "TASK-HU012-03 Implementar generación de PDF",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 13
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/77"
+    },
+    {
+      "number": 78,
+      "title": "TASK-HU012-04 Integrar perfil, editor y descarga",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 13
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/78"
+    },
+    {
+      "number": 79,
+      "title": "TASK-HU012-05 Probar creador de CV",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 13
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/79"
+    },
+    {
+      "number": 80,
+      "title": "TASK-HU013-01 Crear formulario de publicación de oferta",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 14
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/80"
+    },
+    {
+      "number": 81,
+      "title": "TASK-HU013-02 Crear modelo y API de ofertas",
+      "issue_state": "OPEN",
+      "project_status": "In review",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "Danilo2334"
+      ],
+      "parent": {
+        "number": 14
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/81"
+    },
+    {
+      "number": 82,
+      "title": "TASK-HU013-03 Integrar publicación de oferta",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 14
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/82"
+    },
+    {
+      "number": 83,
+      "title": "TASK-HU013-04 Probar publicación de ofertas",
+      "issue_state": "OPEN",
+      "project_status": "QA / Testing",
+      "sprint": "Sprint 3",
+      "assignees": [
+        "francisco3788"
+      ],
+      "parent": {
+        "number": 14
+      },
+      "children": [],
+      "comment_count": 1,
+      "url": "https://github.com/Danilo2334/Work_net/issues/83"
+    }
+  ]
+}
