@@ -10,8 +10,8 @@ module.exports = async ({ page, cfg, run, capture, bridge, ui, write, read, clic
   const patches = () => results.red.filter(r => r.method === 'PATCH').length;
   const fill = async (title, mobile = false) => {
     for (const [name, value] of Object.entries({ 'Título': title, 'Descripción': mobile ? 'Descripción móvil QA' : 'Descripción escritorio QA', 'Requisitos': mobile ? 'Requisitos móvil QA' : 'Requisitos escritorio QA', 'Salario': mobile ? '3200000,75' : '2500000,50', 'Ubicación': mobile ? 'Medellín QA' : 'Bogotá QA' })) await write(name, value);
-    await click('Categoría'); await click(mobile ? 'Ventas' : 'Educación', 'menuitem');
-    await click('Tipo de contrato'); await click(mobile ? 'Prestación de servicios' : 'Fijo', 'menuitem');
+    await click(/^Categoría/); await click(mobile ? 'Ventas' : 'Educación', 'menuitem');
+    await click(/^Tipo de contrato/); await click(mobile ? 'Prestación de servicios' : 'Fijo', 'menuitem');
   };
   const check = async expected => { for (const [name, value] of Object.entries(expected)) assert.equal(await read(name), value); };
   const openList = async () => { const pending = response('GET', 'company/offers/active/'); await click('Mis ofertas activas'); assert.equal((await pending).status(), 200); await waitText('Mis ofertas activas'); };
