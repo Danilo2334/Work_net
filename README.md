@@ -25,7 +25,7 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 
 El Project WORK_NET se consultó con Francisco y `read:project`: Sprint 1 contiene
 HU001–HU004 y #29–#46; Sprint 2, HU005–HU010 y #47–#70; Sprint 3, HU011–HU017 y
-#71–#79. Las tareas #80–#99 aún no tienen Sprint asignado. Se conservaron esas
+#71–#79. La consulta del 07/11/2026 confirma #80–#83 en Sprint 3; no se modificaron los Sprint de las tareas futuras. Se conservaron esas
 asignaciones. Los módulos futuros y la revisión humana siguen pendientes;
 el PR #146 permanece en borrador.
 
@@ -88,3 +88,10 @@ Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas
 [Guía para revisar la aplicación](frontend/docs/REVISION.md) · [Frontend y arquitectura](frontend/README.md).
 
 [Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues).
+
+
+## Retoma hasta HU013 — 07/11/2026
+
+El seguimiento vigente y la aceptación técnica conjunta están en la [guía existente](frontend/docs/REVISION.md#retoma-de-danilo-aceptación-hasta-hu013--07112026), con [resultados sin secretos](frontend/docs/evidencias/retoma-20261107/resultados.json). Nuevo QA de aceptación/Postman/evidencias: Francisco; backend: Danilo. Se conserva la autoría histórica de sus implementaciones y pruebas.
+
+Los PR #146–#149 continúan en borrador. HU013 está publicado en #148 (backend) y #149 (Flutter); las APIs de CV y ofertas todavía requieren incorporar de forma revisada #148/#147 al backend de entrega antes de #146. La combinación aislada pasó 141 Django, 110 Flutter, análisis y compilación JavaScript, más comprobaciones HTTP y Newman identificadas por separado. Desktop y navegador real nuevos no pudieron ejecutarse porque el helper de Computer Use no conecta; la evidencia anterior conserva su fecha y alcance. Se comprobó acceso de escritura al Project como Danilo y la planificación existente sin cambiar Sprint o fechas. No se inició HU014–HU027 ni se inventaron revisiones humanas.

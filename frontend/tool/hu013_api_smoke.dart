@@ -6,8 +6,9 @@ import 'package:worknet/features/offers/data/offer_repository.dart';
 import 'package:worknet/features/offers/domain/offer.dart';
 
 Future<void> main(List<String> args) async {
-  if (args.length != 1)
+  if (args.length != 1) {
     throw ArgumentError('Indica el entorno privado de una corrida QA nueva.');
+  }
   final data = jsonDecode(await File(args.single).readAsString()) as Map;
   final env = {for (final v in data['values'] as List) v['key']: v['value']};
   final base = Uri.parse('${env['base_url']}/');
