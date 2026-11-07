@@ -92,6 +92,11 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
       error: _error,
       onRetry: _load,
       actions: [
+        if (!widget.admin)
+          FilledButton(
+            onPressed: () => context.go('/company/offers/new'),
+            child: const Text('Publicar oferta'),
+          ),
         OutlinedButton(
           onPressed: _busy ? null : _logout,
           child: const Text('Cerrar sesión'),
@@ -150,7 +155,7 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
               Text(
                 widget.admin
                     ? 'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.'
-                    : 'La creación y gestión de ofertas, la gestión de postulantes, los mensajes y las estadísticas todavía no están disponibles.',
+                    : 'La gestión de ofertas y postulantes, los mensajes y las estadísticas todavía no están disponibles.',
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/composition.dart';
 import 'package:worknet/core/api/worknet_api.dart';
@@ -45,7 +46,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       widget.registrationApi ?? RegistrationApi();
   SessionController get _session => _dependencies.session;
   late final GoRouter _router;
-  final _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
+  var _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
   String _home() => switch (_session.session?.role) {
     'candidato' => '/dashboard',
     'empresa' =>
@@ -75,6 +76,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       '/account',
       '/company',
       '/company-dashboard',
+      '/company/offers/new',
       '/admin-dashboard',
       '/company-reviews',
       '/choose-role',
@@ -105,7 +107,11 @@ class _WorkNetAppState extends State<WorkNetApp> {
               role != 'candidato') {
             return _home();
           }
-          if (['/company', '/company-dashboard'].contains(path) &&
+          if ([
+                '/company',
+                '/company-dashboard',
+                '/company/offers/new',
+              ].contains(path) &&
               role != 'empresa') {
             return _home();
           }
@@ -118,18 +124,41 @@ class _WorkNetAppState extends State<WorkNetApp> {
       },
       routes: [
         GoRoute(
-          path: '/curriculum/create',
-          onExit: (_, _) =>
-              _generatedKey.currentState?.confirmLeave() ?? Future.value(true),
+          path: '/company/offers/new',
           builder: (_, _) => _protected(
-            'candidato',
-            () => GeneratedCurriculumPage(
-              key: _generatedKey,
+            'empresa',
+            () => PublishOfferPage(
+              key: ValueKey(_session.session?.token),
               session: _session,
-              repository: _dependencies.generatedCurriculum,
-              download: _dependencies.curriculumDownload,
+              repository: _dependencies.offers,
             ),
           ),
+        ),
+        GoRoute(
+          path: '/curriculum/create',
+          onExit: (_, _) async {
+            final leave =
+                await (_generatedKey.currentState?.confirmLeave() ??
+                    Future.value(true));
+            if (leave) {
+              // La página saliente puede seguir animándose al volver al editor.
+              // Otra entrada necesita su propio estado y una nueva consulta.
+              _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
+            }
+            return leave;
+          },
+          builder: (_, _) {
+            final editorKey = _generatedKey;
+            return _protected(
+              'candidato',
+              () => GeneratedCurriculumPage(
+                key: editorKey,
+                session: _session,
+                repository: _dependencies.generatedCurriculum,
+                download: _dependencies.curriculumDownload,
+              ),
+            );
+          },
         ),
         GoRoute(
           path: '/curriculum',

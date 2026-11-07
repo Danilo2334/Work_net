@@ -25,7 +25,7 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 
 El Project WORK_NET se consultó con Francisco y `read:project`: Sprint 1 contiene
 HU001–HU004 y #29–#46; Sprint 2, HU005–HU010 y #47–#70; Sprint 3, HU011–HU017 y
-#71–#79. Las tareas #80–#99 aún no tienen Sprint asignado. Se conservaron esas
+#71–#79. La consulta del 07/11/2026 confirma #80–#83 en Sprint 3; no se modificaron los Sprint de las tareas futuras. Se conservaron esas
 asignaciones. Los módulos futuros y la revisión humana siguen pendientes;
 el PR #146 permanece en borrador.
 
@@ -77,7 +77,7 @@ Encabezado: `Authorization: Token <token>`. Después de cambiar la contraseña d
 
 ## HU005 y futuras historias
 
-El resumen consulta datos persistentes en `candidate_dashboard`: perfil, ofertas, postulaciones, guardados y notificaciones. El perfil propio ya se edita desde Flutter. Las siguientes historias deben reutilizar las entidades existentes; la publicación/gestión de ofertas, búsqueda, CV, mensajes, estadísticas y gestión de postulantes siguen pendientes de sus módulos.
+El resumen consulta datos persistentes en `candidate_dashboard`: perfil, ofertas, postulaciones, guardados y notificaciones. El perfil propio ya se edita desde Flutter. CV subido/generado y publicación HU013 ya están implementados en los PR #146–#149 y comprobados en combinación aislada; conservan revisión humana e integración pendientes. Gestión de ofertas, búsqueda, mensajes, estadísticas y gestión de postulantes pertenecen a historias futuras; no se iniciaron en este bloque. Las siguientes historias deben reutilizar las entidades existentes.
 
 El login distingue empresa Pendiente/Aprobada/Rechazada. Solo la aprobada accede a su resumen. La revisión inicial de empresa no acredita una autorización de selección para consultar perfiles de candidatos: esa consulta sigue restringida. [Contrato empresarial y sesión](backend/accounts/COMPANY_API.md).
 
@@ -88,3 +88,10 @@ Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas
 [Guía para revisar la aplicación](frontend/docs/REVISION.md) · [Frontend y arquitectura](frontend/README.md).
 
 [Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues).
+
+
+## Retoma hasta HU013 — 07/11/2026
+
+El seguimiento vigente y la aceptación técnica conjunta están en la [guía existente](frontend/docs/REVISION.md#retoma-de-danilo-aceptación-hasta-hu013--07112026), con [resultados sin secretos](frontend/docs/evidencias/retoma-20261107/resultados.json). Nuevo QA de aceptación/Postman/evidencias: Francisco; backend: Danilo. Se conserva la autoría histórica de sus implementaciones y pruebas.
+
+Los PR #146–#149 continúan en borrador. HU013 está publicado en #148 (backend) y #149 (Flutter); las APIs de CV y ofertas todavía requieren incorporar de forma revisada #148/#147 al backend de entrega antes de #146. La combinación aislada pasó 141 Django, 110 Flutter, análisis y compilación JavaScript, más comprobaciones HTTP y Newman identificadas por separado. En el primer bloque no conectó Computer Use; su error de pipe nativo continúa y no se repitió Postman Desktop. En la continuación autorizada, un Chromium temporal independiente sí completó la aceptación visual restante HU012/HU013: [25 casos y 37 capturas inspeccionadas](frontend/docs/evidencias/retoma-20261107/aceptacion-visual/resultados.json). Se corrigió la reentrada rápida del editor después de descartar cambios; pasaron 46 pruebas pertinentes, análisis y compilación. [Resultados y revisiones preparadas](frontend/docs/REVISION.md#aceptación-visual-y-revisiones-preparadas--07112026). HU018 mantiene pendiente la selección del CV en postulaciones. La evidencia histórica conserva su fecha y alcance; no se inició HU014–HU027, no se fusionó ni se inventaron revisiones humanas.

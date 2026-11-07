@@ -1,0 +1,979 @@
+{
+  "fecha": "2026-11-07",
+  "responsable_nuevo_QA": "Francisco Molina (francisco3788)",
+  "ejecutor": "agente automatizado; no es revisión humana",
+  "alcance": "Aceptación restante HU012/HU013; HU014–HU027 sin iniciar",
+  "navegador": {
+    "nombre": "Chrome for Testing / Chromium",
+    "version": "158.0.8127.18",
+    "playwright": "1.65.0",
+    "modo": "headless, navegador y contextos nuevos temporales; sin perfil personal",
+    "escritorio": [
+      "1440x1000",
+      "1440x1100"
+    ],
+    "movil": "Viewport 390x844, ratón/teclado; móvil web emulado por tamaño, sin dispositivo físico ni binario Android/iOS"
+  },
+  "conexion_nativa": {
+    "resultado": "bloqueada",
+    "error": "native pipe is unavailable (os error 2)",
+    "recuperacion": "La skill documenta reset/reintento para timeout, no un reinicio del pipe ausente. No se lanzó un helper ni se repitió la sesión Chrome antes bloqueada.",
+    "alternativa": "Playwright independiente autorizado expresamente por el usuario; prueba mínima aprobada antes de continuar"
+  },
+  "versiones": {
+    "publicado_anterior": [
+      "df14f3ddb69743222425ad6c1a6aa3008858aaff",
+      "84076191ee264f8d75e7b1acfa32ca4af93da200"
+    ],
+    "combinacion_antes": "f188c767c488ca52af45ecc394c036625d90e69e",
+    "combinacion_corregida": "33ec3fcedaa3768afd17529949e01bdd1cc39732",
+    "frontend_base": "5cfb9a2fe355e544e9deba012a3409414f2014c7",
+    "backend": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+    "fuente": "La combinación sigue local; este bloque se publica sobre 8407619 en #149"
+  },
+  "aislamiento": {
+    "base": "Una SQLite QA nueva; no se reutilizaron ni modificaron bases anteriores",
+    "correo": "archivos QA, sin SMTP",
+    "puertos": {
+      "django": 8024,
+      "flutter": 55031
+    },
+    "capturas": "Solo cuentas y datos ficticios @worknet.test; sin tokens, credenciales, sesiones o entornos privados"
+  },
+  "casos": [
+    {
+      "id": "NAVEGADOR-01",
+      "caso": "Login real, título WorkNet y URL local verificados antes del resto de acciones",
+      "resultado": "aprobado",
+      "capturas": [
+        "00-login.png"
+      ],
+      "url": "http://127.0.0.1:55031/login"
+    },
+    {
+      "id": "HU012-V01",
+      "caso": "Precarga del candidato y secciones del perfil en móvil web",
+      "resultado": "aprobado",
+      "capturas": [
+        "02-hu012-movil-precarga.png",
+        "05-hu012-movil-plantillas.png"
+      ],
+      "origen": "GET 200 real; aún sin CV generado"
+    },
+    {
+      "id": "HU012-V02",
+      "caso": "Nombre obligatorio, correo y URL inválidos impiden guardar",
+      "resultado": "aprobado",
+      "capturas": [
+        "03-hu012-movil-validacion.png"
+      ]
+    },
+    {
+      "id": "HU012-V03",
+      "caso": "Fecha final anterior a inicial rechazada en diálogo real",
+      "resultado": "aprobado",
+      "capturas": [
+        "04-hu012-movil-fechas.png"
+      ]
+    },
+    {
+      "id": "HU012-V04",
+      "caso": "Clásica, Moderna y Minimalista disponibles; resumen y educación conservados",
+      "resultado": "aprobado",
+      "capturas": [
+        "05-hu012-movil-plantillas.png",
+        "06-hu012-movil-salida.png",
+        "07-hu012-movil-red-borrador.png"
+      ]
+    },
+    {
+      "id": "HU012-V05",
+      "caso": "Salida con cambios pide confirmación; Seguir editando conserva el borrador",
+      "resultado": "aprobado",
+      "capturas": [
+        "06-hu012-movil-salida.png",
+        "07-hu012-movil-red-borrador.png"
+      ]
+    },
+    {
+      "id": "HU012-V06",
+      "caso": "Fallo de red de guardado conserva borrador y permite reintentar",
+      "resultado": "aprobado",
+      "capturas": [
+        "07-hu012-movil-red-borrador.png",
+        "08-hu012-movil-error-red.png"
+      ],
+      "inyeccion": "Playwright abortó únicamente PUT de CV de la pestaña QA; reintento real 201"
+    },
+    {
+      "id": "HU012-V07",
+      "caso": "Guardado, vista previa y descarga desde UI coinciden con datos ficticios",
+      "resultado": "aprobado",
+      "capturas": [
+        "09-hu012-movil-pdf.png",
+        "13-hu012-escritorio-pdf-completo.png"
+      ],
+      "respuestas": "PUT 201/200, POST preview 200, GET PDF 200 reales"
+    },
+    {
+      "id": "HU012-V08",
+      "caso": "Idiomas, certificación y sección adicional guardados y visibles en PDF",
+      "resultado": "aprobado",
+      "capturas": [
+        "12-hu012-escritorio-pdf-secciones.png",
+        "13-hu012-escritorio-pdf-completo.png"
+      ]
+    },
+    {
+      "id": "HU012-V09",
+      "caso": "503 controlado muestra error y conserva edición; reintento real guarda",
+      "resultado": "aprobado",
+      "capturas": [
+        "11-hu012-error-servidor-simulado.png"
+      ],
+      "inyeccion": "Respuesta 503 simulada en PUT; no se atribuye a Django"
+    },
+    {
+      "id": "HU012-V10",
+      "caso": "401 real retira editor y PDF; otra cuenta obtiene su propia precarga",
+      "resultado": "aprobado",
+      "capturas": [
+        "14-hu012-sesion-expirada.png",
+        "15-hu012-otra-cuenta.png"
+      ],
+      "preparacion": "Revocación del token del candidato exclusivamente en la nueva SQLite QA"
+    },
+    {
+      "id": "HU012-V11",
+      "caso": "Fallo de carga presenta Reintentar; al recuperar red vuelve el CV guardado",
+      "resultado": "aprobado",
+      "capturas": [
+        "33-hu012-carga-red.png"
+      ],
+      "inyeccion": "Abort de GET en pestaña QA y posterior GET 200 real"
+    },
+    {
+      "id": "HU012-V12",
+      "caso": "Reentrada antes de terminar transición descarta borrador y consulta versión guardada",
+      "resultado": "aprobado",
+      "capturas": [
+        "10-hu012-reabrir.png",
+        "34-hu012-descarte-corregido.png"
+      ],
+      "incidencia": "Antes falló por GlobalKey compartida; corregida y repetida en navegador y widget"
+    },
+    {
+      "id": "HU012-V13",
+      "caso": "Sesión expirada en móvil y Atrás mantienen login sin datos/PDF privados",
+      "resultado": "aprobado",
+      "capturas": [
+        "35-hu012-movil-sesion-y-atras.png"
+      ],
+      "respuestas": "POST preview 401 real"
+    },
+    {
+      "id": "HU013-V01",
+      "caso": "Empresa aprobada accede a formulario de siete campos en escritorio y móvil",
+      "resultado": "aprobado",
+      "capturas": [
+        "16-hu013-dashboard-inicial.png",
+        "17-hu013-escritorio-formulario.png",
+        "36-hu013-formulario-version-corregida.png"
+      ]
+    },
+    {
+      "id": "HU013-V02",
+      "caso": "Categorías y contratos proceden del catálogo Django y son seleccionables",
+      "resultado": "aprobado",
+      "capturas": [
+        "19-hu013-catalogo-categorias.png",
+        "20-hu013-catalogo-contratos.png"
+      ],
+      "respuestas": "GET company/offers 200 real"
+    },
+    {
+      "id": "HU013-V03",
+      "caso": "Obligatorios y selecciones faltantes impiden POST en escritorio y móvil",
+      "resultado": "aprobado",
+      "capturas": [
+        "18-hu013-escritorio-obligatorios.png",
+        "25-hu013-movil-obligatorios.png"
+      ]
+    },
+    {
+      "id": "HU013-V04",
+      "caso": "Salario negativo se rechaza; coma decimal válida se normaliza",
+      "resultado": "aprobado",
+      "capturas": [
+        "21-hu013-salario-invalido.png",
+        "22-hu013-escritorio-confirmacion.png"
+      ],
+      "persistencia": "1250000.50 guardado en Django"
+    },
+    {
+      "id": "HU013-V05",
+      "caso": "Publicación de escritorio confirma número y dashboard pasa de 2 a 3 activas",
+      "resultado": "aprobado",
+      "capturas": [
+        "22-hu013-escritorio-confirmacion.png",
+        "23-hu013-movil-dashboard-3.png"
+      ],
+      "persistencia": "Oferta QA 3, propietario empresa QA y estado published"
+    },
+    {
+      "id": "HU013-V06",
+      "caso": "Fallo de carga de catálogos muestra error y Reintentar recupera formulario",
+      "resultado": "aprobado",
+      "capturas": [
+        "24-hu013-movil-catalogo-red.png",
+        "25-hu013-movil-obligatorios.png"
+      ],
+      "inyeccion": "Abort GET exclusivamente en pestaña QA"
+    },
+    {
+      "id": "HU013-V07",
+      "caso": "Fallo de red al publicar conserva campos y selecciones",
+      "resultado": "aprobado",
+      "capturas": [
+        "26-hu013-movil-error-red-borrador.png"
+      ],
+      "inyeccion": "Abort POST antes de llegar al servidor"
+    },
+    {
+      "id": "HU013-V08",
+      "caso": "Error 400 de campo controlado se muestra en español sin perder formulario",
+      "resultado": "aprobado",
+      "capturas": [
+        "27-hu013-movil-error-campo-simulado.png"
+      ],
+      "inyeccion": "400 salary simulado; no es fallo real del backend"
+    },
+    {
+      "id": "HU013-V09",
+      "caso": "Publicación móvil confirma número y dashboard pasa de 3 a 4 activas",
+      "resultado": "aprobado",
+      "capturas": [
+        "28-hu013-movil-confirmacion.png",
+        "29-hu013-movil-dashboard-4.png"
+      ],
+      "persistencia": "Oferta QA 4 guardada una sola vez; ninguna oferta en intentos fallidos"
+    },
+    {
+      "id": "HU013-V10",
+      "caso": "401 real al publicar retira formulario, no crea oferta y solicita login",
+      "resultado": "aprobado",
+      "capturas": [
+        "30-hu013-movil-sesion-expirada.png"
+      ],
+      "persistencia": "Continúan cuatro ofertas; ninguna titulada Sesión expirada QA"
+    },
+    {
+      "id": "HU013-V11",
+      "caso": "Empresa no aprobada sin acceso; URL directa recibe 403 real y no muestra campos",
+      "resultado": "aprobado",
+      "capturas": [
+        "31-hu013-empresa-no-aprobada.png",
+        "32-hu013-acceso-directo-denegado.png"
+      ]
+    }
+  ],
+  "capturas": [
+    {
+      "archivo": "00-login.png",
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "01-candidato-dashboard.png",
+      "sha256": "37713fa67d34404aa7268880fa6d9169b32238d191a98b0b9c103b1b1a54a91e",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "02-hu012-movil-precarga.png",
+      "sha256": "591ab1ca715a759206a5cc94dd637fe16f959c8d38bf7c1269a431827a53db34",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "03-hu012-movil-validacion.png",
+      "sha256": "7b66a6d66e998bf3e0826646c32287608475b45f5de9423c098b0579d88bee37",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "04-hu012-movil-fechas.png",
+      "sha256": "0fcb46545fbf37a55c5d62cb37a424d4940ac46e8f1d52b83e82ccdf221e46df",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "05-hu012-movil-plantillas.png",
+      "sha256": "9d3bccf21c55f51e918c852e59839e950082c17711da3a2e43490a5138f1c407",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "06-hu012-movil-salida.png",
+      "sha256": "cf60ff6a488549ecccbea313a670613a55dc73d96ce4775db48c6b1801e447c5",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "07-hu012-movil-red-borrador.png",
+      "sha256": "8d3684cedb9b2ab53779c918e90be2aced561bede7aea0255f5c017fc7b31cce",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "08-hu012-movil-error-red.png",
+      "sha256": "e198777c356b68aa875a6267693776a41ff89aa94f6daea7ac1ad3bc5259d59c",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "09-hu012-movil-pdf.png",
+      "sha256": "93bb4844dd46a63384701050365d0e4e9bdd0c35df6a84727dec2f4e79408641",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "10-hu012-reabrir.png",
+      "sha256": "729c6fbb69688e1f53592a888b6c44975a058e34df208dce8d71de7f32e9a7d1",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "11-hu012-error-servidor-simulado.png",
+      "sha256": "e7eef2e9d580dbf891a5f245737108aa68a668ce52b7a07338e38dd1b37bd14d",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "12-hu012-escritorio-pdf-secciones.png",
+      "sha256": "d4450b8eab3b3e6d8726a5c9eaa1843377241a880e68b335ba913df31ae78ccd",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "13-hu012-escritorio-pdf-completo.png",
+      "sha256": "a32aede1f2b140ffbbc6662e95bf5b3b385f717f80906df295fcdfa866310dd1",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "14-hu012-sesion-expirada.png",
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "15-hu012-otra-cuenta.png",
+      "sha256": "2ef9071ec8b307d79cf131c30326a3d7e8496e890d739c0be8e2051215ed11e8",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "16-hu013-dashboard-inicial.png",
+      "sha256": "bef063b25ab76c0025cbafb80c69c98451a2be33a2d46edfb8987661ceb5d41b",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "17-hu013-escritorio-formulario.png",
+      "sha256": "efd67eb2313325b8d382f01562bcf3cf4ea811714117b7b2fdac6d9f68c29db6",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "18-hu013-escritorio-obligatorios.png",
+      "sha256": "de74bb2d18fe0a15a1d021490a356572cdb6303ae2c145c6a42fc867acad054e",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "19-hu013-catalogo-categorias.png",
+      "sha256": "acc93ed71897726e80cf3eb3ed30544dcff67cbdb4db1563c3b3ae20402d66ae",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "20-hu013-catalogo-contratos.png",
+      "sha256": "ee7a06f96393181881852fa7ffd5813e3fa8a0afef85cf7b973822da26a79245",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "21-hu013-salario-invalido.png",
+      "sha256": "4a08356bea07e858ae1507919e03e925a0f972209f9384b791a8a623bf30b497",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "22-hu013-escritorio-confirmacion.png",
+      "sha256": "ad113d2aa4057ecbe186f8413020baa99dfc29d5455071c70883d09149beacd7",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "23-hu013-movil-dashboard-3.png",
+      "sha256": "513faacfed1123bbebdf80dff4fd2d6fa0a2c1544290b0d527ffb36af8045553",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "24-hu013-movil-catalogo-red.png",
+      "sha256": "782a19c7b89ad75ec275c7c31054f377a9d06f8b84ed88980f4753d8e72892b0",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "25-hu013-movil-obligatorios.png",
+      "sha256": "347266fe0388fdb0ae5f466fc83071e4e8c9b5b0dd66d759273213c147aab58d",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "26-hu013-movil-error-red-borrador.png",
+      "sha256": "21cba29b94e95a9e904372801c9550a5a71fd35dc5517b3ef7bbe1dc91caee6b",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "27-hu013-movil-error-campo-simulado.png",
+      "sha256": "0ab41da1f2ea978ffe3ce294b4ae1cd55351ef01c82bc8925ec975c25ab1b513",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "28-hu013-movil-confirmacion.png",
+      "sha256": "cbaf9c0627bf6e4050af56febb42925b3fa002d8250f72f7d7235963926b5c4b",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "29-hu013-movil-dashboard-4.png",
+      "sha256": "1be4982ccd7505e2fcc398eedbbf2ef121f0ee4aa678f54057c690c4b3346256",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "30-hu013-movil-sesion-expirada.png",
+      "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "31-hu013-empresa-no-aprobada.png",
+      "sha256": "6ebf32f7ee067d1ef1d6913599aac0354346b7e03c49323558df0f1b2b15a0fd",
+      "inspeccionada": true,
+      "fuente_local": "f188c767c488ca52af45ecc394c036625d90e69e"
+    },
+    {
+      "archivo": "32-hu013-acceso-directo-denegado.png",
+      "sha256": "d053483e3a5ac34471ad448b3bae02ae789322b72d2e2ec5945cb4944912b021",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "33-hu012-carga-red.png",
+      "sha256": "7bcc28d67b819e37fceeb34a17b8f487c20fd77f051fa36102b874b24685c152",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "34-hu012-descarte-corregido.png",
+      "sha256": "fb93dbf2bea16f3c9f1afb2fcdf09e420ffa15d03b7a9fa95c2cbbca3984abc1",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "35-hu012-movil-sesion-y-atras.png",
+      "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    },
+    {
+      "archivo": "36-hu013-formulario-version-corregida.png",
+      "sha256": "8812cdf2b9e14ee80c0da168b5c1eac9c65dd3cac2f34ba08c5feba71f522790",
+      "inspeccionada": true,
+      "fuente_local": "33ec3fcedaa3768afd17529949e01bdd1cc39732"
+    }
+  ],
+  "pdf": {
+    "version_inicial": "Vista previa y descarga UI con resumen/educación/experiencia/habilidad coincidentes",
+    "version_final": "Vista previa y descarga UI incorporan idiomas/certificación/sección opcional coincidentes",
+    "comparacion_texto_ambas_versiones": true,
+    "paginas": 1,
+    "perfil_origen_sin_cambios": true,
+    "coherencia_con_18_HTTP_previos": "Confirmada en UI con precarga del perfil y PDF; no se repitieron los 18 casos ni la batería completa"
+  },
+  "persistencia": {
+    "profile_unchanged": true,
+    "saved": {
+      "template": "minimalista",
+      "data": {
+        "personal": {
+          "full_name": "Candidato principal QA",
+          "email": "candidate.postman@worknet.test",
+          "phone": "",
+          "location": "",
+          "website": ""
+        },
+        "professional_summary": "Aceptación visual HU012: resumen ficticio conservado.",
+        "education": [
+          {
+            "start_date": "2025-01-01",
+            "end_date": "2026-01-01",
+            "description": "",
+            "qualification": "Formación QA",
+            "institution": ""
+          }
+        ],
+        "experience": [
+          {
+            "start_date": null,
+            "end_date": null,
+            "position": "Experiencia QA"
+          }
+        ],
+        "skills": [
+          {
+            "name": "Django"
+          }
+        ],
+        "languages": [
+          {
+            "name": "Inglés QA",
+            "level": ""
+          }
+        ],
+        "certifications": [
+          {
+            "title": "Certificación ficticia QA",
+            "issuer": "Entidad QA",
+            "issue_date": null,
+            "description": ""
+          }
+        ],
+        "extra_sections": [
+          {
+            "title": "Proyectos QA",
+            "content": "Proyecto ficticio de aceptación."
+          }
+        ]
+      }
+    },
+    "offers": [
+      {
+        "id": 1,
+        "title": "Oferta Flutter QA",
+        "status": "published",
+        "company_id": 3,
+        "salary": null,
+        "category": "",
+        "contract_type": "Indefinido"
+      },
+      {
+        "id": 2,
+        "title": "Oferta Django QA",
+        "status": "published",
+        "company_id": 3,
+        "salary": null,
+        "category": "",
+        "contract_type": "Indefinido"
+      },
+      {
+        "id": 3,
+        "title": "Oferta visual escritorio QA",
+        "status": "published",
+        "company_id": 3,
+        "salary": 1250000.5,
+        "category": "Tecnología",
+        "contract_type": "Indefinido"
+      },
+      {
+        "id": 4,
+        "title": "Oferta visual móvil QA",
+        "status": "published",
+        "company_id": 3,
+        "salary": 900000,
+        "category": "Tecnología",
+        "contract_type": "Fijo"
+      }
+    ]
+  },
+  "respuestas_sin_cabeceras_ni_cuerpos": [
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/pdf/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 503
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/pdf/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 401
+    }
+  ],
+  "defecto": {
+    "id": "HU012-REENTRADA",
+    "antes": "Salir sin guardar y volver antes de terminar la transición reutilizaba el estado descartado. Widget reprodujo Duplicate GlobalKey y una consulta en vez de dos.",
+    "correccion": "Nueva GlobalKey después de salida confirmada y clave capturada por la página saliente. Cancelar salida conserva estado.",
+    "despues": "Widget pasa; UI vuelve rápidamente con GET nuevo y resumen persistido, sin borrador descartado."
+  },
+  "validacion_posterior": {
+    "pruebas_flutter_pertinentes": 46,
+    "archivos": [
+      "generated_curriculum_test.dart",
+      "curriculum_test.dart",
+      "publish_offer_test.dart",
+      "access_pages_test.dart"
+    ],
+    "analyze": "sin incidencias",
+    "build": "JavaScript release correcto con API QA; avisos conocidos de Wasm y fuente Cupertino",
+    "django": "Sin cambios; se conservan 141 pruebas previas, sin repetición",
+    "otras_pruebas": "110 Flutter históricas, 18/7 Dart HTTP, Newman y Postman Desktop históricos mantienen su fecha y alcance"
+  },
+  "pendientes": [
+    "Revisiones humanas: Danilo #146/#149; Francisco #147/#148. Solicitud pendiente no es aprobación.",
+    "HU011/HU012: selección del CV durante postulación depende de HU018; #79 no se cierra.",
+    "Integrar #148 antes de #147; #149 hacia frontend. Incorporar backend revisado a entrega y comprobar resultado antes de #146.",
+    "Android/iOS físico y binarios nativos no ejecutados; no se acreditan por móvil web.",
+    "Computer Use y nueva ejecución Postman Desktop siguen no disponibles en esta sesión; pruebas Desktop históricas conservadas."
+  ],
+  "fuentes_sha256": {
+    "frontend/lib/app.dart": "2d37e25caa00a27e6c8143f6d8af89aed622d1bc3fa2d176cf74e56afd2709e5",
+    "frontend/test/generated_curriculum_test.dart": "2cd3619b78723ea37f9aeff037262cb473b1187df754dcf9ce6b94174fd83a3f"
+  }
+}
