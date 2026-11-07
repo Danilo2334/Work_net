@@ -1,0 +1,792 @@
+{
+  "validacion": {
+    "responsables": {
+      "backend": "Danilo2334",
+      "Flutter_integracion_QA": "francisco3788"
+    },
+    "comprobacion": "Agente por delegación del titular; no aprobación ni revisión personal de integrantes",
+    "baseline_main": "b0351ec2ef246787bd3869dedc39a8f47b783078",
+    "tests_django": 159,
+    "tests_flutter": 124,
+    "guards": 12,
+    "analisis": "sin incidencias",
+    "compilacion": "JavaScript release con recursos locales",
+    "migraciones": "sin cambios ni pendientes; nueva QA migrada",
+    "corrida_consumida_rechazada_sin_modificar_db": true,
+    "puertos_propios_cerrados": true,
+    "credenciales_sesiones_db_entornos": "privados; datos de capturas ficticios",
+    "ensayos_previos": [
+      {
+        "fecha": "2026-11-07T22:03:24.669Z",
+        "frontend_sha": "0d474530bc0301092927455993d9c31b47ab6a95",
+        "backend_sha": "149de964df1ef3a7b8b70efc08df898c8e63f61f",
+        "ultimo_caso": "HU015-V13",
+        "resultado": "fallido",
+        "causa": "Fixtures con fecha ISO T frente al formato SQLite de Django; se seleccionó otra oferta en V13. Corregido sin modificar el intento previo."
+      }
+    ],
+    "defecto_corregido": "bulk_create(update_conflicts=True) podía reasignar relaciones; prueba que reproduce el fallo seguida de rechazo explícito y 159 pruebas aprobadas",
+    "limites": [
+      "Sin buscador completo HU016",
+      "Sin recorrido/API de postulación HU018",
+      "Sin dispositivo móvil físico",
+      "Reglas ORM, no restricción SQL frente a mantenimiento directo"
+    ]
+  },
+  "ejecucion": {
+    "schema": "worknet-browser-qa-results-v1",
+    "fecha": "2026-11-07T22:06:38.573Z",
+    "frontend_sha": "fd5ad27695c231131ea1f73dffeb5e837cccd446",
+    "backend_sha": "79d45e30422f0973a86e53e34919f071895c1499",
+    "playwright": "1.65.0",
+    "modo": "Chromium headless nuevo, contextos temporales; sin perfil personal",
+    "escritorio": "1440x1000/1100",
+    "movil": "Viewport 390x844, ratón/teclado; no dispositivo físico",
+    "casos": [
+      {
+        "id": "NAVEGADOR-01",
+        "resultado": "aprobado",
+        "duracion_ms": 1765
+      },
+      {
+        "id": "HU015-V01",
+        "resultado": "aprobado",
+        "duracion_ms": 3220
+      },
+      {
+        "id": "HU015-V02",
+        "resultado": "aprobado",
+        "duracion_ms": 1900
+      },
+      {
+        "id": "HU015-V03",
+        "resultado": "aprobado",
+        "duracion_ms": 5748
+      },
+      {
+        "id": "HU015-V04",
+        "resultado": "aprobado",
+        "duracion_ms": 5134
+      },
+      {
+        "id": "HU015-V05",
+        "resultado": "aprobado",
+        "duracion_ms": 5567
+      },
+      {
+        "id": "HU015-V06",
+        "resultado": "aprobado",
+        "duracion_ms": 1292
+      },
+      {
+        "id": "HU015-V07",
+        "resultado": "aprobado",
+        "duracion_ms": 1731
+      },
+      {
+        "id": "HU015-V08",
+        "resultado": "aprobado",
+        "duracion_ms": 1449
+      },
+      {
+        "id": "HU015-V09",
+        "resultado": "aprobado",
+        "duracion_ms": 1456
+      },
+      {
+        "id": "HU015-V10",
+        "resultado": "aprobado",
+        "duracion_ms": 1385
+      },
+      {
+        "id": "HU015-V11",
+        "resultado": "aprobado",
+        "duracion_ms": 1487
+      },
+      {
+        "id": "HU015-V12",
+        "resultado": "aprobado",
+        "duracion_ms": 5811
+      },
+      {
+        "id": "HU015-V13",
+        "resultado": "aprobado",
+        "duracion_ms": 5207
+      },
+      {
+        "id": "HU015-V14",
+        "resultado": "aprobado",
+        "duracion_ms": 4309
+      },
+      {
+        "id": "HU015-V15",
+        "resultado": "aprobado",
+        "duracion_ms": 6124
+      },
+      {
+        "id": "HU015-V16",
+        "resultado": "aprobado",
+        "duracion_ms": 7971
+      },
+      {
+        "id": "HU015-V17",
+        "resultado": "aprobado",
+        "duracion_ms": 5148
+      }
+    ],
+    "capturas": [
+      {
+        "archivo": "NAVEGADOR-01-login.png",
+        "caso": "NAVEGADOR-01",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+      },
+      {
+        "archivo": "HU015-V01-activas-escritorio.png",
+        "caso": "HU015-V01",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "4f95ecdf6519aeb2e08e1f4a29dcd251de36079c042fff1fa134455c2f6a086e"
+      },
+      {
+        "archivo": "HU015-V01-conservadas-iniciales.png",
+        "caso": "HU015-V01",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "a14c71af9586b8a7cdaad3d5d23c0c7186ba183eb96313d48d0ebb1b6db5db33"
+      },
+      {
+        "archivo": "HU015-V02-confirmacion-archivar.png",
+        "caso": "HU015-V02",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "f96d934863fdd2b18bdbb78df6ef7bf41f4d6a681e64acf6195170a2e107902d"
+      },
+      {
+        "archivo": "HU015-V02-cancelacion-sin-cambios.png",
+        "caso": "HU015-V02",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "d6f4a9c7c60745bad7a21dd93b41ab5b9f7b76ee61e1384fda87b114989e5a19"
+      },
+      {
+        "archivo": "HU015-V03-confirmacion-cerrar.png",
+        "caso": "HU015-V03",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "86efbe1467f1a943d799b49cc306f81040332062b545fa1aaa702040bd4d1c3c"
+      },
+      {
+        "archivo": "HU015-V03-cerrada-excluida.png",
+        "caso": "HU015-V03",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "f5b96a5ff22a384d33e12cc7f5cae2f2244c8784aeb5fb6da89b50236a9d3a94"
+      },
+      {
+        "archivo": "HU015-V03-cerrada-no-editable.png",
+        "caso": "HU015-V03",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "7754e0a4fcf11dae1074c3eb015995c94f5467b6162e6059a528efaef31b9790"
+      },
+      {
+        "archivo": "HU015-V04-archivada-persistida.png",
+        "caso": "HU015-V04",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "02d2499499bc037b462457c79fc8bc3d4d02e91480d1cd15d069c39dd753fd39"
+      },
+      {
+        "archivo": "HU015-V05-confirmacion-movil.png",
+        "caso": "HU015-V05",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "b91578ac8c77a4074332503b30a5bc37937f4dd5c431f78bcbff112b538aa9ac"
+      },
+      {
+        "archivo": "HU015-V05-archivada-movil.png",
+        "caso": "HU015-V05",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "04a5453b78764fb7f8e5992524358c5016748794c2e94ab819fa1695fa307a5d"
+      },
+      {
+        "archivo": "HU015-V05-conservadas-movil.png",
+        "caso": "HU015-V05",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "be1b58867de8f9ebebf58a476c6c5f7856ffea83fde2b0712cbc07eb32975685"
+      },
+      {
+        "archivo": "HU015-V06-cerrar-movil.png",
+        "caso": "HU015-V06",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "c6bc1f40af0e31988190dc0034ec74d25b79f6fa2205d3eb167f31aafa5bc8cb"
+      },
+      {
+        "archivo": "HU015-V07-red-cierre.png",
+        "caso": "HU015-V07",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "04bd5cb04512fd6a7b27bd656fc99476384c5ef2e0d51b12c844abe79bf3e5df"
+      },
+      {
+        "archivo": "HU015-V08-503-archivado.png",
+        "caso": "HU015-V08",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "4608f6db641358a2a21742fe9abc5acd1f8bca6484695c63e8b56de3027864f2"
+      },
+      {
+        "archivo": "HU015-V09-400-archivado.png",
+        "caso": "HU015-V09",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "635d10991e675c5e4221eb9a62433bf82dfaf8e4fc51dadfb88ac247800c915e"
+      },
+      {
+        "archivo": "HU015-V10-red-conservadas.png",
+        "caso": "HU015-V10",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "ea7b55c30ef984fded3248c2a3cb41b9352d2fb703262d7dab7d7362b5ab4ec0"
+      },
+      {
+        "archivo": "HU015-V11-503-conservadas.png",
+        "caso": "HU015-V11",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "343b41cf92de99ea639bb8e239182fb90047a4f73d05fd4d28dd420d877ab64a"
+      },
+      {
+        "archivo": "HU015-V12-regresion-publicacion.png",
+        "caso": "HU015-V12",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "87360fe9f0205a98f41b44af310327f7a0aa82bac1ebf1eb2908b5e7320f8a11"
+      },
+      {
+        "archivo": "HU015-V13-regresion-edicion.png",
+        "caso": "HU015-V13",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "022839a967ec119dfd4406a0c0e582ead0cc8418cfb74931ca4108a93707b588"
+      },
+      {
+        "archivo": "HU015-V13-regresion-persistencia.png",
+        "caso": "HU015-V13",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "1cb4a1285f903774bdd313dbc5e15a1b3dd4ea950211e834c9c82f258d7afda0"
+      },
+      {
+        "archivo": "HU015-V14-respuesta-perdida.png",
+        "caso": "HU015-V14",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "f1493723bfa670082a399b718a0d865b2b1935ddb0be6413159f1bbcae16a4b7"
+      },
+      {
+        "archivo": "HU015-V14-reintento-idempotente.png",
+        "caso": "HU015-V14",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "59e75fc79199cd897b7365a8ce1002e7a7f165001debf5d4072267945fa46cb8"
+      },
+      {
+        "archivo": "HU015-V15-candidato-activas.png",
+        "caso": "HU015-V15",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "31d5b9124e3f4e2b2a39c41eb0b7dd4613ca0bfcd11148a6e56a9d642926e7e9"
+      },
+      {
+        "archivo": "HU015-V16-empresa-pendiente-403.png",
+        "caso": "HU015-V16",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "d3089f19f9bfd621494dba2dad3c545861f6b6173583e2e68918ea0c43046435"
+      },
+      {
+        "archivo": "HU015-V17-sesion-401.png",
+        "caso": "HU015-V17",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "fa97c3c2d7445110998f818fb7dc11edb4d72b965b3e2c21551685e5a5c31a05"
+      }
+    ],
+    "red": [
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/1/transition/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/1/",
+        "status": 409,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/1/transition/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/2/transition/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/8/transition/",
+        "status": null,
+        "inyectada": true,
+        "fallo": "abort"
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/8/transition/",
+        "status": 503,
+        "inyectada": true
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/8/transition/",
+        "status": 400,
+        "inyectada": true
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": null,
+        "inyectada": true,
+        "fallo": "abort"
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 503,
+        "inyectada": true
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/",
+        "status": 201,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/9/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/company/offers/9/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/9/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/9/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/9/transition/",
+        "status": 200,
+        "inyectada": false,
+        "respuesta_perdida": true
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/9/transition/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/logout/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/candidate/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/candidate/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/logout/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 403,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/preserved/",
+        "status": 403,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/logout/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/active/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/8/transition/",
+        "status": 401,
+        "inyectada": false
+      }
+    ],
+    "controles": {
+      "solo_base_qa_nueva": true,
+      "smtp": false,
+      "traces_har_storageState": false
+    },
+    "revision_humana": false,
+    "suite": "hu015",
+    "chromium": "158.0.8127.18",
+    "hu015_respuesta_perdida": {
+      "post_real_200": true,
+      "respuesta_abortada": true,
+      "reintento_200": true,
+      "sin_duplicados": true
+    },
+    "hu015": {
+      "information_unchanged": true,
+      "relations_unchanged": true,
+      "other_offers_unchanged": true,
+      "company_approval_unchanged": true,
+      "reviews_unchanged": true,
+      "applications": 2,
+      "saved": 1,
+      "ofertas": 9,
+      "dependencias_pendientes": [
+        "HU016: buscador completo no implementado",
+        "HU018: flujo de postulación no implementado"
+      ]
+    },
+    "contrastes": {
+      "profile_unchanged": true,
+      "account_unchanged": true,
+      "ofertas": 9,
+      "cv_generados": 0
+    },
+    "resultado": "aprobado"
+  }
+}

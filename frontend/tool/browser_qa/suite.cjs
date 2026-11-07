@@ -31,7 +31,9 @@ async function main() {
   }
   bridge('start');
   const hu014 = cfg.suite === 'hu014';
+  const hu015 = cfg.suite === 'hu015';
   if (hu014) assert.equal(bridge('hu014_prepare').offers, 7);
+  if (hu015) assert.equal(bridge('hu015_prepare').offers, 8);
   const values = Object.fromEntries(JSON.parse(fs.readFileSync(path.join(root, cfg.environment), 'utf8')).values.map(v => [v.key, v.value]));
   const out = path.join(root, 'artifacts');
   fs.mkdirSync(out, { recursive: true });
@@ -219,7 +221,9 @@ async function main() {
       await page.getByRole('textbox', { name: 'Correo electrónico', exact: true }).waitFor();
       await capture('login');
     });
-    if (hu014) {
+    if (hu015) {
+      await require('./hu015.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
+    } else if (hu014) {
       await require('./hu014.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
     } else {
     await login('candidate', '/dashboard');
@@ -389,11 +393,11 @@ async function main() {
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
     }
-    const expected = hu014 ? 16 : 25;
+    const expected = hu015 ? 18 : hu014 ? 16 : 25;
     assert.equal(results.casos.length, expected);
     assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
-    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 ? { pdf_texto_coincidente: true } : {}) };
+    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 ? { pdf_texto_coincidente: true } : {}) };
     results.resultado = 'aprobado'; save(); console.log(expected + '/' + expected + ' OK; sin aprobación humana.');
   } catch (error) {
     results.resultado = 'fallido'; results.ultimo_caso = active; save();

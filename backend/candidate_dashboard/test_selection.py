@@ -18,7 +18,7 @@ class ApplicationProfileTests(TestCase):
         self.other_company = self.user("otra-empresa", "empresa")
         for company in (self.company, self.other_company):
             CompanyProfile.objects.create(company=company, state=CompanyProfile.State.APPROVED)
-        self.offer = JobOffer.objects.create(company=self.company, title="Desarrollo", company_name="Empresa QA")
+        self.offer = JobOffer.objects.create(company=self.company, title="Desarrollo", company_name="Empresa QA", status="published")
         self.application = Application.objects.create(candidate=self.candidate, offer=self.offer)
         self.profile = CandidateProfile.objects.create(
             candidate=self.candidate, professional_summary="Perfil para selección",
@@ -134,7 +134,7 @@ class ApplicationProfileTests(TestCase):
         self.assertEqual(self.client.get(self.url + "photo/").status_code, 404)
 
     def test_postulation_to_another_company_does_not_grant_access(self):
-        offer = JobOffer.objects.create(company=self.other_company, title="Otra oferta", company_name="Otra empresa")
+        offer = JobOffer.objects.create(company=self.other_company, title="Otra oferta", company_name="Otra empresa", status="published")
         application = Application.objects.create(candidate=self.other_candidate, offer=offer)
         url = f"/api/company/applications/{application.pk}/profile/"
         self.assertEqual(self.client.get(url).status_code, 404)

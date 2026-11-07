@@ -160,7 +160,7 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
               Text(
                 widget.admin
                     ? 'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.'
-                    : 'El cierre y archivado de ofertas, la gestión de postulantes, los mensajes y las estadísticas todavía no están disponibles.',
+                    : 'La gestión de postulantes, los mensajes y las estadísticas todavía no están disponibles.',
               ),
             ],
           ),

@@ -1,5 +1,143 @@
 # Guía para revisar WorkNet
 
+## HU015: cierre y archivado de ofertas — 07/11/2026
+
+**Alcance y responsables.** HU015 #16 asignada a ambos integrantes. #89 backend:
+Danilo2334; #88 acciones, #90 integración y #91 QA/evidencias: francisco3788.
+Base main `b0351ec`, sin avances posteriores al iniciar; checkouts nuevos y
+entornos anteriores conservados. Revisión técnica delegada al agente por el
+titular; publicación con las identidades indicadas, sin atribuir comprobaciones
+personales ni aprobaciones humanas a integrantes.
+
+**Preparación y pasos.** Empresa aprobada → Mis ofertas activas. Cerrar oferta
+explica sus efectos y pide confirmación. Archivar oferta exige confirmación;
+Cancelar no envía la transición. Ver ofertas conservadas permite consultar
+cerradas/archivadas, su información y estado; no se ofrece edición ni reapertura.
+La ruta de conservadas persiste al recargar. Las acciones preservan ID,
+propietario, información, postulaciones y guardados; no requieren nueva aprobación.
+Ante errores se conserva la oferta y se pide reconsultar antes de repetir.
+La API acepta reintentos al mismo estado sin duplicar ni reabrir.
+
+**Automatización reutilizable.** Otra corrida nueva con el preparador existente,
+SQLite y venv exclusivos, Chromium temporal y correo a archivos. Fixtures
+ficticias solo tras validar el guard; acciones mediante la interfaz, contraste
+de persistencia/relaciones y revocación de sesión mediante el puente QA privado.
+Credenciales del entorno privado, sin SMTP, perfiles personales, trazas, HAR,
+storageState ni registros de autenticación. Dependencias fijadas en requirements
+y lockfile; Node 20+, Python 3.12+ y Flutter como en los apartados existentes.
+
+```powershell
+git fetch origin
+python frontend/tool/browser_qa/run.py --suite hu015 --backend-ref origin/feature/hu015-estados
+```
+
+En la entrega integrada, usar `--backend-ref HEAD` y ejecutar desde ese checkout.
+El ejecutor exporta únicamente commits, crea otros puertos y rechaza una base
+consumida. Las corridas y credenciales quedan privadas en `.git/worknet-browser-qa`.
+HU015 añade cancelación, cierre/archivado persistidos, exclusión activa,
+conservación de historial, errores, sesión y regresión de publicación/edición.
+Móvil web emulado a 390×844 con ratón/teclado; no dispositivo físico.
+
+**Resultados y pruebas.** API `79d45e30422f0973a86e53e34919f071895c1499` y Flutter/suite
+`fd5ad27695c231131ea1f73dffeb5e837cccd446`: 159 Django, 124 Flutter y 12 guards aprobados;
+análisis limpio, sintaxis Node y compilación JavaScript release correctos.
+Migraciones aplicadas en otra QA, sin pendientes ni cambios de modelos.
+18 casos de navegador (login y 17 HU015) aprobados, 26 capturas originales.
+Chromium 158.0.8127.18 / Playwright 1.65.0, escritorio 1440×1000 y móvil web
+390×844 emulado. Los cambios posteriores de esta aportación solo documentan
+el resultado; no se atribuye una prueba de dispositivo físico.
+
+Se conservaron la información y relaciones de las ocho ofertas iniciales:
+solo cambiaron los estados de las seleccionadas. Las dos postulaciones y el
+guardado permanecen intactos, así como aprobación y revisiones empresariales;
+las ofertas ajenas/no seleccionadas, el perfil y la cuenta de origen no cambian.
+Una novena oferta se publicó y editó por la interfaz para regresión HU013/HU014,
+con reconsulta y recarga. Las cerradas/archivadas desaparecen de las consultas
+activas y su edición recibe 409. Las pruebas Django comprueban los permisos,
+ofertas ajenas 404, transiciones inválidas, confirmación inválida sin escrituras,
+paginación, historial consultable y bloqueo de creación individual/masiva de
+postulaciones en inactivas. Esta última comprobación es del dominio actual;
+no existe aún la API/pantalla de HU018.
+
+V07–V11 usan abortos y 400/503 **inyectados** y comprueban que no cambia la base.
+V14 realiza un POST real, comprueba 200 de Django, descarta su respuesta y
+verifica el estado persistido; repetir desde UI devuelve 200 sin duplicar ni
+reabrir. V16/V17 reciben 403/401 reales de la QA. Tras revocar el token de
+prueba, el login queda vacío y volver atrás no muestra ofertas protegidas.
+El navegador y los dos servicios propios se cerraron; reutilizar la corrida
+consumida fue rechazado sin modificar la base. Credenciales, sesiones y entornos
+permanecen privados. [Resultado, respuestas sanitizadas y hashes](evidencias/hu015-20261107/resultados.json).
+
+Se inspeccionaron directamente estas siete imágenes; las otras se conservan
+junto al resultado y están asociadas a las aserciones de los 18 casos:
+
+| Captura | Resultado comprobado |
+|---|---|
+| [V02 confirmación](evidencias/hu015-20261107/HU015-V02-confirmacion-archivar.png) | Identifica oferta y efectos; cancelar no envía POST ni cambia la base |
+| [V03 cierre](evidencias/hu015-20261107/HU015-V03-cerrada-excluida.png) | Confirmación y dos activas restantes; la cerrada desaparece |
+| [V04 conservadas](evidencias/hu015-20261107/HU015-V04-archivada-persistida.png) | Cerradas/archivadas con información después de recargar, sin edición |
+| [V05 móvil](evidencias/hu015-20261107/HU015-V05-conservadas-movil.png) | Listado de conservadas legible en móvil web; archivado directo persistido |
+| [V07 red](evidencias/hu015-20261107/HU015-V07-red-cierre.png) | Error visible, oferta conservada y acción recuperable mediante consulta |
+| [V14 reintento](evidencias/hu015-20261107/HU015-V14-reintento-idempotente.png) | Cierre confirmado tras perder la primera respuesta real, sin duplicados |
+| [V17 sesión](evidencias/hu015-20261107/HU015-V17-sesion-401.png) | 401 real; login sin credenciales y sin escritura de la transición |
+
+**Hallazgos y procedencia.** La revisión reprodujo una reasignación de postulación
+mediante `bulk_create(update_conflicts=True)`; se rechaza ese modo y la nueva
+prueba pasa dentro de las 159 Django. Se conserva el ensayo de navegador
+`0d47453`/`149de96`, fallido en V13: las fixtures usaban fechas ISO con T y
+alteraban el orden frente a las fechas SQLite de Django; se normalizó el
+preparador en `fd5ad27`. No se presenta ese fallo QA como defecto de producto.
+Fechas/versiones del ensayo y de la corrida aprobada constan en el JSON.
+
+**Revisión e integración.** [#156 backend](https://github.com/Danilo2334/Work_net/pull/156)
+y [#157 Flutter/QA](https://github.com/Danilo2334/Work_net/pull/157). Se verificaron
+contratos, permisos, bloqueos de empresa/oferta, conservación de relaciones,
+sesión/navegación y aislamiento del ejecutor. Flujo: API→backend-sprint-3→develop;
+Flutter→frontend; backend revisado→entrega→frontend; verificar otra corrida QA
+del conjunto antes de main. Los PR y el comentario único de cada subtarea
+registran las cabeceras y SHA resultantes. Sin modificar protecciones ni bypass.
+Autor, committer y cuenta de publicación se verifican por separado; las fusiones
+del servidor conservan committer GitHub. Contrato y pruebas backend en
+[COMPANY_API.md](../../backend/accounts/COMPANY_API.md#hu015-cierre-y-archivado-sin-eliminar-historial--07112026).
+
+**Verificación de la entrega combinada.** Tras #156→backend-sprint-3,
+[#158→develop](https://github.com/Danilo2334/Work_net/pull/158) y #157→frontend,
+se incorporó el backend en `8a1d4fc7bd130b0c3f395b5f2868810876f837f5`.
+Su backend coincide con `79d45e3` y su Flutter con `abc496d` (código de `fd5ad27`).
+Otra ejecución de `--suite hu015 --backend-ref HEAD` exportó ambos componentes
+de ese mismo commit: **18/18 aprobados y otras 26 capturas**. Son los mismos 18
+casos repetidos en otra base, no 36 casos distintos. Preparador y dependencias
+desde Git, venv/SQLite/Chromium/puertos nuevos, compilación release y migración
+desde cero, correo a archivos. Las comprobaciones técnicas válidas anteriores
+se reutilizan al coincidir los árboles funcionales; no se repite una auditoría general.
+
+[Resultados integrados, versiones, respuestas y hashes](evidencias/hu015-20261107/integracion/resultados.json).
+La primera evidencia permanece intacta con sus fechas y fuentes. En esta segunda
+se inspeccionaron directamente [V03 cierre y exclusión](evidencias/hu015-20261107/integracion/HU015-V03-cerrada-excluida.png),
+[V05 confirmación en móvil web](evidencias/hu015-20261107/integracion/HU015-V05-confirmacion-movil.png)
+y [V17 sesión vencida](evidencias/hu015-20261107/integracion/HU015-V17-sesion-401.png):
+confirman presentación del resultado, efectos/cancelación accesibles y login vacío.
+La persistencia y conservación de datos/relaciones se contrastan además con Django.
+Se rechazó reutilizar la corrida consumida sin cambiar su base y se comprobaron
+cerrados los servicios propios. Ninguna credencial, sesión ni base se publica.
+
+La integración conjunta se entrega por [#159](https://github.com/Danilo2334/Work_net/pull/159)
+y la cabecera resultante se coteja antes de [#160 hacia main](https://github.com/Danilo2334/Work_net/pull/160).
+Los cambios posteriores a `8a1d4fc` solo agregan documentación y esta segunda
+evidencia, comprobados por diff. Los PR y comentarios de seguimiento registran
+los SHA remotos definitivos y los cierres únicamente después de verificarlos.
+Backend publicado como Danilo2334; Flutter/integración/QA como francisco3788.
+La revisión es técnica y delegada; no se registran aprobaciones personales.
+
+**Criterios pendientes reales.** HU016 no tiene buscador completo y HU018 no
+tiene API/pantalla de postulación. Se verifica la exclusión de las consultas
+activas existentes y el bloqueo de escrituras `Application` (creación individual
+y por lotes), conservando las relaciones; no se presenta como recorrido de
+postulación ni de búsqueda completo. #16/#90/#91 mantienen esos criterios
+pendientes hasta acreditar las dependencias. HU011/HU012/#79 siguen abiertos
+por selección de CV en HU018. No se inicia HU016–HU027. Los siguientes apartados
+son históricos y conservan fechas, versiones y procedencia.
+
 ## HU014: edición de ofertas propias activas — 07/11/2026
 
 **Alcance y responsables.** #84 pantalla, #86 integración y #87 nuevo QA/evidencias:

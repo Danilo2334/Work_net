@@ -131,12 +131,28 @@ class _WorkNetAppState extends State<WorkNetApp> {
       routes: [
         GoRoute(
           path: '/company/offers',
-          builder: (_, _) => _protected(
+          builder: (context, _) => _protected(
             'empresa',
             () => ActiveOffersPage(
-              key: ValueKey(_session.session?.token),
+              key: ValueKey('${_session.session?.token}:active'),
               session: _session,
               repository: _dependencies.offers,
+              lifecycle: _dependencies.offers,
+              onToggle: () => context.go('/company/offers/preserved'),
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/company/offers/preserved',
+          builder: (context, _) => _protected(
+            'empresa',
+            () => ActiveOffersPage(
+              key: ValueKey('${_session.session?.token}:preserved'),
+              session: _session,
+              repository: _dependencies.offers,
+              lifecycle: _dependencies.offers,
+              initialPreserved: true,
+              onToggle: () => context.go('/company/offers'),
             ),
           ),
         ),
