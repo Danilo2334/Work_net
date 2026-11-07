@@ -64,7 +64,7 @@ def main():
     parser.add_argument('--api-port', type=int, default=0, help='0 elige puerto libre; nunca reutiliza un servicio anterior.')
     parser.add_argument('--web-port', type=int, default=0)
     parser.add_argument('--python', default=sys.executable, help='Python 3.12+ para crear un venv nuevo.')
-    parser.add_argument('--suite', choices=['hu012-hu013', 'hu014'], default='hu012-hu013', help='Recorrido en otra base QA nueva.')
+    parser.add_argument('--suite', choices=['hu012-hu013', 'hu014', 'hu015'], default='hu012-hu013', help='Recorrido en otra base QA nueva.')
     args = parser.parse_args()
     repo = Path(git(Path(__file__).parent, 'rev-parse', '--show-toplevel'))
     common = Path(git(repo, 'rev-parse', '--path-format=absolute', '--git-common-dir'))

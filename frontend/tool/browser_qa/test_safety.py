@@ -75,6 +75,17 @@ class GuardTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             execute(self.manifest, 'hu014_snapshot', [])
 
+    def test_hu015_fixtures_cannot_run_before_start_guard(self):
+        self.config['suite'] = 'hu015'
+        self.write()
+        with self.assertRaises(ValueError):
+            execute(self.manifest, 'hu015_prepare', [])
+
+    def test_hu015_actions_reject_a_different_suite(self):
+        (self.root / '.suite-started').touch()
+        with self.assertRaises(ValueError):
+            execute(self.manifest, 'hu015_snapshot', [])
+
 
 if __name__ == '__main__':
     unittest.main()

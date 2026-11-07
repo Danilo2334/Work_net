@@ -2,14 +2,21 @@ import 'package:worknet/core/api/worknet_api.dart';
 
 import '../domain/offer.dart';
 
-class HttpOfferRepository implements OfferRepository, OfferEditingRepository {
+class HttpOfferRepository
+    implements
+        OfferRepository,
+        OfferEditingRepository,
+        OfferLifecycleRepository {
   HttpOfferRepository(this.api);
   final WorkNetApi api;
-  EditableOffer _offer(dynamic value) {
+  EditableOffer _offer(
+    dynamic value, {
+    Set<String> states = const {'published'},
+  }) {
     if (value is! Map<String, dynamic> ||
         value['id'] is! int ||
         (value['id'] as int) <= 0 ||
-        value['status'] != 'published' ||
+        !states.contains(value['status']) ||
         [
           'title',
           'description',
@@ -34,13 +41,23 @@ class HttpOfferRepository implements OfferRepository, OfferEditingRepository {
         category: value['category'] as String,
         contractType: value['contract_type'] as String,
       ),
+      status: value['status'] as String,
     );
   }
 
   @override
   Future<ActiveOffers> active(String token, {int page = 1}) async {
+    return _listing(token, page, false);
+  }
+
+  @override
+  Future<ActiveOffers> preserved(String token, {int page = 1}) async {
+    return _listing(token, page, true);
+  }
+
+  Future<ActiveOffers> _listing(String token, int page, bool preserved) async {
     final data = await api.request(
-      'company/offers/active/?page=$page',
+      'company/offers/${preserved ? 'preserved' : 'active'}/?page=$page',
       token: token,
     );
     if (data['offers'] is! List ||
@@ -54,11 +71,46 @@ class HttpOfferRepository implements OfferRepository, OfferEditingRepository {
       );
     }
     return ActiveOffers(
-      (data['offers'] as List).map(_offer).toList(),
+      (data['offers'] as List)
+          .map(
+            (v) => _offer(
+              v,
+              states: preserved
+                  ? const {'closed', 'archived'}
+                  : const {'published'},
+            ),
+          )
+          .toList(),
       data['count'] as int,
       data['next_page'] as int?,
       data['previous_page'] as int?,
     );
+  }
+
+  @override
+  Future<EditableOffer> transition(
+    String token,
+    int id, {
+    required bool archive,
+  }) async {
+    final status = archive ? 'archived' : 'closed';
+    final offer = _offer(
+      (await api.request(
+        'company/offers/$id/transition/',
+        token: token,
+        data: {
+          'action': archive ? 'archive' : 'close',
+          if (archive) 'confirm': true,
+        },
+      ))['offer'],
+      states: {status},
+    );
+    if (offer.id != id) {
+      throw const ApiFailure(
+        'No pudimos confirmar el estado. Vuelve a consultar tus ofertas.',
+      );
+    }
+    return offer;
   }
 
   @override

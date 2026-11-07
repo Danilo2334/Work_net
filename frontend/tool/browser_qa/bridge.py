@@ -81,6 +81,9 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu015_'):
+        from hu015_fixtures import execute as hu015
+        return hu015(root, run, config, action)
     if action.startswith('hu014_'):
         from hu014_fixtures import execute as hu014
         return hu014(root, run, config, action)

@@ -37,9 +37,10 @@ abstract interface class OfferRepository {
 }
 
 class EditableOffer {
-  const EditableOffer(this.id, this.draft);
+  const EditableOffer(this.id, this.draft, {this.status = 'published'});
   final int id;
   final OfferDraft draft;
+  final String status;
 }
 
 class ActiveOffers {
@@ -53,4 +54,13 @@ abstract interface class OfferEditingRepository {
   Future<ActiveOffers> active(String token, {int page = 1});
   Future<EditableOffer> read(String token, int id);
   Future<EditableOffer> update(String token, int id, OfferDraft draft);
+}
+
+abstract interface class OfferLifecycleRepository {
+  Future<ActiveOffers> preserved(String token, {int page = 1});
+  Future<EditableOffer> transition(
+    String token,
+    int id, {
+    required bool archive,
+  });
 }
