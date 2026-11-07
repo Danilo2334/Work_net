@@ -76,11 +76,11 @@ module.exports = async ({ page, cfg, run, capture, bridge, ui, write, read, clic
     }
   });
   await run('HU014-V13', async () => {
-    await page.goto(cfg.web_origin + '/company-dashboard'); await semantics(); await logout(); await login('candidate', '/dashboard');
+    await page.goto(cfg.web_origin + '/company-dashboard'); await semantics(); await logout(); await login('candidate', '/dashboard', true);
     await page.goto(cfg.web_origin + '/company/offers/1/edit'); await semantics(); await page.waitForURL(cfg.web_origin + '/dashboard'); assert.ok(!(await ui()).includes('Guardar cambios')); await capture('candidato'); await logout();
   });
   await run('HU014-V14', async () => {
-    await login('draft', '/company'); const pending = response('GET', 'company/offers/'); await page.goto(cfg.web_origin + '/company/offers/1/edit'); await semantics(); assert.equal((await pending).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('pendiente-403');
+    await login('draft', '/company', true); const pending = response('GET', 'company/offers/'); await page.goto(cfg.web_origin + '/company/offers/1/edit'); await semantics(); assert.equal((await pending).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('pendiente-403');
     await click('Volver a mis ofertas'); await click('Volver al dashboard'); await page.waitForURL(cfg.web_origin + '/company-dashboard');
     // La empresa pendiente no debe permanecer en el resumen; salir desde su información.
     await page.goto(cfg.web_origin + '/company'); await semantics(); await logout();
