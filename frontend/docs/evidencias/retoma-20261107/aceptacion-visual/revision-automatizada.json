@@ -1,0 +1,62 @@
+[
+  {
+    "number": 146,
+    "head": "91207ad37f13f1dd9f647264b48717ae514cb2f7",
+    "base": "main",
+    "draft": true,
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "checks": [],
+    "status": "pending",
+    "statuses": 0,
+    "commits": 61,
+    "changed_files": 263,
+    "interpretacion_CI": "Sin check-runs ni status contexts; pending agregado no equivale a prueba fallida ni aprobada.",
+    "diff_check": "Sin errores en comparación completa base...head; comprobado con Git local"
+  },
+  {
+    "number": 147,
+    "head": "3959d08385a8fd14161c53216179f3a01e769d42",
+    "base": "develop",
+    "draft": true,
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "checks": [],
+    "status": "pending",
+    "statuses": 0,
+    "commits": 7,
+    "changed_files": 52,
+    "interpretacion_CI": "Sin check-runs ni status contexts; pending agregado no equivale a prueba fallida ni aprobada.",
+    "diff_check": "Sin errores en comparación completa base...head; comprobado con Git local"
+  },
+  {
+    "number": 148,
+    "head": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+    "base": "feature/backend-sprint-3",
+    "draft": true,
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "checks": [],
+    "status": "pending",
+    "statuses": 0,
+    "commits": 1,
+    "changed_files": 9,
+    "interpretacion_CI": "Sin check-runs ni status contexts; pending agregado no equivale a prueba fallida ni aprobada.",
+    "diff_check": "Sin errores en comparación completa base...head; comprobado con Git local"
+  },
+  {
+    "number": 149,
+    "head": "84076191ee264f8d75e7b1acfa32ca4af93da200",
+    "base": "frontend",
+    "draft": true,
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "checks": [],
+    "status": "pending",
+    "statuses": 0,
+    "commits": 4,
+    "changed_files": 14,
+    "interpretacion_CI": "Sin check-runs ni status contexts; pending agregado no equivale a prueba fallida ni aprobada.",
+    "diff_check": "Sin errores en comparación completa base...head; comprobado con Git local"
+  }
+]

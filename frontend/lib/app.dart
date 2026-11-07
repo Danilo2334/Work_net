@@ -46,7 +46,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       widget.registrationApi ?? RegistrationApi();
   SessionController get _session => _dependencies.session;
   late final GoRouter _router;
-  final _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
+  var _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
   String _home() => switch (_session.session?.role) {
     'candidato' => '/dashboard',
     'empresa' =>
@@ -136,17 +136,29 @@ class _WorkNetAppState extends State<WorkNetApp> {
         ),
         GoRoute(
           path: '/curriculum/create',
-          onExit: (_, _) =>
-              _generatedKey.currentState?.confirmLeave() ?? Future.value(true),
-          builder: (_, _) => _protected(
-            'candidato',
-            () => GeneratedCurriculumPage(
-              key: _generatedKey,
-              session: _session,
-              repository: _dependencies.generatedCurriculum,
-              download: _dependencies.curriculumDownload,
-            ),
-          ),
+          onExit: (_, _) async {
+            final leave =
+                await (_generatedKey.currentState?.confirmLeave() ??
+                    Future.value(true));
+            if (leave) {
+              // La página saliente puede seguir animándose al volver al editor.
+              // Otra entrada necesita su propio estado y una nueva consulta.
+              _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
+            }
+            return leave;
+          },
+          builder: (_, _) {
+            final editorKey = _generatedKey;
+            return _protected(
+              'candidato',
+              () => GeneratedCurriculumPage(
+                key: editorKey,
+                session: _session,
+                repository: _dependencies.generatedCurriculum,
+                download: _dependencies.curriculumDownload,
+              ),
+            );
+          },
         ),
         GoRoute(
           path: '/curriculum',

@@ -1,5 +1,7 @@
 # Guía para revisar WorkNet
 
+> **Estado vigente:** consultar «Aceptación visual y revisiones preparadas — 07/11/2026» al final. Los apartados fechados anteriores conservan su evidencia histórica; sus bloqueos visuales describen esas ejecuciones. Publicado e implementado no significa integrado ni revisado por otro integrante.
+
 Actualización de HU011: 25/10/2026. Backend de PDF probado: `84746c3`; Flutter de HU011 en el PR #146.
 La demostración anterior de acceso, perfiles y empresas usaba Flutter `04e7e5c` y backend `f9e4dea`; se conserva abajo con sus cuentas y puertos propios.
 Esta guía permite iniciar la demostración y recorrer las funciones disponibles. El PR #146 sigue en borrador.
@@ -126,8 +128,8 @@ La configuración privada quedó completada. En la SQLite SMTP separada (Django 
 
 - Project consultado: HU005–HU010 y #47–#70 en Sprint 2; HU011–HU017 y #71–#79 en Sprint 3. #80–#83 ya están en Sprint 3 según la consulta del 07/11/2026; #84–#99 conservan su planificación sin modificarla en este bloque. No se cambiaron esas asignaciones.
 - Registro y recuperación mediante correo real comprobados con los enlaces recibidos. Falta la revisión del código por otro integrante.
-- Dashboard candidato: PDF subido y editor de HU012 disponibles con el backend indicado. La aceptación visual restante del editor sigue pendiente; Postman Desktop pasó el 06/11/2026 (31 solicitudes/87 aserciones); búsqueda, mensajes, historial y detalle/postulación continúan pendientes.
-- Dashboard empresa: crear/gestionar ofertas, gestionar postulantes, mensajes y estadísticas siguen pendientes. Las métricas y postulaciones recientes sí usan datos reales.
+- Dashboard candidato: PDF subido y editor de HU012 disponibles con el backend indicado. La aceptación visual restante del editor quedó comprobada en el bloque de abajo; su revisión humana y la selección en postulación HU018 siguen pendientes. Postman Desktop pasó el 06/11/2026 (31 solicitudes/87 aserciones); búsqueda, mensajes, historial y detalle/postulación continúan pendientes.
+- Dashboard empresa: **crear/publicar ofertas HU013 ya está implementado y publicado en #148/#149**. Su aceptación visual de escritorio/móvil web quedó completada en el bloque de abajo; quedan revisión humana e integración a las ramas destino. Gestionar ofertas HU014/HU015, postulantes HU020, mensajes HU022 y estadísticas HU024 siguen pendientes y no se iniciaron aquí. Las métricas y postulaciones recientes sí usan datos reales.
 - Administración: gestión de administradores y permisos pendiente. Revisión de empresas, métricas y eventos de validación sí están implementados.
 - Perfil candidato: la consulta empresarial positiva y sus restricciones ya tienen API y evidencia en #60/#62; falta revisión cruzada y el recorrido empresarial Flutter. La reutilización efectiva para CV se contrasta con HU012.
 - Revisión por otro integrante y pruebas en Android/iOS pendientes.
@@ -239,3 +241,92 @@ Las dos pilas pueden avanzar independientemente hasta sus puntos de revisión, p
 
 
 **Verificación final del seguimiento, 07/11/2026.** [Snapshot sanitizado por historia/subtarea](evidencias/retoma-20261107/seguimiento.json): HU009 #10 cerrada y Done; HU001–HU004/HU010 conservan cierre; HU011/HU012 abiertas. Un único comentario por cada subtarea #29–#83. Responsables, estados y relaciones padre/subtarea contrastados después de editar. Los campos Sprint/fechas y el alcance de HU014–HU027 permanecen intactos. Las referencias a PR se comprobaron también en las cronologías de #50/#62/#79/#83. No hay fusiones remotas ni revisiones humanas nuevas; se solicitaron Danilo en #146/#149 y Francisco en #147/#148. La combinación de aceptación `f188c76` queda únicamente local, sin publicar bases, venv, entornos, credenciales o temporales.
+
+
+## Aceptación visual y revisiones preparadas — 07/11/2026
+
+Continuación de `df14f3d` y `8407619`. Francisco conserva Flutter, integración y
+nuevo QA; Danilo conserva Django. [Casos, versiones, respuestas y persistencia
+sanitizados](evidencias/retoma-20261107/aceptacion-visual/resultados.json).
+La combinación local `f188c76` se conserva y su corrección es `33ec3fc`; se publica
+la misma corrección sobre la rama fuente de #149. No se fusionaron ramas.
+
+Computer Use vuelve a fallar por pipe nativo ausente (os error 2). La skill
+disponible documenta reintento/reset para timeout, pero no un reinicio del pipe
+para este error. No se ejecutaron helpers ni se retomó la sesión personal antes
+bloqueada. La alternativa expresamente autorizada sí pasó su prueba mínima:
+**Playwright, Chrome for Testing/Chromium 158.0.8127.18**, headless, con navegador y
+contextos temporales nuevos; URL `http://127.0.0.1:55031/login`, título WorkNet y
+[captura real inspeccionada](evidencias/retoma-20261107/aceptacion-visual/00-login.png).
+No usa perfil personal. La base QA nueva y el correo a archivos están separados
+de todos los servicios, bases y entornos anteriores. No se hizo envío SMTP.
+
+Escritorio: 1440 × 1000/1100. **Móvil web: viewport 390 × 844 con ratón/teclado**;
+no equivale a dispositivo físico, Android/iOS ni prueba táctil. Las acciones de
+aceptación se ejecutaron con controles, teclado y desplazamiento reales de la
+app. Las capturas se inspeccionaron; las consultas SQLite y la lectura PDF son
+contrastes adicionales, no sustitutos del recorrido.
+
+| Recorrido aprobado | Capturas reales |
+|---|---|
+| HU012: precarga móvil, plantillas, nombre/correo/URL y fechas | [Precarga](evidencias/retoma-20261107/aceptacion-visual/02-hu012-movil-precarga.png), [validaciones](evidencias/retoma-20261107/aceptacion-visual/03-hu012-movil-validacion.png), [fechas](evidencias/retoma-20261107/aceptacion-visual/04-hu012-movil-fechas.png), [plantillas](evidencias/retoma-20261107/aceptacion-visual/05-hu012-movil-plantillas.png) |
+| HU012: seguir editando, borrador tras red/503 y reintento de carga | [Salida](evidencias/retoma-20261107/aceptacion-visual/06-hu012-movil-salida.png), [borrador](evidencias/retoma-20261107/aceptacion-visual/07-hu012-movil-red-borrador.png), [red](evidencias/retoma-20261107/aceptacion-visual/08-hu012-movil-error-red.png), [503](evidencias/retoma-20261107/aceptacion-visual/11-hu012-error-servidor-simulado.png), [carga](evidencias/retoma-20261107/aceptacion-visual/33-hu012-carga-red.png) |
+| HU012: guardado, PDF/descarga, secciones opcionales, perfil intacto | [PDF móvil](evidencias/retoma-20261107/aceptacion-visual/09-hu012-movil-pdf.png), [PDF completo](evidencias/retoma-20261107/aceptacion-visual/13-hu012-escritorio-pdf-completo.png) |
+| HU012: 401 real retira datos/PDF, otra cuenta y Atrás no los recuperan | [Sesión](evidencias/retoma-20261107/aceptacion-visual/14-hu012-sesion-expirada.png), [otra cuenta](evidencias/retoma-20261107/aceptacion-visual/15-hu012-otra-cuenta.png), [móvil y Atrás](evidencias/retoma-20261107/aceptacion-visual/35-hu012-movil-sesion-y-atras.png) |
+| HU013: empresa aprobada, siete campos, catálogos, obligatorios y salario | [Formulario](evidencias/retoma-20261107/aceptacion-visual/17-hu013-escritorio-formulario.png), [obligatorios](evidencias/retoma-20261107/aceptacion-visual/18-hu013-escritorio-obligatorios.png), [categorías](evidencias/retoma-20261107/aceptacion-visual/19-hu013-catalogo-categorias.png), [contratos](evidencias/retoma-20261107/aceptacion-visual/20-hu013-catalogo-contratos.png), [salario](evidencias/retoma-20261107/aceptacion-visual/21-hu013-salario-invalido.png) |
+| HU013: publicación escritorio/móvil, confirmaciones y dashboard 2 → 3 → 4 | [Escritorio](evidencias/retoma-20261107/aceptacion-visual/22-hu013-escritorio-confirmacion.png), [3 activas](evidencias/retoma-20261107/aceptacion-visual/23-hu013-movil-dashboard-3.png), [móvil](evidencias/retoma-20261107/aceptacion-visual/28-hu013-movil-confirmacion.png), [4 activas](evidencias/retoma-20261107/aceptacion-visual/29-hu013-movil-dashboard-4.png) |
+| HU013: catálogo/red, obligatorios móvil, fallo de envío/campo y sesión | [Carga](evidencias/retoma-20261107/aceptacion-visual/24-hu013-movil-catalogo-red.png), [obligatorios](evidencias/retoma-20261107/aceptacion-visual/25-hu013-movil-obligatorios.png), [borrador](evidencias/retoma-20261107/aceptacion-visual/26-hu013-movil-error-red-borrador.png), [400 controlado](evidencias/retoma-20261107/aceptacion-visual/27-hu013-movil-error-campo-simulado.png), [401 real](evidencias/retoma-20261107/aceptacion-visual/30-hu013-movil-sesion-expirada.png) |
+| HU013: empresa no aprobada sin acceso; URL directa recibe 403 real sin formulario | [Empresa](evidencias/retoma-20261107/aceptacion-visual/31-hu013-empresa-no-aprobada.png), [403](evidencias/retoma-20261107/aceptacion-visual/32-hu013-acceso-directo-denegado.png) |
+
+Los fallos de red se inyectaron únicamente en las solicitudes de la pestaña QA;
+503 de CV y 400 de oferta son respuestas controladas de Playwright. No se
+atribuyen a un fallo observado en Django. Los 401 y 403 sí proceden del backend;
+para el 401 se revocó solo el token correspondiente de la SQLite nueva.
+Los reintentos de guardado/publicación y las confirmaciones proceden de Django.
+La SQLite conserva una única oferta por envío exitoso, ambas con propietario QA,
+estado `published`, categoría/contrato y salario correctos. Los intentos fallidos
+no crearon ofertas. La comparación con la SQLite inicial confirma perfil intacto.
+Vista previa y descarga UI coinciden por texto tanto antes como después de añadir
+idiomas, certificación y otra sección; ambos PDF tienen una página. Concuerda con
+las 18 comprobaciones HTTP y tres plantillas PDF anteriores, conservadas con su alcance.
+
+**Defecto demostrado y corregido (HU012):** al confirmar salir y volver antes de
+terminar la transición, la `GlobalKey` compartida recuperaba el estado descartado.
+[Antes](evidencias/retoma-20261107/aceptacion-visual/10-hu012-reabrir.png).
+El widget reprodujo clave duplicada y una consulta en vez de dos. Ahora se renueva
+la clave al confirmar salida y cada página captura la suya; cancelar salida sigue
+conservando el borrador. [Después, nueva consulta y resumen guardado](evidencias/retoma-20261107/aceptacion-visual/34-hu012-descarte-corregido.png).
+Pasaron 46 pruebas pertinentes (CV generado/subido, ofertas y páginas de acceso),
+análisis y compilación JavaScript release. No se repitió toda la batería técnica.
+Persisten los avisos conocidos de Wasm/Cupertino. No hubo cambios de producto backend.
+
+### Revisión técnica preparada y condiciones de integración
+
+[Comprobaciones automáticas de los PR](evidencias/retoma-20261107/aceptacion-visual/revision-automatizada.json):
+diff completo base...head sin errores de whitespace; contratos, permisos,
+persistencia, normalización salarial, PDF privado y manejo de sesión contrastados
+de forma dirigida con código/recorrido/evidencia existente. Los cuatro PR siguen
+abiertos y en borrador. GitHub devuelve cero check-runs y cero contextos de status:
+el `pending` agregado no acredita CI ejecutada. Los resultados locales anteriores
+se conservan. No se presentó una revisión humana ni una aprobación por cambiar cuenta.
+
+| Revisor humano pendiente | Cambios/evidencias que debe contrastar | Condición concreta |
+|---|---|---|
+| Danilo, #146 | Acceso/perfiles/dashboards y HU011/HU012 de Francisco; evidencia histórica y nueva, salida sin guardar/401/PDF; corrección publicada por #149 | Registrar revisión real. El arreglo y nuevo QA entran por #149; #146 todavía no los contiene. Antes de entregar a main necesita backend revisado de #147/#148 e inspección del resultado conjunto |
+| Danilo, #149 | Formulario HU013, errores y publicación → dashboard; regresión de reentrada HU012 y 46 pruebas pertinentes | Revisar la nueva cabecera y su diff. Verificar capturas y autorización. No basta la solicitud de revisión existente |
+| Francisco, #147 | Backend de perfil empresarial autorizado, CV subido/generado, serializers/límites y privacidad del PDF; 141 pruebas y Desktop históricos | Revisión real del código de Danilo. HU018 no está implementada. Incorporar primero #148 y volver a comprobar la cabecera/resultante antes de integrar a develop |
+| Francisco, #148 | Migración de campos, contratos/catálogos, bloqueo por empresa verificada/aprobada y propietario/estado/fecha fijados en servidor | Revisar código y migración; contrastar 403 y oferta persistida de UI y evidencia Postman. No convertir este QA automatizado en revisión humana |
+
+**Estados por resultado:** #75/#78 pasan a In review tras aceptación propia;
+#76/#77 se mantienen In review. #79 continúa QA / Testing porque su objetivo
+incluye postulación (HU018), además de revisión humana pendiente; HU012 permanece
+abierta en QA / Testing. #80/#82/#83 y HU013 pasan a In review; #81 se mantiene
+In review. Su aceptación propia está comprobada, pero ninguna se cierra sin las
+revisiones aplicables. HU011 conserva el criterio pendiente de HU018. Las casillas
+de revisión por otro integrante permanecen abiertas. Las asignaciones, Sprint,
+fechas y registros históricos se conservan, con un único comentario por subtarea.
+
+Orden intacto: #148 → backend-sprint-3 antes de #147 → develop; #149 → frontend;
+incorporar el backend revisado a entrega y verificar después antes de #146 → main.
+Ni estar mergeable ni completar aceptación suplen revisión o integración. No se
+inició HU014–HU027, no se fusionó ni aprobó ningún PR y este bloque termina aquí.
