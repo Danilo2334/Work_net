@@ -34,13 +34,14 @@ async function main() {
   const out = path.join(root, 'artifacts');
   fs.mkdirSync(out, { recursive: true });
   const results = { schema: 'worknet-browser-qa-results-v1', fecha: new Date().toISOString(), frontend_sha: cfg.frontend_sha, backend_sha: cfg.backend_sha, playwright: require('playwright/package.json').version, modo: 'Chromium headless nuevo, contextos temporales; sin perfil personal', escritorio: '1440x1000/1100', movil: 'Viewport 390x844, ratón/teclado; no dispositivo físico', casos: [], capturas: [], red: [], controles: { solo_base_qa_nueva: true, smtp: false, traces_har_storageState: false }, revision_humana: false };
-  let browser, context, page, active = 'NAVEGADOR-01', authenticating = false, violations = 0;
+  let browser, context, page, active = 'NAVEGADOR-01', phase = 'inicio', authenticating = false, violations = 0;
   const faults = new Map();
   const marker = 'Aceptación visual HU012: resumen ficticio conservado.';
   const save = () => fs.writeFileSync(path.join(out, 'resultados.json'), JSON.stringify(results, null, 2) + '\n');
   const endpoint = (r, method, suffix) => r.request().method() === method && r.url() === cfg.api_origin + '/api/' + suffix;
   const ui = () => page.locator('body').ariaSnapshot();
   const waitText = async text => {
+    phase = 'esperar texto de interfaz';
     for (let i = 0; i < 50; i++) {
       if ((await ui()).includes(text)) return;
       await page.waitForTimeout(100);
@@ -48,6 +49,7 @@ async function main() {
     throw new Error('UI_TEXT_NOT_READY');
   };
   const click = async (name, role = 'button') => {
+    phase = 'control ' + role + ': ' + String(name);
     const target = page.getByRole(role, { name, exact: typeof name === 'string' });
     await target.scrollIntoViewIfNeeded();
     await page.waitForTimeout(180); // Semántica y canvas deben terminar el scroll.
@@ -90,7 +92,10 @@ async function main() {
       console.log(id + ' OK');
       save();
     } catch (error) {
-      results.casos.push({ id, resultado: 'fallido', error: 'Aserción, guard o control no satisfecho; sin volcado de datos privados' });
+      results.casos.push({ id, resultado: 'fallido', paso: phase, tipo: error.name, error: 'Aserción, guard o control no satisfecho; sin volcado de datos privados' });
+      if (!authenticating) {
+        try { await capture('fallo'); } catch (_) { /* Nunca capturar login relleno. */ }
+      }
       save();
       throw new Error('CASE_FAILED');
     }
@@ -123,6 +128,9 @@ async function main() {
   };
   const editor = async () => {
     await click('Mi currículum');
+    await page.waitForURL(cfg.web_origin + '/curriculum');
+    await waitText('Todavía no has subido un currículum');
+    await page.waitForTimeout(400);
     await click('Crear mi CV');
     await waitText('Información personal');
   };
