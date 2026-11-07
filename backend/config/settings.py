@@ -162,6 +162,7 @@ MAILERS = {
 
             "use_tls":
                 True,
+            "timeout": 15,
         },
     },
 }

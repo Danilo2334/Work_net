@@ -1,0 +1,2829 @@
+[
+  {
+    "id": "PM001",
+    "tarea": 30,
+    "objetivo": "Campos obligatorios ausentes",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM002",
+    "tarea": 30,
+    "objetivo": "Correo inválido",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "full_name": "Persona ficticia Postman",
+      "email": "no-es-correo",
+      "password": "{{registered_password}}",
+      "password_confirm": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM003",
+    "tarea": 30,
+    "objetivo": "Contraseñas diferentes",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "full_name": "Persona ficticia Postman",
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}",
+      "password_confirm": "distinta-qa"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM004",
+    "tarea": 30,
+    "objetivo": "Contraseña débil",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "full_name": "Persona ficticia Postman",
+      "email": "{{registered_email}}",
+      "password": "123",
+      "password_confirm": "123"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM005",
+    "tarea": 30,
+    "objetivo": "No se permite registrar administrador",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "full_name": "Persona ficticia Postman",
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}",
+      "password_confirm": "{{registered_password}}",
+      "role": "admin"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM006",
+    "tarea": 30,
+    "objetivo": "Registro sin rol previo",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 201. Cuenta sin rol y correo todavía no verificado; ticket limitado presente",
+    "auth": null,
+    "cuerpo": {
+      "full_name": "Persona ficticia Postman",
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}",
+      "password_confirm": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM007",
+    "tarea": 30,
+    "objetivo": "Correo duplicado sin distinguir mayúsculas",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/",
+    "esperado": "HTTP 400. Error de correo en español",
+    "auth": null,
+    "cuerpo": {
+      "full_name": "Persona ficticia Postman",
+      "email": "REGISTRO.POSTMAN@WORKNET.TEST",
+      "password": "{{registered_password}}",
+      "password_confirm": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM008",
+    "tarea": 30,
+    "objetivo": "Ticket inválido para elegir rol",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/role/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "registration_token": "invalido-qa",
+      "role": "candidato"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM009",
+    "tarea": 30,
+    "objetivo": "Ticket no permite elegir administrador",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/role/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "registration_token": "{{registration_ticket}}",
+      "role": "admin"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM010",
+    "tarea": 30,
+    "objetivo": "Candidato elegido después del registro",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/role/",
+    "esperado": "HTTP 200. Rol candidato guardado",
+    "auth": null,
+    "cuerpo": {
+      "registration_token": "{{registration_ticket}}",
+      "role": "candidato"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM011",
+    "tarea": 30,
+    "objetivo": "No se permite reasignar el rol",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "register/role/",
+    "esperado": "HTTP 409. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "registration_token": "{{registration_ticket}}",
+      "role": "empresa"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM012",
+    "tarea": 35,
+    "objetivo": "Login sin verificar rechazado",
+    "fase": "01 · HU001 #30 · Registro y roles",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM013",
+    "tarea": 31,
+    "objetivo": "Verificación sin enlace",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "GET",
+    "ruta": "verify-email/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM014",
+    "tarea": 31,
+    "objetivo": "Firma inválida",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "GET",
+    "ruta": "verify-email/?token=invalido-qa",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM015",
+    "tarea": 31,
+    "objetivo": "Verificación con enlace del correo capturado",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "GET",
+    "ruta": "verify-email/?token={{verification_token}}",
+    "esperado": "HTTP 200. Correo verificado correctamente",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM016",
+    "tarea": 31,
+    "objetivo": "Repetición de verificación idempotente",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "GET",
+    "ruta": "verify-email/?token={{verification_token}}",
+    "esperado": "HTTP 200. Verificación repetida reconocida",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM017",
+    "tarea": 35,
+    "objetivo": "Login sin datos",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM018",
+    "tarea": 35,
+    "objetivo": "Contraseña incorrecta",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}",
+      "password": "incorrecta-qa"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM019",
+    "tarea": 35,
+    "objetivo": "Login después de verificar acredita persistencia",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM020",
+    "tarea": 30,
+    "objetivo": "Consulta conserva el rol y la verificación",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Rol y verificación persistentes",
+    "auth": "registered_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM021",
+    "tarea": 35,
+    "objetivo": "Logout sin autenticación",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "logout/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM022",
+    "tarea": 35,
+    "objetivo": "Logout revoca el token utilizado",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "logout/",
+    "esperado": "HTTP 200. Respuesta JSON válida.",
+    "auth": "registered_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM023",
+    "tarea": 35,
+    "objetivo": "Token revocado recibe 401",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "revoked_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM024",
+    "tarea": 35,
+    "objetivo": "Nuevo login después de logout",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM025",
+    "tarea": 35,
+    "objetivo": "Login de candidate",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{candidate_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM026",
+    "tarea": 35,
+    "objetivo": "Login de other",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{other_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM027",
+    "tarea": 35,
+    "objetivo": "Login de company",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada; estado approved",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{company_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM028",
+    "tarea": 35,
+    "objetivo": "Login de draft",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada; estado pending",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{draft_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM029",
+    "tarea": 35,
+    "objetivo": "Login de other_company",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada; estado pending",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{other_company_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM030",
+    "tarea": 35,
+    "objetivo": "Login de admin",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{admin_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM031",
+    "tarea": 35,
+    "objetivo": "Login de disposable",
+    "fase": "02 · HU001 #31 y HU002 #35 · Verificación y sesión",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{disposable_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM032",
+    "tarea": 40,
+    "objetivo": "Solicitud sin correo",
+    "fase": "03 · HU003 #40 · Solicitud de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/request/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM033",
+    "tarea": 40,
+    "objetivo": "Solicitud con correo inválido",
+    "fase": "03 · HU003 #40 · Solicitud de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/request/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "email": "incorrecto"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM034",
+    "tarea": 40,
+    "objetivo": "Correo desconocido recibe respuesta genérica",
+    "fase": "03 · HU003 #40 · Solicitud de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/request/",
+    "esperado": "HTTP 200. Respuesta JSON válida.",
+    "auth": null,
+    "cuerpo": {
+      "email": "desconocido@worknet.test"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM035",
+    "tarea": 40,
+    "objetivo": "Solicitud válida captura un correo local",
+    "fase": "03 · HU003 #40 · Solicitud de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/request/",
+    "esperado": "HTTP 200. Respuesta no revela si existe la cuenta",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM036",
+    "tarea": 40,
+    "objetivo": "Enlace inválido",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/confirm/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "uid": "invalido",
+      "token": "invalido-qa",
+      "new_password": "{{new_password}}",
+      "new_password_confirm": "{{new_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM037",
+    "tarea": 40,
+    "objetivo": "Contraseñas nuevas diferentes",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/confirm/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "uid": "{{reset_uid}}",
+      "token": "{{reset_token}}",
+      "new_password": "{{new_password}}",
+      "new_password_confirm": "diferente-qa"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM038",
+    "tarea": 40,
+    "objetivo": "Nueva contraseña débil",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/confirm/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "uid": "{{reset_uid}}",
+      "token": "{{reset_token}}",
+      "new_password": "123",
+      "new_password_confirm": "123"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM039",
+    "tarea": 40,
+    "objetivo": "Cambio mediante enlace del correo capturado",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/confirm/",
+    "esperado": "HTTP 200. Cambio confirmado",
+    "auth": null,
+    "cuerpo": {
+      "uid": "{{reset_uid}}",
+      "token": "{{reset_token}}",
+      "new_password": "{{new_password}}",
+      "new_password_confirm": "{{new_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM040",
+    "tarea": 40,
+    "objetivo": "Enlace usado rechazado",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "password-recovery/confirm/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "uid": "{{reset_uid}}",
+      "token": "{{reset_token}}",
+      "new_password": "{{new_password}}",
+      "new_password_confirm": "{{new_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM041",
+    "tarea": 40,
+    "objetivo": "Token anterior al cambio revocado",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "registered_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM042",
+    "tarea": 40,
+    "objetivo": "Contraseña anterior rechazada",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}",
+      "password": "{{old_registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM043",
+    "tarea": 40,
+    "objetivo": "Login con nueva contraseña acredita persistencia",
+    "fase": "04 · HU003 #40 · Confirmación de recuperación",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{registered_email}}",
+      "password": "{{registered_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM044",
+    "tarea": 44,
+    "objetivo": "Cuenta sin token",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM045",
+    "tarea": 44,
+    "objetivo": "Cuenta con token inválido",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "invalid_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM046",
+    "tarea": 44,
+    "objetivo": "Consultar propia cuenta",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Solo datos públicos de la cuenta propia",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM047",
+    "tarea": 44,
+    "objetivo": "Nombre vacío rechazado",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "PATCH",
+    "ruta": "account/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "full_name": ""
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM048",
+    "tarea": 44,
+    "objetivo": "Correo rol y verificación no son editables",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "PATCH",
+    "ruta": "account/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "email": "otro@worknet.test",
+      "role": "admin",
+      "email_verified": false
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM049",
+    "tarea": 44,
+    "objetivo": "No se permite indicar otro propietario",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "PATCH",
+    "ruta": "account/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "user_id": "{{other_id}}",
+      "full_name": "Intrusión QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM050",
+    "tarea": 44,
+    "objetivo": "Actualizar nombre propio",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "PATCH",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Nombre actualizado",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "full_name": "Candidato actualizado Postman"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM051",
+    "tarea": 44,
+    "objetivo": "Nueva consulta conserva el nombre",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Nombre persistido",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM052",
+    "tarea": 44,
+    "objetivo": "Otro usuario conserva sus datos",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/?user_id={{candidate_id}}",
+    "esperado": "HTTP 200. No se consulta una cuenta ajena mediante parámetros",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM053",
+    "tarea": 44,
+    "objetivo": "Contraseña actual incorrecta",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "POST",
+    "ruta": "account/password/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "current_password": "incorrecta-qa",
+      "new_password": "{{account_new_password}}",
+      "new_password_confirm": "{{account_new_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM054",
+    "tarea": 44,
+    "objetivo": "Confirmación de contraseña diferente",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "POST",
+    "ruta": "account/password/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "current_password": "{{candidate_password}}",
+      "new_password": "{{account_new_password}}",
+      "new_password_confirm": "otra-qa"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM055",
+    "tarea": 44,
+    "objetivo": "Contraseña nueva débil",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "POST",
+    "ruta": "account/password/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "current_password": "{{candidate_password}}",
+      "new_password": "123",
+      "new_password_confirm": "123"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM056",
+    "tarea": 44,
+    "objetivo": "Cambio devuelve token nuevo",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "POST",
+    "ruta": "account/password/",
+    "esperado": "HTTP 200. Token nuevo distinto del anterior",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "current_password": "{{candidate_password}}",
+      "new_password": "{{account_new_password}}",
+      "new_password_confirm": "{{account_new_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM057",
+    "tarea": 44,
+    "objetivo": "Token anterior rechazado",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "old_candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM058",
+    "tarea": 44,
+    "objetivo": "Token nuevo autorizado",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Cuenta propia accesible",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM059",
+    "tarea": 44,
+    "objetivo": "Contraseña antigua rechazada tras cambio",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{candidate_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM060",
+    "tarea": 44,
+    "objetivo": "Nuevo login conserva el cambio de contraseña",
+    "fase": "05 · HU004 #44 · Configuración y contraseña",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{candidate_email}}",
+      "password": "{{candidate_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM061",
+    "tarea": 45,
+    "objetivo": "Preferencias sin autenticación",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "GET",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM062",
+    "tarea": 45,
+    "objetivo": "Preferencia inicial activada",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "GET",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. Valor inicial booleano true",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM063",
+    "tarea": 45,
+    "objetivo": "Desactivar notificaciones",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "PATCH",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. Booleano false guardado",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "push_notifications": false
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM064",
+    "tarea": 45,
+    "objetivo": "False permanece en una nueva consulta",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "GET",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. Persistencia de false",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM065",
+    "tarea": 45,
+    "objetivo": "Otra cuenta no hereda la preferencia",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "GET",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. Segunda cuenta permanece en true",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM066",
+    "tarea": 45,
+    "objetivo": "Texto false no es booleano",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "PATCH",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "push_notifications": "false"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM067",
+    "tarea": 45,
+    "objetivo": "Número cero no es booleano",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "PATCH",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "push_notifications": 0
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM068",
+    "tarea": 45,
+    "objetivo": "Campo ajeno rechazado",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "PATCH",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "push_notifications": true,
+      "user_id": "{{other_id}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM069",
+    "tarea": 45,
+    "objetivo": "Los errores no alteran la preferencia",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "GET",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. False sigue guardado",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM070",
+    "tarea": 45,
+    "objetivo": "Activar notificaciones",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "PATCH",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. Booleano true guardado",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "push_notifications": true
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM071",
+    "tarea": 45,
+    "objetivo": "True permanece en una nueva consulta",
+    "fase": "06 · HU004 #45 · Preferencias",
+    "metodo": "GET",
+    "ruta": "account/notifications/",
+    "esperado": "HTTP 200. Persistencia de true",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM072",
+    "tarea": 48,
+    "objetivo": "Resumen sin autenticación",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM073",
+    "tarea": 48,
+    "objetivo": "Resumen con token inválido",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "invalid_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM074",
+    "tarea": 48,
+    "objetivo": "Resumen restringido al rol correcto",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM075",
+    "tarea": 52,
+    "objetivo": "Resumen sin autenticación",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM076",
+    "tarea": 52,
+    "objetivo": "Resumen con token inválido",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "invalid_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM077",
+    "tarea": 52,
+    "objetivo": "Resumen restringido al rol correcto",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM078",
+    "tarea": 56,
+    "objetivo": "Resumen sin autenticación",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM079",
+    "tarea": 56,
+    "objetivo": "Resumen con token inválido",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "invalid_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM080",
+    "tarea": 56,
+    "objetivo": "Resumen restringido al rol correcto",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM081",
+    "tarea": 48,
+    "objetivo": "Métricas y completitud del candidato principal",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 200. 83 por ciento y métricas 2 1 2; dos trabajos publicados",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM082",
+    "tarea": 48,
+    "objetivo": "Segundo candidato vacío y separado",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/?user_id={{candidate_id}}",
+    "esperado": "HTTP 200. 17 por ciento y métricas propias en cero; ofertas globales válidas",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM083",
+    "tarea": 48,
+    "objetivo": "Resumen no admite escritura",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "POST",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 405. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM084",
+    "tarea": 52,
+    "objetivo": "Empresa aprobada muestra su actividad real",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 200. Dos ofertas activas y dos postulaciones propias",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM085",
+    "tarea": 52,
+    "objetivo": "Empresa pendiente no accede al resumen",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM086",
+    "tarea": 56,
+    "objetivo": "Resumen administrador con conteos de la base QA",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 200. Cuatro candidatos tres empresas y cero solicitudes completas",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM087",
+    "tarea": 56,
+    "objetivo": "Empresa no accede al resumen administrador",
+    "fase": "07 · HU005 HU006 HU007 · Resúmenes #48 #52 #56",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM088",
+    "tarea": 60,
+    "objetivo": "Perfil sin autenticación",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM089",
+    "tarea": 60,
+    "objetivo": "Empresa no consulta el perfil del candidato",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM090",
+    "tarea": 60,
+    "objetivo": "Perfil vacío sin creación implícita",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Perfil todavía inexistente",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM091",
+    "tarea": 60,
+    "objetivo": "Crear perfil propio",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 201. Perfil creado sin foto obligatoria",
+    "auth": "other_token",
+    "cuerpo": {
+      "professional_summary": "Descripción profesional ficticia QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM092",
+    "tarea": 60,
+    "objetivo": "Crear perfil duplicado rechazado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 409. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {
+      "professional_summary": "Duplicado"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM093",
+    "tarea": 60,
+    "objetivo": "Modificar descripción profesional",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Descripción editada",
+    "auth": "other_token",
+    "cuerpo": {
+      "professional_summary": "Descripción corregida QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM094",
+    "tarea": 60,
+    "objetivo": "Descripción persiste al consultar",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Descripción recuperada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM095",
+    "tarea": 60,
+    "objetivo": "No se permite cambiar propietario",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {
+      "candidate": "{{candidate_id}}",
+      "professional_summary": "Intrusión"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM096",
+    "tarea": 60,
+    "objetivo": "education: validar campos obligatorios",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/education/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM097",
+    "tarea": 60,
+    "objetivo": "education: agregar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/education/",
+    "esperado": "HTTP 201. Registro estructurado con identificador real",
+    "auth": "other_token",
+    "cuerpo": {
+      "qualification": "Ingeniería QA",
+      "institution": "Institución ficticia",
+      "start_date": "2020-01-01",
+      "end_date": "2024-01-01"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM098",
+    "tarea": 60,
+    "objetivo": "education: consultar registro persistido",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 200. education conserva campos enviados",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM099",
+    "tarea": 60,
+    "objetivo": "education: editar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 200. Cambio en registro propio",
+    "auth": "other_token",
+    "cuerpo": {
+      "institution": "Institución corregida QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM100",
+    "tarea": 60,
+    "objetivo": "education: nueva consulta conserva edición",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 200. Edición persistida",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM101",
+    "tarea": 60,
+    "objetivo": "education: otro candidato no lee el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM102",
+    "tarea": 60,
+    "objetivo": "education: otro candidato no modifica el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "institution": "Institución corregida QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM103",
+    "tarea": 60,
+    "objetivo": "education: otro candidato no elimina el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM104",
+    "tarea": 60,
+    "objetivo": "experience: validar campos obligatorios",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/experience/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM105",
+    "tarea": 60,
+    "objetivo": "experience: agregar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/experience/",
+    "esperado": "HTTP 201. Registro estructurado con identificador real",
+    "auth": "other_token",
+    "cuerpo": {
+      "position": "Desarrollo QA",
+      "company": "Empresa ficticia",
+      "start_date": "2024-01-01",
+      "end_date": "2025-01-01"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM106",
+    "tarea": 60,
+    "objetivo": "experience: consultar registro persistido",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 200. experience conserva campos enviados",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM107",
+    "tarea": 60,
+    "objetivo": "experience: editar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 200. Cambio en registro propio",
+    "auth": "other_token",
+    "cuerpo": {
+      "company": "Empresa corregida QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM108",
+    "tarea": 60,
+    "objetivo": "experience: nueva consulta conserva edición",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 200. Edición persistida",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM109",
+    "tarea": 60,
+    "objetivo": "experience: otro candidato no lee el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM110",
+    "tarea": 60,
+    "objetivo": "experience: otro candidato no modifica el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "company": "Empresa corregida QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM111",
+    "tarea": 60,
+    "objetivo": "experience: otro candidato no elimina el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM112",
+    "tarea": 60,
+    "objetivo": "skills: validar campos obligatorios",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/skills/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM113",
+    "tarea": 60,
+    "objetivo": "skills: agregar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/skills/",
+    "esperado": "HTTP 201. Registro estructurado con identificador real",
+    "auth": "other_token",
+    "cuerpo": {
+      "name": "Django",
+      "level": "intermedio"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM114",
+    "tarea": 60,
+    "objetivo": "skills: consultar registro persistido",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 200. skills conserva campos enviados",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM115",
+    "tarea": 60,
+    "objetivo": "skills: editar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 200. Cambio en registro propio",
+    "auth": "other_token",
+    "cuerpo": {
+      "level": "avanzado"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM116",
+    "tarea": 60,
+    "objetivo": "skills: nueva consulta conserva edición",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 200. Edición persistida",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM117",
+    "tarea": 60,
+    "objetivo": "skills: otro candidato no lee el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM118",
+    "tarea": 60,
+    "objetivo": "skills: otro candidato no modifica el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "level": "avanzado"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM119",
+    "tarea": 60,
+    "objetivo": "skills: otro candidato no elimina el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM120",
+    "tarea": 60,
+    "objetivo": "languages: validar campos obligatorios",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/languages/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM121",
+    "tarea": 60,
+    "objetivo": "languages: agregar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/languages/",
+    "esperado": "HTTP 201. Registro estructurado con identificador real",
+    "auth": "other_token",
+    "cuerpo": {
+      "name": "Español",
+      "level": "B2"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM122",
+    "tarea": 60,
+    "objetivo": "languages: consultar registro persistido",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 200. languages conserva campos enviados",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM123",
+    "tarea": 60,
+    "objetivo": "languages: editar registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 200. Cambio en registro propio",
+    "auth": "other_token",
+    "cuerpo": {
+      "level": "nativo"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM124",
+    "tarea": 60,
+    "objetivo": "languages: nueva consulta conserva edición",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 200. Edición persistida",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM125",
+    "tarea": 60,
+    "objetivo": "languages: otro candidato no lee el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM126",
+    "tarea": 60,
+    "objetivo": "languages: otro candidato no modifica el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PATCH",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": {
+      "level": "nativo"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM127",
+    "tarea": 60,
+    "objetivo": "languages: otro candidato no elimina el registro",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM128",
+    "tarea": 60,
+    "objetivo": "Fechas invertidas rechazadas",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/education/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {
+      "qualification": "QA",
+      "start_date": "2025-01-01",
+      "end_date": "2020-01-01"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM129",
+    "tarea": 60,
+    "objetivo": "Nivel de idioma inválido",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "POST",
+    "ruta": "profile/candidate/languages/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": {
+      "name": "Inglés",
+      "level": "experto-inventado"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM130",
+    "tarea": 60,
+    "objetivo": "Dashboard refleja las seis secciones completas",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 200. Completitud real de Django al cien sin fotografía",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM131",
+    "tarea": 60,
+    "objetivo": "Foto opcional ausente",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM132",
+    "tarea": 60,
+    "objetivo": "Subir PNG válido",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. Foto cargada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": "fixtures/foto-qa.png"
+  },
+  {
+    "id": "PM133",
+    "tarea": 60,
+    "objetivo": "Recuperar fotografía privada",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. JPEG privado sin caché y sin URL pública",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM134",
+    "tarea": 60,
+    "objetivo": "Fotografía sin autenticación rechazada",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM135",
+    "tarea": 60,
+    "objetivo": "Otro candidato no recibe la fotografía ajena",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/?user_id={{other_id}}",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM136",
+    "tarea": 60,
+    "objetivo": "Empresa sin autorización no accede a foto",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM137",
+    "tarea": 60,
+    "objetivo": "Extensión no admitida rechazado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": "fixtures/no-imagen.txt"
+  },
+  {
+    "id": "PM138",
+    "tarea": 60,
+    "objetivo": "PNG corrupto rechazado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": "fixtures/corrupta.png"
+  },
+  {
+    "id": "PM139",
+    "tarea": 60,
+    "objetivo": "Más de 4096 píxeles rechazado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": ".local/fixtures/ancha.png"
+  },
+  {
+    "id": "PM140",
+    "tarea": 60,
+    "objetivo": "Más de dos MiB rechazado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "PUT",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": ".local/fixtures/exceso.png"
+  },
+  {
+    "id": "PM141",
+    "tarea": 60,
+    "objetivo": "Errores de archivo conservan foto anterior",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. JPEG privado sin caché y sin URL pública",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM142",
+    "tarea": 60,
+    "objetivo": "Quitar fotografía opcional",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 200. Foto eliminada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM143",
+    "tarea": 60,
+    "objetivo": "Nueva consulta confirma foto ausente",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/photo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM144",
+    "tarea": 60,
+    "objetivo": "Quitar foto conserva completitud al cien",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "dashboard/candidate/",
+    "esperado": "HTTP 200. Foto no participa en las seis secciones",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM145",
+    "tarea": 60,
+    "objetivo": "education: eliminar registro propio",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/education/{{education_id}}/",
+    "esperado": "HTTP 200. Sección vaciada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM146",
+    "tarea": 60,
+    "objetivo": "education: consulta confirma eliminación",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/education/",
+    "esperado": "HTTP 200. Sin registros persistidos",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM147",
+    "tarea": 60,
+    "objetivo": "experience: eliminar registro propio",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/experience/{{experience_id}}/",
+    "esperado": "HTTP 200. Sección vaciada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM148",
+    "tarea": 60,
+    "objetivo": "experience: consulta confirma eliminación",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/experience/",
+    "esperado": "HTTP 200. Sin registros persistidos",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM149",
+    "tarea": 60,
+    "objetivo": "skills: eliminar registro propio",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/skills/{{skills_id}}/",
+    "esperado": "HTTP 200. Sección vaciada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM150",
+    "tarea": 60,
+    "objetivo": "skills: consulta confirma eliminación",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/skills/",
+    "esperado": "HTTP 200. Sin registros persistidos",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM151",
+    "tarea": 60,
+    "objetivo": "languages: eliminar registro propio",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/languages/{{languages_id}}/",
+    "esperado": "HTTP 200. Sección vaciada",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM152",
+    "tarea": 60,
+    "objetivo": "languages: consulta confirma eliminación",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/languages/",
+    "esperado": "HTTP 200. Sin registros persistidos",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM153",
+    "tarea": 60,
+    "objetivo": "Eliminar perfil propio",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "DELETE",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Perfil eliminado",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM154",
+    "tarea": 60,
+    "objetivo": "Consulta confirma perfil eliminado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Perfil permanece ausente",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM155",
+    "tarea": 60,
+    "objetivo": "Eliminar perfil conserva la cuenta",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Cuenta del segundo candidato sigue vigente",
+    "auth": "other_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM156",
+    "tarea": 60,
+    "objetivo": "Otro perfil no fue alterado",
+    "fase": "08 · HU008 #60 · Perfil y fotografía",
+    "metodo": "GET",
+    "ruta": "profile/candidate/",
+    "esperado": "HTTP 200. Resumen principal intacto",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM157",
+    "tarea": 64,
+    "objetivo": "Información empresarial sin autenticación",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM158",
+    "tarea": 64,
+    "objetivo": "Candidato no usa información empresarial",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM159",
+    "tarea": 64,
+    "objetivo": "Datos iniciales de empresa sin solicitud",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Pendiente sin enviar y sin datos ajenos",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM160",
+    "tarea": 64,
+    "objetivo": "No se permite enviar información incompleta",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "POST",
+    "ruta": "company/submit/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM161",
+    "tarea": 64,
+    "objetivo": "Correo de contacto inválido",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {
+      "contact_email": "no-correo"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM162",
+    "tarea": 64,
+    "objetivo": "NIT inválido",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {
+      "tax_id": "abc"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM163",
+    "tarea": 64,
+    "objetivo": "No se permite editar estado ni propietario",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {
+      "company": "{{company_id}}",
+      "state": "approved"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM164",
+    "tarea": 64,
+    "objetivo": "Guardar los seis datos empresariales",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Datos completos guardados como borrador",
+    "auth": "draft_token",
+    "cuerpo": {
+      "legal_name": "Empresa solicitante Postman QA",
+      "tax_id": "900000002-1",
+      "sector": "Tecnología QA",
+      "location": "Pasto",
+      "contact_email": "solicitud@worknet.test",
+      "description": "Información ficticia para la revisión Postman."
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM165",
+    "tarea": 64,
+    "objetivo": "Nueva consulta conserva los datos empresariales",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Persistencia de todos los datos",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM166",
+    "tarea": 64,
+    "objetivo": "Otra empresa no consulta datos de la solicitante",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "GET",
+    "ruta": "company/?company={{company_profile_id}}",
+    "esperado": "HTTP 200. Información exclusivamente propia",
+    "auth": "other_company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM167",
+    "tarea": 64,
+    "objetivo": "Otra empresa no puede duplicar NIT",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "other_company_token",
+    "cuerpo": {
+      "legal_name": "Empresa solicitante Postman QA",
+      "tax_id": "900000002-1",
+      "sector": "Tecnología QA",
+      "location": "Pasto",
+      "contact_email": "solicitud@worknet.test",
+      "description": "Información ficticia para la revisión Postman."
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM168",
+    "tarea": 64,
+    "objetivo": "Logo requiere aprobación previa",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PUT",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": "fixtures/foto-qa.png"
+  },
+  {
+    "id": "PM169",
+    "tarea": 64,
+    "objetivo": "Enviar solicitud completa",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "POST",
+    "ruta": "company/submit/",
+    "esperado": "HTTP 200. Solicitud pendiente y enviada con versión real",
+    "auth": "draft_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM170",
+    "tarea": 64,
+    "objetivo": "Solicitud enviada bloquea edición",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {
+      "location": "Cambio indebido"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM171",
+    "tarea": 64,
+    "objetivo": "Solicitud no se envía dos veces",
+    "fase": "09 · HU009 #64 · Información empresarial",
+    "metodo": "POST",
+    "ruta": "company/submit/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM172",
+    "tarea": 68,
+    "objetivo": "Listado de solicitudes sin autenticación",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "admin/companies/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM173",
+    "tarea": 68,
+    "objetivo": "Candidato no consulta solicitudes administrativas",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "admin/companies/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM174",
+    "tarea": 68,
+    "objetivo": "Empresa no puede aprobarse",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "admin/companies/{{company_profile_id}}/review/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {
+      "decision": "approved",
+      "version": "{{company_version}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM175",
+    "tarea": 68,
+    "objetivo": "Administrador consulta solicitud completa",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "admin/companies/",
+    "esperado": "HTTP 200. Listado contiene la solicitud y sus datos completos",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM176",
+    "tarea": 56,
+    "objetivo": "Dashboard cuenta y notifica solicitud pendiente",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 200. Una solicitud pendiente y notificación persistida",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM177",
+    "tarea": 68,
+    "objetivo": "Rechazo sin motivo no modifica solicitud",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "admin/companies/{{company_profile_id}}/review/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "admin_token",
+    "cuerpo": {
+      "decision": "rejected",
+      "version": "__NUMBER_company_version__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM178",
+    "tarea": 68,
+    "objetivo": "Decisión inválida rechazada",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "admin/companies/{{company_profile_id}}/review/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "admin_token",
+    "cuerpo": {
+      "decision": "inventada",
+      "version": "__NUMBER_company_version__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM179",
+    "tarea": 68,
+    "objetivo": "Rechazar solicitud con motivo y responsable",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "admin/companies/{{company_profile_id}}/review/",
+    "esperado": "HTTP 200. Rechazo con motivo revisor y fecha",
+    "auth": "admin_token",
+    "cuerpo": {
+      "decision": "rejected",
+      "version": "__NUMBER_company_version__",
+      "reason": "Corrige la sede ficticia QA."
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM180",
+    "tarea": 68,
+    "objetivo": "Empresa consulta rechazo y notificación persistidos",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Motivo y notificación conservados",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM181",
+    "tarea": 35,
+    "objetivo": "Login informa empresa rechazada",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada; estado rejected",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{draft_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM182",
+    "tarea": 52,
+    "objetivo": "Empresa rechazada no accede al dashboard",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM183",
+    "tarea": 68,
+    "objetivo": "Corregir datos de la empresa rechazada",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Sede corregida",
+    "auth": "draft_token",
+    "cuerpo": {
+      "location": "Sede corregida Postman QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM184",
+    "tarea": 68,
+    "objetivo": "Reenviar solicitud corregida",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "company/submit/",
+    "esperado": "HTTP 200. Pendiente nuevamente y motivo anterior limpiado",
+    "auth": "draft_token",
+    "cuerpo": {},
+    "archivo": null
+  },
+  {
+    "id": "PM185",
+    "tarea": 68,
+    "objetivo": "Nueva consulta confirma corrección y reenvío",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "admin/companies/",
+    "esperado": "HTTP 200. Administrador recibe la sede corregida con nueva versión",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM186",
+    "tarea": 68,
+    "objetivo": "Aprobar solicitud corregida",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "admin/companies/{{company_profile_id}}/review/",
+    "esperado": "HTTP 200. Aprobación con responsable administrativo",
+    "auth": "admin_token",
+    "cuerpo": {
+      "decision": "approved",
+      "version": "__NUMBER_company_version__"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM187",
+    "tarea": 68,
+    "objetivo": "Decisión obsoleta no sobrescribe aprobación",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "admin/companies/{{company_profile_id}}/review/",
+    "esperado": "HTTP 409. Rechazo con explicación en JSON.",
+    "auth": "admin_token",
+    "cuerpo": {
+      "decision": "rejected",
+      "version": "__NUMBER_company_version__",
+      "reason": "Versión antigua QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM188",
+    "tarea": 68,
+    "objetivo": "Empresa consulta aprobación notificada",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Aprobación y notificación persistidas",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM189",
+    "tarea": 35,
+    "objetivo": "Login informa empresa aprobada",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 200. Token real y cuenta verificada; estado approved",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{draft_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM190",
+    "tarea": 52,
+    "objetivo": "Empresa recién aprobada no hereda actividad ajena",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "dashboard/company/",
+    "esperado": "HTTP 200. Métricas propias vacías",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM191",
+    "tarea": 56,
+    "objetivo": "Dashboard conserva historial real de revisión",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "dashboard/admin/",
+    "esperado": "HTTP 200. Cero pendientes e historial de envío rechazo y aprobación",
+    "auth": "admin_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM192",
+    "tarea": 64,
+    "objetivo": "Datos aprobados protegidos",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": {
+      "legal_name": "Modificar sin revisión QA"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM193",
+    "tarea": 64,
+    "objetivo": "Completar sitio web y redes de empresa aprobada",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "PATCH",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Sitio web guardado",
+    "auth": "draft_token",
+    "cuerpo": {
+      "website": "https://example.org/qa",
+      "social_links": [
+        "https://example.org/social-qa"
+      ]
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM194",
+    "tarea": 64,
+    "objetivo": "Sitio y redes persisten al consultar",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/",
+    "esperado": "HTTP 200. Sitio y redes persistentes",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM195",
+    "tarea": 64,
+    "objetivo": "Cargar logo después de aprobación",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "PUT",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 200. Logo guardado",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": "fixtures/foto-qa.png"
+  },
+  {
+    "id": "PM196",
+    "tarea": 64,
+    "objetivo": "Consultar logo privado",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 200. JPEG privado sin caché y sin URL pública",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM197",
+    "tarea": 64,
+    "objetivo": "Logo sin autenticación rechazado",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM198",
+    "tarea": 64,
+    "objetivo": "Otra empresa no recibe el logo ajeno",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/logo/?company={{company_profile_id}}",
+    "esperado": "HTTP 403. Rechazo con explicación en JSON.",
+    "auth": "other_company_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM199",
+    "tarea": 64,
+    "objetivo": "Logo corrupto rechazado",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "PUT",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": "fixtures/corrupta.png"
+  },
+  {
+    "id": "PM200",
+    "tarea": 64,
+    "objetivo": "Logo previo conservado tras error",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 200. JPEG privado sin caché y sin URL pública",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM201",
+    "tarea": 64,
+    "objetivo": "Eliminar logo opcional",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "DELETE",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 200. Logo eliminado",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM202",
+    "tarea": 64,
+    "objetivo": "Nueva consulta confirma ausencia de logo",
+    "fase": "10 · HU010 #68 · Rechazo corrección reenvío y aprobación",
+    "metodo": "GET",
+    "ruta": "company/logo/",
+    "esperado": "HTTP 404. Rechazo con explicación en JSON.",
+    "auth": "draft_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM203",
+    "tarea": 44,
+    "objetivo": "Eliminación sin autenticación",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "DELETE",
+    "ruta": "account/delete/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "current_password": "{{qa_password}}",
+      "confirmation": true
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM204",
+    "tarea": 44,
+    "objetivo": "Eliminación sin confirmación",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "DELETE",
+    "ruta": "account/delete/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "disposable_token",
+    "cuerpo": {
+      "current_password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM205",
+    "tarea": 44,
+    "objetivo": "Eliminación cancelada con false",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "DELETE",
+    "ruta": "account/delete/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "disposable_token",
+    "cuerpo": {
+      "current_password": "{{qa_password}}",
+      "confirmation": false
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM206",
+    "tarea": 44,
+    "objetivo": "Texto true no confirma eliminación",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "DELETE",
+    "ruta": "account/delete/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "disposable_token",
+    "cuerpo": {
+      "current_password": "{{qa_password}}",
+      "confirmation": "true"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM207",
+    "tarea": 44,
+    "objetivo": "Contraseña incorrecta impide eliminación",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "DELETE",
+    "ruta": "account/delete/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": "disposable_token",
+    "cuerpo": {
+      "current_password": "incorrecta-qa",
+      "confirmation": true
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM208",
+    "tarea": 44,
+    "objetivo": "Errores y cancelación conservan la cuenta",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Cuenta desechable sigue existiendo",
+    "auth": "disposable_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM209",
+    "tarea": 44,
+    "objetivo": "Eliminar con contraseña y true explícito",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "DELETE",
+    "ruta": "account/delete/",
+    "esperado": "HTTP 200. Eliminación confirmada",
+    "auth": "disposable_token",
+    "cuerpo": {
+      "current_password": "{{qa_password}}",
+      "confirmation": true
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM210",
+    "tarea": 44,
+    "objetivo": "Token de cuenta eliminada rechazado",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 401. Rechazo con explicación en JSON.",
+    "auth": "disposable_token",
+    "cuerpo": null,
+    "archivo": null
+  },
+  {
+    "id": "PM211",
+    "tarea": 44,
+    "objetivo": "Cuenta eliminada ya no inicia sesión",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "POST",
+    "ruta": "login/",
+    "esperado": "HTTP 400. Rechazo con explicación en JSON.",
+    "auth": null,
+    "cuerpo": {
+      "email": "{{disposable_email}}",
+      "password": "{{qa_password}}"
+    },
+    "archivo": null
+  },
+  {
+    "id": "PM212",
+    "tarea": 44,
+    "objetivo": "Eliminar una cuenta no afecta a otra",
+    "fase": "11 · HU004 #44 · Eliminación de cuenta desechable",
+    "metodo": "GET",
+    "ruta": "account/",
+    "esperado": "HTTP 200. Candidato principal permanece intacto",
+    "auth": "candidate_token",
+    "cuerpo": null,
+    "archivo": null
+  }
+]
