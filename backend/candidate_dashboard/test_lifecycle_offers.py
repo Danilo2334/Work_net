@@ -136,3 +136,11 @@ class LifecycleOfferTests(TestCase):
         with self.assertRaises(ValidationError):
             Application.objects.filter(pk=a.pk).update(offer=other)
         self.assertEqual(Application.objects.get(pk=a.pk).offer_id, self.offer.pk)
+
+    def test_bulk_conflict_update_cannot_reassign_existing_application(self):
+        a = Application.objects.create(candidate=self.company, offer=self.offer)
+        other = JobOffer.objects.create(**self.data, company=self.company, status='published')
+        with self.assertRaises(ValidationError):
+            Application.objects.bulk_create([Application(pk=a.pk, candidate=self.company, offer=other)],
+                                            update_conflicts=True, update_fields=['offer'], unique_fields=['id'])
+        self.assertEqual(Application.objects.get(pk=a.pk).offer_id, self.offer.pk)

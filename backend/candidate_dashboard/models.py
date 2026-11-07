@@ -57,11 +57,15 @@ def lock_accepting_offers(offer_ids, using):
 
 
 class ApplicationQuerySet(models.QuerySet):
-    def bulk_create(self, objs, *args, **kwargs):
+    def bulk_create(self, objs, batch_size=None, ignore_conflicts=False,
+                    update_conflicts=False, update_fields=None, unique_fields=None):
+        if update_conflicts:
+            raise ValidationError("No se pueden sobrescribir postulaciones existentes mediante inserción masiva.")
         objs = list(objs)
         with transaction.atomic(using=self.db):
             lock_accepting_offers([o.offer_id for o in objs], self.db)
-            return super().bulk_create(objs, *args, **kwargs)
+            return super().bulk_create(objs, batch_size=batch_size, ignore_conflicts=ignore_conflicts,
+                                       update_conflicts=False, update_fields=update_fields, unique_fields=unique_fields)
 
     def update(self, **kwargs):
         if {"offer", "offer_id", "candidate", "candidate_id"} & kwargs.keys():

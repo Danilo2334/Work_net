@@ -35,7 +35,9 @@ SQL frente a escrituras directas de mantenimiento.
 QA, correo a archivos. Cerrar, reconsultar activos/conservadas, archivar con
 confirmación, reconsultar y contrastar todos los campos y relaciones. Pruebas:
 `python manage.py test candidate_dashboard.test_lifecycle_offers candidate_dashboard.test_edit_offers candidate_dashboard.test_offers accounts.test_company_access --noinput`.
-Regresión completa: 158 Django aprobadas; sistema sin incidencias, sin cambios
+La revisión detectó una sobrescritura posible por `bulk_create(update_conflicts=True)`;
+la prueba falló antes de corregirla. Se rechaza ese modo para conservar relaciones.
+Regresión completa tras corregir: 159 Django; sistema sin incidencias, sin cambios
 de modelos ni migraciones pendientes. Los fixtures históricos que creaban
 postulaciones sobre borradores pasan a crearlas antes de inactivar la oferta.
 
