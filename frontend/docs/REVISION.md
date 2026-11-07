@@ -1,5 +1,48 @@
 # Guía para revisar WorkNet
 
+## HU014: edición de ofertas propias activas — 07/11/2026
+
+**Alcance y responsables.** #84 pantalla, #86 integración y #87 nuevo QA/evidencias:
+francisco3788. #85 API: Danilo2334. HU014 pertenece a ambos. Se parte de main
+`15833c8`, sin avances posteriores al iniciar; la rama backend conserva el mismo
+árbol backend y el flujo backend-sprint-3→develop. Los checkouts y entornos
+anteriores se conservan. La revisión técnica está delegada por el titular al
+agente; no se atribuyen revisiones personales ni aprobaciones humanas.
+
+**Preparación y pasos.** Empresa aprobada → Mis ofertas activas → Editar oferta.
+Se precargan título, descripción, requisitos, salario, ubicación, categoría y
+contrato. Guardar cambios confirma la actualización; volver al listado, abrir y
+recargar permite consultar lo persistido. La consulta paginada solo da soporte a
+esa edición. Activa comparte el filtro del dashboard: publicada y no vencida.
+No hay cierre ni archivado de HU015.
+
+El ejecutor versionado añade `--suite hu014`, con otra SQLite, venv y Chromium
+temporales y correo a archivos. Reutiliza el preparador existente; sus fixtures
+añaden ofertas ajenas, archivadas, cerradas, borradores y vencidas solo después
+del guard de una base nueva. Editar/guardar se hace por la interfaz; SQL se usa
+para fixtures, contraste y revocación QA de sesión. Credenciales únicamente del
+entorno privado. No se conectan perfiles personales ni se reutilizan corridas.
+
+Mientras las ramas están separadas:
+
+```powershell
+git fetch origin
+python frontend/tool/browser_qa/run.py --suite hu014 --backend-ref origin/feature/hu014-api
+```
+
+En la entrega integrada ambos componentes se toman del HEAD confirmado:
+
+```powershell
+python frontend/tool/browser_qa/run.py --suite hu014
+```
+
+**Pruebas iniciales.** 33 pruebas Django pertinentes, 120 Flutter y 10 guards
+aprobados; análisis sin incidencias y migraciones sin cambios. Las pruebas de
+widget/HTTP simulado no sustituyen el navegador. La corrida real, compilación,
+capturas y revisión de los PR se completan antes de cerrar #84–#87 y la historia.
+Los resultados y enlaces de esa corrida se incorporarán a este mismo apartado.
+HU011/HU012/#79 mantienen pendiente seleccionar CV al postular por HU018.
+
 ## Integración revisada hasta HU013 — 07/11/2026
 
 **Alcance y responsables.** Revisión de los diffs vigentes #146–#149 y de la

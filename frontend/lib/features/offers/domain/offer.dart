@@ -35,3 +35,22 @@ abstract interface class OfferRepository {
   Future<OfferCatalog> catalog(String token);
   Future<int> publish(String token, OfferDraft draft);
 }
+
+class EditableOffer {
+  const EditableOffer(this.id, this.draft);
+  final int id;
+  final OfferDraft draft;
+}
+
+class ActiveOffers {
+  const ActiveOffers(this.offers, this.count, this.nextPage, this.previousPage);
+  final List<EditableOffer> offers;
+  final int count;
+  final int? nextPage, previousPage;
+}
+
+abstract interface class OfferEditingRepository {
+  Future<ActiveOffers> active(String token, {int page = 1});
+  Future<EditableOffer> read(String token, int id);
+  Future<EditableOffer> update(String token, int id, OfferDraft draft);
+}
