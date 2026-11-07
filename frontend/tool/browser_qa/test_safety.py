@@ -64,6 +64,17 @@ class GuardTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             execute(self.manifest, 'revoke_candidate', [])
 
+    def test_hu014_fixtures_cannot_run_before_start_guard(self):
+        self.config['suite'] = 'hu014'
+        self.write()
+        with self.assertRaises(ValueError):
+            execute(self.manifest, 'hu014_prepare', [])
+
+    def test_hu014_actions_reject_a_different_suite(self):
+        (self.root / '.suite-started').touch()
+        with self.assertRaises(ValueError):
+            execute(self.manifest, 'hu014_snapshot', [])
+
 
 if __name__ == '__main__':
     unittest.main()

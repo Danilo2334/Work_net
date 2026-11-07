@@ -30,10 +30,13 @@ async function main() {
     assert.equal(response.headers.get('x-worknet-qa-run'), cfg.nonce);
   }
   bridge('start');
+  const hu014 = cfg.suite === 'hu014';
+  if (hu014) assert.equal(bridge('hu014_prepare').offers, 7);
   const values = Object.fromEntries(JSON.parse(fs.readFileSync(path.join(root, cfg.environment), 'utf8')).values.map(v => [v.key, v.value]));
   const out = path.join(root, 'artifacts');
   fs.mkdirSync(out, { recursive: true });
   const results = { schema: 'worknet-browser-qa-results-v1', fecha: new Date().toISOString(), frontend_sha: cfg.frontend_sha, backend_sha: cfg.backend_sha, playwright: require('playwright/package.json').version, modo: 'Chromium headless nuevo, contextos temporales; sin perfil personal', escritorio: '1440x1000/1100', movil: 'Viewport 390x844, ratón/teclado; no dispositivo físico', casos: [], capturas: [], red: [], controles: { solo_base_qa_nueva: true, smtp: false, traces_har_storageState: false }, revision_humana: false };
+  results.suite = cfg.suite || 'hu012-hu013';
   let browser, context, page, active = 'NAVEGADOR-01', phase = 'inicio', authenticating = false, violations = 0;
   const faults = new Map();
   const marker = 'Aceptación visual HU012: resumen ficticio conservado.';
@@ -113,7 +116,17 @@ async function main() {
   };
   const login = async (account, home, remember = false) => {
     authenticating = true;
-    if (remember) await page.getByRole('checkbox', { name: 'Recordar sesión', exact: true }).check();
+    if (remember) {
+      phase = 'marcar Recordar sesión';
+      const checkbox = page.getByRole('checkbox', { name: 'Recordar sesión', exact: true });
+      await checkbox.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(350);
+      await checkbox.focus();
+      await page.waitForTimeout(300);
+      if (!(await checkbox.isChecked())) await page.keyboard.press('Space');
+      await page.waitForTimeout(350);
+      assert.equal(await checkbox.isChecked(), true);
+    }
     await write('Correo electrónico', values[account + '_email']);
     await write('Contraseña', values.qa_password);
     const response = page.waitForResponse(r => endpoint(r, 'POST', 'login/'));
@@ -206,6 +219,9 @@ async function main() {
       await page.getByRole('textbox', { name: 'Correo electrónico', exact: true }).waitFor();
       await capture('login');
     });
+    if (hu014) {
+      await require('./hu014.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
+    } else {
     await login('candidate', '/dashboard');
     await run('HU012-V01', async () => {
       await editor();
@@ -372,11 +388,13 @@ async function main() {
       const denied = page.waitForResponse(r => endpoint(r, 'GET', 'company/offers/')); await page.goto(cfg.web_origin + '/company/offers/new'); await semantics();
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
-    assert.equal(results.casos.length, 25);
-    assert.equal(new Set(results.casos.map(x => x.id)).size, 25);
+    }
+    const expected = hu014 ? 16 : 25;
+    assert.equal(results.casos.length, expected);
+    assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
-    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, pdf_texto_coincidente: true };
-    results.resultado = 'aprobado'; save(); console.log('25/25 OK; sin aprobación humana.');
+    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 ? { pdf_texto_coincidente: true } : {}) };
+    results.resultado = 'aprobado'; save(); console.log(expected + '/' + expected + ' OK; sin aprobación humana.');
   } catch (error) {
     results.resultado = 'fallido'; results.ultimo_caso = active; save();
     console.log('QA_SUITE_FAILED en ' + active + '; no se imprimen excepciones ni credenciales.');

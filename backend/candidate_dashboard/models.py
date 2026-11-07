@@ -2,6 +2,8 @@
 
 from django.conf import settings
 from django.db import models
+from django.db.models import Q
+from django.utils import timezone
 
 
 class CandidateProfile(models.Model):
@@ -35,6 +37,13 @@ class JobOffer(models.Model):
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
     published_at = models.DateTimeField(null=True, blank=True, db_index=True)
     expires_at = models.DateTimeField(null=True, blank=True)
+
+
+def active_offers(queryset, *, at=None):
+    """Definición compartida por resumen empresarial y edición HU014."""
+    return queryset.filter(status=JobOffer.Status.PUBLISHED).filter(
+        Q(expires_at__isnull=True) | Q(expires_at__gt=at or timezone.now())
+    )
 
 
 class Application(models.Model):

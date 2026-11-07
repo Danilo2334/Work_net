@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
+import 'package:worknet/features/offers/presentation/active_offers_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/composition.dart';
 import 'package:worknet/core/api/worknet_api.dart';
@@ -89,11 +90,15 @@ class _WorkNetAppState extends State<WorkNetApp> {
       redirect: (_, state) {
         if (_session.restoring) return null;
         final path = state.uri.path, role = _session.session?.role;
-        if (protected.contains(path) && role == null) return '/login';
+        final companyOffer =
+            path == '/company/offers' || path.startsWith('/company/offers/');
+        if ((protected.contains(path) || companyOffer) && role == null) {
+          return '/login';
+        }
         if (role != null) {
           if (path == '/login' || path == '/access-pending') return _home();
           if (role == 'unassigned' &&
-              protected.contains(path) &&
+              (protected.contains(path) || companyOffer) &&
               path != '/choose-role') {
             return '/choose-role';
           }
@@ -107,11 +112,12 @@ class _WorkNetAppState extends State<WorkNetApp> {
               role != 'candidato') {
             return _home();
           }
-          if ([
-                '/company',
-                '/company-dashboard',
-                '/company/offers/new',
-              ].contains(path) &&
+          if ((companyOffer ||
+                  [
+                    '/company',
+                    '/company-dashboard',
+                    '/company/offers/new',
+                  ].contains(path)) &&
               role != 'empresa') {
             return _home();
           }
@@ -123,6 +129,38 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/company/offers',
+          builder: (_, _) => _protected(
+            'empresa',
+            () => ActiveOffersPage(
+              key: ValueKey(_session.session?.token),
+              session: _session,
+              repository: _dependencies.offers,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/company/offers/:id/edit',
+          builder: (_, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '');
+            if (id == null || id <= 0) {
+              return const Scaffold(
+                body: Center(child: Text('Oferta no válida.')),
+              );
+            }
+            return _protected(
+              'empresa',
+              () => PublishOfferPage(
+                key: ValueKey('${_session.session?.token}:$id'),
+                session: _session,
+                repository: _dependencies.offers,
+                editingRepository: _dependencies.offers,
+                offerId: id,
+              ),
+            );
+          },
+        ),
         GoRoute(
           path: '/company/offers/new',
           builder: (_, _) => _protected(

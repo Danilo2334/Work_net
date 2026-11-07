@@ -3,10 +3,10 @@
 Bolsa de empleo con backend Django REST y frontend Flutter.
 Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com/Danilo2334/Work_net/issues).
 
-Estado del 07/11/2026: entrega combinada hasta HU013 revisada por delegación del
-titular, con 141 pruebas Django, 114 Flutter y 25 casos de navegador aprobados.
-[Guía vigente, capturas y alcance](frontend/docs/REVISION.md#integración-revisada-hasta-hu013--07112026).
-El flujo de incorporación queda registrado en #148/#147, #149, #150 y #146;
+Estado del 07/11/2026: entrega hasta HU014 revisada por delegación del
+titular, con 150 pruebas Django, 120 Flutter y 16 casos nuevos de navegador aprobados.
+[Guía vigente, capturas y alcance](frontend/docs/REVISION.md#hu014-edición-de-ofertas-propias-activas--07112026).
+El flujo de HU014 parte de #151 (API) y #152 (Flutter/QA);
 sus PR contienen los SHA definitivos. Los apartados históricos conservan sus
 versiones y la espera personal anterior, sustituida por esta delegación técnica.
 
@@ -34,6 +34,7 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 - HU011: carga, consulta, reemplazo y retirada de un CV PDF privado.
 - HU012: precarga del perfil, guardado y edición del CV, tres plantillas y generación de PDF.
 - HU013: catálogos y publicación de ofertas por la empresa aprobada propietaria.
+- HU014: consulta y edición de ofertas propias activas, sin cambiar identidad ni requerir otra aprobación. No incluye cierre/archivado.
 
 El Project WORK_NET se consultó con Francisco y `read:project`: Sprint 1 contiene
 HU001–HU004 y #29–#46; Sprint 2, HU005–HU010 y #47–#70; Sprint 3, HU011–HU017 y

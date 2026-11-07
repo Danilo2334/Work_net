@@ -81,6 +81,9 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu014_'):
+        from hu014_fixtures import execute as hu014
+        return hu014(root, run, config, action)
     if action in ['revoke_candidate', 'revoke_company']:
         key = action.removeprefix('revoke_')
         with connect(run / 'qa.sqlite3') as db:

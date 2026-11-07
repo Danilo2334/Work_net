@@ -2,7 +2,7 @@
   "name": "worknet-browser-qa",
   "version": "1.0.0",
   "private": true,
-  "description": "Aceptación automatizada HU012/HU013 exclusivamente en QA aislada",
+  "description": "Aceptación automatizada HU012/HU013/HU014 exclusivamente en QA aislada",
   "engines": { "node": ">=20" },
   "scripts": {
     "test": "node suite.cjs",

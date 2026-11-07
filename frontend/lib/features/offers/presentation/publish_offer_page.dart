@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/core/widgets/workspace.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
+
 import '../domain/offer.dart';
 
 class PublishOfferPage extends StatefulWidget {
@@ -10,9 +11,13 @@ class PublishOfferPage extends StatefulWidget {
     super.key,
     required this.session,
     required this.repository,
-  });
+    this.offerId,
+    this.editingRepository,
+  }) : assert(offerId == null || editingRepository != null);
   final SessionController session;
   final OfferRepository repository;
+  final int? offerId;
+  final OfferEditingRepository? editingRepository;
   @override
   State<PublishOfferPage> createState() => _PublishOfferPageState();
 }
@@ -33,6 +38,8 @@ class _PublishOfferPageState extends State<PublishOfferPage> {
   String? _category, _contract, _error;
   int? _published;
   bool _loading = true, _busy = false;
+  bool _loaded = false;
+  bool get _editing => widget.offerId != null;
   String? get _token => widget.session.session?.token;
 
   @override
@@ -58,7 +65,27 @@ class _PublishOfferPageState extends State<PublishOfferPage> {
     });
     try {
       final catalog = await widget.repository.catalog(token);
-      if (mounted && _token == token) setState(() => _catalog = catalog);
+      final existing = _editing && !_loaded
+          ? await widget.editingRepository!.read(token, widget.offerId!)
+          : null;
+      if (mounted && _token == token) {
+        setState(() {
+          _catalog = catalog;
+          if (existing != null) {
+            for (final entry in existing.draft.toJson().entries) {
+              _fields[entry.key]?.text = entry.value as String;
+            }
+            _category = catalog.categories.contains(existing.draft.category)
+                ? existing.draft.category
+                : null;
+            _contract =
+                catalog.contractTypes.contains(existing.draft.contractType)
+                ? existing.draft.contractType
+                : null;
+          }
+          _loaded = true;
+        });
+      }
     } on ApiFailure catch (e) {
       if (mounted && _token == token) {
         if (e.status == 401) await widget.session.expire();
@@ -87,7 +114,13 @@ class _PublishOfferPageState extends State<PublishOfferPage> {
       contractType: _contract!,
     );
     try {
-      final id = await widget.repository.publish(token, draft);
+      final id = _editing
+          ? (await widget.editingRepository!.update(
+              token,
+              widget.offerId!,
+              draft,
+            )).id
+          : await widget.repository.publish(token, draft);
       if (mounted && _token == token) setState(() => _published = id);
     } on ApiFailure catch (e) {
       if (mounted && _token == token) {
@@ -132,14 +165,18 @@ class _PublishOfferPageState extends State<PublishOfferPage> {
 
   @override
   Widget build(BuildContext context) => Workspace(
-    title: 'Publicar oferta',
+    title: _editing ? 'Editar oferta' : 'Publicar oferta',
     loading: _loading,
     error: _error,
-    onRetry: _load,
+    onRetry: _busy ? null : _load,
     actions: [
       TextButton(
-        onPressed: _busy ? null : () => context.go('/company-dashboard'),
-        child: const Text('Volver al dashboard'),
+        onPressed: _busy
+            ? null
+            : () => context.go(
+                _editing ? '/company/offers' : '/company-dashboard',
+              ),
+        child: Text(_editing ? 'Volver a mis ofertas' : 'Volver al dashboard'),
       ),
     ],
     children: [
@@ -147,11 +184,13 @@ class _PublishOfferPageState extends State<PublishOfferPage> {
         WorkspacePanel(
           title: _published == null
               ? 'Datos de la oferta'
-              : 'Publicación confirmada',
+              : (_editing ? 'Edición confirmada' : 'Publicación confirmada'),
           children: [
             if (_published != null)
               Text(
-                'Oferta publicada correctamente. Número $_published.',
+                _editing
+                    ? 'Cambios guardados correctamente.'
+                    : 'Oferta publicada correctamente. Número $_published.',
                 key: const Key('offer_success'),
               )
             else
@@ -212,7 +251,11 @@ class _PublishOfferPageState extends State<PublishOfferPage> {
                     FilledButton(
                       key: const Key('offer_publish'),
                       onPressed: _busy ? null : _publish,
-                      child: Text(_busy ? 'Publicando…' : 'Publicar oferta'),
+                      child: Text(
+                        _editing
+                            ? (_busy ? 'Guardando…' : 'Guardar cambios')
+                            : (_busy ? 'Publicando…' : 'Publicar oferta'),
+                      ),
                     ),
                   ],
                 ),

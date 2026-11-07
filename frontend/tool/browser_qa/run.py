@@ -64,6 +64,7 @@ def main():
     parser.add_argument('--api-port', type=int, default=0, help='0 elige puerto libre; nunca reutiliza un servicio anterior.')
     parser.add_argument('--web-port', type=int, default=0)
     parser.add_argument('--python', default=sys.executable, help='Python 3.12+ para crear un venv nuevo.')
+    parser.add_argument('--suite', choices=['hu012-hu013', 'hu014'], default='hu012-hu013', help='Recorrido en otra base QA nueva.')
     args = parser.parse_args()
     repo = Path(git(Path(__file__).parent, 'rev-parse', '--show-toplevel'))
     common = Path(git(repo, 'rev-parse', '--path-format=absolute', '--git-common-dir'))
@@ -94,7 +95,7 @@ def main():
     command('Crear otra base con el preparador QA existente', [python, source / 'backend/postman/qa.py', 'prepare', '--port', api_port], source, env)
     run_name = (source / 'backend/postman/.local/latest.txt').read_text(encoding='utf-8').strip()
     run = source / 'backend/postman/.local' / run_name
-    config = dict(schema='worknet-browser-qa-v1', frontend_sha=front_sha, backend_sha=back_sha, nonce=secrets.token_hex(24), api_origin=api_origin, web_origin=web_origin, environment=(run / 'local.postman_environment.json').relative_to(root).as_posix(), python=str(python))
+    config = dict(schema='worknet-browser-qa-v1', suite=args.suite, frontend_sha=front_sha, backend_sha=back_sha, nonce=secrets.token_hex(24), api_origin=api_origin, web_origin=web_origin, environment=(run / 'local.postman_environment.json').relative_to(root).as_posix(), python=str(python))
     manifest = root / 'manifest.private.json'
     manifest.write_text(json.dumps(config, indent=2), encoding='utf-8')
     # Usar el venv de esta corrida también para el servidor del orquestador.
@@ -118,7 +119,7 @@ def main():
             raise RuntimeError('No respondió el servidor QA exclusivo')
         env['WORKNET_QA_MANIFEST'] = str(manifest)
         env['WORKNET_QA_PYTHON'] = str(python)
-        print('Ejecutar los 25 casos; sin trazas, HAR, storageState ni registros de autenticación', flush=True)
+        print('Ejecutar suite ' + args.suite + '; sin trazas, HAR, storageState ni registros de autenticación', flush=True)
         result = subprocess.run([tool('node'), package / 'suite.cjs'], cwd=package, env=env)
         print('Resultados nuevos (privados): ' + str(root / 'artifacts/resultados.json'), flush=True)
         if result.returncode:
