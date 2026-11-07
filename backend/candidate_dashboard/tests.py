@@ -117,8 +117,10 @@ class CandidateDashboardTests(APITestCase):
         self.assertEqual([row["id"] for row in self.dashboard()["recent_jobs"]], [o.pk for o in reversed(offers[-5:])])
 
     def test_application_history_and_saved_offers_still_count_closed_jobs(self):
-        job = self.offer(status="closed")
+        job = self.offer()
         Application.objects.create(candidate=self.user, offer=job)
+        job.status = 'closed'
+        job.save(update_fields=['status'])
         SavedOffer.objects.create(candidate=self.user, offer=job)
         data = self.dashboard()
         self.assertEqual(data["metrics"]["applications_count"], 1)

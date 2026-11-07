@@ -118,7 +118,7 @@ class CandidateProfileTests(TestCase):
 
     def test_company_cannot_use_candidate_owner_routes_even_with_an_application(self):
         company = User.objects.create_user(email="company.qa@example.test", full_name="Empresa QA", role="empresa", email_verified=True)
-        offer = JobOffer.objects.create(company=company, title="QA", company_name="QA", location="QA", contract_type="QA")
+        offer = JobOffer.objects.create(company=company, title="QA", company_name="QA", location="QA", contract_type="QA", status="published")
         Application.objects.create(candidate=self.owner, offer=offer)
         self.authenticate(company)
         for path in (BASE, BASE + "skills/", BASE + "photo/"):
