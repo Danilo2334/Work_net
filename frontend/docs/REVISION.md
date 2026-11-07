@@ -1,5 +1,59 @@
 # Guía para revisar WorkNet
 
+## HU015: cierre y archivado de ofertas — 07/11/2026
+
+**Alcance y responsables.** HU015 #16 asignada a ambos integrantes. #89 backend:
+Danilo2334; #88 acciones, #90 integración y #91 QA/evidencias: francisco3788.
+Base main `b0351ec`, sin avances posteriores al iniciar; checkouts nuevos y
+entornos anteriores conservados. Revisión técnica delegada al agente por el
+titular; publicación con las identidades indicadas, sin atribuir comprobaciones
+personales ni aprobaciones humanas a integrantes.
+
+**Preparación y pasos.** Empresa aprobada → Mis ofertas activas. Cerrar oferta
+explica sus efectos y pide confirmación. Archivar oferta exige confirmación;
+Cancelar no envía la transición. Ver ofertas conservadas permite consultar
+cerradas/archivadas, su información y estado; no se ofrece edición ni reapertura.
+La ruta de conservadas persiste al recargar. Las acciones preservan ID,
+propietario, información, postulaciones y guardados; no requieren nueva aprobación.
+Ante errores se conserva la oferta y se pide reconsultar antes de repetir.
+La API acepta reintentos al mismo estado sin duplicar ni reabrir.
+
+**Automatización reutilizable.** Otra corrida nueva con el preparador existente,
+SQLite y venv exclusivos, Chromium temporal y correo a archivos. Fixtures
+ficticias solo tras validar el guard; acciones mediante la interfaz, contraste
+de persistencia/relaciones y revocación de sesión mediante el puente QA privado.
+Credenciales del entorno privado, sin SMTP, perfiles personales, trazas, HAR,
+storageState ni registros de autenticación. Dependencias fijadas en requirements
+y lockfile; Node 20+, Python 3.12+ y Flutter como en los apartados existentes.
+
+```powershell
+git fetch origin
+python frontend/tool/browser_qa/run.py --suite hu015 --backend-ref origin/feature/hu015-estados
+```
+
+En la entrega integrada, usar `--backend-ref HEAD` y ejecutar desde ese checkout.
+El ejecutor exporta únicamente commits, crea otros puertos y rechaza una base
+consumida. Las corridas y credenciales quedan privadas en `.git/worknet-browser-qa`.
+HU015 añade cancelación, cierre/archivado persistidos, exclusión activa,
+conservación de historial, errores, sesión y regresión de publicación/edición.
+Móvil web emulado a 390×844 con ratón/teclado; no dispositivo físico.
+
+**Pruebas y estado de esta preparación.** 158 Django, 124 Flutter y 12 guards
+aprobados. Análisis Flutter limpio y sintaxis Node correcta. Migraciones aplicadas
+en otra QA, sin pendientes ni cambios de modelos. La aceptación de navegador y
+las capturas se incorporarán tras ejecutar y revisar la nueva corrida; este
+apartado no anticipa su resultado. Contrato backend en
+[COMPANY_API.md](../../backend/accounts/COMPANY_API.md#hu015-cierre-y-archivado-sin-eliminar-historial--07112026).
+
+**Criterios pendientes reales.** HU016 no tiene buscador completo y HU018 no
+tiene API/pantalla de postulación. Se verifica la exclusión de las consultas
+activas existentes y el bloqueo de escrituras `Application` (creación individual
+y por lotes), conservando las relaciones; no se presenta como recorrido de
+postulación ni de búsqueda completo. #16/#90/#91 mantienen esos criterios
+pendientes hasta acreditar las dependencias. HU011/HU012/#79 siguen abiertos
+por selección de CV en HU018. No se inicia HU016–HU027. Los siguientes apartados
+son históricos y conservan fechas, versiones y procedencia.
+
 ## HU014: edición de ofertas propias activas — 07/11/2026
 
 **Alcance y responsables.** #84 pantalla, #86 integración y #87 nuevo QA/evidencias:
