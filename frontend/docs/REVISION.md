@@ -336,3 +336,117 @@ inició HU014–HU027, no se fusionó ni aprobó ningún PR y este bloque termin
 relaciones intactas. Cuenta, autor y committer del bloque publicados como Francisco.
 Project actualizado con la autorización existente de Danilo. Navegador y servicios
 de esta corrida cerrados; bases y entornos anteriores y la nueva SQLite conservados.
+
+## Repetir los 25 casos con el ejecutor Playwright versionado
+
+El recorrido anterior se hizo por tramos en una sesión interactiva de Node. En
+`18bb060` se publicaron sus resultados y capturas, pero faltaba un ejecutor único.
+[`tool/browser_qa`](../tool/browser_qa/) reúne ahora esos pasos en una suite
+reutilizable con los mismos 25 identificadores: 1 prueba mínima, 13 HU012 y 11
+HU013. Esta nueva ejecución automatizada no cambia las fechas, versiones ni el
+alcance de las evidencias históricas. Tampoco constituye revisión humana.
+
+Requisitos: Git, Python 3.12+, Node 20+ con npm y Flutter compatible con el
+`pubspec.lock` publicado. Playwright está fijado a **1.65.0** en `package.json` y
+`package-lock.json`; su Chromium se instala con la revisión que fija ese paquete.
+El venv nuevo instala las versiones de `backend/requirements.txt` de la fuente
+backend exportada. No es necesario preparar manualmente cuentas, contraseñas,
+navegador o Postman.
+
+Desde la raíz de un checkout que contenga esta herramienta:
+
+```powershell
+git fetch origin --prune
+python frontend/tool/browser_qa/run.py
+```
+
+Por defecto exporta **el HEAD confirmado** de Flutter/suite y el backend HU013
+publicado `2f1b2f78e01e5e8da69295c5bca97c51e09fb04b`. No copia modificaciones
+sin commit, archivos privados ni entornos del checkout. Así prueba ambas fuentes
+sin fusionar PR ni sustituir el backend de ninguna rama. La referencia backend
+debe estar disponible después de fetch. Para fijar explícitamente fuentes y
+puertos libres:
+
+```powershell
+python frontend/tool/browser_qa/run.py --frontend-ref HEAD --backend-ref 2f1b2f78e01e5e8da69295c5bca97c51e09fb04b --api-port 8025 --web-port 55032
+```
+
+Sin esos argumentos, el orquestador elige dos puertos libres. Un puerto solicitado
+ocupado causa rechazo; no detiene ni reutiliza el servicio que lo ocupa. Cada
+ejecución crea otra carpeta privada `worknet-browser-qa/browser-qa-*` dentro del
+directorio Git común, conservando todas las anteriores. Allí exporta las fuentes,
+crea un venv, ejecuta `npm ci`, instala Chromium y compila Flutter JavaScript con
+recursos web locales. Reutiliza **el preparador backend existente** `postman/qa.py
+prepare` y su configuración de SQLite/correo a archivos. La configuración SMTP
+no se reutiliza, y el servidor comprueba el backend de correo antes de arrancar.
+
+Las credenciales se leen en tiempo de ejecución del
+`local.postman_environment.json` privado que genera ese preparador. No se pasan
+como argumentos, no están en el código y no se imprimen. El ejecutor no publica
+cabeceras/cuerpos de autenticación, excepciones con valores de formularios,
+traces, HAR ni `storageState`. Rechaza capturas durante login o con contraseña
+rellena. Solo controla un Chromium/contexto temporal nuevo; no admite perfil
+personal ni conexión a un navegador abierto. Bloquea solicitudes fuera de sus
+dos orígenes locales; los recursos Flutter se sirven localmente.
+
+Antes de actuar verifica marcador QA, rutas canónicas de base/entorno, cuentas
+ficticias exactas, URLs/puertos y la identidad de **ambos servicios propios** con
+un nonce de esa corrida. Exige que la base coincida con su copia inicial y que
+la suite no haya sido iniciada. Si algo falla, se detiene. Los únicos cambios SQL
+directos son revocar tokens QA para provocar los 401 y contrastar la persistencia;
+guardar/publicar/editar/descargar se ejecuta desde la interfaz. No implementa HU018
+ni toca HU014–HU027. Los errores de red/400/503 se marcan como inyectados; los
+401/403, guardados y publicaciones proceden del Django QA real.
+
+La consola muestra los identificadores y el resultado, nunca credenciales. El
+archivo nuevo `artifacts/resultados.json` registra commits exactos, versiones,
+25 resultados, rutas/códigos de respuesta sanitizados y hashes de las capturas.
+Las capturas y los PDF ficticios permanecen en esa carpeta privada; no se copian
+automáticamente al repositorio. Se comparan los PDF de vista previa/descarga y la
+SQLite inicial/final. Ante fallo se conserva la corrida y se devuelve salida no
+cero. Al terminar se cierra Chromium y se detienen únicamente los servidores
+propios; no se borran bases, artefactos ni entornos anteriores. Para repetir se
+ejecuta otra vez `run.py`, que crea una corrida distinta.
+
+Los guards pueden comprobarse sin arrancar servicios:
+
+```powershell
+python -m unittest discover -s frontend/tool/browser_qa -p test_safety.py
+node --check frontend/tool/browser_qa/suite.cjs
+```
+
+**Reproducción comprobada el 07/11/2026:** [resultado nuevo sanitizado](evidencias/retoma-20261107/ejecutor-playwright/reproduccion.json).
+El comando anterior exportó la fuente confirmada `215cf729fb935b26af64e5fe7063072a51754527`
+y el backend fijado `2f1b2f7`, instaló desde cero sus dependencias en otra carpeta,
+compiló y ejecutó **25/25 casos aprobados**, con 31 capturas nuevas privadas.
+Se usaron Python 3.12.10, Node 22.23.3, Flutter 3.47.5/Dart 3.13.4 y Chromium
+158.0.8127.18. Pasaron 8 pruebas del guard y el análisis sintáctico de la suite.
+Un intento directo de iniciar otra vez la corrida consumida fue rechazado sin
+modificar su SQLite. Perfil/cuenta iniciales intactos, cuatro ofertas QA y un CV
+generado al final; vista previa y descarga PDF coincidentes. Los puertos quedaron
+libres al terminar. Las dependencias y scripts de esa fuente son los publicados
+en este bloque; los cambios posteriores solo documentan el resultado.
+
+Los dos primeros ensayos del nuevo ejecutor se detuvieron en HU012-V01: faltaba
+esperar la pantalla y los clics de campos podían coincidir con un desplazamiento
+del canvas Flutter. Se conservan esas corridas como fallidas; no son 25 casos
+aprobados ni fallos nuevos del producto. El ejecutor corregido espera la carga
+y usa foco/teclado para campos, manteniendo los controles reales y las aserciones
+de UI. No se repitieron Postman, la auditoría general ni las suites técnicas del
+producto; no se solicitó una comprobación manual adicional.
+
+### Paquetes de revisión que siguen pendientes
+
+| Persona / PR | Alcance concreto del paquete |
+|---|---|
+| Danilo / [#146](https://github.com/Danilo2334/Work_net/pull/146) | Cabecera `91207ad37f13f1dd9f647264b48717ae514cb2f7`: pantallas/integración y HU011/HU012. El ejecutor nuevo está en #149, todavía fuera de esta cabecera. Revisar esa dependencia y la incorporación posterior del backend antes de main |
+| Danilo / [#149](https://github.com/Danilo2334/Work_net/pull/149) | Formulario HU013, corrección de reentrada HU012 y ahora ejecutor/lockfile/guards: aislamiento, lectura de secretos, aserciones reales, fallos inyectados y limpieza de servicios. Su descripción fija la nueva cabecera y el diff completo inmutable para revisión |
+| Francisco / [#147](https://github.com/Danilo2334/Work_net/pull/147) | Cabecera `3959d08385a8fd14161c53216179f3a01e769d42`: código de Danilo de perfil/CV/PDF, permisos, validación, límites y migraciones. Incorporar #148 primero y verificar de nuevo la cabecera resultante |
+| Francisco / [#148](https://github.com/Danilo2334/Work_net/pull/148) | Cabecera `2f1b2f78e01e5e8da69295c5bca97c51e09fb04b`: migración y contrato de oferta, aprobación/verificación, propietario/estado/fecha y bloqueo transaccional |
+
+Los enlaces a diff completo, cabeceras y este paquete se fijan también en las
+descripciones de los cuatro PR. No se presentó revisión, aprobación ni cierre de
+casillas por cambiar de cuenta. HU012/#79 y la selección de CV conservan HU018
+pendiente. Estados, roles, criterios pendientes y orden #148→#147, #149→frontend,
+backend revisado→entrega→#146 permanecen vigentes. No se fusionó ningún PR, no se
+cerró una historia ni se inició HU014–HU027.
