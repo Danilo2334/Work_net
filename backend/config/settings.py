@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'candidate_dashboard',
+    'curriculum',
 ]
 
 
@@ -162,6 +163,7 @@ MAILERS = {
 
             "use_tls":
                 True,
+            "timeout": 15,
         },
     },
 }

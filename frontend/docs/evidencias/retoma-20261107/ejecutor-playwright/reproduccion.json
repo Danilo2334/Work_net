@@ -1,0 +1,762 @@
+{
+  "validacion": {
+    "origen": "Reconstrucción versionada de los pasos interactivos anteriores; no había un ejecutor único publicado en 18bb060",
+    "reproduccion": "Exportación limpia de fuentes Git confirmadas, venv nuevo, npm ci/lockfile y compilación nueva, seguida de QA prepare existente y suite autónoma",
+    "runtime": {
+      "python": "3.12.10",
+      "node": "22.23.3",
+      "flutter": "3.47.5",
+      "dart": "3.13.4"
+    },
+    "guards_unitarios": 8,
+    "sintaxis_node": "aprobada",
+    "corrida_consumida_rechazada_sin_cambiar_sqlite": true,
+    "credenciales_y_sesiones_ausentes_de_fuentes_y_resultado": true,
+    "servicios_y_navegador_propios_cerrados": true,
+    "evidencias_anteriores": "Sin cambios: 18bb060 conserva sus resultados/capturas/fechas/versiones",
+    "ensayos_previos": [
+      {
+        "frontend_sha": "2587eb06fafb8c849a98bac1bb0826cf9d182a3c",
+        "resultado": "fallido",
+        "caso": "HU012-V01",
+        "causa": "Sincronización del ejecutor al abrir/recorrer el editor; no aceptación aprobada"
+      },
+      {
+        "frontend_sha": "f073fa13bf18827d877dc22898c6551c2e1050fb",
+        "resultado": "fallido",
+        "caso": "HU012-V01",
+        "causa": "Clic de campo durante scroll del canvas; corregido con foco/teclado"
+      }
+    ],
+    "alcance": "Solo ejecutor/QA y documentación hasta HU013; no cambio de producto, auditoría general ni repetición de Postman",
+    "revision_humana": "Pendiente; ninguna aprobación registrada ni casilla completada",
+    "artefactos": "31 capturas y PDF ficticios nuevos conservados en la carpeta privada de la corrida; no se publican sus entornos ni sesiones"
+  },
+  "ejecucion": {
+    "schema": "worknet-browser-qa-results-v1",
+    "fecha": "2026-11-07T17:17:30.125Z",
+    "frontend_sha": "215cf729fb935b26af64e5fe7063072a51754527",
+    "backend_sha": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+    "playwright": "1.65.0",
+    "modo": "Chromium headless nuevo, contextos temporales; sin perfil personal",
+    "escritorio": "1440x1000/1100",
+    "movil": "Viewport 390x844, ratón/teclado; no dispositivo físico",
+    "casos": [
+      {
+        "id": "NAVEGADOR-01",
+        "resultado": "aprobado",
+        "duracion_ms": 1797
+      },
+      {
+        "id": "HU012-V01",
+        "resultado": "aprobado",
+        "duracion_ms": 3963
+      },
+      {
+        "id": "HU012-V02",
+        "resultado": "aprobado",
+        "duracion_ms": 3512
+      },
+      {
+        "id": "HU012-V03",
+        "resultado": "aprobado",
+        "duracion_ms": 2832
+      },
+      {
+        "id": "HU012-V04",
+        "resultado": "aprobado",
+        "duracion_ms": 6009
+      },
+      {
+        "id": "HU012-V05",
+        "resultado": "aprobado",
+        "duracion_ms": 1595
+      },
+      {
+        "id": "HU012-V06",
+        "resultado": "aprobado",
+        "duracion_ms": 2498
+      },
+      {
+        "id": "HU012-V07",
+        "resultado": "aprobado",
+        "duracion_ms": 3533
+      },
+      {
+        "id": "HU012-V08",
+        "resultado": "aprobado",
+        "duracion_ms": 8393
+      },
+      {
+        "id": "HU012-V09",
+        "resultado": "aprobado",
+        "duracion_ms": 2699
+      },
+      {
+        "id": "HU012-V12",
+        "resultado": "aprobado",
+        "duracion_ms": 1963
+      },
+      {
+        "id": "HU012-V11",
+        "resultado": "aprobado",
+        "duracion_ms": 2171
+      },
+      {
+        "id": "HU012-V10",
+        "resultado": "aprobado",
+        "duracion_ms": 10680
+      },
+      {
+        "id": "HU012-V13",
+        "resultado": "aprobado",
+        "duracion_ms": 4323
+      },
+      {
+        "id": "HU013-V01",
+        "resultado": "aprobado",
+        "duracion_ms": 1269
+      },
+      {
+        "id": "HU013-V02",
+        "resultado": "aprobado",
+        "duracion_ms": 3725
+      },
+      {
+        "id": "HU013-V04",
+        "resultado": "aprobado",
+        "duracion_ms": 3537
+      },
+      {
+        "id": "HU013-V05",
+        "resultado": "aprobado",
+        "duracion_ms": 2103
+      },
+      {
+        "id": "HU013-V06",
+        "resultado": "aprobado",
+        "duracion_ms": 1041
+      },
+      {
+        "id": "HU013-V03",
+        "resultado": "aprobado",
+        "duracion_ms": 3235
+      },
+      {
+        "id": "HU013-V07",
+        "resultado": "aprobado",
+        "duracion_ms": 5526
+      },
+      {
+        "id": "HU013-V08",
+        "resultado": "aprobado",
+        "duracion_ms": 1867
+      },
+      {
+        "id": "HU013-V09",
+        "resultado": "aprobado",
+        "duracion_ms": 1975
+      },
+      {
+        "id": "HU013-V10",
+        "resultado": "aprobado",
+        "duracion_ms": 5460
+      },
+      {
+        "id": "HU013-V11",
+        "resultado": "aprobado",
+        "duracion_ms": 4441
+      }
+    ],
+    "capturas": [
+      {
+        "archivo": "NAVEGADOR-01-login.png",
+        "caso": "NAVEGADOR-01",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+      },
+      {
+        "archivo": "HU012-V01-precarga.png",
+        "caso": "HU012-V01",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "7886f4566b4be5f5c6ffcddc62c3775001c7384fd85ad61f0beb7e860e8c8d4f"
+      },
+      {
+        "archivo": "HU012-V02-validaciones.png",
+        "caso": "HU012-V02",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "9da806db1bdc804df30dd31d3bb58a6c92afeba9b61df3bcc207bb3262a93c8a"
+      },
+      {
+        "archivo": "HU012-V03-fechas.png",
+        "caso": "HU012-V03",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "c4f0daf68c7aa8f4cbcff6c70eff3aa0f4e32da91d6623e33ec5fe685019bc54"
+      },
+      {
+        "archivo": "HU012-V04-plantilla.png",
+        "caso": "HU012-V04",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "da9ef20424db91e7e6d3543adbecb6e4be2fd35960d1c168ea022843882e3bd0"
+      },
+      {
+        "archivo": "HU012-V05-salida.png",
+        "caso": "HU012-V05",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "f3543cdcfb2c3278abd3f133e693707cf81a749ff6bf1d3d1fb291762c17ce1b"
+      },
+      {
+        "archivo": "HU012-V06-red.png",
+        "caso": "HU012-V06",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "3b56752a46a31f8f91153c22dde039c05db64e6b7d895560b1bcda5573dd78c6"
+      },
+      {
+        "archivo": "HU012-V07-pdf-movil.png",
+        "caso": "HU012-V07",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "398917e51cbb70282e895875b6809e4f45d3dae346c7493a23e07bf71d25277c"
+      },
+      {
+        "archivo": "HU012-V08-pdf-secciones.png",
+        "caso": "HU012-V08",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "sha256": "07e1c58af43923f37aebaf1e0d7f61937d386145171ff1f94efab715a0044c44"
+      },
+      {
+        "archivo": "HU012-V09-503-controlado.png",
+        "caso": "HU012-V09",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "498adf1829c3e402371623f33c6bea7077eb6f20424bf25bf9647f2b5f425495"
+      },
+      {
+        "archivo": "HU012-V12-reentrada.png",
+        "caso": "HU012-V12",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "e0ddacefbd15a9f9ce0f6018b15b8c9ea17605543a51b442570fb9485062830c"
+      },
+      {
+        "archivo": "HU012-V11-carga.png",
+        "caso": "HU012-V11",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "7bcc28d67b819e37fceeb34a17b8f487c20fd77f051fa36102b874b24685c152"
+      },
+      {
+        "archivo": "HU012-V10-401.png",
+        "caso": "HU012-V10",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+      },
+      {
+        "archivo": "HU012-V10-otra-cuenta.png",
+        "caso": "HU012-V10",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "75f4c5c5c900d813b01ffc8858a07aab4adb1395b5802572b42d937f0e60d521"
+      },
+      {
+        "archivo": "HU012-V13-sesion-atras.png",
+        "caso": "HU012-V13",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38"
+      },
+      {
+        "archivo": "HU013-V01-formulario.png",
+        "caso": "HU013-V01",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "efd67eb2313325b8d382f01562bcf3cf4ea811714117b7b2fdac6d9f68c29db6"
+      },
+      {
+        "archivo": "HU013-V02-categorias.png",
+        "caso": "HU013-V02",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "b423d28bf67f4bfa8221921efdb6ee02a131ba6e130b18a56d2870887fb7ad9b"
+      },
+      {
+        "archivo": "HU013-V02-contratos.png",
+        "caso": "HU013-V02",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "ee7a06f96393181881852fa7ffd5813e3fa8a0afef85cf7b973822da26a79245"
+      },
+      {
+        "archivo": "HU013-V04-salario.png",
+        "caso": "HU013-V04",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "34d963359ec5cb954a7d592badbed2494597b63cfb37dba2f2529c3c40009e76"
+      },
+      {
+        "archivo": "HU013-V05-confirmacion.png",
+        "caso": "HU013-V05",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "ad113d2aa4057ecbe186f8413020baa99dfc29d5455071c70883d09149beacd7"
+      },
+      {
+        "archivo": "HU013-V05-dashboard-3.png",
+        "caso": "HU013-V05",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "513faacfed1123bbebdf80dff4fd2d6fa0a2c1544290b0d527ffb36af8045553"
+      },
+      {
+        "archivo": "HU013-V06-catalogo-red.png",
+        "caso": "HU013-V06",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "782a19c7b89ad75ec275c7c31054f377a9d06f8b84ed88980f4753d8e72892b0"
+      },
+      {
+        "archivo": "HU013-V03-obligatorios-escritorio.png",
+        "caso": "HU013-V03",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sha256": "96eacd8030d77a926b34ffa22b6fce210334a89c80849f1824772bebed8f968f"
+      },
+      {
+        "archivo": "HU013-V03-obligatorios-movil.png",
+        "caso": "HU013-V03",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "bcbe152323500b09f105b9226257724a23dd4a0db9b82d8df148d18462ab9574"
+      },
+      {
+        "archivo": "HU013-V07-red-borrador.png",
+        "caso": "HU013-V07",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "74feef76531a1334feb1b022db689cdc875d1b8c56708ceacb88512d73cef9ef"
+      },
+      {
+        "archivo": "HU013-V08-400-controlado.png",
+        "caso": "HU013-V08",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "c53da8ab53562eab41b4aeb32b5696732809d8950691a27efecbac9785a7fa6b"
+      },
+      {
+        "archivo": "HU013-V09-confirmacion.png",
+        "caso": "HU013-V09",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "cbaf9c0627bf6e4050af56febb42925b3fa002d8250f72f7d7235963926b5c4b"
+      },
+      {
+        "archivo": "HU013-V09-dashboard-4.png",
+        "caso": "HU013-V09",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "1be4982ccd7505e2fcc398eedbbf2ef121f0ee4aa678f54057c690c4b3346256"
+      },
+      {
+        "archivo": "HU013-V10-401.png",
+        "caso": "HU013-V10",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38"
+      },
+      {
+        "archivo": "HU013-V11-empresa-pendiente.png",
+        "caso": "HU013-V11",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "ec6884ae206741f5791c85c8cf7caf91c2e93d9f527b9937afc87897c03df652"
+      },
+      {
+        "archivo": "HU013-V11-403.png",
+        "caso": "HU013-V11",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sha256": "d053483e3a5ac34471ad448b3bae02ae789322b72d2e2ec5945cb4944912b021"
+      }
+    ],
+    "red": [
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/candidate/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "PUT",
+        "path": "/api/curriculum/generated/",
+        "status": null,
+        "inyectada": true,
+        "fallo": "abort"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/curriculum/generated/",
+        "status": 201,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/curriculum/generated/preview/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/pdf/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "PUT",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/curriculum/generated/preview/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/pdf/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "PUT",
+        "path": "/api/curriculum/generated/",
+        "status": 503,
+        "inyectada": true
+      },
+      {
+        "method": "PUT",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": null,
+        "inyectada": true,
+        "fallo": "abort"
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/curriculum/generated/preview/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": 401,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/candidate/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/candidate/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/logout/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/candidate/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/curriculum/generated/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/curriculum/generated/preview/",
+        "status": 401,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/",
+        "status": 201,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": null,
+        "inyectada": true,
+        "fallo": "abort"
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/",
+        "status": null,
+        "inyectada": true,
+        "fallo": "abort"
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/",
+        "status": 400,
+        "inyectada": true
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/",
+        "status": 201,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/dashboard/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/company/offers/",
+        "status": 401,
+        "inyectada": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/login/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/",
+        "status": 200,
+        "inyectada": false
+      },
+      {
+        "method": "GET",
+        "path": "/api/company/offers/",
+        "status": 403,
+        "inyectada": false
+      }
+    ],
+    "controles": {
+      "solo_base_qa_nueva": true,
+      "smtp": false,
+      "traces_har_storageState": false
+    },
+    "revision_humana": false,
+    "chromium": "158.0.8127.18",
+    "contrastes": {
+      "profile_unchanged": true,
+      "account_unchanged": true,
+      "ofertas": 4,
+      "cv_generados": 1,
+      "pdf_texto_coincidente": true
+    },
+    "resultado": "aprobado"
+  }
+}

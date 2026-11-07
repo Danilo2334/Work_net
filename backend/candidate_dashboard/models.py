@@ -1,4 +1,4 @@
-"""Base persistente del resumen HU005; las APIs de escritura pertenecen a otras HU."""
+"""Perfil profesional HU008 y actividad del resumen HU005."""
 
 from django.conf import settings
 from django.db import models
@@ -12,6 +12,8 @@ class CandidateProfile(models.Model):
     experience = models.JSONField(default=list, blank=True)
     skills = models.JSONField(default=list, blank=True)
     languages = models.JSONField(default=list, blank=True)
+    # Private bytes: never published through MEDIA_URL or an unprotected file URL.
+    photo_data = models.BinaryField(default=bytes, blank=True, editable=False)
 
 
 class JobOffer(models.Model):
@@ -26,6 +28,10 @@ class JobOffer(models.Model):
     company_name = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
     contract_type = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    requirements = models.TextField(blank=True)
+    salary = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    category = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
     published_at = models.DateTimeField(null=True, blank=True, db_index=True)
     expires_at = models.DateTimeField(null=True, blank=True)

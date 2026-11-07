@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-07",
+  "runner": "Newman 6.2.3",
+  "desktop": false,
+  "account": "francisco3788",
+  "collection_sha256": "8d119f244715e9ed81edd542e54e0c05635bff757f51343fca740ce0a52fa95e",
+  "requests": {
+    "total": 10,
+    "pending": 0,
+    "failed": 0
+  },
+  "assertions": {
+    "total": 21,
+    "pending": 0,
+    "failed": 0
+  },
+  "failures": [],
+  "cases": [
+    {
+      "name": "HU013-01 Login empresa",
+      "status": 200,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "Token recibido",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-02 Catalogos",
+      "status": 200,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "Catalogos",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-03 Publicar oferta",
+      "status": 201,
+      "assertions": [
+        {
+          "name": "HTTP 201",
+          "passed": true
+        },
+        {
+          "name": "Publicada",
+          "passed": true
+        },
+        {
+          "name": "Fecha",
+          "passed": true
+        },
+        {
+          "name": "Datos conservados",
+          "passed": true
+        },
+        {
+          "name": "Identificador",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-04 Dashboard actualizado",
+      "status": 200,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "Oferta activa",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-05 Rechazar obligatorios",
+      "status": 400,
+      "assertions": [
+        {
+          "name": "HTTP 400",
+          "passed": true
+        },
+        {
+          "name": "Campos invalidos",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-06 Login candidato",
+      "status": 200,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "Token recibido",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-07 Candidato rechazado",
+      "status": 403,
+      "assertions": [
+        {
+          "name": "HTTP 403",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-08 Login empresa pendiente",
+      "status": 200,
+      "assertions": [
+        {
+          "name": "HTTP 200",
+          "passed": true
+        },
+        {
+          "name": "Token recibido",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-09 Empresa pendiente rechazada",
+      "status": 403,
+      "assertions": [
+        {
+          "name": "HTTP 403",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "HU013-10 Propietario y estado no manipulables",
+      "status": 400,
+      "assertions": [
+        {
+          "name": "HTTP 400",
+          "passed": true
+        },
+        {
+          "name": "Campos protegidos",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}
