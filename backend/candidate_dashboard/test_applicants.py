@@ -78,6 +78,10 @@ class ApplicantTests(ApplicationFixture, TestCase):
         self.assertEqual(selection_text(['Python', {'name': 'Django'}], 'skills'), 'python\ndjango')
         with self.assertRaises(ValidationError):
             CandidateProfile.objects.bulk_update([self.p], ['skills'])
+        with self.assertRaises(ValidationError):
+            CandidateProfile.objects.filter(pk=self.p.pk).update(selection_skills='inventado')
+        with self.assertRaises(ValidationError):
+            CandidateProfile.objects.bulk_update([self.p], ['selection_skills'])
 
     def test_stable_name_date_order_and_bounded_sql_pagination(self):
         same_date = timezone.now()

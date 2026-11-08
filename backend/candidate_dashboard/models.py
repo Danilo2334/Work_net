@@ -10,6 +10,8 @@ from .selection_text import SELECTION_SECTIONS, populate_selection, selection_te
 
 class CandidateProfileQuerySet(models.QuerySet):
     def update(self, **kwargs):
+        if set(kwargs) & {"selection_" + s for s in SELECTION_SECTIONS}:
+            raise ValidationError("Las proyecciones se derivan del perfil; no se modifican directamente.")
         for section in SELECTION_SECTIONS:
             if section in kwargs:
                 if not isinstance(kwargs[section], list):
@@ -26,7 +28,7 @@ class CandidateProfileQuerySet(models.QuerySet):
         return super().bulk_create(objs, **kwargs)
 
     def bulk_update(self, objs, fields, **kwargs):
-        if set(fields) & set(SELECTION_SECTIONS):
+        if set(fields) & {*SELECTION_SECTIONS, *("selection_" + s for s in SELECTION_SECTIONS)}:
             raise ValidationError("Actualiza las secciones estructuradas mediante save para conservar los filtros.")
         return super().bulk_update(objs, fields, **kwargs)
 
