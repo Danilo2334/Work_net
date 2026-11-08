@@ -2,7 +2,7 @@
 from decimal import Decimal
 import re
 
-from django.db.models import Case, IntegerField, Q, Value, When
+from django.db.models import Case, Exists, IntegerField, OuterRef, Q, Value, When
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.authentication import TokenAuthentication
@@ -10,8 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from accounts.models import User
-from .models import JobOffer, active_offers
+from .models import JobOffer, SavedOffer, visible_offers
 from .offers import CATEGORIES, CONTRACT_TYPES
 from .profile import ProfileCandidatePermission
 
@@ -75,10 +74,7 @@ class SearchOffersView(APIView):
         p = params.validated_data
         now = timezone.now()
         # Mismo dominio activo y visibilidad que el dashboard del candidato.
-        offers = active_offers(JobOffer.objects.filter(
-            published_at__lte=now, company__role=User.Role.EMPRESA,
-            company__is_active=True,
-        ), at=now)
+        offers = visible_offers(JobOffer.objects.all(), at=now)
         score = Value(0, output_field=IntegerField())
         for term in p["q"].split():
             match = Q()
@@ -95,7 +91,9 @@ class SearchOffersView(APIView):
                             ("category", "category"), ("contract_type", "contract_type")):
             if key in p:
                 offers = offers.filter(**{lookup: p[key]})
-        offers = offers.annotate(relevance=score)
+        offers = offers.annotate(relevance=score, is_saved=Exists(
+            SavedOffer.objects.filter(candidate=request.user, offer_id=OuterRef("pk")),
+        ))
         order = ["-published_at", "-pk"]
         if p["sort"] == "relevance":
             order.insert(0, "-relevance")
@@ -106,7 +104,7 @@ class SearchOffersView(APIView):
             raise serializers.ValidationError({"page": "La página solicitada no existe."})
         start = (p["page"] - 1) * p["page_size"]
         rows = offers.values("id", "title", "company_name", "location", "contract_type", "category",
-                             "salary", "published_at", "relevance")[start:start + p["page_size"]]
+                             "salary", "published_at", "relevance", "is_saved")[start:start + p["page_size"]]
         data = [{**row, "salary": f'{row["salary"]:.2f}' if row["salary"] is not None else None} for row in rows]
         return Response({
             "count": count, "page": p["page"], "page_size": p["page_size"], "total_pages": pages,
