@@ -102,7 +102,7 @@ incluye transporte local y no representa rendimiento de producción.
 
 ![HU017 API conserva favorita cerrada](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/12-guardada-cerrada.png)
 
-**Caso P22.** Esperado: mantener también la oferta 1 tras cerrarla. Obtenido: ID1 closed, is_active false e is_saved true; dos PASS. Alcance demostrado: conservación de la cerrada; misma petición P22 que la imagen anterior, mostrando otra parte del cuerpo.
+**Caso P22.** Esperado: mantener también la oferta 1 tras cerrarla. Obtenido: ID1 closed, is_active false e is_saved true; dos PASS. Alcance demostrado: conservación de la cerrada; se muestra otra parte del cuerpo de P22.
 
 ![HU017 API archivada excluida del buscador](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/14-archivada-excluida.png)
 
