@@ -64,19 +64,9 @@ válidas para cambiar el formato documental.
 [Imágenes publicadas verificadas](../../backend/docs/evidencias/postman/20261108/verificacion-imagenes-publicadas.json) ·
 [Auditoría de 63 subtareas](../../backend/docs/evidencias/postman/20261108/verificacion-63-subtareas.json).
 
-**Acceso resuelto, atribución e integración.** El usuario completó la carga local
-de los recursos en el selector nativo; después el agente ejecutó las cuatro
-colecciones, seleccionó las respuestas y capturó Desktop. El fallo de pipe del
-07/11 y el bloqueo de importación previo del 08/11 se conservan abajo como
-históricos, sin describirlos como impedimentos actuales. Nueva QA, imágenes y
-documentación se publican como **francisco3788**, con cuenta, autor y committer
-verificados por separado. Los comentarios conservan ID/autor original mediante
-edición con su cuenta. Django: **Danilo2334**; Flutter/integración/QA pendiente:
-**francisco3788**. La revisión es técnica por agente autorizado; no se atribuyen
-revisiones personales ni aprobaciones humanas. Entrega documental por
-[PR #161 hacia frontend](https://github.com/Danilo2334/Work_net/pull/161), seguida
-del flujo existente mediante PR a main, comprobando que el diff solo contenga
-documentación y evidencias y respetando las protecciones.
+**Publicación y procedencia.** Evidencias incorporadas mediante [PR #161 hacia frontend](https://github.com/Danilo2334/Work_net/pull/161) y [PR #162 hacia main](https://github.com/Danilo2334/Work_net/pull/162), entrega `8eecbec8a44c26a9086c06ea13817857fac6e3d1`. QA, imágenes y documentación publicadas como **francisco3788**, con cuenta, autor y committer verificados. Los comentarios conservan su ID y autor original. Django: **Danilo2334**; Flutter, integración y QA pendiente: **francisco3788**. La ejecución y revisión técnica son del agente autorizado; no se atribuyen comprobaciones personales ni aprobaciones humanas. Los antecedentes de acceso e importación se conservan fechados en las secciones históricas siguientes.
+
+**Revisión de coherencia documental — 08/11/2026.** Se contrastaron las 15 historias, sus 63 subtareas y las 215 apariciones visibles de imágenes (144 URL distintas) con sus objetivos y criterios. Los seguimientos vigentes conservan el formato HU001: alcance realizado, preparación, caso, resultado esperado/obtenido y límites. Los resúmenes padre reflejan las evidencias disponibles; la leyenda móvil de #59 describe el encuadre de habilidades e idiomas. Los comentarios de ofertas contienen únicamente las explicaciones correspondientes a sus casos. Esta revisión no ejecuta pruebas ni genera capturas nuevas; conserva los datos, fechas y versiones comprobados. Los registros operativos resueltos permanecen como antecedentes secundarios. Las tareas abiertas mantienen sus dependencias funcionales.
 
 **Pendientes funcionales conservados.** HU011/HU012/#79 mantienen la selección
 del CV al postular pendiente de HU018. HU015/#90/#91 mantienen buscador HU016 y
@@ -104,6 +94,25 @@ adicionales se conservan en sus históricos. La inspección de las imágenes
 contrasta legibilidad, caso y ausencia de contraseñas, tokens o sesiones visibles.
 No se volvieron a ejecutar suites, no se cambiaron código funcional ni entornos
 y no se enviaron correos.
+
+<details>
+<summary>Antecedente de acceso y publicación del 08/11/2026</summary>
+
+**Acceso resuelto, atribución e integración.** El usuario completó la carga local
+de los recursos en el selector nativo; después el agente ejecutó las cuatro
+colecciones, seleccionó las respuestas y capturó Desktop. El fallo de pipe del
+07/11 y el bloqueo de importación previo del 08/11 se conservan abajo como
+históricos, sin describirlos como impedimentos actuales. Nueva QA, imágenes y
+documentación se publican como **francisco3788**, con cuenta, autor y committer
+verificados por separado. Los comentarios conservan ID/autor original mediante
+edición con su cuenta. Django: **Danilo2334**; Flutter/integración/QA pendiente:
+**francisco3788**. La revisión es técnica por agente autorizado; no se atribuyen
+revisiones personales ni aprobaciones humanas. Entrega documental por
+[PR #161 hacia frontend](https://github.com/Danilo2334/Work_net/pull/161), seguida
+del flujo existente mediante PR a main, comprobando que el diff solo contenga
+documentación y evidencias y respetando las protecciones.
+
+</details>
 
 <details>
 <summary>Importación pendiente antes de la acción local del 08/11/2026, conservada</summary>
@@ -189,7 +198,7 @@ seguimiento existente de cada subtarea, sin iniciar esas historias en este bloqu
    comprobar todas las tareas publicadas, no solo archivos locales. Los ejemplos
    de este bloque fueron [#88](https://github.com/Danilo2334/Work_net/issues/88#issuecomment-6713608969)
    y [#60](https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6272924156);
-   #60 deja explícito su caso Desktop posterior pendiente. Corregir formato no
+   #60 muestra las capturas específicas de consulta empresarial y fotografía privada, con su fecha y alcance. Corregir formato no
    acredita funcionalidad pendiente ni justifica cerrar tareas o simular revisión.
 
 **Fuentes, fechas y versiones de la tabla.** Las claves evitan repetir SHA completos

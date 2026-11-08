@@ -1,6 +1,6 @@
 {
   "date": "2026-11-08",
-  "status": "63 subtareas verificadas en GitHub; normalizaci\u00f3n documental completa",
+  "status": "63 subtareas y 15 historias verificadas en GitHub; presentación y coherencia documental revisadas",
   "image_publication_sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
   "tasks": 63,
   "comment_count_per_task": 1,
@@ -8,6 +8,8 @@
   "unique_visible_image_urls": 144,
   "missing_documentary_evidence": [],
   "changed_comments": [
+    38,
+    59,
     60,
     62,
     76,
@@ -50,7 +52,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 30,
@@ -70,7 +73,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 31,
@@ -94,7 +98,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 32,
@@ -118,7 +123,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 33,
@@ -142,7 +148,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 34,
@@ -160,13 +167,14 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
         },
         {
-          "alt": "Empresa rechazada en m\u00f3vil web",
+          "alt": "Empresa rechazada en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 35,
@@ -186,7 +194,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 36,
@@ -204,13 +213,14 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
         },
         {
-          "alt": "Empresa rechazada en m\u00f3vil web",
+          "alt": "Empresa rechazada en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 37,
@@ -224,7 +234,7 @@
       "headings": true,
       "images": [
         {
-          "alt": "Empresa rechazada en m\u00f3vil web",
+          "alt": "Empresa rechazada en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
         },
         {
@@ -234,7 +244,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 38,
@@ -244,7 +255,7 @@
       "comment_count": 1,
       "id_unchanged": true,
       "author_unchanged": true,
-      "body_unchanged": true,
+      "body_unchanged": false,
       "headings": true,
       "images": [
         {
@@ -258,7 +269,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 39,
@@ -272,13 +284,14 @@
       "headings": true,
       "images": [
         {
-          "alt": "Recuperaci\u00f3n confirmada",
+          "alt": "Recuperación confirmada",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
         }
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 40,
@@ -302,7 +315,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 41,
@@ -316,21 +330,22 @@
       "headings": true,
       "images": [
         {
-          "alt": "Recuperaci\u00f3n con correo recibido \u2014 escritorio",
+          "alt": "Recuperación con correo recibido — escritorio",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-escritorio.png"
         },
         {
-          "alt": "Recuperaci\u00f3n con correo recibido \u2014 m\u00f3vil web",
+          "alt": "Recuperación con correo recibido — móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-movil.png"
         },
         {
-          "alt": "Recuperaci\u00f3n confirmada",
+          "alt": "Recuperación confirmada",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
         }
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 42,
@@ -358,7 +373,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 43,
@@ -382,7 +398,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 44,
@@ -414,7 +431,8 @@
       ],
       "rendered_images": 4,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 45,
@@ -434,7 +452,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 46,
@@ -448,7 +467,7 @@
       "headings": true,
       "images": [
         {
-          "alt": "Nombre y sesi\u00f3n actualizados",
+          "alt": "Nombre y sesión actualizados",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/nombre-guardado.png"
         },
         {
@@ -456,17 +475,18 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/preferencias-guardadas.png"
         },
         {
-          "alt": "Confirmaci\u00f3n m\u00f3vil web",
+          "alt": "Confirmación móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/eliminacion-confirmacion-movil.png"
         },
         {
-          "alt": "Resultado de eliminaci\u00f3n QA",
+          "alt": "Resultado de eliminación QA",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/eliminacion-completada.png"
         }
       ],
       "rendered_images": 4,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 47,
@@ -486,7 +506,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 48,
@@ -506,7 +527,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 49,
@@ -520,13 +542,14 @@
       "headings": true,
       "images": [
         {
-          "alt": "Regresi\u00f3n del candidato",
+          "alt": "Regresión del candidato",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
         }
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 50,
@@ -550,7 +573,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 51,
@@ -574,7 +598,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 52,
@@ -594,7 +619,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 53,
@@ -618,7 +644,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 54,
@@ -642,7 +669,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 55,
@@ -666,7 +694,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 56,
@@ -686,7 +715,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 57,
@@ -704,13 +734,14 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-escritorio.png"
         },
         {
-          "alt": "Administraci\u00f3n en m\u00f3vil web",
+          "alt": "Administración en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-movil.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 58,
@@ -730,7 +761,8 @@
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 59,
@@ -740,7 +772,7 @@
       "comment_count": 1,
       "id_unchanged": true,
       "author_unchanged": true,
-      "body_unchanged": true,
+      "body_unchanged": false,
       "headings": true,
       "images": [
         {
@@ -748,13 +780,14 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/perfil-completo-escritorio.png"
         },
         {
-          "alt": "Registros en m\u00f3vil web",
+          "alt": "Registros en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/registros-movil.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 60,
@@ -768,7 +801,7 @@
       "headings": true,
       "images": [
         {
-          "alt": "Educaci\u00f3n editada y recuperada en Postman",
+          "alt": "Educación editada y recuperada en Postman",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png"
         },
         {
@@ -784,7 +817,7 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-autorizada.png"
         },
         {
-          "alt": "PM224: fotograf\u00eda privada del postulante",
+          "alt": "PM224: fotografía privada del postulante",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/fotografia-privada.png"
         },
         {
@@ -794,7 +827,8 @@
       ],
       "rendered_images": 6,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 61,
@@ -808,17 +842,18 @@
       "headings": true,
       "images": [
         {
-          "alt": "Fotograf\u00eda guardada",
+          "alt": "Fotografía guardada",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-guardada.png"
         },
         {
-          "alt": "Archivo inv\u00e1lido",
+          "alt": "Archivo inválido",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-invalida.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 62,
@@ -836,7 +871,7 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-autorizada.png"
         },
         {
-          "alt": "PM224: fotograf\u00eda privada",
+          "alt": "PM224: fotografía privada",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/fotografia-privada.png"
         },
         {
@@ -844,13 +879,14 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/empresa-ajena.png"
         },
         {
-          "alt": "PM255 \u00b7 #76 \u00b7 Precargar el CV desde el perfil sin guardarlo: 02-precarga-perfil-pm255",
+          "alt": "PM255 · #76 · Precargar el CV desde el perfil sin guardarlo: 02-precarga-perfil-pm255",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png"
         }
       ],
       "rendered_images": 4,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 63,
@@ -874,7 +910,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 64,
@@ -888,13 +925,14 @@
       "headings": true,
       "images": [
         {
-          "alt": "Informaci\u00f3n empresarial persistida",
+          "alt": "Información empresarial persistida",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu009-informacion-persistente.png"
         }
       ],
       "rendered_images": 1,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 65,
@@ -918,7 +956,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 66,
@@ -946,7 +985,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 67,
@@ -970,7 +1010,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 68,
@@ -998,7 +1039,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 69,
@@ -1022,7 +1064,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 70,
@@ -1046,7 +1089,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 71,
@@ -1070,7 +1114,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 72,
@@ -1098,7 +1143,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 73,
@@ -1122,7 +1168,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 74,
@@ -1150,7 +1197,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 75,
@@ -1174,7 +1222,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 76,
@@ -1188,41 +1237,42 @@
       "headings": true,
       "images": [
         {
-          "alt": "PM262 \u00b7 #76 \u00b7 Consultar nuevamente conserva el CV guardado: 01-reconsulta-json-pm262",
+          "alt": "PM262 · #76 · Consultar nuevamente conserva el CV guardado: 01-reconsulta-json-pm262",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/01-reconsulta-json-pm262.png"
         },
         {
-          "alt": "PM258 \u00b7 #76 \u00b7 Guardar el CV precargado con plantilla Cl\u00e1sica: 04-guardar-json-pm258",
+          "alt": "PM258 · #76 · Guardar el CV precargado con plantilla Clásica: 04-guardar-json-pm258",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png"
         },
         {
-          "alt": "PM259 \u00b7 #76 \u00b7 Cambiar a plantilla moderna sin perder datos: 05-plantilla-moderna-pm259",
+          "alt": "PM259 · #76 · Cambiar a plantilla moderna sin perder datos: 05-plantilla-moderna-pm259",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/05-plantilla-moderna-pm259.png"
         },
         {
-          "alt": "PM260 \u00b7 #76 \u00b7 Cambiar a plantilla minimalista sin perder datos: 07-plantilla-minimalista-pm260",
+          "alt": "PM260 · #76 · Cambiar a plantilla minimalista sin perder datos: 07-plantilla-minimalista-pm260",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/07-plantilla-minimalista-pm260.png"
         },
         {
-          "alt": "PM263 \u00b7 #76 \u00b7 Editar datos personales, resumen y secciones opcionales: 09-edicion-secciones-pm263",
+          "alt": "PM263 · #76 · Editar datos personales, resumen y secciones opcionales: 09-edicion-secciones-pm263",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/09-edicion-secciones-pm263.png"
         },
         {
-          "alt": "PM263 \u00b7 #76 \u00b7 Editar datos personales, resumen y secciones opcionales: 10-certificacion-extra-pm263",
+          "alt": "PM263 · #76 · Editar datos personales, resumen y secciones opcionales: 10-certificacion-extra-pm263",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png"
         },
         {
-          "alt": "PM271 \u00b7 #76 \u00b7 Plantilla desconocida rechazada: 18-plantilla-invalida-pm271",
+          "alt": "PM271 · #76 · Plantilla desconocida rechazada: 18-plantilla-invalida-pm271",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/18-plantilla-invalida-pm271.png"
         },
         {
-          "alt": "PM275 \u00b7 #79 \u00b7 Errores no destruyen el CV guardado: 19-reconsulta-tras-errores-pm275",
+          "alt": "PM275 · #79 · Errores no destruyen el CV guardado: 19-reconsulta-tras-errores-pm275",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png"
         }
       ],
       "rendered_images": 8,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 77,
@@ -1244,31 +1294,31 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png"
         },
         {
-          "alt": "PM265 \u00b7 #77 \u00b7 Generar PDF de vista previa clasica: 11-previa-clasica-pm265",
+          "alt": "PM265 · #77 · Generar PDF de vista previa clasica: 11-previa-clasica-pm265",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png"
         },
         {
-          "alt": "PM266 \u00b7 #77 \u00b7 Generar PDF de vista previa moderna: 12-previa-moderna-pm266",
+          "alt": "PM266 · #77 · Generar PDF de vista previa moderna: 12-previa-moderna-pm266",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png"
         },
         {
-          "alt": "PM267 \u00b7 #77 \u00b7 Generar PDF de vista previa minimalista: 13-previa-minimalista-pm267",
+          "alt": "PM267 · #77 · Generar PDF de vista previa minimalista: 13-previa-minimalista-pm267",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png"
         },
         {
-          "alt": "PM268 \u00b7 #77 \u00b7 Descargar el PDF del CV guardado: 14-descarga-clasica-pm268",
+          "alt": "PM268 · #77 · Descargar el PDF del CV guardado: 14-descarga-clasica-pm268",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png"
         },
         {
-          "alt": "PM268 \u00b7 #77 \u00b7 Descargar el PDF del CV guardado: 15-descarga-headers-pm268",
+          "alt": "PM268 · #77 · Descargar el PDF del CV guardado: 15-descarga-headers-pm268",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/15-descarga-headers-pm268.png"
         },
         {
-          "alt": "PM269 \u00b7 #77 \u00b7 Descarga sin sesi\u00f3n rechazada: 16-sin-sesion-pm269",
+          "alt": "PM269 · #77 · Descarga sin sesión rechazada: 16-sin-sesion-pm269",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png"
         },
         {
-          "alt": "PM270 \u00b7 #77 \u00b7 Otra cuenta no descarga el CV ajeno: 17-otra-cuenta-pm270",
+          "alt": "PM270 · #77 · Otra cuenta no descarga el CV ajeno: 17-otra-cuenta-pm270",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png"
         },
         {
@@ -1278,7 +1328,8 @@
       ],
       "rendered_images": 10,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 78,
@@ -1302,7 +1353,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 79,
@@ -1316,11 +1368,11 @@
       "headings": true,
       "images": [
         {
-          "alt": "PM255 \u00b7 #76 \u00b7 Precargar el CV desde el perfil sin guardarlo: 02-precarga-perfil-pm255",
+          "alt": "PM255 · #76 · Precargar el CV desde el perfil sin guardarlo: 02-precarga-perfil-pm255",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png"
         },
         {
-          "alt": "PM258 \u00b7 #76 \u00b7 Guardar el CV precargado con plantilla Cl\u00e1sica: 04-guardar-json-pm258",
+          "alt": "PM258 · #76 · Guardar el CV precargado con plantilla Clásica: 04-guardar-json-pm258",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png"
         },
         {
@@ -1332,35 +1384,35 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png"
         },
         {
-          "alt": "PM263 \u00b7 #76 \u00b7 Editar datos personales, resumen y secciones opcionales: 10-certificacion-extra-pm263",
+          "alt": "PM263 · #76 · Editar datos personales, resumen y secciones opcionales: 10-certificacion-extra-pm263",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png"
         },
         {
-          "alt": "PM265 \u00b7 #77 \u00b7 Generar PDF de vista previa clasica: 11-previa-clasica-pm265",
+          "alt": "PM265 · #77 · Generar PDF de vista previa clasica: 11-previa-clasica-pm265",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png"
         },
         {
-          "alt": "PM266 \u00b7 #77 \u00b7 Generar PDF de vista previa moderna: 12-previa-moderna-pm266",
+          "alt": "PM266 · #77 · Generar PDF de vista previa moderna: 12-previa-moderna-pm266",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png"
         },
         {
-          "alt": "PM267 \u00b7 #77 \u00b7 Generar PDF de vista previa minimalista: 13-previa-minimalista-pm267",
+          "alt": "PM267 · #77 · Generar PDF de vista previa minimalista: 13-previa-minimalista-pm267",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png"
         },
         {
-          "alt": "PM268 \u00b7 #77 \u00b7 Descargar el PDF del CV guardado: 14-descarga-clasica-pm268",
+          "alt": "PM268 · #77 · Descargar el PDF del CV guardado: 14-descarga-clasica-pm268",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png"
         },
         {
-          "alt": "PM269 \u00b7 #77 \u00b7 Descarga sin sesi\u00f3n rechazada: 16-sin-sesion-pm269",
+          "alt": "PM269 · #77 · Descarga sin sesión rechazada: 16-sin-sesion-pm269",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png"
         },
         {
-          "alt": "PM270 \u00b7 #77 \u00b7 Otra cuenta no descarga el CV ajeno: 17-otra-cuenta-pm270",
+          "alt": "PM270 · #77 · Otra cuenta no descarga el CV ajeno: 17-otra-cuenta-pm270",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png"
         },
         {
-          "alt": "PM275 \u00b7 #79 \u00b7 Errores no destruyen el CV guardado: 19-reconsulta-tras-errores-pm275",
+          "alt": "PM275 · #79 · Errores no destruyen el CV guardado: 19-reconsulta-tras-errores-pm275",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png"
         },
         {
@@ -1370,7 +1422,8 @@
       ],
       "rendered_images": 13,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 80,
@@ -1394,7 +1447,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 81,
@@ -1422,7 +1476,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 82,
@@ -1450,7 +1505,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 83,
@@ -1478,7 +1534,8 @@
       ],
       "rendered_images": 3,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 84,
@@ -1496,13 +1553,14 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/b0351ec2ef246787bd3869dedc39a8f47b783078/frontend/docs/evidencias/hu014-20261107/HU014-V04-persistencia.png"
         },
         {
-          "alt": "Oferta editada y reconsultada en m\u00f3vil web",
+          "alt": "Oferta editada y reconsultada en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/b0351ec2ef246787bd3869dedc39a8f47b783078/frontend/docs/evidencias/hu014-20261107/HU014-V05-persistencia-movil.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 85,
@@ -1536,15 +1594,15 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png"
         },
         {
-          "alt": "D14-05 Inv\u00e1lidos sin escritura: 05-invalido-400",
+          "alt": "D14-05 Inválidos sin escritura: 05-invalido-400",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png"
         },
         {
-          "alt": "D14-06 Reconsulta tras inv\u00e1lidos: 06-sin-escritura-parcial",
+          "alt": "D14-06 Reconsulta tras inválidos: 06-sin-escritura-parcial",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png"
         },
         {
-          "alt": "D14-07 Sin sesi\u00f3n: 07-sin-sesion-401",
+          "alt": "D14-07 Sin sesión: 07-sin-sesion-401",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png"
         },
         {
@@ -1582,7 +1640,8 @@
       ],
       "rendered_images": 16,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 86,
@@ -1606,7 +1665,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 87,
@@ -1640,15 +1700,15 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png"
         },
         {
-          "alt": "D14-05 Inv\u00e1lidos sin escritura: 05-invalido-400",
+          "alt": "D14-05 Inválidos sin escritura: 05-invalido-400",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png"
         },
         {
-          "alt": "D14-06 Reconsulta tras inv\u00e1lidos: 06-sin-escritura-parcial",
+          "alt": "D14-06 Reconsulta tras inválidos: 06-sin-escritura-parcial",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png"
         },
         {
-          "alt": "D14-07 Sin sesi\u00f3n: 07-sin-sesion-401",
+          "alt": "D14-07 Sin sesión: 07-sin-sesion-401",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png"
         },
         {
@@ -1686,7 +1746,8 @@
       ],
       "rendered_images": 16,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 88,
@@ -1700,17 +1761,18 @@
       "headings": true,
       "images": [
         {
-          "alt": "Confirmaci\u00f3n de archivado en escritorio",
+          "alt": "Confirmación de archivado en escritorio",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V02-confirmacion-archivar.png"
         },
         {
-          "alt": "Confirmaci\u00f3n de archivado en m\u00f3vil web",
+          "alt": "Confirmación de archivado en móvil web",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V05-confirmacion-movil.png"
         }
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 89,
@@ -1736,11 +1798,11 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png"
         },
         {
-          "alt": "D15-04 Sin cambio tras inv\u00e1lido: 04-invalido-sin-cambio",
+          "alt": "D15-04 Sin cambio tras inválido: 04-invalido-sin-cambio",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png"
         },
         {
-          "alt": "D15-05 Cierre v\u00e1lido: 05-cierre-200",
+          "alt": "D15-05 Cierre válido: 05-cierre-200",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png"
         },
         {
@@ -1760,7 +1822,7 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png"
         },
         {
-          "alt": "D15-09 Transici\u00f3n incompatible: 09-transicion-incompatible-409",
+          "alt": "D15-09 Transición incompatible: 09-transicion-incompatible-409",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png"
         },
         {
@@ -1768,7 +1830,7 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png"
         },
         {
-          "alt": "D15-11 Sin sesi\u00f3n: 11-sin-sesion-401",
+          "alt": "D15-11 Sin sesión: 11-sin-sesion-401",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png"
         },
         {
@@ -1790,7 +1852,8 @@
       ],
       "rendered_images": 16,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 90,
@@ -1814,7 +1877,8 @@
       ],
       "rendered_images": 2,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     },
     {
       "issue": 91,
@@ -1840,11 +1904,11 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png"
         },
         {
-          "alt": "D15-04 Sin cambio tras inv\u00e1lido: 04-invalido-sin-cambio",
+          "alt": "D15-04 Sin cambio tras inválido: 04-invalido-sin-cambio",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png"
         },
         {
-          "alt": "D15-05 Cierre v\u00e1lido: 05-cierre-200",
+          "alt": "D15-05 Cierre válido: 05-cierre-200",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png"
         },
         {
@@ -1864,7 +1928,7 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png"
         },
         {
-          "alt": "D15-09 Transici\u00f3n incompatible: 09-transicion-incompatible-409",
+          "alt": "D15-09 Transición incompatible: 09-transicion-incompatible-409",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png"
         },
         {
@@ -1872,7 +1936,7 @@
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png"
         },
         {
-          "alt": "D15-11 Sin sesi\u00f3n: 11-sin-sesion-401",
+          "alt": "D15-11 Sin sesión: 11-sin-sesion-401",
           "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png"
         },
         {
@@ -1894,8 +1958,265 @@
       ],
       "rendered_images": 16,
       "functional_fields_unchanged": true,
-      "changed_fields": []
+      "changed_fields": [],
+      "visible_images_unchanged": true
     }
   ],
-  "supersedes": "normalizacion-parcial.json (corte anterior conservado)"
+  "supersedes": "verificacion-63-subtareas.json en ea33193734f699f8d23422d0e545308dc024370a; conserva resultados Desktop y referencias a la normalización parcial anterior.",
+  "body_comparison": "Cuerpos comparados con el estado leído inmediatamente antes de los ajustes de coherencia del 08/11/2026; IDs, autores, imágenes y campos funcionales contrastados por separado.",
+  "coherence_review": {
+    "date": "2026-11-08",
+    "reference_main": "8eecbec8a44c26a9086c06ea13817857fac6e3d1",
+    "scope": "Presentación y coherencia HU001–HU015; objetivos, criterios, explicación de casos y capturas. Sin cambios funcionales.",
+    "stories": 15,
+    "subtasks": 63,
+    "comments_per_task": 1,
+    "visible_image_occurrences": 215,
+    "unique_image_urls": 144,
+    "canonical_image_files_inspected": 134,
+    "resolved": [
+      {
+        "item": 1,
+        "scope": "Resúmenes de HU008/HU012/HU013/HU014/HU015",
+        "result": "Evidencias completas reflejadas; los 15 resúmenes presentan el seguimiento vigente separado de sus antecedentes."
+      },
+      {
+        "item": 2,
+        "scope": "REVISION.md, regla de presentación 6",
+        "result": "#60 enlaza evidencia disponible, sin anunciar un faltante resuelto."
+      },
+      {
+        "item": 3,
+        "scope": "#38",
+        "result": "Antecedentes de sesión y acceso fechados en sección secundaria; sin bloqueo actual."
+      },
+      {
+        "item": 4,
+        "scope": "#59",
+        "result": "Leyenda móvil limitada a habilidades e idiomas visibles."
+      },
+      {
+        "item": 5,
+        "scope": "#81/#83/#85/#87/#89/#91",
+        "result": "Explicación de ofertas sin el párrafo de respuestas PDF ajeno a esos casos."
+      }
+    ],
+    "new_test_executions": 0,
+    "new_desktop_requests": 0,
+    "new_screenshots": 0,
+    "functional_fields_preserved": true,
+    "criteria_preserved": true,
+    "comment_ids_and_authors_preserved": true,
+    "previous_histories_preserved": true,
+    "project_fields_not_modified": true,
+    "functional_dependencies_preserved": [
+      "HU005: HU016/HU019/HU022",
+      "HU006: HU020/HU022/HU024",
+      "HU007: HU026",
+      "HU011/HU012/#79: HU018",
+      "HU015/#90/#91: HU016/HU018"
+    ],
+    "hu016_hu027_started": false,
+    "verification_source": "Lectura posterior a las ediciones en GitHub: 15 historias, 63 subtareas y sus 63 comentarios.",
+    "story_rows": [
+      {
+        "issue": 2,
+        "title": "HU001 Registro de Usuario y Selección de Rol",
+        "url": "https://github.com/Danilo2334/Work_net/issues/2",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 3,
+        "title": "HU002 Inicio de Sesión",
+        "url": "https://github.com/Danilo2334/Work_net/issues/3",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 4,
+        "title": "HU003 Recuperación de Contraseña",
+        "url": "https://github.com/Danilo2334/Work_net/issues/4",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 5,
+        "title": "HU004 Configuración de Cuenta",
+        "url": "https://github.com/Danilo2334/Work_net/issues/5",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 6,
+        "title": "HU005 Dashboard del Candidato",
+        "url": "https://github.com/Danilo2334/Work_net/issues/6",
+        "state": "open",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 7,
+        "title": "HU006 Dashboard de Empresa",
+        "url": "https://github.com/Danilo2334/Work_net/issues/7",
+        "state": "open",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 8,
+        "title": "HU007 Dashboard de Administrador",
+        "url": "https://github.com/Danilo2334/Work_net/issues/8",
+        "state": "open",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 9,
+        "title": "HU008 Perfil de Candidato",
+        "url": "https://github.com/Danilo2334/Work_net/issues/9",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 10,
+        "title": "HU009 Registro de Información de Empresa",
+        "url": "https://github.com/Danilo2334/Work_net/issues/10",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 11,
+        "title": "HU010 Validación de Cuenta de Empresa",
+        "url": "https://github.com/Danilo2334/Work_net/issues/11",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 12,
+        "title": "HU011 Subir Currículum",
+        "url": "https://github.com/Danilo2334/Work_net/issues/12",
+        "state": "open",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 13,
+        "title": "HU012 Crear y Editar Currículum con Plantillas",
+        "url": "https://github.com/Danilo2334/Work_net/issues/13",
+        "state": "open",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 14,
+        "title": "HU013 Publicación de Oferta de Empleo",
+        "url": "https://github.com/Danilo2334/Work_net/issues/14",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 15,
+        "title": "HU014 Edición de Oferta de Empleo",
+        "url": "https://github.com/Danilo2334/Work_net/issues/15",
+        "state": "closed",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      },
+      {
+        "issue": 16,
+        "title": "HU015 Cierre y Archivado de Oferta",
+        "url": "https://github.com/Danilo2334/Work_net/issues/16",
+        "state": "open",
+        "assignees": [
+          "francisco3788",
+          "Danilo2334"
+        ],
+        "criteria_unchanged": true,
+        "functional_fields_unchanged": true
+      }
+    ]
+  },
+  "previous_verification": {
+    "repository_commit": "ea33193734f699f8d23422d0e545308dc024370a",
+    "status": "63 subtareas verificadas en GitHub; normalización documental completa",
+    "changed_comments": [
+      60,
+      62,
+      76,
+      77,
+      79,
+      81,
+      83,
+      85,
+      87,
+      89,
+      91
+    ],
+    "scope": "Capturas Desktop y normalización previa del 08/11/2026; conservada en Git."
+  }
 }
