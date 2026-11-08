@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.db.models import Exists, OuterRef
 from rest_framework import serializers
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import BasePermission, IsAuthenticated
@@ -6,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accounts.models import User
-from .models import Application, CandidateProfile, JobOffer, Notification, SavedOffer, active_offers
+from .models import Application, CandidateProfile, JobOffer, Notification, SavedOffer, visible_offers
 
 
 class IsCandidate(BasePermission):
@@ -18,9 +19,10 @@ class IsCandidate(BasePermission):
 
 
 class RecentOfferSerializer(serializers.ModelSerializer):
+    is_saved = serializers.BooleanField(read_only=True)
     class Meta:
         model = JobOffer
-        fields = ("id", "title", "company_name", "location", "contract_type", "published_at")
+        fields = ("id", "title", "company_name", "location", "contract_type", "published_at", "is_saved")
 
 
 def profile_completion(user, profile):
@@ -51,11 +53,9 @@ class CandidateDashboardView(APIView):
         user = request.user
         profile = CandidateProfile.objects.filter(candidate=user).first()
         now = timezone.now()
-        offers = active_offers(JobOffer.objects.filter(
-            published_at__lte=now,
-            company__role=User.Role.EMPRESA,
-            company__is_active=True,
-        ), at=now).order_by("-published_at", "-pk")[:5]
+        offers = visible_offers(JobOffer.objects.all(), at=now).annotate(is_saved=Exists(
+            SavedOffer.objects.filter(candidate=user, offer_id=OuterRef("pk")),
+        )).order_by("-published_at", "-pk")[:5]
         return Response({
             "user": {"id": user.pk, "full_name": user.full_name, "role": user.role},
             "profile_completion": profile_completion(user, profile),

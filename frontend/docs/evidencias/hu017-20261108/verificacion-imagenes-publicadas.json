@@ -1,0 +1,431 @@
+{
+  "fecha": "2026-11-08",
+  "publicacion": "842a89134cd2813488732eb3e8e0933b13333836",
+  "total": 53,
+  "imagenes": [
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/00-resumen-desktop.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/00-resumen-desktop.png",
+      "http": 200,
+      "bytes": 140096,
+      "sha256": "58fa28cc18314a2a42e6a1c167a26f143eea4cc6880d54aa7906fd7efeb6853c",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/01-agregar-activa.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/01-agregar-activa.png",
+      "http": 200,
+      "bytes": 140867,
+      "sha256": "3c687e6a45baebc36d5a5ac902b6a38dce235abe5c29b64b3b5443ce3de5f5cb",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/02-repetir-agregado.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/02-repetir-agregado.png",
+      "http": 200,
+      "bytes": 138286,
+      "sha256": "55a6c13afd8d11de1fac44ab178a3aca47ed7e314d12dc727ebedbea0c969a34",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/03-lista-sin-duplicados.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/03-lista-sin-duplicados.png",
+      "http": 200,
+      "bytes": 166367,
+      "sha256": "faf4162bc18b9f85ecfc162f42d8508aa45eac73f6ff950f2ee8791b45b09f56",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/04-busqueda-sincronizada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/04-busqueda-sincronizada.png",
+      "http": 200,
+      "bytes": 163412,
+      "sha256": "9006c931449a97b0a3004bc5c5579160f042ca9a74178acd960a609fc8effea9",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/05-quitar-favorito.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/05-quitar-favorito.png",
+      "http": 200,
+      "bytes": 141105,
+      "sha256": "bf4dae347bed670eb95d3c8f1ccaae7156d7e3de6562b5d52b42d3029e24059c",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/06-repetir-retiro.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/06-repetir-retiro.png",
+      "http": 200,
+      "bytes": 141007,
+      "sha256": "1e58f87292aeaf6b83ff4ec2d9a3de4712d195d64b9d347f0b081fe90d6bf9a1",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/07-retiro-no-modifica-ajeno.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/07-retiro-no-modifica-ajeno.png",
+      "http": 200,
+      "bytes": 140184,
+      "sha256": "8c3d8e1eb263d48ac144bd8a53a5c7885e18e3c280e691285e3bc9e97eaa929d",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/08-permiso-empresa.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/08-permiso-empresa.png",
+      "http": 200,
+      "bytes": 144365,
+      "sha256": "236ccf38b04af21a070238b7a2a36966dfaf0355aeb299cbaee2c6cf7bb63b0d",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/09-candidato-procede-de-sesion.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/09-candidato-procede-de-sesion.png",
+      "http": 200,
+      "bytes": 143887,
+      "sha256": "8106092715afd61e364225b15f713836eaf5fab2683eb50442bf3eacd856f409",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/10-archivar-endpoint-real.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/10-archivar-endpoint-real.png",
+      "http": 200,
+      "bytes": 159193,
+      "sha256": "79927d67fa89339c15a604e86fa92bebfa3b3255363c5447b4f13b1b91b614fc",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/11-guardada-archivada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/11-guardada-archivada.png",
+      "http": 200,
+      "bytes": 171432,
+      "sha256": "fc3dec5aac82753a41151f3698671929069598b39f5f1a2da6b7ab5c5811799c",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/12-guardada-cerrada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/12-guardada-cerrada.png",
+      "http": 200,
+      "bytes": 178343,
+      "sha256": "44d065f99712bf6b27f212cd5a96c52d5c0b499ac62b761061acd31cb2ecd19f",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/13-cerrada-excluida.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/13-cerrada-excluida.png",
+      "http": 200,
+      "bytes": 159634,
+      "sha256": "d19fdfae8ba7d88d313e7d9bc2b21dd27af8a9f88ee3743bbd0eb47979b8bc8f",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/14-archivada-excluida.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/14-archivada-excluida.png",
+      "http": 200,
+      "bytes": 159641,
+      "sha256": "95f19f2ed57cff4493152b012fca2546dbab92e340530e8073019e4f2461aa0e",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/15-retirar-cerrada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/15-retirar-cerrada.png",
+      "http": 200,
+      "bytes": 141664,
+      "sha256": "3ec95f01f7dc900cd7a89d616a56b9068b7d16b077ebe871f679579e5f20aba9",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/16-retirar-archivada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/16-retirar-archivada.png",
+      "http": 200,
+      "bytes": 141751,
+      "sha256": "366979dc35947b5a224dd05335364e9d46d3974961f2b037ce69c5185a0727b7",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/17-vacio-real.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/17-vacio-real.png",
+      "http": 200,
+      "bytes": 145398,
+      "sha256": "f4c13a14e00a9af26bbd8c2cf95279fc8bd736f9fe2b4bb7767fa03a31aafeab",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/18-otro-candidato-conserva-lista.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/18-otro-candidato-conserva-lista.png",
+      "http": 200,
+      "bytes": 168844,
+      "sha256": "bd9073c69fa9b0b9f3f9f704afe6fd618edc7828085457173418cc5d4504aba7",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/19-otro-candidato-conserva-cerrada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/19-otro-candidato-conserva-cerrada.png",
+      "http": 200,
+      "bytes": 175696,
+      "sha256": "ceb4e0bb35d3d18ec9915d056a4ce63745bb961bcb2ff3b86eec6a874d81690c",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/20-nuevo-guardado-inactivo-rechazado.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/20-nuevo-guardado-inactivo-rechazado.png",
+      "http": 200,
+      "bytes": 144461,
+      "sha256": "87e019c62f6e0969f0ae16fead73aca39f514ef2f7f6da5a9feac132a8aa3ede",
+      "coincide": true
+    },
+    {
+      "archivo": "backend/docs/evidencias/hu017-20261108/21-limite-paginacion.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/21-limite-paginacion.png",
+      "http": 200,
+      "bytes": 144436,
+      "sha256": "854bacbe198f9e4dc79627afad8ddd69a08aeb5c51da8055b764e181c1f863e9",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V01-carga-real-retenida.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V01-carga-real-retenida.png",
+      "http": 200,
+      "bytes": 18751,
+      "sha256": "2b5cfbc151acbf6e179ced2c7d626703250cd3467fa4dd5868c4e2496a6f7ca3",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V01-dashboard-acceso-y-acciones.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V01-dashboard-acceso-y-acciones.png",
+      "http": 200,
+      "bytes": 107762,
+      "sha256": "4d3df445048c26efac89ad18f1a0e6ab310733e3a56d6a66d57aadb9979d955d",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V01-guardado-inicial.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V01-guardado-inicial.png",
+      "http": 200,
+      "bytes": 43420,
+      "sha256": "0c3f6010872dcff53afe0e12581b2eeccf3f8aabff318c7825a7577caacd8456",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V02-guardar-desde-busqueda.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V02-guardar-desde-busqueda.png",
+      "http": 200,
+      "bytes": 81541,
+      "sha256": "ea72229d038824e1d6bb9869fc9b37cabbdc70c738cf0388ecf6f7a4743bb879",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V02-lista-sincronizada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V02-lista-sincronizada.png",
+      "http": 200,
+      "bytes": 63229,
+      "sha256": "357d1408677d26dabe8a2f3115f6323cd8db99706ed41eca35cc785eea2116f8",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V02-retiro-reflejado-en-busqueda.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V02-retiro-reflejado-en-busqueda.png",
+      "http": 200,
+      "bytes": 78742,
+      "sha256": "bdd7905158295491fa59e4100cefda8361263d345f3ddda2d4d07e1d6a937e72",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V03-persistencia-nueva-sesion.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V03-persistencia-nueva-sesion.png",
+      "http": 200,
+      "bytes": 63229,
+      "sha256": "357d1408677d26dabe8a2f3115f6323cd8db99706ed41eca35cc785eea2116f8",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V03-persistencia-recarga.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V03-persistencia-recarga.png",
+      "http": 200,
+      "bytes": 63229,
+      "sha256": "357d1408677d26dabe8a2f3115f6323cd8db99706ed41eca35cc785eea2116f8",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V04-estado-privado-por-candidato.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V04-estado-privado-por-candidato.png",
+      "http": 200,
+      "bytes": 78742,
+      "sha256": "bdd7905158295491fa59e4100cefda8361263d345f3ddda2d4d07e1d6a937e72",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V04-otro-candidato-solo-propios.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V04-otro-candidato-solo-propios.png",
+      "http": 200,
+      "bytes": 61498,
+      "sha256": "f9b2bdc1f33b7ed2ded50e4a30bfaa6d0b381d590a2c01ccbbf25c86d0b163d2",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V05-vacio-real.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V05-vacio-real.png",
+      "http": 200,
+      "bytes": 28103,
+      "sha256": "b73a8bbdce7e2fc61f0bb795a1a4a243c06b060bb45017f28cedfde7ac234f2a",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V06-503-inyectado.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V06-503-inyectado.png",
+      "http": 200,
+      "bytes": 22229,
+      "sha256": "394cc3d96708cdd4017ebbd07476f2775417277928b5944cd9c5fd57ec6c93df",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V06-red-inyectada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V06-red-inyectada.png",
+      "http": 200,
+      "bytes": 23056,
+      "sha256": "b8c07b33674a586eb4631b7f77b2d9176dc5e1e5dbb69bcca3363828713c15e2",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V06-reintento-real.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V06-reintento-real.png",
+      "http": 200,
+      "bytes": 25191,
+      "sha256": "e523819c13e3ce73e0e0d52333301975b54ae2b53d3f85ff926e02bbfdb7c8d5",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V07-guardar-en-ofertas-recientes.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V07-guardar-en-ofertas-recientes.png",
+      "http": 200,
+      "bytes": 107795,
+      "sha256": "480053efba44c296dd16a376c816feebdba2e02ecfa4730e46d4d37774856a2d",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V08-fallo-al-guardar-inyectado.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V08-fallo-al-guardar-inyectado.png",
+      "http": 200,
+      "bytes": 87512,
+      "sha256": "2e13fbccd25c4bfcba8aa4664b548f124988a294571ed44cddc07acfbe9923ca",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V09-reconciliacion-sin-duplicados.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V09-reconciliacion-sin-duplicados.png",
+      "http": 200,
+      "bytes": 78005,
+      "sha256": "7bdaa045c3643984d743ae5ccea071d6888f59143df9a75f1a117757541f08e0",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V09-respuesta-put-perdida.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V09-respuesta-put-perdida.png",
+      "http": 200,
+      "bytes": 86883,
+      "sha256": "f4870a8bff1779e0d4dffa2c71f4aa9022682c70a54b57726db765a5f7e6c4df",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V10-trece-guardados-paginados.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V10-trece-guardados-paginados.png",
+      "http": 200,
+      "bytes": 73878,
+      "sha256": "6d76df0ff455ff7e26eec5bca8cb1fbfa6c01883b47682499598e0990aa9d941",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V11-guardados-movil.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V11-guardados-movil.png",
+      "http": 200,
+      "bytes": 56454,
+      "sha256": "88ca162f67688c9d74d48e577aaa45933b7c37d6719dca28da83f61db7330073",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V11-pagina-dos-movil.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V11-pagina-dos-movil.png",
+      "http": 200,
+      "bytes": 56504,
+      "sha256": "de9500be51f75e86c7c9204c7626c7cef2f74ec1445c73ff210e0a512ecbc595",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V12-archivada-excluida-buscador.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V12-archivada-excluida-buscador.png",
+      "http": 200,
+      "bytes": 61459,
+      "sha256": "b5a344387a0ae41f99a05263d3c9aa4cd570fce2d94ec971843582b6a32a91c6",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V12-cerrada-excluida-buscador.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V12-cerrada-excluida-buscador.png",
+      "http": 200,
+      "bytes": 61961,
+      "sha256": "108b4cec1e5f20f5bac8dd6c7a42d722343a59521e9e13f0e855cf4d98f1739d",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V12-inactivas-cerrada-archivada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V12-inactivas-cerrada-archivada.png",
+      "http": 200,
+      "bytes": 88582,
+      "sha256": "d1ca222ac44c00b3b689c7cb0dbde0ff96b5ba3698347ead2778af120f3c68e6",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V12-inactivas-conservadas-con-estado.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V12-inactivas-conservadas-con-estado.png",
+      "http": 200,
+      "bytes": 88134,
+      "sha256": "b88b5c1356435c9c080765505e214a183767ec8de37958a1532f7965a1c589b5",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V13-inactivas-antes-retiro-movil.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V13-inactivas-antes-retiro-movil.png",
+      "http": 200,
+      "bytes": 65242,
+      "sha256": "e636b3f20dee610b5803f5ae087c4b70b2686d289487ed65c27ab44ba3000228",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V13-retirar-inactivas-movil.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V13-retirar-inactivas-movil.png",
+      "http": 200,
+      "bytes": 38287,
+      "sha256": "9d7ae56fea110cb0c65d8ef50fc6da1fb0b944e740321aa6e329a44b03ee21a0",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V14-sesion-401-real.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V14-sesion-401-real.png",
+      "http": 200,
+      "bytes": 62952,
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V15-rol-empresa-protegido.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V15-rol-empresa-protegido.png",
+      "http": 200,
+      "bytes": 71826,
+      "sha256": "a7d33b12faf08890d20742f69b676b87ea7d81b691c0a16ff8f763c2babb4658",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/HU017-V16-anonimo-protegido.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V16-anonimo-protegido.png",
+      "http": 200,
+      "bytes": 58246,
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "coincide": true
+    },
+    {
+      "archivo": "frontend/docs/evidencias/hu017-20261108/NAVEGADOR-01-login.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/NAVEGADOR-01-login.png",
+      "http": 200,
+      "bytes": 58246,
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "coincide": true
+    }
+  ]
+}

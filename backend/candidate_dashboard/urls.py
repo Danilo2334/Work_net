@@ -4,8 +4,11 @@ from .profile import ProfileView, ProfileRecordsView, ProfileRecordView, Profile
 from .selection import ApplicationProfileView, ApplicationProfilePhotoView
 from .offers import PublishOfferView, ActiveOffersView, EditOfferView, PreservedOffersView, TransitionOfferView
 from .search import SearchOffersView
+from .favorites import SavedOffersView, SavedOfferView
 
 urlpatterns = [
+    path("offers/saved/", SavedOffersView.as_view(), name="saved-offers"),
+    path("offers/<int:offer_id>/saved/", SavedOfferView.as_view(), name="saved-offer"),
     path("offers/search/", SearchOffersView.as_view(), name="search-offers"),
     path("company/offers/active/", ActiveOffersView.as_view(), name="active-company-offers"),
     path("company/offers/preserved/", PreservedOffersView.as_view(), name="preserved-company-offers"),

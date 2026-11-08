@@ -1,0 +1,166 @@
+{
+  "run": "browser-qa-20261108T161017-db5505e2",
+  "procedencia": "PNG originales Playwright del navegador real; sin edición; viewport emulado para móvil",
+  "archivos": [
+    {
+      "archivo": "HU017-V01-carga-real-retenida.png",
+      "sha256": "2b5cfbc151acbf6e179ced2c7d626703250cd3467fa4dd5868c4e2496a6f7ca3",
+      "bytes": 18751
+    },
+    {
+      "archivo": "HU017-V01-dashboard-acceso-y-acciones.png",
+      "sha256": "4d3df445048c26efac89ad18f1a0e6ab310733e3a56d6a66d57aadb9979d955d",
+      "bytes": 107762
+    },
+    {
+      "archivo": "HU017-V01-guardado-inicial.png",
+      "sha256": "0c3f6010872dcff53afe0e12581b2eeccf3f8aabff318c7825a7577caacd8456",
+      "bytes": 43420
+    },
+    {
+      "archivo": "HU017-V02-guardar-desde-busqueda.png",
+      "sha256": "ea72229d038824e1d6bb9869fc9b37cabbdc70c738cf0388ecf6f7a4743bb879",
+      "bytes": 81541
+    },
+    {
+      "archivo": "HU017-V02-lista-sincronizada.png",
+      "sha256": "357d1408677d26dabe8a2f3115f6323cd8db99706ed41eca35cc785eea2116f8",
+      "bytes": 63229
+    },
+    {
+      "archivo": "HU017-V02-retiro-reflejado-en-busqueda.png",
+      "sha256": "bdd7905158295491fa59e4100cefda8361263d345f3ddda2d4d07e1d6a937e72",
+      "bytes": 78742
+    },
+    {
+      "archivo": "HU017-V03-persistencia-nueva-sesion.png",
+      "sha256": "357d1408677d26dabe8a2f3115f6323cd8db99706ed41eca35cc785eea2116f8",
+      "bytes": 63229
+    },
+    {
+      "archivo": "HU017-V03-persistencia-recarga.png",
+      "sha256": "357d1408677d26dabe8a2f3115f6323cd8db99706ed41eca35cc785eea2116f8",
+      "bytes": 63229
+    },
+    {
+      "archivo": "HU017-V04-estado-privado-por-candidato.png",
+      "sha256": "bdd7905158295491fa59e4100cefda8361263d345f3ddda2d4d07e1d6a937e72",
+      "bytes": 78742
+    },
+    {
+      "archivo": "HU017-V04-otro-candidato-solo-propios.png",
+      "sha256": "f9b2bdc1f33b7ed2ded50e4a30bfaa6d0b381d590a2c01ccbbf25c86d0b163d2",
+      "bytes": 61498
+    },
+    {
+      "archivo": "HU017-V05-vacio-real.png",
+      "sha256": "b73a8bbdce7e2fc61f0bb795a1a4a243c06b060bb45017f28cedfde7ac234f2a",
+      "bytes": 28103
+    },
+    {
+      "archivo": "HU017-V06-503-inyectado.png",
+      "sha256": "394cc3d96708cdd4017ebbd07476f2775417277928b5944cd9c5fd57ec6c93df",
+      "bytes": 22229
+    },
+    {
+      "archivo": "HU017-V06-red-inyectada.png",
+      "sha256": "b8c07b33674a586eb4631b7f77b2d9176dc5e1e5dbb69bcca3363828713c15e2",
+      "bytes": 23056
+    },
+    {
+      "archivo": "HU017-V06-reintento-real.png",
+      "sha256": "e523819c13e3ce73e0e0d52333301975b54ae2b53d3f85ff926e02bbfdb7c8d5",
+      "bytes": 25191
+    },
+    {
+      "archivo": "HU017-V07-guardar-en-ofertas-recientes.png",
+      "sha256": "480053efba44c296dd16a376c816feebdba2e02ecfa4730e46d4d37774856a2d",
+      "bytes": 107795
+    },
+    {
+      "archivo": "HU017-V08-fallo-al-guardar-inyectado.png",
+      "sha256": "2e13fbccd25c4bfcba8aa4664b548f124988a294571ed44cddc07acfbe9923ca",
+      "bytes": 87512
+    },
+    {
+      "archivo": "HU017-V09-reconciliacion-sin-duplicados.png",
+      "sha256": "7bdaa045c3643984d743ae5ccea071d6888f59143df9a75f1a117757541f08e0",
+      "bytes": 78005
+    },
+    {
+      "archivo": "HU017-V09-respuesta-put-perdida.png",
+      "sha256": "f4870a8bff1779e0d4dffa2c71f4aa9022682c70a54b57726db765a5f7e6c4df",
+      "bytes": 86883
+    },
+    {
+      "archivo": "HU017-V10-trece-guardados-paginados.png",
+      "sha256": "6d76df0ff455ff7e26eec5bca8cb1fbfa6c01883b47682499598e0990aa9d941",
+      "bytes": 73878
+    },
+    {
+      "archivo": "HU017-V11-guardados-movil.png",
+      "sha256": "88ca162f67688c9d74d48e577aaa45933b7c37d6719dca28da83f61db7330073",
+      "bytes": 56454
+    },
+    {
+      "archivo": "HU017-V11-pagina-dos-movil.png",
+      "sha256": "de9500be51f75e86c7c9204c7626c7cef2f74ec1445c73ff210e0a512ecbc595",
+      "bytes": 56504
+    },
+    {
+      "archivo": "HU017-V12-archivada-excluida-buscador.png",
+      "sha256": "b5a344387a0ae41f99a05263d3c9aa4cd570fce2d94ec971843582b6a32a91c6",
+      "bytes": 61459
+    },
+    {
+      "archivo": "HU017-V12-cerrada-excluida-buscador.png",
+      "sha256": "108b4cec1e5f20f5bac8dd6c7a42d722343a59521e9e13f0e855cf4d98f1739d",
+      "bytes": 61961
+    },
+    {
+      "archivo": "HU017-V12-inactivas-cerrada-archivada.png",
+      "sha256": "d1ca222ac44c00b3b689c7cb0dbde0ff96b5ba3698347ead2778af120f3c68e6",
+      "bytes": 88582
+    },
+    {
+      "archivo": "HU017-V12-inactivas-conservadas-con-estado.png",
+      "sha256": "b88b5c1356435c9c080765505e214a183767ec8de37958a1532f7965a1c589b5",
+      "bytes": 88134
+    },
+    {
+      "archivo": "HU017-V13-inactivas-antes-retiro-movil.png",
+      "sha256": "e636b3f20dee610b5803f5ae087c4b70b2686d289487ed65c27ab44ba3000228",
+      "bytes": 65242
+    },
+    {
+      "archivo": "HU017-V13-retirar-inactivas-movil.png",
+      "sha256": "9d7ae56fea110cb0c65d8ef50fc6da1fb0b944e740321aa6e329a44b03ee21a0",
+      "bytes": 38287
+    },
+    {
+      "archivo": "HU017-V14-sesion-401-real.png",
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf",
+      "bytes": 62952
+    },
+    {
+      "archivo": "HU017-V15-rol-empresa-protegido.png",
+      "sha256": "a7d33b12faf08890d20742f69b676b87ea7d81b691c0a16ff8f763c2babb4658",
+      "bytes": 71826
+    },
+    {
+      "archivo": "HU017-V16-anonimo-protegido.png",
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "bytes": 58246
+    },
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "bytes": 58246
+    },
+    {
+      "archivo": "resultados.json",
+      "sha256": "d61615f814dca761ae5c1529390b0ae8a32688c00b882ac9c47039791f66b4e8",
+      "bytes": 22022
+    }
+  ]
+}

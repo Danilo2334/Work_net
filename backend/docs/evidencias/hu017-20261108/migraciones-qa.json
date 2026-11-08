@@ -1,0 +1,6 @@
+{
+  "run": "run-20261108T155805-1836ef4f",
+  "pendientes": 0,
+  "esquema": "SavedOffer existente con UNIQUE dashboard_unique_saved_offer; sin nuevas migraciones",
+  "comprobacion": "MigrationExecutor.migration_plan al conjunto de hojas; lectura sobre nueva QA, sin cambios"
+}
