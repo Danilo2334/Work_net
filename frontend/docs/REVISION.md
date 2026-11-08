@@ -1,5 +1,156 @@
 # Guía para revisar WorkNet
 
+<!-- hu019-hu020-vigente-inicio -->
+## HU019 — Historial de postulaciones / HU020 — Gestión y filtrado — 08/11/2026
+
+**Qué se hizo**
+
+HU019 amplía Mis postulaciones con los cuatro estados mínimos, detalle privado, documento enviado y actualización al entrar, volver o reconsultar. Conserva historial, privacidad, fechas y documentos de HU018. HU020 permite a la empresa aprobada elegir una oferta propia, consultar candidatos con nombres, filtrar/ordenar/paginar, abrir el perfil actual y el CV realmente enviado. Se integra desde ambos dashboards y recorridos de ofertas; incluye carga, vacío, errores, reintento y sesión en escritorio y móvil web.
+
+**HU019: siete criterios originales satisfechos en el alcance de lectura autorizado**
+
+| Criterio original | Evidencia vigente |
+|---|---|
+| Cargo de cada postulación | V01/V02, P02; cargo real de la oferta |
+| Empresa | V01/V02, P02; empresa de la oferta |
+| Fecha de postulación | V01/V02, P02; fecha original conservada |
+| Estado actual | V03–V05: GET después del cambio persistido por QA |
+| Cuatro estados mínimos | P02–P05, V01 y enum Dart/modelo coherentes |
+| Detalle de la postulación | V02/V06/V11; datos y PDF privados |
+| Cambios reflejados en el historial | V03 retorno, V04 Actualizar y V07 nueva sesión; actor ORM identificado |
+
+**HU020: diez criterios originales**
+
+| Criterio original | Evidencia vigente |
+|---|---|
+| Seleccionar oferta propia | V01, P01; 17 ofertas propias, incluye conservadas |
+| Listado de candidatos | V01/V02, P02/P03; 14 postulantes paginados |
+| Nombre de cada candidato | V01/V06, P02 |
+| Acceso al perfil | V06/V12, P25; perfil actual protegido |
+| CV utilizado en esa postulación | V07/V08, P33–P36; hash/copia enviada tras borrar fuente |
+| Filtro experiencia | V03/P04; nueve coincidencias Backend |
+| Filtro educación | V03/P05; seis coincidencias Ingenieria |
+| Filtro habilidades | V03/P06; seis coincidencias Python |
+| Orden de resultados | V05/P09/P10 y tests; desempate y páginas estables |
+| Solo empresa propietaria | V09/V10, P17–P24; 404 directo, 403 rol/aprobación, 401 sesión |
+
+**Preparación**
+
+Aceptación del **08/11/2026**, Windows. Base main `04832ede4b0b09bf336f95a9bb7cb7b2db2d3093`; referencias actualizadas sin avances posteriores al comenzar. Fuentes: Django [ac52411](https://github.com/Danilo2334/Work_net/commit/ac5241136d82e8c3385a07fdb118e93913e570c3); Flutter/ejecutor [4cd15ee](https://github.com/Danilo2334/Work_net/commit/4cd15eec2d0a8be0708f9abb86a1d07e37d28f0e). El producto Flutter probado es `348e68c` (lib/test idénticos en `c7cd35a` y `4cd15ee`); la última revisión añade cobertura móvil del historial. Publicación permanente de imágenes `3d26c94572a0d335b726b4799f4f4b4ca46be8c9`: identifica la publicación, no otra ejecución.
+
+Dos SQLite QA nuevas e independientes: **18 ofertas ficticias, 17 propias de la empresa principal, 27 postulaciones preparadas, 13 del candidato principal y 14 en la oferta 3**, dos históricas sin CV. Usuarios ficticios, correo a archivos, credenciales y entornos privados. CV subido y generado preparados mediante APIClient real existente; no se atribuye ese paso a una pantalla o login de Desktop.
+
+Navegador `browser-qa-20261108T191151-c475d817`: **28/28**, **64 PNG originales**, escritorio 1440×1000 y móvil web emulado 390×844. Incluye una nueva postulación por UI y un aviso interno: termina con 28 registros; conserva los 27 preparados. Postman Desktop `run-20261108T185525-5a36414f`, puerto 8099, servidor desde `0c8cd3f` con backend funcional idéntico a `ac52411`: **56 peticiones / 90 PASS**, 18 JPEG originales, una iteración, cero fallos/errores/omitidas. Desktop conserva 27 registros y no crea postulaciones ni avisos. Son dos corridas compartidas, sin sumar ni multiplicar sus casos por subtarea.
+
+Python 3.12.10, Django 6.1.1, DRF 3.18.3, Flutter 3.47.5, Dart 3.13.4, go_router 16.3.0, Playwright 1.65.0, Chromium 158.0.8127.18 y Postman Desktop 12.34.1. Windows/SQLite local; sin dispositivo físico, PostgreSQL ni prueba de carga.
+
+Reproducir en bases nuevas: `python frontend/tool/browser_qa/run.py --suite hu019-hu020 --frontend-ref HEAD --backend-ref HEAD`. Desktop: `python frontend/tool/browser_qa/hu01920_api.py prepare --port PUERTO_LIBRE`; servir con `python backend/postman/qa.py serve --run RUN_NUEVO`, importar los dos archivos de `import-hu019-hu020`, seleccionar únicamente ese entorno nuevo y ejecutar una iteración conservando respuestas. Contrastar con `python frontend/tool/browser_qa/hu01920_api.py contrast --run RUN_NUEVO`. No reutilizar una base consumida ni publicar el entorno. Colección noauth con variables privadas y guards de origen/puerto/run.
+
+**Contrato, filtros y documentos**
+
+HU019 reutiliza GET `/api/applications/`, `/api/applications/{id}/` y `/cv/` privados del candidato, con `submitted`/Enviada, `in_review`/En revisión, `accepted`/Aceptada y `rejected`/Rechazada coherentes entre modelo, migración, serialización, Dart y widgets. La creación de HU018 sigue siendo submitted; los recibos existentes pueden tener cualquiera de los cuatro estados. Historial por fecha e ID descendentes, page positiva, tamaño 1–50 (10 por defecto). Entrar, actualizar o volver reconsulta los datos; nunca modifica el estado.
+
+HU020 añade GET `/api/company/applicant-offers/` y `/api/company/offers/{id}/applications/` para empresa aprobada, verificada y propietaria; incluye ofertas conservadas cerradas/archivadas. Reutiliza detalle, perfil y PDF privados de HU018, con validación cruzada de oferta/candidato/postulación. Sesión ausente 401, rol/aprobación 403, recurso ajeno 404; respuestas privadas no-store/Vary Authorization.
+
+Filtros `experience`, `education`, `skill`: texto de hasta 100 caracteres sobre el **perfil actual**. Experiencia busca cargo, empresa y descripción; educación, título e institución; habilidades, nombre. Se adaptan las claves legadas ya admitidas por el perfil. No se comparan años, niveles ni IDs. NFKD/casefold, sin diacríticos, espacios normalizados y coincidencia literal parcial; AND entre filtros, sin unir frases entre registros. Ausencia de perfil/campo no coincide con un filtro no vacío. Filtros vacíos no restringen. Las proyecciones se mantienen al guardar el perfil y en las actualizaciones admitidas.
+
+Orden `newest`/`oldest`: fecha e ID; `name`/`name_desc`: nombre en minúsculas, ID de candidato e ID de postulación como desempate. page positiva, page_size 1–50 (default 10); rechaza orden desconocido, controles, repetidos, query ajena, longitudes inválidas y páginas inexistentes. Filtro y LIMIT se aplican en SQL antes de serializar; PDF diferido y sin N+1. URL conserva filtros/orden al paginar, Aplicar/Limpiar reinicia página 1. Perfil actual y copia del CV enviado se presentan como fuentes distintas; históricos sin copia muestran ausencia, sin reemplazo por el documento actual.
+
+**Rendimiento básico:** Windows/SQLite local, 18 ofertas y 27 postulaciones, 14 postulantes de la oferta elegida. Diez lecturas APIClient independientes del listado con Backend (9 coincidencias): 6 consultas SQL cada una, mediana 5,688 ms; primera 387,195 ms. Desktop: 5.029 ms total, media 20 ms, primera respuesta 515 ms. No mide carga ni permite extrapolar a producción.
+
+![HU019-V01 — consultar cargo, empresa, fecha y estado propios](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU019-V01-historial-estados.png)
+
+**Caso HU019-V01.** **Esperado:** consultar cargo, empresa, fecha y estado propios. **Obtenido:** Mis postulaciones presenta los cuatro estados persistidos. **Alcance demostrado:** lectura real de historial; los estados iniciales son fixtures QA.
+
+![HU019-V03 — reflejar un cambio persistido al actualizar](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU019-V03-detalle-revision-actor-qa.png)
+
+**Caso HU019-V03.** **Esperado:** reflejar un cambio persistido al actualizar. **Obtenido:** detalle muestra En revisión después del GET real. **Alcance demostrado:** estado guardado por estado_controlado_HU019 mediante ORM; no acción empresarial UI/API.
+
+![HU019-V11 / detalle móvil — abrir el detalle desde móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU019-V11-detalle-movil-rechazada.png)
+
+**Caso HU019-V11 / detalle móvil.** **Esperado:** abrir el detalle desde móvil web. **Obtenido:** detalle y acceso al CV enviados visibles. **Alcance demostrado:** navegación y diseño móvil de HU019.
+
+![HU019-P02 — leer una postulación propia](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/01-estado-enviada.jpg)
+
+**Caso HU019-P02.** **Esperado:** leer una postulación propia. **Obtenido:** GET HTTP 200, submitted, fecha y CV; Test Results PASS. **Alcance demostrado:** respuesta guardada de la ejecución Desktop indicada.
+
+![HU019-P03 — admitir in_review](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/02-estado-en-revision.jpg)
+
+**Caso HU019-P03.** **Esperado:** admitir in_review. **Obtenido:** GET HTTP 200 con En revisión y Test Results PASS. **Alcance demostrado:** catálogo de lectura sobre fixture persistida QA.
+
+![HU019-P13 — rechazar el detalle de otro candidato](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/06-privacidad-candidato.jpg)
+
+**Caso HU019-P13.** **Esperado:** rechazar el detalle de otro candidato. **Obtenido:** HTTP 404 y Test Results PASS. **Alcance demostrado:** identificador directo ajeno; P14 contrasta también el PDF.
+
+![HU020-V01 — seleccionar una oferta propia conservada](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V01-selector-conservadas.png)
+
+**Caso HU020-V01.** **Esperado:** seleccionar una oferta propia conservada. **Obtenido:** selector incluye ofertas propias cerradas y archivadas. **Alcance demostrado:** propiedad y consulta de postulaciones conservadas.
+
+![HU020-V04 — combinar experiencia, educación y habilidad](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V04-filtros-combinados.png)
+
+**Caso HU020-V04.** **Esperado:** combinar experiencia, educación y habilidad. **Obtenido:** cuatro candidatos coinciden. **Alcance demostrado:** resultado real de tres filtros AND; los valores aplicados constan en URL/resultados.
+
+![HU020-V05 / cambio — volver a página uno al modificar el filtro](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V05-cambio-reinicia-pagina.png)
+
+**Caso HU020-V05 / cambio.** **Esperado:** volver a página uno al modificar el filtro. **Obtenido:** Backend muestra nueve coincidencias desde página uno. **Alcance demostrado:** formulario, URL y consulta paginada sincronizados.
+
+![HU020-V12 / móvil — consultar postulantes en 390×844](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V12-lista-movil.png)
+
+**Caso HU020-V12 / móvil.** **Esperado:** consultar postulantes en 390×844. **Obtenido:** lista, nombres y acceso al detalle utilizables. **Alcance demostrado:** móvil web emulado con la misma API privada.
+
+![HU020-P07 — combinar Backend, Ingenieria y Python](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/13-filtros-combinados.jpg)
+
+**Caso HU020-P07.** **Esperado:** combinar Backend, Ingenieria y Python. **Obtenido:** HTTP 200 con cuatro coincidencias; Test Results PASS. **Alcance demostrado:** intersección AND de los tres filtros.
+
+![HU020-P17 — rechazar una oferta ajena](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/15-privacidad-empresa-oferta-ajena.jpg)
+
+**Caso HU020-P17.** **Esperado:** rechazar una oferta ajena. **Obtenido:** HTTP 404 y Test Results PASS. **Alcance demostrado:** control de propiedad real; P18–P20 cubren detalle, perfil y PDF.
+
+![HU020-V06 — abrir el perfil del postulante propio](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V06-perfil-actual-autorizado.png)
+
+**Caso HU020-V06.** **Esperado:** abrir el perfil del postulante propio. **Obtenido:** datos estructurados actuales del candidato ficticio. **Alcance demostrado:** reutiliza endpoint protegido HU018.
+
+![HU020-V08 / subido — abrir el PDF enviado después de borrar su fuente](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V08-pdf-uploaded.png)
+
+**Caso HU020-V08 / subido.** **Esperado:** abrir el PDF enviado después de borrar su fuente. **Obtenido:** PDF privado subido original renderizado. **Alcance demostrado:** hash y bytes contrastados en resultados; cambio/borrado por actor QA APIClient.
+
+![HU020-V08 / generado — mantener el PDF de plantilla originalmente enviado](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V08-pdf-generated.png)
+
+**Caso HU020-V08 / generado.** **Esperado:** mantener el PDF de plantilla originalmente enviado. **Obtenido:** copia generada original visible tras modificar y borrar la fuente. **Alcance demostrado:** hash y plantilla originales; no se reconstruye desde el perfil actual.
+
+![HU020-V13 — informar ausencia de CV en un registro previo](https://raw.githubusercontent.com/Danilo2334/Work_net/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/HU020-V13-historico-sin-cv.png)
+
+**Caso HU020-V13.** **Esperado:** informar ausencia de CV en un registro previo. **Obtenido:** detalle histórico indica que no tiene documento enviado. **Alcance demostrado:** no se atribuye un CV actual a una postulación sin copia.
+
+**Pruebas y revisión:** 212 pruebas Django y 158 Flutter aprobadas (14 y 10 nuevas respectivamente), 22 guards (18 Python/4 Node), check Django limpio, makemigrations sin cambios, análisis Flutter sin incidencias y compilación web JavaScript release correcta. La migración 0005 amplía el catálogo; 0006 rellena proyecciones derivadas sin cambiar JSON originales. Pruebas aisladas desde el esquema anterior conservan fechas, relaciones, fotografías, guardados, avisos y PDF congelados. Las nuevas migraciones se aplicaron en QA, plan pendiente cero. Regresiones HU018/documentos/dashboards incluidas; una postulación real nueva mantiene UNIQUE y un solo aviso. HU011/HU012/HU015 conservan sus cierres y reglas.
+
+Revisión técnica delegada autorizada del agente, sin revisión personal ni aprobación humana atribuida. Se corrigió la posibilidad interna de escribir directamente las proyecciones derivadas: las escrituras autorizadas recalculan desde JSON; las operaciones de lote incompatibles se rechazan. Sus pruebas específicas y la suite completa pasaron. No quedaron bloqueantes funcionales dentro de HU019/HU020.
+
+**Procedencia y límites:** cuatro estados iniciales preparados como fixtures. En navegador, `estado_controlado_HU019` persiste `submitted → in_review → accepted → rejected` mediante ORM `save(update_fields=['status'])`; luego se verifican GET, Actualizar y regreso al historial. No hay operación empresarial para cambiar estados, comentario, fecha de modificación ni notificación de transición: ese flujo permanece en HU021. El actor QA `candidate_ficticio` modifica/elimina fuentes de CV por APIClient; las pantallas sí obtienen y renderizan las copias privadas originales. Los 503 son fallos inyectados y el reintento utiliza HTTP real; el 401 corresponde a tokens realmente revocados.
+
+El control nativo rechazó tres vistas adicionales de resultados con `user input was detected in this window; call get_window_state before continuing`, incluso tras refrescar, volver a seleccionar e intervención local para maximizar. Se publican solo las 18 vistas Desktop efectivamente obtenidas; P28/P33/P35 no tienen una captura nativa adicional. La colección, resultado global, contraste y navegador acreditan esos casos. No hubo otra ejecución por abrir respuestas guardadas. El indicador histórico «1 Import Failed» es de HU016, no de la corrida vigente. La colección y el entorno se importaron por separado, sin abrir valores privados ni Vault.
+
+[Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/resultados-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/casos.postman_collection.json) · [Contraste Desktop](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/contraste-persistencia.json) · [Resultados navegador y actores](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/resultados.json) · [Manifest navegador](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/capturas-navegador.json) · [Manifest Desktop](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/capturas-desktop.json) · [Migraciones/rendimiento](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/migraciones-rendimiento.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/validacion-tecnica.json)
+
+**Dependencias y límites**
+
+HU005/#47/#50 avanza con historial completo y permanece abierta por mensajes HU022. HU006/#51/#53/#54 avanza con gestión de postulantes y mantiene mensajes HU022 y estadísticas HU024. No se cierran tareas con navegación parcial. Se conservan sus comentarios únicos, IDs, autores y antecedentes, y se actualizan los resúmenes padre. HU011/HU012/HU015 siguen cerradas; se verifican documentos y ofertas inactivas sin regresión. HU021 conserva el flujo empresarial de cambios de estado; HU022–HU027 no se inician.
+
+**Publicación y cierre**
+
+Danilo2334 publica Django y sus pruebas; francisco3788 publica Flutter y sus pruebas, integración y aceptación. Cuenta, autor y committer se comprueban por separado; se preservan las autorías históricas. API [#183](https://github.com/Danilo2334/Work_net/pull/183) → feature/backend-sprint-3 (`c0ee3c7`), [#185](https://github.com/Danilo2334/Work_net/pull/185) → develop (`f505f22`); Flutter [#184](https://github.com/Danilo2334/Work_net/pull/184) → frontend (`19d7590`), backend revisado [#186](https://github.com/Danilo2334/Work_net/pull/186) → frontend (`3f1cd76`). Ampliación QA móvil, evidencias y guía en [#187](https://github.com/Danilo2334/Work_net/pull/187); entrega conjunta [#188](https://github.com/Danilo2334/Work_net/pull/188). El SHA final remoto, closed/completed, Status Done y cada contador **4/4 — 100 %** se contrastan después de integrar main y se registran en los seguimientos únicos; este registro previo a la fusión no sustituye esa verificación.
+
+Seguimientos específicos: [#104](https://github.com/Danilo2334/Work_net/issues/104#issuecomment-6726051397) · [#105](https://github.com/Danilo2334/Work_net/issues/105#issuecomment-6726051608) · [#106](https://github.com/Danilo2334/Work_net/issues/106#issuecomment-6726056648) · [#107](https://github.com/Danilo2334/Work_net/issues/107#issuecomment-6726056804) · [#108](https://github.com/Danilo2334/Work_net/issues/108#issuecomment-6726056988) · [#109](https://github.com/Danilo2334/Work_net/issues/109#issuecomment-6726057151) · [#110](https://github.com/Danilo2334/Work_net/issues/110#issuecomment-6726057346) · [#111](https://github.com/Danilo2334/Work_net/issues/111#issuecomment-6726057526). [Carga pública y hashes de las 82 imágenes](../../backend/docs/evidencias/hu019-hu020-20261108/verificacion-publicacion.json).
+
+<details>
+<summary>Antecedentes operativos y resultados anteriores</summary>
+
+La primera corrida válida `browser-qa-20261108T185550-3f7c2717`, Flutter `c7cd35a`, aprobó 27/27 y produjo 61 PNG. Se conserva privada íntegra como antecedente. La revisión añadió el recorrido específico de historial/detalle/PDF móvil; se ejecutó otra base nueva completa, la corrida vigente de 28/28 citada arriba. No son 55 casos diferentes. Los resultados HU018 y anteriores permanecen debajo con su fecha y alcance; sus pendientes históricos no reemplazan el estado vigente.
+
+</details>
+
+<!-- hu019-hu020-vigente-fin -->
+
 <!-- hu018-vigente-inicio -->
 ## HU018 — Postulación a oferta de empleo — 08/11/2026
 

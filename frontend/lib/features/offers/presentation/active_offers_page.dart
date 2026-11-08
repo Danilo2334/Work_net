@@ -172,6 +172,15 @@ class _ActiveOffersPageState extends State<ActiveOffersPage> {
             title: offer.draft.title,
             children: [
               Text(offer.draft.location),
+              TextButton(
+                key: Key('offer_applicants_${offer.id}'),
+                onPressed: _saving
+                    ? null
+                    : () => context.push(
+                        '/company/offers/${offer.id}/applicants',
+                      ),
+                child: const Text('Ver postulantes'),
+              ),
               if (_preserved) ...[
                 Text(
                   offer.status == 'closed'

@@ -1,0 +1,18 @@
+{
+  "offers": 18,
+  "applications": 27,
+  "own_applications": 13,
+  "new_applications": 0,
+  "new_notices": 0,
+  "duplicates": 0,
+  "old_application_content_dates_relations_and_pdfs_unchanged": true,
+  "old_notices_unchanged": true,
+  "profiles_offers_and_saved_unchanged": true,
+  "snapshot_hashes_and_pdf_valid": true,
+  "controlled_status": "submitted",
+  "legacy_without_cv": 2,
+  "sources_remaining": {
+    "uploaded": 0,
+    "generated": 0
+  }
+}

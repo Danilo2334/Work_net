@@ -35,6 +35,8 @@ async function main() {
   const hu016 = cfg.suite === 'hu016';
   const hu017 = cfg.suite === 'hu017';
   const hu018 = cfg.suite === 'hu018';
+  const hu01920 = cfg.suite === 'hu019-hu020';
+  if(hu01920) assert.equal(bridge('hu01920_prepare').offers,18);
   if (hu018) assert.equal(bridge('hu018_prepare').offers, 17);
   if (hu017) assert.equal(bridge('hu017_prepare').offers, 17);
   if (hu016) assert.equal(bridge('hu016_prepare').offers, 1024);
@@ -89,7 +91,8 @@ async function main() {
     assert.equal(authenticating, false);
     const captureUrl=new URL(page.url());
     const allowedReturn=hu018 && /^\/curriculum(?:\/create)?$/.test(captureUrl.pathname) && /^\?apply_offer=[1-9]\d*$/.test(captureUrl.search);
-    if(!allowedReturn) assert.equal(captureUrl.search, '');
+    const allowedApplicantQuery=hu01920&&require('./safe_applicant_query.cjs')(captureUrl);
+    if(!allowedReturn&&!allowedApplicantQuery) assert.equal(captureUrl.search, '');
     const password = page.getByRole('textbox', { name: 'Contraseña', exact: true });
     if (await password.count()) assert.equal(await password.inputValue(), '');
     await page.waitForTimeout(450);
@@ -229,7 +232,9 @@ async function main() {
       await page.getByRole('textbox', { name: 'Correo electrónico', exact: true }).waitFor();
       await capture('login');
     });
-    if (hu018) {
+    if (hu01920) {
+      await require('./hu01920.cjs')({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results});
+    } else if (hu018) {
       await require('./hu018.cjs')({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results});
     } else if (hu017) {
       await require('./hu017.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
@@ -407,11 +412,11 @@ async function main() {
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
     }
-    const expected = hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
+    const expected = hu01920 ? 28 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
     assert.equal(results.casos.length, expected);
     assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
-    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 && !hu016 && !hu017 && !hu018 ? { pdf_texto_coincidente: true } : {}) };
+    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 && !hu016 && !hu017 && !hu018 && !hu01920 ? { pdf_texto_coincidente: true } : {}) };
     results.resultado = 'aprobado'; save(); console.log(expected + '/' + expected + ' OK; sin aprobación humana.');
   } catch (error) {
     results.resultado = 'fallido'; results.ultimo_caso = active; save();

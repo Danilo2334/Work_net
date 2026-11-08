@@ -1,0 +1,164 @@
+[
+  {
+    "archivo": "00-resumen-desktop.jpg",
+    "nota": "56 peticiones, 90 PASS, cero fallos/errores/omitidas, una iteración. Postman Desktop real contra QA8099.",
+    "fecha": "2026-11-08T19:06:27.243Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "126efab287784a1dfd69d1b78cf3206e20185f47f53d00de0c2849f7d428ea11"
+  },
+  {
+    "archivo": "01-estado-enviada.jpg",
+    "nota": "HU019-P02: GET propio, HTTP 200, submitted/Enviada, fecha y CV subido; Test Results PASS.",
+    "fecha": "2026-11-08T19:07:15.760Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "5f0e5b15a9e081ddb3c65c59ec362cc7ed080ff46a2cc61a6bd193b30880fd8d"
+  },
+  {
+    "archivo": "02-estado-en-revision.jpg",
+    "nota": "HU019-P03: GET propio, HTTP 200, in_review/En revisión y CV generado conservado; Test Results PASS. Estado preparado por actor QA.",
+    "fecha": "2026-11-08T19:07:47.586Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "5c94f7be78b19e0497ae247b2adb8db96c5e55d9e68831237dcf9fa16d4c8219"
+  },
+  {
+    "archivo": "03-estado-aceptada.jpg",
+    "nota": "HU019-P04: GET propio, HTTP 200, accepted/Aceptada, fecha y documento enviados conservados; Test Results PASS. Estado de fixture QA.",
+    "fecha": "2026-11-08T19:08:16.837Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "f8035c507eb859c0f1befb74fbd44f309fec27a05a5f46251f60c5fc33569a7d"
+  },
+  {
+    "archivo": "04-estado-rechazada.jpg",
+    "nota": "HU019-P05: GET propio, HTTP 200, rejected/Rechazada; fecha, oferta y CV conservados, Test Results PASS. Estado de fixture QA.",
+    "fecha": "2026-11-08T19:08:52.152Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "1779de527a0e86e2a3be8acce228d7d2a7e98a43fe7267caad698801d3db95f2"
+  },
+  {
+    "archivo": "05-historial-pagina-dos.jpg",
+    "nota": "HU019-P11: GET page2/page_size10, count13, página2de2; HTTP200 y Test Results PASS, sin duplicados y con dos históricos sin CV verificados en la aserción.",
+    "fecha": "2026-11-08T19:09:50.257Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "9c7d686a275f4ed0be821edc1acacfbe5134ed2e2403427a30bc4758595ef0ef"
+  },
+  {
+    "archivo": "06-privacidad-candidato.jpg",
+    "nota": "HU019-P13: otro candidato consulta application13; HTTP404 y Test Results PASS, sin acceso al detalle ajeno.",
+    "fecha": "2026-11-08T19:10:49.572Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "49fc6ee7eeb9ff3a5567c10599563a88a9e7edade4d80004e8b67e145e7b7239"
+  },
+  {
+    "archivo": "07-seleccion-ofertas-propias.jpg",
+    "nota": "HU020-P01: selector de empresa aprobada, count17 propias y paginación limitada; HTTP200 y Test Results PASS. Excluye la oferta18 de otra empresa.",
+    "fecha": "2026-11-08T19:13:11.689Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "68d2becabd6d8057a0b13d300d293a6ac36b38da05a3e09a892db47d195dd144"
+  },
+  {
+    "archivo": "08-listado-propio-paginado.jpg",
+    "nota": "HU020-P02: oferta3 cerrada, 14 postulantes propios, página1 limitada a10 y filter_scope current_profile; HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:14:14.972Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "6983ee082a1716417c1481ddb22e05c7ceff7c871fd9b7c5956912e4aee01fbe"
+  },
+  {
+    "archivo": "09-nombre-fecha-estado-y-cv.jpg",
+    "nota": "HU020-P02: nombre del postulante ficticio13, fecha/estado y referencia de su copia CV; HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:14:36.546Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "74248ee5951c1580df3d09447b2c327995451586f6aa291194dcd7cf58dd3c12"
+  },
+  {
+    "archivo": "10-filtro-experiencia.jpg",
+    "nota": "HU020-P04: experience=BACKEND consulta puesto, empresa o descripción del perfil actual; count9, HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:15:18.667Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "a55963166c3dcf9708531caddc8869ddc9a62335645dcd2874f8d81a36efde47"
+  },
+  {
+    "archivo": "11-filtro-educacion.jpg",
+    "nota": "HU020-P05: education=INGENIERIA coincide con título/institución del perfil actual sin distinguir tildes; count6, HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:16:51.070Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "9c5182d684dbe8e2e578b2e4f56ad19b822f3d91bf6ce7c8586c5ede15609e63"
+  },
+  {
+    "archivo": "12-filtro-habilidad.jpg",
+    "nota": "HU020-P06: skill=pYtHoN consulta el nombre de habilidad del perfil actual; count6, HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:17:25.084Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "22bc4941b22d50aae54318ee98dd9869a16e87d0bd00a4c0213333018806f8bc"
+  },
+  {
+    "archivo": "13-filtros-combinados.jpg",
+    "nota": "HU020-P07: experience=Backend, education=Ingenieria y skill=Python combinados con AND; count4, HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:18:01.652Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "3e76a234b14923c351ad2da4a167589f6aa8dc1f83c2ebb8068747c1163910ca"
+  },
+  {
+    "archivo": "14-resultado-vacio.jpg",
+    "nota": "HU020-P08: education=Doctorado, count0, applications vacío y total_pages0; HTTP200 y Test Results PASS.",
+    "fecha": "2026-11-08T19:18:57.654Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "84dd0a9d148ef039956938f132362476e727552b861c08d1f09c5652ca8bfeb8"
+  },
+  {
+    "archivo": "15-privacidad-empresa-oferta-ajena.jpg",
+    "nota": "HU020-P17: empresa principal consulta oferta18 ajena por ID; HTTP404 y Test Results PASS. P18–P20 cubren detalle, perfil y PDF ajenos.",
+    "fecha": "2026-11-08T19:20:15.638Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "a6d8c0a20f8c34b1e7f2b5a179ea29870bc8a1cd52ac915f8f38aa775a4c9feb"
+  },
+  {
+    "archivo": "16-perfil-actual-autorizado.jpg",
+    "nota": "HU020-P25: empresa de la oferta3 obtiene nombre y perfil actual con educación y experiencia, HTTP200 y Test Results PASS; sin campos privados de cuenta.",
+    "fecha": "2026-11-08T19:20:54.905Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "3879d4a5f9e9a7a436e3c36366bae56fa9d5fa79ef326d53dd6f445a74415a11"
+  },
+  {
+    "archivo": "17-perfil-experiencia-educacion-habilidades.jpg",
+    "nota": "HU020-P25: campos estructurados actuales, experiencia Backend, Ingeniería y habilidades Python/Django; HTTP200 y Test Results PASS. Estos campos alimentan filtros, no el PDF congelado.",
+    "fecha": "2026-11-08T19:21:03.200Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "e73df940fd8c84bd422431008cf7edf8e208970b3e02e842585d7b5d75dce0b6"
+  }
+]

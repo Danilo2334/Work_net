@@ -1,0 +1,29 @@
+{
+  "fecha": "2026-11-08",
+  "backend_sha": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+  "frontend_sha": "4cd15eec2d0a8be0708f9abb86a1d07e37d28f0e",
+  "django": {
+    "total": 212,
+    "resultado": "aprobado",
+    "duracion_s": 41.902,
+    "nuevas_historial_y_postulantes": 14,
+    "check": "sin incidencias",
+    "makemigrations_check_dry_run": "sin cambios"
+  },
+  "flutter": {
+    "total": 158,
+    "resultado": "aprobado",
+    "nuevas_historial_y_postulantes": 10,
+    "analyze": "sin incidencias",
+    "build_web": "JavaScript release aprobado en orquestador de aceptación",
+    "fuente_funcional": "348e68c: mismos archivos lib/test en c7cd35a y 4cd15ee; la última revisión solo amplía el ejecutor con el recorrido móvil de historial/detalle."
+  },
+  "guards": {
+    "python": 18,
+    "node": 4,
+    "resultado": "aprobado"
+  },
+  "revision": "Revisión técnica delegada autorizada, sin aprobación humana. Se impide la escritura directa de proyecciones derivadas del perfil; pruebas de integridad aprobadas. No quedaron bloqueantes de backend ni Flutter.",
+  "estado_qa": "Los cuatro estados fueron preparados en fixtures; el cambio posterior submitted→in_review→accepted→rejected corresponde al actor QA identificado y a lecturas GET reales. No se creó flujo empresarial HU021, comentario, fecha de modificación ni notificación de transición.",
+  "limites": "Windows/SQLite local; móvil web emulado 390x844, sin dispositivo físico ni PostgreSQL ni prueba de carga. Los filtros consultan perfil actual; el CV abierto es la copia enviada. Fallos503 de aceptación inyectados y recuperados con petición real."
+}
