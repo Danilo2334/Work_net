@@ -1,6 +1,7 @@
 import 'package:worknet/core/api/worknet_api.dart';
 
 import '../domain/search.dart';
+import 'offer_parser.dart';
 
 class HttpOfferSearchRepository implements OfferSearchRepository {
   HttpOfferSearchRepository(this.api);
@@ -35,29 +36,8 @@ class HttpOfferSearchRepository implements OfferSearchRepository {
           previous != (current > 1 ? current - 1 : null)) {
         throw const FormatException();
       }
-      String field(Map<String, dynamic> row, String key) {
-        final value = row[key] as String;
-        return value;
-      }
-
       final offers = (body['offers'] as List).map((raw) {
-        final row = raw as Map<String, dynamic>;
-        final salary = row['salary'] as String?;
-        if ((row['id'] as int) <= 0 ||
-            (salary != null &&
-                !RegExp(r'^\d{1,10}\.\d{2}$').hasMatch(salary))) {
-          throw const FormatException();
-        }
-        return SearchOffer(
-          id: row['id'] as int,
-          title: field(row, 'title'),
-          companyName: field(row, 'company_name'),
-          location: field(row, 'location'),
-          contractType: field(row, 'contract_type'),
-          category: field(row, 'category'),
-          salary: salary,
-          publishedAt: DateTime.parse(field(row, 'published_at')),
-        );
+        return parseOffer(raw as Map<String, dynamic>);
       }).toList();
       final expected = count == 0
           ? 0
