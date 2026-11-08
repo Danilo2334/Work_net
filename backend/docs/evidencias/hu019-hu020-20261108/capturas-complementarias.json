@@ -1,0 +1,38 @@
+[
+  {
+    "archivo": "18-historico-sin-cv.jpg",
+    "nota": "HU020-P28: GET histórico HTTP200, cv:null y Test Results PASS; no se inventa documento.",
+    "fecha_captura_utc": "2026-11-08T22:36:58.286Z",
+    "run_original": "run-20261108T185525-5a36414f",
+    "ejecucion_original": "2026-11-08 14:05:14 America/Bogota",
+    "postman": "12.34.1",
+    "fuente_backend": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+    "procedencia": "Respuesta guardada de la ejecución original; no nueva petición ni nueva QA",
+    "formato": "JPEG original Windows.Graphics.Capture",
+    "sha256": "3f1a0c84d184999023cf3d9e46c51fd544b032d60ab089b20fa1cafc56275e9c"
+  },
+  {
+    "archivo": "19-copia-subida-conservada.jpg",
+    "nota": "HU020-P33: GET HTTP200, source uploaded, filename/hash/tamaño originales tras eliminar fuente; Test Results PASS.",
+    "fecha_captura_utc": "2026-11-08T22:37:14.953Z",
+    "run_original": "run-20261108T185525-5a36414f",
+    "ejecucion_original": "2026-11-08 14:05:14 America/Bogota",
+    "postman": "12.34.1",
+    "fuente_backend": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+    "procedencia": "Respuesta guardada de la ejecución original; no nueva petición ni nueva QA",
+    "formato": "JPEG original Windows.Graphics.Capture",
+    "sha256": "e3ae9901391fabff16273363de9b16c2155083daba5be20a78fc36afb49a0785"
+  },
+  {
+    "archivo": "20-copia-generada-conservada.jpg",
+    "nota": "HU020-P35: GET HTTP200, source generated, plantilla moderna/hash/tamaño originales tras modificar y eliminar fuente; Test Results PASS.",
+    "fecha_captura_utc": "2026-11-08T22:38:03.399Z",
+    "run_original": "run-20261108T185525-5a36414f",
+    "ejecucion_original": "2026-11-08 14:05:14 America/Bogota",
+    "postman": "12.34.1",
+    "fuente_backend": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+    "procedencia": "Respuesta guardada de la ejecución original; no nueva petición ni nueva QA",
+    "formato": "JPEG original Windows.Graphics.Capture",
+    "sha256": "776ac67ab90031ce78b220f4e277b19cbbe68e4b41ea681d2b1712988b119025"
+  }
+]
