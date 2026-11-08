@@ -14,10 +14,15 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseC
     await baseClick(name,role);
   };
   const write=async(name,value)=>{
-    const target=()=>page.getByRole('textbox',{name,exact:true});
+    const label=name==='Mensaje de texto'?/^Mensaje de texto(?:\s|$)/:name;
+    const target=()=>page.getByRole('textbox',{name:label,exact:typeof label==='string'});
     if(await target().count()===0)await top();
     if(await target().count()===0)await bottom();
-    await baseWrite(name,value);
+    try { await baseWrite(label,value); }
+    catch(error) {
+      results.diagnostico_campo_qa={requested:name,role_count:await target().count(),labels:await page.getByRole('textbox').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('aria-label')).filter(n=>n&&/^(Mensaje de texto|Comentario opcional|Contacto u oferta)/.test(n)))};
+      throw error;
+    }
   };
   const waitText=async(text)=>{
     results.ultimo_texto_esperado=text;
