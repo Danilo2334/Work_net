@@ -1,5 +1,34 @@
 # Pruebas del backend en Postman
 
+## Contrato de postulación HU018
+
+Se reutilizan `Application`, su UNIQUE candidato–oferta y `Notification`.
+`GET /api/offers/{id}/application/` devuelve oferta, nombre propio, opciones de CV
+propias (`source`, `id`, `revision`, `label`) y postulación existente, si la hay.
+`POST` en esa ruta acepta únicamente `cv_source` (`uploaded`/`generated`), `cv_id`,
+`cv_revision` y `confirm: true`. Sesión candidata verificada y sin privilegios.
+La propiedad y versión se vuelven a comprobar bajo transacción; solo se crean
+postulaciones para ofertas visibles activas, con vigencia revalidada al insertar.
+
+201 crea; repetir devuelve 200 con la misma postulación, fecha y copia de CV,
+incluso si cambia la selección o la fuente se borra después. No sobrescribe
+documentos. Una copia privada PDF, metadatos, versión y SHA256 quedan almacenados
+independientemente del CV mutable. El aviso interno a la empresa se crea en la
+misma transacción y tiene un vínculo OneToOne; aparece en su dashboard existente.
+No se confunde con correo ni push. SQLite reintenta bloqueos de escritura de forma
+acotada; 503 exige consultar antes de repetir. Los permisos Token reales se prueban
+por separado de la concurrencia de mutaciones con autenticación aislada.
+
+`GET /api/applications/` ofrece historial básico propio (página positiva, diez por
+defecto, máximo cincuenta), fecha, estado inicial `submitted`/Enviada, empresa,
+oferta y CV. `GET /api/applications/{id}/` y su sufijo `cv/` permiten consultar
+la postulación o PDF propios. La empresa aprobada de esa oferta puede consultar
+`/api/company/applications/{id}/` y `cv/`; otros actores reciben 404/403.
+Los documentos usan los encabezados privados del visor existente, sin URL pública.
+Cerrar/archivar conserva la postulación, su copia y su consulta autorizada.
+Los registros anteriores a HU018 mantienen CV nulo; la migración no lo inventa.
+No se añaden filtros/gestión de estados de HU019/HU023.
+
 ## Contrato de favoritos HU017
 
 Se reutiliza `SavedOffer` y el UNIQUE `dashboard_unique_saved_offer` existente
