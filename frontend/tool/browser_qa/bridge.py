@@ -81,6 +81,18 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu018_'):
+        require(config.get('suite') == 'hu018')
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('hu018_qa', root / 'source/frontend/tool/browser_qa/hu018_api.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        if action == 'hu018_prepare':
+            return module.fixtures(run)
+        if action == 'hu018_snapshot':
+            return module.contrast(run)
+        require(action in ('hu018_delete_uploaded','hu018_delete_generated','hu018_restore_sources','hu018_change_generated','hu018_close_stale','hu018_archive_stale'))
+        return module.action(run, action.removeprefix('hu018_'))
     if action.startswith('hu017_'):
         require(config.get('suite') == 'hu017')
         import importlib.util

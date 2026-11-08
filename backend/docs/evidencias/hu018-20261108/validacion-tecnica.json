@@ -1,0 +1,11 @@
+{
+  "fecha": "2026-11-08",
+  "backend_sha": "5d7c6f2535708d43bc88f7365d8d54886958b0c8",
+  "frontend_sha": "15c480432526980adb4e9560a01c00773c2cff20",
+  "django": {"total": 198, "resultado": "aprobado", "foco_postulaciones": 18, "check": "sin incidencias", "makemigrations_check_dry_run": "sin cambios", "concurrencia": "cuatro envíos simultáneos en SQLite, un registro y un aviso"},
+  "flutter": {"total": 148, "resultado": "aprobado", "foco_postulaciones": 11, "analyze": "sin incidencias", "build_web": "JavaScript release aprobado por el orquestador de aceptación"},
+  "guards_qa": {"total": 16, "resultado": "aprobado", "comando": "python -m unittest discover -s frontend/tool/browser_qa -p test_safety.py"},
+  "revision": "Revisión técnica delegada autorizada. Se corrigieron la expiración de la oferta durante la preparación del PDF y el retorno a la oferta después de crear un CV. No representa una aprobación personal humana.",
+  "limites": "Windows y SQLite local, móvil web emulado; no dispositivo físico, PostgreSQL, prueba de carga ni entrega de correo externo. El aviso empresarial es la notificación interna real del dashboard existente.",
+  "procedencia": "Resultados observados al ejecutar las suites en checkouts HU018 aislados. Este archivo es un resumen técnico; las capturas, métricas y contrastes de aceptación conservan sus propias corridas y fuentes. No es una exportación automática del Runner Postman."
+}

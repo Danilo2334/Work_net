@@ -1,5 +1,130 @@
 # Guía para revisar WorkNet
 
+<!-- hu018-vigente-inicio -->
+## HU018 — Postulación a oferta de empleo — 08/11/2026
+
+**Qué se hizo**
+
+El candidato abre Postularme desde búsqueda o Guardados, elige un CV propio subido o generado, revisa y confirma. Se reutilizan el perfil y documentos disponibles. El recibo aparece únicamente tras aceptación real del servidor; hay estados de carga, validación, ausencia de CV con retorno a la oferta, errores, recuperación de respuesta perdida y sesión protegida. Mis postulaciones ofrece la consulta básica requerida por HU018.
+
+Se reutilizan Application, su UNIQUE candidato–oferta, los modelos de CV y Notification. Se registra fecha, estado submitted y una copia inmutable del PDF con origen, ID, revisión, nombre, plantilla, tamaño y SHA256. Candidato y destinatario se resuelven desde sesión y oferta. Una transacción crea registro, copia y aviso interno; repetir devuelve el recibo original sin avisos adicionales. Se validan propiedad, revisión, disponibilidad y oferta activa, con rutas privadas para candidato y empresa propietaria. Los registros anteriores conservan relaciones y fecha sin inventar documentos.
+
+Se conectan búsqueda y Guardados con selección, revisión, POST y recibo real. El dashboard empresarial existente recibe exactamente un aviso interno por alta, dirigido a la empresa dueña de la oferta. Mis postulaciones permite al candidato reconsultar fecha, empresa, oferta, estado y PDF enviado. GET recupera un envío aceptado con respuesta perdida; recarga, nueva sesión y cierre/archivo conservan el historial y documentos. Esta consulta y notificación básicas satisfacen HU018 y no completan el alcance adicional de HU019/HU023.
+
+| Criterio original HU018 | Comprobación vigente |
+|---|---|
+| Solo ofertas activas | P27–P36, V07/V08/V17; nueva aplicación 404 y sin confirmación |
+| Elegir CV subido o generado | P02/P07, V02/V03; ofertas 3 y 4, documentos distintos |
+| Flujo corto con datos disponibles | V01–V03: elegir, revisar y confirmar; sin repetir perfil |
+| Sin duplicados | P03/P08/P51; UNIQUE y cuatro envíos simultáneos en Django |
+| Confirmación correcta | V02/V03 y V13: recibo solo tras aceptación o GET conciliado |
+| Notificación empresarial | P12/P13/P52 y V06/V15; un aviso interno por nueva alta a la empresa propietaria |
+| Fecha registrada | POST 201, historial, recarga y nueva sesión V04 |
+| Historial del candidato | GET propio paginado, V04/V16/V17 y PDF privado congelado |
+
+**Preparación**
+
+Aceptación del **08/11/2026**, Windows. Fuentes confirmadas: Django `5d7c6f2535708d43bc88f7365d8d54886958b0c8`; Flutter/suite `15c480432526980adb4e9560a01c00773c2cff20`. Publicación de imágenes `55264de29a1fe7f8ea74f3c3311ce978044767b0`: este SHA publica evidencia, no identifica una ejecución nueva.
+
+Dos SQLite QA nuevas e independientes: 17 ofertas ficticias (13 activas), dos postulaciones históricas sin CV, seis guardados propios y dos ajenos, candidatos y empresas ficticios, CV propio subido y generado. Correo a archivos y credenciales privadas. Navegador `browser-qa-20261108T172546-51286d0c`: **20/20** (19 casos HU018 y un control), 44 PNG originales, tres altas y tres avisos, además de los dos registros previos. Postman `run-20261108T172019-b5651a29`, puerto 8098, servidor desde `d05d8b96` con backend funcional idéntico a `5d7c6f2`: **58 peticiones / 95 PASS**, 19 JPEG nativos, dos altas y dos avisos. Los conteos son compartidos entre subtareas; no se multiplican por reutilizar imágenes.
+
+Python 3.12.10, Django 6.1.1, DRF 3.18.3, Flutter 3.47.5, Dart 3.13.4, go_router 16.3.0, Chromium 158.0.8127.18, Playwright 1.65.0 y Postman Desktop 12.34.1. Escritorio 1440×1000 y móvil web emulado 390×844; Postman 1536×864. No dispositivo físico ni PostgreSQL.
+
+Reproducir en otra base nueva desde un commit integrado: `python frontend/tool/browser_qa/run.py --suite hu018 --frontend-ref HEAD --backend-ref HEAD`. Desktop: `python frontend/tool/browser_qa/hu018_api.py prepare --port PUERTO_LIBRE`, servir con `python backend/postman/qa.py serve --run RUN_NUEVO`, importar los dos archivos de `import-hu018`, seleccionar solo ese entorno y ejecutar una iteración conservando respuestas. Contrastar con `python frontend/tool/browser_qa/hu018_api.py contrast --run RUN_NUEVO`. El preparador usa APIClient real para crear los dos CV y tokens locales tras verificar contraseñas; no acredita upload ni login por Desktop. Colección noauth con cabeceras referidas a variables privadas y guards de origen/puerto/run. No publicar el entorno ni sus valores.
+
+![V02 / CV subido — confirmar después de un POST aceptado](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V02-confirmacion-uploaded.png)
+
+**Caso V02 / CV subido.** **Esperado:** confirmar después de un POST aceptado. **Obtenido:** recibo real de oferta 3, fecha y CV subido; PDF obtenido por la ruta privada. **Alcance demostrado:** selección y envío real HU011; el hash se contrasta en resultados.json.
+
+![V03 / CV generado — postular desde Guardados con un CV generado propio](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V03-confirmacion-generated.png)
+
+**Caso V03 / CV generado.** **Esperado:** postular desde Guardados con un CV generado propio. **Obtenido:** oferta 4 confirmada con curriculum-moderna.pdf y fecha. **Alcance demostrado:** selección y envío real HU012; no se sustituye por el CV subido.
+
+![P02 — crear una postulación con CV subido propio](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/01-postulacion-cv-subido.jpg)
+
+**Caso P02.** **Esperado:** crear una postulación con CV subido propio. **Obtenido:** POST oferta 3: HTTP 201, created true, ID, fecha, source uploaded y hash; Test Results PASS. **Alcance demostrado:** contrato de creación real y trazabilidad del documento elegido.
+
+![P07 — crear otra postulación con CV generado propio](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/03-postulacion-cv-generado.jpg)
+
+**Caso P07.** **Esperado:** crear otra postulación con CV generado propio. **Obtenido:** POST oferta 4: HTTP 201, source generated, plantilla moderna, fecha y hash; Test Results PASS. **Alcance demostrado:** ambos tipos de CV en ofertas distintas, sin confundir los documentos.
+
+![P12 — entregar un aviso interno por cada nueva postulación a su empresa](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/05-avisos-empresa-destinataria.jpg)
+
+**Caso P12.** **Esperado:** entregar un aviso interno por cada nueva postulación a su empresa. **Obtenido:** GET dashboard de la empresa: dos avisos con título y fecha, HTTP 200 y Test Results PASS. **Alcance demostrado:** destinatario real por oferta; contraste de base confirma relación uno a uno.
+
+![V04 — consultar las postulaciones después de recargar y volver a iniciar sesión](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V04-historial-nueva-sesion.png)
+
+**Caso V04.** **Esperado:** consultar las postulaciones después de recargar y volver a iniciar sesión. **Obtenido:** Mis postulaciones conserva ambos envíos y los dos registros históricos. **Alcance demostrado:** historial básico propio con oferta, empresa, fecha y estado inicial; no completa HU019.
+
+![P31–P33 — rechazar el envío después de cerrar la oferta abierta en el contexto](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/11-oferta-cerrada-tras-formulario.jpg)
+
+**Caso P31–P33.** **Esperado:** rechazar el envío después de cerrar la oferta abierta en el contexto. **Obtenido:** GET inicial activo, transición real de empresa y POST oferta 5 HTTP 404; Test Results PASS. **Alcance demostrado:** inactivación entre formulario y envío; no representa una carrera simultánea de cierre y POST.
+
+![V07 — rechazar si la oferta se cierra después de abrir el formulario](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V07-cierre-posterior-formulario-rechazado.png)
+
+**Caso V07.** **Esperado:** rechazar si la oferta se cierra después de abrir el formulario. **Obtenido:** POST real 404 y mensaje de oferta no disponible, sin confirmación ni alta. **Alcance demostrado:** estado revalidado al enviar; cierre provocado por APIClient del actor QA, no por esta pantalla.
+
+![P56 — conservar la plantilla y hash elegidos originalmente](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/18-copia-generada-inmutable.jpg)
+
+**Caso P56.** **Esperado:** conservar la plantilla y hash elegidos originalmente. **Obtenido:** consulta HTTP 200 mantiene moderna y hash original después de editar y borrar la fuente; Test Results PASS. **Alcance demostrado:** snapshot privado inmutable; P43/P44/P55 contrastan contenido PDF y permisos.
+
+![V15–V16 — conservar historial después de cerrar y archivar ofertas con postulaciones reales](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V16-historial-con-postulaciones-conservadas.png)
+
+**Caso V15–V16.** **Esperado:** conservar historial después de cerrar y archivar ofertas con postulaciones reales. **Obtenido:** ofertas 3 cerrada y 4 archivada conservan recibos; los dos PDF privados mantienen sus hashes. **Alcance demostrado:** cierre y archivo por UI empresarial en V15, consulta candidata en V16 y contraste de persistencia.
+
+![V13 — recuperar una respuesta perdida sin duplicar](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V13-reconciliacion-real-sin-reenvio.png)
+
+**Caso V13.** **Esperado:** recuperar una respuesta perdida sin duplicar. **Obtenido:** tras reenviar al servidor y abortar la respuesta 201, Comprobar postulación recuperó por GET el único recibo. **Alcance demostrado:** fallo de transporte inyectado y escritura real contrastada; no fue una caída espontánea del servidor.
+
+![V17 / móvil — consultar historial en 390×844 sin desbordamiento](https://raw.githubusercontent.com/Danilo2334/Work_net/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/HU018-V17-historial-movil.png)
+
+**Caso V17 / móvil.** **Esperado:** consultar historial en 390×844 sin desbordamiento. **Obtenido:** tarjetas y navegación de Mis postulaciones utilizables en móvil web emulado. **Alcance demostrado:** viewport de navegador con ratón/teclado; no dispositivo físico.
+
+**Pruebas y alcance**
+
+**198 pruebas Django y 148 Flutter aprobadas**, 18 y 11 específicas de postulación respectivamente; check Django limpio, makemigrations sin cambios, análisis Flutter sin incidencias, compilación web JavaScript release correcta y 16 controles del preparador aprobados. Migración 0004 aplicada en la QA nueva, plan pendiente vacío. Otra prueba aislada migra desde 0003 con postulación, guardado y aviso anteriores y conserva fechas y relaciones sin inventar CV ni avisos históricos.
+
+La suite Django cubre cuatro envíos simultáneos, UNIQUE candidato–oferta, un aviso por envío, privacidad, revisión y conservación del PDF, paginación y vencimiento durante la preparación del documento. SQLite tiene reintentos acotados y 503 recuperable; no se afirma prueba de carga ni ejecución PostgreSQL. Postman: una iteración, 7 s 384 ms, media 30 ms, primera respuesta 834 ms; 17 ofertas locales, no extrapolable a producción.
+
+El aviso es la **notificación interna real del dashboard existente**, no un correo externo ni una entrega push. V12 inyecta red/503; V13 aborta antes de escribir y luego pierde una respuesta 201 realmente aceptada. GET reconcilia la postulación. V07–V10 usan APIClient real de actores QA para cambiar estado, eliminar o editar fuentes entre pasos; V15 sí cierra/archiva por UI empresarial. Los contrastes de persistencia distinguen esas procedencias. Los servidores propios de estas corridas están detenidos.
+
+[Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/resultados-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/casos.postman_collection.json) · [Contraste Desktop](https://github.com/Danilo2334/Work_net/blob/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/contraste-persistencia.json) · [Resultados navegador y actores QA](https://github.com/Danilo2334/Work_net/blob/55264de29a1fe7f8ea74f3c3311ce978044767b0/frontend/docs/evidencias/hu018-20261108/resultados.json) · [Migraciones](https://github.com/Danilo2334/Work_net/blob/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/migraciones-qa.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/55264de29a1fe7f8ea74f3c3311ce978044767b0/backend/docs/evidencias/hu018-20261108/validacion-tecnica.json).
+
+**Contrato y conservación**
+
+GET/POST `/api/offers/{id}/application/` devuelve contexto propio o crea el envío con `cv_source`, `cv_id`, `cv_revision` y `confirm: true`; rechaza actores/campos/query ajenos. El contexto de una inactiva solo es accesible si ya es guardada o postulada por el candidato. POST nuevo exige oferta visible y vuelve a comprobar el estado tras obtener el PDF; repetir una propia devuelve 200 con el recibo y copia originales incluso si la oferta o fuente cambió. Creación 201, validación 400, sesión 401, rol 403, recurso ajeno/inactivo 404 y bloqueo SQLite agotado 503 recuperable.
+
+GET `/api/applications/` consulta solo el historial propio, page positiva y page_size 1–50 (10 por defecto), orden estable fecha e ID descendentes y tres consultas incluyendo autenticación. GET `/api/applications/{id}/` y `/cv/` son privados del candidato; `/api/company/applications/{id}/` y `/cv/` corresponden a la empresa aprobada propietaria. Listados difieren el PDF y documentos privados usan no-store. No hay cambios de estado, gestión ni filtros adicionales de HU019/HU023. La migración conserva registros históricos con CV vacío y avisos sin asociación previa.
+
+**Dependencias anteriores y límites de alcance**
+
+HU011 (#12, ocho criterios) añade la selección del subido con V02/P02. HU012 (#13/#79, once criterios) añade la del generado con V03/P07/P56. HU015 (#16/#91, siete criterios) añade el rechazo a nuevas postulaciones desde API/pantalla y conserva las anteriores al cerrar/archivar; #90 conserva la exclusión del buscador acreditada por HU016. Sus pruebas previas siguen vigentes y se conservan en los seguimientos. Los contadores a contrastar tras entrega son HU011 4/4, HU012 5/5, HU015 4/4 y HU018 4/4 — 100 %, además de completed y Status Done independientes.
+
+HU005 avanza con Mis postulaciones básico desde el dashboard; mantiene los requisitos adicionales de HU019 y mensajes HU022. HU019/HU023 disponen de registro, documento y aviso interno reutilizables; sus funcionalidades adicionales no se implementan ni se cierran en este bloque. HU019–HU027 no se inician.
+
+**Corrección documental de HU017**
+
+`6248a49b6f9f34b2af6f5557ad30c0a28b033090` corrige solo 36 etiquetas `casos/N/nombre` de resultados-desktop.json, contrastadas en UTF-8 con la colección y capturas originales. JSON válido y diff exclusivamente textual. Se conservan conteos, resultados, fechas, versiones, procedencia e imágenes; no hubo nuevas ejecuciones por este ajuste. Los cuatro comentarios de HU017 conservan sus IDs y autores y enlazan el JSON corregido.
+
+**Publicación, responsables y cierre**
+
+Danilo2334 publica Django y sus pruebas propias; francisco3788 publica Flutter y sus pruebas, integración y aceptación. Se comprueban por separado cuenta de publicación y autor/committer. Backend #177→feature/backend-sprint-3 (3a1ce32), #179→develop (a9ff4c7); Flutter #178→frontend (c16b58e) y backend revisado #180→frontend (6043539). Evidencia permanente en `55264de29a1fe7f8ea74f3c3311ce978044767b0`, guía en [#181](https://github.com/Danilo2334/Work_net/pull/181) y entrega conjunta [#182](https://github.com/Danilo2334/Work_net/pull/182). La verificación final de SHA remoto, completed, Done y contadores se registra en los seguimientos únicos, después de cumplir los criterios. No se deduce el cierre de una historia solo del contador.
+
+Seguimientos específicos: [#100](https://github.com/Danilo2334/Work_net/issues/100#issuecomment-6724917102) · [#101](https://github.com/Danilo2334/Work_net/issues/101#issuecomment-6724918766) · [#102](https://github.com/Danilo2334/Work_net/issues/102#issuecomment-6724920715) · [#103](https://github.com/Danilo2334/Work_net/issues/103#issuecomment-6724921065). [Carga y hashes públicos de las 63 imágenes](../../backend/docs/evidencias/hu018-20261108/verificacion-publicacion.json). Los registros anteriores se conservan debajo con su fecha y alcance; sus pendientes históricos no sustituyen el resultado vigente.
+
+**Revisión y antecedentes**
+
+Revisión técnica delegada autorizada, sin atribuir revisión personal ni aprobación humana. Se corrigieron dos defectos: vencimiento de la oferta mientras se preparaba el PDF (ahora 404), y pérdida de la oferta al ir a crear un CV ausente (ahora conserva el retorno y reconsulta opciones). Ambos cuentan con pruebas específicas; V09 acredita además el retorno real. El helper QA se corrigió para usar HTTP_HOST local y desplazar al encabezado antes de navegar. No cambió el producto por esos dos ajustes del ejecutor.
+
+<details>
+<summary>Antecedentes operativos conservados</summary>
+
+Primera preparación `browser-qa-20261108T171720-26ec8f6e` y Desktop `run-20261108T171833-ff0d905b`: APIClient con host testserver rechazado (400), antes de completar la preparación. Se conservan y no se cuentan como aceptación. Pasada `browser-qa-20261108T172027-be5697e8`: control y V01–V14 aprobados; V15 completó tres POST 200, pero el ejecutor no alcanzó Volver al dashboard fuera del encuadre. Se corrigió el desplazamiento y se ejecutó la nueva corrida completa citada arriba. El indicador inferior «1 Import Failed» visible en Postman es el antecedente de importación cancelada de HU016, no un fallo de la corrida HU018. No se alteran imágenes ni historiales de esas corridas.
+
+</details>
+
+<!-- hu018-vigente-fin -->
+
 <!-- hu017-vigente-inicio -->
 ## HU017 — Guardar ofertas favoritas — 08/11/2026
 
@@ -136,7 +261,7 @@ Publicación de las imágenes `842a89134cd2813488732eb3e8e0933b13333836`, distin
 Las **53 imágenes** respondieron HTTP 200 con SHA256 idéntico al original;
 se revisó su legibilidad y correspondencia con cada caso.
 [Resultados de navegador](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/resultados.json) ·
-[Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/resultados-desktop.json) ·
+[Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/6248a49b6f9f34b2af6f5557ad30c0a28b033090/backend/docs/evidencias/hu017-20261108/resultados-desktop.json) ·
 [Conservación Desktop](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/contraste-persistencia.json).
 Los servidores propios terminaron y se comprobaron cerrados 8097/51168/51169.
 Los checkouts, entornos y corridas anteriores se conservan. HU018–HU027 no se iniciaron.

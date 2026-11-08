@@ -8,6 +8,17 @@ from bridge import load, execute
 
 
 class GuardTest(unittest.TestCase):
+    def test_hu018_fixtures_cannot_run_before_start_guard(self):
+        self.config['suite'] = 'hu018'
+        self.write()
+        with self.assertRaises(ValueError):
+            execute(self.manifest, 'hu018_prepare', [])
+
+    def test_hu018_actions_reject_a_different_suite(self):
+        (self.root / '.suite-started').touch()
+        with self.assertRaises(ValueError):
+            execute(self.manifest, 'hu018_snapshot', [])
+
     def test_hu017_fixtures_cannot_run_before_start_guard(self):
         self.config['suite'] = 'hu017'
         self.write()

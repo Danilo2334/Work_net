@@ -12,10 +12,12 @@ class CurriculumPage extends StatefulWidget {
     required this.session,
     required this.repository,
     required this.picker,
+    this.returnToOfferId,
   });
   final SessionController session;
   final CurriculumRepository repository;
   final PdfPicker picker;
+  final int? returnToOfferId;
   @override
   State<CurriculumPage> createState() => _CurriculumPageState();
 }
@@ -53,6 +55,13 @@ class _CurriculumPageState extends State<CurriculumPage> {
         error: c.error,
         onRetry: c.busy ? null : c.load,
         actions: [
+          if (widget.returnToOfferId != null)
+            TextButton(
+              onPressed: c.busy
+                  ? null
+                  : () => context.go('/offers/${widget.returnToOfferId}/apply'),
+              child: const Text('Volver a la oferta'),
+            ),
           TextButton.icon(
             onPressed: () => context.go('/dashboard'),
             icon: const Icon(Icons.arrow_back),
@@ -78,7 +87,11 @@ class _CurriculumPageState extends State<CurriculumPage> {
                   key: const Key('create_curriculum'),
                   onPressed: c.busy
                       ? null
-                      : () => context.go('/curriculum/create'),
+                      : () => context.go(
+                          widget.returnToOfferId == null
+                              ? '/curriculum/create'
+                              : '/curriculum/create?apply_offer=${widget.returnToOfferId}',
+                        ),
                   icon: const Icon(Icons.edit_document),
                   label: const Text('Crear mi CV'),
                 ),

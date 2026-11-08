@@ -1,0 +1,2080 @@
+{
+  "info": {
+    "_postman_id": "be0427e7-7b18-4266-b407-fd6129c36aeb",
+    "name": "HU018 · Postulación QA · run-20261108T172019-b5651a29",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get('base_url')!=='http://127.0.0.1:8098/api'||pm.environment.get('qa_run_id')!=='run-20261108T172019-b5651a29'||pm.environment.get('qa_confirmation')!=='SOLO_BASE_AISLADA'){pm.execution.skipRequest();throw Error('Solo nueva QA aislada HU018');}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "HU018-P01 · Opciones propias y versión del CV",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/3/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.cv_options.length).eq(2);for(const c of b.cv_options){pm.environment.set(c.source+'_id',c.id);pm.environment.set(c.source+'_revision',c.revision);}});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P02 · Postular con CV subido",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/3/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.created).eq(true);pm.expect(b.application.cv.source).eq('uploaded');pm.expect(b.application.status).eq('submitted');pm.expect(b.application.created_at).a('string');pm.environment.set('app_uploaded',b.application.id);pm.environment.set('hash_uploaded',b.application.cv.sha256);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P03 · Repetir envío subido sin duplicar",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/3/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.created).eq(false);pm.expect(b.application.id).eq(Number(pm.environment.get('app_uploaded')));pm.expect(b.application.cv.sha256).eq(pm.environment.get('hash_uploaded'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P04 · Consulta propia con trazabilidad",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_uploaded}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.application.cv.source).eq('uploaded');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P05 · PDF enviado subido privado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_uploaded}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P06 · Opciones antes del CV generado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/4/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.cv_options.length).eq(2);for(const c of b.cv_options){pm.environment.set(c.source+'_id',c.id);pm.environment.set(c.source+'_revision',c.revision);}});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P07 · Postular con CV generado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/4/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"generated\", \"cv_id\": {{generated_id}}, \"cv_revision\": \"{{generated_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.created).eq(true);pm.expect(b.application.cv.source).eq('generated');pm.expect(b.application.status).eq('submitted');pm.expect(b.application.created_at).a('string');pm.environment.set('app_generated',b.application.id);pm.environment.set('hash_generated',b.application.cv.sha256);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P08 · Repetir envío generado sin aviso extra",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/4/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"generated\", \"cv_id\": {{generated_id}}, \"cv_revision\": \"{{generated_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.created).eq(false);pm.expect(b.application.id).eq(Number(pm.environment.get('app_generated')));pm.expect(b.application.cv.sha256).eq(pm.environment.get('hash_generated'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P09 · PDF enviado generado privado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_generated}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P10 · Historial propio con ambos CV y fecha",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.count).eq(4);pm.expect(b.applications.filter(a=>a.cv!==null).map(a=>a.cv.source).sort()).deep.eq(['generated','uploaded']);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P11 · Contador candidato actualizado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.metrics.applications_count).eq(4);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P12 · Avisos al destinatario empresarial correcto",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.metrics.applications).eq(4);pm.expect(b.notifications.length).eq(2);pm.expect(b.notifications.every(n=>n.title.includes('Candidato principal QA'))).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P13 · Otra empresa no recibe avisos ni postulaciones",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.notifications).deep.eq([]);pm.expect(b.metrics.applications).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P14 · Otro candidato no hereda historial",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P15 · Postulación propia oculta a otro candidato",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_uploaded}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P16 · PDF enviado oculto a otro candidato",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_uploaded}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P17 · Postulación oculta a empresa ajena",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/{{app_uploaded}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P18 · PDF oculto a empresa ajena",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/{{app_uploaded}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P19 · Empresa destinataria consulta postulación",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/{{app_uploaded}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.application.cv.source).eq('uploaded');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P20 · Empresa destinataria consulta copia privada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/{{app_uploaded}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P21 · Rol empresa no puede postular",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/3/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P22 · Sin sesión no puede enviar",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/7/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": \"{{uploaded_id}}\", \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P23 · No aceptar candidato enviado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/7/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true, \"candidate_id\": 2}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P24 · Confirmación obligatoria",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/7/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": false}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P25 · CV ajeno rechazado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/7/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{other_cv_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P26 · Versión de CV desactualizada rechazada",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/7/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"2000-01-01T00:00:00Z\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P27 · Rechazar oferta cerrada",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/14/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P28 · Rechazar oferta archivada",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/15/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P29 · Rechazar oferta vencida",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/17/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P30 · Rechazar oferta borrador",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/16/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P31 · Formulario antes del cierre",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/5/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.offer.is_active).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P32 · Cerrar después de abrir formulario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/5/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.offer.status).eq('closed');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P33 · Revalidar cierre al enviar",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/5/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P34 · Formulario antes del archivado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/6/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.offer.is_active).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P35 · Archivar después de abrir formulario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/6/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"archive\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.offer.status).eq('archived');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P36 · Revalidar archivado al enviar",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/6/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"generated\", \"cv_id\": {{generated_id}}, \"cv_revision\": \"{{generated_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P37 · Editar fuente generada tras postular",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/curriculum/generated/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"template\": \"minimalista\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.curriculum.template).eq('minimalista');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P38 · Eliminar fuente subida tras postular",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/curriculum/uploaded/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.uploaded).eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P39 · CV eliminado ya no está disponible",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/8/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P40 · Eliminar fuente generada tras postular",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/curriculum/generated/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.exists).eq(false);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P41 · CV generado ausente rechazado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/9/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"generated\", \"cv_id\": {{generated_id}}, \"cv_revision\": \"{{generated_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P42 · Sin CV muestra opciones vacías",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/9/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.cv_options).deep.eq([]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P43 · Copia subida persiste sin la fuente",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_uploaded}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P44 · Copia generada persiste sin la fuente",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_generated}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P45 · Cerrar oferta con postulación real",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/3/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.offer.status).eq('closed');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P46 · Archivar oferta con postulación real",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/4/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"archive\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.offer.status).eq('archived');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P47 · Historial y copias tras inactivación",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.count).eq(4);pm.expect(b.applications.find(a=>a.offer.id===3).offer.status).eq('closed');pm.expect(b.applications.find(a=>a.offer.id===4).offer.status).eq('archived');pm.expect(b.applications.filter(a=>a.cv!==null).every(a=>a.status==='submitted')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P48 · Empresa consulta CV tras archivar",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/{{app_generated}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.application.cv.sha256).eq(pm.environment.get('hash_generated'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P49 · Exclusión activa del CV subido",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/search/?q=Oferta%20CV%20subido%20QA",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.count).eq(0);pm.expect(b.offers).deep.eq([]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P50 · Exclusión activa del CV generado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/offers/search/?q=Oferta%20CV%20generado%20QA",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.count).eq(0);pm.expect(b.offers).deep.eq([]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P51 · Reintento cerrado conserva registro y CV",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/3/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.created).eq(false);pm.expect(b.application.id).eq(Number(pm.environment.get('app_uploaded')));pm.expect(b.application.cv.sha256).eq(pm.environment.get('hash_uploaded'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P52 · Sin avisos duplicados tras reintentos",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.notifications.length).eq(2);pm.expect(b.metrics.applications).eq(4);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P53 · Límite de página validado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=51",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P54 · No seleccionar otro candidato por parámetro",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?candidate_id=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P55 · Empresa obtiene PDF conservado de archivada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/{{app_generated}}/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P56 · Metadatos de copia generada inmutables",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/{{app_generated}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.application.cv.template).eq('moderna');pm.expect(b.application.cv.sha256).eq(pm.environment.get('hash_generated'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P57 · Historial paginado conserva anteriores sin inventar CV",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=2&page=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.headers.get('Content-Type').includes('application/json')?pm.response.json():null;",
+              "pm.test('Caso y contrato HU018',()=>{pm.expect(b.count).eq(4);pm.expect(b.applications.length).eq(2);pm.expect(b.applications.every(a=>a.cv===null)).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU018-P58 · Origen de CV inválido rechazado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/7/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"invalid\", \"cv_id\": {{uploaded_id}}, \"cv_revision\": \"{{uploaded_revision}}\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

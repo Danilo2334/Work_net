@@ -16,10 +16,12 @@ class GeneratedCurriculumPage extends StatefulWidget {
     required this.session,
     required this.repository,
     required this.download,
+    this.returnToOfferId,
   });
   final SessionController session;
   final GeneratedCurriculumRepository repository;
   final CurriculumDownload download;
+  final int? returnToOfferId;
   @override
   State<GeneratedCurriculumPage> createState() =>
       GeneratedCurriculumPageState();
@@ -177,10 +179,23 @@ class GeneratedCurriculumPageState extends State<GeneratedCurriculumPage> {
         onRetry: cv == null && !c.busy ? c.load : null,
         actions: [
           TextButton.icon(
-            onPressed: c.busy ? null : () => context.go('/curriculum'),
+            onPressed: c.busy
+                ? null
+                : () => context.go(
+                    widget.returnToOfferId == null
+                        ? '/curriculum'
+                        : '/curriculum?apply_offer=${widget.returnToOfferId}',
+                  ),
             icon: const Icon(Icons.arrow_back),
             label: const Text('Volver a mi currículum'),
           ),
+          if (widget.returnToOfferId != null)
+            TextButton(
+              onPressed: c.busy || cv?.exists != true || c.dirty
+                  ? null
+                  : () => context.go('/offers/${widget.returnToOfferId}/apply'),
+              child: const Text('Continuar postulación'),
+            ),
           TextButton.icon(
             onPressed: c.busy ? null : _reload,
             icon: const Icon(Icons.refresh),

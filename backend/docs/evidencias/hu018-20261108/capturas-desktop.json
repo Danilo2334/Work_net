@@ -1,0 +1,173 @@
+[
+  {
+    "archivo": "00-resumen-desktop.jpg",
+    "nota": "Runner HU018:58 peticiones,95PASS,0fallos/errores/omitidas,una iteración;7s384ms,promedio30ms",
+    "fecha": "2026-11-08T17:27:50.588Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "3daaa7ec07c2c02338e90f5b8d26bcb9e812409abb98b377546d7d048df60dcc",
+    "format": "JPEG"
+  },
+  {
+    "archivo": "01-postulacion-cv-subido.jpg",
+    "nota": "P02:POST201,application3,source uploaded,fecha y copia privada;dos PASS",
+    "fecha": "2026-11-08T17:28:31.515Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "26598eb7c0472184f715c4847bf8222d887aa668f22dc26c7c5301f3a4ad8d54",
+    "format": "JPEG"
+  },
+  {
+    "archivo": "02-reintento-sin-duplicado.jpg",
+    "nota": "P03:POST200 createdfalse,misma aplicación3/fecha/CV, dos PASS",
+    "fecha": "2026-11-08T17:29:25.957Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "791c32b0647994a09b30a2ece1a227b646995a3feb9173b7aa7a5afd16b5b3b7",
+    "format": "JPEG"
+  },
+  {
+    "archivo": "03-postulacion-cv-generado.jpg",
+    "nota": "P07:POST201,application4,source generated/plantilla moderna,fecha/hash/tamaño, dos PASS",
+    "fecha": "2026-11-08T17:30:21.546Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "8c712314f78525f1d1f68a762c4f959b092021e9f9b0309f1d29f2c4226d0769",
+    "format": "JPEG"
+  },
+  {
+    "archivo": "04-dashboard-empresa-postulaciones.jpg",
+    "nota": "P12:GETdashboardempresa200,count4 y nuevas postulaciones3/4, dos PASS",
+    "fecha": "2026-11-08T17:30:51.619Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "164200b10d8ec4a6c8134ed532eb9d7b11a0e74f0850eabde8816067b1a223cc",
+    "format": "JPEG"
+  },
+  {
+    "archivo": "05-avisos-empresa-destinataria.jpg",
+    "nota": "P12:dos avisos internos con oferta CV subido/generado,IDs3/4,fecha y dos PASS",
+    "fecha": "2026-11-08T17:31:37.910Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "051f42bb72ae049de9d462b4bec01e248398a1e4d71398ecae44d8a0fc13bca3",
+    "format": "JPEG"
+  },
+  {
+    "archivo": "06-otra-empresa-sin-avisos.jpg",
+    "nota": "P13:otraempresaaprobada200 con0postulaciones/avisos, dos PASS",
+    "fecha": "2026-11-08T17:33:32.373Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "3661641337b7f4d16701f64c147ff1bc9c5ffb7e988b0fd8bdafaed31efb65c5"
+  },
+  {
+    "archivo": "07-privacidad-candidato.jpg",
+    "nota": "P15:GETpostulación3 con otrocandidato404 y PASS,sin datos ajenos",
+    "fecha": "2026-11-08T17:35:03.800Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "87be4c9816f66ff6e4e60cbfe8789eca9e0ceb0a8f2398ea17451f56a898d3a0"
+  },
+  {
+    "archivo": "08-privacidad-empresa.jpg",
+    "nota": "P17:empresaajenaaprobada GETpostulación3 404,PASS,sin datos",
+    "fecha": "2026-11-08T17:35:59.592Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "96652a24c20baf4423f724c995ee35287abf5fc7e9df45b98b09ff284932c9a1"
+  },
+  {
+    "archivo": "09-cv-ajeno-rechazado.jpg",
+    "nota": "P25:POST400 cv_id no disponible en cuenta, PASS",
+    "fecha": "2026-11-08T17:37:13.348Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "72c842223efb42d20bd4659bfc451ba776db017feb9c613c515bd94208814f11"
+  },
+  {
+    "archivo": "10-version-cv-desactualizada.jpg",
+    "nota": "P26:POST400 cv_revision exigeactualizaryrevisar, PASS",
+    "fecha": "2026-11-08T17:37:51.506Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "2fbde64961a7752394dc84af4727cb3963443068122fb058afd6e08b03ad0380"
+  },
+  {
+    "archivo": "11-oferta-cerrada-tras-formulario.jpg",
+    "nota": "P33:POST404 después de cierre realP32, no nueva postulación, PASS",
+    "fecha": "2026-11-08T17:39:32.214Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "6fe743c38828bee2aed586e8c7a96f43ce2074e1b0cbf208a8f0b04786ae5391"
+  },
+  {
+    "archivo": "12-oferta-archivada-tras-formulario.jpg",
+    "nota": "P36:POST404 después de archivado realP35, PASS",
+    "fecha": "2026-11-08T17:40:24.326Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "e57a0b641bc7a97bf0c0483106824b61747b104fc36e5cb632443ca179c0f337"
+  },
+  {
+    "archivo": "13-cv-eliminado-rechazado.jpg",
+    "nota": "P39: CV subido eliminado después de seleccionarlo; HTTP 400 y Test Results PASS.",
+    "fecha": "2026-11-08T17:43:01.312Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "6400e7b195741b357da0aa939efb70e9ed66468eabaafabc0070eb1e03bef434"
+  },
+  {
+    "archivo": "14-contexto-sin-cv.jpg",
+    "nota": "P42: formulario devuelve cv_options vacío y application null; HTTP 200 y dos Test Results PASS.",
+    "fecha": "2026-11-08T17:43:18.466Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "8f5392fafef3efeedcfa4605eb97574f19980dc14ea6a6c3b522405ae4a9c039"
+  },
+  {
+    "archivo": "15-historial-generado-tras-archivar.jpg",
+    "nota": "P47: historial mantiene cuatro postulaciones; oferta 4 archivada, fecha, CV generado y estado submitted.",
+    "fecha": "2026-11-08T17:43:33.501Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "7375220b07c2ba733e7025ced5c2b7d65257ce103e8ac7c739a5abf39f1e41bb"
+  },
+  {
+    "archivo": "16-historial-subido-tras-cerrar.jpg",
+    "nota": "P47: postulación 3 se conserva con fecha y CV subido aunque la oferta está cerrada.",
+    "fecha": "2026-11-08T17:43:46.950Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "5dbe52eca7897646d52d0537c693b7a60b8a08c65429199f9be2145ac3339a66"
+  },
+  {
+    "archivo": "17-reintento-tras-cierre-sin-duplicado.jpg",
+    "nota": "P51: POST repetido tras cierre y eliminación del CV fuente; HTTP 200 created false, mismo ID/fecha/documento.",
+    "fecha": "2026-11-08T17:44:03.623Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "df6b82dab0d587aece2920d7adbdd283034f81a4bab20556249fd8278e48d8ba"
+  },
+  {
+    "archivo": "18-copia-generada-inmutable.jpg",
+    "nota": "P56: metadatos originales de aplicación 4, plantilla moderna y hash conservados después de editar/borrar la fuente y archivar oferta. HTTP 200 y Test Results PASS.",
+    "fecha": "2026-11-08T17:44:22.316Z",
+    "width": 1536,
+    "height": 864,
+    "format": "JPEG",
+    "sha256": "e05ac0b20479403ee4b6fcb723eaaa8cedec83509f883e925547ffdddd72e71c"
+  }
+]

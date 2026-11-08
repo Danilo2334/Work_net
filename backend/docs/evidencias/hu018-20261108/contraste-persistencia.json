@@ -1,0 +1,53 @@
+{
+  "offers": 17,
+  "states": {
+    "3": "closed",
+    "4": "archived",
+    "5": "closed",
+    "6": "archived"
+  },
+  "information_unchanged": true,
+  "other_offers_unchanged": true,
+  "legacy_applications_unchanged": true,
+  "saved_unchanged": true,
+  "other_uploaded_unchanged": true,
+  "other_generated_unchanged": true,
+  "old_notifications_unchanged": true,
+  "applications": 4,
+  "own_applications": 4,
+  "new_applications": [
+    {
+      "id": 3,
+      "offer_id": 3,
+      "candidate_id": 1,
+      "created_at": "2026-11-08 17:26:18.243525",
+      "status": "submitted",
+      "cv_source": "uploaded",
+      "cv_source_id": 1,
+      "cv_source_updated_at": "2026-11-08 17:20:26.506409",
+      "cv_filename": "cv-subido-qa.pdf",
+      "cv_template": "",
+      "cv_sha256": "71bb03ce24a0563d60274dccb493206336d49eff67dd2ad891bc15c00b84b366",
+      "cv_size_bytes": 42917
+    },
+    {
+      "id": 4,
+      "offer_id": 4,
+      "candidate_id": 1,
+      "created_at": "2026-11-08 17:26:18.777945",
+      "status": "submitted",
+      "cv_source": "generated",
+      "cv_source_id": 1,
+      "cv_source_updated_at": "2026-11-08 17:20:26.545562",
+      "cv_filename": "curriculum-moderna.pdf",
+      "cv_template": "moderna",
+      "cv_sha256": "df19d37db7c0746fbb445c44c65189faa366611c06f607fdc30a73059f2b7ef2",
+      "cv_size_bytes": 42425
+    }
+  ],
+  "new_notices": 2,
+  "correct_recipient_and_one_notice_per_new": true,
+  "snapshot_hashes_and_pdf_valid": true,
+  "duplicates": 0,
+  "database_unique_constraint": true
+}
