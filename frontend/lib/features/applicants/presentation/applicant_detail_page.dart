@@ -8,6 +8,8 @@ import 'package:worknet/features/profile/domain/profile.dart';
 import '../domain/applicant.dart';
 import 'package:worknet/features/status_changes/domain/status_change.dart';
 import 'package:worknet/features/status_changes/presentation/status_change_panel.dart';
+import 'package:worknet/features/messages/domain/message.dart';
+import 'package:worknet/features/messages/presentation/message_access.dart';
 
 class ApplicantDetailPage extends StatefulWidget {
   const ApplicantDetailPage({
@@ -17,10 +19,12 @@ class ApplicantDetailPage extends StatefulWidget {
     required this.statuses,
     required this.offerId,
     required this.id,
+    this.messages,
   });
   final SessionController session;
   final ApplicantsRepository repository;
   final StatusRepository statuses;
+  final MessagesRepository? messages;
   final int offerId, id;
   @override
   State<ApplicantDetailPage> createState() => _ApplicantDetailPageState();
@@ -123,6 +127,13 @@ class _ApplicantDetailPageState extends State<ApplicantDetailPage> {
               session: widget.session,
               repository: widget.repository,
             ),
+            if (widget.messages case final repository?)
+              StartConversationButton(
+                session: widget.session,
+                repository: repository,
+                applicationId: widget.id,
+                label: 'Conversar con el candidato',
+              ),
           ],
         ),
         StatusChangePanel(

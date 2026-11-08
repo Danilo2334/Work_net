@@ -6,6 +6,8 @@ import 'package:worknet/core/theme/worknet_theme.dart';
 import 'package:worknet/core/widgets/error_notice.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'package:worknet/features/offers/domain/favorites.dart';
+import 'package:worknet/features/messages/domain/message.dart';
+import 'package:worknet/features/messages/presentation/message_access.dart';
 
 class CandidateDashboardPage extends StatefulWidget {
   const CandidateDashboardPage({
@@ -13,10 +15,12 @@ class CandidateDashboardPage extends StatefulWidget {
     required this.controller,
     required this.repository,
     this.favorites,
+    this.messages,
   });
   final SessionController controller;
   final CandidateDashboardRepository repository;
   final SavedOffersRepository? favorites;
+  final MessagesRepository? messages;
   @override
   State<CandidateDashboardPage> createState() => _CandidateDashboardPageState();
 }
@@ -174,39 +178,13 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
           label: const Text('Mis postulaciones'),
         ),
         const SizedBox(height: 12),
-        const Text(
-          'Los siguientes módulos todavía no están disponibles. Aquí podrás encontrar sus accesos cuando estén implementados.',
-          style: TextStyle(color: WorkNetColors.muted),
-        ),
-        const SizedBox(height: 16),
-        for (final entry in const [
-          (Icons.chat_bubble_outline, 'Mensajes', 'Mensajería'),
-        ])
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(entry.$1, color: WorkNetColors.muted),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        entry.$2,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Text(
-                        'Pendiente · ${entry.$3}',
-                        style: const TextStyle(color: WorkNetColors.muted),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+        MessagesEntry(
+          key: ValueKey(
+            '${widget.controller.session?.token}:messages:$_generation',
           ),
+          session: widget.controller,
+          repository: widget.messages,
+        ),
       ],
     ),
   );

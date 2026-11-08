@@ -128,6 +128,9 @@ void main() {
         t,
         (r) async {
           calls.add(r.url.path);
+          if (r.url.path == '/api/messages/summary/') {
+            return jsonResponse({'unread_count': 0});
+          }
           return jsonResponse(companySummary());
         },
         path: '/login',
@@ -139,7 +142,8 @@ void main() {
         find.text('Todavía no has recibido postulaciones.'),
         findsOneWidget,
       );
-      expect(calls, ['/api/dashboard/company/']);
+      expect(calls, ['/api/dashboard/company/', '/api/messages/summary/']);
+      expect(find.text('Mensajes sin leer: 0'), findsOneWidget);
     },
   );
   testWidgets(
