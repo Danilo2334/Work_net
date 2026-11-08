@@ -5,15 +5,18 @@ import 'package:worknet/features/dashboard/domain/candidate_summary.dart';
 import 'package:worknet/core/theme/worknet_theme.dart';
 import 'package:worknet/core/widgets/error_notice.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
+import 'package:worknet/features/offers/domain/favorites.dart';
 
 class CandidateDashboardPage extends StatefulWidget {
   const CandidateDashboardPage({
     super.key,
     required this.controller,
     required this.repository,
+    this.favorites,
   });
   final SessionController controller;
   final CandidateDashboardRepository repository;
+  final SavedOffersRepository? favorites;
   @override
   State<CandidateDashboardPage> createState() => _CandidateDashboardPageState();
 }
@@ -23,6 +26,7 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
   String? _error, _actionError;
   bool _loading = true, _loggingOut = false;
   int _generation = 0;
+  int? _savingId;
   @override
   void initState() {
     super.initState();
@@ -77,6 +81,31 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
     }
   }
 
+  Future<void> _toggle(JobPreview job) async {
+    final token = widget.controller.session?.token;
+    if (token == null || _savingId != null || widget.favorites == null) return;
+    setState(() {
+      _savingId = job.id;
+      _actionError = null;
+    });
+    try {
+      await widget.favorites!.setSaved(token, job.id, !job.isSaved);
+      if (mounted && widget.controller.session?.token == token) await _load();
+    } on ApiFailure catch (e) {
+      if (!mounted || widget.controller.session?.token != token) return;
+      if (e.status == 401) {
+        await widget.controller.expire();
+        return;
+      }
+      setState(
+        () => _actionError =
+            '${e.message} Pulsa Actualizar Guardados para consultar el estado actual.',
+      );
+    } finally {
+      if (mounted) setState(() => _savingId = null);
+    }
+  }
+
   Widget _panel(Widget child) => Container(
     width: double.infinity,
     padding: const EdgeInsets.all(24),
@@ -109,6 +138,13 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Tus accesos', style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 12),
+        TextButton.icon(
+          key: const Key('open_saved_offers'),
+          onPressed: () => context.go('/offers/saved'),
+          icon: const Icon(Icons.bookmark_border),
+          label: const Text('Guardados'),
+        ),
         const SizedBox(height: 12),
         TextButton.icon(
           key: const Key('open_offer_search'),
@@ -213,6 +249,17 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
                     '${job.location} · ${job.contractType}',
                     style: const TextStyle(color: WorkNetColors.muted),
                   ),
+                  if (widget.favorites != null)
+                    TextButton.icon(
+                      key: ValueKey('dashboard_save_${job.id}'),
+                      onPressed: _savingId != null ? null : () => _toggle(job),
+                      icon: Icon(
+                        job.isSaved ? Icons.bookmark : Icons.bookmark_border,
+                      ),
+                      label: Text(
+                        job.isSaved ? 'Quitar de Guardados' : 'Guardar oferta',
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -265,6 +312,16 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     ErrorNotice(_actionError),
+                    if (_actionError != null)
+                      OutlinedButton(
+                        onPressed: _savingId != null
+                            ? null
+                            : () {
+                                setState(() => _actionError = null);
+                                _load();
+                              },
+                        child: const Text('Actualizar Guardados'),
+                      ),
                     if (_error != null)
                       _panel(
                         Column(

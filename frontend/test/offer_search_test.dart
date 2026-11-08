@@ -108,6 +108,7 @@ void main() {
                 'contract_type': 'Fijo',
                 'salary': null,
                 'published_at': '2026-11-08T10:00:00Z',
+                'is_saved': false,
               },
             ],
           });

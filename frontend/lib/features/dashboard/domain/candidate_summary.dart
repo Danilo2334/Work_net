@@ -5,9 +5,11 @@ class JobPreview {
     required this.companyName,
     required this.location,
     required this.contractType,
+    this.isSaved = false,
   });
   final int id;
   final String title, companyName, location, contractType;
+  final bool isSaved;
 }
 
 class CandidateSummary {

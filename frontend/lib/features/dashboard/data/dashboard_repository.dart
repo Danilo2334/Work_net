@@ -32,6 +32,7 @@ abstract final class CandidateSummaryModel {
         rows.map((j) {
           if (j is! Map ||
               j['id'] is! int ||
+              j['is_saved'] is! bool ||
               [
                 'title',
                 'company_name',
@@ -47,6 +48,7 @@ abstract final class CandidateSummaryModel {
             companyName: j['company_name'],
             location: j['location'],
             contractType: j['contract_type'],
+            isSaved: j['is_saved'],
           );
         }),
       ),

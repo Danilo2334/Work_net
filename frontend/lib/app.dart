@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:worknet/features/offers/presentation/active_offers_page.dart';
 import 'package:worknet/features/offers/presentation/offer_search_page.dart';
+import 'package:worknet/features/offers/presentation/saved_offers_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/composition.dart';
 import 'package:worknet/core/api/worknet_api.dart';
@@ -73,6 +74,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
     const protected = {
       '/dashboard',
       '/offers/search',
+      '/offers/saved',
       '/profile',
       '/curriculum',
       '/curriculum/create',
@@ -108,6 +110,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
           if ([
                 '/dashboard',
                 '/offers/search',
+                '/offers/saved',
                 '/profile',
                 '/curriculum',
                 '/curriculum/create',
@@ -133,6 +136,17 @@ class _WorkNetAppState extends State<WorkNetApp> {
       },
       routes: [
         GoRoute(
+          path: '/offers/saved',
+          builder: (_, _) => _protected(
+            'candidato',
+            () => SavedOffersPage(
+              key: ValueKey('${_session.session?.token}:saved'),
+              session: _session,
+              repository: _dependencies.favorites,
+            ),
+          ),
+        ),
+        GoRoute(
           path: '/offers/search',
           builder: (_, _) => _protected(
             'candidato',
@@ -140,6 +154,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               key: ValueKey('${_session.session?.token}:search'),
               session: _session,
               repository: _dependencies.search,
+              favorites: _dependencies.favorites,
             ),
           ),
         ),
@@ -287,6 +302,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
             () => CandidateDashboardPage(
               controller: _session,
               repository: _dependencies.dashboard,
+              favorites: _dependencies.favorites,
             ),
           ),
         ),

@@ -33,6 +33,8 @@ async function main() {
   const hu014 = cfg.suite === 'hu014';
   const hu015 = cfg.suite === 'hu015';
   const hu016 = cfg.suite === 'hu016';
+  const hu017 = cfg.suite === 'hu017';
+  if (hu017) assert.equal(bridge('hu017_prepare').offers, 17);
   if (hu016) assert.equal(bridge('hu016_prepare').offers, 1024);
   if (hu014) assert.equal(bridge('hu014_prepare').offers, 7);
   if (hu015) assert.equal(bridge('hu015_prepare').offers, 8);
@@ -223,7 +225,9 @@ async function main() {
       await page.getByRole('textbox', { name: 'Correo electrónico', exact: true }).waitFor();
       await capture('login');
     });
-    if (hu016) {
+    if (hu017) {
+      await require('./hu017.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
+    } else if (hu016) {
       await require('./hu016.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
     } else if (hu015) {
       await require('./hu015.cjs')({ page, cfg, run, capture, bridge, ui, write, read, click, waitText, login, logout, semantics, fault, faults, results });
@@ -397,11 +401,11 @@ async function main() {
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
     }
-    const expected = hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
+    const expected = hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
     assert.equal(results.casos.length, expected);
     assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
-    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 && !hu016 ? { pdf_texto_coincidente: true } : {}) };
+    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 && !hu016 && !hu017 ? { pdf_texto_coincidente: true } : {}) };
     results.resultado = 'aprobado'; save(); console.log(expected + '/' + expected + ' OK; sin aprobación humana.');
   } catch (error) {
     results.resultado = 'fallido'; results.ultimo_caso = active; save();

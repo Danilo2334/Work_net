@@ -34,11 +34,24 @@ class SearchOffer {
     required this.category,
     required this.salary,
     required this.publishedAt,
+    this.isSaved = false,
   });
   final int id;
   final String title, companyName, location, contractType, category;
   final String? salary;
-  final DateTime publishedAt;
+  final DateTime? publishedAt;
+  final bool isSaved;
+  SearchOffer withSaved(bool value) => SearchOffer(
+    id: id,
+    title: title,
+    companyName: companyName,
+    location: location,
+    contractType: contractType,
+    category: category,
+    salary: salary,
+    publishedAt: publishedAt,
+    isSaved: value,
+  );
 }
 
 class OfferSearchResult {
