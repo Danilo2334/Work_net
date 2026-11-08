@@ -51,16 +51,18 @@ class _ApplicationDetailPageState extends State<ApplicationDetailPage> {
     } on ApiFailure catch (e) {
       if (!mounted ||
           generation != _generation ||
-          widget.session.session?.token != token)
+          widget.session.session?.token != token) {
         return;
+      }
       if (e.status == 401) {
         await widget.session.expire();
         return;
       }
       setState(() => _error = e.message);
     } finally {
-      if (mounted && generation == _generation)
+      if (mounted && generation == _generation) {
         setState(() => _loading = false);
+      }
     }
   }
 

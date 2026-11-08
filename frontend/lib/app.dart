@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:worknet/features/applications/presentation/apply_page.dart';
 import 'package:worknet/features/applications/presentation/application_history_page.dart';
 import 'package:worknet/features/applications/presentation/application_detail_page.dart';
+import 'package:worknet/features/applicants/presentation/applicant_offers_page.dart';
+import 'package:worknet/features/applicants/presentation/applicants_page.dart';
+import 'package:worknet/features/applicants/presentation/applicant_detail_page.dart';
+import 'package:worknet/features/applicants/domain/applicant.dart';
 import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:worknet/features/offers/presentation/active_offers_page.dart';
 import 'package:worknet/features/offers/presentation/offer_search_page.dart';
@@ -106,12 +110,14 @@ class _WorkNetAppState extends State<WorkNetApp> {
       redirect: (_, state) {
         if (_session.restoring) return null;
         final path = state.uri.path, role = _session.session?.role;
-        final companyOffer =
-            path == '/company/offers' || path.startsWith('/company/offers/');
+        final companyFeature =
+            path == '/company/applicants' ||
+            path == '/company/offers' ||
+            path.startsWith('/company/offers/');
         final applicationForm = RegExp(r'^/offers/[^/]+/apply$').hasMatch(path);
         final applicationDetail = path.startsWith('/applications/');
         if ((protected.contains(path) ||
-                companyOffer ||
+                companyFeature ||
                 applicationForm ||
                 applicationDetail) &&
             role == null) {
@@ -121,7 +127,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
           if (path == '/login' || path == '/access-pending') return _home();
           if (role == 'unassigned' &&
               (protected.contains(path) ||
-                  companyOffer ||
+                  companyFeature ||
                   applicationForm ||
                   applicationDetail) &&
               path != '/choose-role') {
@@ -142,7 +148,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
           }
           if (applicationForm && role != 'candidato') return _home();
           if (applicationDetail && role != 'candidato') return _home();
-          if ((companyOffer ||
+          if ((companyFeature ||
                   [
                     '/company',
                     '/company-dashboard',
@@ -160,13 +166,75 @@ class _WorkNetAppState extends State<WorkNetApp> {
       },
       routes: [
         GoRoute(
-          path: '/applications/:id',
+          path: '/company/applicants',
+          builder: (_, _) => _protected(
+            'empresa',
+            () => ApplicantOffersPage(
+              key: ValueKey('${_session.session?.token}:applicant-offers'),
+              session: _session,
+              repository: _dependencies.applicants,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/company/offers/:id/applicants',
           builder: (_, state) {
             final id = int.tryParse(state.pathParameters['id'] ?? '');
-            if (id == null || id <= 0)
+            if (id == null || id <= 0) {
+              return const Scaffold(
+                body: Center(child: Text('Oferta no válida.')),
+              );
+            }
+            return _protected(
+              'empresa',
+              () => ApplicantsPage(
+                key: ValueKey('${_session.session?.token}:${state.uri}'),
+                session: _session,
+                repository: _dependencies.applicants,
+                offerId: id,
+                query: ApplicantQuery.fromUri(state.uri),
+              ),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/company/offers/:id/applicants/:applicationId',
+          builder: (_, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? ''),
+                application = int.tryParse(
+                  state.pathParameters['applicationId'] ?? '',
+                );
+            if (id == null ||
+                id <= 0 ||
+                application == null ||
+                application <= 0) {
               return const Scaffold(
                 body: Center(child: Text('Postulación no válida.')),
               );
+            }
+            return _protected(
+              'empresa',
+              () => ApplicantDetailPage(
+                key: ValueKey(
+                  '${_session.session?.token}:applicant:$id:$application',
+                ),
+                session: _session,
+                repository: _dependencies.applicants,
+                offerId: id,
+                id: application,
+              ),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/applications/:id',
+          builder: (_, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '');
+            if (id == null || id <= 0) {
+              return const Scaffold(
+                body: Center(child: Text('Postulación no válida.')),
+              );
+            }
             return _protected(
               'candidato',
               () => ApplicationDetailPage(

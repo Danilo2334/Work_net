@@ -15,7 +15,7 @@ class ApplicationDocument extends StatefulWidget {
     required this.application,
   });
   final SessionController session;
-  final ApplicationsRepository repository;
+  final ApplicationPdfRepository repository;
   final JobApplication application;
   @override
   State<ApplicationDocument> createState() => _ApplicationDocumentState();
@@ -112,7 +112,7 @@ class ApplicationDetails extends StatelessWidget {
   });
   final JobApplication application;
   final SessionController session;
-  final ApplicationsRepository repository;
+  final ApplicationPdfRepository repository;
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,

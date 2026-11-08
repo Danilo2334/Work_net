@@ -93,6 +93,8 @@ class HttpApplicationsRepository implements ApplicationsRepository {
   JobApplication decodeApplication(dynamic raw) =>
       _parse(() => _application(raw));
 
+  ApplicationOffer decodeOffer(dynamic raw) => _parse(() => _offer(raw));
+
   @override
   Future<JobApplication> detail(String token, int applicationId) async {
     final r = await api.request('applications/$applicationId/', token: token);

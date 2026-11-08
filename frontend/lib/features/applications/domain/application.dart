@@ -97,10 +97,16 @@ class ApplicationHistory {
   final int? next, previous;
 }
 
-abstract interface class ApplicationsRepository {
+abstract interface class ApplicationPdfRepository {
+  Future<Uint8List> pdf(String token, int applicationId);
+}
+
+abstract interface class ApplicationsRepository
+    implements ApplicationPdfRepository {
   Future<ApplicationContext> context(String token, int offerId);
   Future<JobApplication> submit(String token, int offerId, CvChoice cv);
   Future<ApplicationHistory> history(String token, {int page = 1});
   Future<JobApplication> detail(String token, int applicationId);
+  @override
   Future<Uint8List> pdf(String token, int applicationId);
 }
