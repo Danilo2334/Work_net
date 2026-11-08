@@ -98,7 +98,11 @@ void main() {
     },
   );
 
-  Future<StatusFake> mount(WidgetTester t, {bool lost = false}) async {
+  Future<StatusFake> mount(
+    WidgetTester t, {
+    bool lost = false,
+    Future<void> Function()? onChanged,
+  }) async {
     t.view.physicalSize = const Size(1100, 1000);
     t.view.devicePixelRatio = 1;
     addTearDown(t.view.resetPhysicalSize);
@@ -113,7 +117,7 @@ void main() {
               session: session,
               repository: repo,
               id: 1,
-              onChanged: () async {},
+              onChanged: onChanged ?? () async {},
             ),
           ),
         ),
@@ -190,7 +194,13 @@ void main() {
   testWidgets(
     'conflict refreshes authoritative state and requires a new review',
     (t) async {
-      final repo = await mount(t);
+      var refreshed = 0;
+      final repo = await mount(
+        t,
+        onChanged: () async {
+          refreshed++;
+        },
+      );
       repo.failure = const ApiFailure(
         'Actualiza: cambio concurrente',
         status: 409,
@@ -204,6 +214,7 @@ void main() {
       expect(repo.application.statusVersion, 0);
       expect(find.text('Actualiza: cambio concurrente'), findsOneWidget);
       expect(find.text('Comprobar cambio'), findsNothing);
+      expect(refreshed, 1);
     },
   );
 }

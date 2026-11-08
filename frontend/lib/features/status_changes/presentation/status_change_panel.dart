@@ -162,6 +162,16 @@ class _StatusChangePanelState extends State<StatusChangePanel> {
         if (e.status == 409) await _load();
       }
       await _failure(e);
+      if (e.status == 409 && _current) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'La postulación cambió. Actualizamos sus datos; revisa y confirma de nuevo.',
+            ),
+          ),
+        );
+        await widget.onChanged();
+      }
     } finally {
       if (_current) setState(() => _busy = false);
     }
