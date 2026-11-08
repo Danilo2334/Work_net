@@ -80,7 +80,14 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write,click,waitText,login,
   });
   await run('HU019-V10',async()=>{
     bridge('revoke_candidate');const p=response('GET','applications/');await click('Actualizar historial');assert.equal((await p).status(),401);await page.waitForURL(cfg.web_origin+'/login');await capture('sesion-revocada-401');
-    await login('company','/company-dashboard',true);
+    await login('candidate','/dashboard',true);
+  });
+  await run('HU019-V11',async()=>{
+    await page.setViewportSize({width:390,height:844});await history();await top();await capture('historial-movil-rechazada');
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
+    const item=await ownDetail(seed.controlled_state_target);assert.equal(item.status,'rejected');await top();await capture('detalle-movil-rechazada');await pdf(item);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
+    await page.setViewportSize({width:1440,height:1000});await logoutAt('candidato');await login('company','/company-dashboard',true);
   });
   await run('HU020-V01',async()=>{
     await waitText('Dashboard de empresa');await top();await capture('acceso-dashboard-empresa');let p=response('GET','company/applicant-offers/');await click('Gestionar postulantes');

@@ -412,7 +412,7 @@ async function main() {
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
     }
-    const expected = hu01920 ? 27 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
+    const expected = hu01920 ? 28 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
     assert.equal(results.casos.length, expected);
     assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
