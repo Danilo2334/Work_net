@@ -16,7 +16,7 @@ from hu01920_api import fixtures as previous_fixtures, api_for
 def call(api, method, path, data=None, expected=200):
     response=getattr(api,method.lower())('/api/'+path, data, format='json') if data is not None else getattr(api,method.lower())('/api/'+path)
     require(response.status_code==expected)
-    return response.data
+    return response.json()
 
 
 def fixtures(run):

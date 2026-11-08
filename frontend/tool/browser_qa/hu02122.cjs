@@ -52,6 +52,9 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseC
     await waitText('Detalle de postulación');return b.application;
   };
   const selectState=async(label)=>{
+    const count=async()=>await page.getByRole('combobox',{name:/Nuevo estado/}).count()+await page.getByRole('button',{name:/Nuevo estado/}).count();
+    if(await count()===0)await top();
+    if(await count()===0)await bottom();
     let opened=false;
     for(const target of [page.getByRole('combobox',{name:/Nuevo estado/}),page.getByRole('button',{name:/Nuevo estado/})]){
       if(await target.count()===1){await target.scrollIntoViewIfNeeded();await page.waitForTimeout(200);await target.click();opened=true;break;}
