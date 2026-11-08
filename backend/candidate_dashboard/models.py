@@ -138,6 +138,9 @@ class Application(models.Model):
     offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, default=Status.SUBMITTED, choices=Status.choices)
+    status_version = models.PositiveIntegerField(default=0)
+    status_modified_at = models.DateTimeField(null=True, blank=True)
+    status_comment = models.TextField(blank=True, default="")
     # Los registros históricos conservan CV vacío: no se les inventa un documento.
     cv_source = models.CharField(max_length=12, blank=True, default="", choices=[("uploaded", "Subido"), ("generated", "Generado")])
     cv_source_id = models.PositiveBigIntegerField(null=True, blank=True)
@@ -178,9 +181,90 @@ class SavedOffer(models.Model):
         )]
 
 
+class ImmutableEventQuerySet(models.QuerySet):
+    def bulk_create(self, objs, **kwargs):
+        if kwargs.get("update_conflicts"):
+            raise ValidationError("Los eventos registrados no se sobrescriben mediante upsert.")
+        return super().bulk_create(objs, **kwargs)
+
+    def update(self, **kwargs):
+        raise ValidationError("Los eventos registrados no se modifican.")
+
+    def bulk_update(self, *args, **kwargs):
+        raise ValidationError("Los eventos registrados no se modifican.")
+
+
+class ApplicationStatusEvent(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name="status_events")
+    actor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    request_id = models.UUIDField()
+    version = models.PositiveIntegerField()
+    from_status = models.CharField(max_length=20, choices=Application.Status.choices)
+    to_status = models.CharField(max_length=20, choices=Application.Status.choices)
+    comment = models.TextField(blank=True)
+    changed_at = models.DateTimeField()
+    objects = ImmutableEventQuerySet.as_manager()
+
+    def save(self, *args, **kwargs):
+        if not self._state.adding or kwargs.get("force_update") or kwargs.get("update_fields"):
+            raise ValidationError("Los eventos registrados no se modifican.")
+        kwargs["force_insert"] = True
+        return super().save(*args, **kwargs)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["application", "request_id"], name="unique_application_status_request"),
+            models.UniqueConstraint(fields=["application", "version"], name="unique_application_status_version"),
+        ]
+
+
 class Notification(models.Model):
-    application = models.OneToOneField(Application, on_delete=models.CASCADE, null=True, blank=True, related_name="company_notification")
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, null=True, blank=True, related_name="notifications")
+    event_kind = models.CharField(max_length=32, default="legacy", choices=[
+        ("legacy", "Aviso existente"), ("application_created", "Nueva postulación"),
+        ("application_status_changed", "Cambio de estado"),
+    ])
+    status_event = models.OneToOneField(ApplicationStatusEvent, on_delete=models.CASCADE, null=True, blank=True, related_name="notification")
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     read_at = models.DateTimeField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        # Compatibilidad con altas internas anteriores; HU018 escribe el tipo explícito.
+        if self._state.adding and self.application_id and self.event_kind == "legacy" and not self.status_event_id:
+            self.event_kind = "application_created"
+        return super().save(*args, **kwargs)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["application"], condition=Q(event_kind="application_created"), name="unique_application_created_notice"),
+            models.CheckConstraint(condition=(
+                Q(event_kind="legacy", application__isnull=True, status_event__isnull=True)
+                | Q(event_kind="application_created", application__isnull=False, status_event__isnull=True)
+                | Q(event_kind="application_status_changed", application__isnull=False, status_event__isnull=False)
+            ), name="notification_event_context"),
+        ]
+
+
+class Conversation(models.Model):
+    application = models.OneToOneField(Application, on_delete=models.CASCADE, related_name="conversation")
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_activity_at = models.DateTimeField(default=timezone.now, db_index=True)
+
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name="messages")
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="selection_sent_messages")
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="selection_received_messages")
+    client_message_id = models.UUIDField()
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    read_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["conversation", "sender", "client_message_id"], name="unique_selection_message_intent"),
+            models.CheckConstraint(condition=~Q(sender=models.F("recipient")), name="selection_message_distinct_parties"),
+        ]
+        indexes = [models.Index(fields=["conversation", "recipient", "read_at"], name="selection_unread_messages")]
