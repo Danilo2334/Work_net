@@ -143,6 +143,16 @@ class _OfferSearchPageState extends State<OfferSearchPage> {
     }
   }
 
+  Future<void> _openApplication(int id) async {
+    if (_busy) return;
+    final token = widget.session.session?.token;
+    await context.push('/offers/$id/apply');
+    if (mounted && widget.session.session?.token == token) {
+      _notice = null;
+      await _load();
+    }
+  }
+
   Future<void> _toggle(SearchOffer offer) async {
     final token = widget.session.session?.token;
     if (token == null || _busy || widget.favorites == null) return;
@@ -420,6 +430,13 @@ class _OfferSearchPageState extends State<OfferSearchPage> {
                 offer.publishedAt == null
                     ? 'Fecha de publicación no informada'
                     : 'Publicada: ${offer.publishedAt!.toLocal().toIso8601String().substring(0, 10)}',
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: FilledButton(
+                  onPressed: _busy ? null : () => _openApplication(offer.id),
+                  child: const Text('Postularme'),
+                ),
               ),
               if (widget.favorites != null)
                 Align(

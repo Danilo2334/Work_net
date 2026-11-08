@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/core/widgets/workspace.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
+
 import '../domain/favorites.dart';
 
 class SavedOffersPage extends StatefulWidget {
@@ -110,6 +111,16 @@ class _SavedOffersPageState extends State<SavedOffersPage> {
     await _load();
   }
 
+  Future<void> _apply(int id) async {
+    if (_saving || _loading) return;
+    final token = widget.session.session?.token;
+    await context.push('/offers/$id/apply');
+    if (mounted && widget.session.session?.token == token) {
+      _notice = null;
+      await _load();
+    }
+  }
+
   @override
   Widget build(BuildContext context) => Workspace(
     title: 'Guardados',
@@ -167,6 +178,16 @@ class _SavedOffersPageState extends State<SavedOffersPage> {
                 const Text(
                   'Esta oferta ya no aparece en las búsquedas activas. Puedes quitarla de Guardados.',
                 ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: FilledButton(
+                  onPressed:
+                      _saving || _loading || item.availability != 'active'
+                      ? null
+                      : () => _apply(item.offer.id),
+                  child: const Text('Postularme'),
+                ),
+              ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: OutlinedButton.icon(
