@@ -1,5 +1,40 @@
 # Pruebas del backend en Postman
 
+## Contrato de búsqueda HU016
+
+`GET /api/offers/search/` requiere Token de candidato activo, no administrativo,
+con correo verificado. No modifica ofertas ni relaciones. Solo consulta ofertas
+publicadas, con fecha de publicación no futura, empresa activa de rol empresa
+y vencimiento nulo o estrictamente posterior al instante de consulta; reutiliza
+`active_offers`, como el dashboard. Cerradas, archivadas y borradores quedan fuera.
+
+Parámetros opcionales (cada uno una sola vez; desconocidos y vacíos no válidos
+se rechazan con 400): `q` (120 caracteres, hasta ocho palabras), `location` (200),
+`salary_min`/`salary_max` (0–9999999999.99, hasta dos decimales, límites inclusivos
+y mínimo ≤ máximo), `category` y `contract_type` (catálogos existentes), `sort`
+(`relevance`, predeterminado, o `date`), `page` (entero desde 1) y `page_size`
+(1–50, predeterminado 10). `q` y `location` vacíos equivalen a no filtrar.
+Una página inexistente devuelve 400; cero resultados en página 1 devuelve 200.
+
+Cada palabra debe aparecer en al menos uno de cargo, requisitos, descripción o
+empresa (AND entre palabras, OR entre campos). Son subcadenas literales,
+insensibles a mayúsculas Unicode mediante `iregex` con patrones escapados;
+se distinguen tildes. Las palabras idénticas repetidas no suman otra vez.
+Cada palabra suma 4 si aparece en cargo, 2 en requisitos, 2 en descripción y 1
+en empresa; cada campo suma una vez, independientemente de sus repeticiones.
+Relevancia descendente desempata por publicación descendente e ID descendente.
+Fecha usa esos dos últimos campos. Sin palabras, relevancia es cero.
+La paginación es estable mientras no cambie el conjunto; no es una instantánea
+transaccional entre peticiones si otras sesiones publican o cierran ofertas.
+
+La respuesta contiene `count`, `page`, `page_size`, `total_pages`, `next_page`,
+`previous_page`, `categories`, `contract_types` y `offers`. Cada resultado incluye
+`id`, `title`, `company_name`, `location`, `contract_type`, `category`, `salary`
+(cadena decimal o null), `published_at` y `relevance`. No expone propietario,
+credenciales, postulaciones ni datos privados. Cache-Control: private, no-store.
+La consulta ejecuta conteo y SELECT limitado, sin cargar todas las filas ni N+1.
+No requiere migraciones. Las pruebas propias están en `test_search.py`.
+
 La colección contiene **281 peticiones con comprobaciones automáticas**, agrupadas en catorce fases. Todas llaman a Django real; no hay respuestas simuladas. Cada petición explica tarea, objetivo, preparación, método, URL, encabezados, cuerpo y resultado esperado. El catálogo completo está en [CASOS.md](CASOS.md).
 
 Los resultados y capturas se conservan en el comentario único de cada tarea en GitHub. Esta guía explica cómo preparar y repetir los casos desde Postman.
