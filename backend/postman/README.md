@@ -357,3 +357,37 @@ La exportación original JSON del Runner exige un plan de pago; no se cambió el
 La suite Django nueva pasó 141 pruebas (8 nuevas HU013). Esto no acredita
 la interfaz en navegador ni revisión humana. La colección completa anterior
 permanece sin cambios.
+
+## Contrato de cambios de estado HU021
+
+GET/POST `/api/company/applications/{id}/status/`: solo empresa verificada,
+aprobada y propietaria. POST requiere `target_status`, `expected_version`
+entera, `request_id` UUID, `comment` opcional (texto plano, hasta 2000) y
+`confirm: true` booleano. Enviada permite En revisión/Aceptada/Rechazada;
+En revisión permite Aceptada/Rechazada; decisiones finales no se reabren.
+Repetir el mismo estado con otra operación se rechaza sin modificar nada.
+Cancelar la confirmación no envía el POST.
+
+Una operación aceptada registra evento inmutable, versión, comentario y fecha,
+actualiza mediante compare-and-swap y crea un aviso interno único al candidato
+en la misma transacción. Conserva la fecha original, identidad, oferta y PDF.
+Mismo UUID/payload devuelve el evento original sin más avisos; otro payload
+con ese UUID o una versión obsoleta devuelve 409. GET
+`/api/company/applications/{id}/status/operations/{uuid}/` permite comprobar
+una respuesta perdida; 404 permite reintentar exactamente la misma operación.
+SQLite reintenta la transacción completa de forma acotada; agotamiento 503,
+sin prometer una duración total fija ni omitir el timeout del motor.
+
+Permisos y estado se revalidan dentro de la transacción. Bloqueos de usuario
+compatibles con KEY SHARE de PostgreSQL, perfil empresarial, oferta y
+postulación evitan invertir los bloqueos del alta/cierre de ofertas. El CAS
+protege la versión también donde SQLite no ofrece SELECT FOR UPDATE.
+
+0007 conserva los avisos vinculados como `application_created` (uno por
+postulación) y los genéricos como `legacy`; transforma OneToOne en FK y añade
+un aviso único por evento de estado. IDs, destinatarios, títulos, fechas y
+lecturas previas no cambian. Registros antiguos tienen versión 0, comentario
+vacío y fecha de modificación null: no se inventa una transición histórica.
+Se impide degradar el esquema si ya existen eventos registrados.
+GET propios y el dashboard candidato muestran el estado, comentario, fecha y
+aviso real. No se implementa el centro adicional HU023, correo o push.
