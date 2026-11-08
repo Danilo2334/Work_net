@@ -4,6 +4,8 @@ import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/core/widgets/workspace.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'package:worknet/features/company/domain/company.dart';
+import 'package:worknet/features/messages/domain/message.dart';
+import 'package:worknet/features/messages/presentation/message_access.dart';
 
 class RoleDashboardPage extends StatefulWidget {
   const RoleDashboardPage({
@@ -11,10 +13,12 @@ class RoleDashboardPage extends StatefulWidget {
     required this.session,
     required this.repository,
     required this.admin,
+    this.messages,
   });
   final SessionController session;
   final CompanyRepository repository;
   final bool admin;
+  final MessagesRepository? messages;
   @override
   State<RoleDashboardPage> createState() => _RoleDashboardPageState();
 }
@@ -23,6 +27,7 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
   WorkspaceSummary? _data;
   bool _loading = true, _busy = false;
   String? _error;
+  int _generation = 0;
   @override
   void initState() {
     super.initState();
@@ -31,6 +36,7 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
 
   Future<void> _load() async {
     setState(() {
+      _generation++;
       _loading = true;
       _error = null;
     });
@@ -92,6 +98,14 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
       error: _error,
       onRetry: _load,
       actions: [
+        if (!widget.admin)
+          MessagesEntry(
+            key: ValueKey(
+              '${widget.session.session?.token}:messages:$_generation',
+            ),
+            session: widget.session,
+            repository: widget.messages,
+          ),
         if (!widget.admin)
           FilledButton(
             onPressed: () => context.go('/company/offers/new'),
@@ -165,7 +179,7 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
               Text(
                 widget.admin
                     ? 'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.'
-                    : 'Los mensajes y las estadísticas todavía no están disponibles.',
+                    : 'Las estadísticas todavía no están disponibles.',
               ),
             ],
           ),

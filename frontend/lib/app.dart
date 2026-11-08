@@ -6,6 +6,8 @@ import 'package:worknet/features/applicants/presentation/applicant_offers_page.d
 import 'package:worknet/features/applicants/presentation/applicants_page.dart';
 import 'package:worknet/features/applicants/presentation/applicant_detail_page.dart';
 import 'package:worknet/features/applicants/domain/applicant.dart';
+import 'package:worknet/features/messages/presentation/conversations_page.dart';
+import 'package:worknet/features/messages/presentation/chat_page.dart';
 import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:worknet/features/offers/presentation/active_offers_page.dart';
 import 'package:worknet/features/offers/presentation/offer_search_page.dart';
@@ -56,6 +58,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       widget.registrationApi ?? RegistrationApi();
   SessionController get _session => _dependencies.session;
   late final GoRouter _router;
+  final _messageObserver = RouteObserver<ModalRoute<dynamic>>();
   var _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
   int? _returnOffer(GoRouterState state) {
     final id = int.tryParse(state.uri.queryParameters['apply_offer'] ?? '');
@@ -104,6 +107,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
       '/access-pending',
     };
     _router = GoRouter(
+      observers: [_messageObserver],
       initialLocation: widget.initialLocation ?? '/login',
       overridePlatformDefaultLocation: widget.initialLocation != null,
       refreshListenable: _session,
@@ -116,8 +120,11 @@ class _WorkNetAppState extends State<WorkNetApp> {
             path.startsWith('/company/offers/');
         final applicationForm = RegExp(r'^/offers/[^/]+/apply$').hasMatch(path);
         final applicationDetail = path.startsWith('/applications/');
+        final messageFeature =
+            path == '/messages' || path.startsWith('/messages/');
         if ((protected.contains(path) ||
                 companyFeature ||
+                messageFeature ||
                 applicationForm ||
                 applicationDetail) &&
             role == null) {
@@ -128,12 +135,16 @@ class _WorkNetAppState extends State<WorkNetApp> {
           if (role == 'unassigned' &&
               (protected.contains(path) ||
                   companyFeature ||
+                  messageFeature ||
                   applicationForm ||
                   applicationDetail) &&
               path != '/choose-role') {
             return '/choose-role';
           }
           if (path == '/choose-role' && role != 'unassigned') return _home();
+          if (messageFeature && !['candidato', 'empresa'].contains(role)) {
+            return _home();
+          }
           if ([
                 '/dashboard',
                 '/offers/search',
@@ -165,6 +176,40 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/messages',
+          builder: (_, state) => _protected(
+            null,
+            () => ConversationsPage(
+              key: ValueKey('${_session.session?.token}:${state.uri}'),
+              session: _session,
+              repository: _dependencies.messages,
+              query: state.uri.queryParameters['q'] ?? '',
+              page: int.tryParse(state.uri.queryParameters['page'] ?? '1') ?? 1,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/messages/:id',
+          builder: (_, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '');
+            if (id == null || id <= 0) {
+              return const Scaffold(
+                body: Center(child: Text('Conversación no válida.')),
+              );
+            }
+            return _protected(
+              null,
+              () => ChatPage(
+                key: ValueKey('${_session.session?.token}:chat:$id'),
+                session: _session,
+                repository: _dependencies.messages,
+                routeObserver: _messageObserver,
+                id: id,
+              ),
+            );
+          },
+        ),
         GoRoute(
           path: '/company/applicants',
           builder: (_, _) => _protected(
@@ -220,6 +265,8 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 ),
                 session: _session,
                 repository: _dependencies.applicants,
+                statuses: _dependencies.statuses,
+                messages: _dependencies.messages,
                 offerId: id,
                 id: application,
               ),
@@ -241,6 +288,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 key: ValueKey('${_session.session?.token}:application:$id'),
                 session: _session,
                 repository: _dependencies.applications,
+                messages: _dependencies.messages,
                 id: id,
               ),
             );
@@ -447,6 +495,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               controller: _session,
               repository: _dependencies.dashboard,
               favorites: _dependencies.favorites,
+              messages: _dependencies.messages,
             ),
           ),
         ),
@@ -488,6 +537,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               session: _session,
               repository: _dependencies.company,
               admin: false,
+              messages: _dependencies.messages,
             ),
           ),
         ),
