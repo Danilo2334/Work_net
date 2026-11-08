@@ -1,0 +1,11 @@
+{
+  "offers": 1024,
+  "states": {
+    "1": "closed",
+    "2": "archived"
+  },
+  "information_unchanged": true,
+  "other_offers_unchanged": true,
+  "applications_unchanged": true,
+  "saved_unchanged": true
+}
