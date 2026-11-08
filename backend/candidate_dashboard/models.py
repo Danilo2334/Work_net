@@ -245,3 +245,26 @@ class Notification(models.Model):
                 | Q(event_kind="application_status_changed", application__isnull=False, status_event__isnull=False)
             ), name="notification_event_context"),
         ]
+
+
+class Conversation(models.Model):
+    application = models.OneToOneField(Application, on_delete=models.CASCADE, related_name="conversation")
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_activity_at = models.DateTimeField(default=timezone.now, db_index=True)
+
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name="messages")
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="selection_sent_messages")
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="selection_received_messages")
+    client_message_id = models.UUIDField()
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    read_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["conversation", "sender", "client_message_id"], name="unique_selection_message_intent"),
+            models.CheckConstraint(condition=~Q(sender=models.F("recipient")), name="selection_message_distinct_parties"),
+        ]
+        indexes = [models.Index(fields=["conversation", "recipient", "read_at"], name="selection_unread_messages")]

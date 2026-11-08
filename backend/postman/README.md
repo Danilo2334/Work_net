@@ -391,3 +391,47 @@ vacío y fecha de modificación null: no se inventa una transición histórica.
 Se impide degradar el esquema si ya existen eventos registrados.
 GET propios y el dashboard candidato muestran el estado, comentario, fecha y
 aviso real. No se implementa el centro adicional HU023, correo o push.
+
+## Contrato de mensajería HU022
+
+Una conversación por Application. Candidato verificado y empresa aprobada
+propietaria pueden iniciarla mediante POST `/api/conversations/` con solo
+`application_id`. La identidad y el interlocutor se deducen de esa relación;
+no se admiten remitentes/destinatarios arbitrarios. Ambas cuentas deben seguir
+activas, verificadas y con su rol válido; empresa aprobada. Si una pierde la
+autorización, la conversación se oculta de listas, búsqueda, resumen y rutas
+directas, sin borrar su contenido. Sigue disponible tras cierre/archivo de
+oferta o decisión final de postulación mientras ambas cuentas estén habilitadas.
+
+GET `/api/conversations/?q=...&page=1&page_size=10` busca subcadena en nombre
+del contacto, empresa u oferta dentro del conjunto autorizado. La coincidencia
+usa icontains y la colación del motor; no busca texto privado de mensajes.
+q hasta 100; páginas positivas/tamaño 1–50, orden por actividad e ID descendentes.
+La interfaz conserva búsqueda al paginar y vuelve a página 1 al cambiarla.
+
+GET `/api/conversations/{id}/messages/` devuelve ventanas de los mensajes más
+recientes, cada ventana en orden cronológico de ID ascendente. `through_id`
+devuelto fija el límite superior para las páginas siguientes, evitando
+duplicados cuando llegan mensajes nuevos. Actualizar reinicia la ventana
+para consultar esos mensajes. No se descargan historiales ilimitados ni PDF.
+
+POST en esa ruta requiere texto plano `text` de 1–4000 caracteres y
+`client_message_id` UUID. Normaliza bordes y CRLF, conserva texto repetido
+legítimo con clave nueva. UNIQUE conversación/remitente/clave; mismo payload
+repite el recibo, payload distinto con la misma clave devuelve 409. GET
+`/messages/operations/{uuid}/` dentro de esa conversación recupera solo el
+envío propio. La interfaz consulta primero las respuestas perdidas y conserva
+la clave al reintentar. No renderiza HTML ni escribe mensajes optimistas.
+
+GET no marca lectura. POST `/api/conversations/{id}/read/` recibe únicamente
+`message_ids` enteros únicos (hasta 50), realmente recibidos en esa conversación.
+Actualiza solo esos mensajes pendientes; repetición no cambia la fecha.
+Los mensajes nuevos entre GET y confirmación mantienen su pendiente. GET
+`/api/messages/summary/` cuenta solo mensajes autorizados al destinatario.
+Se distingue ese contador de avisos de postulación. La UI presenta la ventana
+antes de confirmar lectura; actualiza manualmente, sin infraestructura HU023.
+
+Rutas privadas no-store/Vary Authorization; 401 sesión, 403 rol/aprobación,
+404 recurso ajeno, 400 parámetros/texto inválidos y 409 conflicto. Los reintentos
+transaccionales SQLite son acotados, con 503 si se agotan. 0008 añade las tablas
+sin transformar postulaciones, documentos, eventos ni avisos anteriores.
