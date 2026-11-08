@@ -5,10 +5,13 @@ from .selection import ApplicationProfileView, ApplicationProfilePhotoView
 from .offers import PublishOfferView, ActiveOffersView, EditOfferView, PreservedOffersView, TransitionOfferView
 from .search import SearchOffersView
 from .favorites import SavedOffersView, SavedOfferView
+from .applicants import CompanyApplicantOffersView, CompanyOfferApplicantsView
 from .applications import (OfferApplicationView, ApplicationsView, OwnApplicationView,
                            OwnApplicationPdfView, CompanyApplicationView, CompanyApplicationPdfView)
 
 urlpatterns = [
+    path("company/applicant-offers/", CompanyApplicantOffersView.as_view(), name="applicant-offer-selection"),
+    path("company/offers/<int:offer_id>/applications/", CompanyOfferApplicantsView.as_view(), name="company-offer-applications"),
     path("offers/<int:offer_id>/application/", OfferApplicationView.as_view(), name="offer-application"),
     path("applications/", ApplicationsView.as_view(), name="own-applications"),
     path("applications/<int:application_id>/", OwnApplicationView.as_view(), name="own-application"),
