@@ -71,6 +71,9 @@ class _WorkNetAppState extends State<WorkNetApp> {
   @override
   void initState() {
     super.initState();
+    // Guardados es la única ruta con push y admite acceso directo protegido.
+    // Reflejarla en web permite recargarla y conservar la búsqueda al volver.
+    GoRouter.optionURLReflectsImperativeAPIs = true;
     const protected = {
       '/dashboard',
       '/offers/search',
