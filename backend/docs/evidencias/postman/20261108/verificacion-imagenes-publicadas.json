@@ -1,0 +1,446 @@
+{
+  "publication_sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+  "images": [
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/01-reconsulta-json-pm262.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/01-reconsulta-json-pm262.png",
+      "http": 200,
+      "sha256": "c3cd840bb2c10c6591ba7358e26a1461f6a3970b7c2881009c2589513f1bda2d",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png",
+      "http": 200,
+      "sha256": "e687e84d58304a41289c5e7a5944a2d26a41a9068f65fa7f93c30478dd28a31c",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/03-previa-clasica-pm256.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/03-previa-clasica-pm256.png",
+      "http": 200,
+      "sha256": "56ed87f7233f9a9cc6d65d6ed261797683afc35f1fdfc0d733fad90a076cf8e9",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png",
+      "http": 200,
+      "sha256": "543c29838406a410d1430e760f73980169bc20f0d24f612d94251c4022fef0fb",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/05-plantilla-moderna-pm259.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/05-plantilla-moderna-pm259.png",
+      "http": 200,
+      "sha256": "4f2a7b530120b5a87e5f2cd64f7b0b29bb1ef68dc5f3ffc5ac99c144fd1a2aba",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/06-descarga-moderna.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/06-descarga-moderna.png",
+      "http": 200,
+      "sha256": "9fc9061f36a6f57be5d407c9ad939dca960c69f8874432f4e15cdc648303369a",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/07-plantilla-minimalista-pm260.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/07-plantilla-minimalista-pm260.png",
+      "http": 200,
+      "sha256": "0adde0c7abd7447677e92f91eb2f874a1c01abac84f086b82948a2282063ba81",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png",
+      "http": 200,
+      "sha256": "4d11adaf2199dcf213f5bdcb4feb7157d9a3a380d74a35eddc88f50db155f48c",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/09-edicion-secciones-pm263.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/09-edicion-secciones-pm263.png",
+      "http": 200,
+      "sha256": "3e00e4e568d3c3baa20c2fa474a7a63b8db4e3935d1d56d9de19536f1a7f0dba",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png",
+      "http": 200,
+      "sha256": "3b3cae0fe43961969682d089da02b8f056eb7e7c34546845314dbbc0b08e1ce1",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png",
+      "http": 200,
+      "sha256": "fce75ce166c5854e54193155f55541012bd5ee0effce4dfb0208ca69a157b7ab",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png",
+      "http": 200,
+      "sha256": "8003913f5a63349d04ecbf000abd20167abef09e19f1c20a16b25feb4395882e",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png",
+      "http": 200,
+      "sha256": "9dda164e0c4efa0ffcb6f4f057ee305a2ecfcd545f3f4ef0b1a43f3f49513c64",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png",
+      "http": 200,
+      "sha256": "dfe6462092443d7c86af149a5cf018c6c652e7b43a891dc3e29730e02573ea80",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/15-descarga-headers-pm268.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/15-descarga-headers-pm268.png",
+      "http": 200,
+      "sha256": "7e192810a84f6e676525a8445f5eda2ac33aec1825abedba991284f909760e73",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png",
+      "http": 200,
+      "sha256": "18c61eef1ba8a7312fec8c4fc5817d1f8c0a59cfee9b85c74645bb262c55c659",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png",
+      "http": 200,
+      "sha256": "05723c6f0417bf7f834b7389c2daf0cd6ae49a28dac4744d09e240e701e95f0e",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/18-plantilla-invalida-pm271.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/18-plantilla-invalida-pm271.png",
+      "http": 200,
+      "sha256": "a38e4df24545d6a416cd5da951d897bfbf999308e86c2aa5c4ed9537a0739c30",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png",
+      "http": 200,
+      "sha256": "e26cf0821557b7ea264927c4526dde2c7c16b976343411d8b007908c27fc4bf7",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu012/20-empresa-rechazada.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/20-empresa-rechazada.png",
+      "http": 200,
+      "sha256": "f7153ffd2798a5c39d5ea45d8b6c54cbf92bacf491a057c52b588106dbf863b0",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu013/01-catalogos.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/01-catalogos.png",
+      "http": 200,
+      "sha256": "7f32a90bf95312e1e9fb05a912a814e5bff31b5005095208353787372601eeb8",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu013/02-publicacion-201.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/02-publicacion-201.png",
+      "http": 200,
+      "sha256": "cf07f02592cfe4f24364b829c2e4e0b8b2ff1141f074b9be7f6bc9ed9fdcb3a8",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu013/03-empresa-pendiente-403.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/03-empresa-pendiente-403.png",
+      "http": 200,
+      "sha256": "e2d303c6bb5a6420af889e64259cc10a6f8a4baf74a7fc3069e822140a3e7cce",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/02-precarga.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/02-precarga.png",
+      "http": 200,
+      "sha256": "36fca9ce2535d6ab9054e5fc4a43aff4dabcae829a3aae224b3b5589e9fa0627",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/03-patch-valido.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/03-patch-valido.png",
+      "http": 200,
+      "sha256": "3d5ba6cc1dd612d711c0f44b8ad0f910573689ef95b724c61b543a9bc84348e2",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png",
+      "http": 200,
+      "sha256": "d1becbdb455d2a38d5bee63f051902460ad2c53e7264e682f74640b795430220",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png",
+      "http": 200,
+      "sha256": "306afa0f260f7a0c8469b70e9a92a12123bda5502081ae15ddafe23940cb2ffb",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png",
+      "http": 200,
+      "sha256": "1dd415414762b4fe0fde2986151573432336eb9c59b0b68316fe6bb95ea22397",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png",
+      "http": 200,
+      "sha256": "3d1abd2f5aa34b25d2093cd5d8fc085838c8a0c7d24ec8663e832ca669022057",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/08-candidato-403.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/08-candidato-403.png",
+      "http": 200,
+      "sha256": "d42ad95613f06be71dc6f4b29d6712b23320ecbe8f8e137a93f8bb454f3cf50e",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/09-empresa-pendiente-403.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/09-empresa-pendiente-403.png",
+      "http": 200,
+      "sha256": "f73e1ba744b53dfc1625ac00c5b72b81d873ef20ef199dc8c54782f854759849",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/10-oferta-ajena-404.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/10-oferta-ajena-404.png",
+      "http": 200,
+      "sha256": "ed5e58017f7ea8df224f1fec41029e7404ce06424a28ad15759df4aa32031b01",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/11-patch-ajeno-404.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/11-patch-ajeno-404.png",
+      "http": 200,
+      "sha256": "e447275c4d54522f5861fe451ba17fd2b9d2cdfab7b079ff5bd03eff9a574e15",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/12-archivada-409.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/12-archivada-409.png",
+      "http": 200,
+      "sha256": "d6cc9bcbe2190b24c2a64b6b235b11333e25c891f5ca96f99c1dfb939b37d507",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/13-cerrada-409.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/13-cerrada-409.png",
+      "http": 200,
+      "sha256": "1f0e82a45a9e65579da2f57bfbe764881a3a3f5615a3c21f7717e8006005ddb4",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/14-borrador-409.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/14-borrador-409.png",
+      "http": 200,
+      "sha256": "7b2cf66b5b45e66290350ec1ad0ccda9d0ce6c559dbb44e8bd2e22aa1a1afa7c",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/15-vencida-409.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/15-vencida-409.png",
+      "http": 200,
+      "sha256": "b591013ec132aca1fe22dac74156c4e38e68d07f89a8a263210549b038a1cfcd",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/01-listado-activo.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/01-listado-activo.png",
+      "http": 200,
+      "sha256": "15ac3b65c940960668c8793a592abf08f72538a853f2a3d1b6c8d971d3f1e432",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu014/01b-listado-propietarios-estados.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/01b-listado-propietarios-estados.png",
+      "http": 200,
+      "sha256": "fd90946ce308cd8b204c2a745f658f3a6f242bfc5b7e051a35cf8d837bbe4669",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/01-activas-iniciales.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/01-activas-iniciales.png",
+      "http": 200,
+      "sha256": "5099baa3501c0f277755648be416a6eda0c287c2a8862b1b6a26c7011e7593dc",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/02-conservadas-iniciales.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/02-conservadas-iniciales.png",
+      "http": 200,
+      "sha256": "1131a0597c4f42d5b3e225f8865d08683b6d013e699d34f7c915398c9ff1f94a",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png",
+      "http": 200,
+      "sha256": "f2ee6891d0f3f15a5cbf908b963db5a1027836c378d78e072d890048238b9b11",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png",
+      "http": 200,
+      "sha256": "2e3e0e505ad2f7a80cad1a2b5c79db828d4fd376b191702322fc1f4e83d64f02",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png",
+      "http": 200,
+      "sha256": "af5b4fd011f6ab08f1c8ae7e9c76b73eaa4c53c1042f73ec436e05a84bd8148a",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/06-archivado-200.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/06-archivado-200.png",
+      "http": 200,
+      "sha256": "ad3b17549648b2d3cf38fa11d08143acd135119896dab6061b54d5e88cc2f9f7",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/07-activas-exclusion.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/07-activas-exclusion.png",
+      "http": 200,
+      "sha256": "c2ab8b8d909994057483576fae65dfcef05c8d1304d764a04b6d60327f6d2bb0",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/08-historial-count.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08-historial-count.png",
+      "http": 200,
+      "sha256": "863df65bc7ddb7f197b1258e4e57d469547d5e4476b075ef634ce56cb703b8f6",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png",
+      "http": 200,
+      "sha256": "08227711e84ccedb436178fc4db774e0cc7d56120cace3a853e0b6810bb5782d",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png",
+      "http": 200,
+      "sha256": "8875778b405a56143809e545f53530b7fee3d5e843e3fe4b2e55d5b156da6d78",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png",
+      "http": 200,
+      "sha256": "ac989dc626f4b22886a2ca4a9faec6d95a903464ed1853ea59de99746b764bcb",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png",
+      "http": 200,
+      "sha256": "942e525005236187b0c77c3447e106e10908103ce05d86c1efb515ffc2105b9c",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/12-candidato-403.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/12-candidato-403.png",
+      "http": 200,
+      "sha256": "fae93a1aa3042bd33710ebcb9f496217262670b6989de460a8c20c2d0d2578ac",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/13-empresa-pendiente-403.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/13-empresa-pendiente-403.png",
+      "http": 200,
+      "sha256": "c225a03e0c05df6ceaba4909c1187154c619036703ed31ee4485497464cd10c2",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/14-reintento-idempotente.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/14-reintento-idempotente.png",
+      "http": 200,
+      "sha256": "ad1484b63950eb641800decc85c13c77dd2802ebd289253f19e9c7d901ca4533",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    },
+    {
+      "path": "backend/docs/evidencias/postman/20261108/hu015/15-relaciones-dashboard.png",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/15-relaciones-dashboard.png",
+      "http": 200,
+      "sha256": "f671d5758c1745b57b1ef7421ebbed98bb817d6d85e431b1c398bb5a1d2333a7",
+      "bytes_match_git": true,
+      "visually_reviewed_in_desktop": true
+    }
+  ],
+  "total": 55
+}

@@ -1,7 +1,7 @@
 {
   "date": "2026-11-08",
   "timezone": "America/Bogota",
-  "status": "Desktop completado; publicaci\u00f3n documental en comprobaci\u00f3n",
+  "status": "Desktop y comentarios verificados; integraci\u00f3n documental mediante PR #161",
   "product_sha": "399caa93b51bc23cc2c6d5a8d05ac21f7a1d9608",
   "functional_source_note": "df3a7c7 solo modifica documentaci\u00f3n; el producto servido corresponde al \u00e1rbol funcional de 399caa9.",
   "postman_desktop": "12.34.1",

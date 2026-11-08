@@ -1,0 +1,1901 @@
+{
+  "date": "2026-11-08",
+  "status": "63 subtareas verificadas en GitHub; normalizaci\u00f3n documental completa",
+  "image_publication_sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+  "tasks": 63,
+  "comment_count_per_task": 1,
+  "visible_image_occurrences": 215,
+  "unique_visible_image_urls": 144,
+  "missing_documentary_evidence": [],
+  "changed_comments": [
+    60,
+    62,
+    76,
+    77,
+    79,
+    81,
+    83,
+    85,
+    87,
+    89,
+    91
+  ],
+  "issue84_unchanged": true,
+  "issue86_unchanged": true,
+  "new_desktop_requests": 58,
+  "new_assertions_passed": 149,
+  "new_screenshots": 55,
+  "functional_states_preserved": true,
+  "no_human_approval_attributed": true,
+  "rows": [
+    {
+      "issue": 29,
+      "url": "https://github.com/Danilo2334/Work_net/issues/29#issuecomment-6259568713",
+      "comment_id": 6259568713,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Cuenta creada antes del rol",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png"
+        },
+        {
+          "alt": "Correo duplicado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-correo-duplicado.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 30,
+      "url": "https://github.com/Danilo2334/Work_net/issues/30#issuecomment-6272919540",
+      "comment_id": 6272919540,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu001 registro duplicado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu001-registro-duplicado.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 31,
+      "url": "https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035",
+      "comment_id": 6272920035,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu001 verificacion respuesta",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu001-verificacion-respuesta.png"
+        },
+        {
+          "alt": "hu001 verificacion pruebas",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu001-verificacion-pruebas.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 32,
+      "url": "https://github.com/Danilo2334/Work_net/issues/32#issuecomment-6245224132",
+      "comment_id": 6245224132,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Cuenta creada antes del rol",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png"
+        },
+        {
+          "alt": "Registro y rol confirmados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-confirmado.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 33,
+      "url": "https://github.com/Danilo2334/Work_net/issues/33#issuecomment-6245223825",
+      "comment_id": 6245223825,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu001 registro duplicado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu001-registro-duplicado.png"
+        },
+        {
+          "alt": "hu001 verificacion pruebas",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu001-verificacion-pruebas.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 34,
+      "url": "https://github.com/Danilo2334/Work_net/issues/34#issuecomment-6245479135",
+      "comment_id": 6245479135,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Error de acceso",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
+        },
+        {
+          "alt": "Empresa rechazada en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 35,
+      "url": "https://github.com/Danilo2334/Work_net/issues/35#issuecomment-6272920507",
+      "comment_id": 6272920507,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu002 token revocado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu002-token-revocado.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 36,
+      "url": "https://github.com/Danilo2334/Work_net/issues/36#issuecomment-6245479333",
+      "comment_id": 6245479333,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Error de acceso",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png"
+        },
+        {
+          "alt": "Empresa rechazada en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 37,
+      "url": "https://github.com/Danilo2334/Work_net/issues/37#issuecomment-6260288501",
+      "comment_id": 6260288501,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Empresa rechazada en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
+        },
+        {
+          "alt": "Dashboard de empresa sin actividad",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-vacio.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 38,
+      "url": "https://github.com/Danilo2334/Work_net/issues/38#issuecomment-6245480254",
+      "comment_id": 6245480254,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu002 token revocado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu002-token-revocado.png"
+        },
+        {
+          "alt": "empresa rechazada movil",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 39,
+      "url": "https://github.com/Danilo2334/Work_net/issues/39#issuecomment-6245479481",
+      "comment_id": 6245479481,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Recuperaci\u00f3n confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 40,
+      "url": "https://github.com/Danilo2334/Work_net/issues/40#issuecomment-6272921015",
+      "comment_id": 6272921015,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu003 solicitud",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu003-solicitud.png"
+        },
+        {
+          "alt": "hu003 cambio confirmado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu003-cambio-confirmado.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 41,
+      "url": "https://github.com/Danilo2334/Work_net/issues/41#issuecomment-6245479640",
+      "comment_id": 6245479640,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Recuperaci\u00f3n con correo recibido \u2014 escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-escritorio.png"
+        },
+        {
+          "alt": "Recuperaci\u00f3n con correo recibido \u2014 m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-movil.png"
+        },
+        {
+          "alt": "Recuperaci\u00f3n confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 42,
+      "url": "https://github.com/Danilo2334/Work_net/issues/42#issuecomment-6245480431",
+      "comment_id": 6245480431,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu003 solicitud",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu003-solicitud.png"
+        },
+        {
+          "alt": "hu003 cambio confirmado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu003-cambio-confirmado.png"
+        },
+        {
+          "alt": "recuperacion confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 43,
+      "url": "https://github.com/Danilo2334/Work_net/issues/43#issuecomment-6245716590",
+      "comment_id": 6245716590,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Cuenta en escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/cuenta-escritorio.png"
+        },
+        {
+          "alt": "Nombre guardado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/nombre-guardado.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 44,
+      "url": "https://github.com/Danilo2334/Work_net/issues/44#issuecomment-6272921535",
+      "comment_id": 6272921535,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu004 nombre persistente",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu004-nombre-persistente.png"
+        },
+        {
+          "alt": "hu004 token anterior",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu004-token-anterior.png"
+        },
+        {
+          "alt": "hu004 eliminacion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu004-eliminacion.png"
+        },
+        {
+          "alt": "hu004 cuenta eliminada 401",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu004-cuenta-eliminada-401.png"
+        }
+      ],
+      "rendered_images": 4,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 45,
+      "url": "https://github.com/Danilo2334/Work_net/issues/45#issuecomment-6272922011",
+      "comment_id": 6272922011,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu004 preferencia persistente",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu004-preferencia-persistente.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 46,
+      "url": "https://github.com/Danilo2334/Work_net/issues/46#issuecomment-6245716821",
+      "comment_id": 6245716821,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Nombre y sesi\u00f3n actualizados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/nombre-guardado.png"
+        },
+        {
+          "alt": "Preferencia guardada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/preferencias-guardadas.png"
+        },
+        {
+          "alt": "Confirmaci\u00f3n m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/eliminacion-confirmacion-movil.png"
+        },
+        {
+          "alt": "Resultado de eliminaci\u00f3n QA",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu004/eliminacion-completada.png"
+        }
+      ],
+      "rendered_images": 4,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 47,
+      "url": "https://github.com/Danilo2334/Work_net/issues/47#issuecomment-6245479801",
+      "comment_id": 6245479801,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "candidato regresion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 48,
+      "url": "https://github.com/Danilo2334/Work_net/issues/48#issuecomment-6272922606",
+      "comment_id": 6272922606,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Resumen del candidato",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu005-resumen.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 49,
+      "url": "https://github.com/Danilo2334/Work_net/issues/49#issuecomment-6245479981",
+      "comment_id": 6245479981,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Regresi\u00f3n del candidato",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 50,
+      "url": "https://github.com/Danilo2334/Work_net/issues/50#issuecomment-6245480602",
+      "comment_id": 6245480602,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu005 resumen",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu005-resumen.png"
+        },
+        {
+          "alt": "candidato regresion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/candidato-regresion.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 51,
+      "url": "https://github.com/Danilo2334/Work_net/issues/51#issuecomment-6260291090",
+      "comment_id": 6260291090,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "empresa dashboard escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-dashboard-escritorio.png"
+        },
+        {
+          "alt": "empresa dashboard movil",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-dashboard-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 52,
+      "url": "https://github.com/Danilo2334/Work_net/issues/52#issuecomment-6272923113",
+      "comment_id": 6272923113,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Resumen de empresa",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu006-resumen.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 53,
+      "url": "https://github.com/Danilo2334/Work_net/issues/53#issuecomment-6260291383",
+      "comment_id": 6260291383,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "empresa dashboard vacio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-dashboard-vacio.png"
+        },
+        {
+          "alt": "HU015 V01 activas escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V01-activas-escritorio.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 54,
+      "url": "https://github.com/Danilo2334/Work_net/issues/54#issuecomment-6260276785",
+      "comment_id": 6260276785,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu006 resumen",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu006-resumen.png"
+        },
+        {
+          "alt": "HU015 V01 activas escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V01-activas-escritorio.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 55,
+      "url": "https://github.com/Danilo2334/Work_net/issues/55#issuecomment-6260291727",
+      "comment_id": 6260291727,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "administracion escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/administracion-escritorio.png"
+        },
+        {
+          "alt": "administracion movil",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/administracion-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 56,
+      "url": "https://github.com/Danilo2334/Work_net/issues/56#issuecomment-6272923641",
+      "comment_id": 6272923641,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Resumen administrativo",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu007-resumen.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 57,
+      "url": "https://github.com/Danilo2334/Work_net/issues/57#issuecomment-6260292130",
+      "comment_id": 6260292130,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Dashboard administrativo",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-escritorio.png"
+        },
+        {
+          "alt": "Administraci\u00f3n en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 58,
+      "url": "https://github.com/Danilo2334/Work_net/issues/58#issuecomment-6260277494",
+      "comment_id": 6260277494,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu007 resumen",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu007-resumen.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 59,
+      "url": "https://github.com/Danilo2334/Work_net/issues/59#issuecomment-6246221677",
+      "comment_id": 6246221677,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Perfil en escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/perfil-completo-escritorio.png"
+        },
+        {
+          "alt": "Registros en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/registros-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 60,
+      "url": "https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6272924156",
+      "comment_id": 6272924156,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Educaci\u00f3n editada y recuperada en Postman",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png"
+        },
+        {
+          "alt": "Otro candidato no modifica el registro en Postman",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-permisos.png"
+        },
+        {
+          "alt": "PNG corrupto rechazado en Postman",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png"
+        },
+        {
+          "alt": "PM214: consulta empresarial autorizada del perfil",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-autorizada.png"
+        },
+        {
+          "alt": "PM224: fotograf\u00eda privada del postulante",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/fotografia-privada.png"
+        },
+        {
+          "alt": "PM219: consulta de otra empresa rechazada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/empresa-ajena.png"
+        }
+      ],
+      "rendered_images": 6,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 61,
+      "url": "https://github.com/Danilo2334/Work_net/issues/61#issuecomment-6246221840",
+      "comment_id": 6246221840,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Fotograf\u00eda guardada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-guardada.png"
+        },
+        {
+          "alt": "Archivo inv\u00e1lido",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-invalida.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 62,
+      "url": "https://github.com/Danilo2334/Work_net/issues/62#issuecomment-6246223309",
+      "comment_id": 6246223309,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "PM214: perfil empresarial autorizado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-autorizada.png"
+        },
+        {
+          "alt": "PM224: fotograf\u00eda privada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/fotografia-privada.png"
+        },
+        {
+          "alt": "PM219: otra empresa rechazada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/empresa-ajena.png"
+        },
+        {
+          "alt": "PM255 \u00b7 #76 \u00b7 Precargar el CV desde el perfil sin guardarlo: 02-precarga-perfil-pm255",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png"
+        }
+      ],
+      "rendered_images": 4,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 63,
+      "url": "https://github.com/Danilo2334/Work_net/issues/63#issuecomment-6260293510",
+      "comment_id": 6260293510,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "empresa pendiente escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-pendiente-escritorio.png"
+        },
+        {
+          "alt": "empresa logo",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-logo.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 64,
+      "url": "https://github.com/Danilo2334/Work_net/issues/64#issuecomment-6272924656",
+      "comment_id": 6272924656,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Informaci\u00f3n empresarial persistida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu009-informacion-persistente.png"
+        }
+      ],
+      "rendered_images": 1,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 65,
+      "url": "https://github.com/Danilo2334/Work_net/issues/65#issuecomment-6260293907",
+      "comment_id": 6260293907,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "empresa rechazada movil",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png"
+        },
+        {
+          "alt": "empresa reenvio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-reenvio.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 66,
+      "url": "https://github.com/Danilo2334/Work_net/issues/66#issuecomment-6260278891",
+      "comment_id": 6260278891,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu009 informacion persistente",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu009-informacion-persistente.png"
+        },
+        {
+          "alt": "hu010 rechazo notificado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png"
+        },
+        {
+          "alt": "hu010 aprobacion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-aprobacion.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 67,
+      "url": "https://github.com/Danilo2334/Work_net/issues/67#issuecomment-6260294278",
+      "comment_id": 6260294278,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "solicitudes escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/solicitudes-escritorio.png"
+        },
+        {
+          "alt": "rechazo motivo obligatorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/rechazo-motivo-obligatorio.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 68,
+      "url": "https://github.com/Danilo2334/Work_net/issues/68#issuecomment-6272925177",
+      "comment_id": 6272925177,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu010 rechazo notificado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png"
+        },
+        {
+          "alt": "hu010 aprobacion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-aprobacion.png"
+        },
+        {
+          "alt": "hu010 version obsoleta",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-version-obsoleta.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 69,
+      "url": "https://github.com/Danilo2334/Work_net/issues/69#issuecomment-6260294733",
+      "comment_id": 6260294733,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "aprobacion confirmacion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/aprobacion-confirmacion.png"
+        },
+        {
+          "alt": "hu010 rechazo notificado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 70,
+      "url": "https://github.com/Danilo2334/Work_net/issues/70#issuecomment-6260279554",
+      "comment_id": 6260279554,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "hu010 rechazo notificado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png"
+        },
+        {
+          "alt": "hu010 version obsoleta",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu010-version-obsoleta.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 71,
+      "url": "https://github.com/Danilo2334/Work_net/issues/71#issuecomment-6393908663",
+      "comment_id": 6393908663,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "02 carga confirmada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/91207ad37f13f1dd9f647264b48717ae514cb2f7/frontend/docs/evidencias/hu011/02-carga-confirmada.png"
+        },
+        {
+          "alt": "10 movil visor",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/91207ad37f13f1dd9f647264b48717ae514cb2f7/frontend/docs/evidencias/hu011/10-movil-visor.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 72,
+      "url": "https://github.com/Danilo2334/Work_net/issues/72#issuecomment-6393909036",
+      "comment_id": 6393909036,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "02 carga pdf valido",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/47d5f1ec039d8f18321d8fafe9ff2ed0b2568493/backend/docs/evidencias/hu011/02-carga-pdf-valido.png"
+        },
+        {
+          "alt": "07 candidato ajeno",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/47d5f1ec039d8f18321d8fafe9ff2ed0b2568493/backend/docs/evidencias/hu011/07-candidato-ajeno.png"
+        },
+        {
+          "alt": "10 candidato sin verificar",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/47d5f1ec039d8f18321d8fafe9ff2ed0b2568493/backend/docs/evidencias/hu011/10-candidato-sin-verificar.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 73,
+      "url": "https://github.com/Danilo2334/Work_net/issues/73#issuecomment-6393908849",
+      "comment_id": 6393908849,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "04 pdf reemplazado",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/91207ad37f13f1dd9f647264b48717ae514cb2f7/frontend/docs/evidencias/hu011/04-pdf-reemplazado.png"
+        },
+        {
+          "alt": "07 persistencia recarga",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/91207ad37f13f1dd9f647264b48717ae514cb2f7/frontend/docs/evidencias/hu011/07-persistencia-recarga.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 74,
+      "url": "https://github.com/Danilo2334/Work_net/issues/74#issuecomment-6393909202",
+      "comment_id": 6393909202,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "04 reemplazo persistido",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/47d5f1ec039d8f18321d8fafe9ff2ed0b2568493/backend/docs/evidencias/hu011/04-reemplazo-persistido.png"
+        },
+        {
+          "alt": "05 pdf corrupto",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/47d5f1ec039d8f18321d8fafe9ff2ed0b2568493/backend/docs/evidencias/hu011/05-pdf-corrupto.png"
+        },
+        {
+          "alt": "08 eliminacion persistida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/47d5f1ec039d8f18321d8fafe9ff2ed0b2568493/backend/docs/evidencias/hu011/08-eliminacion-persistida.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 75,
+      "url": "https://github.com/Danilo2334/Work_net/issues/75#issuecomment-6677450277",
+      "comment_id": 6677450277,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU012 V04 plantilla",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU012-V04-plantilla.png"
+        },
+        {
+          "alt": "HU012 V05 salida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU012-V05-salida.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 76,
+      "url": "https://github.com/Danilo2334/Work_net/issues/76#issuecomment-6677473873",
+      "comment_id": 6677473873,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "PM262 \u00b7 #76 \u00b7 Consultar nuevamente conserva el CV guardado: 01-reconsulta-json-pm262",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/01-reconsulta-json-pm262.png"
+        },
+        {
+          "alt": "PM258 \u00b7 #76 \u00b7 Guardar el CV precargado con plantilla Cl\u00e1sica: 04-guardar-json-pm258",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png"
+        },
+        {
+          "alt": "PM259 \u00b7 #76 \u00b7 Cambiar a plantilla moderna sin perder datos: 05-plantilla-moderna-pm259",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/05-plantilla-moderna-pm259.png"
+        },
+        {
+          "alt": "PM260 \u00b7 #76 \u00b7 Cambiar a plantilla minimalista sin perder datos: 07-plantilla-minimalista-pm260",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/07-plantilla-minimalista-pm260.png"
+        },
+        {
+          "alt": "PM263 \u00b7 #76 \u00b7 Editar datos personales, resumen y secciones opcionales: 09-edicion-secciones-pm263",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/09-edicion-secciones-pm263.png"
+        },
+        {
+          "alt": "PM263 \u00b7 #76 \u00b7 Editar datos personales, resumen y secciones opcionales: 10-certificacion-extra-pm263",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png"
+        },
+        {
+          "alt": "PM271 \u00b7 #76 \u00b7 Plantilla desconocida rechazada: 18-plantilla-invalida-pm271",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/18-plantilla-invalida-pm271.png"
+        },
+        {
+          "alt": "PM275 \u00b7 #79 \u00b7 Errores no destruyen el CV guardado: 19-reconsulta-tras-errores-pm275",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png"
+        }
+      ],
+      "rendered_images": 8,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 77,
+      "url": "https://github.com/Danilo2334/Work_net/issues/77#issuecomment-6677474163",
+      "comment_id": 6677474163,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "DOC12 PDF guardado moderna: 06-descarga-moderna",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/06-descarga-moderna.png"
+        },
+        {
+          "alt": "DOC12 PDF guardado minimalista: 08-descarga-minimalista",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png"
+        },
+        {
+          "alt": "PM265 \u00b7 #77 \u00b7 Generar PDF de vista previa clasica: 11-previa-clasica-pm265",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png"
+        },
+        {
+          "alt": "PM266 \u00b7 #77 \u00b7 Generar PDF de vista previa moderna: 12-previa-moderna-pm266",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png"
+        },
+        {
+          "alt": "PM267 \u00b7 #77 \u00b7 Generar PDF de vista previa minimalista: 13-previa-minimalista-pm267",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png"
+        },
+        {
+          "alt": "PM268 \u00b7 #77 \u00b7 Descargar el PDF del CV guardado: 14-descarga-clasica-pm268",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png"
+        },
+        {
+          "alt": "PM268 \u00b7 #77 \u00b7 Descargar el PDF del CV guardado: 15-descarga-headers-pm268",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/15-descarga-headers-pm268.png"
+        },
+        {
+          "alt": "PM269 \u00b7 #77 \u00b7 Descarga sin sesi\u00f3n rechazada: 16-sin-sesion-pm269",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png"
+        },
+        {
+          "alt": "PM270 \u00b7 #77 \u00b7 Otra cuenta no descarga el CV ajeno: 17-otra-cuenta-pm270",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png"
+        },
+        {
+          "alt": "DOC12 Descarga empresa rechazada: 20-empresa-rechazada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/20-empresa-rechazada.png"
+        }
+      ],
+      "rendered_images": 10,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 78,
+      "url": "https://github.com/Danilo2334/Work_net/issues/78#issuecomment-6677451237",
+      "comment_id": 6677451237,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU012 V12 reentrada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU012-V12-reentrada.png"
+        },
+        {
+          "alt": "HU012 V07 pdf movil",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU012-V07-pdf-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 79,
+      "url": "https://github.com/Danilo2334/Work_net/issues/79#issuecomment-6677474473",
+      "comment_id": 6677474473,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "PM255 \u00b7 #76 \u00b7 Precargar el CV desde el perfil sin guardarlo: 02-precarga-perfil-pm255",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png"
+        },
+        {
+          "alt": "PM258 \u00b7 #76 \u00b7 Guardar el CV precargado con plantilla Cl\u00e1sica: 04-guardar-json-pm258",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png"
+        },
+        {
+          "alt": "DOC12 PDF guardado moderna: 06-descarga-moderna",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/06-descarga-moderna.png"
+        },
+        {
+          "alt": "DOC12 PDF guardado minimalista: 08-descarga-minimalista",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png"
+        },
+        {
+          "alt": "PM263 \u00b7 #76 \u00b7 Editar datos personales, resumen y secciones opcionales: 10-certificacion-extra-pm263",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png"
+        },
+        {
+          "alt": "PM265 \u00b7 #77 \u00b7 Generar PDF de vista previa clasica: 11-previa-clasica-pm265",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png"
+        },
+        {
+          "alt": "PM266 \u00b7 #77 \u00b7 Generar PDF de vista previa moderna: 12-previa-moderna-pm266",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png"
+        },
+        {
+          "alt": "PM267 \u00b7 #77 \u00b7 Generar PDF de vista previa minimalista: 13-previa-minimalista-pm267",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png"
+        },
+        {
+          "alt": "PM268 \u00b7 #77 \u00b7 Descargar el PDF del CV guardado: 14-descarga-clasica-pm268",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png"
+        },
+        {
+          "alt": "PM269 \u00b7 #77 \u00b7 Descarga sin sesi\u00f3n rechazada: 16-sin-sesion-pm269",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png"
+        },
+        {
+          "alt": "PM270 \u00b7 #77 \u00b7 Otra cuenta no descarga el CV ajeno: 17-otra-cuenta-pm270",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png"
+        },
+        {
+          "alt": "PM275 \u00b7 #79 \u00b7 Errores no destruyen el CV guardado: 19-reconsulta-tras-errores-pm275",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png"
+        },
+        {
+          "alt": "DOC12 Descarga empresa rechazada: 20-empresa-rechazada",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu012/20-empresa-rechazada.png"
+        }
+      ],
+      "rendered_images": 13,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 80,
+      "url": "https://github.com/Danilo2334/Work_net/issues/80#issuecomment-6679336067",
+      "comment_id": 6679336067,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU013 V01 formulario",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU013-V01-formulario.png"
+        },
+        {
+          "alt": "HU013 V04 salario",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU013-V04-salario.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 81,
+      "url": "https://github.com/Danilo2334/Work_net/issues/81#issuecomment-6679337039",
+      "comment_id": 6679337039,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU013-02 Catalogos: 01-catalogos",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/01-catalogos.png"
+        },
+        {
+          "alt": "HU013-03 Publicar oferta: 02-publicacion-201",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/02-publicacion-201.png"
+        },
+        {
+          "alt": "HU013-09 Empresa pendiente rechazada: 03-empresa-pendiente-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/03-empresa-pendiente-403.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 82,
+      "url": "https://github.com/Danilo2334/Work_net/issues/82#issuecomment-6679338031",
+      "comment_id": 6679338031,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU013 V05 confirmacion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU013-V05-confirmacion.png"
+        },
+        {
+          "alt": "HU013 V05 dashboard 3",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU013-V05-dashboard-3.png"
+        },
+        {
+          "alt": "HU013 V07 red borrador",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU013-V07-red-borrador.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 83,
+      "url": "https://github.com/Danilo2334/Work_net/issues/83#issuecomment-6679338987",
+      "comment_id": 6679338987,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU013-02 Catalogos: 01-catalogos",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/01-catalogos.png"
+        },
+        {
+          "alt": "HU013-03 Publicar oferta: 02-publicacion-201",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/02-publicacion-201.png"
+        },
+        {
+          "alt": "HU013-09 Empresa pendiente rechazada: 03-empresa-pendiente-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu013/03-empresa-pendiente-403.png"
+        }
+      ],
+      "rendered_images": 3,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 84,
+      "url": "https://github.com/Danilo2334/Work_net/issues/84#issuecomment-6713011975",
+      "comment_id": 6713011975,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Oferta editada y reconsultada en escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/b0351ec2ef246787bd3869dedc39a8f47b783078/frontend/docs/evidencias/hu014-20261107/HU014-V04-persistencia.png"
+        },
+        {
+          "alt": "Oferta editada y reconsultada en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/b0351ec2ef246787bd3869dedc39a8f47b783078/frontend/docs/evidencias/hu014-20261107/HU014-V05-persistencia-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 85,
+      "url": "https://github.com/Danilo2334/Work_net/issues/85#issuecomment-6713013329",
+      "comment_id": 6713013329,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "D14-01 Listado propio activo: 01-listado-activo",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/01-listado-activo.png"
+        },
+        {
+          "alt": "D14-01 Listado propio activo: 01b-listado-propietarios-estados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/01b-listado-propietarios-estados.png"
+        },
+        {
+          "alt": "D14-02 Precarga: 02-precarga",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/02-precarga.png"
+        },
+        {
+          "alt": "D14-03 PATCH siete campos: 03-patch-valido",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/03-patch-valido.png"
+        },
+        {
+          "alt": "D14-04 Reconsulta persistida: 04-reconsulta-persistida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png"
+        },
+        {
+          "alt": "D14-05 Inv\u00e1lidos sin escritura: 05-invalido-400",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png"
+        },
+        {
+          "alt": "D14-06 Reconsulta tras inv\u00e1lidos: 06-sin-escritura-parcial",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png"
+        },
+        {
+          "alt": "D14-07 Sin sesi\u00f3n: 07-sin-sesion-401",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png"
+        },
+        {
+          "alt": "D14-08 Candidato: 08-candidato-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/08-candidato-403.png"
+        },
+        {
+          "alt": "D14-09 Empresa pendiente: 09-empresa-pendiente-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/09-empresa-pendiente-403.png"
+        },
+        {
+          "alt": "D14-10 Oferta ajena: 10-oferta-ajena-404",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/10-oferta-ajena-404.png"
+        },
+        {
+          "alt": "D14-11 PATCH ajeno: 11-patch-ajeno-404",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/11-patch-ajeno-404.png"
+        },
+        {
+          "alt": "D14-12 Archivada: 12-archivada-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/12-archivada-409.png"
+        },
+        {
+          "alt": "D14-13 Cerrada: 13-cerrada-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/13-cerrada-409.png"
+        },
+        {
+          "alt": "D14-14 Borrador: 14-borrador-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/14-borrador-409.png"
+        },
+        {
+          "alt": "D14-15 Vencida: 15-vencida-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/15-vencida-409.png"
+        }
+      ],
+      "rendered_images": 16,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 86,
+      "url": "https://github.com/Danilo2334/Work_net/issues/86#issuecomment-6713014288",
+      "comment_id": 6713014288,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU014 V04 persistencia",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/b0351ec2ef246787bd3869dedc39a8f47b783078/frontend/docs/evidencias/hu014-20261107/HU014-V04-persistencia.png"
+        },
+        {
+          "alt": "HU014 V08 red borrador",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/b0351ec2ef246787bd3869dedc39a8f47b783078/frontend/docs/evidencias/hu014-20261107/HU014-V08-red-borrador.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 87,
+      "url": "https://github.com/Danilo2334/Work_net/issues/87#issuecomment-6713015077",
+      "comment_id": 6713015077,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "D14-01 Listado propio activo: 01-listado-activo",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/01-listado-activo.png"
+        },
+        {
+          "alt": "D14-01 Listado propio activo: 01b-listado-propietarios-estados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/01b-listado-propietarios-estados.png"
+        },
+        {
+          "alt": "D14-02 Precarga: 02-precarga",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/02-precarga.png"
+        },
+        {
+          "alt": "D14-03 PATCH siete campos: 03-patch-valido",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/03-patch-valido.png"
+        },
+        {
+          "alt": "D14-04 Reconsulta persistida: 04-reconsulta-persistida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png"
+        },
+        {
+          "alt": "D14-05 Inv\u00e1lidos sin escritura: 05-invalido-400",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png"
+        },
+        {
+          "alt": "D14-06 Reconsulta tras inv\u00e1lidos: 06-sin-escritura-parcial",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png"
+        },
+        {
+          "alt": "D14-07 Sin sesi\u00f3n: 07-sin-sesion-401",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png"
+        },
+        {
+          "alt": "D14-08 Candidato: 08-candidato-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/08-candidato-403.png"
+        },
+        {
+          "alt": "D14-09 Empresa pendiente: 09-empresa-pendiente-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/09-empresa-pendiente-403.png"
+        },
+        {
+          "alt": "D14-10 Oferta ajena: 10-oferta-ajena-404",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/10-oferta-ajena-404.png"
+        },
+        {
+          "alt": "D14-11 PATCH ajeno: 11-patch-ajeno-404",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/11-patch-ajeno-404.png"
+        },
+        {
+          "alt": "D14-12 Archivada: 12-archivada-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/12-archivada-409.png"
+        },
+        {
+          "alt": "D14-13 Cerrada: 13-cerrada-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/13-cerrada-409.png"
+        },
+        {
+          "alt": "D14-14 Borrador: 14-borrador-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/14-borrador-409.png"
+        },
+        {
+          "alt": "D14-15 Vencida: 15-vencida-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu014/15-vencida-409.png"
+        }
+      ],
+      "rendered_images": 16,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 88,
+      "url": "https://github.com/Danilo2334/Work_net/issues/88#issuecomment-6713608969",
+      "comment_id": 6713608969,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "Confirmaci\u00f3n de archivado en escritorio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V02-confirmacion-archivar.png"
+        },
+        {
+          "alt": "Confirmaci\u00f3n de archivado en m\u00f3vil web",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V05-confirmacion-movil.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 89,
+      "url": "https://github.com/Danilo2334/Work_net/issues/89#issuecomment-6713609559",
+      "comment_id": 6713609559,
+      "author": "Danilo2334",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "D15-01 Activas iniciales: 01-activas-iniciales",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/01-activas-iniciales.png"
+        },
+        {
+          "alt": "D15-02 Conservadas iniciales: 02-conservadas-iniciales",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/02-conservadas-iniciales.png"
+        },
+        {
+          "alt": "D15-03 Archivado sin confirmar: 03-confirmacion-invalida-400",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png"
+        },
+        {
+          "alt": "D15-04 Sin cambio tras inv\u00e1lido: 04-invalido-sin-cambio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png"
+        },
+        {
+          "alt": "D15-05 Cierre v\u00e1lido: 05-cierre-200",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png"
+        },
+        {
+          "alt": "D15-06 Archivado confirmado: 06-archivado-200",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/06-archivado-200.png"
+        },
+        {
+          "alt": "D15-07 Activas tras transiciones: 07-activas-exclusion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/07-activas-exclusion.png"
+        },
+        {
+          "alt": "D15-08 Historial conservado: 08-historial-count",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08-historial-count.png"
+        },
+        {
+          "alt": "D15-08 Historial conservado: 08b-historial-estados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png"
+        },
+        {
+          "alt": "D15-09 Transici\u00f3n incompatible: 09-transicion-incompatible-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png"
+        },
+        {
+          "alt": "D15-10 Oferta ajena: 10-oferta-ajena-404",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png"
+        },
+        {
+          "alt": "D15-11 Sin sesi\u00f3n: 11-sin-sesion-401",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png"
+        },
+        {
+          "alt": "D15-12 Candidato: 12-candidato-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/12-candidato-403.png"
+        },
+        {
+          "alt": "D15-13 Empresa pendiente: 13-empresa-pendiente-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/13-empresa-pendiente-403.png"
+        },
+        {
+          "alt": "D15-14 Reintento idempotente: 14-reintento-idempotente",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/14-reintento-idempotente.png"
+        },
+        {
+          "alt": "D15-15 Relaciones del dashboard: 15-relaciones-dashboard",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/15-relaciones-dashboard.png"
+        }
+      ],
+      "rendered_images": 16,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 90,
+      "url": "https://github.com/Danilo2334/Work_net/issues/90#issuecomment-6713610102",
+      "comment_id": 6713610102,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": true,
+      "headings": true,
+      "images": [
+        {
+          "alt": "HU015 V03 cerrada excluida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V03-cerrada-excluida.png"
+        },
+        {
+          "alt": "HU015 V04 archivada persistida",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/hu015-20261107/integracion/HU015-V04-archivada-persistida.png"
+        }
+      ],
+      "rendered_images": 2,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    },
+    {
+      "issue": 91,
+      "url": "https://github.com/Danilo2334/Work_net/issues/91#issuecomment-6713610614",
+      "comment_id": 6713610614,
+      "author": "francisco3788",
+      "comment_count": 1,
+      "id_unchanged": true,
+      "author_unchanged": true,
+      "body_unchanged": false,
+      "headings": true,
+      "images": [
+        {
+          "alt": "D15-01 Activas iniciales: 01-activas-iniciales",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/01-activas-iniciales.png"
+        },
+        {
+          "alt": "D15-02 Conservadas iniciales: 02-conservadas-iniciales",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/02-conservadas-iniciales.png"
+        },
+        {
+          "alt": "D15-03 Archivado sin confirmar: 03-confirmacion-invalida-400",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png"
+        },
+        {
+          "alt": "D15-04 Sin cambio tras inv\u00e1lido: 04-invalido-sin-cambio",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png"
+        },
+        {
+          "alt": "D15-05 Cierre v\u00e1lido: 05-cierre-200",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png"
+        },
+        {
+          "alt": "D15-06 Archivado confirmado: 06-archivado-200",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/06-archivado-200.png"
+        },
+        {
+          "alt": "D15-07 Activas tras transiciones: 07-activas-exclusion",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/07-activas-exclusion.png"
+        },
+        {
+          "alt": "D15-08 Historial conservado: 08-historial-count",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08-historial-count.png"
+        },
+        {
+          "alt": "D15-08 Historial conservado: 08b-historial-estados",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png"
+        },
+        {
+          "alt": "D15-09 Transici\u00f3n incompatible: 09-transicion-incompatible-409",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png"
+        },
+        {
+          "alt": "D15-10 Oferta ajena: 10-oferta-ajena-404",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png"
+        },
+        {
+          "alt": "D15-11 Sin sesi\u00f3n: 11-sin-sesion-401",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png"
+        },
+        {
+          "alt": "D15-12 Candidato: 12-candidato-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/12-candidato-403.png"
+        },
+        {
+          "alt": "D15-13 Empresa pendiente: 13-empresa-pendiente-403",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/13-empresa-pendiente-403.png"
+        },
+        {
+          "alt": "D15-14 Reintento idempotente: 14-reintento-idempotente",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/14-reintento-idempotente.png"
+        },
+        {
+          "alt": "D15-15 Relaciones del dashboard: 15-relaciones-dashboard",
+          "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/94481398738b9f7e43a4e47d7da1cce619253cc0/backend/docs/evidencias/postman/20261108/hu015/15-relaciones-dashboard.png"
+        }
+      ],
+      "rendered_images": 16,
+      "functional_fields_unchanged": true,
+      "changed_fields": []
+    }
+  ],
+  "supersedes": "normalizacion-parcial.json (corte anterior conservado)"
+}
