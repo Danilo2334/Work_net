@@ -56,7 +56,7 @@ def visible_offers(queryset, *, at=None):
 
 
 def lock_accepting_offers(offer_ids, using):
-    """Comparte bloqueo de oferta con cierre/archivado, sin crear una API HU018."""
+    """Comparte bloqueo de oferta con cierre/archivado."""
     ids = set(offer_ids)
     locked = list(JobOffer.objects.using(using).select_for_update().filter(pk__in=ids).order_by("pk"))
     accepting = set(active_offers(JobOffer.objects.using(using).filter(pk__in=[o.pk for o in locked])).values_list("pk", flat=True))
@@ -76,15 +76,33 @@ class ApplicationQuerySet(models.QuerySet):
                                        update_conflicts=False, update_fields=update_fields, unique_fields=unique_fields)
 
     def update(self, **kwargs):
-        if {"offer", "offer_id", "candidate", "candidate_id"} & kwargs.keys():
-            raise ValidationError("No se pueden reasignar las relaciones de una postulación.")
+        if set(APPLICATION_IMMUTABLE_FIELDS) & kwargs.keys():
+            raise ValidationError("No se pueden modificar las relaciones, fecha ni el CV enviado de una postulación.")
         return super().update(**kwargs)
+
+
+APPLICATION_IMMUTABLE_FIELDS = (
+    "candidate", "candidate_id", "offer", "offer_id", "created_at",
+    "cv_source", "cv_source_id", "cv_source_updated_at", "cv_filename",
+    "cv_template", "cv_sha256", "cv_document",
+    "cv_size_bytes",
+)
 
 
 class Application(models.Model):
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default="submitted", choices=[("submitted", "Enviada")])
+    # Los registros históricos conservan CV vacío: no se les inventa un documento.
+    cv_source = models.CharField(max_length=12, blank=True, default="", choices=[("uploaded", "Subido"), ("generated", "Generado")])
+    cv_source_id = models.PositiveBigIntegerField(null=True, blank=True)
+    cv_source_updated_at = models.DateTimeField(null=True, blank=True)
+    cv_filename = models.CharField(max_length=150, blank=True, default="")
+    cv_template = models.CharField(max_length=12, blank=True, default="")
+    cv_sha256 = models.CharField(max_length=64, blank=True, default="")
+    cv_document = models.BinaryField(default=bytes, blank=True, editable=False)
+    cv_size_bytes = models.PositiveIntegerField(default=0)
     objects = ApplicationQuerySet.as_manager()
 
     def save(self, *args, **kwargs):
@@ -93,9 +111,10 @@ class Application(models.Model):
             if self._state.adding:
                 lock_accepting_offers([self.offer_id], using)
             else:
-                original = type(self).objects.using(using).filter(pk=self.pk).values("offer_id", "candidate_id").first()
-                if original is None or original != {"offer_id": self.offer_id, "candidate_id": self.candidate_id}:
-                    raise ValidationError("No se pueden reasignar las relaciones de una postulación.")
+                fields = [f for f in APPLICATION_IMMUTABLE_FIELDS if f not in ("candidate", "offer")]
+                original = type(self).objects.using(using).filter(pk=self.pk).values(*fields).first()
+                if original is None or any(original[f] != getattr(self, f) for f in fields):
+                    raise ValidationError("No se pueden modificar las relaciones, fecha ni el CV enviado de una postulación.")
             return super().save(*args, **kwargs)
 
     class Meta:
@@ -116,6 +135,7 @@ class SavedOffer(models.Model):
 
 
 class Notification(models.Model):
+    application = models.OneToOneField(Application, on_delete=models.CASCADE, null=True, blank=True, related_name="company_notification")
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)

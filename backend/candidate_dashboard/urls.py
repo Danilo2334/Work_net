@@ -5,8 +5,16 @@ from .selection import ApplicationProfileView, ApplicationProfilePhotoView
 from .offers import PublishOfferView, ActiveOffersView, EditOfferView, PreservedOffersView, TransitionOfferView
 from .search import SearchOffersView
 from .favorites import SavedOffersView, SavedOfferView
+from .applications import (OfferApplicationView, ApplicationsView, OwnApplicationView,
+                           OwnApplicationPdfView, CompanyApplicationView, CompanyApplicationPdfView)
 
 urlpatterns = [
+    path("offers/<int:offer_id>/application/", OfferApplicationView.as_view(), name="offer-application"),
+    path("applications/", ApplicationsView.as_view(), name="own-applications"),
+    path("applications/<int:application_id>/", OwnApplicationView.as_view(), name="own-application"),
+    path("applications/<int:application_id>/cv/", OwnApplicationPdfView.as_view(), name="own-application-cv"),
+    path("company/applications/<int:application_id>/", CompanyApplicationView.as_view(), name="company-application"),
+    path("company/applications/<int:application_id>/cv/", CompanyApplicationPdfView.as_view(), name="company-application-cv"),
     path("offers/saved/", SavedOffersView.as_view(), name="saved-offers"),
     path("offers/<int:offer_id>/saved/", SavedOfferView.as_view(), name="saved-offer"),
     path("offers/search/", SearchOffersView.as_view(), name="search-offers"),
