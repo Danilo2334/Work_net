@@ -14,7 +14,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseC
     await baseClick(name,role);
   };
   const write=async(name,value)=>{
-    const label=name==='Mensaje de texto'?/^Mensaje de texto(?:\s|$)/:name;
+    const label=name==='Mensaje de texto'?/^(?:Escribir mensaje\s+)?Mensaje de texto$/:name;
     const target=()=>page.getByRole('textbox',{name:label,exact:typeof label==='string'});
     if(await target().count()===0)await top();
     if(await target().count()===0)await bottom();
