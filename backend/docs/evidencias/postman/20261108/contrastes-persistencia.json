@@ -1,0 +1,42 @@
+{
+  "hu012": {
+    "run": "run-20261108T073316-8bb751d2",
+    "profile_unchanged": true,
+    "account_independent_from_cv": true,
+    "template": "clasica",
+    "certification_preserved": true,
+    "extra_section_preserved": true
+  },
+  "hu013": {
+    "run": "run-20261108T073316-3311b183",
+    "offers": 3,
+    "new_offer_id": 3,
+    "correct_owner": true,
+    "status": "published",
+    "rejected_company_did_not_create": true
+  },
+  "hu014": {
+    "run": "run-20261108T073316-cf600cde",
+    "checks": {
+      "identity_unchanged": true,
+      "other_offers_unchanged": true,
+      "relations_unchanged": true,
+      "company_approval_unchanged": true,
+      "reviews_unchanged": true
+    },
+    "offers": 7
+  },
+  "hu015": {
+    "run": "run-20261108T073316-a657df23",
+    "checks": {
+      "information_unchanged": true,
+      "other_offers_unchanged": true,
+      "relations_unchanged": true,
+      "company_approval_unchanged": true,
+      "reviews_unchanged": true
+    },
+    "offers": 8,
+    "applications": 2,
+    "saved": 1
+  }
+}

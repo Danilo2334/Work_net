@@ -1,0 +1,497 @@
+[
+  {
+    "suite": "hu012",
+    "file": "01-reconsulta-json-pm262.png",
+    "note": "GET del CV guardado: 200, plantilla clasica, secciones persistidas y tres PASS.",
+    "captured_at": "2026-11-08T07:46:46.080Z",
+    "sha256": "c3cd840bb2c10c6591ba7358e26a1461f6a3970b7c2881009c2589513f1bda2d",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "02-precarga-perfil-pm255.png",
+    "note": "GET 200 con exists false y datos reales de perfil, educación, experiencia y habilidad; tres PASS.",
+    "captured_at": "2026-11-08T07:46:57.049Z",
+    "sha256": "e687e84d58304a41289c5e7a5944a2d26a41a9068f65fa7f93c30478dd28a31c",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "03-previa-clasica-pm256.png",
+    "note": "POST preview: 200, respuesta PDF File 42.483 KB y dos PASS de PDF privado y contenido.",
+    "captured_at": "2026-11-08T07:47:08.902Z",
+    "sha256": "56ed87f7233f9a9cc6d65d6ed261797683afc35f1fdfc0d733fad90a076cf8e9",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "04-guardar-json-pm258.png",
+    "note": "PUT 201: CV clásico guardado con secciones de perfil y tres PASS.",
+    "captured_at": "2026-11-08T07:47:18.953Z",
+    "sha256": "543c29838406a410d1430e760f73980169bc20f0d24f612d94251c4022fef0fb",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "05-plantilla-moderna-pm259.png",
+    "note": "PATCH 200: plantilla moderna y contenido idéntico comprobado; tres PASS.",
+    "captured_at": "2026-11-08T07:47:24.095Z",
+    "sha256": "4f2a7b530120b5a87e5f2cd64f7b0b29bb1ef68dc5f3ffc5ac99c144fd1a2aba",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "06-descarga-moderna.png",
+    "note": "GET PDF guardado moderno: 200, PDF File y dos PASS de descarga y contenido.",
+    "captured_at": "2026-11-08T07:47:31.645Z",
+    "sha256": "9fc9061f36a6f57be5d407c9ad939dca960c69f8874432f4e15cdc648303369a",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "07-plantilla-minimalista-pm260.png",
+    "note": "PATCH 200, plantilla minimalista y contenido idéntico; tres PASS.",
+    "captured_at": "2026-11-08T07:47:42.595Z",
+    "sha256": "0adde0c7abd7447677e92f91eb2f874a1c01abac84f086b82948a2282063ba81",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "08-descarga-minimalista.png",
+    "note": "GET PDF guardado minimalista: 200, PDF File y dos PASS.",
+    "captured_at": "2026-11-08T07:47:48.050Z",
+    "sha256": "4d11adaf2199dcf213f5bdcb4feb7157d9a3a380d74a35eddc88f50db155f48c",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "09-edicion-secciones-pm263.png",
+    "note": "PATCH 200: nombre y resumen editados solo en CV; tres PASS, incluyendo secciones persistidas.",
+    "captured_at": "2026-11-08T07:47:59.827Z",
+    "sha256": "3e00e4e568d3c3baa20c2fa474a7a63b8db4e3935d1d56d9de19536f1a7f0dba",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "10-certificacion-extra-pm263.png",
+    "note": "Respuesta 200: certificación Pruebas de software y sección Voluntariado con tres PASS visibles.",
+    "captured_at": "2026-11-08T07:48:12.996Z",
+    "sha256": "3b3cae0fe43961969682d089da02b8f056eb7e7c34546845314dbbc0b08e1ce1",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "11-previa-clasica-pm265.png",
+    "note": "POST previa clásica editada: 200, PDF File y dos PASS.",
+    "captured_at": "2026-11-08T07:48:31.859Z",
+    "sha256": "fce75ce166c5854e54193155f55541012bd5ee0effce4dfb0208ca69a157b7ab",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "12-previa-moderna-pm266.png",
+    "note": "POST previa moderna: 200, PDF File y dos PASS.",
+    "captured_at": "2026-11-08T07:48:36.910Z",
+    "sha256": "8003913f5a63349d04ecbf000abd20167abef09e19f1c20a16b25feb4395882e",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "13-previa-minimalista-pm267.png",
+    "note": "POST previa minimalista: 200, PDF File y dos PASS.",
+    "captured_at": "2026-11-08T07:48:42.318Z",
+    "sha256": "9dda164e0c4efa0ffcb6f4f057ee305a2ecfcd545f3f4ef0b1a43f3f49513c64",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "14-descarga-clasica-pm268.png",
+    "note": "GET PDF clásico guardado: 200, PDF File y dos PASS.",
+    "captured_at": "2026-11-08T07:48:53.066Z",
+    "sha256": "dfe6462092443d7c86af149a5cf018c6c652e7b43a891dc3e29730e02573ea80",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "15-descarga-headers-pm268.png",
+    "note": "URL, GET 200 y respuesta application/pdf attachment con private/no-store y sandbox; encabezados de petición plegados.",
+    "captured_at": "2026-11-08T07:49:07.224Z",
+    "sha256": "7e192810a84f6e676525a8445f5eda2ac33aec1825abedba991284f909760e73",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "16-sin-sesion-pm269.png",
+    "note": "GET PDF sin sesión: 401, JSON de rechazo y tres PASS.",
+    "captured_at": "2026-11-08T07:49:19.143Z",
+    "sha256": "18c61eef1ba8a7312fec8c4fc5817d1f8c0a59cfee9b85c74645bb262c55c659",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "17-otra-cuenta-pm270.png",
+    "note": "GET con otra cuenta y candidate=1: 404, no devuelve el CV ajeno; tres PASS.",
+    "captured_at": "2026-11-08T07:49:26.828Z",
+    "sha256": "05723c6f0417bf7f834b7389c2daf0cd6ae49a28dac4744d09e240e701e95f0e",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "18-plantilla-invalida-pm271.png",
+    "note": "PATCH inválido: 400, error de template y tres PASS.",
+    "captured_at": "2026-11-08T07:49:39.221Z",
+    "sha256": "a38e4df24545d6a416cd5da951d897bfbf999308e86c2aa5c4ed9537a0739c30",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "19-reconsulta-tras-errores-pm275.png",
+    "note": "GET 200 tras cuatro validaciones 400: contenido igual al guardado, nombre/resumen editados y tres PASS.",
+    "captured_at": "2026-11-08T07:49:52.959Z",
+    "sha256": "e26cf0821557b7ea264927c4526dde2c7c16b976343411d8b007908c27fc4bf7",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu012",
+    "file": "20-empresa-rechazada.png",
+    "note": "GET PDF como empresa: 403, JSON de rechazo de rol y dos PASS.",
+    "captured_at": "2026-11-08T07:50:01.575Z",
+    "sha256": "f7153ffd2798a5c39d5ea45d8b6c54cbf92bacf491a057c52b588106dbf863b0",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu013",
+    "file": "01-catalogos.png",
+    "note": "GET catálogos 200 con categorías/contratos reales y dos PASS.",
+    "captured_at": "2026-11-08T07:50:55.018Z",
+    "sha256": "7f32a90bf95312e1e9fb05a912a814e5bff31b5005095208353787372601eeb8",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu013",
+    "file": "02-publicacion-201.png",
+    "note": "POST 201: JSON de oferta id 3, empresa propietaria QA, estado published, fecha y seis PASS.",
+    "captured_at": "2026-11-08T07:51:00.998Z",
+    "sha256": "cf07f02592cfe4f24364b829c2e4e0b8b2ff1141f074b9be7f6bc9ed9fdcb3a8",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu013",
+    "file": "03-empresa-pendiente-403.png",
+    "note": "POST como empresa pendiente: 403, JSON de aprobación requerida y PASS HTTP 403.",
+    "captured_at": "2026-11-08T07:51:07.096Z",
+    "sha256": "e2d303c6bb5a6420af889e64259cc10a6f8a4baf74a7fc3069e822140a3e7cce",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "02-precarga.png",
+    "note": "GET oferta 1: 200 con siete campos y estado inicial; tres PASS.",
+    "captured_at": "2026-11-08T07:52:07.085Z",
+    "sha256": "36fca9ce2535d6ab9054e5fc4a43aff4dabcae829a3aae224b3b5589e9fa0627",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "03-patch-valido.png",
+    "note": "PATCH 200 con siete campos editados; ID, propietario, estado y fechas conservados; tres PASS.",
+    "captured_at": "2026-11-08T07:52:12.845Z",
+    "sha256": "3d5ba6cc1dd612d711c0f44b8ad0f910573689ef95b724c61b543a9bc84348e2",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "04-reconsulta-persistida.png",
+    "note": "GET 200 recupera exactamente los siete campos editados; tres PASS.",
+    "captured_at": "2026-11-08T07:52:19.977Z",
+    "sha256": "d1becbdb455d2a38d5bee63f051902460ad2c53e7264e682f74640b795430220",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "05-invalido-400.png",
+    "note": "PATCH con título y salario -1: 400, error salary y dos PASS; la reconsulta posterior comprueba atomicidad.",
+    "captured_at": "2026-11-08T07:52:31.380Z",
+    "sha256": "306afa0f260f7a0c8469b70e9a92a12123bda5502081ae15ddafe23940cb2ffb",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "06-sin-escritura-parcial.png",
+    "note": "GET 200 tras PATCH inválido: oferta idéntica a la editada, sin título parcial; tres PASS.",
+    "captured_at": "2026-11-08T07:52:37.486Z",
+    "sha256": "1dd415414762b4fe0fde2986151573432336eb9c59b0b68316fe6bb95ea22397",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "07-sin-sesion-401.png",
+    "note": "GET de oferta sin sesión: 401, JSON de rechazo y dos PASS.",
+    "captured_at": "2026-11-08T07:52:43.413Z",
+    "sha256": "3d1abd2f5aa34b25d2093cd5d8fc085838c8a0c7d24ec8663e832ca669022057",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "08-candidato-403.png",
+    "note": "GET por candidato: 403, JSON de rol empresa requerido y dos PASS.",
+    "captured_at": "2026-11-08T07:52:54.551Z",
+    "sha256": "d42ad95613f06be71dc6f4b29d6712b23320ecbe8f8e137a93f8bb454f3cf50e",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "09-empresa-pendiente-403.png",
+    "note": "GET empresa pendiente: 403, JSON de aprobación requerida y dos PASS.",
+    "captured_at": "2026-11-08T07:53:02.655Z",
+    "sha256": "f73e1ba744b53dfc1625ac00c5b72b81d873ef20ef199dc8c54782f854759849",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "10-oferta-ajena-404.png",
+    "note": "GET oferta de otra empresa: 404, sin revelar oferta y dos PASS.",
+    "captured_at": "2026-11-08T07:53:08.965Z",
+    "sha256": "ed5e58017f7ea8df224f1fec41029e7404ce06424a28ad15759df4aa32031b01",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "11-patch-ajeno-404.png",
+    "note": "PATCH de oferta ajena: 404 con JSON de rechazo y dos PASS.",
+    "captured_at": "2026-11-08T07:53:22.211Z",
+    "sha256": "e447275c4d54522f5861fe451ba17fd2b9d2cdfab7b079ff5bd03eff9a574e15",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "12-archivada-409.png",
+    "note": "GET oferta archivada: 409, explicación de estado no editable y dos PASS.",
+    "captured_at": "2026-11-08T07:53:27.962Z",
+    "sha256": "d6cc9bcbe2190b24c2a64b6b235b11333e25c891f5ca96f99c1dfb939b37d507",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "13-cerrada-409.png",
+    "note": "PATCH oferta cerrada: 409 con JSON de estado no editable y dos PASS.",
+    "captured_at": "2026-11-08T07:53:33.811Z",
+    "sha256": "1f0e82a45a9e65579da2f57bfbe764881a3a3f5615a3c21f7717e8006005ddb4",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "14-borrador-409.png",
+    "note": "GET oferta borrador: 409 con explicación y dos PASS.",
+    "captured_at": "2026-11-08T07:53:45.242Z",
+    "sha256": "7b2cf66b5b45e66290350ec1ad0ccda9d0ce6c559dbb44e8bd2e22aa1a1afa7c",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "15-vencida-409.png",
+    "note": "GET oferta vencida: 409 con explicación y dos PASS.",
+    "captured_at": "2026-11-08T07:53:51.204Z",
+    "sha256": "b591013ec132aca1fe22dac74156c4e38e68d07f89a8a263210549b038a1cfcd",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "01-listado-activo.png",
+    "note": "GET listado 200: count 2 y ofertas propias; tres PASS.",
+    "captured_at": "2026-11-08T07:54:06.506Z",
+    "sha256": "15ac3b65c940960668c8793a592abf08f72538a853f2a3d1b6c8d971d3f1e432",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu014",
+    "file": "01b-listado-propietarios-estados.png",
+    "note": "Continuación del JSON: ambas ofertas de Empresa aprobada QA, publicadas; tres PASS del listado.",
+    "captured_at": "2026-11-08T07:54:12.587Z",
+    "sha256": "fd90946ce308cd8b204c2a745f658f3a6f242bfc5b7e051a35cf8d837bbe4669",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "01-activas-iniciales.png",
+    "note": "GET active 200: count 3 en fixtures iniciales y tres PASS.",
+    "captured_at": "2026-11-08T07:55:22.551Z",
+    "sha256": "5099baa3501c0f277755648be416a6eda0c287c2a8862b1b6a26c7011e7593dc",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "02-conservadas-iniciales.png",
+    "note": "GET preserved 200: count 2 previo a transiciones y tres PASS.",
+    "captured_at": "2026-11-08T07:55:30.206Z",
+    "sha256": "1131a0597c4f42d5b3e225f8865d08683b6d013e699d34f7c915398c9ff1f94a",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "03-confirmacion-invalida-400.png",
+    "note": "POST archive confirm false: 400, JSON exige confirmación y dos PASS.",
+    "captured_at": "2026-11-08T07:55:36.323Z",
+    "sha256": "f2ee6891d0f3f15a5cbf908b963db5a1027836c378d78e072d890048238b9b11",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "04-invalido-sin-cambio.png",
+    "note": "GET 200 tras confirmación inválida: oferta 1 continúa publicada; tres PASS.",
+    "captured_at": "2026-11-08T07:55:42.778Z",
+    "sha256": "2e3e0e505ad2f7a80cad1a2b5c79db828d4fd376b191702322fc1f4e83d64f02",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "05-cierre-200.png",
+    "note": "POST close 200: oferta 1 closed, todos los demás datos iguales al estado previo; tres PASS.",
+    "captured_at": "2026-11-08T07:55:54.529Z",
+    "sha256": "af5b4fd011f6ab08f1c8ae7e9c76b73eaa4c53c1042f73ec436e05a84bd8148a",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "06-archivado-200.png",
+    "note": "POST archive confirm true: 200, oferta 2 archived, datos completos y tres PASS.",
+    "captured_at": "2026-11-08T07:56:01.037Z",
+    "sha256": "ad3b17549648b2d3cf38fa11d08143acd135119896dab6061b54d5e88cc2f9f7",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "07-activas-exclusion.png",
+    "note": "GET active 200: queda oferta 8; ofertas 1 cerrada y 2 archivada excluidas, tres PASS.",
+    "captured_at": "2026-11-08T07:56:07.349Z",
+    "sha256": "c2ab8b8d909994057483576fae65dfcef05c8d1304d764a04b6d60327f6d2bb0",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "08-historial-count.png",
+    "note": "GET preserved 200: count 4 y tres PASS de estados persistidos; inicio del JSON.",
+    "captured_at": "2026-11-08T07:56:20.382Z",
+    "sha256": "863df65bc7ddb7f197b1258e4e57d469547d5e4476b075ef634ce56cb703b8f6",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "08b-historial-estados.png",
+    "note": "Continuación de GET preserved: oferta 2 archived y oferta 1 closed con datos y fechas conservados; tres PASS.",
+    "captured_at": "2026-11-08T07:56:27.159Z",
+    "sha256": "08227711e84ccedb436178fc4db774e0cc7d56120cace3a853e0b6810bb5782d",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "09-transicion-incompatible-409.png",
+    "note": "POST close sobre archivada: 409 con explicación de transición incompatible y dos PASS.",
+    "captured_at": "2026-11-08T07:56:34.204Z",
+    "sha256": "8875778b405a56143809e545f53530b7fee3d5e843e3fe4b2e55d5b156da6d78",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "10-oferta-ajena-404.png",
+    "note": "POST transición de oferta ajena: 404, JSON de rechazo y dos PASS.",
+    "captured_at": "2026-11-08T07:56:45.846Z",
+    "sha256": "ac989dc626f4b22886a2ca4a9faec6d95a903464ed1853ea59de99746b764bcb",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "11-sin-sesion-401.png",
+    "note": "POST transición sin sesión: 401 y JSON de rechazo; dos PASS.",
+    "captured_at": "2026-11-08T07:56:54.357Z",
+    "sha256": "942e525005236187b0c77c3447e106e10908103ce05d86c1efb515ffc2105b9c",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "12-candidato-403.png",
+    "note": "POST transición como candidato: 403 y JSON de rol empresa requerido; dos PASS.",
+    "captured_at": "2026-11-08T07:57:00.517Z",
+    "sha256": "fae93a1aa3042bd33710ebcb9f496217262670b6989de460a8c20c2d0d2578ac",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "13-empresa-pendiente-403.png",
+    "note": "POST transición empresa pendiente: 403 y JSON de aprobación requerida; dos PASS.",
+    "captured_at": "2026-11-08T07:57:16.489Z",
+    "sha256": "c225a03e0c05df6ceaba4909c1187154c619036703ed31ee4485497464cd10c2",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "14-reintento-idempotente.png",
+    "note": "POST archive repetido: 200, oferta 2 sigue archived con datos/fecha iguales; tres PASS.",
+    "captured_at": "2026-11-08T07:57:22.670Z",
+    "sha256": "ad1484b63950eb641800decc85c13c77dd2802ebd289253f19e9c7d901ca4533",
+    "width": 1536,
+    "height": 864
+  },
+  {
+    "suite": "hu015",
+    "file": "15-relaciones-dashboard.png",
+    "note": "GET dashboard 200: dos postulaciones originales, mismos IDs y ofertas tras cierre/archivado; tres PASS.",
+    "captured_at": "2026-11-08T07:57:49.331Z",
+    "sha256": "f671d5758c1745b57b1ef7421ebbed98bb817d6d85e431b1c398bb5a1d2333a7",
+    "width": 1536,
+    "height": 864
+  }
+]
