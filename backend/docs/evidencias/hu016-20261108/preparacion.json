@@ -8,7 +8,9 @@
   "correo": "archivos, sin SMTP",
   "credenciales": "aleatorias locales; no publicadas",
   "sesiones": "Tokens preparados localmente después de comprobar la contraseña privada; no cuentan como login Desktop",
-  "producto": "add0b04f0b507857ae777baa81c97ee62c303060",
+  "producto": "fab0b008f9e80efe2325c48a0d6559d8880b223f",
   "backend": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
-  "fuente_preparador": "frontend/tool/browser_qa/hu016_api.py"
+  "fuente_preparador": "frontend/tool/browser_qa/hu016_api.py",
+  "combinacion_remota_verificada": "add0b04f0b507857ae777baa81c97ee62c303060",
+  "arbol_funcional_igual": true
 }

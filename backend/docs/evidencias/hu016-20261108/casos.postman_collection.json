@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "f06f3217-c291-4124-92bb-6859ed6439cd",
+    "_postman_id": "bf3466b7-3f1a-4dd6-9ec4-08b48b600ef1",
     "name": "HU016 · Búsqueda QA · run-20261108T102954-257e92c2",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -25,28 +25,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -71,28 +58,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -117,28 +91,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python%20Django",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -163,28 +124,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?location=pas",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -209,28 +157,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&salary_min=3000000&salary_max=5000000",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -255,28 +190,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python%20Django&location=Pasto&salary_min=3000000&salary_max=5000000&category=Tecnolog%C3%ADa&contract_type=Indefinido",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -301,28 +223,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&category=Educaci%C3%B3n",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -347,28 +256,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&contract_type=Fijo",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -393,28 +289,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&sort=date",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -439,28 +322,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&page=2",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -485,28 +355,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&page=3",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -531,28 +388,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=NoExisteOfertaHU016",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -577,28 +421,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=t%C3%A9cnico%20C%2B%2B%20%5BA%5D&location=Bogot%C3%A1",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -623,28 +454,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?salary_min=5&salary_max=3",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -669,28 +487,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?salary_min=-1",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -715,28 +520,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?salary_min=NaN",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -761,28 +553,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?salary_min=1.001",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -807,28 +586,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?category=Inventada",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -853,28 +619,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?sort=salary",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -899,28 +652,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&page=4",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -945,28 +685,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?page_size=51",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -991,28 +718,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Python&q=Django",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -1037,28 +751,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?owner=1",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -1110,28 +811,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{company_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -1156,30 +844,17 @@
             "value": "application/json"
           },
           {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
             "key": "Content-Type",
             "value": "application/json"
           }
         ],
         "url": "{{base_url}}/company/offers/1/transition/",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{company_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         },
         "body": {
           "mode": "raw",
@@ -1208,28 +883,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Flutter",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -1256,30 +918,17 @@
             "value": "application/json"
           },
           {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
             "key": "Content-Type",
             "value": "application/json"
           }
         ],
         "url": "{{base_url}}/company/offers/2/transition/",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{company_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         },
         "body": {
           "mode": "raw",
@@ -1308,28 +957,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [
@@ -1354,28 +990,15 @@
           {
             "key": "Accept",
             "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
           }
         ],
         "url": "{{base_url}}/offers/search/?sort=date",
         "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "key",
-              "value": "Authorization",
-              "type": "string"
-            },
-            {
-              "key": "value",
-              "value": "Token {{candidate_token}}",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "header",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         }
       },
       "event": [

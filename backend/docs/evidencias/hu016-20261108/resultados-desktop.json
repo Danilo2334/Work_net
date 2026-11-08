@@ -1,0 +1,213 @@
+{
+  "fecha": "2026-11-08",
+  "hora_inicio_bogota": "05:45:46",
+  "tool": "Postman Desktop",
+  "version": "12.34.1",
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "backend_sha": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
+  "checkout_servidor": "fab0b008f9e80efe2325c48a0d6559d8880b223f",
+  "run": "run-20261108T102954-257e92c2",
+  "port": 8096,
+  "iteration": 1,
+  "requests": 30,
+  "assertions": 58,
+  "passed": 58,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 0,
+  "duration_ms": 4297,
+  "avg_response_ms": 36,
+  "first_response_ms": 684,
+  "captures": 29,
+  "procedencia": "Lectura y captura del Runner Desktop, peticiones/respuestas seleccionadas y Test Results. Sin exportar credenciales/entorno. No Newman.",
+  "resultado": "aprobado",
+  "preparacion": "1024 ofertas,1017 visibles iniciales,24 Python;tokens locales preparados verificando contraseña, no login Desktop",
+  "casos": [
+    {
+      "nombre": "HU016-P01 · Listado activo y contrato",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P02 · Relevancia determinista",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P03 · Palabras combinadas AND",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python%20Django",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P04 · Ubicación parcial",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?location=pas",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P05 · Rango salarial inclusivo",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&salary_min=3000000&salary_max=5000000",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P06 · Todos los filtros combinados",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python%20Django&location=Pasto&salary_min=3000000&salary_max=5000000&category=Tecnolog%C3%ADa&contract_type=Indefinido",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P07 · Categoría",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&category=Educaci%C3%B3n",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P08 · Contrato",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&contract_type=Fijo",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P09 · Fecha de publicación",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&sort=date",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P10 · Segunda página sin duplicados",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&page=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P11 · Última página sin duplicados",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&page=3",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P12 · Vacío real",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=NoExisteOfertaHU016",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P13 · Unicode y caracteres literales",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=t%C3%A9cnico%20C%2B%2B%20%5BA%5D&location=Bogot%C3%A1",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P14 · Rango invertido",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?salary_min=5&salary_max=3",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P15 · Negativo",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?salary_min=-1",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P16 · No finito",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?salary_min=NaN",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P17 · Precisión",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?salary_min=1.001",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P18 · Categoría inválida",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?category=Inventada",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P19 · Orden inválido",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?sort=salary",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P20 · Página fuera de rango",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&page=4",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P21 · Límite superior",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?page_size=51",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P22 · Parámetro repetido",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Python&q=Django",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P23 · Parámetro desconocido",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?owner=1",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P24 · Sin sesión",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P25 · Rol empresa rechazado",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P26 · Cerrar oferta con relaciones HU015",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/1/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P27 · Cerrada excluida del buscador",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Flutter",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P28 · Archivar oferta con relaciones HU015",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/2/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P29 · Archivada excluida del buscador",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU016-P30 · Listado posterior conserva el conjunto",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?sort=date",
+      "resultado": "aprobado"
+    }
+  ],
+  "limitaciones": [
+    "Primera importación de colección cancelada al cerrar el diálogo Vault. Corregido formato a encabezados con variables como las colecciones existentes; reimportación pública exitosa. No se desbloqueó Vault.",
+    "Selector nativo y restauración de ventana completados por el usuario; solicitudes y capturas ejecutadas por el agente.",
+    "Métricas Desktop incluyen transporte local; APIClient mide otro alcance."
+  ]
+}

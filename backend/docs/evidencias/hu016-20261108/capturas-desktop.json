@@ -1,0 +1,234 @@
+[
+  {
+    "archivo": "00-resumen-desktop.png",
+    "nota": "Runner Desktop: una iteración, 30 peticiones, 58 PASS, cero fallos/errores/omitidas; resumen, no cuerpo seleccionado",
+    "fecha": "2026-11-08T10:46:20.491Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "41198110894f30b5b47103ae61a2774936bfb1ef5207ce05d28e1f5e5156f297"
+  },
+  {
+    "archivo": "01-combinados-conteo-p06.png",
+    "nota": "P06: GET filtros combinados, HTTP200 y ambos Test Results PASS; JSON count2 y página1",
+    "fecha": "2026-11-08T10:46:48.431Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "dd01a9a42951a4624262d81c540f8fe2ec740d22b013527dc64e8cc4fc152532"
+  },
+  {
+    "archivo": "02-combinados-filas-p06.png",
+    "nota": "P06: dos resultados, salarios5000000/3000000, ubicación y contrato, GET200 y Test Results PASS",
+    "fecha": "2026-11-08T10:47:08.966Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "2dffc87abb7b8481372f68eca0b93e242ef8e4f0c550965bc5632f34ce35f281"
+  },
+  {
+    "archivo": "03-relevancia-conteo-p03.png",
+    "nota": "P03: palabras combinadas AND, count24, tres páginas; HTTP200 y Test Results PASS",
+    "fecha": "2026-11-08T10:47:15.109Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "b13eb1e485feb17c35139838e2a0a8a2516009dfdab9bc0c8b8e92944cd041d8"
+  },
+  {
+    "archivo": "04-relevancia-filas-p03.png",
+    "nota": "P03: líder score16 antes de reciente10, cargo/empresa/ubicación/contrato/salario; HTTP200 y PASS",
+    "fecha": "2026-11-08T10:47:30.617Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "8704a9a190acd48b5a1538384e2d2c0e5fa3d658a06a7c0bf2788bb61b32022c"
+  },
+  {
+    "archivo": "05-listado-activo-p01.png",
+    "nota": "P01:1017 ofertas activas de1024fixtures;102páginas,HTTP200,PASS;tiempo Desktop observado684ms",
+    "fecha": "2026-11-08T10:47:43.166Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "b1f0b9bab4aeb3fac20d98594db191180aa2121387e54d3888eeabdc800d0a8d"
+  },
+  {
+    "archivo": "06-salario-opcional-p01.png",
+    "nota": "P01:salario null permitido;cargo/empresa/ubicación/contrato visibles,HTTP200 y PASS",
+    "fecha": "2026-11-08T10:47:49.325Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "f40589694f360165a15bf21dce9542881ee5e8cd41f063a4fbaedcd997679aea"
+  },
+  {
+    "archivo": "07-ubicacion-p04.png",
+    "nota": "P04:ubicación parcial pas→14coincidencias;HTTP200 y Test Results PASS",
+    "fecha": "2026-11-08T10:47:57.600Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "800933de2f3be1236252b60ec83b649328e0a1ceba5cf48240011fbb7f280859"
+  },
+  {
+    "archivo": "08-rango-inclusivo-p05.png",
+    "nota": "P05:salary_min3000000,max5000000,inclusivos;count3;HTTP200 y PASS",
+    "fecha": "2026-11-08T10:48:10.460Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "6106d1d090094cb6f5f731d4df722f85101fd21ff7c6c3fb11e7c1ef2781d154"
+  },
+  {
+    "archivo": "09-categoria-p07.png",
+    "nota": "P07:Educación,12coincidencias;HTTP200 y Test Results PASS",
+    "fecha": "2026-11-08T10:48:15.720Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "094bb0ba03e33e9941ded3a5d27e5a4c04ed958176b795ba5d4afb0aae98b9aa"
+  },
+  {
+    "archivo": "10-contrato-p08.png",
+    "nota": "P08:Fijo,12coincidencias;HTTP200 y Test Results PASS",
+    "fecha": "2026-11-08T10:48:21.372Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "62b1be5cb00188ffe7f57ed15b597c788efaa556a095a214a53d88ab1f7f7e0f"
+  },
+  {
+    "archivo": "11-fecha-publicacion-p09.png",
+    "nota": "P09:sortdate devuelve reciente antes de líder;fechas y resultados reales;HTTP200 y PASS",
+    "fecha": "2026-11-08T10:48:44.077Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "6799b22fd81fc71baad6d22f0b9346de6d0e80aed7f7a228c4ee3b14bbaf1171"
+  },
+  {
+    "archivo": "12-pagina-dos-p10.png",
+    "nota": "P10:page2,next3,previous1,count24;aserciónsinIDsduplicadosPASS",
+    "fecha": "2026-11-08T10:48:49.854Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "9016ce87b30516cfd97285dcd321eb2d5fa8c02acbd28229e82bad3501b0a835"
+  },
+  {
+    "archivo": "13-ultima-pagina-p11.png",
+    "nota": "P11:page3/3,nextnull,previous2;cuatrofilasysinIDsduplicadosPASS",
+    "fecha": "2026-11-08T10:48:55.390Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "f965d02cb1f4bf7bb730f627b7793291a0bb8a06af5d4d62973d98bc0f3a4309"
+  },
+  {
+    "archivo": "14-vacio-p12.png",
+    "nota": "P12:consulta inexistente,count0,offers[],totalpages0;HTTP200 y PASS",
+    "fecha": "2026-11-08T10:49:01.097Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "797acc1c8652b98a53538ed313c0f019e634c491dc1a35280412427779a2fa35"
+  },
+  {
+    "archivo": "15-unicode-salario-cero-p13.png",
+    "nota": "P13:patrones literales C++[A],técnico→TÉCNICO yBogotá→BOGOTÁ,salario0;HTTP200 y PASS",
+    "fecha": "2026-11-08T10:49:26.675Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "f540e2297a36da59ea8ce6aa1cc45aa3909eb068ffd51a2d756760d699257f04"
+  },
+  {
+    "archivo": "16-rango-invalido-p14.png",
+    "nota": "P14:HTTP400 salarymaxinvalido,messageexplicito,rango5>3;ambosPASS",
+    "fecha": "2026-11-08T10:49:32.110Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "a88453a5f9a2b7c99b5e689add93d121d8c9c26817707a07f1803802197d5537"
+  },
+  {
+    "archivo": "17-no-finito-p16.png",
+    "nota": "P16:NaN rechazado conHTTP400 salarymin;ambosTestResultsPASS",
+    "fecha": "2026-11-08T10:49:40.728Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "5cf84d0bddbc98275170ba9132efce37aec33157db466769047f096a90ea0849"
+  },
+  {
+    "archivo": "18-pagina-inexistente-p20.png",
+    "nota": "P20:page4para24coincidencias,HTTP400y mensaje page;PASS",
+    "fecha": "2026-11-08T10:49:57.010Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "7575a40d66e21c4bd231bd919f7859080401b73ce0f9a318464bb4271a9d9d14"
+  },
+  {
+    "archivo": "19-limite-pagina-p21.png",
+    "nota": "P21:page_size51rechazadomax50,HTTP400yPASS",
+    "fecha": "2026-11-08T10:50:08.045Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "67053f86e02a2a55c464abb14a604088ba5fb4a026f9c1d4e655b46aec6ac757"
+  },
+  {
+    "archivo": "20-parametro-repetido-p22.png",
+    "nota": "P22:qrepetido,HTTP400yvalidaciónexplícita;PASS",
+    "fecha": "2026-11-08T10:50:13.435Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "0efb7c58a33639a34bef8543796d7f32d26c9d956a7818eb5e558bdb6128aa4d"
+  },
+  {
+    "archivo": "21-parametro-desconocido-p23.png",
+    "nota": "P23:ownerfuera decontratorechazadoHTTP400;PASS",
+    "fecha": "2026-11-08T10:50:19.823Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "274c20dc20c9a5aadf2b9f1b02512b7b158c23a95901bce3ccdf3d2285fb4349"
+  },
+  {
+    "archivo": "22-sin-sesion-p24.png",
+    "nota": "P24:GETsincredenciales401,TestResultPASS;noheaderprivadovisible",
+    "fecha": "2026-11-08T10:50:31.382Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "b405651939bc87094db02fe00084e6c4e403793255d478a7527c87e92e34ec7f"
+  },
+  {
+    "archivo": "23-rol-empresa-p25.png",
+    "nota": "P25:empresaautenticadarechazada403,candidatoverificadorequerido;PASS",
+    "fecha": "2026-11-08T10:50:36.881Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "3a18be2b8fd6082331a46901b9f11a9f61596838ad08890c2343bca64f797bdd"
+  },
+  {
+    "archivo": "24-cierre-real-p26.png",
+    "nota": "P26:POSTtransiciónreal200,statusclosed,id1preservado,ambosPASS",
+    "fecha": "2026-11-08T10:50:42.372Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "5e9a596da5c984f1709a327e75682d6acfb22c9eab7bf448dcb11a219d81d17d"
+  },
+  {
+    "archivo": "25-cerrada-excluida-p27.png",
+    "nota": "P27:buscadorqFlutter,count0,offers[]despuéscierre;HTTP200yPASS",
+    "fecha": "2026-11-08T10:50:49.202Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "f4c0aa70297c9625f225f4560593dc50f1e12b3c0a0094e628e79ac2a1d0e092"
+  },
+  {
+    "archivo": "26-archivado-real-p28.png",
+    "nota": "P28:POSTarchivarconfirmadoreal200,statusarchived,id2preservado,ambosPASS",
+    "fecha": "2026-11-08T10:50:59.971Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "7f2a4f097616441a5f8053ad52423bd88740f6464026c48b3aa9720395674fd2"
+  },
+  {
+    "archivo": "27-archivada-excluida-p29.png",
+    "nota": "P29:qOfertaDjangoQAtrasarchivar,count0,offers[],HTTP200yPASS",
+    "fecha": "2026-11-08T10:51:05.284Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "332bf9179fab399332ec426071e6d765ca7a6fc4a634b4cacf8fdb3c7ca508a4"
+  },
+  {
+    "archivo": "28-listado-final-p30.png",
+    "nota": "P30:1015visiblesdespuésde2transiciones,ids1/2excluidos;HTTP200yPASS",
+    "fecha": "2026-11-08T10:51:33.676Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "591d554b941e79d17eac49762e2a43fbaf6ae7686960d85b5653ec91427a9e4a"
+  }
+]

@@ -20,5 +20,16 @@
     "Flutter build web --release --no-web-resources-cdn: correcto por run.py",
     "12 guards de browser_qa correctos"
   ],
-  "review": "Revisión técnica delegada al agente; hallazgos Unicode y términos repetidos corregidos; sin aprobación humana"
+  "review": "Revisión técnica delegada al agente; hallazgos Unicode y términos repetidos corregidos; sin aprobación humana",
+  "revision_delegada": {
+    "agente": "revision_hu016",
+    "fecha": "2026-11-08",
+    "resultado": "Sin defectos pendientes detectados en código revisado y aceptación de navegador",
+    "alcance": "Solo lectura; revisión de código, pruebas, hashes y capturas de escritorio/móvil/exclusión. No repitió ejecuciones.",
+    "correcciones": [
+      "Comparación Unicode literal escapada",
+      "Deduplicación casefold conservando primer término y prueba de puntuaciones"
+    ],
+    "aprobacion_humana": false
+  }
 }

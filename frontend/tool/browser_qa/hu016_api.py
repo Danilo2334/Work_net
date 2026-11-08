@@ -87,7 +87,11 @@ def collection(run, port):
             checks += ["const b=pm.response.json();", "pm.test('Contrato y caso HU016',()=>{"+assertion+"});"]
         request = dict(method=method, header=[{'key':'Accept','value':'application/json'}],
                        url='{{base_url}}/'+path+('?' + query if query else ''),
-                       auth={'type':'apikey','apikey':[{'key':'key','value':'Authorization','type':'string'}, {'key':'value','value':'Token {{'+token+'}}','type':'string'},{'key':'in','value':'header','type':'string'}]} if token else {'type':'noauth'})
+                       auth={'type':'noauth'})
+        if token:
+            # Mismo formato de las colecciones existentes: referencia privada,
+            # sin importar una API key literal ni provocar un alta en Vault.
+            request['header'].append({'key':'Authorization','value':'Token {{'+token+'}}'})
         if data is not None:
             request['header'].append({'key':'Content-Type','value':'application/json'})
             request['body']={'mode':'raw','raw':json.dumps(data)}
