@@ -120,7 +120,7 @@ class ApplicationDetails extends StatelessWidget {
       Text(application.offer.company),
       Text('${application.offer.location} · ${application.offer.contract}'),
       Text('Fecha: ${application.dateLabel} (hora local)'),
-      const Text('Estado de postulación: Enviada'),
+      Text('Estado de postulación: ${application.status.label}'),
       if (!application.offer.active)
         const Text(
           'La oferta ya no está activa. Tu postulación y el CV enviado se conservan.',

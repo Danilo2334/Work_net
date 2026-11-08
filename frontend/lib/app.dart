@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:worknet/features/applications/presentation/apply_page.dart';
 import 'package:worknet/features/applications/presentation/application_history_page.dart';
+import 'package:worknet/features/applications/presentation/application_detail_page.dart';
 import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:worknet/features/offers/presentation/active_offers_page.dart';
 import 'package:worknet/features/offers/presentation/offer_search_page.dart';
@@ -108,14 +109,21 @@ class _WorkNetAppState extends State<WorkNetApp> {
         final companyOffer =
             path == '/company/offers' || path.startsWith('/company/offers/');
         final applicationForm = RegExp(r'^/offers/[^/]+/apply$').hasMatch(path);
-        if ((protected.contains(path) || companyOffer || applicationForm) &&
+        final applicationDetail = path.startsWith('/applications/');
+        if ((protected.contains(path) ||
+                companyOffer ||
+                applicationForm ||
+                applicationDetail) &&
             role == null) {
           return '/login';
         }
         if (role != null) {
           if (path == '/login' || path == '/access-pending') return _home();
           if (role == 'unassigned' &&
-              (protected.contains(path) || companyOffer || applicationForm) &&
+              (protected.contains(path) ||
+                  companyOffer ||
+                  applicationForm ||
+                  applicationDetail) &&
               path != '/choose-role') {
             return '/choose-role';
           }
@@ -133,6 +141,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
             return _home();
           }
           if (applicationForm && role != 'candidato') return _home();
+          if (applicationDetail && role != 'candidato') return _home();
           if ((companyOffer ||
                   [
                     '/company',
@@ -150,6 +159,25 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/applications/:id',
+          builder: (_, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '');
+            if (id == null || id <= 0)
+              return const Scaffold(
+                body: Center(child: Text('Postulación no válida.')),
+              );
+            return _protected(
+              'candidato',
+              () => ApplicationDetailPage(
+                key: ValueKey('${_session.session?.token}:application:$id'),
+                session: _session,
+                repository: _dependencies.applications,
+                id: id,
+              ),
+            );
+          },
+        ),
         GoRoute(
           path: '/applications',
           builder: (_, _) => _protected(
