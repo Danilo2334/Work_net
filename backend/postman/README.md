@@ -1,5 +1,47 @@
 # Pruebas del backend en Postman
 
+## Contrato de favoritos HU017
+
+Se reutiliza `SavedOffer` y el UNIQUE `dashboard_unique_saved_offer` existente
+desde la migración inicial: un candidato y una oferta, sin otra representación
+ni migraciones nuevas. Los endpoints requieren Token de candidato activo,
+verificado y no administrativo. No reciben identificadores de candidato.
+
+- `GET /api/offers/saved/?page=1&page_size=10`: exclusivamente los favoritos de
+  la sesión, incluidos los que dejan de estar activos. Orden estable por fecha
+  de guardado e ID de relación descendentes; page ≥1 y page_size 1–50. Parámetros
+  desconocidos, repetidos, no enteros o página inexistente devuelven 400.
+- `PUT /api/offers/{id}/saved/`: cuerpo vacío, asegura la relación, HTTP 200
+  `{offer_id, is_saved:true}` incluso al repetir. Una relación propia ya existente
+  se conserva aunque ahora esté inactiva; una nueva requiere la visibilidad
+  activa de HU016 (si no está disponible o no existe, 404).
+- `DELETE /api/offers/{id}/saved/`: cuerpo vacío, asegura ausencia exclusivamente
+  de la relación propia, HTTP 200 `{offer_id, is_saved:false}`. Puede repetirse,
+  usarse con inactivas o con IDs sin relación; no revela relaciones ajenas.
+
+PUT/DELETE rechazan campos o parámetros adicionales con 400. Todos conservan
+Cache-Control private, no-store y Vary Authorization. Sin sesión: 401; otro rol
+o candidato no verificado: 403. La garantía definitiva de unicidad está en la BD;
+get_or_create y bloqueo de oferta comparten orden con cierre/archivado. En SQLite
+se reintenta la transacción completa ante busy/locked, con espera acotada; si no
+se puede sincronizar responde 503 recuperable. No se implementa HU018.
+
+La lista devuelve count/page/page_size/total_pages/next_page/previous_page/offers.
+Cada fila tiene id de oferta, cargo, empresa, ubicación, contrato, categoría,
+salario nullable, publicación nullable, saved_at, is_saved:true, status original,
+is_active y availability: active/closed/archived/draft/expired/unavailable.
+El estado se calcula al consultar, no se copia al guardar: una publicación
+vencida se muestra Vencida; una empresa inactiva o publicación no visible,
+No disponible. Cerradas/archivadas conservan la relación y pueden retirarse.
+Dos consultas de lista (conteo y JOIN/EXISTS acotado), sin N+1.
+
+HU016 y las ofertas recientes del dashboard incorporan is_saved propio mediante
+EXISTS. No se amplía la visibilidad activa. El contador del dashboard continúa
+incluyendo guardados inactivos hasta retirarlos. Doce pruebas nuevas incluyen
+permisos, persistencia, conservación, restricción SQL, páginas y cuatro mutaciones
+simultáneas. Esa prueba concurrente aísla la autenticación para medir contención
+en SQLite shared-memory; autenticación real por Token se verifica aparte.
+
 ## Contrato de búsqueda HU016
 
 `GET /api/offers/search/` requiere Token de candidato activo, no administrativo,

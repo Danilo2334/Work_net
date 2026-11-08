@@ -87,7 +87,7 @@ class SearchOffersTests(TestCase):
         self.assertEqual(pages, all_ids)
         response = self.client.get(self.url)
         row = response.data["offers"][0]
-        self.assertEqual(set(row), {"id", "title", "company_name", "location", "contract_type", "category", "salary", "published_at", "relevance"})
+        self.assertEqual(set(row), {"id", "title", "company_name", "location", "contract_type", "category", "salary", "published_at", "relevance", "is_saved"})
         self.assertIsNone(row["salary"])
         self.assertIn("no-store", response["Cache-Control"])
         self.assertIn("Authorization", response["Vary"])
