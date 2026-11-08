@@ -162,7 +162,7 @@ class _StatusChangePanelState extends State<StatusChangePanel> {
         if (e.status == 409) await _load();
       }
       await _failure(e);
-      if (e.status == 409 && _current) {
+      if (e.status == 409 && mounted && _current) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
