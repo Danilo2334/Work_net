@@ -34,7 +34,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write,click,waitText,login,
   };
   const transition=async(id,archive)=>{
     const pending=response('GET','company/offers/active/');await click('Mis ofertas activas');const rows=(await(await pending).json()).offers;await waitText('Mis ofertas activas');const index=rows.findIndex(o=>o.id===id);assert.ok(index>=0);
-    const action=response('POST',`company/offers/${id}/transition/`);const button=page.getByRole('button',{name:archive?'Archivar oferta':'Cerrar oferta',exact:true}).nth(index);await button.scrollIntoViewIfNeeded();await page.waitForTimeout(180);await button.click();await click(archive?'Confirmar archivado':'Confirmar cierre');assert.equal((await action).status(),200);await waitText(archive?'Oferta archivada correctamente.':'Oferta cerrada correctamente.');await click('Volver al dashboard');await page.waitForURL(cfg.web_origin+'/company-dashboard');
+    const action=response('POST',`company/offers/${id}/transition/`);const button=page.getByRole('button',{name:archive?'Archivar oferta':'Cerrar oferta',exact:true}).nth(index);await button.scrollIntoViewIfNeeded();await page.waitForTimeout(180);await button.click();await click(archive?'Confirmar archivado':'Confirmar cierre');assert.equal((await action).status(),200);await waitText(archive?'Oferta archivada correctamente.':'Oferta cerrada correctamente.');await top();await click('Volver al dashboard');await page.waitForURL(cfg.web_origin+'/company-dashboard');
   };
 
   await login('candidate','/dashboard',true);
