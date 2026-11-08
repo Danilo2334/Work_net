@@ -47,6 +47,14 @@ def active_offers(queryset, *, at=None):
     )
 
 
+def visible_offers(queryset, *, at=None):
+    """Visibilidad candidata compartida por dashboard, búsqueda y favoritos."""
+    now = at or timezone.now()
+    return active_offers(queryset.filter(
+        published_at__lte=now, company__role="empresa", company__is_active=True,
+    ), at=now)
+
+
 def lock_accepting_offers(offer_ids, using):
     """Comparte bloqueo de oferta con cierre/archivado, sin crear una API HU018."""
     ids = set(offer_ids)
