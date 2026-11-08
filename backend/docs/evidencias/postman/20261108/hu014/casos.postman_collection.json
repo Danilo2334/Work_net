@@ -1,0 +1,568 @@
+{
+  "info": {
+    "name": "WorkNet DOC HU014 08-11-2026",
+    "_postman_id": "c817da53-8295-44b4-98d7-8e33f2350cb4",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "D14-01 Listado propio activo",
+      "id": "6b74d59e-51ff-4ede-bb4a-b108cc5ff322",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/active/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Solo dos ofertas propias activas\",()=>{const j=pm.response.json();pm.expect(j.count).to.equal(2);pm.expect(j.offers).to.have.length(2);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-02 Precarga",
+      "id": "1b822a94-4b58-4d78-a5d5-f57285b0d3d9",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Siete campos y estado inicial\",()=>{const o=pm.response.json().offer;pm.expect(o.status).to.equal(\"published\");pm.expect(o.salary).to.equal(\"1000000.00\");pm.environment.set(\"offer_initial\",JSON.stringify(o));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-03 PATCH siete campos",
+      "id": "37be2ab3-7d69-4367-a2a6-c6921ea768c7",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta editada Desktop HU014\", \"description\": \"Descripci\\u00f3n editada QA\", \"requirements\": \"Django y Flutter QA\", \"salary\": \"3200000.50\", \"location\": \"Pasto QA\", \"category\": \"Tecnolog\\u00eda\", \"contract_type\": \"Fijo\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Edici\\u00f3n y propietario conservados\",()=>{const o=pm.response.json().offer;pm.expect(o.title).to.equal(\"Oferta editada Desktop HU014\");pm.expect(o.salary).to.equal(\"3200000.50\");const b=JSON.parse(pm.environment.get(\"offer_initial\"));for(const k of [\"id\",\"company_name\",\"status\",\"published_at\",\"expires_at\"])pm.expect(o[k]).to.deep.equal(b[k]);pm.environment.set(\"offer_edited\",JSON.stringify(o));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-04 Reconsulta persistida",
+      "id": "3a16af41-243c-4d66-bc10-e57f4e085fed",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Siete campos persistidos\",()=>{pm.expect(pm.response.json().offer).to.deep.equal(JSON.parse(pm.environment.get(\"offer_edited\")));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-05 Inv\u00e1lidos sin escritura",
+      "id": "462614e3-ac72-4db9-bfd4-0b1ea60a9eb9",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"NO DEBE GUARDARSE\", \"salary\": \"-1\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>{pm.response.to.have.status(400);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-06 Reconsulta tras inv\u00e1lidos",
+      "id": "ad1b2c48-8b41-4e1a-8cc2-1d46d5751f82",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Sin escritura parcial\",()=>{pm.expect(pm.response.json().offer).to.deep.equal(JSON.parse(pm.environment.get(\"offer_edited\")));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-07 Sin sesi\u00f3n",
+      "id": "fb574c80-b047-4be2-864c-0c8ae7bcd3db",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\",()=>{pm.response.to.have.status(401);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-08 Candidato",
+      "id": "53d77f90-6904-411a-b459-fd6df2151f03",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>{pm.response.to.have.status(403);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-09 Empresa pendiente",
+      "id": "969dcbf2-1da7-428a-8828-0530f6ee17f3",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>{pm.response.to.have.status(403);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-10 Oferta ajena",
+      "id": "d43e3513-7f5f-43a8-a79d-42e6b6fcd932",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{other_offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\",()=>{pm.response.to.have.status(404);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-11 PATCH ajeno",
+      "id": "d95711f8-d0a6-4df1-92a4-ea1db2d1c863",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/company/offers/{{other_offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta editada Desktop HU014\", \"description\": \"Descripci\\u00f3n editada QA\", \"requirements\": \"Django y Flutter QA\", \"salary\": \"3200000.50\", \"location\": \"Pasto QA\", \"category\": \"Tecnolog\\u00eda\", \"contract_type\": \"Fijo\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\",()=>{pm.response.to.have.status(404);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-12 Archivada",
+      "id": "6764152b-3885-437e-829a-d0918361bb2e",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{archived_offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>{pm.response.to.have.status(409);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-13 Cerrada",
+      "id": "4c4b6df7-8db9-4c91-ba2d-2d1443d29e1d",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/company/offers/{{closed_offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta editada Desktop HU014\", \"description\": \"Descripci\\u00f3n editada QA\", \"requirements\": \"Django y Flutter QA\", \"salary\": \"3200000.50\", \"location\": \"Pasto QA\", \"category\": \"Tecnolog\\u00eda\", \"contract_type\": \"Fijo\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>{pm.response.to.have.status(409);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-14 Borrador",
+      "id": "3a88a6a9-cea6-4d6e-9c5c-184bf659e091",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{draft_offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>{pm.response.to.have.status(409);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D14-15 Vencida",
+      "id": "0336cbaa-4def-433a-bdc1-d1ed6abc8556",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{expired_offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>{pm.response.to.have.status(409);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get(\"base_url\")!==\"http://127.0.0.1:8094/api\" || pm.environment.get(\"qa_run_id\")!==\"run-20261108T073316-cf600cde\" || pm.environment.get(\"qa_confirmation\")!==\"SOLO_BASE_AISLADA\")throw new Error(\"QA exclusiva requerida\");"
+        ]
+      }
+    }
+  ]
+}
