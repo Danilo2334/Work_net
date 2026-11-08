@@ -82,7 +82,7 @@ module.exports = async ({page,cfg,run,capture,bridge,ui,write,click,waitText,log
     await page.setViewportSize({width:390,height:844});await remove(1,12,1);await remove(2,11,1);const s=unchanged();assert.ok(!s.own_saved.includes(1)&&!s.own_saved.includes(2));assert.deepEqual(s.other_saved,[1,3]);await top();await capture('retirar-inactivas-movil');await page.setViewportSize({width:1440,height:1000});
   });
   await run('HU017-V14',async()=>{
-    const before=snap().own_saved;bridge('revoke_candidate');const pending=response('DELETE',path(3));await click('Quitar de Guardados');assert.equal((await pending).status(),401);await page.waitForURL(cfg.web_origin+'/login');await waitText('Tu sesión ya no es válida.');assert.deepEqual(snap().own_saved,before);await capture('sesion-401-real');
+    const before=snap().own_saved;bridge('revoke_candidate');const pending=response('DELETE',path(13));await click('Quitar de Guardados');assert.equal((await pending).status(),401);await page.waitForURL(cfg.web_origin+'/login');await waitText('Tu sesión ya no es válida.');assert.deepEqual(snap().own_saved,before);await capture('sesion-401-real');
   });
   await run('HU017-V15',async()=>{
     await login('company','/company-dashboard',true);const before=results.red.filter(r=>r.path==='/api/'+saved).length;await page.goto(cfg.web_origin+'/offers/saved');await semantics();await page.waitForURL(cfg.web_origin+'/company-dashboard');assert.equal(results.red.filter(r=>r.path==='/api/'+saved).length,before);await capture('rol-empresa-protegido');await logout();
