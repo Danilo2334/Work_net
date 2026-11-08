@@ -109,7 +109,7 @@ class CandidateDashboardTests(APITestCase):
         self.offer(company=self.other)
         jobs = self.dashboard()["recent_jobs"]
         self.assertEqual([job["id"] for job in jobs], [visible.pk])
-        self.assertEqual(set(jobs[0]), {"id", "title", "company_name", "location", "contract_type", "published_at"})
+        self.assertEqual(set(jobs[0]), {"id", "title", "company_name", "location", "contract_type", "published_at", "is_saved"})
 
     def test_recent_jobs_are_limited_to_five_in_stable_date_order(self):
         published = timezone.now() - timedelta(days=1)
