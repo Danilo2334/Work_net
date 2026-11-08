@@ -6,17 +6,21 @@ import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'package:worknet/features/applications/presentation/application_document.dart';
 import 'package:worknet/features/profile/domain/profile.dart';
 import '../domain/applicant.dart';
+import 'package:worknet/features/status_changes/domain/status_change.dart';
+import 'package:worknet/features/status_changes/presentation/status_change_panel.dart';
 
 class ApplicantDetailPage extends StatefulWidget {
   const ApplicantDetailPage({
     super.key,
     required this.session,
     required this.repository,
+    required this.statuses,
     required this.offerId,
     required this.id,
   });
   final SessionController session;
   final ApplicantsRepository repository;
+  final StatusRepository statuses;
   final int offerId, id;
   @override
   State<ApplicantDetailPage> createState() => _ApplicantDetailPageState();
@@ -120,6 +124,12 @@ class _ApplicantDetailPageState extends State<ApplicantDetailPage> {
               repository: widget.repository,
             ),
           ],
+        ),
+        StatusChangePanel(
+          session: widget.session,
+          repository: widget.statuses,
+          id: widget.id,
+          onChanged: _load,
         ),
         WorkspacePanel(
           title: 'Perfil actual del candidato',

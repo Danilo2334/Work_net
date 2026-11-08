@@ -121,6 +121,16 @@ class ApplicationDetails extends StatelessWidget {
       Text('${application.offer.location} · ${application.offer.contract}'),
       Text('Fecha: ${application.dateLabel} (hora local)'),
       Text('Estado de postulación: ${application.status.label}'),
+      if (application.statusModifiedAt case final date?)
+        Text(
+          'Estado modificado: ${date.toLocal().toIso8601String().substring(0, 19).replaceFirst('T', ' ')} (hora local)',
+        )
+      else
+        const Text(
+          'Sin cambio de estado registrado por la empresa. Los registros anteriores no tienen fecha de modificación acreditada.',
+        ),
+      if (application.statusComment.isNotEmpty)
+        Text('Comentario de la empresa: ${application.statusComment}'),
       if (!application.offer.active)
         const Text(
           'La oferta ya no está activa. Tu postulación y el CV enviado se conservan.',

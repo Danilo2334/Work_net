@@ -28,6 +28,22 @@ abstract final class CandidateSummaryModel {
       applications: number(m['applications_count']),
       saved: number(m['saved_offers_count']),
       notifications: number(m['pending_notifications_count']),
+      notices: List.unmodifiable(
+        ((value['notifications'] ?? []) as List).map((dynamic raw) {
+          final row = raw as Map<String, dynamic>;
+          final id = row['application_id'];
+          if (id != null && (id is! int || id <= 0)) {
+            throw const FormatException();
+          }
+          if (row['read_at'] != null) DateTime.parse(row['read_at'] as String);
+          return CandidateNotice(
+            title: row['title'] as String,
+            createdAt: DateTime.parse(row['created_at'] as String),
+            pending: row['read_at'] == null,
+            applicationId: id as int?,
+          );
+        }),
+      ),
       jobs: List.unmodifiable(
         rows.map((j) {
           if (j is! Map ||

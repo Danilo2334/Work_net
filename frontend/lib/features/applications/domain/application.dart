@@ -57,12 +57,18 @@ class JobApplication {
     required this.createdAt,
     this.cv,
     this.status = ApplicationStatus.submitted,
+    this.statusVersion = 0,
+    this.statusModifiedAt,
+    this.statusComment = '',
   });
   final int id;
   final ApplicationOffer offer;
   final DateTime createdAt;
   final SentCv? cv;
   final ApplicationStatus status;
+  final int statusVersion;
+  final DateTime? statusModifiedAt;
+  final String statusComment;
   String get dateLabel => createdAt
       .toLocal()
       .toIso8601String()

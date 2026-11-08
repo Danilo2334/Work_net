@@ -220,6 +220,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 ),
                 session: _session,
                 repository: _dependencies.applicants,
+                statuses: _dependencies.statuses,
                 offerId: id,
                 id: application,
               ),

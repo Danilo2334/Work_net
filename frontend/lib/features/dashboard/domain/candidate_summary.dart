@@ -20,10 +20,25 @@ class CandidateSummary {
     required this.saved,
     required this.notifications,
     required this.jobs,
+    this.notices = const [],
   });
   final String name;
   final int percentage, applications, saved, notifications;
   final List<JobPreview> jobs;
+  final List<CandidateNotice> notices;
+}
+
+class CandidateNotice {
+  const CandidateNotice({
+    required this.title,
+    required this.createdAt,
+    required this.pending,
+    this.applicationId,
+  });
+  final String title;
+  final DateTime createdAt;
+  final bool pending;
+  final int? applicationId;
 }
 
 abstract interface class CandidateDashboardRepository {

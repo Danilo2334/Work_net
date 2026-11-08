@@ -56,7 +56,8 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
     } on FormatException {
       if (mounted && generation == _generation) {
         setState(
-          () => _error = 'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
+          () => _error =
+              'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
         );
       }
     } finally {
@@ -451,6 +452,39 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
                 _accesses(),
               ],
             ),
+    ),
+    const SizedBox(height: 20),
+    _panel(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Últimos avisos', style: Theme.of(context).textTheme.titleLarge),
+          if (summary.notices.isEmpty) const Text('Todavía no tienes avisos.'),
+          for (final notice in summary.notices)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(notice.title),
+                  Text(
+                    '${notice.createdAt.toLocal().toIso8601String().substring(0, 19).replaceFirst('T', ' ')} (hora local) · ${notice.pending ? 'Pendiente' : 'Leído'}',
+                  ),
+                  if (notice.applicationId != null)
+                    TextButton(
+                      onPressed: () async {
+                        await context.push(
+                          '/applications/${notice.applicationId}',
+                        );
+                        if (mounted) await _load();
+                      },
+                      child: const Text('Consultar postulación del aviso'),
+                    ),
+                ],
+              ),
+            ),
+        ],
+      ),
     ),
     const SizedBox(height: 32),
   ];

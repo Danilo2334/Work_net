@@ -14,6 +14,7 @@ import 'applications_test.dart'
     show applicationJson, offerJson, receipt, activeOffer;
 import 'publish_offer_test.dart' show companySession;
 import 'support/access_fakes.dart' show jsonResponse;
+import 'support/status_fakes.dart';
 
 Map<String, dynamic> paging(List<dynamic> rows, String key) => {
   'count': rows.length,
@@ -361,6 +362,7 @@ void main() {
           home: ApplicantDetailPage(
             session: session,
             repository: repo,
+            statuses: StatusFake(receipt()),
             offerId: 3,
             id: 1,
           ),
