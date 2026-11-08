@@ -1,5 +1,17 @@
 # Pruebas del backend en Postman
 
+## Historial HU019
+
+`GET /api/applications/` y `GET /api/applications/{id}/` conservan los permisos,
+paginación limitada, orden estable y CV privado de HU018. El catálogo compartido
+es `submitted`/Enviada, `in_review`/En revisión, `accepted`/Aceptada y
+`rejected`/Rechazada. Cada GET vuelve a consultar el estado persistido. La
+migración 0005 amplía las opciones sin reescribir postulaciones ni documentos.
+Las rutas siguen siendo de lectura: no se anticipa el flujo empresarial de
+cambio de estado, comentario, confirmación, fecha ni aviso automático de HU021.
+Los cambios controlados del actor QA se identifican como preparación, no como
+operaciones de una API o pantalla empresarial.
+
 ## Contrato de postulación HU018
 
 Se reutilizan `Application`, su UNIQUE candidato–oferta y `Notification`.

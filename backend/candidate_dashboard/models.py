@@ -90,10 +90,16 @@ APPLICATION_IMMUTABLE_FIELDS = (
 
 
 class Application(models.Model):
+    class Status(models.TextChoices):
+        SUBMITTED = "submitted", "Enviada"
+        IN_REVIEW = "in_review", "En revisión"
+        ACCEPTED = "accepted", "Aceptada"
+        REJECTED = "rejected", "Rechazada"
+
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=20, default="submitted", choices=[("submitted", "Enviada")])
+    status = models.CharField(max_length=20, default=Status.SUBMITTED, choices=Status.choices)
     # Los registros históricos conservan CV vacío: no se les inventa un documento.
     cv_source = models.CharField(max_length=12, blank=True, default="", choices=[("uploaded", "Subido"), ("generated", "Generado")])
     cv_source_id = models.PositiveBigIntegerField(null=True, blank=True)
