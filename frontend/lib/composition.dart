@@ -1,5 +1,6 @@
 import 'package:worknet/core/api/worknet_api.dart';
 import 'package:worknet/features/offers/data/offer_repository.dart';
+import 'package:worknet/features/offers/data/search_repository.dart';
 import 'package:worknet/features/access/data/access_repository.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'package:worknet/features/account/data/account_repository.dart';
@@ -21,6 +22,7 @@ class AppDependencies {
     profile = HttpProfileRepository(api);
     company = HttpCompanyRepository(api);
     offers = HttpOfferRepository(api);
+    search = HttpOfferSearchRepository(api);
     curriculum = HttpCurriculumRepository(api);
     generatedCurriculum = HttpGeneratedCurriculumRepository(api);
   }
@@ -31,6 +33,7 @@ class AppDependencies {
   late final HttpProfileRepository profile;
   late final HttpCompanyRepository company;
   late final HttpOfferRepository offers;
+  late final HttpOfferSearchRepository search;
   late final HttpCurriculumRepository curriculum;
   late final HttpGeneratedCurriculumRepository generatedCurriculum;
   final curriculumDownload = const FileSelectorCurriculumDownload();
