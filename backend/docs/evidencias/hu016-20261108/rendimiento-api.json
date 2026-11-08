@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-08T10:30:13.247252+00:00",
+  "offers": 1024,
+  "visible": 1017,
+  "matching": 24,
+  "page_size": 10,
+  "samples": 30,
+  "warmup": 1,
+  "method": "APIClient Django real, SQLite local, sin red ni navegador; q=Python Django&page=2",
+  "median_ms": 31.056,
+  "p95_ms": 36.184,
+  "max_ms": 75.433,
+  "sql_queries": 3,
+  "offer_queries": 2,
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "os": "Windows 11",
+  "mail": "archivos, sin SMTP"
+}

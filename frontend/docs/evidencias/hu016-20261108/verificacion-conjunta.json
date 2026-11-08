@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-08",
+  "combined_sha": "add0b04f0b507857ae777baa81c97ee62c303060",
+  "backend_tested": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
+  "frontend_tested": "d3961bde190076c25e78f17902e2d563341b0966",
+  "functional_trees_equal": true,
+  "backend_difference_only_historical_evidence": 66,
+  "frontend_difference": [],
+  "django_tests": 168,
+  "flutter_tests": 129,
+  "flutter": "3.47.5",
+  "dart": "3.13.4",
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "drf": "3.18.3",
+  "checks": [
+    "Django check sin incidencias",
+    "makemigrations --check --dry-run: No changes detected",
+    "Flutter analyze: No issues found",
+    "Flutter build web --release --no-web-resources-cdn: correcto por run.py",
+    "12 guards de browser_qa correctos"
+  ],
+  "review": "Revisión técnica delegada al agente; hallazgos Unicode y términos repetidos corregidos; sin aprobación humana"
+}

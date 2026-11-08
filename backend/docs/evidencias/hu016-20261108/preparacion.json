@@ -1,0 +1,14 @@
+{
+  "fecha": "2026-11-08",
+  "metodo": "qa.py prepare y hu016_api.fixtures en corrida nueva",
+  "run": "run-20261108T102954-257e92c2",
+  "port": 8096,
+  "ofertas": 1024,
+  "visibles": 1017,
+  "correo": "archivos, sin SMTP",
+  "credenciales": "aleatorias locales; no publicadas",
+  "sesiones": "Tokens preparados localmente después de comprobar la contraseña privada; no cuentan como login Desktop",
+  "producto": "add0b04f0b507857ae777baa81c97ee62c303060",
+  "backend": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
+  "fuente_preparador": "frontend/tool/browser_qa/hu016_api.py"
+}
