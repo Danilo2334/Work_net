@@ -1,0 +1,43 @@
+{
+  "fecha": "2026-11-08",
+  "metodo": "API GitHub y HTML renderizado; imágenes publicadas con bytes/hash verificados",
+  "revision_humana": false,
+  "subtareas": [
+    {
+      "issue": 92,
+      "comment_id": 6720473511,
+      "author": "francisco3788",
+      "total_comments": 1,
+      "visible_images": 4,
+      "sections": true,
+      "desktop_completed": true
+    },
+    {
+      "issue": 93,
+      "comment_id": 6720582888,
+      "author": "Danilo2334",
+      "total_comments": 1,
+      "visible_images": 6,
+      "sections": true,
+      "desktop_completed": true
+    },
+    {
+      "issue": 94,
+      "comment_id": 6720473704,
+      "author": "francisco3788",
+      "total_comments": 1,
+      "visible_images": 7,
+      "sections": true,
+      "desktop_completed": true
+    },
+    {
+      "issue": 95,
+      "comment_id": 6720588402,
+      "author": "francisco3788",
+      "total_comments": 1,
+      "visible_images": 11,
+      "sections": true,
+      "desktop_completed": true
+    }
+  ]
+}
