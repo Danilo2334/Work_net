@@ -23,7 +23,29 @@ contrasta legibilidad, caso y ausencia de contraseñas, tokens o sesiones visibl
 No se volvieron a ejecutar suites, no se cambiaron código funcional ni entornos
 y no se enviaron correos.
 
-**Acceso a Postman Desktop y alcance pendiente.** La comprobación de disponibilidad
+**Actualización documental del 08/11/2026.** El control de la ventana de Postman
+Desktop 12.34.1 funciona desde la aplicación Windows. La captura de acceso mostraba
+resultados históricos de HU011 y no acredita una ejecución nueva. Para #60 se
+recuperaron y revisaron tres capturas específicas del 24/10/2026 que estaban
+dentro de su histórico: perfil autorizado (PM214), fotografía privada (PM224)
+y empresa ajena (PM219). Sus URL permanentes devolvieron HTTP 200 y los bytes
+coincidieron con Git; ahora son visibles en el mismo comentario de #60, conservando
+ID, autor e histórico. El faltante de esa tarea queda resuelto por reutilización,
+sin repetir la QA. La consulta de perfil y la fotografía de #62 pueden reutilizar
+esas fuentes; su contrato perfil→CV y los demás casos siguen pendientes.
+
+Se prepararon cuatro corridas nuevas exclusivas para HU012–HU015 en 8092–8095,
+con el preparador existente, credenciales privadas, bases separadas y correo
+a archivos. La importación de recursos encuentra una limitación en el diálogo
+nativo de carpetas: `point (600, 442) is over Postman.exe "", not target window
+Postman.exe "Import"`. Se solicitó pulsar localmente **Cargar**; preparar bases
+o importar una colección no cuenta como ejecución Desktop aprobada. La
+normalización continúa incompleta hasta obtener y verificar las demás evidencias.
+
+<details>
+<summary>Bloqueo de acceso y once faltantes registrados el 07/11/2026</summary>
+
+**Acceso a Postman Desktop y alcance pendiente en ese corte.** La comprobación de disponibilidad
 con `mcp__node_repl__js`, `@oai/sky`, `sky.list_apps` devolvió:
 `Computer Use native pipe is unavailable: failed to connect native pipe: El sistema no puede encontrar el archivo especificado. (os error 2)`.
 Falta conexión con el helper nativo de Windows. No se pudo abrir una petición QA
@@ -34,6 +56,8 @@ un cuerpo de respuesta que no muestra. Quedan faltantes concretos en
 **#60, #62, #76, #77, #79, #81, #83, #85, #87, #89 y #91**, detallados en la tabla.
 La normalización de evidencias **no está completa** mientras falten esas capturas.
 Eso no cambia retrospectivamente los estados funcionales.
+
+</details>
 
 **Responsables y atribución.** Danilo2334 conserva backend y los QA históricos
 que realmente publicó; francisco3788 conserva Flutter/integración y nuevo
@@ -84,6 +108,7 @@ seguimiento existente de cada subtarea, sin iniciar esas historias en este bloqu
 en cada fila. Las fechas son las de las evidencias, no una ejecución de este bloque.
 
 - **P19:** Postman Desktop del **19/10/2026**, Django `f9e4dea9bd8078170d899b402a537952ad508d53`; capturas publicadas en `8b5e975d630dfaff16d85e383f5041029a738b91`. La versión numérica de Desktop no consta en ese registro.
+- **P24:** Postman Desktop **12.33.3**, ejecución histórica del **24/10/2026**, Django `2547c3786bbbe8abcc1b887a3767ba9223c123aa`, QA 8012; capturas específicas publicadas en `d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93`. Consulta PM214, fotografía PM224 y aislamiento PM219 revisados visualmente el 08/11/2026, URL HTTP 200 y bytes cotejados con Git. No se ejecutó de nuevo HU008.
 - **F19:** Flutter Web del **19/10/2026**, código `04e7e5cc942c12b234bed4e2809b6c6d72cbaa82`, Django `f9e4dea9bd8078170d899b402a537952ad508d53`; imágenes publicadas en `677aebad368977ca5f7cf96d5ec5b9bc1aac681d`. Móvil web es viewport emulado, no dispositivo físico.
 - **P11:** Postman Desktop **12.33.3**, ejecución del **24/10/2026** y capturas conservadas el **25/10/2026**, Django `84746c36efb8ef49e044e2889e677a1f70e9fb25`; imágenes publicadas en `47d5f1ec039d8f18321d8fafe9ff2ed0b2568493`. Consultar el resultado histórico para distinguir la fecha de ejecución de la fecha de captura.
 - **F11:** Flutter Web de HU011 del **24–25/10/2026**, backend `84746c36efb8ef49e044e2889e677a1f70e9fb25`; base Flutter registrada `0eb65d495b20157a910ff18e1e68cfaf5d75b7ae` y material publicado en `91207ad37f13f1dd9f647264b48717ae514cb2f7`. La cancelación nativa del 25/10 se identifica por separado; no se atribuye al móvil emulado.
@@ -135,7 +160,7 @@ bloqueo en vez de sustituirla por evidencia de otra herramienta.
 | [#57](https://github.com/Danilo2334/Work_net/issues/57#issuecomment-6260292130) | 2: [Dashboard administrativo](https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-escritorio.png); [Administración en móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-movil.png) | F19 | Sin faltante específico identificado; se conserva el alcance histórico. |
 | [#58](https://github.com/Danilo2334/Work_net/issues/58#issuecomment-6260277494) | 1: [hu007 resumen](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu007-resumen.png) | P19 | La tarea sigue abierta por el recorrido de gestión de administradores y permisos de HU026. |
 | [#59](https://github.com/Danilo2334/Work_net/issues/59#issuecomment-6246221677) | 2: [Perfil en escritorio](https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/perfil-completo-escritorio.png); [Registros en móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/registros-movil.png) | F18/19 | Sin faltante específico identificado; se conserva el alcance histórico. |
-| [#60](https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6272924156) | 3: [Educación editada y recuperada en Postman](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png); [Otro candidato no modifica el registro en Postman](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-permisos.png); [PNG corrupto rechazado en Postman](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png) | P19 | Postman consulta empresarial por postulación/foto. |
+| [#60](https://github.com/Danilo2334/Work_net/issues/60#issuecomment-6272924156) | 6: [Educación editada y recuperada en Postman](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png); [Otro candidato no modifica el registro en Postman](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-permisos.png); [PNG corrupto rechazado en Postman](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png); [Consulta autorizada PM214](https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-autorizada.png); [Fotografía privada PM224](https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/fotografia-privada.png); [Empresa ajena PM219](https://raw.githubusercontent.com/Danilo2334/Work_net/d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93/backend/docs/evidencias/postman/capturas/hu008-seleccion/empresa-ajena.png) | P19, P24 | Sin faltante específico identificado: consulta empresarial y fotografía recuperadas del histórico y verificadas el 08/11/2026; no es una ejecución nueva. |
 | [#61](https://github.com/Danilo2334/Work_net/issues/61#issuecomment-6246221840) | 2: [Fotografía guardada](https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-guardada.png); [Archivo inválido](https://raw.githubusercontent.com/Danilo2334/Work_net/2970dea6ae115177e7d6044ad1f084acf4818730/frontend/docs/evidencias/hu008/fotografia-invalida.png) | F18/19 | Sin faltante específico identificado; se conserva el alcance histórico. |
 | [#62](https://github.com/Danilo2334/Work_net/issues/62#issuecomment-6246223309) | 2: [hu008 permisos](https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975d630dfaff16d85e383f5041029a738b91/backend/docs/evidencias/postman/capturas/hu008-permisos.png); [HU012 V01 precarga](https://raw.githubusercontent.com/Danilo2334/Work_net/9a9dfb8dd382c4e910e51ace514cfe186cbe336b/frontend/docs/evidencias/retoma-20261107/integracion/HU012-V01-precarga.png) | P19, F12 | Capturas específicas de Postman de consulta empresarial por postulación propia/foto y del contrato de reutilización perfil→CV: petición, respuesta y Test Results. Las imágenes anteriores no acreditan esos endpoints posteriores. |
 | [#63](https://github.com/Danilo2334/Work_net/issues/63#issuecomment-6260293510) | 2: [empresa pendiente escritorio](https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-pendiente-escritorio.png); [empresa logo](https://raw.githubusercontent.com/Danilo2334/Work_net/677aebad368977ca5f7cf96d5ec5b9bc1aac681d/frontend/docs/evidencias/revision-sprint/empresa-logo.png) | F19 | Sin faltante específico identificado; se conserva el alcance histórico. |
