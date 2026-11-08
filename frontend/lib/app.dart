@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/applications/presentation/apply_page.dart';
+import 'package:worknet/features/applications/presentation/application_history_page.dart';
 import 'package:worknet/features/offers/presentation/publish_offer_page.dart';
 import 'package:worknet/features/offers/presentation/active_offers_page.dart';
 import 'package:worknet/features/offers/presentation/offer_search_page.dart';
@@ -50,6 +52,11 @@ class _WorkNetAppState extends State<WorkNetApp> {
   SessionController get _session => _dependencies.session;
   late final GoRouter _router;
   var _generatedKey = GlobalKey<GeneratedCurriculumPageState>();
+  int? _returnOffer(GoRouterState state) {
+    final id = int.tryParse(state.uri.queryParameters['apply_offer'] ?? '');
+    return id != null && id > 0 ? id : null;
+  }
+
   String _home() => switch (_session.session?.role) {
     'candidato' => '/dashboard',
     'empresa' =>
@@ -71,13 +78,14 @@ class _WorkNetAppState extends State<WorkNetApp> {
   @override
   void initState() {
     super.initState();
-    // Guardados es la única ruta con push y admite acceso directo protegido.
-    // Reflejarla en web permite recargarla y conservar la búsqueda al volver.
+    // Reflejar las rutas enlazables con push permite recargar Guardados y
+    // Postular, conservando la consulta anterior cuando se vuelve atrás.
     GoRouter.optionURLReflectsImperativeAPIs = true;
     const protected = {
       '/dashboard',
       '/offers/search',
       '/offers/saved',
+      '/applications',
       '/profile',
       '/curriculum',
       '/curriculum/create',
@@ -99,13 +107,15 @@ class _WorkNetAppState extends State<WorkNetApp> {
         final path = state.uri.path, role = _session.session?.role;
         final companyOffer =
             path == '/company/offers' || path.startsWith('/company/offers/');
-        if ((protected.contains(path) || companyOffer) && role == null) {
+        final applicationForm = RegExp(r'^/offers/[^/]+/apply$').hasMatch(path);
+        if ((protected.contains(path) || companyOffer || applicationForm) &&
+            role == null) {
           return '/login';
         }
         if (role != null) {
           if (path == '/login' || path == '/access-pending') return _home();
           if (role == 'unassigned' &&
-              (protected.contains(path) || companyOffer) &&
+              (protected.contains(path) || companyOffer || applicationForm) &&
               path != '/choose-role') {
             return '/choose-role';
           }
@@ -114,6 +124,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 '/dashboard',
                 '/offers/search',
                 '/offers/saved',
+                '/applications',
                 '/profile',
                 '/curriculum',
                 '/curriculum/create',
@@ -121,6 +132,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               role != 'candidato') {
             return _home();
           }
+          if (applicationForm && role != 'candidato') return _home();
           if ((companyOffer ||
                   [
                     '/company',
@@ -138,6 +150,37 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/applications',
+          builder: (_, _) => _protected(
+            'candidato',
+            () => ApplicationHistoryPage(
+              key: ValueKey('${_session.session?.token}:applications'),
+              session: _session,
+              repository: _dependencies.applications,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/offers/:id/apply',
+          builder: (_, state) {
+            final id = int.tryParse(state.pathParameters['id'] ?? '');
+            if (id == null || id <= 0) {
+              return const Scaffold(
+                body: Center(child: Text('Oferta no válida.')),
+              );
+            }
+            return _protected(
+              'candidato',
+              () => ApplyPage(
+                key: ValueKey('${_session.session?.token}:apply:$id'),
+                session: _session,
+                repository: _dependencies.applications,
+                offerId: id,
+              ),
+            );
+          },
+        ),
         GoRoute(
           path: '/offers/saved',
           builder: (_, _) => _protected(
@@ -233,7 +276,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
             }
             return leave;
           },
-          builder: (_, _) {
+          builder: (_, state) {
             final editorKey = _generatedKey;
             return _protected(
               'candidato',
@@ -242,19 +285,21 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 session: _session,
                 repository: _dependencies.generatedCurriculum,
                 download: _dependencies.curriculumDownload,
+                returnToOfferId: _returnOffer(state),
               ),
             );
           },
         ),
         GoRoute(
           path: '/curriculum',
-          builder: (_, _) => _protected(
+          builder: (_, state) => _protected(
             'candidato',
             () => CurriculumPage(
               key: ValueKey(_session.session?.token),
               session: _session,
               repository: _dependencies.curriculum,
               picker: _dependencies.pdfPicker,
+              returnToOfferId: _returnOffer(state),
             ),
           ),
         ),
