@@ -15,7 +15,7 @@ class ApplicationDocument extends StatefulWidget {
     required this.application,
   });
   final SessionController session;
-  final ApplicationsRepository repository;
+  final ApplicationPdfRepository repository;
   final JobApplication application;
   @override
   State<ApplicationDocument> createState() => _ApplicationDocumentState();
@@ -112,7 +112,7 @@ class ApplicationDetails extends StatelessWidget {
   });
   final JobApplication application;
   final SessionController session;
-  final ApplicationsRepository repository;
+  final ApplicationPdfRepository repository;
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +120,7 @@ class ApplicationDetails extends StatelessWidget {
       Text(application.offer.company),
       Text('${application.offer.location} · ${application.offer.contract}'),
       Text('Fecha: ${application.dateLabel} (hora local)'),
-      const Text('Estado de postulación: Enviada'),
+      Text('Estado de postulación: ${application.status.label}'),
       if (!application.offer.active)
         const Text(
           'La oferta ya no está activa. Tu postulación y el CV enviado se conservan.',

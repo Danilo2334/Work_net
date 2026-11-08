@@ -40,17 +40,29 @@ class SentCv {
   String get typeLabel => source == 'uploaded' ? 'CV subido' : 'CV generado';
 }
 
+enum ApplicationStatus {
+  submitted('submitted', 'Enviada'),
+  inReview('in_review', 'En revisión'),
+  accepted('accepted', 'Aceptada'),
+  rejected('rejected', 'Rechazada');
+
+  const ApplicationStatus(this.code, this.label);
+  final String code, label;
+}
+
 class JobApplication {
   const JobApplication({
     required this.id,
     required this.offer,
     required this.createdAt,
     this.cv,
+    this.status = ApplicationStatus.submitted,
   });
   final int id;
   final ApplicationOffer offer;
   final DateTime createdAt;
   final SentCv? cv;
+  final ApplicationStatus status;
   String get dateLabel => createdAt
       .toLocal()
       .toIso8601String()
@@ -85,9 +97,16 @@ class ApplicationHistory {
   final int? next, previous;
 }
 
-abstract interface class ApplicationsRepository {
+abstract interface class ApplicationPdfRepository {
+  Future<Uint8List> pdf(String token, int applicationId);
+}
+
+abstract interface class ApplicationsRepository
+    implements ApplicationPdfRepository {
   Future<ApplicationContext> context(String token, int offerId);
   Future<JobApplication> submit(String token, int offerId, CvChoice cv);
   Future<ApplicationHistory> history(String token, {int page = 1});
+  Future<JobApplication> detail(String token, int applicationId);
+  @override
   Future<Uint8List> pdf(String token, int applicationId);
 }

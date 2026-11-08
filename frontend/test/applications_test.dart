@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/testing.dart';
@@ -10,6 +11,7 @@ import 'package:worknet/features/applications/domain/application.dart';
 import 'package:worknet/features/applications/data/applications_repository.dart';
 import 'package:worknet/features/applications/presentation/apply_page.dart';
 import 'package:worknet/features/applications/presentation/application_history_page.dart';
+
 import 'offer_search_test.dart' show candidateSession;
 import 'support/access_fakes.dart'
     show jsonResponse, sessionData, MemorySessionStore;
@@ -114,6 +116,12 @@ class ApplicationsFake implements ApplicationsRepository {
   final submitted = <CvChoice>[];
   final pages = <int>[];
   final entries = <JobApplication>[];
+  @override
+  Future<JobApplication> detail(String token, int applicationId) async =>
+      entries.firstWhere(
+        (item) => item.id == applicationId,
+        orElse: () => existing ?? receipt(id: applicationId),
+      );
   @override
   Future<ApplicationContext> context(String token, int offerId) async {
     if (contextFailure case final e?) throw e;
