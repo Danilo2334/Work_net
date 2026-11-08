@@ -1,0 +1,1274 @@
+{
+  "schema": "worknet-browser-qa-results-v1",
+  "fecha": "2026-11-08T17:27:39.335Z",
+  "frontend_sha": "15c480432526980adb4e9560a01c00773c2cff20",
+  "backend_sha": "5d7c6f2535708d43bc88f7365d8d54886958b0c8",
+  "playwright": "1.65.0",
+  "modo": "Chromium headless nuevo, contextos temporales; sin perfil personal",
+  "escritorio": "1440x1000/1100",
+  "movil": "Viewport 390x844, ratón/teclado; no dispositivo físico",
+  "casos": [
+    {
+      "id": "NAVEGADOR-01",
+      "resultado": "aprobado",
+      "duracion_ms": 1900
+    },
+    {
+      "id": "HU018-V01",
+      "resultado": "aprobado",
+      "duracion_ms": 5808
+    },
+    {
+      "id": "HU018-V02",
+      "resultado": "aprobado",
+      "duracion_ms": 6078
+    },
+    {
+      "id": "HU018-V03",
+      "resultado": "aprobado",
+      "duracion_ms": 10538
+    },
+    {
+      "id": "HU018-V04",
+      "resultado": "aprobado",
+      "duracion_ms": 12316
+    },
+    {
+      "id": "HU018-V05",
+      "resultado": "aprobado",
+      "duracion_ms": 14890
+    },
+    {
+      "id": "HU018-V06",
+      "resultado": "aprobado",
+      "duracion_ms": 14447
+    },
+    {
+      "id": "HU018-V07",
+      "resultado": "aprobado",
+      "duracion_ms": 8060
+    },
+    {
+      "id": "HU018-V08",
+      "resultado": "aprobado",
+      "duracion_ms": 8373
+    },
+    {
+      "id": "HU018-V09",
+      "resultado": "aprobado",
+      "duracion_ms": 17131
+    },
+    {
+      "id": "HU018-V10",
+      "resultado": "aprobado",
+      "duracion_ms": 8986
+    },
+    {
+      "id": "HU018-V11",
+      "resultado": "aprobado",
+      "duracion_ms": 7785
+    },
+    {
+      "id": "HU018-V12",
+      "resultado": "aprobado",
+      "duracion_ms": 5018
+    },
+    {
+      "id": "HU018-V13",
+      "resultado": "aprobado",
+      "duracion_ms": 8469
+    },
+    {
+      "id": "HU018-V14",
+      "resultado": "aprobado",
+      "duracion_ms": 2160
+    },
+    {
+      "id": "HU018-V15",
+      "resultado": "aprobado",
+      "duracion_ms": 20317
+    },
+    {
+      "id": "HU018-V16",
+      "resultado": "aprobado",
+      "duracion_ms": 10006
+    },
+    {
+      "id": "HU018-V17",
+      "resultado": "aprobado",
+      "duracion_ms": 5493
+    },
+    {
+      "id": "HU018-V18",
+      "resultado": "aprobado",
+      "duracion_ms": 6522
+    },
+    {
+      "id": "HU018-V19",
+      "resultado": "aprobado",
+      "duracion_ms": 11219
+    }
+  ],
+  "capturas": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU018-V01-accesos-dashboard.png",
+      "caso": "HU018-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "699cdea488adbedf64f21ec5eb97a863917e1b8ced840dbc36d688936abd9140"
+    },
+    {
+      "archivo": "HU018-V01-carga-real-retenida.png",
+      "caso": "HU018-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4c59a58a4cddd421a5ca4fa0859ea9e8958782c6abba0973ff8b2e40811e0bd5"
+    },
+    {
+      "archivo": "HU018-V01-selector-dos-cv.png",
+      "caso": "HU018-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2fcb009fe01c7388a644262f9238b8c8586c1b69104060dc9306d2e740eadb0a"
+    },
+    {
+      "archivo": "HU018-V02-revision-uploaded.png",
+      "caso": "HU018-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4d5584885abc29eb15e19dd11000837ac4304794c4bee84ddeb37e3cec41b13d"
+    },
+    {
+      "archivo": "HU018-V02-confirmacion-uploaded.png",
+      "caso": "HU018-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "44c1d9c05bbc3728e9078944026576a6525b69d016c637443c7a0f1ee75ca8a4"
+    },
+    {
+      "archivo": "HU018-V02-pdf-uploaded.png",
+      "caso": "HU018-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "87192adc98957a636e4758fe0a044be315104b14a028097aa069015afa8e00d5"
+    },
+    {
+      "archivo": "HU018-V03-revision-generated.png",
+      "caso": "HU018-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "973c540cbf24ef6d36e2c738f9a34274a81cd45194c43da6ba28b9342d25602c"
+    },
+    {
+      "archivo": "HU018-V03-confirmacion-generated.png",
+      "caso": "HU018-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fad35b854891106376da2b92daa888d64b92cdc28473694b37f7f9bb7a644efd"
+    },
+    {
+      "archivo": "HU018-V03-pdf-generated.png",
+      "caso": "HU018-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7eb80adb8d8500c845af91ac26e900d47099cf56756c10c2858d961e7e3a6446"
+    },
+    {
+      "archivo": "HU018-V04-historial-ambos-cv.png",
+      "caso": "HU018-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cafc5444c7127f04f3bd03b9d4e24c6e18745702dd651da3521ed3667c03272b"
+    },
+    {
+      "archivo": "HU018-V04-historial-recarga.png",
+      "caso": "HU018-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cafc5444c7127f04f3bd03b9d4e24c6e18745702dd651da3521ed3667c03272b"
+    },
+    {
+      "archivo": "HU018-V04-historial-nueva-sesion.png",
+      "caso": "HU018-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cafc5444c7127f04f3bd03b9d4e24c6e18745702dd651da3521ed3667c03272b"
+    },
+    {
+      "archivo": "HU018-V05-otro-candidato-historial-vacio.png",
+      "caso": "HU018-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1244353d99e23648d6dd1397f580db4dd8b3b27003d9766f488816059af33eb5"
+    },
+    {
+      "archivo": "HU018-V05-cv-propio-del-otro-candidato.png",
+      "caso": "HU018-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c2bd97aa99204218e7a5afda925a7f7bea11bc0055bbb617a6599917020883c5"
+    },
+    {
+      "archivo": "HU018-V06-avisos-empresa-destinataria.png",
+      "caso": "HU018-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b73c6ba533538bc743ece02839f6a54d6e4dabf41331276fde07dfa8912d61e5"
+    },
+    {
+      "archivo": "HU018-V06-otra-empresa-sin-avisos.png",
+      "caso": "HU018-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "83d2b1e19c49ac223d68f73d815cc6a3bd4cb367e10961c356624535def1b022"
+    },
+    {
+      "archivo": "HU018-V07-cierre-posterior-formulario-rechazado.png",
+      "caso": "HU018-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "aa1e1393859f6a422d8a092d84a7d09e868b8c8cac4100b5dac9f117903002aa"
+    },
+    {
+      "archivo": "HU018-V07-cerrada-no-permite-continuar.png",
+      "caso": "HU018-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c302c0e6ad2dc0312c50c5921d033ce1c3be6886bc76a73976326b25f4fa4d71"
+    },
+    {
+      "archivo": "HU018-V08-archivado-posterior-formulario-rechazado.png",
+      "caso": "HU018-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "81151852a52d23e1459c09100bbb28345d19ebbc7bdded6037346664c528faf9"
+    },
+    {
+      "archivo": "HU018-V09-cv-eliminado-tras-seleccion.png",
+      "caso": "HU018-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "800c3f47ee00bcd5b5af5dd6cc429d2d0645f0fd0f050a1febdc5ff396e143db"
+    },
+    {
+      "archivo": "HU018-V09-sin-cv.png",
+      "caso": "HU018-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "aba21455b5f918d5a2540a5f2696c938455f774cac05eabb7d3077ba664f4a7e"
+    },
+    {
+      "archivo": "HU018-V09-retorno-oferta-despues-crear-cv.png",
+      "caso": "HU018-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bf9cecec3c5bd0d3936865931caba360fdfb9b2c1333f818f83f1f44a8ee5dbb"
+    },
+    {
+      "archivo": "HU018-V10-cv-cambio-version-rechazado.png",
+      "caso": "HU018-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0d63bb2c0fd8d0e6bd2298529c5047055da557629c8e3546054ba004bf0ceac5"
+    },
+    {
+      "archivo": "HU018-V11-pdf-generated.png",
+      "caso": "HU018-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "edb1b231b6c2da577390e35de521d4a2f4e945488d5d780ee3753a8d80aca2ba"
+    },
+    {
+      "archivo": "HU018-V11-pdf-uploaded.png",
+      "caso": "HU018-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "53906604a8019f23b736d9218fdbcf12eee0c006dd0f5f685c1f26139279f778"
+    },
+    {
+      "archivo": "HU018-V11-copias-conservadas-tras-cambios.png",
+      "caso": "HU018-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e90814070e1ec8c7460d33e28099f6ce596c4b446dfa275810a3b50589ade978"
+    },
+    {
+      "archivo": "HU018-V12-red-inyectada-historial.png",
+      "caso": "HU018-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2d3d27429487eed1974dfaa9e5dfbfb046071e7c8b8fafaab8f82b3317f8d611"
+    },
+    {
+      "archivo": "HU018-V12-503-inyectado-historial.png",
+      "caso": "HU018-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a3b334ec281143e718d101186c8247ff1c1033b30b3938558bb9496e83ea1311"
+    },
+    {
+      "archivo": "HU018-V12-recuperacion-real-historial.png",
+      "caso": "HU018-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cafc5444c7127f04f3bd03b9d4e24c6e18745702dd651da3521ed3667c03272b"
+    },
+    {
+      "archivo": "HU018-V13-fallo-envio-sin-registro.png",
+      "caso": "HU018-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "31f36414956e374364e957d5ff6e705aebc6f418f03e35eace92ae075fc7233a"
+    },
+    {
+      "archivo": "HU018-V13-respuesta-aceptada-perdida.png",
+      "caso": "HU018-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "31f36414956e374364e957d5ff6e705aebc6f418f03e35eace92ae075fc7233a"
+    },
+    {
+      "archivo": "HU018-V13-reconciliacion-real-sin-reenvio.png",
+      "caso": "HU018-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6bb8142f16a7bb400d9240b28f984edc7df46847c1c1eb3b3458e57a72f88703"
+    },
+    {
+      "archivo": "HU018-V14-recarga-registro-unico.png",
+      "caso": "HU018-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6bb8142f16a7bb400d9240b28f984edc7df46847c1c1eb3b3458e57a72f88703"
+    },
+    {
+      "archivo": "HU018-V15-historial-y-avisos-tras-inactivacion.png",
+      "caso": "HU018-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "16496b007c1eb085e462600921c07137311110ccca2aa0cd32dbf4be36b96dee"
+    },
+    {
+      "archivo": "HU018-V16-historial-con-postulaciones-conservadas.png",
+      "caso": "HU018-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "279af9c83656f68171d6c34fce880b79d35c7adc03eea66e20bf3c3bdcfcd1a7"
+    },
+    {
+      "archivo": "HU018-V16-pdf-generated.png",
+      "caso": "HU018-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d33a808f05f67b175176563b7611197ea5eab2a408d645f0a46f5281e39d3c60"
+    },
+    {
+      "archivo": "HU018-V16-pdf-uploaded.png",
+      "caso": "HU018-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "91e1f1642cc70771ac315868871f8fa5ad791c4ca1d37a39b7d0caadc8e83a55"
+    },
+    {
+      "archivo": "HU018-V16-historial-cv-subido-conservado.png",
+      "caso": "HU018-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "514bc013016a882eaf4541aa64b94450b4f2658fefb81574955e60d947254072"
+    },
+    {
+      "archivo": "HU018-V17-historial-movil.png",
+      "caso": "HU018-V17",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "4e8dde61fca4acf46712750fc1c83264956936349dd817d75ca4769fd1737493"
+    },
+    {
+      "archivo": "HU018-V17-vencida-guardada-no-postulable-movil.png",
+      "caso": "HU018-V17",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "4c15874d63e0b015546305741f3dd3a11b967d59787f4291f5fa01a6414ddaf2"
+    },
+    {
+      "archivo": "HU018-V18-sesion-401-real.png",
+      "caso": "HU018-V18",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+    },
+    {
+      "archivo": "HU018-V19-rol-empresa-protegido.png",
+      "caso": "HU018-V19",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c6a8f0dc942abb359440ae5e594dcb49a3b41904ada33a7b325d1fc7fb48a6c1"
+    },
+    {
+      "archivo": "HU018-V19-anonimo-protegido.png",
+      "caso": "HU018-V19",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    }
+  ],
+  "red": [
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/3/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/3/application/",
+      "status": 201,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/3/cv/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/saved/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/4/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/4/application/",
+      "status": 201,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/4/cv/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/3/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/5/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/5/application/",
+      "status": 404,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/5/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/6/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/6/application/",
+      "status": 404,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/8/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/8/application/",
+      "status": 400,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/9/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 201,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/9/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/10/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/10/application/",
+      "status": 400,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/4/cv/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/3/cv/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": null,
+      "inyectada": true,
+      "fallo": "abort"
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 503,
+      "inyectada": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/7/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/7/application/",
+      "status": null,
+      "inyectada": true,
+      "fallo": "abort"
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/7/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/7/application/",
+      "status": 201,
+      "inyectada": false,
+      "respuesta_perdida": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/7/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/7/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/3/transition/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/4/transition/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/4/cv/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/3/cv/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/applications/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/saved/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/11/application/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/offers/11/application/",
+      "status": 401,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    }
+  ],
+  "controles": {
+    "solo_base_qa_nueva": true,
+    "smtp": false,
+    "traces_har_storageState": false
+  },
+  "revision_humana": false,
+  "suite": "hu018",
+  "chromium": "158.0.8127.18",
+  "actores_qa": [
+    {
+      "actor_qa": "company",
+      "method": "POST",
+      "path": "/api/company/offers/5/transition/",
+      "status": 200,
+      "procedencia": "APIClient real; transición de actor QA concurrente, no UI"
+    },
+    {
+      "actor_qa": "company",
+      "method": "POST",
+      "path": "/api/company/offers/6/transition/",
+      "status": 200,
+      "procedencia": "APIClient real; transición de actor QA concurrente, no UI"
+    },
+    {
+      "actor_qa": "candidate",
+      "method": "DELETE",
+      "path": "/api/curriculum/uploaded/",
+      "status": 200,
+      "procedencia": "APIClient real; actor QA concurrente, no UI"
+    },
+    {
+      "actor_qa": "candidate",
+      "method": "DELETE",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "procedencia": "APIClient real; actor QA concurrente, no UI"
+    },
+    {
+      "restored": true,
+      "procedencia": "APIClient real de CV existentes; preparación QA"
+    },
+    {
+      "actor_qa": "candidate",
+      "method": "PATCH",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "procedencia": "APIClient real; cambio de versión concurrente QA"
+    }
+  ],
+  "hu018": {
+    "offers": 17,
+    "states": {
+      "3": "closed",
+      "4": "archived",
+      "5": "closed",
+      "6": "archived"
+    },
+    "information_unchanged": true,
+    "other_offers_unchanged": true,
+    "legacy_applications_unchanged": true,
+    "saved_unchanged": true,
+    "other_uploaded_unchanged": true,
+    "other_generated_unchanged": true,
+    "old_notifications_unchanged": true,
+    "applications": 5,
+    "own_applications": 5,
+    "new_applications": [
+      {
+        "id": 3,
+        "offer_id": 3,
+        "candidate_id": 1,
+        "created_at": "2026-11-08 17:27:53.265862",
+        "status": "submitted",
+        "cv_source": "uploaded",
+        "cv_source_id": 1,
+        "cv_source_updated_at": "2026-11-08 17:27:39.136685",
+        "cv_filename": "cv-subido-qa.pdf",
+        "cv_template": "",
+        "cv_sha256": "71bb03ce24a0563d60274dccb493206336d49eff67dd2ad891bc15c00b84b366",
+        "cv_size_bytes": 42917
+      },
+      {
+        "id": 4,
+        "offer_id": 4,
+        "candidate_id": 1,
+        "created_at": "2026-11-08 17:28:04.435443",
+        "status": "submitted",
+        "cv_source": "generated",
+        "cv_source_id": 1,
+        "cv_source_updated_at": "2026-11-08 17:27:39.168538",
+        "cv_filename": "curriculum-moderna.pdf",
+        "cv_template": "moderna",
+        "cv_sha256": "d7c7b8f859e15bdf546677de6376c059c82b56c789ba72b4635558cafbdc337b",
+        "cv_size_bytes": 42425
+      },
+      {
+        "id": 5,
+        "offer_id": 7,
+        "candidate_id": 1,
+        "created_at": "2026-11-08 17:29:51.700111",
+        "status": "submitted",
+        "cv_source": "uploaded",
+        "cv_source_id": 3,
+        "cv_source_updated_at": "2026-11-08 17:29:23.234463",
+        "cv_filename": "cv-reemplazado-qa.pdf",
+        "cv_template": "",
+        "cv_sha256": "4ece58b1eddc03ac323fc7b4cac05327757c9653f8972c86f11ad3d5835d5399",
+        "cv_size_bytes": 42991
+      }
+    ],
+    "new_notices": 3,
+    "correct_recipient_and_one_notice_per_new": true,
+    "snapshot_hashes_and_pdf_valid": true,
+    "duplicates": 0,
+    "database_unique_constraint": true
+  },
+  "contrastes": {
+    "profile_unchanged": true,
+    "account_unchanged": true,
+    "ofertas": 17,
+    "cv_generados": 1
+  },
+  "resultado": "aprobado"
+}

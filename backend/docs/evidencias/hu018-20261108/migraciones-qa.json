@@ -1,0 +1,10 @@
+{
+  "fecha": "2026-11-08",
+  "run": "run-20261108T172019-b5651a29",
+  "migracion": "candidate_dashboard.0004_application_cv_document_application_cv_filename_and_more",
+  "pendientes": 0,
+  "aplicada_en_otra_sqlite_qa_nueva": true,
+  "prueba_con_datos_previos": "ApplicationMigrationTests: esquema0003,una aplicación/un favorito/un aviso;aplicar0004 conserva relaciones/fecha y no inventa CV ni asociación histórica de aviso",
+  "suite_django": 198,
+  "fuente": "5d7c6f2535708d43bc88f7365d8d54886958b0c8"
+}
