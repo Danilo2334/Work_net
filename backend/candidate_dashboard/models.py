@@ -5,6 +5,32 @@ from django.core.exceptions import ValidationError
 from django.db import models, transaction
 from django.db.models import Q
 from django.utils import timezone
+from .selection_text import SELECTION_SECTIONS, populate_selection, selection_text
+
+
+class CandidateProfileQuerySet(models.QuerySet):
+    def update(self, **kwargs):
+        if set(kwargs) & {"selection_" + s for s in SELECTION_SECTIONS}:
+            raise ValidationError("Las proyecciones se derivan del perfil; no se modifican directamente.")
+        for section in SELECTION_SECTIONS:
+            if section in kwargs:
+                if not isinstance(kwargs[section], list):
+                    raise ValidationError("Actualiza las secciones estructuradas mediante save, sin expresiones masivas.")
+                kwargs["selection_" + section] = selection_text(kwargs[section], section)
+        return super().update(**kwargs)
+
+    def bulk_create(self, objs, **kwargs):
+        objs = list(objs)
+        for obj in objs:
+            populate_selection(obj)
+        if kwargs.get("update_conflicts"):
+            raise ValidationError("No se sobrescriben perfiles mediante inserción masiva.")
+        return super().bulk_create(objs, **kwargs)
+
+    def bulk_update(self, objs, fields, **kwargs):
+        if set(fields) & {*SELECTION_SECTIONS, *("selection_" + s for s in SELECTION_SECTIONS)}:
+            raise ValidationError("Actualiza las secciones estructuradas mediante save para conservar los filtros.")
+        return super().bulk_update(objs, fields, **kwargs)
 
 
 class CandidateProfile(models.Model):
@@ -17,6 +43,18 @@ class CandidateProfile(models.Model):
     languages = models.JSONField(default=list, blank=True)
     # Private bytes: never published through MEDIA_URL or an unprotected file URL.
     photo_data = models.BinaryField(default=bytes, blank=True, editable=False)
+    selection_experience = models.TextField(default="", blank=True, editable=False)
+    selection_education = models.TextField(default="", blank=True, editable=False)
+    selection_skills = models.TextField(default="", blank=True, editable=False)
+    objects = CandidateProfileQuerySet.as_manager()
+
+    def save(self, *args, **kwargs):
+        populate_selection(self)
+        if kwargs.get("update_fields") is not None:
+            fields = set(kwargs["update_fields"])
+            fields.update("selection_" + s for s in SELECTION_SECTIONS if s in fields)
+            kwargs["update_fields"] = fields
+        return super().save(*args, **kwargs)
 
 
 class JobOffer(models.Model):
@@ -90,10 +128,16 @@ APPLICATION_IMMUTABLE_FIELDS = (
 
 
 class Application(models.Model):
+    class Status(models.TextChoices):
+        SUBMITTED = "submitted", "Enviada"
+        IN_REVIEW = "in_review", "En revisión"
+        ACCEPTED = "accepted", "Aceptada"
+        REJECTED = "rejected", "Rechazada"
+
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=20, default="submitted", choices=[("submitted", "Enviada")])
+    status = models.CharField(max_length=20, default=Status.SUBMITTED, choices=Status.choices)
     # Los registros históricos conservan CV vacío: no se les inventa un documento.
     cv_source = models.CharField(max_length=12, blank=True, default="", choices=[("uploaded", "Subido"), ("generated", "Generado")])
     cv_source_id = models.PositiveBigIntegerField(null=True, blank=True)
