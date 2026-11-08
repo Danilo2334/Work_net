@@ -1,6 +1,162 @@
 # Guía para revisar WorkNet
 
-## Presentación de evidencias HU001–HU015 y regla para HU016–HU027 — 07/11/2026
+<!-- hu016-vigente-inicio -->
+## HU016 — Búsqueda y filtrado de ofertas — 08/11/2026
+
+**Estado de esta comprobación:** implementación incorporada en `frontend` por
+#165 → backend-sprint-3, #167 → develop, #166 → frontend y #168 → frontend.
+Aceptación completa: navegador **15/15** y Postman Desktop **30 peticiones / 58 PASS**,
+sin fallos ni errores. Evidencias y guía en [PR #169](https://github.com/Danilo2334/Work_net/pull/169)
+hacia frontend; entrega conjunta mediante [PR #170](https://github.com/Danilo2334/Work_net/pull/170) a main. El cierre
+de issues y Status Done se contrastan por separado del contador de subtareas.
+Referencia inicial main `5a5851d90509c9ed1c2d436908feda4fd143fd78`, comprobada sin
+avances posteriores antes de comenzar; los checkouts y entornos anteriores se conservan.
+
+**Qué se hizo**
+
+Buscador accesible desde el dashboard candidato: palabras clave, ubicación,
+rango salarial inclusivo, categoría, contrato, relevancia y fecha. Tarjetas con
+cargo, empresa, ubicación, contrato, categoría, salario cuando existe y fecha;
+paginación de diez resultados. Al editar se ocultan resultados anteriores y se
+vuelve a página 1 al aplicar; los cambios de página conservan filtros y orden.
+Se cubren carga, vacío, validación, errores, reintento, sesión, rol y navegación.
+
+Django reutiliza `active_offers` y la visibilidad del dashboard: publicación no
+futura, empresa activa de rol empresa y vigencia estricta. Se excluyen cerradas,
+archivadas, borradores y vencidas. Cada palabra debe aparecer en alguno de cargo,
+requisitos, descripción o empresa; suma respectivamente 4, 2, 2 y 1 por campo.
+Se deduplica por casefold conservando el primer texto, se comparan subcadenas
+literales sin distinguir mayúsculas Unicode y se distinguen tildes. El desempate
+es fecha descendente e ID descendente. Fecha ordena por esos dos campos.
+La paginación es estable con el conjunto sin cambios; no ofrece una instantánea
+entre sesiones concurrentes. Parámetros desconocidos, repetidos, límites,
+precisión y rango salarial se validan. Dos consultas de ofertas (conteo y SELECT
+limitado), sin N+1; sin migraciones. [Contrato API](../../backend/postman/README.md#contrato-de-búsqueda-hu016).
+
+**Preparación**
+
+Dos QA independientes, 1.024 ofertas ficticias cada una, correo a archivos y
+credenciales aleatorias privadas. Navegador: `browser-qa-20261108T102926-e15de610`,
+Flutter/suite `d3961bde190076c25e78f17902e2d563341b0966`, Django
+`cd808354da5dbb68c9d059a680ea47e8aff5f314`. Combinación remota incorporada en
+`add0b04f0b507857ae777baa81c97ee62c303060`: mismos árboles funcionales;
+la diferencia backend son evidencias históricas. Python 3.12.10, Django 6.1.1,
+DRF 3.18.3, Flutter 3.47.5, Dart 3.13.4, Chromium 158.0.8127.18 y Playwright 1.65.0.
+Escritorio 1440×1000 y móvil web emulado 390×844, sin dispositivo físico.
+
+Para repetir desde un commit integrado, con Python/Flutter/Node disponibles:
+`python frontend/tool/browser_qa/run.py --suite hu016 --frontend-ref HEAD --backend-ref HEAD`.
+El orquestador exporta commits y crea venv, SQLite, puertos, correo y navegador
+nuevos; no reutiliza sesiones personales ni guarda HAR, trazas o storageState.
+Para Desktop: `python frontend/tool/browser_qa/hu016_api.py prepare --port 8096`
+(elija otro puerto libre si está ocupado), y después
+`python backend/postman/qa.py serve --run RUN_NUEVO`. Importar únicamente la
+colección y el entorno privado nuevos de `import-hu016`, seleccionar ese entorno
+y ejecutar una iteración conservando respuestas. Los guards exigen base local,
+puerto y run exactos. No publicar el entorno ni abrir sus valores en capturas.
+La preparación local de tokens verifica contraseñas; no se contabiliza como login Desktop.
+
+**Pruebas y alcance demostrado**
+
+168 pruebas Django y 129 Flutter aprobadas, incluidas nueve de búsqueda API y
+cinco nuevas de adaptador/widgets. Check Django, migraciones sin cambios, análisis
+Flutter y compilación JavaScript release correctos; doce pruebas de guards aprobadas.
+Aceptación: **15/15 casos, 23 capturas originales**. Fallos de red y 503 son
+inyectados explícitamente; la carga se hace observable reteniendo temporalmente
+una petición real. Reintentos, resultados, rol y revocación 401 son reales.
+HU016-V12 cierra/archiva mediante la UI y endpoints existentes, reconsulta el
+buscador y conserva las 1.024 ofertas, información, otras ofertas, dos
+postulaciones y un guardado. No implementa postulación HU018.
+
+![HU016 relevancia y datos reales](https://raw.githubusercontent.com/Danilo2334/Work_net/91b4cc787d938fcc689396b8471681cda044c197/frontend/docs/evidencias/hu016-20261108/HU016-V02-relevancia.png)
+
+**Caso HU016-V02.** Esperado: palabras combinadas y relevancia con cargo, empresa,
+ubicación, contrato y salario. Obtenido: 24 ofertas, líder antes que reciente,
+tarjetas con datos de Django. Demuestra búsqueda y presentación en escritorio;
+la puntuación y exclusiones se contrastan también con API y SQLite.
+
+![HU016 página dos en móvil web emulado](https://raw.githubusercontent.com/Danilo2334/Work_net/91b4cc787d938fcc689396b8471681cda044c197/frontend/docs/evidencias/hu016-20261108/HU016-V10-resultados-pagina-2-movil.png)
+
+**Caso HU016-V10.** Esperado: conservar Python/Pasto al paginar sin desbordar 390 px.
+Obtenido: dos resultados restantes, página 2/2 y Siguiente deshabilitado.
+Demuestra navegación y disposición móvil web emulada, no dispositivo físico.
+
+![HU016 vacío tras cerrar una oferta por el flujo real](https://raw.githubusercontent.com/Danilo2334/Work_net/91b4cc787d938fcc689396b8471681cda044c197/frontend/docs/evidencias/hu016-20261108/HU016-V12-cerrada-excluida-real.png)
+
+**Caso HU016-V12.** Esperado: el cierre real oculta la oferta al candidato.
+Obtenido: búsqueda específica vacía tras POST de cierre 200; el archivado se
+comprobó de la misma forma. El contraste de SQLite conserva información y
+relaciones. Demuestra la dependencia de #90 en el buscador completo.
+
+**Aceptación Postman Desktop 12.34.1:** corrida nueva
+`run-20261108T102954-257e92c2`, puerto exclusivo 8096, backend funcional `cd808354`,
+servido desde `fab0b008`; mismos archivos funcionales de la integración revisada.
+Una iteración, 30 peticiones, **58 PASS**, 0 fallos/errores/omitidas, 4,297 s;
+29 capturas originales, publicación `3d4e53d7cb880e34a237fcd6ac60cc9304c4b849`. Promedio Desktop 36 ms,
+primera respuesta 684 ms: incluye transporte local y no sustituye APIClient.
+Se seleccionaron cuerpos y Test Results; el resumen no se presenta como un JSON.
+Se detuvo el servidor propio y se verificó cerrado 8096; se preservaron los runs anteriores.
+
+![HU016 API filtros combinados y resultados](https://raw.githubusercontent.com/Danilo2334/Work_net/3d4e53d7cb880e34a237fcd6ac60cc9304c4b849/backend/docs/evidencias/hu016-20261108/02-combinados-filas-p06.png)
+
+**Caso P06.** Esperado: combinar palabras, ubicación, salario inclusivo,
+categoría y contrato. Obtenido: dos filas con salarios de 5 y 3 millones,
+HTTP 200 y Test Results PASS. Demuestra los datos de respuesta de esa combinación;
+los filtros individuales tienen casos y capturas separados en el registro Desktop.
+
+![HU016 API exclusión después del archivado](https://raw.githubusercontent.com/Danilo2334/Work_net/3d4e53d7cb880e34a237fcd6ac60cc9304c4b849/backend/docs/evidencias/hu016-20261108/27-archivada-excluida-p29.png)
+
+**Caso P28→P29.** Esperado: archivar por endpoint real y excluir del buscador.
+Obtenido: POST 200 y consulta específica con count 0/offers [], HTTP 200 y PASS.
+El cierre tuvo el mismo contraste. SQLite confirma 1.024 ofertas conservadas,
+solo estados 1/2 modificados, información, otras ofertas, dos postulaciones y
+un guardado intactos. Demuestra la dependencia de #90; no la postulación HU018.
+
+[Resultados Desktop](../../backend/docs/evidencias/hu016-20261108/resultados-desktop.json) ·
+[Capturas y hashes Desktop](../../backend/docs/evidencias/hu016-20261108/capturas-desktop.json) ·
+[Conservación](../../backend/docs/evidencias/hu016-20261108/contraste-persistencia.json) ·
+[Verificación de imágenes publicadas](../../backend/docs/evidencias/hu016-20261108/verificacion-imagenes-publicadas.json).
+
+<details>
+<summary>Antecedentes de acceso HU016 resueltos</summary>
+
+El usuario cargó los dos archivos del selector y restauró Postman. El primer
+intento de colección se canceló al cerrar Vault; se corrigió a encabezados con
+referencias, como las colecciones existentes, y se reimportó solo el JSON público.
+El indicador Import Failed de las capturas pertenece a ese intento cancelado;
+el Runner nuevo muestra 58 PASS y cero fallos. No se desbloqueó Vault ni se
+mostraron valores privados. El agente ejecutó los casos y realizó las capturas;
+los clics locales del usuario no se presentan como QA personal.
+
+</details>
+
+**Rendimiento básico:** SQLite local, 1.024 ofertas, 1.017 visibles, 24 coincidencias,
+página 2 de diez, consulta Python Django por relevancia. APIClient Django real:
+30 muestras después de un calentamiento; mediana **31,056 ms**, p95 **36,184 ms**,
+máximo 75,433 ms, tres SQL totales (autenticación + dos de ofertas). Windows 11;
+sin red ni navegador, no es un compromiso de producción ni una medición Desktop.
+
+[Casos, red y hashes de navegador](evidencias/hu016-20261108/resultados-navegador.json) ·
+[Verificación conjunta y revisión delegada](evidencias/hu016-20261108/verificacion-conjunta.json) ·
+[Rendimiento](../../backend/docs/evidencias/hu016-20261108/rendimiento-api.json) ·
+[Preparación API](../../backend/docs/evidencias/hu016-20261108/preparacion.json).
+
+**Responsables y revisión:** backend y sus pruebas propias, Danilo2334; Flutter y
+sus pruebas propias, integración, aceptación nueva y evidencias, francisco3788.
+Cuenta de publicación, autor y committer verificados separadamente. Revisión
+final delegada al agente: Unicode y repetición de palabras corregidos, sin defectos
+pendientes detectados en código y aceptación de navegador. No es aprobación humana.
+
+**Seguimientos únicos vigentes:** [#92](https://github.com/Danilo2334/Work_net/issues/92#issuecomment-6720473511) · [#93](https://github.com/Danilo2334/Work_net/issues/93#issuecomment-6720582888) · [#94](https://github.com/Danilo2334/Work_net/issues/94#issuecomment-6720473704) · [#95](https://github.com/Danilo2334/Work_net/issues/95#issuecomment-6720588402). Cada imagen conserva caso, esperado, obtenido y alcance.
+
+**Dependencias:** HU005 ya tiene el acceso al buscador; conserva mensajes HU022
+e historial HU019, así como los criterios parciales de #47/#50. #90 cuenta con aceptación completa de exclusión
+y se cierra al verificar la entrega remota; HU015/#91 conservan postulación HU018.
+HU011/HU012/#79 mantienen la selección de CV al postular pendiente de HU018.
+HU017–HU027 no se iniciaron.
+<!-- hu016-vigente-fin -->
+
+## Antecedente: normalización HU001–HU015 y regla documental — 07/11/2026
 
 **Cierre de evidencias comprobado el 08/11/2026.** Los once faltantes de
 Postman quedaron resueltos documentalmente. #60 reutiliza tres capturas auténticas
@@ -68,7 +224,7 @@ válidas para cambiar el formato documental.
 
 **Revisión de coherencia documental — 08/11/2026.** Se contrastaron las 15 historias, sus 63 subtareas y las 215 apariciones visibles de imágenes (144 URL distintas) con sus objetivos y criterios. Los seguimientos vigentes conservan el formato HU001: alcance realizado, preparación, caso, resultado esperado/obtenido y límites. Los resúmenes padre reflejan las evidencias disponibles; la leyenda móvil de #59 describe el encuadre de habilidades e idiomas. Los comentarios de ofertas contienen únicamente las explicaciones correspondientes a sus casos. Esta revisión no ejecuta pruebas ni genera capturas nuevas; conserva los datos, fechas y versiones comprobados. Los registros operativos resueltos permanecen como antecedentes secundarios. Las tareas abiertas mantienen sus dependencias funcionales.
 
-**Pendientes funcionales conservados.** HU011/HU012/#79 mantienen la selección
+**Pendientes en el corte documental anterior (histórico).** HU011/HU012/#79 mantienen la selección
 del CV al postular pendiente de HU018. HU015/#90/#91 mantienen buscador HU016 y
 flujo/API de postulación HU018. Completar las imágenes no cierra esos criterios.
 **HU016–HU027 no se iniciaron.** Los cortes y bloqueos anteriores se conservan

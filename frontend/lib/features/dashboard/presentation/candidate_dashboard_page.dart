@@ -111,6 +111,13 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
         Text('Tus accesos', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         TextButton.icon(
+          key: const Key('open_offer_search'),
+          onPressed: () => context.go('/offers/search'),
+          icon: const Icon(Icons.search),
+          label: const Text('Buscar ofertas'),
+        ),
+        const SizedBox(height: 12),
+        TextButton.icon(
           key: const Key('open_candidate_profile'),
           onPressed: () => context.go('/profile'),
           icon: const Icon(Icons.person_outline),
@@ -130,7 +137,6 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
         ),
         const SizedBox(height: 16),
         for (final entry in const [
-          (Icons.search, 'Buscar ofertas', 'Búsqueda de ofertas'),
           (Icons.chat_bubble_outline, 'Mensajes', 'Mensajería'),
           (Icons.history, 'Historial de postulaciones', 'Postulaciones'),
         ])

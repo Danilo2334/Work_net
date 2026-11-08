@@ -1,0 +1,577 @@
+{
+  "schema": "worknet-browser-qa-results-v1",
+  "fecha": "2026-11-08T10:31:51.706Z",
+  "frontend_sha": "d3961bde190076c25e78f17902e2d563341b0966",
+  "backend_sha": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
+  "playwright": "1.65.0",
+  "modo": "Chromium headless nuevo, contextos temporales; sin perfil personal",
+  "escritorio": "1440x1000/1100",
+  "movil": "Viewport 390x844, ratón/teclado; no dispositivo físico",
+  "casos": [
+    {
+      "id": "NAVEGADOR-01",
+      "resultado": "aprobado",
+      "duracion_ms": 2178
+    },
+    {
+      "id": "HU016-V01",
+      "resultado": "aprobado",
+      "duracion_ms": 3316
+    },
+    {
+      "id": "HU016-V02",
+      "resultado": "aprobado",
+      "duracion_ms": 2084
+    },
+    {
+      "id": "HU016-V03",
+      "resultado": "aprobado",
+      "duracion_ms": 8390
+    },
+    {
+      "id": "HU016-V04",
+      "resultado": "aprobado",
+      "duracion_ms": 3081
+    },
+    {
+      "id": "HU016-V05",
+      "resultado": "aprobado",
+      "duracion_ms": 7364
+    },
+    {
+      "id": "HU016-V06",
+      "resultado": "aprobado",
+      "duracion_ms": 2556
+    },
+    {
+      "id": "HU016-V07",
+      "resultado": "aprobado",
+      "duracion_ms": 3017
+    },
+    {
+      "id": "HU016-V08",
+      "resultado": "aprobado",
+      "duracion_ms": 5123
+    },
+    {
+      "id": "HU016-V09",
+      "resultado": "aprobado",
+      "duracion_ms": 5141
+    },
+    {
+      "id": "HU016-V10",
+      "resultado": "aprobado",
+      "duracion_ms": 4257
+    },
+    {
+      "id": "HU016-V11",
+      "resultado": "aprobado",
+      "duracion_ms": 4901
+    },
+    {
+      "id": "HU016-V12",
+      "resultado": "aprobado",
+      "duracion_ms": 22150
+    },
+    {
+      "id": "HU016-V13",
+      "resultado": "aprobado",
+      "duracion_ms": 1536
+    },
+    {
+      "id": "HU016-V14",
+      "resultado": "aprobado",
+      "duracion_ms": 2593
+    }
+  ],
+  "capturas": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU016-V01-dashboard-acceso.png",
+      "caso": "HU016-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "71ac96e710bfd1474e7d31f52707a679b47a200a3dd2b754bd5be0e2e42b5f00"
+    },
+    {
+      "archivo": "HU016-V01-carga-escritorio.png",
+      "caso": "HU016-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0df3b0d2094d4a9ce938912c8348ed7c04eeca202f7c16aa26647c7d928bb34a"
+    },
+    {
+      "archivo": "HU016-V01-resultados-escritorio.png",
+      "caso": "HU016-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ac1751ac87dc7d0f50a86f03d661b82c0291dd987bb7d6d1566e09d9794829ea"
+    },
+    {
+      "archivo": "HU016-V02-relevancia.png",
+      "caso": "HU016-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "20845df5ddcd9b09773b0252c383bf2629c2f78d35b886435e143f06d3d8605c"
+    },
+    {
+      "archivo": "HU016-V03-pagina-2-filtros-conservados.png",
+      "caso": "HU016-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "67bb3877798f79f3bd83ff37d167bf8ef430bec9d4ab398109c221197c7f04b2"
+    },
+    {
+      "archivo": "HU016-V04-vacio-real.png",
+      "caso": "HU016-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a148c3aa43d8a4db858ba76dc1dba113813a15ac1bbb5d160a65ee770803b375"
+    },
+    {
+      "archivo": "HU016-V05-combinacion-todos.png",
+      "caso": "HU016-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "86af657142739e5055bace6deb6c9debe63ca1bc35dc1a75b15aaf6c9b9b8a1b"
+    },
+    {
+      "archivo": "HU016-V05-tarjetas-salarios.png",
+      "caso": "HU016-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "dea8311008db513122668ee93bdcde5f6d2ae74ffb61cb02949986380a893b83"
+    },
+    {
+      "archivo": "HU016-V06-validacion-rango.png",
+      "caso": "HU016-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "277c2f76ed7cac743cea053b64ad4d227b4a12f7b789b526591779f6c48f8e0b"
+    },
+    {
+      "archivo": "HU016-V07-unicode-literal.png",
+      "caso": "HU016-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c8c3b1fe48c120f581c75458ac1fe25fa3c26926241017141233b5d5d166bed2"
+    },
+    {
+      "archivo": "HU016-V08-orden-fecha.png",
+      "caso": "HU016-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "da322c65dcf009d3f969198c1852899f3fa29cc06d90280493f6be7785e857b7"
+    },
+    {
+      "archivo": "HU016-V09-red-inyectada.png",
+      "caso": "HU016-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "52c06b121a4975029da2e4053f07a8973a6c91ee4692631e2016da0b59f97b67"
+    },
+    {
+      "archivo": "HU016-V09-503-inyectado.png",
+      "caso": "HU016-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b502ef3ae4aa5cc92ec022fa11126c41fe3e496ccb142550a9fcd7aa43200c1e"
+    },
+    {
+      "archivo": "HU016-V09-reintento-real.png",
+      "caso": "HU016-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c8707fd7e075a389365d8720a044c01d26903521fb54f374a5df805e091f79d6"
+    },
+    {
+      "archivo": "HU016-V10-filtros-movil.png",
+      "caso": "HU016-V10",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "35d5adbb590d31f28dd6fe412d1c52c2ac84358edf06fa7338ea112b42b11bff"
+    },
+    {
+      "archivo": "HU016-V10-resultados-pagina-2-movil.png",
+      "caso": "HU016-V10",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "10815dd0f4a7c8e4bf7df1152edb43cbe8cb953c2854b8f93043dfdbcb1be624"
+    },
+    {
+      "archivo": "HU016-V11-sesion-restaurada.png",
+      "caso": "HU016-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ac1751ac87dc7d0f50a86f03d661b82c0291dd987bb7d6d1566e09d9794829ea"
+    },
+    {
+      "archivo": "HU016-V12-rol-empresa-protegido.png",
+      "caso": "HU016-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4ddbd34ae48cdb6a76564f0cab36a4be47c73edebe7a780469e68c392a0ee1f7"
+    },
+    {
+      "archivo": "HU016-V12-cerrada-excluida-real.png",
+      "caso": "HU016-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9f0c3d32c9c9bffe134293b7aad7bbba093c276f1a605d5f0b2cab7b66f08d23"
+    },
+    {
+      "archivo": "HU016-V12-archivada-excluida-real.png",
+      "caso": "HU016-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "afb6c8e5cd7bfdab1ac5a4b2618acef5eecd3252ce8c1d1b9d17efb151f349e2"
+    },
+    {
+      "archivo": "HU016-V13-sesion-401-real.png",
+      "caso": "HU016-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+    },
+    {
+      "archivo": "HU016-V14-acceso-anonimo-protegido.png",
+      "caso": "HU016-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    }
+  ],
+  "red": [
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": null,
+      "inyectada": true,
+      "fallo": "abort"
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 503,
+      "inyectada": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/1/transition/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/company/offers/2/transition/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/company/offers/active/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/company/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/offers/search/",
+      "status": 401,
+      "inyectada": false
+    }
+  ],
+  "controles": {
+    "solo_base_qa_nueva": true,
+    "smtp": false,
+    "traces_har_storageState": false
+  },
+  "revision_humana": false,
+  "suite": "hu016",
+  "chromium": "158.0.8127.18",
+  "hu016": {
+    "offers": 1024,
+    "states": {
+      "1": "closed",
+      "2": "archived"
+    },
+    "information_unchanged": true,
+    "other_offers_unchanged": true,
+    "applications_unchanged": true,
+    "saved_unchanged": true
+  },
+  "contrastes": {
+    "profile_unchanged": true,
+    "account_unchanged": true,
+    "ofertas": 1024,
+    "cv_generados": 0
+  },
+  "resultado": "aprobado"
+}
