@@ -58,6 +58,7 @@ Map<String, dynamic> dashboardData({bool empty = false}) => {
             'location': 'Pasto',
             'contract_type': 'Indefinido',
             'published_at': '2026-10-17T12:00:00Z',
+            'is_saved': false,
           },
         ],
 };
