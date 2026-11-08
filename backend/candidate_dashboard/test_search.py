@@ -62,6 +62,8 @@ class SearchOffersTests(TestCase):
         company = self.offer(title="Otro", company_name="Python QA")
         self.assertEqual(self.ids(q="Python"), [self.first.pk, self.second.pk, self.third.pk, company.pk])
         self.assertEqual(self.ids(q="Python PYTHON python"), self.ids(q="python"))
+        scores = lambda q: [o["relevance"] for o in self.client.get(self.url, {"q": q}).data["offers"]]
+        self.assertEqual(scores("Python PYTHON python"), scores("python"))
         newer = self.offer(title="Python reciente", published_at=self.now)
         self.assertEqual(self.ids(q="Python", sort="date"), [newer.pk, company.pk, self.third.pk, self.second.pk, self.first.pk])
         self.assertEqual(self.ids(q="Python")[:3], [self.first.pk, newer.pk, self.second.pk])

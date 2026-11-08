@@ -19,7 +19,8 @@ Una página inexistente devuelve 400; cero resultados en página 1 devuelve 200.
 Cada palabra debe aparecer en al menos uno de cargo, requisitos, descripción o
 empresa (AND entre palabras, OR entre campos). Son subcadenas literales,
 insensibles a mayúsculas Unicode mediante `iregex` con patrones escapados;
-se distinguen tildes. Las palabras idénticas repetidas no suman otra vez.
+se distinguen tildes. Los términos repetidos se deduplican por casefold,
+conservando el texto original del primero, y no suman otra vez.
 Cada palabra suma 4 si aparece en cargo, 2 en requisitos, 2 en descripción y 1
 en empresa; cada campo suma una vez, independientemente de sus repeticiones.
 Relevancia descendente desempata por publicación descendente e ID descendente.

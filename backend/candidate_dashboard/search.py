@@ -43,7 +43,10 @@ class SearchParameters(serializers.Serializer):
 
     def validate(self, data):
         # Un término repetido no altera la puntuación ni el conjunto.
-        data["q"] = " ".join(dict.fromkeys(data["q"].split()))
+        terms = {}
+        for term in data["q"].split():
+            terms.setdefault(term.casefold(), term)
+        data["q"] = " ".join(terms.values())
         if len(data["q"].split()) > 8:
             raise serializers.ValidationError({"q": "Usa como máximo ocho palabras."})
         if data.get("salary_min", 0) > data.get("salary_max", Decimal("9999999999.99")):
