@@ -58,7 +58,10 @@ class HttpApplicationsRepository implements ApplicationsRepository {
 
   JobApplication _application(dynamic raw) {
     final r = raw as Map<String, dynamic>;
-    if (r['status'] != 'submitted') throw const FormatException();
+    final status = ApplicationStatus.values.firstWhere(
+      (value) => value.code == r['status'],
+      orElse: () => throw const FormatException(),
+    );
     SentCv? cv;
     if (r['cv'] != null) {
       final c = r['cv'] as Map<String, dynamic>, source = _source(c['source']);
@@ -82,8 +85,24 @@ class HttpApplicationsRepository implements ApplicationsRepository {
       id: _id(r['id']),
       offer: _offer(r['offer']),
       createdAt: DateTime.parse(r['created_at'] as String),
+      status: status,
       cv: cv,
     );
+  }
+
+  JobApplication decodeApplication(dynamic raw) =>
+      _parse(() => _application(raw));
+
+  ApplicationOffer decodeOffer(dynamic raw) => _parse(() => _offer(raw));
+
+  @override
+  Future<JobApplication> detail(String token, int applicationId) async {
+    final r = await api.request('applications/$applicationId/', token: token);
+    return _parse(() {
+      final item = _application(r['application']);
+      if (item.id != applicationId) throw const FormatException();
+      return item;
+    });
   }
 
   @override
@@ -138,7 +157,9 @@ class HttpApplicationsRepository implements ApplicationsRepository {
       final item = _application(r['application']);
       if (item.offer.id != offerId ||
           (r['created'] == true &&
-              (item.cv?.source != cv.source || item.cv?.sourceId != cv.id))) {
+              (item.cv?.source != cv.source ||
+                  item.cv?.sourceId != cv.id ||
+                  item.status != ApplicationStatus.submitted))) {
         throw const FormatException();
       }
       return item;

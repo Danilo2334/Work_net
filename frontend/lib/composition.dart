@@ -1,5 +1,6 @@
 import 'package:worknet/core/api/worknet_api.dart';
 import 'package:worknet/features/applications/data/applications_repository.dart';
+import 'package:worknet/features/applicants/data/applicants_repository.dart';
 import 'package:worknet/features/offers/data/offer_repository.dart';
 import 'package:worknet/features/offers/data/search_repository.dart';
 import 'package:worknet/features/offers/data/favorites_repository.dart';
@@ -27,6 +28,7 @@ class AppDependencies {
     search = HttpOfferSearchRepository(api);
     favorites = HttpSavedOffersRepository(api);
     applications = HttpApplicationsRepository(api);
+    applicants = HttpApplicantsRepository(api);
     curriculum = HttpCurriculumRepository(api);
     generatedCurriculum = HttpGeneratedCurriculumRepository(api);
   }
@@ -40,6 +42,7 @@ class AppDependencies {
   late final HttpOfferSearchRepository search;
   late final HttpSavedOffersRepository favorites;
   late final HttpApplicationsRepository applications;
+  late final HttpApplicantsRepository applicants;
   late final HttpCurriculumRepository curriculum;
   late final HttpGeneratedCurriculumRepository generatedCurriculum;
   final curriculumDownload = const FileSelectorCurriculumDownload();

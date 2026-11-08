@@ -82,6 +82,11 @@ class _ApplicationHistoryPageState extends State<ApplicationHistoryPage> {
     await _load();
   }
 
+  Future<void> _open(JobApplication item) async {
+    await context.push('/applications/${item.id}');
+    if (mounted) await _load();
+  }
+
   @override
   Widget build(BuildContext context) => Workspace(
     title: 'Mis postulaciones',
@@ -90,6 +95,10 @@ class _ApplicationHistoryPageState extends State<ApplicationHistoryPage> {
     onRetry: _loading ? null : _load,
     scrollController: _scroll,
     actions: [
+      TextButton(
+        onPressed: _loading ? null : _load,
+        child: const Text('Actualizar historial'),
+      ),
       TextButton(
         onPressed: () => context.go('/dashboard'),
         child: const Text('Volver al dashboard'),
@@ -115,6 +124,11 @@ class _ApplicationHistoryPageState extends State<ApplicationHistoryPage> {
                 application: item,
                 session: widget.session,
                 repository: widget.repository,
+              ),
+              TextButton(
+                key: Key('application_detail_${item.id}'),
+                onPressed: _loading ? null : () => _open(item),
+                child: const Text('Ver detalle'),
               ),
             ],
           ),
