@@ -1,0 +1,377 @@
+{
+  "fecha": "2026-11-08",
+  "hora_inicio_bogota": "12:26:15",
+  "tool": "Postman Desktop",
+  "version": "12.34.1",
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "backend_sha": "5d7c6f2535708d43bc88f7365d8d54886958b0c8",
+  "checkout_servidor": "d05d8b96d7722aef6bb15f21baf6e80c9ea0cd61",
+  "run": "run-20261108T172019-b5651a29",
+  "port": 8098,
+  "iteration": 1,
+  "requests": 58,
+  "assertions": 95,
+  "passed": 95,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 0,
+  "duration_ms": 7384,
+  "avg_response_ms": 30,
+  "first_response_ms": 834,
+  "procedencia": "Lectura y capturas originales del Runner Postman Desktop. Petición, respuesta y Test Results seleccionados; sin entorno ni valores de credenciales. No Newman.",
+  "preparacion": "17 ofertas ficticias, 13 activas, 2 postulaciones históricas sin CV, 6 favoritos propios y 2 ajenos. CV propio subido y generado preparados por APIClient en la base nueva; no uploads ni login Desktop. Tokens locales preparados verificando contraseña. Notificación interna existente, sin correo/push nuevo.",
+  "resultado": "aprobado",
+  "casos": [
+    {
+      "nombre": "HU018-P01 · Opciones propias y versión del CV",
+      "method": "GET",
+      "url": "{{base_url}}/offers/3/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P02 · Postular con CV subido",
+      "method": "POST",
+      "url": "{{base_url}}/offers/3/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P03 · Repetir envío subido sin duplicar",
+      "method": "POST",
+      "url": "{{base_url}}/offers/3/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P04 · Consulta propia con trazabilidad",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_uploaded}}/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P05 · PDF enviado subido privado",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_uploaded}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P06 · Opciones antes del CV generado",
+      "method": "GET",
+      "url": "{{base_url}}/offers/4/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P07 · Postular con CV generado",
+      "method": "POST",
+      "url": "{{base_url}}/offers/4/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P08 · Repetir envío generado sin aviso extra",
+      "method": "POST",
+      "url": "{{base_url}}/offers/4/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P09 · PDF enviado generado privado",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_generated}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P10 · Historial propio con ambos CV y fecha",
+      "method": "GET",
+      "url": "{{base_url}}/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P11 · Contador candidato actualizado",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard/candidate/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P12 · Avisos al destinatario empresarial correcto",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard/company/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P13 · Otra empresa no recibe avisos ni postulaciones",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard/company/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P14 · Otro candidato no hereda historial",
+      "method": "GET",
+      "url": "{{base_url}}/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P15 · Postulación propia oculta a otro candidato",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_uploaded}}/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P16 · PDF enviado oculto a otro candidato",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_uploaded}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P17 · Postulación oculta a empresa ajena",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/{{app_uploaded}}/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P18 · PDF oculto a empresa ajena",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/{{app_uploaded}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P19 · Empresa destinataria consulta postulación",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/{{app_uploaded}}/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P20 · Empresa destinataria consulta copia privada",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/{{app_uploaded}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P21 · Rol empresa no puede postular",
+      "method": "GET",
+      "url": "{{base_url}}/offers/3/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P22 · Sin sesión no puede enviar",
+      "method": "POST",
+      "url": "{{base_url}}/offers/7/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P23 · No aceptar candidato enviado",
+      "method": "POST",
+      "url": "{{base_url}}/offers/7/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P24 · Confirmación obligatoria",
+      "method": "POST",
+      "url": "{{base_url}}/offers/7/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P25 · CV ajeno rechazado",
+      "method": "POST",
+      "url": "{{base_url}}/offers/7/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P26 · Versión de CV desactualizada rechazada",
+      "method": "POST",
+      "url": "{{base_url}}/offers/7/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P27 · Rechazar oferta cerrada",
+      "method": "POST",
+      "url": "{{base_url}}/offers/14/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P28 · Rechazar oferta archivada",
+      "method": "POST",
+      "url": "{{base_url}}/offers/15/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P29 · Rechazar oferta vencida",
+      "method": "POST",
+      "url": "{{base_url}}/offers/17/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P30 · Rechazar oferta borrador",
+      "method": "POST",
+      "url": "{{base_url}}/offers/16/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P31 · Formulario antes del cierre",
+      "method": "GET",
+      "url": "{{base_url}}/offers/5/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P32 · Cerrar después de abrir formulario",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/5/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P33 · Revalidar cierre al enviar",
+      "method": "POST",
+      "url": "{{base_url}}/offers/5/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P34 · Formulario antes del archivado",
+      "method": "GET",
+      "url": "{{base_url}}/offers/6/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P35 · Archivar después de abrir formulario",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/6/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P36 · Revalidar archivado al enviar",
+      "method": "POST",
+      "url": "{{base_url}}/offers/6/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P37 · Editar fuente generada tras postular",
+      "method": "PATCH",
+      "url": "{{base_url}}/curriculum/generated/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P38 · Eliminar fuente subida tras postular",
+      "method": "DELETE",
+      "url": "{{base_url}}/curriculum/uploaded/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P39 · CV eliminado ya no está disponible",
+      "method": "POST",
+      "url": "{{base_url}}/offers/8/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P40 · Eliminar fuente generada tras postular",
+      "method": "DELETE",
+      "url": "{{base_url}}/curriculum/generated/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P41 · CV generado ausente rechazado",
+      "method": "POST",
+      "url": "{{base_url}}/offers/9/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P42 · Sin CV muestra opciones vacías",
+      "method": "GET",
+      "url": "{{base_url}}/offers/9/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P43 · Copia subida persiste sin la fuente",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_uploaded}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P44 · Copia generada persiste sin la fuente",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_generated}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P45 · Cerrar oferta con postulación real",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/3/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P46 · Archivar oferta con postulación real",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/4/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P47 · Historial y copias tras inactivación",
+      "method": "GET",
+      "url": "{{base_url}}/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P48 · Empresa consulta CV tras archivar",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/{{app_generated}}/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P49 · Exclusión activa del CV subido",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20CV%20subido%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P50 · Exclusión activa del CV generado",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20CV%20generado%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P51 · Reintento cerrado conserva registro y CV",
+      "method": "POST",
+      "url": "{{base_url}}/offers/3/application/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P52 · Sin avisos duplicados tras reintentos",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard/company/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P53 · Límite de página validado",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page_size=51",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P54 · No seleccionar otro candidato por parámetro",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?candidate_id=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P55 · Empresa obtiene PDF conservado de archivada",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/{{app_generated}}/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P56 · Metadatos de copia generada inmutables",
+      "method": "GET",
+      "url": "{{base_url}}/applications/{{app_generated}}/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P57 · Historial paginado conserva anteriores sin inventar CV",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page_size=2&page=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU018-P58 · Origen de CV inválido rechazado",
+      "method": "POST",
+      "url": "{{base_url}}/offers/7/application/",
+      "resultado": "aprobado"
+    }
+  ],
+  "capturas_originales": 19,
+  "formato_capturas": "JPEG nativo de Windows Graphics Capture mediante Computer Use; sin edición de píxeles."
+}
