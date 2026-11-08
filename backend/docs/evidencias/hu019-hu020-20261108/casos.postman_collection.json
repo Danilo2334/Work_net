@@ -1,0 +1,1828 @@
+{
+  "info": {
+    "_postman_id": "898b5a59-c616-487c-8bcb-62f220b292a3",
+    "name": "HU019–HU020 · Historial y postulantes QA · run-20261108T185525-5a36414f",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get('base_url')!=='http://127.0.0.1:8099/api'||pm.environment.get('qa_run_id')!=='run-20261108T185525-5a36414f'||pm.environment.get('qa_confirmation')!=='SOLO_BASE_AISLADA'){pm.execution.skipRequest();throw Error('Solo QA nueva HU019/HU020');}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "HU019-P01 · Historial propio con cuatro estados",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=50",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.count).eq(13);pm.expect(new Set(b.applications.map(a=>a.status)).size).eq(4);pm.expect(b.applications.every(a=>a.offer.title&&a.offer.company_name&&a.created_at)).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P02 · Detalle estado submitted",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/13/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.application.status).eq('submitted');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P03 · Detalle estado in_review",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/4/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.application.status).eq('in_review');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P04 · Detalle estado accepted",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/5/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.application.status).eq('accepted');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P05 · Detalle estado rejected",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/6/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.application.status).eq('rejected');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P06 · Documento elegido uploaded",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/3/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.application.cv.source).eq('uploaded');pm.collectionVariables.set('hash_uploaded',b.application.cv.sha256);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P07 · PDF propio uploaded",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/3/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('PDF privado original',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P08 · Documento elegido generated",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/4/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.application.cv.source).eq('generated');pm.collectionVariables.set('hash_generated',b.application.cv.sha256);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P09 · PDF propio generated",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/4/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('PDF privado original',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P10 · Página uno estable",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.applications.length).eq(10);pm.expect(b.next_page).eq(2);pm.collectionVariables.set('history_page1',JSON.stringify(b.applications.map(a=>a.id)));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P11 · Página dos y registros históricos",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=10&page=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.applications.length).eq(3);pm.expect(b.applications.filter(a=>a.cv===null).length).eq(2);pm.expect(b.applications.every(a=>!JSON.parse(pm.collectionVariables.get('history_page1')).includes(a.id))).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P12 · Otro candidato vacío",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU019',()=>{pm.expect(b.count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P13 · Detalle ajeno privado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/13/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P14 · PDF ajeno privado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/3/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P15 · Parámetro inválido page_size=51",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=51",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P16 · Parámetro inválido candidate_id=2",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?candidate_id=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P17 · Parámetro inválido page=1&page=1",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page=1&page=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P18 · Parámetro inválido page=999",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page=999",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P19 · Sin sesión",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU019-P20 · Sin flujo de cambio HU021",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/applications/13/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"status\": \"accepted\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 405',()=>pm.response.to.have.status(405));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P01 · Seleccionar solo ofertas propias",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applicant-offers/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(17);pm.expect(b.offers.some(o=>o.id===18)).eq(false);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P02 · Postulantes propios con nombres y página",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(14);pm.expect(b.applications.length).eq(10);pm.expect(b.applications.every(a=>a.candidate.full_name)).eq(true);pm.collectionVariables.set('applicants_page1',JSON.stringify(b.applications.map(a=>a.id)));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P03 · Página dos sin duplicados",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?page=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.applications.length).eq(4);pm.expect(b.applications.every(a=>!JSON.parse(pm.collectionVariables.get('applicants_page1')).includes(a.id))).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P04 · Filtro experience=BACKEND",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?experience=BACKEND",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(9);pm.expect(b.filter_scope).eq('current_profile');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P05 · Filtro education=INGENIERIA",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?education=INGENIERIA",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(6);pm.expect(b.filter_scope).eq('current_profile');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P06 · Filtro skill=pYtHoN",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?skill=pYtHoN",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(6);pm.expect(b.filter_scope).eq('current_profile');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P07 · Filtro experience=Backend&education=Ingenieria&skill=Python",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?experience=Backend&education=Ingenieria&skill=Python",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(4);pm.expect(b.filter_scope).eq('current_profile');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P08 · Filtro education=Doctorado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?education=Doctorado",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(0);pm.expect(b.filter_scope).eq('current_profile');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P09 · Orden por nombre",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?order=name",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.applications[0].candidate.full_name).eq('Candidato principal QA');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P10 · Orden por fecha más antigua",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?order=oldest",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.applications[0].id).eq(3);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P11 · Parámetro rechazado order=invalid",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?order=invalid",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P12 · Parámetro rechazado page_size=51",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?page_size=51",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P13 · Parámetro rechazado page=999",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?page=999",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P14 · Parámetro rechazado skill=Python&skill=Excel",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?skill=Python&skill=Excel",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P15 · Parámetro rechazado candidate_id=1",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?candidate_id=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P16 · Parámetro rechazado education=%0Aotro",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?education=%0Aotro",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P17 · Oferta de otra empresa",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/18/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P18 · Identificador ajeno detalle",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/27/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P19 · Identificador ajeno profile/",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/27/profile/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P20 · Identificador ajeno cv/",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/27/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P21 · Otra empresa solo ve su oferta",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applicant-offers/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{other_company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.count).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P22 · Candidato no consulta postulantes",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P23 · Empresa pendiente no consulta",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P24 · Consulta sin sesión",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P25 · Perfil propio autorizado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/profile/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.profile.skills.some(s=>s.name==='Python')).eq(true);pm.expect(b.candidate.full_name).eq('Candidato principal QA');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P26 · Consulta de oferta conservada 3",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.offer.status).eq('closed');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P27 · Consulta de oferta conservada 4",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/4/applications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.offer.status).eq('archived');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P28 · Histórico sin CV inventado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/1/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.application.cv).eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P29 · Histórico sin documento",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/1/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P30 · Cambiar plantilla fuente",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/curriculum/generated/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"template\": \"minimalista\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.curriculum.template).eq('minimalista');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P31 · Eliminar fuente subida",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/curriculum/uploaded/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.uploaded).eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P32 · Eliminar fuente generada",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/curriculum/generated/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.exists).eq(false);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P33 · Metadatos originales conservados uploaded",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.application.cv.sha256).eq(pm.collectionVariables.get('hash_uploaded'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P34 · PDF enviado permanece uploaded",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('PDF privado original',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P35 · Metadatos originales conservados generated",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/4/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Caso y contrato HU020',()=>{pm.expect(b.application.cv.sha256).eq(pm.collectionVariables.get('hash_generated'));pm.expect(b.application.cv.template).eq('moderna');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU020-P36 · PDF enviado permanece generated",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/4/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, application/pdf"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('PDF privado original',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

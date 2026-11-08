@@ -1,0 +1,368 @@
+{
+  "fecha": "2026-11-08",
+  "hora_inicio_bogota": "14:05:14",
+  "tool": "Postman Desktop",
+  "version": "12.34.1",
+  "run": "run-20261108T185525-5a36414f",
+  "port": 8099,
+  "backend_sha": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+  "checkout_servidor": "0c8cd3f37d9c1466dbc5bd91465a483a03c4d226",
+  "iteration": 1,
+  "requests": 56,
+  "assertions": 90,
+  "passed": 90,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_ms": 5029,
+  "avg_response_ms": 20,
+  "first_response_ms": 515,
+  "por_historia": {
+    "HU019_peticiones": 20,
+    "HU020_peticiones": 36
+  },
+  "procedencia": "Lectura y capturas originales del Runner Postman Desktop, con respuestas persistidas. No Newman ni exportación automática del Runner. Las peticiones y Test Results provienen de esta única ejecución nueva.",
+  "preparacion": "Otra SQLite QA nueva, 18 ofertas ficticias (17 propias de la empresa principal), 27 postulaciones preparadas, 13 del candidato principal, 14 postulantes a oferta 3; dos registros históricos sin CV. Altas y documentos por APIClient existente, cuatro estados persistidos como fixtures por actor QA; no flujo empresarial HU021. Correo a archivos y credenciales privadas.",
+  "resultado": "aprobado",
+  "casos": [
+    {
+      "nombre": "HU019-P01 · Historial propio con cuatro estados",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page_size=50",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P02 · Detalle estado submitted",
+      "method": "GET",
+      "url": "{{base_url}}/applications/13/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P03 · Detalle estado in_review",
+      "method": "GET",
+      "url": "{{base_url}}/applications/4/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P04 · Detalle estado accepted",
+      "method": "GET",
+      "url": "{{base_url}}/applications/5/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P05 · Detalle estado rejected",
+      "method": "GET",
+      "url": "{{base_url}}/applications/6/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P06 · Documento elegido uploaded",
+      "method": "GET",
+      "url": "{{base_url}}/applications/3/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P07 · PDF propio uploaded",
+      "method": "GET",
+      "url": "{{base_url}}/applications/3/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P08 · Documento elegido generated",
+      "method": "GET",
+      "url": "{{base_url}}/applications/4/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P09 · PDF propio generated",
+      "method": "GET",
+      "url": "{{base_url}}/applications/4/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P10 · Página uno estable",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page_size=10",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P11 · Página dos y registros históricos",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page_size=10&page=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P12 · Otro candidato vacío",
+      "method": "GET",
+      "url": "{{base_url}}/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P13 · Detalle ajeno privado",
+      "method": "GET",
+      "url": "{{base_url}}/applications/13/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P14 · PDF ajeno privado",
+      "method": "GET",
+      "url": "{{base_url}}/applications/3/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P15 · Parámetro inválido page_size=51",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page_size=51",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P16 · Parámetro inválido candidate_id=2",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?candidate_id=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P17 · Parámetro inválido page=1&page=1",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page=1&page=1",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P18 · Parámetro inválido page=999",
+      "method": "GET",
+      "url": "{{base_url}}/applications/?page=999",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P19 · Sin sesión",
+      "method": "GET",
+      "url": "{{base_url}}/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU019-P20 · Sin flujo de cambio HU021",
+      "method": "PATCH",
+      "url": "{{base_url}}/applications/13/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P01 · Seleccionar solo ofertas propias",
+      "method": "GET",
+      "url": "{{base_url}}/company/applicant-offers/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P02 · Postulantes propios con nombres y página",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P03 · Página dos sin duplicados",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?page=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P04 · Filtro experience=BACKEND",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?experience=BACKEND",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P05 · Filtro education=INGENIERIA",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?education=INGENIERIA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P06 · Filtro skill=pYtHoN",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?skill=pYtHoN",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P07 · Filtro experience=Backend&education=Ingenieria&skill=Python",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?experience=Backend&education=Ingenieria&skill=Python",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P08 · Filtro education=Doctorado",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?education=Doctorado",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P09 · Orden por nombre",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?order=name",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P10 · Orden por fecha más antigua",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?order=oldest",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P11 · Parámetro rechazado order=invalid",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?order=invalid",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P12 · Parámetro rechazado page_size=51",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?page_size=51",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P13 · Parámetro rechazado page=999",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?page=999",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P14 · Parámetro rechazado skill=Python&skill=Excel",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?skill=Python&skill=Excel",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P15 · Parámetro rechazado candidate_id=1",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?candidate_id=1",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P16 · Parámetro rechazado education=%0Aotro",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/?education=%0Aotro",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P17 · Oferta de otra empresa",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/18/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P18 · Identificador ajeno detalle",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/27/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P19 · Identificador ajeno profile/",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/27/profile/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P20 · Identificador ajeno cv/",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/27/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P21 · Otra empresa solo ve su oferta",
+      "method": "GET",
+      "url": "{{base_url}}/company/applicant-offers/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P22 · Candidato no consulta postulantes",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P23 · Empresa pendiente no consulta",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P24 · Consulta sin sesión",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P25 · Perfil propio autorizado",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/3/profile/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P26 · Consulta de oferta conservada 3",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/3/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P27 · Consulta de oferta conservada 4",
+      "method": "GET",
+      "url": "{{base_url}}/company/offers/4/applications/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P28 · Histórico sin CV inventado",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/1/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P29 · Histórico sin documento",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/1/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P30 · Cambiar plantilla fuente",
+      "method": "PATCH",
+      "url": "{{base_url}}/curriculum/generated/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P31 · Eliminar fuente subida",
+      "method": "DELETE",
+      "url": "{{base_url}}/curriculum/uploaded/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P32 · Eliminar fuente generada",
+      "method": "DELETE",
+      "url": "{{base_url}}/curriculum/generated/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P33 · Metadatos originales conservados uploaded",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/3/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P34 · PDF enviado permanece uploaded",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/3/cv/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P35 · Metadatos originales conservados generated",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/4/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU020-P36 · PDF enviado permanece generated",
+      "method": "GET",
+      "url": "{{base_url}}/company/applications/4/cv/",
+      "resultado": "aprobado"
+    }
+  ],
+  "capturas_originales": 18,
+  "formato_capturas": "JPEG original Windows.Graphics.Capture, sin edición",
+  "limitacion_capturas": "Tras guardar 18 vistas legibles, el control rechazó más entradas con user input was detected in this window; call get_window_state before continuing, incluso después de nueva selección y la intervención local para maximizar. Se conservan las 18 originales y la ejecución válida; P28/P33/P35 no tienen una vista nativa adicional. Su aceptación consta en la colección y el resultado global, contrastes y capturas reales del navegador. No hubo nuevas peticiones por recorrer resultados guardados."
+}

@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-11-08",
+  "run": "run-20261108T185525-5a36414f",
+  "backend_sha": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+  "migraciones_nuevas": [
+    "0005_application_status_catalog",
+    "0006_candidate_selection_projection"
+  ],
+  "pendientes": 0,
+  "entorno": {
+    "sistema": "Windows",
+    "python": "3.12.10",
+    "django": "6.1.1",
+    "drf": "3.18.3",
+    "db": "SQLite aislada local"
+  },
+  "datos": {
+    "ofertas": 18,
+    "postulaciones": 27,
+    "postulantes_oferta": 14,
+    "coincidencias_backend": 9
+  },
+  "medicion": {
+    "actor": "APIClient company ficticio",
+    "muestras_lectura": 10,
+    "ms": [
+      387.195,
+      5.676,
+      5.558,
+      8.028,
+      6.589,
+      5.486,
+      5.701,
+      6.13,
+      5.582,
+      5.484
+    ],
+    "mediana_ms": 5.688,
+    "consultas_sql": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "procedencia": "Instrumentación local independiente; no peticiones de Postman ni una prueba de carga."
+  },
+  "conservacion_datos_previos": "SelectionMigrationTests y ApplicationMigrationTests aprobadas en la suite Django; no se reescriben documentos, fechas ni relaciones."
+}
