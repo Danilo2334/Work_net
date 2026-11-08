@@ -66,6 +66,8 @@ class StatusInput(StrictInputSerializer):
             raise ValidationError({"confirm": "Confirma el cambio de estado."})
         if type(self.initial_data.get("expected_version")) is not int:
             raise ValidationError({"expected_version": "Envía la versión entera consultada."})
+        if not isinstance(self.initial_data.get("comment", ""), str):
+            raise ValidationError({"comment": "Envía un comentario de texto."})
         data["comment"] = clean_text(data["comment"], max_length=2000, allow_empty=True)
         return data
 
