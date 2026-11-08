@@ -2,11 +2,23 @@
 const assert=require('node:assert/strict');
 const {createHash}=require('node:crypto');
 
-module.exports=async({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results})=>{
+module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseClick,waitText,login,logout,semantics,fault,faults,results})=>{
   const seed=bridge('hu02122_seed');results.preparacion_qa=seed;
   const response=(method,suffix)=>page.waitForResponse(r=>r.request().method()===method&&new URL(r.url()).origin===cfg.api_origin&&new URL(r.url()).pathname==='/api/'+suffix);
   const top=async()=>{await page.mouse.move(220,220);await page.mouse.wheel(0,-25000);await page.waitForTimeout(300);};
   const bottom=async()=>{await page.mouse.move(220,350);await page.mouse.wheel(0,25000);await page.waitForTimeout(300);};
+  const click=async(name,role='button')=>{
+    const target=()=>page.getByRole(role,{name,exact:typeof name==='string'});
+    if(await target().count()===0)await top();
+    if(await target().count()===0)await bottom();
+    await baseClick(name,role);
+  };
+  const write=async(name,value)=>{
+    const target=()=>page.getByRole('textbox',{name,exact:true});
+    if(await target().count()===0)await top();
+    if(await target().count()===0)await bottom();
+    await baseWrite(name,value);
+  };
   const snap=()=>bridge('hu02122_snapshot');
   const actor=name=>{const a=bridge('hu02122_'+name);(results.actores_qa??=[]).push(a);return a;};
   const goto=async(path,suffix,status=200)=>{
