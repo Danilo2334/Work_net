@@ -3,8 +3,10 @@ from .views import CandidateDashboardView
 from .profile import ProfileView, ProfileRecordsView, ProfileRecordView, ProfilePhotoView
 from .selection import ApplicationProfileView, ApplicationProfilePhotoView
 from .offers import PublishOfferView, ActiveOffersView, EditOfferView, PreservedOffersView, TransitionOfferView
+from .search import SearchOffersView
 
 urlpatterns = [
+    path("offers/search/", SearchOffersView.as_view(), name="search-offers"),
     path("company/offers/active/", ActiveOffersView.as_view(), name="active-company-offers"),
     path("company/offers/preserved/", PreservedOffersView.as_view(), name="preserved-company-offers"),
     path("company/offers/<int:offer_id>/transition/", TransitionOfferView.as_view(), name="transition-company-offer"),
