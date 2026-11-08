@@ -1,0 +1,178 @@
+[
+  {
+    "archivo": "00-resumen-desktop.png",
+    "nota": "Una iteración,36peticiones,70PASS,0fallos/errores/omitidas;resumenDesktop,no cuerpo seleccionado",
+    "fecha": "2026-11-08T16:06:46.218Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "58fa28cc18314a2a42e6a1c167a26f143eea4cc6880d54aa7906fd7efeb6853c"
+  },
+  {
+    "archivo": "01-agregar-activa.png",
+    "nota": "P03: PUT 2 devuelve true, HTTP 200 y dos PASS",
+    "fecha": "2026-11-08T16:09:46.818Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "3c687e6a45baebc36d5a5ac902b6a38dce235abe5c29b64b3b5443ce3de5f5cb"
+  },
+  {
+    "archivo": "02-repetir-agregado.png",
+    "nota": "P04: misma membresía idempotente true; dos PASS",
+    "fecha": "2026-11-08T16:09:59.425Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "55a6c13afd8d11de1fac44ab178a3aca47ed7e314d12dc727ebedbea0c969a34"
+  },
+  {
+    "archivo": "03-lista-sin-duplicados.png",
+    "nota": "P05: dos ofertas, ID 2 y 1; dos PASS",
+    "fecha": "2026-11-08T16:10:24.192Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "faf4162bc18b9f85ecfc162f42d8508aa45eac73f6ff950f2ee8791b45b09f56"
+  },
+  {
+    "archivo": "04-busqueda-sincronizada.png",
+    "nota": "P06: ID 2, is_saved true en búsqueda, dos PASS",
+    "fecha": "2026-11-08T16:10:59.825Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "9006c931449a97b0a3004bc5c5579160f042ca9a74178acd960a609fc8effea9"
+  },
+  {
+    "archivo": "05-quitar-favorito.png",
+    "nota": "P08: DELETE 2 HTTP200 false, dos PASS",
+    "fecha": "2026-11-08T16:11:10.601Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "bf4dae347bed670eb95d3c8f1ccaae7156d7e3de6562b5d52b42d3029e24059c"
+  },
+  {
+    "archivo": "06-repetir-retiro.png",
+    "nota": "P09: DELETE repetido devuelve false; dos PASS",
+    "fecha": "2026-11-08T16:11:23.853Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "1e58f87292aeaf6b83ff4ec2d9a3de4712d195d64b9d347f0b081fe90d6bf9a1"
+  },
+  {
+    "archivo": "07-retiro-no-modifica-ajeno.png",
+    "nota": "P12: DELETE propio sobre oferta solo guardada por otro devuelve false; conservación contrastada P13/SQLite",
+    "fecha": "2026-11-08T16:11:47.384Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "8c3d8e1eb263d48ac144bd8a53a5c7885e18e3c280e691285e3bc9e97eaa929d"
+  },
+  {
+    "archivo": "08-permiso-empresa.png",
+    "nota": "P14: GET guardados con rol empresa HTTP403 y PASS",
+    "fecha": "2026-11-08T16:12:06.925Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "236ccf38b04af21a070238b7a2a36966dfaf0355aeb299cbaee2c6cf7bb63b0d"
+  },
+  {
+    "archivo": "09-candidato-procede-de-sesion.png",
+    "nota": "P16: PUT con campos rechaza HTTP400 y dos PASS, candidato de sesión",
+    "fecha": "2026-11-08T16:12:12.985Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "8106092715afd61e364225b15f713836eaf5fab2683eb50442bf3eacd856f409"
+  },
+  {
+    "archivo": "10-archivar-endpoint-real.png",
+    "nota": "P21: POST HU015 200 archived, respuesta y dos PASS",
+    "fecha": "2026-11-08T16:12:41.846Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "79927d67fa89339c15a604e86fa92bebfa3b3255363c5447b4f13b1b91b614fc"
+  },
+  {
+    "archivo": "11-guardada-archivada.png",
+    "nota": "P22: ID2 archived/is_activefalse/is_savedtrue, count2, dos PASS",
+    "fecha": "2026-11-08T16:12:48.530Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "fc3dec5aac82753a41151f3698671929069598b39f5f1a2da6b7ab5c5811799c"
+  },
+  {
+    "archivo": "12-guardada-cerrada.png",
+    "nota": "P22: ID1 closed/is_activefalse/is_savedtrue conservada, dos PASS",
+    "fecha": "2026-11-08T16:12:57.331Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "44d065f99712bf6b27f212cd5a96c52d5c0b499ac62b761061acd31cb2ecd19f"
+  },
+  {
+    "archivo": "13-cerrada-excluida.png",
+    "nota": "P23: búsqueda específica Flutter count0/offers[], HTTP200 y dos PASS",
+    "fecha": "2026-11-08T16:13:13.030Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "d19fdfae8ba7d88d313e7d9bc2b21dd27af8a9f88ee3743bbd0eb47979b8bc8f"
+  },
+  {
+    "archivo": "14-archivada-excluida.png",
+    "nota": "P24: búsqueda específica Django count0/offers[], dos PASS",
+    "fecha": "2026-11-08T16:13:27.200Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "95f19f2ed57cff4493152b012fca2546dbab92e340530e8073019e4f2461aa0e"
+  },
+  {
+    "archivo": "15-retirar-cerrada.png",
+    "nota": "P26: DELETE1 closed HTTP200false, dos PASS",
+    "fecha": "2026-11-08T16:13:45.322Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "3ec95f01f7dc900cd7a89d616a56b9068b7d16b077ebe871f679579e5f20aba9"
+  },
+  {
+    "archivo": "16-retirar-archivada.png",
+    "nota": "P27: DELETE2 archived HTTP200false, dos PASS",
+    "fecha": "2026-11-08T16:14:01.788Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "366979dc35947b5a224dd05335364e9d46d3974961f2b037ce69c5185a0727b7"
+  },
+  {
+    "archivo": "17-vacio-real.png",
+    "nota": "P28: count0/offers[] tras retirar inactivas, dos PASS",
+    "fecha": "2026-11-08T16:14:07.523Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "f4c13a14e00a9af26bbd8c2cf95279fc8bd736f9fe2b4bb7767fa03a31aafeab"
+  },
+  {
+    "archivo": "18-otro-candidato-conserva-lista.png",
+    "nota": "P29: otro candidato mantiene count2, ID3 activo e ID1; dos PASS",
+    "fecha": "2026-11-08T16:14:28.806Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "bd9073c69fa9b0b9f3f9f704afe6fd618edc7828085457173418cc5d4504aba7"
+  },
+  {
+    "archivo": "19-otro-candidato-conserva-cerrada.png",
+    "nota": "P29: ID1 cerrado sigue guardado por otro; dos PASS y contraste SQLite",
+    "fecha": "2026-11-08T16:14:41.397Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "ceb4e0bb35d3d18ec9915d056a4ce63745bb961bcb2ff3b86eec6a874d81690c"
+  },
+  {
+    "archivo": "20-nuevo-guardado-inactivo-rechazado.png",
+    "nota": "P30: PUT nuevo sobre cerrada HTTP404 y dos PASS",
+    "fecha": "2026-11-08T16:15:06.814Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "87e019c62f6e0969f0ae16fead73aca39f514ef2f7f6da5a9feac132a8aa3ede"
+  },
+  {
+    "archivo": "21-limite-paginacion.png",
+    "nota": "P35: page_size51 HTTP400, field error y dos PASS",
+    "fecha": "2026-11-08T16:15:31.205Z",
+    "width": 1536,
+    "height": 864,
+    "sha256": "854bacbe198f9e4dc79627afad8ddd69a08aeb5c51da8055b764e181c1f863e9"
+  }
+]

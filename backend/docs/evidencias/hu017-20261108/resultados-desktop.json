@@ -1,0 +1,244 @@
+{
+  "fecha": "2026-11-08",
+  "hora_inicio_bogota": "11:05:41",
+  "tool": "Postman Desktop",
+  "version": "12.34.1",
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "backend_sha": "742e60077bd018f7e88d141201c3c218eeefa075",
+  "checkout_servidor": "ba195ed4fea72b459c66dec351eb8f71a2d8530f",
+  "run": "run-20261108T155805-1836ef4f",
+  "port": 8097,
+  "iteration": 1,
+  "requests": 36,
+  "assertions": 70,
+  "passed": 70,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 0,
+  "duration_ms": 7267,
+  "avg_response_ms": 50,
+  "first_response_ms": 1194,
+  "captures": 22,
+  "procedencia": "Lectura del Runner Postman Desktop y capturas originales de petición, respuesta y Test Results seleccionados. Sin exportar credenciales/entorno. No Newman.",
+  "resultado": "aprobado",
+  "preparacion": "17 ofertas ficticias,13 activas,1 guardado propio/2 ajenos. Tokens locales preparados verificando contraseña; no login Desktop.",
+  "casos": [
+    {
+      "nombre": "HU017-P01 Â· Guardado inicial y contrato",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P02 Â· BÃºsqueda antes de guardar",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P03 Â· Agregar oferta activa",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P04 Â· Repetir agregado idempotente",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P05 Â· Consultar sin duplicados",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P06 Â· BÃºsqueda sincronizada",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P07 Â· Contador dashboard",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard/candidate/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P08 Â· Quitar favorito",
+      "method": "DELETE",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P09 Â· Repetir retiro idempotente",
+      "method": "DELETE",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P10 Â· Consulta posterior al retiro",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P11 Â· Otro candidato solo sus favoritos",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P12 Â· Retirar relaciÃ³n ajena no la modifica",
+      "method": "DELETE",
+      "url": "{{base_url}}/offers/3/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P13 Â· Relaciones ajenas conservadas",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P14 Â· Rol empresa rechazado",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P15 Â· Sin sesiÃ³n",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P16 Â· No aceptar candidato en cuerpo",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P17 Â· No seleccionar candidato ajeno",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/?candidate_id=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P18 Â· PÃ¡gina invÃ¡lida",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/?page=2",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P19 Â· Guardar antes de archivar",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P20 Â· Cerrar oferta guardada HU015",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/1/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P21 Â· Archivar oferta guardada HU015",
+      "method": "POST",
+      "url": "{{base_url}}/company/offers/2/transition/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P22 Â· Inactivas conservadas con estado actual",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P23 Â· Cerrada excluida de bÃºsqueda HU016",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20Flutter%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P24 Â· Archivada excluida de bÃºsqueda HU016",
+      "method": "GET",
+      "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P25 Â· Repetir guardado propio ahora inactivo",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/1/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P26 Â· Retirar cerrada propia",
+      "method": "DELETE",
+      "url": "{{base_url}}/offers/1/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P27 Â· Retirar archivada propia",
+      "method": "DELETE",
+      "url": "{{base_url}}/offers/2/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P28 Â· Lista vacÃ­a real",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P29 Â· Otro candidato conserva incluso la cerrada",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P30 Â· No crear guardado nuevo sobre cerrada",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/1/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P31 Â· Cerrada nunca guardada rechazada",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/14/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P32 Â· Vencida nunca guardada rechazada",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/17/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P33 Â· Oferta inexistente rechazada",
+      "method": "PUT",
+      "url": "{{base_url}}/offers/999999/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P34 Â· Retiro inexistente idempotente",
+      "method": "DELETE",
+      "url": "{{base_url}}/offers/999999/saved/",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P35 Â· TamaÃ±o de pÃ¡gina invÃ¡lido",
+      "method": "GET",
+      "url": "{{base_url}}/offers/saved/?page_size=51",
+      "resultado": "aprobado"
+    },
+    {
+      "nombre": "HU017-P36 Â· Dashboard final e inactivas excluidas",
+      "method": "GET",
+      "url": "{{base_url}}/dashboard/candidate/",
+      "resultado": "aprobado"
+    }
+  ]
+}

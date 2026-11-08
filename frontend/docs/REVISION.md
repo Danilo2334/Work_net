@@ -1,5 +1,172 @@
 # Guía para revisar WorkNet
 
+<!-- hu017-vigente-inicio -->
+## HU017 — Guardar ofertas favoritas — 08/11/2026
+
+**Qué se hizo**
+
+Guardar/Quitar en cada resultado HU016 y oferta reciente del dashboard;
+Guardados accesible desde la cuenta candidata, paginación, persistencia al
+recargar y volver a iniciar sesión, y sincronización al regresar al buscador.
+Las favoritas cerradas/archivadas se conservan con su estado real y se pueden
+retirar; siguen excluidas de consultas activas. Carga, vacío, errores, reintento,
+sesión, rol y navegación comprobados en escritorio y móvil web emulado.
+
+Se reutiliza SavedOffer y su UNIQUE existente. GET `/api/offers/saved/` lista
+solo al candidato autenticado: page positiva, page_size 1–50, default 10,
+orden estable por fecha de guardado e ID de relación descendentes; rechaza
+parámetros ajenos/repetidos y páginas inexistentes. PUT/DELETE
+`/api/offers/{id}/saved/` no aceptan campos ni parámetros y devuelven 200 con
+`offer_id`/`is_saved`. Repetir es idempotente; DELETE ausente no revela relaciones
+ajenas. Crear exige la visibilidad activa compartida; repetir una propia inactiva
+se permite. Una lista incluye status/availability/is_active, salario cuando
+existe y fechas. Bloqueo transaccional de oferta, UNIQUE de base y reintento
+acotado de bloqueo SQLite mantienen consistencia. Dos consultas del listado
+de ofertas y una de autenticación, sin N+1. [Contrato API](../../backend/postman/README.md#contrato-de-favoritos-hu017).
+
+**Preparación**
+
+Aceptación nueva del **08/11/2026**. Base de partida main
+`97850b54c0a7904545f7eb6c15573f66147559bd`, sin avances posteriores al comenzar.
+Fuentes: Django `742e60077bd018f7e88d141201c3c218eeefa075`;
+Flutter/suite `a27b6b550ab7ad3b89b8271f825e186941d9bd75`.
+Dos SQLite QA independientes con **17 ofertas ficticias, 13 activas,
+un favorito inicial propio y dos de otro candidato**; correo a archivos,
+credenciales aleatorias privadas y puertos exclusivos. Navegador:
+`browser-qa-20261108T161017-db5505e2`. Desktop:
+`run-20261108T155805-1836ef4f`, puerto 8097, backend servido desde `ba195ed4`;
+sus archivos funcionales coinciden con Django `742e600`.
+
+Python 3.12.10, Django 6.1.1, DRF 3.18.3, Flutter 3.47.5, Dart 3.13.4,
+go_router 16.3.0, Chromium 158.0.8127.18, Playwright 1.65.0 y
+Postman Desktop 12.34.1 sobre Windows. Escritorio 1440×1000 y móvil web
+emulado 390×844, sin dispositivo físico. Tokens Desktop preparados localmente
+verificando contraseñas: no se contabiliza como login de Postman.
+
+Repetir desde un commit integrado:
+`python frontend/tool/browser_qa/run.py --suite hu017 --frontend-ref HEAD --backend-ref HEAD`.
+El orquestador exporta fuentes confirmadas y crea venv, SQLite, correo,
+puertos y navegador nuevos. Para Desktop:
+`python frontend/tool/browser_qa/hu017_api.py prepare --port 8097`
+(elegir otro puerto libre si está ocupado), seguido de
+`python backend/postman/qa.py serve --run RUN_NUEVO`.
+Importar los dos archivos de `import-hu017`, seleccionar solo el nuevo entorno,
+ejecutar una iteración conservando respuestas y contrastar con
+`python frontend/tool/browser_qa/hu017_api.py contrast --run RUN_NUEVO`.
+La colección usa noauth y cabeceras con referencias a variables privadas;
+sus guards exigen origen/puerto/run exactos. No publicar ni abrir esos valores.
+
+**Pruebas y límites**
+
+**180 pruebas Django y 137 Flutter aprobadas**, análisis Flutter sin incidencias,
+build JavaScript release correcto, check Django limpio y 14 pruebas de guards.
+Sin migraciones nuevas: la QA tiene todas aplicadas y conserva el UNIQUE
+`dashboard_unique_saved_offer`. La prueba concurrente ejerce cuatro PUT y cuatro
+DELETE con autenticación aislada para comprobar las mutaciones; los permisos y
+tokens reales se verifican por separado en API y aceptación. SQLite puede devolver
+503 recuperable tras agotar su espera/reintentos; no se afirma una prueba de carga
+ni una ejecución sobre PostgreSQL.
+
+Aceptación compartida: **17/17 casos de navegador** (16 HU017 y un control),
+**31 capturas originales**; **36 peticiones / 70 PASS de Desktop**, cero
+fallos, errores u omitidas y **22 capturas originales**. No son ejecuciones nuevas
+por cada subtarea. Red/503 y pérdida de respuesta son inyecciones identificadas;
+la carga retiene temporalmente un GET real. Reintentos, cierre/archivado, consultas,
+persistencia y revocación 401 usan Django real. Desktop duró 7,267 s,
+promedio 50 ms y primera respuesta 1194 ms sobre esas 17 ofertas locales;
+incluye transporte local y no representa rendimiento de producción.
+
+![HU017 guardar oferta en búsqueda](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V02-guardar-desde-busqueda.png)
+
+**Caso V02.** Esperado: guardar la oferta Django desde el resultado HU016. Obtenido: PUT real 200, aviso de guardado y botón Quitar de Guardados. Alcance demostrado: acción confirmada por API, sin estado optimista.
+
+![HU017 página dos en móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V11-pagina-dos-movil.png)
+
+**Caso V11.** Esperado: paginar trece favoritos a 390 px sin desbordamiento. Obtenido: página 2/2 con tres ofertas restantes y controles legibles. Alcance demostrado: móvil web emulado, no dispositivo físico.
+
+![HU017 cerrada y archivada siguen en Guardados](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V12-inactivas-cerrada-archivada.png)
+
+**Caso V12.** Esperado: conservar favoritos tras cerrar y archivar por el flujo empresarial real. Obtenido: trece favoritos; Flutter QA Cerrada y Django QA Archivada, con Quitar y aviso de inactividad. Alcance demostrado: estados actuales y conservación; consultas específicas del buscador devuelven cero.
+
+![HU017 retirada de inactivas en móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/HU017-V13-retirar-inactivas-movil.png)
+
+**Caso V13.** Esperado: retirar las dos inactivas sin borrar ofertas ni relaciones ajenas. Obtenido: aviso de retirada, once favoritos y una fila activa en página 2/2; SQLite conserva 17 ofertas y dos favoritos ajenos. Alcance demostrado: DELETE propios y disposición móvil emulada; la conservación se acredita con el contraste, no solo con esta imagen.
+
+![HU017 API agregar oferta activa](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/01-agregar-activa.png)
+
+**Caso P03.** Esperado: PUT de membresía propia para la oferta 2. Obtenido: HTTP 200, offer_id 2 e is_saved true, con dos PASS. Alcance demostrado: petición, respuesta y Test Results auténticos de Postman Desktop.
+
+![HU017 API agregado idempotente](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/02-repetir-agregado.png)
+
+**Caso P04.** Esperado: repetir el PUT sin crear otra relación. Obtenido: misma respuesta 200/true y dos PASS; P05 y SQLite confirman dos IDs únicos y cero duplicados. Alcance demostrado: idempotencia HTTP; la garantía UNIQUE y concurrencia tienen pruebas Django propias.
+
+![HU017 API conserva favorita cerrada](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/12-guardada-cerrada.png)
+
+**Caso P22.** Esperado: mantener también la oferta 1 tras cerrarla. Obtenido: ID1 closed, is_active false e is_saved true; dos PASS. Alcance demostrado: conservación de la cerrada; se muestra otra parte del cuerpo de P22.
+
+![HU017 API archivada excluida del buscador](https://raw.githubusercontent.com/Danilo2334/Work_net/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/14-archivada-excluida.png)
+
+**Caso P24.** Esperado: mantener la exclusión activa de HU015/HU016. Obtenido: consulta específica Django QA, HTTP 200, count 0/offers [], dos PASS; P23 comprobó la cerrada. Alcance demostrado: regresión de búsqueda activa, sin implementar postulación HU018.
+
+
+**Criterios anteriores reevaluados**
+
+HU005/#47/#50 avanzan con acceso real a Guardados, acciones en trabajos recientes
+y contador reconsultado. Continúan abiertos los criterios de historial HU019 y
+mensajes HU022. La conservación y exclusión de inactivas refuerzan HU015/HU016;
+#90 ya estaba cerrada y se conserva. HU015/#91 siguen pendientes del recorrido
+de postulación HU018. HU011/HU012/#79 conservan selección de CV dependiente
+de HU018. No se inició HU018–HU027 ni se cerraron criterios futuros.
+
+**Integración, procedencia y revisión**
+
+[#171](https://github.com/Danilo2334/Work_net/pull/171) → backend-sprint-3,
+[#173](https://github.com/Danilo2334/Work_net/pull/173) → develop,
+[#172](https://github.com/Danilo2334/Work_net/pull/172) → frontend y
+[#174](https://github.com/Danilo2334/Work_net/pull/174) incorpora backend revisado
+a frontend `76c6ce5b9fc2557f513c774410c500eb4d810cb6`.
+Documentación/evidencias: [#175](https://github.com/Danilo2334/Work_net/pull/175),
+antes de la entrega conjunta a main y del cierre verificado por separado.
+Django y sus pruebas propias: **Danilo2334**. Flutter y sus pruebas propias,
+integración y aceptación nueva: **francisco3788**. Cuenta de publicación,
+autor y committer comprobados; GitHub usa web-flow para sus merges.
+Revisión técnica delegada del agente, sin atribuir revisión personal ni aprobación humana.
+
+Publicación de las imágenes `842a89134cd2813488732eb3e8e0933b13333836`, distinta de los SHA de producto.
+Las **53 imágenes** respondieron HTTP 200 con SHA256 idéntico al original;
+se revisó su legibilidad y correspondencia con cada caso.
+[Resultados de navegador](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/frontend/docs/evidencias/hu017-20261108/resultados.json) ·
+[Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/resultados-desktop.json) ·
+[Conservación Desktop](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/contraste-persistencia.json).
+Los servidores propios terminaron y se comprobaron cerrados 8097/51168/51169.
+Los checkouts, entornos y corridas anteriores se conservan. HU018–HU027 no se iniciaron.
+
+<details>
+<summary>Antecedentes de esta implementación, conservados con su alcance</summary>
+
+No existía comentario previo en #96–#99: este es el único seguimiento de cada
+subtarea. El modelo SavedOffer y su UNIQUE ya existían; se reutilizan.
+La primera preparación de navegador se canceló antes de ejecutar la suite al
+corregir el ID esperado en V14. La corrida `browser-qa-20261108T155849-35814c84`
+detectó un defecto real: al abrir Guardados, la URL seguía en búsqueda y recargar
+restauraba esa pantalla. Se corrigió en `f6a75e8` reflejando la ruta imperativa
+en GoRouter; Guardados es una ruta directa protegida. La corrida
+`browser-qa-20261108T160443-23a0a16b` acreditó V01–V11 y detectó una expectativa
+QA incorrecta al volver del dashboard empresa; `a27b6b5` distingue las rutas.
+La corrida vigente posterior aprobó todos los casos. Se conservan las bases y
+resultados fallidos, sin presentarlos como aceptación aprobada.
+El aviso inferior «1 Import Failed» de Postman pertenece a una importación
+histórica anterior; la importación y ejecución HU017 finalizaron correctamente.
+
+</details>
+
+[Verificación de las imágenes publicadas](evidencias/hu017-20261108/verificacion-imagenes-publicadas.json) ·
+[Hashes originales del navegador](evidencias/hu017-20261108/capturas-navegador.json) ·
+[Hashes originales Desktop](../../backend/docs/evidencias/hu017-20261108/capturas-desktop.json) ·
+[Migraciones QA](../../backend/docs/evidencias/hu017-20261108/migraciones-qa.json).
+
+<!-- hu017-vigente-fin -->
+
 <!-- hu016-vigente-inicio -->
 ## HU016 — Búsqueda y filtrado de ofertas — 08/11/2026
 
