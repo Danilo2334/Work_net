@@ -86,8 +86,22 @@ class HttpApplicationsRepository implements ApplicationsRepository {
       offer: _offer(r['offer']),
       createdAt: DateTime.parse(r['created_at'] as String),
       status: status,
+      statusVersion: r['status_change'] == null
+          ? 0
+          : _version(r['status_change']['version']),
+      statusModifiedAt: r['status_change']?['modified_at'] == null
+          ? null
+          : DateTime.parse(r['status_change']['modified_at'] as String),
+      statusComment: r['status_change'] == null
+          ? ''
+          : r['status_change']['comment'] as String,
       cv: cv,
     );
+  }
+
+  int _version(dynamic value) {
+    if (value is! int || value < 0) throw const FormatException();
+    return value;
   }
 
   JobApplication decodeApplication(dynamic raw) =>
