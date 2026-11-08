@@ -25,217 +25,217 @@
   "preparacion": "17 ofertas ficticias,13 activas,1 guardado propio/2 ajenos. Tokens locales preparados verificando contraseña; no login Desktop.",
   "casos": [
     {
-      "nombre": "HU017-P01 Â· Guardado inicial y contrato",
+      "nombre": "HU017-P01 · Guardado inicial y contrato",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P02 Â· BÃºsqueda antes de guardar",
+      "nombre": "HU017-P02 · Búsqueda antes de guardar",
       "method": "GET",
       "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P03 Â· Agregar oferta activa",
+      "nombre": "HU017-P03 · Agregar oferta activa",
       "method": "PUT",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P04 Â· Repetir agregado idempotente",
+      "nombre": "HU017-P04 · Repetir agregado idempotente",
       "method": "PUT",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P05 Â· Consultar sin duplicados",
+      "nombre": "HU017-P05 · Consultar sin duplicados",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P06 Â· BÃºsqueda sincronizada",
+      "nombre": "HU017-P06 · Búsqueda sincronizada",
       "method": "GET",
       "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P07 Â· Contador dashboard",
+      "nombre": "HU017-P07 · Contador dashboard",
       "method": "GET",
       "url": "{{base_url}}/dashboard/candidate/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P08 Â· Quitar favorito",
+      "nombre": "HU017-P08 · Quitar favorito",
       "method": "DELETE",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P09 Â· Repetir retiro idempotente",
+      "nombre": "HU017-P09 · Repetir retiro idempotente",
       "method": "DELETE",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P10 Â· Consulta posterior al retiro",
+      "nombre": "HU017-P10 · Consulta posterior al retiro",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P11 Â· Otro candidato solo sus favoritos",
+      "nombre": "HU017-P11 · Otro candidato solo sus favoritos",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P12 Â· Retirar relaciÃ³n ajena no la modifica",
+      "nombre": "HU017-P12 · Retirar relación ajena no la modifica",
       "method": "DELETE",
       "url": "{{base_url}}/offers/3/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P13 Â· Relaciones ajenas conservadas",
+      "nombre": "HU017-P13 · Relaciones ajenas conservadas",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P14 Â· Rol empresa rechazado",
+      "nombre": "HU017-P14 · Rol empresa rechazado",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P15 Â· Sin sesiÃ³n",
+      "nombre": "HU017-P15 · Sin sesión",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P16 Â· No aceptar candidato en cuerpo",
+      "nombre": "HU017-P16 · No aceptar candidato en cuerpo",
       "method": "PUT",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P17 Â· No seleccionar candidato ajeno",
+      "nombre": "HU017-P17 · No seleccionar candidato ajeno",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/?candidate_id=2",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P18 Â· PÃ¡gina invÃ¡lida",
+      "nombre": "HU017-P18 · Página inválida",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/?page=2",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P19 Â· Guardar antes de archivar",
+      "nombre": "HU017-P19 · Guardar antes de archivar",
       "method": "PUT",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P20 Â· Cerrar oferta guardada HU015",
+      "nombre": "HU017-P20 · Cerrar oferta guardada HU015",
       "method": "POST",
       "url": "{{base_url}}/company/offers/1/transition/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P21 Â· Archivar oferta guardada HU015",
+      "nombre": "HU017-P21 · Archivar oferta guardada HU015",
       "method": "POST",
       "url": "{{base_url}}/company/offers/2/transition/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P22 Â· Inactivas conservadas con estado actual",
+      "nombre": "HU017-P22 · Inactivas conservadas con estado actual",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P23 Â· Cerrada excluida de bÃºsqueda HU016",
+      "nombre": "HU017-P23 · Cerrada excluida de búsqueda HU016",
       "method": "GET",
       "url": "{{base_url}}/offers/search/?q=Oferta%20Flutter%20QA",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P24 Â· Archivada excluida de bÃºsqueda HU016",
+      "nombre": "HU017-P24 · Archivada excluida de búsqueda HU016",
       "method": "GET",
       "url": "{{base_url}}/offers/search/?q=Oferta%20Django%20QA",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P25 Â· Repetir guardado propio ahora inactivo",
+      "nombre": "HU017-P25 · Repetir guardado propio ahora inactivo",
       "method": "PUT",
       "url": "{{base_url}}/offers/1/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P26 Â· Retirar cerrada propia",
+      "nombre": "HU017-P26 · Retirar cerrada propia",
       "method": "DELETE",
       "url": "{{base_url}}/offers/1/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P27 Â· Retirar archivada propia",
+      "nombre": "HU017-P27 · Retirar archivada propia",
       "method": "DELETE",
       "url": "{{base_url}}/offers/2/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P28 Â· Lista vacÃ­a real",
+      "nombre": "HU017-P28 · Lista vacía real",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P29 Â· Otro candidato conserva incluso la cerrada",
+      "nombre": "HU017-P29 · Otro candidato conserva incluso la cerrada",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P30 Â· No crear guardado nuevo sobre cerrada",
+      "nombre": "HU017-P30 · No crear guardado nuevo sobre cerrada",
       "method": "PUT",
       "url": "{{base_url}}/offers/1/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P31 Â· Cerrada nunca guardada rechazada",
+      "nombre": "HU017-P31 · Cerrada nunca guardada rechazada",
       "method": "PUT",
       "url": "{{base_url}}/offers/14/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P32 Â· Vencida nunca guardada rechazada",
+      "nombre": "HU017-P32 · Vencida nunca guardada rechazada",
       "method": "PUT",
       "url": "{{base_url}}/offers/17/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P33 Â· Oferta inexistente rechazada",
+      "nombre": "HU017-P33 · Oferta inexistente rechazada",
       "method": "PUT",
       "url": "{{base_url}}/offers/999999/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P34 Â· Retiro inexistente idempotente",
+      "nombre": "HU017-P34 · Retiro inexistente idempotente",
       "method": "DELETE",
       "url": "{{base_url}}/offers/999999/saved/",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P35 Â· TamaÃ±o de pÃ¡gina invÃ¡lido",
+      "nombre": "HU017-P35 · Tamaño de página inválido",
       "method": "GET",
       "url": "{{base_url}}/offers/saved/?page_size=51",
       "resultado": "aprobado"
     },
     {
-      "nombre": "HU017-P36 Â· Dashboard final e inactivas excluidas",
+      "nombre": "HU017-P36 · Dashboard final e inactivas excluidas",
       "method": "GET",
       "url": "{{base_url}}/dashboard/candidate/",
       "resultado": "aprobado"
