@@ -56,8 +56,7 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
     } on FormatException {
       if (mounted && generation == _generation) {
         setState(
-          () => _error =
-              'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
+          () => _error = 'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
         );
       }
     } finally {
@@ -167,6 +166,13 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
           label: const Text('Mi currículum'),
         ),
         const SizedBox(height: 12),
+        TextButton.icon(
+          key: const Key('open_applications'),
+          onPressed: () => context.go('/applications'),
+          icon: const Icon(Icons.history),
+          label: const Text('Mis postulaciones'),
+        ),
+        const SizedBox(height: 12),
         const Text(
           'Los siguientes módulos todavía no están disponibles. Aquí podrás encontrar sus accesos cuando estén implementados.',
           style: TextStyle(color: WorkNetColors.muted),
@@ -174,7 +180,6 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
         const SizedBox(height: 16),
         for (final entry in const [
           (Icons.chat_bubble_outline, 'Mensajes', 'Mensajería'),
-          (Icons.history, 'Historial de postulaciones', 'Postulaciones'),
         ])
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
