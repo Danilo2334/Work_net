@@ -5,6 +5,30 @@ from django.core.exceptions import ValidationError
 from django.db import models, transaction
 from django.db.models import Q
 from django.utils import timezone
+from .selection_text import SELECTION_SECTIONS, populate_selection, selection_text
+
+
+class CandidateProfileQuerySet(models.QuerySet):
+    def update(self, **kwargs):
+        for section in SELECTION_SECTIONS:
+            if section in kwargs:
+                if not isinstance(kwargs[section], list):
+                    raise ValidationError("Actualiza las secciones estructuradas mediante save, sin expresiones masivas.")
+                kwargs["selection_" + section] = selection_text(kwargs[section], section)
+        return super().update(**kwargs)
+
+    def bulk_create(self, objs, **kwargs):
+        objs = list(objs)
+        for obj in objs:
+            populate_selection(obj)
+        if kwargs.get("update_conflicts"):
+            raise ValidationError("No se sobrescriben perfiles mediante inserción masiva.")
+        return super().bulk_create(objs, **kwargs)
+
+    def bulk_update(self, objs, fields, **kwargs):
+        if set(fields) & set(SELECTION_SECTIONS):
+            raise ValidationError("Actualiza las secciones estructuradas mediante save para conservar los filtros.")
+        return super().bulk_update(objs, fields, **kwargs)
 
 
 class CandidateProfile(models.Model):
@@ -17,6 +41,18 @@ class CandidateProfile(models.Model):
     languages = models.JSONField(default=list, blank=True)
     # Private bytes: never published through MEDIA_URL or an unprotected file URL.
     photo_data = models.BinaryField(default=bytes, blank=True, editable=False)
+    selection_experience = models.TextField(default="", blank=True, editable=False)
+    selection_education = models.TextField(default="", blank=True, editable=False)
+    selection_skills = models.TextField(default="", blank=True, editable=False)
+    objects = CandidateProfileQuerySet.as_manager()
+
+    def save(self, *args, **kwargs):
+        populate_selection(self)
+        if kwargs.get("update_fields") is not None:
+            fields = set(kwargs["update_fields"])
+            fields.update("selection_" + s for s in SELECTION_SECTIONS if s in fields)
+            kwargs["update_fields"] = fields
+        return super().save(*args, **kwargs)
 
 
 class JobOffer(models.Model):

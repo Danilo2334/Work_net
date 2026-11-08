@@ -1,5 +1,36 @@
 # Pruebas del backend en Postman
 
+## Gestión y filtros de postulantes HU020
+
+Empresa aprobada y verificada: `GET /api/company/applicant-offers/` pagina sus
+ofertas propias, incluidas cerradas/archivadas, con cantidad de postulantes.
+`GET /api/company/offers/{id}/applications/` consulta solo los envíos a esa
+oferta propia. No hay rutas nuevas de escritura ni cambio de estado.
+
+Parámetros: `page` positiva, `page_size` 1–50 (10 por defecto), `experience`,
+`education`, `skill` (cada texto hasta 100 caracteres) y `order` (`newest`,
+`oldest`, `name`, `name_desc`). No admite parámetros ajenos, repetidos, controles
+ni páginas inexistentes. Filtros vacíos no restringen. Se combinan con AND y
+coinciden por fragmento literal normalizado sin distinguir mayúsculas o tildes:
+experiencia consulta puesto, empresa y descripción; educación título e
+institución; habilidad su nombre. No mide años ni filtra por fechas/niveles,
+ID o notas privadas. Una frase no cruza dos registros estructurados.
+
+Los filtros usan **el perfil actual**, no el contenido del PDF enviado. Datos
+ausentes no coinciden con un filtro no vacío. Las proyecciones derivadas se
+actualizan al guardar las secciones y la migración 0006 las prepara para perfiles
+anteriores sin reescribir su JSON. SQL filtra y limita antes de serializar,
+sin N+1 ni lectura de bytes PDF en el listado. Fecha/ID y nombre/candidato/ID
+son los desempates estables del orden. No se afirma carga ni PostgreSQL.
+
+Se reutilizan las rutas HU018 de detalle y copia PDF, y HU008 de perfil:
+`/api/company/applications/{id}/`, `cv/`, `profile/` y `profile/photo/`.
+Cada identificador se resuelve bajo la oferta de la empresa; candidaturas ajenas
+dan 404. El perfil es actual, la copia del CV es la original inmutable. Un envío
+histórico sin CV sigue devolviendo ausencia/404 de documento. La empresa puede
+leer los envíos conservados aunque la oferta esté cerrada o archivada.
+Respuestas privadas no-store y Vary Authorization; sin correo ni credenciales.
+
 ## Historial HU019
 
 `GET /api/applications/` y `GET /api/applications/{id}/` conservan los permisos,

@@ -211,7 +211,9 @@ class OwnApplicationPdfView(OwnApplicationView):
 class CompanyApplicationView(ApplicationProfileView):
     def get(self, request, application_id):
         no_query(request)
-        return Response({"application": application_data(self.application(request, application_id))},
+        item = self.application(request, application_id)
+        return Response({"application": application_data(item),
+                         "candidate": {"id": item.candidate_id, "full_name": item.candidate.full_name}},
                         headers={"Cache-Control": "private, no-store", "Vary": "Authorization"})
 
 
