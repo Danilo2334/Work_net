@@ -31,7 +31,7 @@ def client(actor):
     from rest_framework.test import APIClient
     user=User.objects.get(email=actor+'.postman@worknet.test')
     require(user.is_active and user.email_verified)
-    api=APIClient();api.credentials(HTTP_AUTHORIZATION='Token '+Token.objects.get_or_create(user=user)[0].key)
+    api=APIClient(HTTP_HOST='127.0.0.1');api.credentials(HTTP_AUTHORIZATION='Token '+Token.objects.get_or_create(user=user)[0].key)
     return api,user
 
 
