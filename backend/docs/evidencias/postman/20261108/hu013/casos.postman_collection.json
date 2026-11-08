@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "WorkNet DOC HU013 08-11-2026",
+    "_postman_id": "eeb2c28b-53c6-4c59-a046-37adbb8d4b9e",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "HU013-02 Catalogos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Catalogos\",()=>{const j=pm.response.json();pm.expect(j.categories).to.include(\"Tecnolog\u00eda\");pm.expect(j.contract_types).to.include(\"Indefinido\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-03 Publicar oferta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta ficticia HU013 Desktop\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"3000000.50\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+              "const o=pm.response.json().offer;",
+              "pm.test(\"Publicada\",()=>pm.expect(o.status).to.eql(\"published\"));",
+              "pm.test(\"Fecha\",()=>pm.expect(o.published_at).to.be.a(\"string\"));",
+              "pm.test(\"Datos conservados\",()=>{pm.expect(o.title).to.eql(\"Oferta ficticia HU013 Desktop\");pm.expect(o.salary).to.eql(\"3000000.50\");});",
+              "pm.test(\"Identificador\",()=>pm.expect(o.id).to.be.above(0));",
+              "pm.test(\"Empresa propietaria y estado publicados\",()=>{const o=pm.response.json().offer;pm.expect(o.company_name).to.equal(\"Empresa aprobada QA\");pm.expect(o.status).to.equal(\"published\");pm.environment.set(\"published_offer_id\",o.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU013-09 Empresa pendiente rechazada",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          }
+        ],
+        "url": "{{base_url}}/company/offers/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Oferta ficticia HU013 Desktop\", \"description\": \"Prueba aislada de publicacion\", \"requirements\": \"Django y Flutter\", \"salary\": \"3000000.50\", \"location\": \"Pasto\", \"category\": \"Tecnolog\u00eda\", \"contract_type\": \"Indefinido\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get(\"base_url\")!==\"http://127.0.0.1:8093/api\" || pm.environment.get(\"qa_run_id\")!==\"run-20261108T073316-3311b183\" || pm.environment.get(\"qa_confirmation\")!==\"SOLO_BASE_AISLADA\")throw new Error(\"QA exclusiva requerida\");"
+        ]
+      }
+    }
+  ]
+}

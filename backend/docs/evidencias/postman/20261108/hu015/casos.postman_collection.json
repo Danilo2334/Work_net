@@ -1,0 +1,637 @@
+{
+  "info": {
+    "name": "WorkNet DOC HU015 08-11-2026",
+    "_postman_id": "1f4e996e-dd2d-4be3-a034-5c71baf5f56b",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "D15-01 Activas iniciales",
+      "id": "5d3db54a-6fd5-47dd-a232-e1671f4d68eb",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/active/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Tres activas propias\",()=>{pm.expect(pm.response.json().count).to.equal(3);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-02 Conservadas iniciales",
+      "id": "7dc65499-fbdc-4eb3-9889-ad5e281bfc68",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/preserved/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Dos conservadas iniciales\",()=>{pm.expect(pm.response.json().count).to.equal(2);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-03 Archivado sin confirmar",
+      "id": "d93fd719-b9aa-4127-b6e3-fc94c3c28090",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"archive\", \"confirm\": false}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\",()=>{pm.response.to.have.status(400);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-04 Sin cambio tras inv\u00e1lido",
+      "id": "50d84445-2e9d-4edc-88cf-f5984782b7ce",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Oferta sigue publicada\",()=>{pm.expect(pm.response.json().offer.status).to.equal(\"published\");pm.environment.set(\"lifecycle_initial\",JSON.stringify(pm.response.json().offer));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-05 Cierre v\u00e1lido",
+      "id": "49a63e5c-ef35-4212-9341-4fe6864db21f",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Cerrada y datos intactos\",()=>{const o=pm.response.json().offer,b=JSON.parse(pm.environment.get(\"lifecycle_initial\"));pm.expect(o.status).to.equal(\"closed\");delete o.status;delete b.status;pm.expect(o).to.deep.equal(b);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-06 Archivado confirmado",
+      "id": "eca477ea-1cd7-45b4-8b32-cc8ec237a27c",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{second_offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"archive\", \"confirm\": true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Archivada\",()=>{pm.expect(pm.response.json().offer.status).to.equal(\"archived\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-07 Activas tras transiciones",
+      "id": "235fc090-f30d-4ced-b595-cf462d30fc9d",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/active/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Cerrada y archivada excluidas\",()=>{const j=pm.response.json();pm.expect(j.count).to.equal(1);for(const o of j.offers)pm.expect([Number(pm.environment.get(\"offer_id\")),Number(pm.environment.get(\"second_offer_id\"))]).not.to.include(o.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-08 Historial conservado",
+      "id": "4e9d34c5-71cf-4a3a-b1da-b5df1b79d990",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/preserved/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Cuatro conservadas y estados persistidos\",()=>{const j=pm.response.json();pm.expect(j.count).to.equal(4);pm.expect(j.offers.find(o=>o.id===Number(pm.environment.get(\"offer_id\"))).status).to.equal(\"closed\");pm.expect(j.offers.find(o=>o.id===Number(pm.environment.get(\"second_offer_id\"))).status).to.equal(\"archived\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-09 Transici\u00f3n incompatible",
+      "id": "fce46816-eac8-4193-a89c-3d165f4f9a73",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{archived_offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 409\",()=>{pm.response.to.have.status(409);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-10 Oferta ajena",
+      "id": "080b28f6-ad8f-4ec0-9cf2-efd236c50f09",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{other_offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\",()=>{pm.response.to.have.status(404);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-11 Sin sesi\u00f3n",
+      "id": "98ac5085-38a5-47fb-b8e2-fe628ce5036c",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\",()=>{pm.response.to.have.status(401);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-12 Candidato",
+      "id": "00f54bcb-7f0e-4516-b10e-7e554f449032",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>{pm.response.to.have.status(403);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-13 Empresa pendiente",
+      "id": "36f598ef-6fef-4cec-bf32-0af7bd325736",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\",()=>{pm.response.to.have.status(403);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-14 Reintento idempotente",
+      "id": "5dec591c-f49a-4bff-9168-2bdcb110d50b",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/{{second_offer_id}}/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"archive\", \"confirm\": true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Contin\\u00faa archivada\",()=>{pm.expect(pm.response.json().offer.status).to.equal(\"archived\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "D15-15 Relaciones del dashboard",
+      "id": "d54f9ae9-425b-4a42-97a7-56dd13c1f8df",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>{pm.response.to.have.status(200);});",
+              "pm.test(\"Respuesta JSON\",()=>{pm.expect(pm.response.json()).to.be.an(\"object\");});",
+              "pm.test(\"Dos postulaciones originales conservadas\",()=>{const j=pm.response.json();pm.expect(j.metrics.applications).to.equal(2);pm.expect(j.recent_applications).to.have.length(2);});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get(\"base_url\")!==\"http://127.0.0.1:8095/api\" || pm.environment.get(\"qa_run_id\")!==\"run-20261108T073316-a657df23\" || pm.environment.get(\"qa_confirmation\")!==\"SOLO_BASE_AISLADA\")throw new Error(\"QA exclusiva requerida\");"
+        ]
+      }
+    }
+  ]
+}
