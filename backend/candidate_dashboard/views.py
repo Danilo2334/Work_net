@@ -65,4 +65,6 @@ class CandidateDashboardView(APIView):
                 "pending_notifications_count": Notification.objects.filter(recipient=user, read_at__isnull=True).count(),
             },
             "recent_jobs": RecentOfferSerializer(offers, many=True).data,
+            "notifications": list(Notification.objects.filter(recipient=user).order_by("-created_at", "-pk").values(
+                "id", "title", "created_at", "read_at", "application_id", "event_kind")[:10]),
         })

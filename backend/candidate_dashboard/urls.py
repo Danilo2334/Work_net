@@ -6,10 +6,21 @@ from .offers import PublishOfferView, ActiveOffersView, EditOfferView, Preserved
 from .search import SearchOffersView
 from .favorites import SavedOffersView, SavedOfferView
 from .applicants import CompanyApplicantOffersView, CompanyOfferApplicantsView
+from .status_changes import ApplicationStatusView, ApplicationStatusOperationView
+from .messaging import (ConversationsView, ConversationDetailView, MessagesView,
+                        ConversationReadView, MessageSummaryView, MessageOperationView)
 from .applications import (OfferApplicationView, ApplicationsView, OwnApplicationView,
                            OwnApplicationPdfView, CompanyApplicationView, CompanyApplicationPdfView)
 
 urlpatterns = [
+    path("messages/summary/", MessageSummaryView.as_view(), name="selection-message-summary"),
+    path("conversations/", ConversationsView.as_view(), name="selection-conversations"),
+    path("conversations/<int:conversation_id>/", ConversationDetailView.as_view(), name="selection-conversation"),
+    path("conversations/<int:conversation_id>/messages/", MessagesView.as_view(), name="selection-messages"),
+    path("conversations/<int:conversation_id>/messages/operations/<uuid:client_message_id>/", MessageOperationView.as_view(), name="selection-message-operation"),
+    path("conversations/<int:conversation_id>/read/", ConversationReadView.as_view(), name="selection-conversation-read"),
+    path("company/applications/<int:application_id>/status/", ApplicationStatusView.as_view(), name="application-status"),
+    path("company/applications/<int:application_id>/status/operations/<uuid:request_id>/", ApplicationStatusOperationView.as_view(), name="application-status-operation"),
     path("company/applicant-offers/", CompanyApplicantOffersView.as_view(), name="applicant-offer-selection"),
     path("company/offers/<int:offer_id>/applications/", CompanyOfferApplicantsView.as_view(), name="company-offer-applications"),
     path("offers/<int:offer_id>/application/", OfferApplicationView.as_view(), name="offer-application"),
