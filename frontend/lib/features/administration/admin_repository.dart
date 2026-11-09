@@ -191,7 +191,7 @@ class HttpAdminRepository implements AdminRepository {
                   e['target__full_name'] is! String)) {
             throw const ApiFailure('Evento administrativo no válido.');
           }
-          return '${labels[e['action']] ?? 'Evento administrativo'} · ${e['actor__full_name'] ?? 'Cuenta eliminada'} → ${e['target__full_name'] ?? 'Cuenta eliminada'} · ${e['created_at']}';
+          return '${labels[e['action']] ?? 'Evento administrativo'} · Por: ${e['actor__full_name'] ?? 'Cuenta eliminada'} · Cuenta: ${e['target__full_name'] ?? 'Cuenta eliminada'} · ${e['created_at']}';
         })
         .toList(growable: false);
   }
