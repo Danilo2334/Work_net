@@ -81,6 +81,17 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu024_'):
+        require(config.get('suite') == 'hu024')
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('hu024_qa', root / 'source/frontend/tool/browser_qa/hu024_api.py')
+        module = importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        if action == 'hu024_prepare':return module.fixtures(run)
+        if action == 'hu024_seed':return module.seed(run)
+        if action == 'hu024_sql':return module.sql_statistics(run)
+        if action == 'hu024_snapshot':return module.contrast(run)
+        require(action.removeprefix('hu024_') in ('status','close','application','revoke_empty'))
+        return module.action(run,action.removeprefix('hu024_'))
     if action.startswith('hu023_'):
         require(config.get('suite') == 'hu023')
         import importlib.util
