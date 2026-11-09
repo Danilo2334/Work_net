@@ -91,18 +91,28 @@ def seed(run):
     return json.loads((run/'hu026-baseline.json').read_text(encoding='utf-8'))
 
 
-def private_code(run, actor):
+def private_code(run, actor, wrong=False):
     """Software authenticator for fictional accounts; no server verification is mocked."""
     seed(run)
     require(actor in ('principal', 'manager', 'reviewer', 'created'))
     configure(run)
     from accounts.models import User
-    from django_otp.oath import totp
+    from django_otp.oath import TOTP, totp
     from django_otp.plugins.otp_totp.models import TOTPDevice
     values = env_values(run)
     email = values['created_admin_email'] if actor == 'created' else values[actor+'_email']
     user = User.objects.get(email=email)
     device = TOTPDevice.objects.get(user=user, name='WorkNet')
+    if wrong:
+        generator = TOTP(device.bin_key, device.step, device.t0, device.digits, device.drift)
+        valid = set()
+        for offset in [-1, 0, 1]:
+            generator.time = time.time()+offset*device.step
+            valid.add(f'{generator.token():06d}')
+        candidate = 0
+        while f'{candidate:06d}' in valid:
+            candidate += 1
+        return {'code': f'{candidate:06d}'}
     # Never alter clocks/last_t. Wait for the next real step if this one was used.
     deadline = time.monotonic()+35
     while device.last_t >= int(time.time()//device.step):
@@ -110,6 +120,53 @@ def private_code(run, actor):
         time.sleep(0.2)
         device.refresh_from_db()
     return {'code': f'{totp(device.bin_key, step=device.step, t0=device.t0, digits=device.digits):06d}'}
+
+
+def verify_created(run):
+    """Consume the genuine verification link captured to this run's file mail."""
+    seed(run)
+    configure(run)
+    from email import policy
+    from email.parser import BytesParser
+    import re
+    from urllib.parse import urlsplit
+    from rest_framework.test import APIClient
+    from accounts.models import User
+    email = env_values(run)['created_admin_email']
+    require(email == 'creada.hu026@worknet.test')
+    selected = None
+    port = json.loads((run/'state.json').read_text(encoding='utf-8'))['port']
+    for file in sorted((run/'mail').glob('*'), key=lambda p: p.stat().st_mtime_ns, reverse=True):
+        message = BytesParser(policy=policy.default).parsebytes(file.read_bytes())
+        if email not in str(message.get('To', '')):
+            continue
+        content = (message.get_body(preferencelist=('plain',)) or message).get_content()
+        for url in re.findall(r'https?://[^\s<>]+', content):
+            parsed = urlsplit(url)
+            if parsed.path == '/api/verify-email/':
+                require(parsed.hostname in ('127.0.0.1','localhost') and parsed.port == port)
+                selected = parsed.path+'?'+parsed.query
+                break
+        if selected:
+            break
+    require(selected is not None)
+    response = APIClient(HTTP_HOST='127.0.0.1').get(selected)
+    require(response.status_code == 200 and User.objects.get(email=email).email_verified)
+    return {'status':200, 'captured_file_mail':True, 'verified':True, 'smtp_delivery_claimed':False}
+
+
+def revoke_session(run):
+    seed(run)
+    configure(run)
+    from accounts.models import User
+    from rest_framework.authtoken.models import Token
+    from rest_framework.test import APIClient
+    user = User.objects.get(email=env_values(run)['created_admin_email'])
+    client = APIClient(HTTP_HOST='127.0.0.1')
+    client.credentials(HTTP_AUTHORIZATION='Token '+Token.objects.get(user=user).key)
+    response = client.post('/api/logout/', {}, format='json')
+    require(response.status_code == 200)
+    return {'revoked':True, 'actor':'API QA de la cuenta ficticia creada', 'operation':'POST /api/logout/'}
 
 
 def contrast(run):
