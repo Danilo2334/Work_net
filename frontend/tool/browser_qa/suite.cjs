@@ -98,7 +98,7 @@ async function main() {
     assert.equal(authenticating, false);
     const captureUrl=new URL(page.url());
     const allowedReturn=hu018 && /^\/curriculum(?:\/create)?$/.test(captureUrl.pathname) && /^\?apply_offer=[1-9]\d*$/.test(captureUrl.search);
-    const allowedApplicantQuery=(hu01920||hu02122)&&require('./safe_applicant_query.cjs')(captureUrl);
+    const allowedApplicantQuery=(hu01920||hu02122||hu024)&&require('./safe_applicant_query.cjs')(captureUrl);
     const allowedMessageQuery=hu02122&&require('./safe_message_query.cjs')(captureUrl);
     if(!allowedReturn&&!allowedApplicantQuery&&!allowedMessageQuery) assert.equal(captureUrl.search, '');
     const password = page.getByRole('textbox', { name: 'Contraseña', exact: true });
