@@ -130,7 +130,8 @@ async function main() {
       console.log(id + ' OK');
       save();
     } catch (error) {
-      results.casos.push({ id, resultado: 'fallido', paso: phase, tipo: error.name, error: 'Aserción, guard o control no satisfecho; sin volcado de datos privados' });
+      results.casos.push({ id, resultado: 'fallido', paso: phase, tipo: error.name, error: 'Aserción, guard o control no satisfecho; sin volcado de datos privados', network_guard_violations: violations,
+        ...(['number','boolean'].includes(typeof error.actual)&&['number','boolean'].includes(typeof error.expected)?{diagnostico_numerico:{actual:error.actual,esperado:error.expected}}:{}) });
       if (!authenticating) {
         try { await capture('fallo'); } catch (_) { /* Nunca capturar login relleno. */ }
       }
@@ -224,6 +225,7 @@ async function main() {
       const url = new URL(route.request().url());
       if (!['data:', 'blob:'].includes(url.protocol) && ![cfg.api_origin, cfg.web_origin].includes(url.origin)) {
         violations++;
+        results.blocked_origins = [...new Set([...(results.blocked_origins||[]),url.origin])];
         return route.abort('blockedbyclient');
       }
       const injected = faults.get(route.request().method() + ' ' + url.pathname);
