@@ -1,4 +1,5 @@
 from django.urls import path
+from .assistant import CurriculumAssistantView
 
 from .views import (
     CurriculumPreviewView, CurriculumView, GeneratedCurriculumPdfView,
@@ -12,4 +13,5 @@ urlpatterns = [
     path("generated/", GeneratedCurriculumView.as_view(), name="generated-curriculum"),
     path("generated/pdf/", GeneratedCurriculumPdfView.as_view(), name="generated-curriculum-pdf"),
     path("generated/preview/", CurriculumPreviewView.as_view(), name="curriculum-preview"),
+    path("generated/assistant/", CurriculumAssistantView.as_view(), name="curriculum-assistant"),
 ]

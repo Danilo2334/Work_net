@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-09",
+  "joint_source": {
+    "integration_sha": "3cd731ba4b4d097227fdb2d17767f672fbf29aaa",
+    "production_byte_identical_to_accepted_qa": true,
+    "tree_identical_to_frontend": true,
+    "linkedin_specific_tracked_files": 0
+  },
+  "django_joint": {
+    "passed": 301,
+    "seconds": 16.485,
+    "provider": "doubles only",
+    "fixture_hasher": "MD5 only in isolated test process",
+    "database": "new in-memory test database",
+    "mail": "files"
+  },
+  "http_joint": {
+    "run": "run-20261109T192617Z-be33b9fd",
+    "passed": 19,
+    "gemini_calls": 0,
+    "source_sha": "3cd731ba4b4d097227fdb2d17767f672fbf29aaa"
+  },
+  "flutter_reuse": {
+    "passed": 237,
+    "analyze": "No issues",
+    "web_release": "PASS",
+    "reason": "Production Dart and dependencies byte-identical to accepted version; no functional changes after build"
+  },
+  "remote_media": {
+    "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+    "assets_verified": 44,
+    "git_tree_blob_identity": true
+  },
+  "identities": [
+    {
+      "sha": "6675613655748fbbba964c80493533b8e5d69659",
+      "author": "Danilo2334",
+      "committer": "Danilo2334"
+    },
+    {
+      "sha": "16131ce13b93347789bb4eaa4fff797f5ea6d9d0",
+      "author": "Danilo2334",
+      "committer": "Danilo2334"
+    },
+    {
+      "sha": "6c76159ecdc90183cc12f3da43fcf10ccf6d0500",
+      "author": "Danilo2334",
+      "committer": "Danilo2334"
+    },
+    {
+      "sha": "ac20507da5309c3f222e67dc4f0ce5bc0a6d38cd",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "2f9072ba0f67c11f5af6434c942f73a742a1bd4c",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "10e4e5134defef36b40e3e99ea995033986f20a3",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "01c1b8d5381f840bd53e805497f6a48fb6868288",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "bf74181a280af28d6f5225d203766b8eac3b1548",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "f26c6582482dd13107958b2969be5bd67d5ca9c8",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    },
+    {
+      "sha": "86ccf20427d1d34cbd2de2eedecbb62241414715",
+      "author": "francisco3788",
+      "committer": "francisco3788"
+    }
+  ],
+  "merges": [
+    {
+      "pr": 231,
+      "target": "feature/backend-sprint-3",
+      "sha": "79cb98d3d968b318d8a262128d44e48c3000d8df",
+      "account": "Danilo2334"
+    },
+    {
+      "pr": 233,
+      "target": "develop",
+      "sha": "173858e22680d40de4b729fa8604581a1deb02ed",
+      "account": "Danilo2334"
+    },
+    {
+      "pr": 232,
+      "target": "frontend",
+      "sha": "7f03715fdfabb699f4795319913bd9b3d520411d",
+      "account": "francisco3788"
+    },
+    {
+      "pr": 234,
+      "target": "frontend",
+      "sha": "f4cecc2ac21b83f3da9647d35dab3a0552c68cdb",
+      "account": "francisco3788"
+    }
+  ],
+  "review": "Principal-agent technical review, not delegated/human approval",
+  "hu027": "Open, Backlog; no integration reactivated"
+}

@@ -3,12 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:worknet/core/widgets/workspace.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'package:worknet/features/curriculum/domain/generated_curriculum.dart';
+import 'package:worknet/features/curriculum/domain/curriculum_assistant.dart';
 import 'package:worknet/features/profile/domain/profile.dart';
 import 'package:worknet/features/profile/presentation/profile_record_editor.dart';
 import 'package:worknet/features/registration/domain/registration.dart';
+
 import 'generated_curriculum_controller.dart';
 import 'generated_record_editor.dart';
 import 'private_pdf_view.dart';
+import 'curriculum_assistant_dialog.dart';
 
 class GeneratedCurriculumPage extends StatefulWidget {
   const GeneratedCurriculumPage({
@@ -167,6 +170,30 @@ class GeneratedCurriculumPageState extends State<GeneratedCurriculumPage> {
     if (mounted && _controller.error == null) setState(() => ++_formVersion);
   }
 
+  Future<void> _assist() async {
+    final repository = widget.repository;
+    if (repository is! CurriculumAssistantRepository || _controller.busy) {
+      return;
+    }
+    final token = widget.session.session?.token;
+    final suggestion = await showDialog<CurriculumSuggestion>(
+      context: context,
+      builder: (_) => CurriculumAssistantDialog(
+        repository: repository as CurriculumAssistantRepository,
+        session: widget.session,
+      ),
+    );
+    if (!mounted ||
+        suggestion == null ||
+        _controller.draft == null ||
+        token == null ||
+        widget.session.session?.token != token) {
+      return;
+    }
+    _controller.edit(data: suggestion.applyTo(_controller.draft!));
+    setState(() => ++_formVersion);
+  }
+
   @override
   Widget build(BuildContext context) => ListenableBuilder(
     listenable: _controller,
@@ -227,6 +254,15 @@ class GeneratedCurriculumPageState extends State<GeneratedCurriculumPage> {
                         'La edición del CV es independiente: no modifica tu perfil ni tu cuenta.',
                       ),
                       const SizedBox(height: 16),
+                      if (widget.repository
+                          is CurriculumAssistantRepository) ...[
+                        OutlinedButton.icon(
+                          onPressed: c.busy ? null : _assist,
+                          icon: const Icon(Icons.auto_awesome),
+                          label: const Text('Completar mi CV con IA'),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
                       DropdownButtonFormField<String>(
                         key: ValueKey('cv_template_${cv.template}'),
                         initialValue: cv.template,

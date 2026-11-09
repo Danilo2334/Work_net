@@ -1,0 +1,42 @@
+[
+  {
+    "run": "run-20261109T184303Z-4eb93e57",
+    "call": 1,
+    "requested_model": "gemini-3.5-flash-lite",
+    "profile_included": false,
+    "source_sha256": "2a6ded2d3e17fc941ae2195e2bd0a7e0e3586f90925fea497ed99b740d78fbdc",
+    "returned_json": true,
+    "result_sha256": "34e47b9ea5554ddd73b15fb6d3efbde7569312a739acf0b2072fb0cef8f9648d",
+    "elapsed_ms": 2129.56
+  },
+  {
+    "run": "run-20261109T185051Z-13e75b29",
+    "call": 1,
+    "requested_model": "gemini-3.5-flash-lite",
+    "profile_included": false,
+    "source_sha256": "8a03401ba51a06048c3ffee013ecf5aaae758ee636530a225ff20616250510a9",
+    "returned_json": true,
+    "result_sha256": "59bb36b69f5e348c23f62731a1fceb5a511eebe0b5b9179ed9e8be2aebbf2820",
+    "elapsed_ms": 1996.75
+  },
+  {
+    "run": "run-20261109T185051Z-13e75b29",
+    "call": 2,
+    "requested_model": "gemini-3.5-flash-lite",
+    "profile_included": true,
+    "source_sha256": "d43e928716a611ec88d7ed12bc946332962a19595df5bc79f0118ce57ea5090e",
+    "returned_json": true,
+    "result_sha256": "9ea768422c42af54614bd4c48cd7159aaf0028c9e742e7fd42b8f2bf33336f60",
+    "elapsed_ms": 1857.53
+  },
+  {
+    "run": "run-20261109T184717Z-0165b8da",
+    "call": 1,
+    "requested_model": "gemini-3.5-flash-lite",
+    "profile_included": false,
+    "source_sha256": "2a6ded2d3e17fc941ae2195e2bd0a7e0e3586f90925fea497ed99b740d78fbdc",
+    "returned_json": true,
+    "result_sha256": "500bb26c2ab11272a898d487077b83734da6bdf1fc6c1080ea38b0f75f986f05",
+    "elapsed_ms": 2133.4
+  }
+]

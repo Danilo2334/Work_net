@@ -1,0 +1,122 @@
+[
+  {
+    "file": "01-preparacion-negativos.jpg",
+    "scope": "Functional/Local, una iteración, nueve casos negativos seleccionados; preparación, no ejecución.",
+    "date_utc": "2026-11-09T19:11:50.507Z",
+    "sha256": "d4b039fa8a41f448e7e31622e69d4e8bac8a47083f0b306d3eb936274d40c9aa",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "02-negativos-20-pass.jpg",
+    "scope": "Corrida local real: nueve peticiones,20 PASS,0 fallos/errores/omitidas,1 iteración; modo QA sin configuración, sin llamadas a Gemini.",
+    "date_utc": "2026-11-09T19:12:20.478Z",
+    "sha256": "14b0ea00dd8c1004beb949a2e9b51e819b00a1190566cf1c62c681d2215871ef",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "03-permisos-403.jpg",
+    "scope": "C03 empresa: HTTP403 real y respuesta saneada; C02 sin sesión401 y C04 sin verificar403, Test Results visibles.",
+    "date_utc": "2026-11-09T19:15:49.527Z",
+    "sha256": "a2f836914e5a6f8be135092ee28930aa8c730f1ae0ce5db1128fa5d4f4b318c6",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "04-validacion-400.jpg",
+    "scope": "Consentimiento denegado, texto vacío y propietario inyectado devuelven400 real; configuración ausente200, no configurado.",
+    "date_utc": "2026-11-09T19:15:55.126Z",
+    "sha256": "b8623fe4a994c863a93a9a60b998574acbf15d8f7ea2763a73721856d9ba225e",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "05-sin-proveedor-503.jpg",
+    "scope": "M02 HTTP503 real sin configuración, código assistant_not_configured, edición manual disponible;20 tests PASS sin Gemini.",
+    "date_utc": "2026-11-09T19:16:06.558Z",
+    "sha256": "8cf08b94862be94f1130bc519ce1578a1b6ea1064f8060e13c624fd8d18b555e",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "06-preparacion-gemini-real.jpg",
+    "scope": "Solo R01-R09, Functional/Local, una iteración; backend QA modo real, una generación prevista, guardados explícitos y PDF.",
+    "date_utc": "2026-11-09T19:17:03.952Z",
+    "sha256": "0153bff6142d263819e9c7efb587fff0ed62e9ac196144061b6823bada9aa652",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "07-real-32-pass-guardado-pdf.jpg",
+    "scope": "Corrida positiva Desktop:9 peticiones,32 PASS,0 fallos/errores/omitidas,3s558ms; R02 sin autoguardado, guardado explícito clásica201 y PDF200.",
+    "date_utc": "2026-11-09T19:17:18.320Z",
+    "sha256": "5fdc20ac0f105f1c5d4bee57841003ab9a8b29af6dda5801cfd67d9643718fd0",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "08-real-propuesta-test-results.jpg",
+    "scope": "R01 HTTP200,6 tests PASS: proveedor Gemini, saved=false, esquema revisable; R02 confirmaCV sin guardar, R03guardado explícito201.",
+    "date_utc": "2026-11-09T19:17:26.304Z",
+    "sha256": "3761ea3c9189b273dc2b5915f26aeda05ec51ff0ea0a23c60b7edb308442ddef",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "09-real-respuesta-http-200.jpg",
+    "scope": "RespuestaHTTP200 auténtica de R01: propuesta estructurada con datos ficticios, fechas desconocidas nulas y contactos vacíos; TestResults32PASS.",
+    "date_utc": "2026-11-09T19:17:33.594Z",
+    "sha256": "5703c2217c251aaded01893b37c9e9df211a8178d5533bc2c7eb76869dd440b9",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "10-real-peticion-consentimiento.jpg",
+    "scope": "Cuerpo original R01: texto ficticioAnaQA,include_profile=false,consent=true;HTTP200 y6pruebasR01PASS.No credenciales visibles.",
+    "date_utc": "2026-11-09T19:17:45.337Z",
+    "sha256": "2015d6f8923daa89e43c1a0f6e4839bcf24c5b43f52f944f6ccadfd84f773806",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "11-real-pdf-clasica-moderna.jpg",
+    "scope": "R04/R06 PDF auténtico200,tipoPDF y bytesPDF comprobados; guardado explícito moderna200,TestResults32PASS.",
+    "date_utc": "2026-11-09T19:17:52.016Z",
+    "sha256": "94184fb8ea584286317ecbbf7a9ca1d60f784586e78f3be9826377980c08769a",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  },
+  {
+    "file": "12-real-minimalista-aislamiento-404.jpg",
+    "scope": "R07guardadoMinimalista200,R08PDF200, R09otrocandidato404 sin documentoajeno;respuestaHTTPauténticayTestResults32PASS.",
+    "date_utc": "2026-11-09T19:18:09.956Z",
+    "sha256": "7f16d5ab7fca6c671d9e3f1ea93374af91debc0095c3d09028d338b565f6f389",
+    "width": 1536,
+    "height": 864,
+    "app": "Postman Desktop12.35.5",
+    "source": "Original Windows.Graphics.Capture via Computer Use, no editing"
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-09",
+  "scope": "HU028 #224/#225-228, HU027 remains pending",
+  "source_sha": "169115f58199d582d7f0a431316c2f2bd928bcaf",
+  "backend_sha": "6c76159ecdc90183cc12f3da43fcf10ccf6d0500",
+  "qa_tools_sha": "bf74181a280af28d6f5225d203766b8eac3b1548",
+  "environment": {
+    "os": "Windows",
+    "python": "3.12.10",
+    "django": "6.1.1",
+    "drf": "3.18.3",
+    "sqlite": "3.49.1",
+    "flutter": "3.47.5",
+    "dart": "3.13.4",
+    "playwright": "1.65.0",
+    "chromium": "158.0.8127.18",
+    "postman": "12.35.5"
+  },
+  "tests": {
+    "django": 301,
+    "django_seconds": 19.418,
+    "flutter": 237,
+    "flutter_seconds": 52,
+    "flutter_analyze": "No issues",
+    "web_release": "PASS",
+    "django_check": "PASS",
+    "migration_dry_run": "No changes detected",
+    "pending_qa_migrations": 0
+  },
+  "acceptance": {
+    "api_real_requests": 8,
+    "api_real_generations": 1,
+    "browser_cases": 14,
+    "browser_real_generations": 2,
+    "browser_original_images": 20,
+    "browser_real_pdf_downloads": 3,
+    "postman_requests": 18,
+    "postman_assertions_passed": 52,
+    "postman_real_generations": 1,
+    "postman_original_images": 12,
+    "pdfs_reviewed": 6
+  },
+  "provider": {
+    "name": "Gemini",
+    "model": "gemini-3.5-flash-lite",
+    "free_tier_confirmed_by_user": true,
+    "billing_or_paid_services_activated": false,
+    "accepted_generations": 4,
+    "all_source_data_fictitious": true,
+    "key_backend_only": true
+  },
+  "antecedents": {
+    "cloud_doubles": {
+      "django": 300,
+      "flutter": 237,
+      "http": 19,
+      "gemini_calls": 0,
+      "media_sha": "606ce394290562db22a402ce1d56f50be1acb36f"
+    },
+    "windows_doubles": {
+      "run": "run-20261109T181928Z-0230a50e",
+      "http": 19,
+      "gemini_calls": 0
+    },
+    "real_wire_failure": {
+      "run": "run-20261109T183958Z-1235a766",
+      "attempts": 1,
+      "successful_generations": 0,
+      "upstream_http": 400,
+      "fixed_in": "6c76159ecdc90183cc12f3da43fcf10ccf6d0500"
+    },
+    "partial_browser_run": {
+      "run": "run-20261109T184317Z-b3b04c38",
+      "passed_cases": 10,
+      "successful_generations": 2,
+      "full_acceptance": false,
+      "cause": "Harness expected raw503 while app correctly standardized message; corrected in bf74181"
+    },
+    "all_provider_generation_attempts_this_session": 7,
+    "all_successful_generations_including_partial_antecedent": 6
+  },
+  "limits": [
+    "Fictitious small SQLite QA, not load/PostgreSQL test",
+    "Mobile web emulation, not physical device",
+    "V07 delayed local replay; does not prove remote Gemini abort",
+    "Browser503/429 are controlled injected faults; actual outage/quota not induced",
+    "Summary/descriptions require human review; lexical grounding is not truth verification",
+    "Date grounding accepts provided full ISO dates; partial dates stay null",
+    "Production per-user5/hour requires shared cache for multi-process global limit",
+    "No delegated or human approval is claimed"
+  ],
+  "review": "Principal agent source review, real acceptance, visual PDF/browser/native evidence inspection"
+}
