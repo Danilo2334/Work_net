@@ -2,9 +2,9 @@
 
 ## Alcance vigente
 
-HU001–HU026 conservan su entrega. **HU027 — Integración con LinkedIn está pendiente de desarrollo** (#28 y #137–#141 abiertas); su preparación específica se retiró de los archivos vigentes. El perfil y CV manuales siguen disponibles. El antecedente de #196/#197 permanece en Git, sin callback operativo ni pasos de configuración activos.
+HU001–HU026 y **HU028** están entregadas en main: 27 historias y 112 subtareas completadas. **HU027 — Integración con LinkedIn queda para la segunda versión** (#28 y #137–#141 abiertas); su preparación específica se retiró de los archivos vigentes. El perfil y CV manuales siguen disponibles. El antecedente de #196/#197 permanece en Git, sin callback operativo ni pasos de configuración activos.
 
-**HU028 — Asistente de creación de currículum con IA (#224)** añade una propuesta revisable al generador existente. Se informa el envío a Gemini y se exige consentimiento; el perfil propio se incluye solo al marcarlo. Generar no guarda: aplicar cambia el borrador local y Guardar confirma la persistencia. Las tres plantillas y la descarga PDF reutilizan HU012. Clave y modelo se configuran únicamente en backend, fuera de Git. La aceptación con proveedor real permanece pendiente.
+**HU028 — Asistente de creación de currículum con IA (#224)** añade una propuesta revisable al generador existente. Se informa el envío a Gemini y se exige consentimiento; el perfil propio se incluye solo al marcarlo. Generar no guarda: aplicar cambia el borrador local y Guardar confirma la persistencia. Las tres plantillas y la descarga PDF reutilizan HU012. Clave y modelo se configuran únicamente en backend, fuera de Git. La aceptación real quedó completada y fusionada mediante [PR #236](https://github.com/Danilo2334/Work_net/pull/236): API 8/8, navegador 14/14 y Postman Desktop 18 peticiones/52 comprobaciones aprobadas.
 
 La procedencia, comprobaciones y límites se registran en [la guía existente](docs/REVISION.md).
 
@@ -154,12 +154,15 @@ nativas específicas de exportación y CV en Android emulado se describen aparte
 
 Los resultados y las capturas de Flutter y Postman se conservan en el comentario único de cada tarea en GitHub. Las instrucciones de ejecución anteriores permiten iniciar la aplicación; las cuentas y datos de QA se describen en la guía de revisión.
 
-La verificación conjunta final aprobó 227 pruebas Flutter y 285 Django;
-análisis sin incidencias, compilación web y APK debug. HU026 cuenta con 55
-peticiones/90 PASS en Postman Desktop y 18/18 casos de navegador. La guía distingue
-las corridas nuevas, las capturas históricas y los renders de PDF, con versiones,
-fuentes y alcance de cada evidencia. La revisión técnica fue delegada a un agente;
-no se presenta como aprobación humana de Danilo o Francisco.
+La aceptación final de HU028 aprobó **237 pruebas Flutter y 301 Django**;
+análisis sin incidencias y compilación web release correcta. Se acreditaron cuatro
+generaciones Gemini entre API, navegador y Desktop, con PDF en las tres plantillas.
+El corte anterior HU026 conserva 55 peticiones/90 PASS de Postman Desktop,
+18/18 casos de navegador y su comprobación específica de APK/Android emulado.
+La guía distingue corridas, capturas y renders, con versiones, fuentes y límites.
+La revisión final HU028 fue del agente principal, sin atribuir aprobación humana
+ni revisión delegada. [Guion de exposición](../docs/ENTREGA.md) y
+[plan de despliegue](../docs/DESPLIEGUE.md).
 
 La aceptación incluye escritorio, móvil web emulado y recorridos específicos de
 exportación/CV en Android emulado. No acredita todos los recorridos en un teléfono
