@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import CandidateDashboardView
+from .notifications import NotificationsView, NotificationReadView, NotificationSummaryView, NotificationPreferencesView
 from .profile import ProfileView, ProfileRecordsView, ProfileRecordView, ProfilePhotoView
 from .selection import ApplicationProfileView, ApplicationProfilePhotoView
 from .offers import PublishOfferView, ActiveOffersView, EditOfferView, PreservedOffersView, TransitionOfferView
@@ -13,6 +14,10 @@ from .applications import (OfferApplicationView, ApplicationsView, OwnApplicatio
                            OwnApplicationPdfView, CompanyApplicationView, CompanyApplicationPdfView)
 
 urlpatterns = [
+    path("notifications/", NotificationsView.as_view(), name="notifications"),
+    path("notifications/summary/", NotificationSummaryView.as_view(), name="notification-summary"),
+    path("notifications/read/", NotificationReadView.as_view(), name="notification-read"),
+    path("notifications/preferences/", NotificationPreferencesView.as_view(), name="notification-preferences"),
     path("messages/summary/", MessageSummaryView.as_view(), name="selection-message-summary"),
     path("conversations/", ConversationsView.as_view(), name="selection-conversations"),
     path("conversations/<int:conversation_id>/", ConversationDetailView.as_view(), name="selection-conversation"),
