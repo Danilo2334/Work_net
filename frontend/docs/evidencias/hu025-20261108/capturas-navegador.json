@@ -1,0 +1,164 @@
+[
+  {
+    "archivo": "NAVEGADOR-01-login.png",
+    "caso": "NAVEGADOR-01",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+  },
+  {
+    "archivo": "HU025-V01-seleccion-oferta-propia.png",
+    "caso": "HU025-V01",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "534047c5533e2651ffcffcd12ed8e2cf456c72173fcd8d0f17f7ab0d436d60fc"
+  },
+  {
+    "archivo": "HU025-V01-controles-alcance-todas-las-paginas.png",
+    "caso": "HU025-V01",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "485f32266c2f0ba6815bf23eed0fde21e690ced26dcba55da32e14f4df277f41"
+  },
+  {
+    "archivo": "HU025-V02-csv-descargado-14-coincidencias.png",
+    "caso": "HU025-V02",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "147202a5923001099dbf30878abc5d89d5353ca647c4b7fe004669976cff536c"
+  },
+  {
+    "archivo": "HU025-V03-pdf-descargado-multipagina.png",
+    "caso": "HU025-V03",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "109a2b796fe2bc81052c6414e5ef0525c16c70aa7fceaaee1b12813a5e6ca3d5"
+  },
+  {
+    "archivo": "HU025-V04-pagina2-exporta-todas-sin-cambiar-consulta.png",
+    "caso": "HU025-V04",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "dd282e5ba46ed30077a889b6a189f3ffbd3ed1f18a4d45ecc2332e8b93ed5df8"
+  },
+  {
+    "archivo": "HU025-V05-filtro-experience.png",
+    "caso": "HU025-V05",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "2ac05df7d9cfff15d4b8d4344ab5a0aa163420b79847181ff567d83925373e9b"
+  },
+  {
+    "archivo": "HU025-V05-filtro-education.png",
+    "caso": "HU025-V05",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "0f9a0761c999184e5b18d11b331384505d31b2bd1159394c851455ddc8c2d3e9"
+  },
+  {
+    "archivo": "HU025-V05-filtro-skill.png",
+    "caso": "HU025-V05",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "24ae163e48cbac302905dda391de373fd311f635f9e1ae219059dfbac765d1cd"
+  },
+  {
+    "archivo": "HU025-V06-filtros-combinados-orden-preservado.png",
+    "caso": "HU025-V06",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "b1d118974b43f6e4bc331e0b69f378d182d8321588709ab0d7fca9fe4f586b4f"
+  },
+  {
+    "archivo": "HU025-V07-vacio-controles-deshabilitados.png",
+    "caso": "HU025-V07",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "d15c8d07c4992bcfef32b1516225ebb4fac9085bacf2162afb308ccfddd10d6f"
+  },
+  {
+    "archivo": "HU025-V08-oferta-sin-postulaciones.png",
+    "caso": "HU025-V08",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "c0c693989d751374f400cbd7cf98cab8b14b3d5863c37f80f1133913914d2a0b"
+  },
+  {
+    "archivo": "HU025-V09-movil-csv-real.png",
+    "caso": "HU025-V09",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "3f54e37143145f0ce024ca87aa1e92e93d99f6c9f6a627c7104a9db45eaffe3f"
+  },
+  {
+    "archivo": "HU025-V09-movil-pdf-real.png",
+    "caso": "HU025-V09",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "be8dce4ee04c671d4e91f5d4d7e18fe28e6f9d85b62b3766eeba0c9e126667e4"
+  },
+  {
+    "archivo": "HU025-V10-error-exportacion-inyectado-identificado.png",
+    "caso": "HU025-V10",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "aa6cba3e516b43ffb8a88970e0189dc161a986df5b7de1c0c083a6a3b22f6873"
+  },
+  {
+    "archivo": "HU025-V10-reintento-http200-datos-conservados.png",
+    "caso": "HU025-V10",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "147202a5923001099dbf30878abc5d89d5353ca647c4b7fe004669976cff536c"
+  },
+  {
+    "archivo": "HU025-V11-oferta-ajena-sin-datos-ni-exportacion.png",
+    "caso": "HU025-V11",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "7a8921140e089d28dc07c30f28b8d25a86c130e9adec2ce2764bee91fa2b40f1"
+  },
+  {
+    "archivo": "HU025-V12-sesion-revocada-sin-archivo.png",
+    "caso": "HU025-V12",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+  }
+]

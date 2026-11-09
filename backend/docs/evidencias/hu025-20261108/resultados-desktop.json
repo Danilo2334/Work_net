@@ -1,0 +1,192 @@
+{
+  "schema": "worknet-desktop-qa-results-v1",
+  "fecha_local": "08/11/2026 America/Bogota",
+  "started_utc": "2026-11-09T04:22:29.285Z",
+  "run": "run-20261109T041747-2b35c70d",
+  "port": 8103,
+  "postman": "12.35.5",
+  "backend_sha": "234ed32a34abee4bd144f37331439b2806c1fb05",
+  "preparer_sha": "f06675c47fb91a80ddb4cec0098b9c5d8435eb01",
+  "server_checkout_sha": "077322df66c654465d9c6ea15f00b7233c70e806",
+  "source": "Transcripción del Runner Desktop observado; no es una exportación de respuestas ni una ejecución CLI",
+  "requests": 28,
+  "tests": 40,
+  "passed": 40,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "iterations": 1,
+  "duration_ms": 4338,
+  "mean_response_ms": 42,
+  "cases": [
+    {
+      "name": "HU025-P01 · Listado cerrado propio primera página",
+      "method": "GET",
+      "path": "/company/offers/3/applications/?page_size=10",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P02 · CSV todas las páginas y caracteres especiales",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P03 · PDF autorizado multipágina",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=pdf",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P04 · CSV filtro experience",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&experience=Backend",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P05 · CSV filtro education",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&education=Ingenieria",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P06 · CSV filtro skill",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&skill=Python",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P07 · CSV filtro experience",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&experience=Backend&education=Ingenieria&skill=Python",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P08 · CSV orden estable oldest",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&order=oldest",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P09 · CSV orden estable name",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&order=name",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P10 · CSV orden estable name_desc",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&order=name_desc",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P11 · PDF filtrado y ordenado",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=pdf&skill=Python&order=name",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P12 · Página dos no cambia el total",
+      "method": "GET",
+      "path": "/company/offers/3/applications/?page=2&page_size=10",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P13 · Sin coincidencias informa sin descargar",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&skill=Ausente",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P14 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=exe",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P15 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&page=2",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P16 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=pdf&page_size=10",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P17 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&skill=Python&skill=Excel",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P18 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=pdf&order=otro",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P19 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&email=si",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P20 · Parámetro rechazado file_type",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv&skill=%0A",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P21 · Rol o aprobación no autorizada",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P22 · Rol o aprobación no autorizada",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P23 · Rol o aprobación no autorizada",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P24 · Oferta ajena",
+      "method": "GET",
+      "path": "/company/offers/18/applications/export/?file_type=pdf",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P25 · Sin sesión",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=csv",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P26 · Exportar no admite escritura",
+      "method": "POST",
+      "path": "/company/offers/3/applications/export/?file_type=csv",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P27 · Revocar sesión real",
+      "method": "POST",
+      "path": "/logout/",
+      "result": "PASS"
+    },
+    {
+      "name": "HU025-P28 · Sesión revocada",
+      "method": "GET",
+      "path": "/company/offers/3/applications/export/?file_type=pdf",
+      "result": "PASS"
+    }
+  ],
+  "fixture_note": "18 ofertas/27 postulaciones,14 en oferta cerrada3. Nombres ficticios con fórmulas/tildes/comillas y nombres extensos; nombres y bytes de los CV originales conservados. El metadato special_names de f066 mencionaba CV extensos por error, corregido en ff2c703 sin cambiar el producto ni la colección."
+}

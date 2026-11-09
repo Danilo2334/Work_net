@@ -1,0 +1,2 @@
+# Authentic QA downloads retain their measured UTF-8 BOM and CRLF bytes.
+frontend/docs/evidencias/hu025-20261108/*.csv binary

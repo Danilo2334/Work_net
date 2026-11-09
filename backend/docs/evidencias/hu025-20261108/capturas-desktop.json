@@ -1,0 +1,110 @@
+[
+  {
+    "archivo": "00-resumen-desktop.jpg",
+    "caso": "HU025: 28 peticiones, 40 PASS, cero fallos/errores/omitidas, una iteración",
+    "fecha_utc": "2026-11-09T04:23:03.438Z",
+    "sha256": "c2d27d57501357fef9af8403293f1e1d7f87568410737d5ab4d5b614b37656cb",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "01-csv-completo-y-test-results.jpg",
+    "caso": "HU025-P02 CSV autorizado, HTTP200 y contrato PASS; 14 filas contrastadas por Test Results, imagen muestra cabecera y primeras filas",
+    "fecha_utc": "2026-11-09T04:23:24.906Z",
+    "sha256": "eb7085e2b8d13857055f5e70a63fb7a91a0f6233d89f97ed1e1d948b8895ebc9",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "02-pdf-http200-test-results.jpg",
+    "caso": "HU025-P03 respuesta PDF File HTTP200 y contrato PASS; esta imagen no muestra las páginas del PDF, revisadas en la descarga de navegador",
+    "fecha_utc": "2026-11-09T04:23:43.253Z",
+    "sha256": "4f2d3660d709b6a0f5a65f6fe1dc1a6b5a3b181d55dc3f92515192ab9f7f70f4",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "03-pdf-metadatos-autorizados.jpg",
+    "caso": "HU025-P03 Content-Type PDF, nombre seguro,14 coincidencias, alcance all_filtered_applicants y no-store; cabeceras de petición contraídas",
+    "fecha_utc": "2026-11-09T04:24:12.598Z",
+    "sha256": "daace27d4f23b7dde77b0ddccf62f3293a2bf9ebfc74b93ee931ae6bb4f04a29",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "04-filtros-combinados-cuatro-coincidencias.jpg",
+    "caso": "HU025-P07 experiencia Backend, educación Ingenieria y habilidad Python: HTTP200, cuatro coincidencias, pruebas PASS",
+    "fecha_utc": "2026-11-09T04:24:36.232Z",
+    "sha256": "51a5346860c737fca423808badd4f3ad81aa5406414e3b8ed3cb69e5238f4928",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "05-csv-formulas-neutralizadas.jpg",
+    "caso": "HU025-P07 cuatro filas completas con apóstrofo protector ante = y @, comillas/tildes conservadas; HTTP200 y contrato PASS",
+    "fecha_utc": "2026-11-09T04:24:58.468Z",
+    "sha256": "e277f588a51053b9a1bbd429e0a8131ce8e22ee0b3b96f922a041790a1a1edc7",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "06-sin-datos-no-genera-archivo.jpg",
+    "caso": "HU025-P13 filtro sin coincidencias: HTTP400, mensaje explícito y PASS; no respuesta de archivo",
+    "fecha_utc": "2026-11-09T04:25:36.498Z",
+    "sha256": "7fde11618882a87cda14517080bfee17e37afc1321e581a3628dbde6dc4ba4ce",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "07-parametro-pagina-rechazado.jpg",
+    "caso": "HU025-P15 page=2 no permitido en exportación: HTTP400 y PASS; exporta todas las coincidencias mediante filtros/orden, sin parámetro de página",
+    "fecha_utc": "2026-11-09T04:25:58.509Z",
+    "sha256": "1cf7465b14f1198bb1131997e56dc52cc1a3ba075e427ab394f416f4c37f34f4",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "08-candidato-no-autorizado.jpg",
+    "caso": "HU025-P21 candidato rechazado HTTP403 y PASS; sin archivo ni información adicional",
+    "fecha_utc": "2026-11-09T04:26:43.602Z",
+    "sha256": "5319de08fe9b7c9048dec5b5a358f2df315c53aa2056b0c1b1630a8b79ab4677",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "09-empresa-pendiente-sin-permiso.jpg",
+    "caso": "HU025-P23 empresa pendiente rechazada HTTP403 y PASS; no se modifica su aprobación",
+    "fecha_utc": "2026-11-09T04:27:13.625Z",
+    "sha256": "022d474bb1cacbc034404d754afd4e6491d0958f52fff0c07ae68b654fa62369",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "10-oferta-ajena-404.jpg",
+    "caso": "HU025-P24 exportación de oferta de otra empresa: HTTP404 y PASS; no se entrega información ajena",
+    "fecha_utc": "2026-11-09T04:27:22.575Z",
+    "sha256": "372ff16b12d4ede0d9913c37062dcd231c8cf841b5bc8900e3b13a411b45939b",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  },
+  {
+    "archivo": "11-sesion-revocada.jpg",
+    "caso": "HU025-P28 tras POST logout real200: exportación PDF HTTP401 Invalid token, PASS y ningún archivo",
+    "fecha_utc": "2026-11-09T04:28:43.298Z",
+    "sha256": "613868152050821f0aa0084cda6c38095f8c790042f14215ae272e2fe255a1d3",
+    "width": 1536,
+    "height": 864,
+    "procedencia": "Captura original de Postman Desktop mediante Computer Use; sin edición"
+  }
+]
