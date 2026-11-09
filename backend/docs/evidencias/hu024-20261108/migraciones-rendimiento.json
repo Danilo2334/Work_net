@@ -1,0 +1,111 @@
+{
+  "date_utc": "2026-11-09T03:46:01.559653+00:00",
+  "source_backend": "ff3982697211bde837f5b9b2e9475ce1ccff8fdc",
+  "run": "run-20261109T033609-4d372045",
+  "actor": "APIClient de actores ficticios; lecturas posteriores e independientes de Postman Desktop",
+  "environment": "Windows / SQLite local",
+  "versions": {
+    "python": "3.12.10",
+    "Django": "6.1.1",
+    "djangorestframework": "3.18.3"
+  },
+  "dataset_after_desktop": {
+    "offers": 18,
+    "applications": 28,
+    "messages": 23,
+    "notifications": 65,
+    "company_offers": 17,
+    "company_applications": 27,
+    "candidate_applications": 13
+  },
+  "migration_plan_pending": 0,
+  "schema": "Última migración candidate_dashboard0009 aplicada; HU024 no requiere otra migración.",
+  "before_after_contrast_equal": true,
+  "measurements": {
+    "statistics/candidate/": {
+      "reads": 10,
+      "milliseconds": [
+        477.663,
+        3.085,
+        2.751,
+        2.97,
+        3.023,
+        2.73,
+        2.775,
+        3.05,
+        3.282,
+        3.675
+      ],
+      "median_ms": 3.0365,
+      "sql_queries": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "statistics/company/?page_size=10": {
+      "reads": 10,
+      "milliseconds": [
+        10.108,
+        7.629,
+        7.603,
+        7.6,
+        7.883,
+        8.084,
+        7.373,
+        6.832,
+        6.395,
+        6.611
+      ],
+      "median_ms": 7.6015,
+      "sql_queries": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    },
+    "statistics/company/?page=2&page_size=10": {
+      "reads": 10,
+      "milliseconds": [
+        7.379,
+        7.873,
+        7.335,
+        7.551,
+        7.102,
+        6.854,
+        7.296,
+        6.332,
+        8.073,
+        5.934
+      ],
+      "median_ms": 7.3155,
+      "sql_queries": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    }
+  },
+  "scope": "Rendimiento básico de lecturas locales; no carga, PostgreSQL ni instantánea congelada entre páginas."
+}

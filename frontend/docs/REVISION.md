@@ -7,11 +7,129 @@
 
 Se detuvo la configuración y cualquier implementación adicional de LinkedIn. La preparación de sitio, logo, propuesta de privacidad y retorno estático de [#196](https://github.com/Danilo2334/Work_net/pull/196)/[#197](https://github.com/Danilo2334/Work_net/pull/197), publicada en main `a9bbf324c8deeec45b462cba84eb620b0dbf0f18`, se conserva como antecedente. Nunca ejecutó OAuth ni importó datos reales. [Versión preparatoria conservada](https://github.com/Danilo2334/Work_net/blob/a9bbf324c8deeec45b462cba84eb620b0dbf0f18/frontend/README.md). Las páginas actuales anuncian la cancelación y el perfil/CV manual continúa disponible.
 
-HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. HU024–HU026 y los pendientes de HU006/HU007 continúan hasta satisfacer sus criterios. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
+HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. El resultado de HU024 y HU006 se presenta en la sección vigente siguiente. HU025/HU026 y la revisión final de HU007 continúan dentro del alcance. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
 
 Los seis IDs, responsables, relaciones, criterios y antecedentes originales de HU027 permanecen conservados. La opción Cancelada se añadió preservando los IDs y valores de todos los estados existentes; no se cambian Sprint ni fechas. Ningún cierre not_planned se contará como entrega funcional.
 
 <!-- alcance-hu001-hu026-fin -->
+
+<!-- hu024-vigente-inicio -->
+## HU024 — Estadísticas / cierre de HU006 — 08/11/2026
+
+**Qué se hizo**
+
+Estadísticas reales por rol, conteos completos y estados, detalle paginado por oferta y accesos desde ambos dashboards. Completa el último acceso pendiente de HU006, conservando los anteriores.
+
+| Criterio original HU024 | Comprobación vigente |
+|---|---|
+| Postulaciones por oferta | V05/V06; P02/P03 y 15 contrastes SQL; oferta 3 conserva14 |
+| Ofertas activas | V04/V07/V09; P02/P14/P15,11→10 tras cierre real |
+| Estados empresariales | V04/V06/V09; P02/P09, cuatro estados y otros históricos |
+| Postulaciones candidatas | V01/V03/V08; P01/P04/P11,13 propias y otro0→1 |
+| Candidatas en revisión | V02; P07/P08,3→4 por transición real |
+| Candidatas aceptadas/rechazadas | V01/V02/V08; P01/P08,2 y 2 conservadas |
+| Tasa de respuesta opcional | Omitida expresamente; no impide los seis criterios obligatorios |
+
+| Nueve criterios originales HU006 | Evidencia vigente y conservada |
+|---|---|
+| Cantidad de ofertas activas | V04/V07; P06/P15, coherente con estadísticas |
+| Cantidad de ofertas cerradas | V07; P15 muestra3 tras cierre real |
+| Cantidad de postulaciones recibidas | V04/V06/V07; P15 muestra27 |
+| Postulaciones recientes | V04/V07; P15 con nombres/puestos/fechas ficticios reales |
+| Acceso a crear/gestionar ofertas | V15 botones y GET200 de formulario/activas; HU013–HU015 conservadas |
+| Acceso a postulantes | V06/V15 y HU020; consulta/página y retorno actualizados |
+| Acceso a mensajes | V15 GET200 y aceptación HU022 conservada |
+| Acceso a estadísticas | V04/V15, HTTP200 autorizado, escritorio y móvil |
+| Solo empresas aprobadas | V14 guard UI; P18–P21 y pruebas actuales; dashboard403 de HU023-P50 conserva código idéntico |
+
+**Preparación**
+
+Aceptación del **08/11/2026**, Windows. Main anterior `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`; se conserva el cambio de alcance de `6929a381b9eafb188dd11be39ca13aeb575f3d55`: entrega HU001–HU026, HU027 cancelada/not_planned. Django [ff39826](https://github.com/Danilo2334/Work_net/commit/ff3982697211bde837f5b9b2e9475ce1ccff8fdc), Flutter funcional [5f2ab62](https://github.com/Danilo2334/Work_net/commit/5f2ab620a71c84895dfeb6edf1d986b65950f818), ejecutor final [3070f79](https://github.com/Danilo2334/Work_net/commit/3070f79ba4c32a3ba1bc6226aa802239ab23ded0). lib/test de3070f79 y 4c157d2 son idénticos a5f2ab62, con 195 pruebas completas aprobadas. Imágenes publicadas en `9d0bbb447f99d251ff0fe1e3a5576931e9262164`; este SHA es de publicación, no otra ejecución.
+
+Dos SQLite QA nuevas e independientes, usuarios ficticios, correo a archivos y credenciales privadas. Cada base inicia con **18 ofertas,27 postulaciones,23 mensajes y 63 avisos**. La empresa principal tiene17 ofertas,11 activas y 26 postulaciones; el candidato,13. Estados iniciales candidato 6/3/2/2 y empresa 19/3/2/2, en orden Enviada/En revisión/Aceptada/Rechazada. Son fixtures históricas; el cambio nuevo usa una transición empresarial real. Los esperados se calculan por SQL independiente del endpoint.
+
+Navegador `browser-qa-20261109T034437-035ac6e8`: **16/16,27 PNG originales y 15 contrastes de respuestas con SQL**, escritorio 1440×1000 y móvil web emulado 390×844. Los actores API ficticios generan1 cambio de estado,1 postulación de otro candidato y 1 cierre de oferta 2; la UI acredita consulta, navegación, páginas y actualización. Postman Desktop `run-20261109T033609-4d372045`: **34 peticiones /50 PASS**, una iteración, cero fallos/errores/omitidas y 12 JPEG originales. Inicio08/11/2026 22:42:59 Bogotá, hash de base idéntico a la instantánea inicial antes de ejecutar. Preparador4c157d2; checkout del servidor al inicio `398ee95ac527190c147877aec00e90645daa723a`, backend funcional idéntico a `ff39826`. Las respuestas posteriores se abrieron sin volver a enviarlas. El JSON Desktop transcribe el resumen observado, no es una exportación cruda.
+
+Ambas bases terminan con **28 postulaciones,65 avisos**,1 evento nuevo de estado y 1 cierre, sin duplicados. La empresa tiene27 postulaciones y 10 activas; el candidato principal conserva13 y el otro pasa0→1. Se conservan avisos y lecturas anteriores, documentos congelados, fechas originales, relaciones, perfiles, cuentas, CV, favoritos y mensajes. Las dos corridas se comparten entre estas tareas, no se multiplican por compartir imágenes.
+
+Python 3.12.10, Django 6.1.1, DRF 3.18.3, Flutter 3.47.5, Dart 3.13.4, Playwright 1.65.0, Chromium 158.0.8127.18 y Postman Desktop 12.35.5. Windows/SQLite local y móvil web emulado; no dispositivo físico, PostgreSQL ni prueba de carga.
+
+**Reglas y conservación**
+
+Totales de todas las postulaciones persistidas propias, también sobre ofertas cerradas, archivadas o vencidas. Cuatro estados vigentes y categoría Otros para valores históricos desconocidos, sin borrarlos. Las métricas globales no se limitan a la página de ofertas. Activas reutiliza la regla empresarial existente: publicada y no vencida. Detalle de ofertas por ID descendente, page positiva y page_size1–50; la app usa10. Parámetros desconocidos/repetidos e intentos de inyectar otro titular se rechazan. Respuestas privadas no-store/Vary Authorization; requiere candidato verificado o empresa verificada/aprobada. La tasa de respuesta es opcional y se omite, sin fórmula ni historial inventados.
+
+Las transacciones ofrecen coherencia de una respuesta en SQLite. Cada página es una lectura nueva y puede reflejar cambios posteriores; no se promete una instantánea congelada entre páginas ni aislamiento PostgreSQL. La actualización manual vuelve a página 1; el retorno contextual conserva la página y reconsulta. El retorno desde postulantes sobrevive a filtros/paginación. El cambio de sesión o aprobación limpia la información y descarta respuestas antiguas.
+
+**Pruebas, revisión y límites**
+
+257 Django (8 nuevas),195 Flutter (9 nuevas),19 afectadas de navegación,20 guards Python y 6 Node aprobados. Análisis limpio, compilación web JavaScript release, check sin incidencias y makemigrations sin cambios. HU024 no modifica modelos;0009 aplicada y plan pendiente cero. Pruebas incluyen agregados completos, ceros, estados desconocidos, ofertas inactivas, paginación, parámetros, permisos actuales, lectura sin efectos y transición real con PDF/fecha intactos.
+
+Revisión técnica y de evidencias delegada del agente autorizado; sin aprobación humana atribuida. Se corrigieron el valor semántico de las barras y el retorno obsoleto después de replace; la regresión con componentes reales falla antes y pasa con RouteAware. También se corrigen desplazamiento al inicio y etiqueta de vacío. Las dos primeras corridas web se conservaron: una falló localizando texto accesible de Flutter y otra al capturar una URL pública de postulantes no incluida aún en esa suite. Se corrigió solo el ejecutor, reutilizando el guard estricto existente, y se repitió íntegra en otra base. No se suman a 16/16. El503 es inyectado; reintento200 y revocación de sesión son reales.
+
+Las39 imágenes se conservan originales, sin edición. Las leyendas no atribuyen rótulos fuera de encuadre: V09 móvil muestra el resumen tras página 2, no su pie; V11 muestra ceros/barras, no el rótulo de paginación; V05 no muestra la tarjeta14. V06 sí muestra14 postulantes de la oferta inactiva, y API/SQL contrastan sus agregados.
+
+Rendimiento básico posterior a Desktop:30 GET APIClient, diez por endpoint, sobre18 ofertas/28 postulaciones/23 mensajes/65 avisos,17 ofertas y 27 postulaciones propias de empresa. Medianas3,0365 ms candidato,7,6015 ms empresa página 1 y 7,3155 ms página 2; contraste completo antes/después idéntico. Desktop 5.296 ms totales y 35 ms medios. Son lecturas locales, no carga ni medición productiva.
+
+[Resultados navegador](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/resultados.json) · [Manifest navegador](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/capturas-navegador.json) · [Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/resultados-desktop.json) · [Manifest Desktop](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/capturas-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/casos.postman_collection.json) · [Contraste Desktop](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/contraste-persistencia.json) · [Migraciones/rendimiento](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/migraciones-rendimiento.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/validacion-tecnica.json)
+
+**Publicación e integración**
+
+Django y sus pruebas publicados por Danilo2334: [#206](https://github.com/Danilo2334/Work_net/pull/206) → feature/backend-sprint-3 `34fda5b`, [#208](https://github.com/Danilo2334/Work_net/pull/208) → develop `1deeafa`. Flutter y sus pruebas por francisco3788: [#207](https://github.com/Danilo2334/Work_net/pull/207) → frontend `c9eff69`; backend revisado [#209](https://github.com/Danilo2334/Work_net/pull/209) → frontend `04a41d4`. Evidencias/guía en [#210](https://github.com/Danilo2334/Work_net/pull/210) y entrega conjunta [#211](https://github.com/Danilo2334/Work_net/pull/211), por francisco3788. Publicador, autor y committer contrastados por separado; GitHub/web-flow realiza los commits de fusión. Protecciones efectivas respetadas, sin bypass ni cambios.
+
+El resultado de main y los cierres se registra en los seguimientos únicos después de contrastar SHA remoto y árbol completo, criterios originales, closed/completed, Done y cada contador4/4 — 100 % por separado. El contador no sustituye los criterios ni las evidencias. HU027 conserva su cancelación not_planned, fuera de alcance.
+
+![Runner HU024 — ejecutar una iteración en otra base nueva](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/00-resumen-desktop.jpg)
+
+**Caso Runner HU024.** **Esperado:** ejecutar una iteración en otra base nueva. **Obtenido:** 34 peticiones y 50 PASS, cero fallos, errores u omitidas. **Alcance demostrado:** Postman Desktop 12.35.5 auténtico; abrir respuestas para capturar no vuelve a enviarlas.
+
+![HU024-V01 — consultar el total propio y sus estados](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/HU024-V01-conteos-y-estados-candidato.png)
+
+**Caso HU024-V01.** **Esperado:** consultar el total propio y sus estados. **Obtenido:** 13 postulaciones, con 6 enviadas,3 en revisión,2 aceptadas y 2 rechazadas. **Alcance demostrado:** UI candidata con conteos reales contrastados por SQL; los estados iniciales son fixtures históricas.
+
+![HU024-V04 — mostrar las métricas empresariales completas](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/HU024-V04-totales-empresa-primera-pagina.png)
+
+**Caso HU024-V04.** **Esperado:** mostrar las métricas empresariales completas. **Obtenido:** 26 postulaciones y 11 activas; desglose18/4/2/2. **Alcance demostrado:** ocurre después de V02: la transición ya cambió los estados; el total incluye las dos páginas y ofertas inactivas.
+
+![HU024-P03 — conservar totales al consultar la segunda página](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/03-segunda-pagina-total-conservado.jpg)
+
+**Caso HU024-P03.** **Esperado:** conservar totales al consultar la segunda página. **Obtenido:** HTTP200, total 26, activas11 y página 2 de2; dos PASS. **Alcance demostrado:** metadatos y resumen visibles. La aserción pública también contrasta ausencia de repetidos y 14 postulaciones de oferta 3; esa fila no aparece en el encuadre.
+
+![HU024-V06 / retorno — refrescar estadísticas tras volver de postulantes paginados](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/HU024-V06-retorno-empresa-tras-alta-real.png)
+
+**Caso HU024-V06 / retorno.** **Esperado:** refrescar estadísticas tras volver de postulantes paginados. **Obtenido:** 27 postulaciones,11 activas y estados19/4/2/2. **Alcance demostrado:** actor candidato API crea una postulación; el retorno real tras replace vuelve a consultar. La página 2 se contrasta en red/SQL; su pie no aparece en esta imagen.
+
+![HU024-V06 / postulantes — contrastar las coincidencias de una oferta inactiva](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/HU024-V06-postulantes-paginados-retorno-contextual.png)
+
+**Caso HU024-V06 / postulantes.** **Esperado:** contrastar las coincidencias de una oferta inactiva. **Obtenido:** Oferta CV subido QA,14 postulantes y oferta no activa. **Alcance demostrado:** vista existente de postulantes, abierta desde estadísticas; acredita el conjunto autorizado, no una tarjeta14 visible en el panel estadístico.
+
+![HU024-V07 / dashboard — mantener coherencia al volver después de una alta y un cierre](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/HU024-V07-dashboard-actualizado-al-volver.png)
+
+**Caso HU024-V07 / dashboard.** **Esperado:** mantener coherencia al volver después de una alta y un cierre. **Obtenido:** dashboard actualizado con 10 activas,3 cerradas y 27 postulaciones. **Alcance demostrado:** métricas reales contrastadas con estadísticas y SQL; incluye postulaciones recientes y conserva datos anteriores.
+
+![HU024-V09 — conservar métricas completas en móvil al paginar](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/frontend/docs/evidencias/hu024-20261108/HU024-V09-empresa-movil-segunda-pagina.png)
+
+**Caso HU024-V09.** **Esperado:** conservar métricas completas en móvil al paginar. **Obtenido:** 27 postulaciones,10 activas y los cuatro estados visibles. **Alcance demostrado:** 390×844 emulado; la captura muestra el resumen, no el pie Página2. La respuesta/red/SQL verifican la página consultada.
+
+![HU024-P21 — exigir aprobación empresarial](https://raw.githubusercontent.com/Danilo2334/Work_net/9d0bbb447f99d251ff0fe1e3a5576931e9262164/backend/docs/evidencias/hu024-20261108/09-empresa-pendiente-rechazada-por-permiso.jpg)
+
+**Caso HU024-P21.** **Esperado:** exigir aprobación empresarial. **Obtenido:** HTTP403 y Test Result PASS. **Alcance demostrado:** la cuenta ficticia está pendiente en esta corrida; se rechaza la consulta, no se ejecuta una decisión de rechazo de cuenta.
+
+**Seguimientos únicos**
+
+[#124](https://github.com/Danilo2334/Work_net/issues/124#issuecomment-6731890135) · [#125](https://github.com/Danilo2334/Work_net/issues/125#issuecomment-6731890376) · [#126](https://github.com/Danilo2334/Work_net/issues/126#issuecomment-6731890587) · [#127](https://github.com/Danilo2334/Work_net/issues/127#issuecomment-6731890798) · [#51](https://github.com/Danilo2334/Work_net/issues/51#issuecomment-6260291090) · [#53](https://github.com/Danilo2334/Work_net/issues/53#issuecomment-6260291383) · [#54](https://github.com/Danilo2334/Work_net/issues/54#issuecomment-6260276785)
+
+**Reproducción**
+
+En checkouts aislados con dependencias fijadas: `python manage.py test`, `python manage.py check`, `python manage.py makemigrations --check --dry-run`; en frontend `flutter test` y `flutter analyze`. Navegador: `python frontend/tool/browser_qa/run.py --suite hu024 --frontend-ref REFERENCIA_PUBLICADA --backend-ref REFERENCIA_DJANGO`; crea venv, compilación y base nuevos. Desktop: `python frontend/tool/browser_qa/hu024_api.py prepare --port PUERTO_LIBRE`, `python backend/postman/qa.py serve --run RUN_NUEVO`; importar sus dos archivos import-hu024 y ejecutar una sola iteración conservando respuestas. Contrastar con `python frontend/tool/browser_qa/hu024_api.py contrast --run RUN_NUEVO`. No reutilizar bases consumidas ni publicar entornos, bases o correo.
+
+<details>
+<summary>Antecedentes conservados</summary>
+
+Las dos corridas incompletas del ejecutor, las bases anteriores y los seguimientos históricos de HU006 se conservan separados. Los eventos iniciales son fixtures; los nuevos actores API están identificados. HU007 permanece pendiente de HU026, HU025 continúa por implementar y HU027 está cancelada/not_planned, fuera del alcance HU001–HU026.
+
+</details>
+
+<!-- hu024-vigente-fin -->
 
 <!-- hu023-vigente-inicio -->
 ## HU023 — Sistema de notificaciones — 08/11/2026
