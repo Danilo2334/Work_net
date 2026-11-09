@@ -81,7 +81,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,click:baseClick,waitText:ba
     await as('other','/dashboard');const b=await centre();assert.equal(b.count,0);await text('No hay notificaciones para este filtro.');await capture('historial-vacio-otro-usuario');
   });
   await run('HU023-V16',async()=>{
-    fault('GET','notifications/','http',503,{message:'Fallo temporal QA identificado'});await click('Actualizar notificaciones');await text('Fallo temporal QA identificado');await capture('error-inyectado-identificado');faults.delete('GET /api/notifications/');const p=response('GET','notifications/');await click('Reintentar');assert.equal((await p).status(),200);await text('No hay notificaciones para este filtro.');await capture('reintento-real');
+    fault('GET','notifications/','http',503,{message:'Fallo temporal QA identificado'});await click('Actualizar notificaciones');await text('El servicio no está disponible. Inténtalo de nuevo más tarde.');await capture('error-inyectado-identificado');faults.delete('GET /api/notifications/');const p=response('GET','notifications/');await click('Reintentar');assert.equal((await p).status(),200);await text('No hay notificaciones para este filtro.');await capture('reintento-real');
   });
   await run('HU023-V17',async()=>{
     assert.equal(actor('revoke_other').revoked,true);const p=response('GET','notifications/');await click('Actualizar notificaciones');assert.equal((await p).status(),401);await page.waitForURL(cfg.web_origin+'/login');await text('Tu sesión ya no es válida.');await capture('sesion-revocada-sin-datos');
