@@ -14,6 +14,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / ".env")
 
+# HU028: server-only provider configuration. An absent key keeps manual CV use available.
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "")
+CURRICULUM_AI_RATE = os.environ.get("CURRICULUM_AI_RATE", "5/hour")
+
 
 SECRET_KEY = (
     'django-insecure-a$pveik%z27c60@5xaa32(iw)'
