@@ -50,7 +50,7 @@ def collection(run, port):
         text += "await new Promise(r=>setTimeout(r,1200));const remainder=Date.now()%30000;if(remainder>15000){await new Promise(r=>setTimeout(r,30000-remainder+150));}const step=Math.floor(Date.now()/30000);let code=await hu026Totp(secret,step);\n"
         if invalid:
             text += "const valid=new Set(await Promise.all([step-1,step,step+1].map(t=>hu026Totp(secret,t))));let n=0;while(valid.has(String(n).padStart(6,'0')))n++;code=String(n).padStart(6,'0');\n"
-        text += "pm.variables.set(actor+'_current_code',code);pm.variables.set(actor+'_sent_step',step);"
+        text += "pm.variables.set(actor+'_current_code',code);pm.variables.set(actor+'_sent_step',step);const resolved=pm.variables.replaceIn('{{'+actor+'_current_code}}');if(typeof code!=='string'||!/^\\d{6}$/.test(code)||resolved!==code){pm.execution.skipRequest();throw Error('QA_OTP_NOT_READY');}"
         return text
     def verify(actor, invalid=False):
         if invalid:
@@ -135,7 +135,7 @@ def collection(run, port):
     add('Sesión cerrada no accede','admin/accounts/',401,actor='principal')
     guard = [f"if(pm.environment.get('base_url')!=='http://127.0.0.1:{port}/api'||pm.environment.get('qa_run_id')!=={json.dumps(run.name)}||pm.environment.get('qa_confirmation')!=='SOLO_BASE_AISLADA'){{pm.execution.skipRequest();throw Error('QA_ISOLATION_REQUIRED');}}",
         "if(pm.info.iteration>0){pm.execution.skipRequest();throw Error('ONE_ITERATION_ONLY');}",
-        f"if(pm.info.requestName==={json.dumps(items[0]['name'],ensure_ascii=False)}){{if(pm.collectionVariables.get('qa_consumed')){{pm.execution.skipRequest();throw Error('BASE_ALREADY_CONSUMED');}}pm.collectionVariables.set('qa_consumed',{json.dumps(run.name)});}}else if(pm.variables.get('hu026_identity')!=={json.dumps(run.name)}){{pm.execution.skipRequest();throw Error('SERVER_IDENTITY_REQUIRED');}}"]
+        f"if(pm.info.requestName==={json.dumps(items[0]['name'],ensure_ascii=False)}){{if(pm.collectionVariables.get('qa_consumed')){{pm.execution.skipRequest();throw Error('BASE_ALREADY_CONSUMED');}}pm.collectionVariables.set('qa_consumed',{json.dumps(run.name)});for(const role of ['principal','reviewer','manager']){{pm.variables.set(role+'_current_code','QA_PENDING');pm.variables.set(role+'_sent_step',-1);}}}}else if(pm.variables.get('hu026_identity')!=={json.dumps(run.name)}){{pm.execution.skipRequest();throw Error('SERVER_IDENTITY_REQUIRED');}}"]
     return {'info':{'_postman_id':str(uuid.uuid4()),'name':'HU026 · Administradores y 2FA QA · '+run.name,'schema':'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'},
         'event':[{'listen':'prerequest','script':{'type':'text/javascript','exec':guard}}], 'item':items}
 

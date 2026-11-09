@@ -99,7 +99,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write,click,waitText,login,
   });
   await run('HU026-V14',async()=>{
     const p=response('GET','admin/events/');await click('Eventos administrativos');assert.equal((await p).status(),200);await text('Autenticador configurado');await capture('eventos-altas-y-doble-factor');
-    await click('Volver a administración');await text('Administración');assert.equal(await page.getByRole('button',{name:'Crear administrador',exact:true}).count(),0);
+    await click('Volver a administración');await text('Administración');const listing=await goList();assert.equal(listing.can_create,false);assert.equal(await page.getByRole('button',{name:'Crear administrador',exact:true}).count(),0);await capture('cuenta-gestora-sin-alta-reservada-al-principal');await click('Volver a administración');await text('Administración');
   });
   await run('HU026-V15',async()=>{
     await logout();await passwordStep('created',{enrollment:false});await click('Perdí mi autenticador');privacy(true);await write('Código de recuperación privado',backups.get('created'));
