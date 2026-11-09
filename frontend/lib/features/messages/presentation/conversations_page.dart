@@ -122,11 +122,17 @@ class _ConversationsPageState extends State<ConversationsPage> {
     onRetry: _load,
     actions: [
       TextButton(
-        onPressed: () => context.go(
-          widget.session.session?.role == 'empresa'
-              ? '/company-dashboard'
-              : '/dashboard',
-        ),
+        onPressed: () {
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.go(
+              widget.session.session?.role == 'empresa'
+                  ? '/company-dashboard'
+                  : '/dashboard',
+            );
+          }
+        },
         child: const Text('Volver al dashboard'),
       ),
       TextButton(
