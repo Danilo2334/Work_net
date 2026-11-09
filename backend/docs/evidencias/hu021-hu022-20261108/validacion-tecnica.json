@@ -1,0 +1,81 @@
+{
+  "date_utc": "2026-11-09T00:55:53.338253+00:00",
+  "backend_sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+  "flutter_functional_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+  "qa_selector_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+  "Django": {
+    "passed": 236,
+    "new": 24,
+    "scope": "suite completa, API/permisos/concurrencia/migraciones y regresiones; Danilo2334"
+  },
+  "Flutter": {
+    "passed": 177,
+    "new": 19,
+    "scope": "suite completa unidad/widgets, adaptadores/recuperación/lectura/rutas y regresiones; francisco3788"
+  },
+  "guards": {
+    "python_passed": 20,
+    "node_passed": 6,
+    "scope": "orígenes/bases exclusivas y consultas permitidas en capturas"
+  },
+  "checks": {
+    "django": "no issues",
+    "makemigrations_check": "no changes",
+    "flutter_analyze": "no issues"
+  },
+  "review": {
+    "type": "revisión técnica delegada del agente autorizada por el titular; sin aprobación humana",
+    "backend_fixes": [
+      "bloqueo NO KEY para claves foráneas concurrentes",
+      "eventos inmutables sin vía upsert",
+      "comentario string estricto"
+    ],
+    "flutter_fixes": [
+      "lectura limitada a ruta visible y generación presentada",
+      "ACK anterior no consume ventana nueva",
+      "refresco del detalle completo ante conflicto409",
+      "mounted explícito después de esperas",
+      "Volver al dashboard completa push con pop y actualiza pendientes; fallback de acceso directo por rol. Regresión real falla antes y pasa después."
+    ],
+    "qa_fixes": [
+      "revelar controles y textos por desplazamiento",
+      "JSON HTTP renderizado en actores APIClient",
+      "selector multilinea de mensaje conservando coincidencia única"
+    ]
+  },
+  "browser_acceptance": {
+    "run": "browser-qa-20261109T004701-ddb4f801",
+    "passed": 34,
+    "original_png": 78,
+    "source_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+    "result": "aprobado",
+    "persistence": "7 eventos/avisos, 1 conversación, 10 mensajes y 1 postulación nuevos; 0 duplicados; registros/PDF previos conservados"
+  },
+  "postman_desktop_acceptance": {
+    "run": "run-20261108T232223-937f2bc5",
+    "version": "12.35.5",
+    "requests": 101,
+    "passed": 154,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "iterations": 1,
+    "original_jpeg": 15,
+    "result": "aprobado",
+    "persistence": "4 eventos/avisos,1conversación,6mensajes nuevos;0postulaciones y0duplicados; registros/PDF previos conservados",
+    "provenance": "Resumen transcrito de Runner y aserciones de la colección pública; no exportación cruda de todas las respuestas."
+  },
+  "limits": [
+    "Windows/SQLite local; PostgreSQL no ejecutado",
+    "Móvil web emulado390x844; no dispositivo físico",
+    "Mediciones básicas de lectura, sin prueba de carga"
+  ],
+  "browser_supplement": {
+    "run": "browser-qa-20261109T004711-f3db255c",
+    "passed": 5,
+    "original_png": 7,
+    "source_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+    "result": "aprobado",
+    "scope": "Otra QA nueva, no sumada a34/34. Actor API envía1mensaje; UI consulta/lee/vuelve y contador1a0. Sin nuevos eventos, conversaciones ni postulaciones; datos previos conservados."
+  }
+}

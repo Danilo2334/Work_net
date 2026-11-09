@@ -1,0 +1,112 @@
+{
+  "date_utc": "2026-11-08T23:35:59.868293+00:00",
+  "source_backend": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+  "run": "run-20261108T232223-937f2bc5",
+  "actor": "APIClient de empresa ficticia; lecturas independientes de Postman Desktop",
+  "environment": "Windows / SQLite local",
+  "versions": {
+    "python": "3.12.10",
+    "Django": "6.1.1",
+    "djangorestframework": "3.18.3"
+  },
+  "dataset": {
+    "offers": 18,
+    "applications": 27,
+    "conversations": 14,
+    "messages": 23
+  },
+  "migration_plan_pending": 0,
+  "schema": [
+    "candidate_dashboard.0007",
+    "candidate_dashboard.0008"
+  ],
+  "before_after_counts_equal": true,
+  "measurements": {
+    "company/applications/3/status/": {
+      "reads": 10,
+      "milliseconds": [
+        1091.124,
+        11.809,
+        11.703,
+        9.294,
+        9.992,
+        9.381,
+        10.202,
+        10.333,
+        10.845,
+        10.279
+      ],
+      "median_ms": 10.306000000000001,
+      "sql_queries": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "conversations/?page_size=10": {
+      "reads": 10,
+      "milliseconds": [
+        25.288,
+        17.036,
+        20.393,
+        18.312,
+        17.956,
+        17.491,
+        16.449,
+        15.687,
+        14.508,
+        14.095
+      ],
+      "median_ms": 17.2635,
+      "sql_queries": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "conversations/4/messages/?page_size=10": {
+      "reads": 10,
+      "milliseconds": [
+        14.627,
+        9.88,
+        13.609,
+        16.981,
+        16.76,
+        24.264,
+        17.036,
+        17.303,
+        17.646,
+        18.234
+      ],
+      "median_ms": 17.0085,
+      "sql_queries": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    }
+  },
+  "scope": "Rendimiento básico local de lecturas; no carga, PostgreSQL ni extrapolación productiva.",
+  "related_desktop_server_checkout_at_start": "151ad4e3c27f9584ae25cd7a4ec6d3c3fc2117d2"
+}
