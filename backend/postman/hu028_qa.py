@@ -58,21 +58,23 @@ def main():
         with socket.socket() as probe:
             probe.bind(("127.0.0.1", port))
     repo = Path(__file__).resolve().parents[2]
+    source_sha = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
     common = Path(subprocess.check_output(["git", "-C", str(repo), "rev-parse", "--path-format=absolute", "--git-common-dir"], text=True).strip())
     run = common / "hu028-qa" / (datetime.now(timezone.utc).strftime("run-%Y%m%dT%H%M%SZ-") + secrets.token_hex(4))
     run.mkdir(parents=True, exist_ok=False, mode=0o700)
     (run / "mode.json").write_text('{"mode":"unconfigured"}')
     sys.path.insert(0, str(repo / "backend"))
+    private_configuration = {}
     if args.private_env:
         from dotenv import dotenv_values
         private_values = dotenv_values(args.private_env.resolve(strict=True))
         for name in ["GEMINI_API_KEY", "GEMINI_MODEL"]:
             if private_values.get(name):
-                os.environ[name] = private_values[name]
+                private_configuration[name] = private_values[name]
     os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings"
     from django.conf import settings
-    real_key = getattr(settings, "GEMINI_API_KEY", "")
-    real_model = getattr(settings, "GEMINI_MODEL", "")
+    real_key = private_configuration.get("GEMINI_API_KEY") or getattr(settings, "GEMINI_API_KEY", "")
+    real_model = private_configuration.get("GEMINI_MODEL") or getattr(settings, "GEMINI_MODEL", "")
     if args.provider_real and (not real_key or not real_model):
         raise RuntimeError("Configure the authorized server key and model privately before provider-real QA.")
     settings.DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": str(run / "qa.sqlite3")}}
@@ -115,7 +117,7 @@ def main():
     (run / "private.json").chmod(0o600)
     (run / "private.postman_environment.json").chmod(0o600)
     marker = "hu028-isolated-real" if args.provider_real else "hu028-isolated-double"
-    (run / "marker.json").write_text(json.dumps({"suite": "hu028", "provider": marker, "database": "qa.sqlite3"}))
+    (run / "marker.json").write_text(json.dumps({"suite": "hu028", "provider": marker, "database": "qa.sqlite3", "source_sha": source_sha, "pid": os.getpid()}))
     last_source = {}
 
     def provider_double(source):
@@ -150,6 +152,16 @@ def main():
                 return value, model
             except assistant.AssistantFailure as error:
                 record.update(returned_json=False, http_status=error.status_code, error_code=error.get_codes())
+                upstream = error.__context__
+                if isinstance(upstream, HTTPError):
+                    record["upstream_http"] = upstream.code
+                    try:
+                        detail = json.loads(upstream.read(65536)).get("error", {})
+                        diagnostic = {"http_status": upstream.code, "status": detail.get("status"),
+                                      "message": str(detail.get("message", "")).replace(real_key, "[redacted]")}
+                        (run / "provider-error.private.json").write_text(json.dumps(diagnostic, indent=2), encoding="utf-8")
+                    except (ValueError, AttributeError):
+                        pass
                 raise
             finally:
                 record["elapsed_ms"] = round((time.perf_counter() - started) * 1000, 2)
@@ -243,7 +255,7 @@ def main():
             request("A14 otro candidato no lee PDF", "curriculum/generated/pdf/", token="other", expected=404)
         report = {"date_utc": datetime.now(timezone.utc).isoformat(), "run": run.name,
                   "platform": platform.system() + " / SQLite / loopback", "python": platform.python_version(), "django": django.get_version(),
-                  "source_sha": subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip(),
+                  "source_sha": source_sha,
                   "provider_real_tested": args.provider_real and not args.prepare_only, "provider_double": None if args.provider_real else "controlled test fixture; not Gemini",
                   "requests_checked": len(results), "cases": results,
                   "pending": ["Postman Desktop evidence"] if args.provider_real else ["authorized provider key and model", "real provider acceptance", "Postman Desktop evidence"]}
