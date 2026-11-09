@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import CandidateDashboardView
+from .statistics import CandidateStatisticsView, CompanyStatisticsView
 from .notifications import NotificationsView, NotificationReadView, NotificationSummaryView, NotificationPreferencesView
 from .profile import ProfileView, ProfileRecordsView, ProfileRecordView, ProfilePhotoView
 from .selection import ApplicationProfileView, ApplicationProfilePhotoView
@@ -14,6 +15,8 @@ from .applications import (OfferApplicationView, ApplicationsView, OwnApplicatio
                            OwnApplicationPdfView, CompanyApplicationView, CompanyApplicationPdfView)
 
 urlpatterns = [
+    path("statistics/candidate/", CandidateStatisticsView.as_view(), name="candidate-statistics"),
+    path("statistics/company/", CompanyStatisticsView.as_view(), name="company-statistics"),
     path("notifications/", NotificationsView.as_view(), name="notifications"),
     path("notifications/summary/", NotificationSummaryView.as_view(), name="notification-summary"),
     path("notifications/read/", NotificationReadView.as_view(), name="notification-read"),
