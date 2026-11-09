@@ -1,0 +1,338 @@
+{
+  "date": "2026-11-09",
+  "scope": "Branch cleanup and preparation only; no functional changes or deployment",
+  "source_main": "7b4da72c685c7fe82f5ff84883a61238347bc59d",
+  "permanent_branches": {
+    "main": "Stable integrated delivery, base for future deployment",
+    "frontend": "Flutter work and joint integration",
+    "develop": "Consolidated Django backend"
+  },
+  "default_branch": "main",
+  "remote_before": [
+    {
+      "name": "codex/revision-final-api-20261109",
+      "sha": "daef910366bacb8563b1bb7f694cd40d91891903",
+      "in_main": true
+    },
+    {
+      "name": "codex/revision-final-entrega-20261109",
+      "sha": "d8947f66c8f4ae2f9832f1403b68146161c1d5f4",
+      "in_main": true
+    },
+    {
+      "name": "develop",
+      "sha": "52430cfcb5e2c5fc33c58def61d8b9e9b85114a3",
+      "in_main": true
+    },
+    {
+      "name": "feature/backend-sprint-3",
+      "sha": "642802fe9ed2db5849ce636a5ec7faba3327c033",
+      "in_main": true
+    },
+    {
+      "name": "feature/hu008-selection-profile",
+      "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+      "in_main": false
+    },
+    {
+      "name": "frontend",
+      "sha": "d53bf67206774fd63deae1eb2a0c33aa091aa7a3",
+      "in_main": true
+    },
+    {
+      "name": "main",
+      "sha": "7b4da72c685c7fe82f5ff84883a61238347bc59d",
+      "in_main": true
+    }
+  ],
+  "remote_retired": [
+    {
+      "name": "codex/revision-final-api-20261109",
+      "sha": "daef910366bacb8563b1bb7f694cd40d91891903"
+    },
+    {
+      "name": "codex/revision-final-entrega-20261109",
+      "sha": "d8947f66c8f4ae2f9832f1403b68146161c1d5f4"
+    },
+    {
+      "name": "feature/backend-sprint-3",
+      "sha": "642802fe9ed2db5849ce636a5ec7faba3327c033"
+    },
+    {
+      "name": "feature/hu008-selection-profile",
+      "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93"
+    }
+  ],
+  "remote_observed_after_construction_cleanup": {
+    "develop": "52430cfcb5e2c5fc33c58def61d8b9e9b85114a3",
+    "frontend": "d53bf67206774fd63deae1eb2a0c33aa091aa7a3",
+    "main": "7b4da72c685c7fe82f5ff84883a61238347bc59d"
+  },
+  "local_construction_refs_retired": [
+    {
+      "name": "codex/alcance-hu001-hu026",
+      "sha": "bd823e6be5593b510c553068fb1eca2b7f5f7dc1",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu016-api",
+      "sha": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu016-busqueda",
+      "sha": "d3961bde190076c25e78f17902e2d563341b0966",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu016-entrega",
+      "sha": "e11508f7f559a5180235820659c5c21a833258f9",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu017-api",
+      "sha": "742e60077bd018f7e88d141201c3c218eeefa075",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu017-entrega",
+      "sha": "13f5a838b3f15926b0b1e1ec7625be4008fdae25",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu017-favoritos",
+      "sha": "a27b6b550ab7ad3b89b8271f825e186941d9bd75",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu018-api",
+      "sha": "5d7c6f2535708d43bc88f7365d8d54886958b0c8",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu018-entrega",
+      "sha": "206edaaaed5fb10d7105310e280c7e266d7bef7c",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu018-postulacion",
+      "sha": "15c480432526980adb4e9560a01c00773c2cff20",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu019-hu020-api",
+      "sha": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu019-hu020-entrega",
+      "sha": "aae1e7ae59ba3b8a44785ca5ed39f6789c423b42",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu019-hu020-flutter",
+      "sha": "4cd15eec2d0a8be0708f9abb86a1d07e37d28f0e",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu021-hu022-api",
+      "sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu021-hu022-entrega",
+      "sha": "3a727440e4ee822a7901f5e753b75353111520c1",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu021-hu022-flutter",
+      "sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu023-notifications-api",
+      "sha": "5e1b6cbd23e49175d1d74b99ab4c9aa6110e281d",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu023-notifications-entrega",
+      "sha": "eb5c9b1a9be2d93b1e995498b8637e29986345ef",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu023-notifications-flutter",
+      "sha": "77693bc5358dc433d4c8d80481d7062f93973d22",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu024-statistics-api",
+      "sha": "ff3982697211bde837f5b9b2e9475ce1ccff8fdc",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu024-statistics-entrega",
+      "sha": "9b20c9de85599c8c2a3a72de2baa4d78b18e8180",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu024-statistics-flutter",
+      "sha": "3070f79ba4c32a3ba1bc6226aa802239ab23ded0",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu025-export-api",
+      "sha": "234ed32a34abee4bd144f37331439b2806c1fb05",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu025-export-entrega",
+      "sha": "4ba951af9f82fc27a44c463aed0f496d3c18dddf",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu025-export-flutter",
+      "sha": "ae6ce8423a53891efc805f973ba1d097967d20d1",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu026-admin-api",
+      "sha": "4bfffaca80a2a0bd3e420f1281a3bf9c405b8a63",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu026-admin-entrega",
+      "sha": "d510fd85996df0ecb881830b9f16862a521aef0a",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu026-admin-flutter",
+      "sha": "b4e139f7319c3cec8f771fdaae1e9c860402eca3",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu027-preparacion-linkedin",
+      "sha": "c1ff76f14b8036178f64ce31c5d2a468b9a797cf",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu028-curriculum-ai-api",
+      "sha": "6c76159ecdc90183cc12f3da43fcf10ccf6d0500",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu028-curriculum-ai-integracion",
+      "sha": "911bb2bb1f84196c0f0b89df0894228095008250",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/hu028-curriculum-ai-ui",
+      "sha": "86ccf20427d1d34cbd2de2eedecbb62241414715",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/revision-final-api-20261109",
+      "sha": "daef910366bacb8563b1bb7f694cd40d91891903",
+      "contained_in_main": true
+    },
+    {
+      "name": "codex/revision-final-entrega-20261109",
+      "sha": "d8947f66c8f4ae2f9832f1403b68146161c1d5f4",
+      "contained_in_main": true
+    },
+    {
+      "name": "docs/normalizacion-hu015",
+      "sha": "ea33193734f699f8d23422d0e545308dc024370a",
+      "contained_in_main": true
+    },
+    {
+      "name": "feature/backend-sprint-2",
+      "sha": "5d3b10abc9d17d20b335572dc4910083f2212c9f",
+      "contained_in_main": true
+    },
+    {
+      "name": "feature/backend-sprint-3",
+      "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+      "contained_in_main": true
+    },
+    {
+      "name": "feature/hu008-selection-profile",
+      "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+      "contained_in_main": false
+    },
+    {
+      "name": "feature/hu014-api",
+      "sha": "344606382c98274edb701627108ed4700430c236",
+      "contained_in_main": true
+    },
+    {
+      "name": "feature/hu014-edicion",
+      "sha": "3f61292b3d23658ef1b016ae82bc98f4b36d4820",
+      "contained_in_main": true
+    },
+    {
+      "name": "feature/hu015-cierre",
+      "sha": "abc496d8d6f3405fa0f3dd42334d091048717a57",
+      "contained_in_main": true
+    },
+    {
+      "name": "feature/hu015-estados",
+      "sha": "79d45e30422f0973a86e53e34919f071895c1499",
+      "contained_in_main": true
+    },
+    {
+      "name": "integracion/hu014-entrega",
+      "sha": "c9c6cc0816a3e115e25a06ad0dee81736a57dad5",
+      "contained_in_main": true
+    },
+    {
+      "name": "integracion/hu015-entrega",
+      "sha": "e81a0bdf6c511458731ea16d29269685effc600f",
+      "contained_in_main": true
+    },
+    {
+      "name": "qa/integracion-hu013-20261107",
+      "sha": "b0b0d6a22f8ae3e37ca6017af3713f00a1a868e3",
+      "contained_in_main": true
+    },
+    {
+      "name": "qa/retoma-combinacion-20261107",
+      "sha": "33ec3fcedaa3768afd17529949e01bdd1cc39732",
+      "contained_in_main": false
+    }
+  ],
+  "archived_exclusive_heads": [
+    {
+      "tag": "archivo/20261109/hu008-evidencias",
+      "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+      "remote": true
+    },
+    {
+      "tag": "archivo/local-20261109/retoma-combinacion-hu013",
+      "sha": "33ec3fcedaa3768afd17529949e01bdd1cc39732",
+      "remote": false
+    }
+  ],
+  "preservation": {
+    "original_worktrees": 49,
+    "heads_and_file_state_preserved": true,
+    "dirty_worktrees_preserved": 3,
+    "private_env_and_sqlite_files_hash_checked": 10,
+    "private_values_published": false,
+    "verified_local_git_bundle": true,
+    "local_bundle_published": false,
+    "original_commits_authors_and_committers_unchanged": true,
+    "historic_tags_preserved": true
+  },
+  "concurrency_protection": "Remote atomic deletion with expected SHA leases; local ref deletion checks exact old SHA",
+  "documentation_flow": "A temporary documentation branch is used for review into frontend then main and removed at completion; final target is exactly3local and3remote branches.",
+  "final_workspace": "A clean main checkout is prepared as Work_net_main; construction checkouts retain their exact commit and data in detached state.",
+  "validation": "Metadata, ancestry, ref hashes, clean status and private-file hashes; functional regression not rerun for documentation/ref-only cleanup.",
+  "functional_baseline": {
+    "django": 301,
+    "flutter": 237,
+    "concurrency_rounds": 40,
+    "new_execution": false
+  },
+  "hu027": "Open/Backlog for future version; unchanged",
+  "deployment": "Pending; no resources/services/billing activated"
+}
