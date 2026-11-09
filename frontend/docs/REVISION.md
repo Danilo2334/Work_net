@@ -1,5 +1,144 @@
 # Guía para revisar WorkNet
 
+<!-- hu021-hu022-vigente-inicio -->
+## HU021 — Cambio de estado / HU022 — Mensajería — 08/11/2026
+
+**Qué se hizo**
+
+La empresa propietaria puede revisar, aceptar o rechazar una postulación con confirmación y comentario opcional. El candidato recibe un aviso interno real y consulta el nuevo estado en su historial. Cada cambio conserva fecha original, relaciones y CV enviado. Mensajes conecta ambas partes de una postulación real con búsqueda, páginas, contacto, fechas, pendientes y recuperación de envíos sin duplicarlos.
+
+| Criterio original HU021 | Comprobación vigente |
+|---|---|
+| En revisión | UI V03/V04 y Desktop P04; versión y fecha reales |
+| Aceptada | UI V05 y P11; comentario ausente permitido |
+| Rechazada | UI V06/V12 y P15; comentario presente |
+| Comentario opcional | V03/V05/V06, P04/P11/P15 y validaciones |
+| Confirmar antes de guardar | V02 cancelar sin persistir y V03 confirmar; P02/P03 |
+| Notificar automáticamente al candidato | V03 empresa → V04 aviso/detalle/historial; P08 y contraste atómico |
+| Fecha de modificación | V04/V05/V06, P04; fecha original y PDF conservados; fecha legada desconocida |
+
+| Criterio original HU022 | Comprobación vigente |
+|---|---|
+| Lista de conversaciones | V01/V11, P03; candidato12/empresa13 previas, páginas reales |
+| Búsqueda | V11 y P04/P06, por contacto/oferta/empresa, vacío y límites |
+| Contacto al seleccionar | V02/V03/V06/V07, P08, derivado de postulación autorizada |
+| Envío de texto | V03/V06/V07 y P10/P16; bidireccional real |
+| Diferencia enviados/recibidos | V06/V07/V16; alineación, color y etiquetas |
+| Fecha y hora | V06/V07/V16, P10/P16; persistidas y presentadas |
+| Pendientes de lectura | V04, P14/P18/P21, complemento C02–C04 contador1→0 al volver |
+| Usuarios autorizados | V13/V14/V17, P38–P55; 401/403/404 y revalidación actual en cada operación |
+
+**Preparación**
+
+Aceptación del **08/11/2026**, Windows. Base main `c63c8418ebd8709e0b055172fd94572ac582c063`; sin avances posteriores al comenzar. Django [03e2dd2](https://github.com/Danilo2334/Work_net/commit/03e2dd2526ced86487a495ba0e3e4c05f620125e), Flutter funcional [21cbcf5](https://github.com/Danilo2334/Work_net/commit/21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3), ejecutor navegador [21cbcf5](https://github.com/Danilo2334/Work_net/commit/21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3). Las imágenes se publicaron en `61854161b28133eef9244a13e35c9857cc90df32`: ese SHA identifica la publicación, no otra ejecución.
+
+Dos SQLite QA nuevas e independientes, usuarios ficticios, correo a archivos y credenciales privadas. Cada preparación contiene **18 ofertas, 27 postulaciones, 14 conversaciones y 23 mensajes previos leídos**; 13 postulaciones del candidato principal y 14 postulantes en la oferta 3. Las conversaciones y mensajes previos se prepararon por APIClient; los estados legados son fixtures, con fecha de transición desconocida. No se atribuyen a una acción empresarial observada.
+
+Navegador `browser-qa-20261109T004701-ddb4f801`: **34/34**, **78 PNG originales**, escritorio 1440×1000 y móvil web emulado 390×844. Cambia estados desde UI, recibe avisos, conversa entre ambas partes y realiza una postulación real adicional. Termina con 7 eventos/avisos de estado, 1 nueva conversación, 10 mensajes nuevos y 1 nueva postulación/aviso de alta; no altera las copias originales.
+
+Postman Desktop `run-20261108T232223-937f2bc5`, puerto 8100, checkout de servidor `151ad4e3c27f9584ae25cd7a4ec6d3c3fc2117d2` con backend funcional idéntico a `03e2dd2526ced86487a495ba0e3e4c05f620125e`: **101 peticiones / 154 PASS**, una iteración, cero fallos/errores/omitidas y **15 JPEG originales**. Preparador `f41541d91c6b67895dc34296bbf2bf5f8713e362`; importación local de sus dos archivos, sin abrir valores privados ni Vault. Su contraste final: 4 eventos y avisos de estado, 1 conversación y 6 mensajes nuevos; 0 postulaciones nuevas, 0 duplicados; registros anteriores y PDF intactos. Estas dos corridas son compartidas entre las ocho tareas; no se multiplican por compartir evidencias.
+
+Python 3.12.10, Django 6.1.1, DRF 3.18.3, Flutter 3.47.5, Dart 3.13.4, Playwright 1.65.0, Chromium 158.0.8127.18 y Postman Desktop 12.35.5. Windows/SQLite local; no dispositivo físico, PostgreSQL ni prueba de carga.
+
+Complemento independiente `browser-qa-20261109T004711-f3db255c` con la misma fuente final `21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3`: **5/5 y 7 PNG originales**, otra SQLite nueva, 18 ofertas/27 postulaciones/14 conversaciones/23 mensajes previos. Un actor API empresarial envía un mensaje real antes de entrar; el candidato lo consulta y vuelve por los botones del producto, con contador **1 → 0**, 12 conversaciones propias y métricas 13/6 conservadas. Sin nuevas postulaciones, eventos ni conversaciones. No se suma a 34/34 ni a sus 78 imágenes.
+
+**Pruebas, revisión y límites**
+
+236 Django (24 nuevas) y 177 Flutter (19 nuevas), todas aprobadas. 20 guards Python y 6 Node, análisis Flutter limpio, compilación JavaScript release, check Django sin incidencias y makemigrations sin cambios. Migraciones 0007/0008 aplicadas en QA, plan pendiente cero; pruebas desde esquema anterior conservan registros y unicidades. Regresiones de HU018/HU019/HU020, documentos y dashboards incluidas.
+
+Revisión técnica delegada del agente autorizada; sin aprobación humana atribuida. Se corrigieron el bloqueo de FK concurrentes, las vías de upsert de eventos, el tipo estricto del comentario, la lectura de una ruta oculta/ventana no presentada y el detalle desactualizado ante 409. El complemento detectó un contador obsoleto al volver al dashboard: se conserva la pila con pop cuando existe y se usa la ruta por rol para acceso directo. Una regresión con componentes reales falla antes y pasa después; la aceptación final se repitió íntegra en otras bases con el mismo código final. También se corrigieron desplazamientos/etiquetas del ejecutor QA y la serialización de fechas de su actor concurrente. Las corridas incompletas quedan como antecedentes y no se suman a la aceptación vigente.
+
+Los abortos de red y 503 están identificados como inyecciones. La respuesta perdida se descarta después de una escritura real y se consulta su recibo por GET; el actor concurrente y los mensajes que llegan durante lectura usan API real, con procedencia registrada. La revocación de sesión es real. Desktop comprueba repetición/recibos, sin atribuirle la pérdida de transporte inyectada por navegador. Los avisos son internos; no se añade el alcance adicional de HU023.
+
+[Resultados navegador](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/resultados.json) · [Complemento acceso y lectura](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/resultados.json) · [Manifest navegador](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/capturas-navegador.json) · [Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/resultados-desktop.json) · [Manifest Desktop](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/capturas-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/casos.postman_collection.json) · [Contraste Desktop](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/contraste-persistencia.json) · [Migraciones y rendimiento](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/migraciones-rendimiento.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/validacion-tecnica.json)
+
+**Publicación e integración**
+
+Django y sus pruebas publicados por Danilo2334; Flutter y sus pruebas, integración y aceptación por francisco3788. Cuentas, autores y committers contrastados separadamente; GitHub/web-flow es el committer automático de los merges. Backend [#189](https://github.com/Danilo2334/Work_net/pull/189) → feature/backend-sprint-3 `64335fc`, [#191](https://github.com/Danilo2334/Work_net/pull/191) → develop `3494712`; Flutter [#190](https://github.com/Danilo2334/Work_net/pull/190) → frontend `bc3382d`; backend revisado [#192](https://github.com/Danilo2334/Work_net/pull/192) → frontend `258bac8`. Corrección de navegación y aceptación [#193](https://github.com/Danilo2334/Work_net/pull/193); evidencias/guía en [#194](https://github.com/Danilo2334/Work_net/pull/194); entrega conjunta [#195](https://github.com/Danilo2334/Work_net/pull/195). El SHA final remoto, closed/completed, Done y cada contador 4/4 — 100 % se verifican por separado después de integrar main y se registran en los seguimientos únicos. No se deduce cumplimiento de un contador ni se anticipa el cierre en este registro previo a fusión.
+
+**Reglas y conservación**
+
+HU021 admite Enviada → En revisión/Aceptada/Rechazada y En revisión → Aceptada/Rechazada. Las decisiones finales no se reabren. Requiere confirmación, versión entera, UUID y comentario de texto opcional hasta 2000 caracteres. La misma intención se recupera/repite sin crear otro evento o aviso; una versión obsoleta o UUID con otro contenido produce 409. Cambio, evento, comentario, fecha y aviso son atómicos. Cancela sin persistir; no inventa fecha empresarial para los registros anteriores. Conserva alta HU018, fecha de postulación, relaciones y PDF congelado.
+
+HU022 permite a candidato y empresa activa/verificada/aprobada conversar en el contexto de una postulación propia. No acepta participantes inyectados; revalida a ambos en creación/lista/búsqueda/detalle/envío/lectura/resumen. Búsqueda literal por contacto/oferta/empresa, texto hasta 100 caracteres; orden actividad/ID descendente y page positiva y tamaño de página 1–50 (10 por defecto). Mensajes de texto 1–4000, orden cronológico dentro de ventanas estables por ID y ancla through_id. UUID por remitente/conversación recupera la misma intención; otro UUID permite texto igual. Solo se marcan IDs recibidos y presentados, conservando fecha y pendientes nuevos no consultados. Sin sesión 401, rol/aprobación 403 y contexto ajeno 404. Respuestas privadas no-store/Vary.
+
+**Rendimiento básico**
+
+Windows/SQLite local, 18 ofertas, 27 postulaciones, 14 conversaciones y 23 mensajes previos. Treinta GET APIClient previos a Desktop, diez por endpoint: medianas 10,306 ms para estados, 17,2635 ms para conversaciones y 17,0085 ms para mensajes; consultas y muestras en migraciones-rendimiento.json. Desktop registra 12.651 ms totales y 28 ms medios. No es carga ni medición PostgreSQL; los tiempos no se extrapolan a producción.
+
+![Runner HU021/HU022 — ejecutar una iteración nueva de la QA aislada](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/00-resumen-desktop.jpg)
+
+**Caso Runner HU021/HU022.** **Esperado:** ejecutar una iteración nueva de la QA aislada. **Obtenido:** 101 peticiones, 154 PASS, cero fallos, errores u omitidas. **Alcance demostrado:** resumen auténtico de Postman Desktop 12.35.5; abrir respuestas no vuelve a ejecutarlas.
+
+![HU021-P04 — guardar En revisión con comentario y fecha](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/01-estado-revision.jpg)
+
+**Caso HU021-P04.** **Esperado:** guardar En revisión con comentario y fecha. **Obtenido:** POST HTTP 200, in_review, versión 1, comentario y fecha; dos Test Results PASS. **Alcance demostrado:** transición empresarial real; conserva fecha original y copia del CV.
+
+![HU021-V04 — recibir el cambio empresarial en el dashboard candidato](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/HU021-V04-aviso-real-recibido-candidato.png)
+
+**Caso HU021-V04.** **Esperado:** recibir el cambio empresarial en el dashboard candidato. **Obtenido:** aviso En revisión con fecha y enlace a su postulación. **Alcance demostrado:** aviso originado por la acción UI anterior; los avisos genéricos previos se identifican como fixtures.
+
+![HU021-V04 / historial — actualizar el historial tras un cambio empresarial real](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/HU021-V04-historial-actualizado-cambio-empresarial.png)
+
+**Caso HU021-V04 / historial.** **Esperado:** actualizar el historial tras un cambio empresarial real. **Obtenido:** En revisión, fecha modificada y comentario en la página dos; fecha original conservada. **Alcance demostrado:** sustituye el límite histórico del actor ORM de HU019, que se conserva como antecedente.
+
+![HU021-V11 — refrescar el estado concurrente y exigir nueva revisión](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/HU021-V11-conflicto-sin-sobrescribir.png)
+
+**Caso HU021-V11.** **Esperado:** refrescar el estado concurrente y exigir nueva revisión. **Obtenido:** detalle y formulario muestran En revisión; el aviso pide confirmar de nuevo. **Alcance demostrado:** otro actor QA usa la API real antes del POST de esta vista; el 409 no sobrescribe su decisión.
+
+![HU022-V06 — distinguir enviados y recibidos con fecha](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/HU022-V06-conversacion-bidireccional-candidato.png)
+
+**Caso HU022-V06.** **Esperado:** distinguir enviados y recibidos con fecha. **Obtenido:** dos recibidos y respuesta propia a la derecha con fecha y hora. **Alcance demostrado:** sesión candidata ficticia; la respuesta se confirmó por POST real.
+
+![HU022-V16 — enviar y recibir desde móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/HU022-V16-respuesta-movil-recibida-empresa.png)
+
+**Caso HU022-V16.** **Esperado:** enviar y recibir desde móvil web. **Obtenido:** burbujas diferenciadas, fechas, lectura y respuesta móvil candidata. **Alcance demostrado:** 390×844 emulado con API real; el contacto/contexto se acredita también en el listado y GET.
+
+![HU022-P21 — conservar pendiente el mensaje llegado después de la consulta](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/backend/docs/evidencias/hu021-hu022-20261108/12-mensaje-nuevo-sigue-pendiente.jpg)
+
+**Caso HU022-P21.** **Esperado:** conservar pendiente el mensaje llegado después de la consulta. **Obtenido:** HTTP 200, marked_read 0 y unread_count 1; PASS. **Alcance demostrado:** repetir el acuse anterior no consume la llegada nueva; P22 contrasta también la fecha anterior.
+
+![HU005-C02 — mostrar acceso Mensajes y pendiente en móvil](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/HU005-C02-dashboard-movil-acceso-y-contador.png)
+
+**Caso HU005-C02.** **Esperado:** mostrar acceso Mensajes y pendiente en móvil. **Obtenido:** botón Mensajes con contador 1 visible. **Alcance demostrado:** viewport 390×844 y desplazamiento real, antes de consultar el mensaje.
+
+![HU005-C04 — actualizar el contador al volver por los botones del producto](https://raw.githubusercontent.com/Danilo2334/Work_net/61854161b28133eef9244a13e35c9857cc90df32/frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/HU005-C04-contador-dashboard-despues-de-leer.png)
+
+**Caso HU005-C04.** **Esperado:** actualizar el contador al volver por los botones del producto. **Obtenido:** contador 0 tras chat → conversaciones → dashboard. **Alcance demostrado:** regresión de navegación corregida; resumen vuelto a consultar, sin refresco manual.
+
+**Seguimientos únicos por subtarea**
+
+[#112](https://github.com/Danilo2334/Work_net/issues/112#issuecomment-6729702948) · [#113](https://github.com/Danilo2334/Work_net/issues/113#issuecomment-6729703288) · [#114](https://github.com/Danilo2334/Work_net/issues/114#issuecomment-6729703530) · [#115](https://github.com/Danilo2334/Work_net/issues/115#issuecomment-6729703738) · [#116](https://github.com/Danilo2334/Work_net/issues/116#issuecomment-6729703915) · [#117](https://github.com/Danilo2334/Work_net/issues/117#issuecomment-6729704167) · [#118](https://github.com/Danilo2334/Work_net/issues/118#issuecomment-6729704395) · [#119](https://github.com/Danilo2334/Work_net/issues/119#issuecomment-6729704599)
+
+**Dependencias y antecedentes**
+
+HU005 deja de tener Mensajes pendiente: se contrastaron los diez criterios originales, no solo el contador de subtareas. HU006 incorpora Mensajes y conserva Estadísticas HU024 pendiente; #51/#53/#54 continúan abiertas hasta su alcance completo. HU019 obtiene ahora empresa → cambio confirmado → aviso → historial actualizado; el actor ORM de su primera aceptación permanece como antecedente, sin atribuirle una acción empresarial. HU019/HU020 y HU011/HU012/HU015 conservan sus cierres salvo regresión demostrada; no se detectó ninguna. HU023 recibe eventos/lectura reutilizables, sus funciones adicionales no se iniciaron.
+
+Las tres vistas de HU020 P28/P33/P35 ya se capturaron de las respuestas históricas conservadas, sin nuevas peticiones: sección siguiente y seguimientos #109/#110/#111. Su ejecución es la del08/11/2026 14:05:14 Bogotá, Postman12.34.1, no la nueva Desktop12.35.5. Se preserva el bloqueo anterior como histórico.
+
+Las ejecuciones incompletas y la aceptación anterior de fuente7b se conservaron en sus bases originales. La revisión adicional descubrió el retorno con contador obsoleto y motivó la nueva prueba de regresión y las corridas finales de fuente21; ninguna corrida anterior se suma a la aceptación vigente. No se publican entornos, bases, secretos ni archivos de correo. Los 103 originales publicados del bloque (100 nuevos y3históricos) responden HTTP200 y tienen hash idéntico al original local.
+
+| Criterio original HU005 | Resultado comprobado |
+|---|---|
+| Completitud del perfil | 100 % en C01; dato real API |
+| Cantidad de postulaciones | 13 en C01, 14 tras postulación real en regresión principal |
+| Cantidad de guardados | 6 en C01 y al volver C04 |
+| Trabajos recomendados o recientes | Trabajos recientes visibles en C01, ofertas reales QA |
+| Notificaciones pendientes | 2 previas en C01; aviso empresarial real en HU021-V04; 9 tras secuencia principal |
+| Acceso al perfil | Tus accesos en C01/C02; regresiones de navegación y perfil |
+| Acceso al currículum | C01/C02 y regresión de documento congelado |
+| Acceso a búsqueda | C01/C02; Buscar ofertas integrado, postulación real desde él |
+| Acceso a Mensajes | C02 botón visible → C03 clic/GET200 → chat/lectura → C04 retorno con0 |
+| Acceso al historial | C01/C02 y HU021-V04 historial actualizado por cambio empresarial real |
+
+**Reproducción en otra base nueva**
+
+Con las dependencias fijadas: `python manage.py test`, `python manage.py check`, `python manage.py makemigrations --check --dry-run` en backend aislado; `flutter test` y `flutter analyze` en frontend. Aceptación: `python frontend/tool/browser_qa/run.py --suite hu021-hu022 --frontend-ref REFERENCIA_PUBLICADA --backend-ref REFERENCIA_DJANGO`. El ejecutor crea exportación/venv/base propios y compila web release. Complemento: el mismo comando con `--suite hu005-messages-access`, en otra base nueva.
+
+Desktop: `python frontend/tool/browser_qa/hu02122_api.py prepare --port PUERTO_LIBRE`, `python backend/postman/qa.py serve --run RUN_NUEVO`; importar los dos archivos de import-hu021-hu022, seleccionar solo ese entorno y ejecutar una iteración conservando respuestas. Contrastar: `python frontend/tool/browser_qa/hu02122_api.py contrast --run RUN_NUEVO`. No publicar el entorno ni reutilizar una base consumida. Los guards comprueban origen, puerto, run e iteración.
+
+<!-- hu021-hu022-vigente-fin -->
+
 <!-- hu019-hu020-vigente-inicio -->
 ## HU019 — Historial de postulaciones / HU020 — Gestión y filtrado — 08/11/2026
 
@@ -128,7 +267,28 @@ Revisión técnica delegada autorizada del agente, sin revisión personal ni apr
 
 **Procedencia y límites:** cuatro estados iniciales preparados como fixtures. En navegador, `estado_controlado_HU019` persiste `submitted → in_review → accepted → rejected` mediante ORM `save(update_fields=['status'])`; luego se verifican GET, Actualizar y regreso al historial. No hay operación empresarial para cambiar estados, comentario, fecha de modificación ni notificación de transición: ese flujo permanece en HU021. El actor QA `candidate_ficticio` modifica/elimina fuentes de CV por APIClient; las pantallas sí obtienen y renderizan las copias privadas originales. Los 503 son fallos inyectados y el reintento utiliza HTTP real; el 401 corresponde a tokens realmente revocados.
 
+**Complemento comprobado el 08/11/2026:** Postman conservaba P28/P33/P35 de `run-20261108T185525-5a36414f`. Se capturaron sus respuestas y Test Results originales, sin enviar nuevas peticiones. La ejecución sigue siendo 56 peticiones / 90 PASS; ahora hay 21 JPEG (18 originales y 3 vistas complementarias), no otra corrida. Backend `ac52411`, checkout servidor `0c8cd3f`, ejecución original 14:05:14 America/Bogota; capturas posteriores con fecha/hash en el manifiesto publicado `75f2f1afc35f207dfddfe63afd75e8eb8662a73b`. Bloqueo histórico resuelto; seguimientos #109/#110/#111 actualizados conservando IDs y autores.
+
+![HU020-P28 — consultar el registro histórico sin copia de CV](https://raw.githubusercontent.com/Danilo2334/Work_net/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/18-historico-sin-cv.jpg)
+
+**Caso HU020-P28.** **Esperado:** consultar el registro histórico sin copia de CV. **Obtenido:** HTTP 200 y cv:null, Test Results PASS. **Alcance demostrado:** ausencia honesta de documento; no se atribuye el currículum actual.
+
+![HU020-P33 — conservar metadatos del PDF subido tras borrar su fuente](https://raw.githubusercontent.com/Danilo2334/Work_net/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/19-copia-subida-conservada.jpg)
+
+**Caso HU020-P33.** **Esperado:** conservar metadatos del PDF subido tras borrar su fuente. **Obtenido:** nombre, tamaño y SHA-256 originales; HTTP 200 y PASS. **Alcance demostrado:** copia congelada de la postulación original.
+
+![HU020-P35 — conservar metadatos del PDF generado tras cambiar y borrar la fuente](https://raw.githubusercontent.com/Danilo2334/Work_net/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/20-copia-generada-conservada.jpg)
+
+**Caso HU020-P35.** **Esperado:** conservar metadatos del PDF generado tras cambiar y borrar la fuente. **Obtenido:** plantilla moderna, nombre, tamaño y SHA-256 originales; HTTP 200 y PASS. **Alcance demostrado:** procedencia original, sin regeneración desde datos actuales.
+
+[Manifiesto con procedencia y hashes](https://github.com/Danilo2334/Work_net/blob/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/capturas-complementarias.json). Publicación permanente `75f2f1afc35f207dfddfe63afd75e8eb8662a73b`, verificada por HTTP y SHA-256.
+
+<details>
+<summary>Antecedente del bloqueo nativo, ya resuelto</summary>
+
 El control nativo rechazó tres vistas adicionales de resultados con `user input was detected in this window; call get_window_state before continuing`, incluso tras refrescar, volver a seleccionar e intervención local para maximizar. Se publican solo las 18 vistas Desktop efectivamente obtenidas; P28/P33/P35 no tienen una captura nativa adicional. La colección, resultado global, contraste y navegador acreditan esos casos. No hubo otra ejecución por abrir respuestas guardadas. El indicador histórico «1 Import Failed» es de HU016, no de la corrida vigente. La colección y el entorno se importaron por separado, sin abrir valores privados ni Vault.
+
+</details>
 
 [Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/resultados-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/casos.postman_collection.json) · [Contraste Desktop](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/contraste-persistencia.json) · [Resultados navegador y actores](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/resultados.json) · [Manifest navegador](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/frontend/docs/evidencias/hu019-hu020-20261108/capturas-navegador.json) · [Manifest Desktop](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/capturas-desktop.json) · [Migraciones/rendimiento](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/migraciones-rendimiento.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/3d26c94572a0d335b726b4799f4f4b4ca46be8c9/backend/docs/evidencias/hu019-hu020-20261108/validacion-tecnica.json)
 
