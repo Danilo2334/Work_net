@@ -1,0 +1,23 @@
+{
+  "old_notice_content_dates_recipients_preserved": true,
+  "old_read_timestamps_preserved": true,
+  "new_messages_read": 0,
+  "old_notice_ids_marked_read": [
+    63
+  ],
+  "new_notices": 7,
+  "new_notice_kinds": {
+    "application_created": 1,
+    "application_status_changed": 1,
+    "message_received": 3,
+    "company_reviewed": 2
+  },
+  "old_messages_and_reads_unchanged": true,
+  "new_messages": 4,
+  "new_applications": 1,
+  "original_application_dates_relations_pdfs_preserved": true,
+  "profiles_offers_favorites_curricula_preserved": true,
+  "duplicate_notices": 0,
+  "message_intent_duplicates": 0,
+  "recipients_verified": true
+}
