@@ -147,6 +147,8 @@ def main():
                       "source_sha256": hashlib.sha256(json.dumps(source, sort_keys=True, ensure_ascii=False).encode()).hexdigest()}
             try:
                 value, model = real_generate(source)
+                (run / f"provider-result-{len(provider_calls) + 1:03d}.private.json").write_text(
+                    json.dumps({"source": source, "output": value, "requested_model": model}, ensure_ascii=False, indent=2), encoding="utf-8")
                 record["returned_json"] = True
                 record["result_sha256"] = hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
                 return value, model
