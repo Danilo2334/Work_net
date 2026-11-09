@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
 from threading import Barrier
@@ -28,7 +29,7 @@ class FavoriteFixture:
         self.authenticate(self.user)
 
     def authenticate(self, user):
-        self.client.credentials(HTTP_AUTHORIZATION=f"Token {Token.objects.get_or_create(user=user)[0].key}")
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {fixture_token(user).key}")
 
     def make_offer(self, **changes):
         return JobOffer.objects.create(**(dict(company=self.company, title="Oferta HU017 QA", company_name="Empresa ficticia QA",

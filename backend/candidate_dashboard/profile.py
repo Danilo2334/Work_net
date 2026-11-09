@@ -10,7 +10,7 @@ from django.db import transaction
 from django.http import HttpResponse
 from PIL import Image, ImageOps, UnidentifiedImageError
 from rest_framework import serializers
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated

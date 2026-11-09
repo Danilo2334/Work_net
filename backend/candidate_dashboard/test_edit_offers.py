@@ -117,7 +117,7 @@ class EditOfferTests(TestCase):
         before = self.stored()
         for role, staff, verified, state in [('candidato', False, True, 'approved'),('empresa', True, True, 'approved'),
                 ('empresa', False, False, 'approved'),('empresa', False, True, 'pending'),('empresa', False, True, 'rejected')]:
-            self.company.role,self.company.is_staff,self.company.email_verified=role,staff,verified;self.company.save()
+            self.company.role,self.company.is_staff,self.company.email_verified=role,staff,verified;self.company.save();self.authenticate(self.company)
             self.profile.state=state;self.profile.save()
             for url in (self.listing,self.url):self.assertEqual(self.client.get(url).status_code,403)
             self.assertEqual(self.client.patch(self.url, {'title':'No guardar'},format='json').status_code,403)

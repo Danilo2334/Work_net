@@ -64,6 +64,8 @@ class User(AbstractUser):
     )
 
     push_notifications = models.BooleanField(default=True)
+    # Revokes API and Django-admin grants whenever administrative authority changes.
+    admin_revision = models.PositiveIntegerField(default=0, editable=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -107,4 +109,41 @@ class CompanyReview(models.Model):
     action = models.CharField(max_length=12)
     reason = models.TextField(blank=True)
     snapshot = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class AdminAccess(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=12, default="revisor")
+    permissions = models.JSONField(default=list)
+    version = models.PositiveIntegerField(default=0)
+
+
+class AdminChallenge(models.Model):
+    import uuid
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    password_hash = models.CharField(max_length=64)
+    revision = models.PositiveIntegerField()
+    expires_at = models.DateTimeField()
+    consumed = models.BooleanField(default=False)
+    attempts = models.PositiveSmallIntegerField(default=0)
+
+
+class AdminMFASession(models.Model):
+    token = models.OneToOneField("authtoken.Token", on_delete=models.CASCADE)
+    revision = models.PositiveIntegerField()
+    password_hash = models.CharField(max_length=64)
+    expires_at = models.DateTimeField()
+
+
+class AdminRecoveryCode(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    digest = models.CharField(max_length=64)
+
+
+class AdminEvent(models.Model):
+    actor = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="admin_actions")
+    target = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="admin_changes")
+    action = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)

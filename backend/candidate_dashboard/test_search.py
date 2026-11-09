@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from datetime import timedelta
 from unittest.mock import patch
 
@@ -27,7 +28,7 @@ class SearchOffersTests(TestCase):
         self.third = self.offer(title="Soporte", description="Python Django", salary=None)
 
     def authenticate(self, user):
-        self.client.credentials(HTTP_AUTHORIZATION=f"Token {Token.objects.get_or_create(user=user)[0].key}")
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {fixture_token(user).key}")
 
     def offer(self, **changes):
         return JobOffer.objects.create(**{
