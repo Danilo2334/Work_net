@@ -81,6 +81,16 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu023_'):
+        require(config.get('suite') == 'hu023')
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('hu023_qa', root / 'source/frontend/tool/browser_qa/hu023_api.py')
+        module = importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        if action == 'hu023_prepare':return module.fixtures(run)
+        if action == 'hu023_seed':return module.seed(run)
+        if action == 'hu023_snapshot':return module.contrast(run)
+        require(action.removeprefix('hu023_') in ('application','status','message','message_repeat','message_later','message_suppressed','message_suppressed_repeat','message_after_enable','approve','reject','revoke_other'))
+        return module.action(run,action.removeprefix('hu023_'))
     if action.startswith('hu02122_'):
         require(config.get('suite') in ('hu021-hu022', 'hu005-messages-access'))
         import importlib.util
