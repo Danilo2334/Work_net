@@ -336,6 +336,49 @@ void main() {
     },
   );
   testWidgets(
+    'production list back refreshes dashboard pending count after chat read',
+    (t) async {
+      final session = await candidateSession(), repo = MessagesFake();
+      final router = GoRouter(
+        initialLocation: '/dashboard',
+        routes: [
+          GoRoute(
+            path: '/dashboard',
+            builder: (_, _) => Scaffold(
+              body: MessagesEntry(session: session, repository: repo),
+            ),
+          ),
+          GoRoute(
+            path: '/messages',
+            builder: (_, _) =>
+                ConversationsPage(session: session, repository: repo),
+          ),
+          GoRoute(
+            path: '/messages/:id',
+            builder: (_, _) =>
+                ChatPage(session: session, repository: repo, id: 1),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await t.pumpWidget(MaterialApp.router(routerConfig: router));
+      await t.pumpAndSettle();
+      expect(find.text('Mensajes sin leer: 1'), findsOneWidget);
+      await tap(t, find.text('Mensajes'));
+      await tap(t, find.text('Abrir conversación'));
+      expect(repo.pending, 0);
+      await tap(t, find.text('Volver a conversaciones'));
+      await tap(t, find.text('Volver al dashboard'));
+      expect(find.text('Mensajes sin leer: 0'), findsOneWidget);
+      // The same back action also supports a direct URL without a push stack.
+      router.go('/messages');
+      await t.pumpAndSettle();
+      expect(router.canPop(), isFalse);
+      await tap(t, find.text('Volver al dashboard'));
+      expect(router.routeInformationProvider.value.uri.path, '/dashboard');
+    },
+  );
+  testWidgets(
     'a covered chat never acknowledges unseen arrivals and refreshes on return',
     (t) async {
       final session = await candidateSession(), repo = MessagesFake();

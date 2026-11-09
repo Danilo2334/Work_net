@@ -7,17 +7,30 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseC
   const response=(method,suffix)=>page.waitForResponse(r=>r.request().method()===method&&new URL(r.url()).origin===cfg.api_origin&&new URL(r.url()).pathname==='/api/'+suffix);
   const top=async()=>{await page.mouse.move(220,220);await page.mouse.wheel(0,-25000);await page.waitForTimeout(300);};
   const bottom=async()=>{await page.mouse.move(220,350);await page.mouse.wheel(0,25000);await page.waitForTimeout(300);};
+  const reveal=async(target)=>{
+    if(await target().count())return;
+    await top();
+    for(let i=0;i<14&&await target().count()===0;i++){
+      await page.mouse.move(Math.min(220,page.viewportSize().width-30),350);
+      await page.mouse.wheel(0,Math.floor(page.viewportSize().height*.6));
+      await page.waitForTimeout(180);
+    }
+  };
   const click=async(name,role='button')=>{
     const target=()=>page.getByRole(role,{name,exact:typeof name==='string'});
-    if(await target().count()===0)await top();
-    if(await target().count()===0)await bottom();
+    await reveal(target);
     await baseClick(name,role);
   };
   const write=async(name,value)=>{
-    const target=()=>page.getByRole('textbox',{name,exact:true});
-    if(await target().count()===0)await top();
-    if(await target().count()===0)await bottom();
-    await baseWrite(name,value);
+    const label=name==='Mensaje de texto'?/^(?:Escribir mensaje\s+)?Mensaje de texto$/:
+      name==='Contacto u oferta'?/^(?:Buscar conversaciones\s+)?Contacto u oferta$/:name;
+    const target=()=>page.getByRole('textbox',{name:label,exact:typeof label==='string'});
+    await reveal(target);
+    try { await baseWrite(label,value); }
+    catch(error) {
+      results.diagnostico_campo_qa={requested:name,role_count:await target().count(),labels:await page.getByRole('textbox').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('aria-label')).filter(n=>n&&/^(Mensaje de texto|Comentario opcional|Contacto u oferta)/.test(n)))};
+      throw error;
+    }
   };
   const waitText=async(text)=>{
     results.ultimo_texto_esperado=text;
@@ -161,7 +174,13 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseC
     (results.mensajes_ui??=[]).push({actor:account,id:b.message.id,client_message_id:b.message.client_message_id,created_at:b.message.created_at});return b.message;
   };
   const openFromList=async(id)=>{
-    const b=await listConversations(),index=b.conversations.findIndex(c=>c.id===id);assert.ok(index>=0);
+    let b;
+    if(['/dashboard','/company-dashboard'].includes(new URL(page.url()).pathname)){
+      const request=response('GET','conversations/');await click('Mensajes');const r=await request;assert.equal(r.status(),200);b=await r.json();
+      (results.accesos_mensajes_dashboard??=[]).push({actor:account,viewport:page.viewportSize(),count:b.count});
+      await waitText('Conversaciones encontradas: '+b.count);
+    }else b=await listConversations();
+    const index=b.conversations.findIndex(c=>c.id===id);assert.ok(index>=0);
     const p=response('GET',`conversations/${id}/messages/`);const button=page.getByRole('button',{name:'Abrir conversación',exact:true}).nth(index);await button.scrollIntoViewIfNeeded();await page.waitForTimeout(200);await button.click();const r=await p;assert.equal(r.status(),200);return r.json();
   };
   await run('HU022-V01',async()=>{
@@ -243,7 +262,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write:baseWrite,click:baseC
     await page.goto(cfg.web_origin+'/company');await semantics();await logout();account=null;await page.goto(cfg.web_origin+'/messages/'+chatId);await semantics();await page.waitForURL(cfg.web_origin+'/login');await capture('conversacion-sin-sesion-protegida');
   });
   await run('HU022-V16',async()=>{
-    await as('candidate');await page.setViewportSize({width:390,height:844});await bottom();await capture('mensajes-dashboard-candidato-movil');
+    await as('candidate');await page.setViewportSize({width:390,height:844});await reveal(()=>page.getByRole('button',{name:'Mensajes',exact:true}));await page.getByRole('button',{name:'Mensajes',exact:true}).scrollIntoViewIfNeeded();await page.waitForTimeout(250);await capture('mensajes-dashboard-candidato-movil');
     const read=response('POST',`conversations/${chatId}/read/`);await openFromList(chatId);assert.equal((await(await read).json()).unread_count,0);await top();await capture('contacto-y-lectura-movil');
     const m=await sendChat('Respuesta móvil candidata QA');assert.equal(m.sender_id,seed.candidate_id);await capture('envio-candidato-movil');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
     await as('company');await page.setViewportSize({width:390,height:844});await waitText('Mensajes sin leer: 1');const read2=response('POST',`conversations/${chatId}/read/`);await openFromList(chatId);assert.equal((await(await read2).json()).unread_count,0);await bottom();await capture('respuesta-movil-recibida-empresa');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false);
