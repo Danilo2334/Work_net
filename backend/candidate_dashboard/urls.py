@@ -8,6 +8,7 @@ from .offers import PublishOfferView, ActiveOffersView, EditOfferView, Preserved
 from .search import SearchOffersView
 from .favorites import SavedOffersView, SavedOfferView
 from .applicants import CompanyApplicantOffersView, CompanyOfferApplicantsView
+from .exports import CompanyApplicantExportView
 from .status_changes import ApplicationStatusView, ApplicationStatusOperationView
 from .messaging import (ConversationsView, ConversationDetailView, MessagesView,
                         ConversationReadView, MessageSummaryView, MessageOperationView)
@@ -31,6 +32,7 @@ urlpatterns = [
     path("company/applications/<int:application_id>/status/operations/<uuid:request_id>/", ApplicationStatusOperationView.as_view(), name="application-status-operation"),
     path("company/applicant-offers/", CompanyApplicantOffersView.as_view(), name="applicant-offer-selection"),
     path("company/offers/<int:offer_id>/applications/", CompanyOfferApplicantsView.as_view(), name="company-offer-applications"),
+    path("company/offers/<int:offer_id>/applications/export/", CompanyApplicantExportView.as_view(), name="company-applicant-export"),
     path("offers/<int:offer_id>/application/", OfferApplicationView.as_view(), name="offer-application"),
     path("applications/", ApplicationsView.as_view(), name="own-applications"),
     path("applications/<int:application_id>/", OwnApplicationView.as_view(), name="own-application"),
