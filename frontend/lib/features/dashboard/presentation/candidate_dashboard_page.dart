@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/notifications/notifications_page.dart';
+import 'package:worknet/features/notifications/notifications_repository.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/features/dashboard/domain/candidate_summary.dart';
@@ -16,11 +18,13 @@ class CandidateDashboardPage extends StatefulWidget {
     required this.repository,
     this.favorites,
     this.messages,
+    this.notifications,
   });
   final SessionController controller;
   final CandidateDashboardRepository repository;
   final SavedOffersRepository? favorites;
   final MessagesRepository? messages;
+  final NotificationsRepository? notifications;
   @override
   State<CandidateDashboardPage> createState() => _CandidateDashboardPageState();
 }
@@ -60,8 +64,7 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
     } on FormatException {
       if (mounted && generation == _generation) {
         setState(
-          () => _error =
-              'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
+          () => _error = 'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
         );
       }
     } finally {
@@ -184,6 +187,14 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
           ),
           session: widget.controller,
           repository: widget.messages,
+        ),
+        NotificationsEntry(
+          key: ValueKey(
+            '${widget.controller.session?.token}:notices:$_generation',
+          ),
+          session: widget.controller,
+          repository: widget.notifications,
+          onReturn: _load,
         ),
       ],
     ),

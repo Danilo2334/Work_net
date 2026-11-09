@@ -13,11 +13,13 @@ class ChatPage extends StatefulWidget {
     required this.repository,
     required this.id,
     this.routeObserver,
+    this.returnToNotifications = false,
   });
   final SessionController session;
   final MessagesRepository repository;
   final int id;
   final RouteObserver<ModalRoute<dynamic>>? routeObserver;
+  final bool returnToNotifications;
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -280,10 +282,16 @@ class _ChatPageState extends State<ChatPage> with RouteAware {
           if (context.canPop()) {
             context.pop();
           } else {
-            context.go('/messages');
+            context.go(
+              widget.returnToNotifications ? '/notifications' : '/messages',
+            );
           }
         },
-        child: const Text('Volver a conversaciones'),
+        child: Text(
+          widget.returnToNotifications
+              ? 'Volver a notificaciones'
+              : 'Volver a conversaciones',
+        ),
       ),
       TextButton(
         onPressed: _loading || _sending || _reading ? null : () => _load(),

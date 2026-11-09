@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/notifications/notifications_page.dart';
+import 'package:worknet/features/notifications/notifications_repository.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/core/widgets/workspace.dart';
@@ -14,11 +16,13 @@ class RoleDashboardPage extends StatefulWidget {
     required this.repository,
     required this.admin,
     this.messages,
+    this.notifications,
   });
   final SessionController session;
   final CompanyRepository repository;
   final bool admin;
   final MessagesRepository? messages;
+  final NotificationsRepository? notifications;
   @override
   State<RoleDashboardPage> createState() => _RoleDashboardPageState();
 }
@@ -98,6 +102,14 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
       error: _error,
       onRetry: _load,
       actions: [
+        NotificationsEntry(
+          key: ValueKey(
+            '${widget.session.session?.token}:notices:$_generation',
+          ),
+          session: widget.session,
+          repository: widget.notifications,
+          onReturn: _load,
+        ),
         if (!widget.admin)
           MessagesEntry(
             key: ValueKey(
