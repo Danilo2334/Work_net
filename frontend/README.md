@@ -1,5 +1,16 @@
 # WorkNet · Flutter conectado a Django
 
+## Alcance vigente — HU001–HU026
+
+Por decisión del usuario del **08/11/2026**, HU027 — Integración con LinkedIn está **cancelada y fuera de alcance**. #28 y #137–#141 están cerradas como `not_planned` y con estado **Cancelada** en WORK_NET; no son historias implementadas ni aceptadas. No se necesita crear una aplicación ni proporcionar credenciales. WorkNet mantiene el perfil y CV manuales.
+
+La preparación estática de #196/#197 se conserva como antecedente, sin anunciar conexión disponible. La entrega final requiere completar y comprobar HU001–HU026, incluidas estadísticas, exportaciones y doble factor administrativo. Los avances se registran en la guía existente.
+
+<details>
+<summary>Preparación histórica de LinkedIn, cancelada; no ejecutar estos pasos</summary>
+
+Esta propuesta anterior nunca se implementó ni tuvo aceptación OAuth real. Se conserva para trazabilidad. Sus instrucciones y variables no forman parte de la configuración vigente.
+
 ## Preparar una aplicación de LinkedIn — HU027
 
 La conexión es opcional. Esta preparación de la aplicación externa no acredita
@@ -53,6 +64,8 @@ ni cambia la identidad o el correo verificado de WorkNet.
 Referencias: [crear aplicación](https://www.linkedin.com/help/lms/answer/a1672377),
 [OIDC y permisos](https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2),
 [flujo OAuth y URI de retorno](https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow).
+
+</details>
 
 El registro, acceso, recuperación, configuración, dashboard y perfil del candidato
 están conectados a Django. La empresa completa su información, envía la solicitud,

@@ -3,6 +3,15 @@
 Bolsa de empleo con backend Django REST y frontend Flutter.
 Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com/Danilo2334/Work_net/issues).
 
+## Alcance vigente
+
+La entrega final comprende **HU001–HU026**. Por decisión expresa del usuario del **08/11/2026**, HU027 — Integración con LinkedIn y #137–#141 están **canceladas/fuera de alcance**, cerradas con motivo `not_planned` y estado **Cancelada** en WORK_NET. Su preparación estática se conserva como antecedente; no hay integración LinkedIn disponible ni se requieren credenciales externas.
+
+HU023 está integrada y verificada por [#203](https://github.com/Danilo2334/Work_net/pull/203), main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`. Continúan HU024–HU026 y la revisión de los pendientes anteriores de HU006/HU007. [Guía y evidencias vigentes](frontend/docs/REVISION.md).
+
+<details>
+<summary>Corte histórico del 07/11/2026; no es el estado vigente</summary>
+
 Estado del 07/11/2026: cierre y archivado HU015 implementados y revisados por
 delegación del titular; 159 Django, 124 Flutter y 18 casos nuevos de navegador
 aprobados, con los mismos 18 casos repetidos en dos bases QA nuevas. La historia
@@ -13,6 +22,8 @@ API en #156/#158, Flutter/QA en #157, entrega conjunta en #159 y main en #160;
 las cabeceras y fusiones definitivas se registran en esos PR y en el seguimiento.
 Los apartados históricos conservan
 sus versiones y la procedencia de sus comprobaciones.
+
+</details>
 
 ## Ramas
 
