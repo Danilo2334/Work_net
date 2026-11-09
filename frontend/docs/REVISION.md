@@ -1,5 +1,102 @@
 # Guía para revisar WorkNet
 
+<!-- hu023-vigente-inicio -->
+## HU023 — Sistema de notificaciones — 08/11/2026
+
+**Qué se hizo**
+
+Centro privado integrado con los cuatro eventos, contador global, historial con filtros y páginas, lectura explícita, contexto y preferencias. Preserva los avisos históricos y el acceso restringido de empresas pendientes o rechazadas.
+
+| Criterio original HU023 | Evidencia vigente |
+|---|---|
+| Nueva postulación para empresa | V11; P23/P24; aviso real por alta autorizada |
+| Cambio de estado para candidato | V05; P25–P27; repetición sin duplicar |
+| Nuevo mensaje al destinatario | V06–V10; P28–P43; lectura independiente y preferencias |
+| Aprobación/rechazo empresarial | V12/V13; P44–P50; aviso propio y restricciones conservadas |
+| Contador de pendientes | V01/V04/V07/V14; resumen y contraste por titular |
+| Marcar como leída | V04/V14; P05–P15/P31–P34; explícita, idempotente y privada |
+| Historial | V01–V03; P02/P03; páginas estables, filtros y datos anteriores |
+| Preferencias disponibles | V09/V10/V14; P35–P43/P51–P54; cuatro tipos, efecto futuro |
+
+**Preparación**
+
+Aceptación del **08/11/2026**, Windows. Base main `a5e908dfb3a334999c84d836ee7ac8de577c5643`; se conservó el avance estático de LinkedIn `a9bbf324c8deeec45b462cba84eb620b0dbf0f18`. Django [5e1b6cb](https://github.com/Danilo2334/Work_net/commit/5e1b6cbd23e49175d1d74b99ab4c9aa6110e281d), Flutter y ejecutor [7098e65](https://github.com/Danilo2334/Work_net/commit/7098e65afc7505f3025025f9deb27fb26d42e0ad). lib/test son idénticos a `4a8e5c28145cd38f92e2b3ff2136564bb0ed82ad`, donde pasaron las 186 pruebas completas. El SHA `6aef68192d6412bbeee4f798d247aba7ade87810` identifica la publicación de imágenes, no otra ejecución.
+
+Dos SQLite QA nuevas, usuarios ficticios, correo a archivos y credenciales privadas. Cada base comienza con **18 ofertas, 27 postulaciones, 14 conversaciones, 23 mensajes leídos y 63 avisos**. Los avisos previos de candidato y empresa se leyeron por API durante la preparación; trece avisos legados ficticios se prepararon por ORM y se identifican como históricos. El candidato inicia con27 avisos y13 pendientes; la empresa con35 y0.
+
+Navegador `browser-qa-20261109T021122-1cd98433`: **18/18 y25 PNG originales**, escritorio1440×1000 y móvil web emulado390×844. Actores API reales originan eventos; la UI acredita centro, filtros, lectura, preferencias y navegación. Postman Desktop `run-20261109T020533-64f14ab7`: **58 peticiones /91 PASS**, una iteración, cero fallos/errores/omitidas y13 JPEG originales. Ejecución08/11/2026 21:12:33 Bogotá; preparador `4a8e5c2`, checkout de servidor al inicio `77ae274936f640d448ae18690c5dd9b3f332900f`, backend funcional idéntico a `5e1b6cb`. Abrir respuestas guardadas para capturar no volvió a enviarlas. Resumen JSON Desktop transcrito de la observación, no exportación cruda de respuestas.
+
+Cada corrida termina con **7 avisos nuevos** (1 alta, 1 estado, 3 mensajes, 2 decisiones), 4 mensajes y 1 postulación, sin duplicados. Se conservan contenido, fecha y destinatario de los avisos anteriores, fechas de lectura previas, mensajes antiguos, relaciones y PDF congelados. Un aviso legado se lee explícitamente; el navegador lee 2 mensajes nuevos desde chat, Desktop ninguno. Las dos corridas son compartidas entre las cuatro tareas; no se multiplican por compartir imágenes. Los campos heredados notices=50 y pending_notifications_count=14 del registro de preparación pertenecen a la fase anterior; el inicio final de HU023 está en notice_count=63, candidate_notices=27 y candidate_unread=13.
+
+Python3.12.10, Django6.1.1, DRF3.18.3, Flutter3.47.5, Dart3.13.4, Playwright1.65.0, Chromium158.0.8127.18, Postman Desktop12.35.5. Windows/SQLite local; no PostgreSQL, dispositivo físico, entrega externa push ni prueba de carga.
+
+**Reglas y conservación**
+
+Los cuatro ajustes se aplican solo a eventos futuros; no eliminan historial ni cambian lecturas. Repetir una intención suprimida no reconstruye su aviso al habilitarla. Se conserva independiente el ajuste push de HU004; no se configura entrega externa. Un aviso leído no lee el mensaje, ni abrir el contexto lee automáticamente el aviso. Solo se aceptan IDs enteros propios, distintos, hasta50; lotes ajenos se rechazan completos y la primera fecha de lectura se conserva. Historial por fecha/ID descendente con ancla through_id, page positiva y page_size1–50; el contador es global del titular. Respuestas privadas no-store/Vary Authorization; sesión y rol se revalidan. Una empresa pendiente/rechazada accede a sus avisos y preferencias, conservando las restricciones empresariales.
+
+**Pruebas, revisión y límites**
+
+249 Django (13 nuevas),186 Flutter (9 nuevas),20 guards Python y6 Node aprobados; análisis limpio y compilación web release. Check sin incidencias, makemigrations sin cambios, migración0009 aplicada y plan pendiente cero. Prueba de migración conserva avisos legados, destinatarios, tipos, fechas y unicidad; pruebas de SQL y concurrencia cubren las correcciones técnicas. Las regresiones incluyen postulaciones, estados, mensajes, documentos y dashboards anteriores.
+
+Revisión técnica delegada del agente autorizado, sin atribuir aprobación humana. Tres hallazgos P2 corregidos: consulta que cargaba PDF/cuerpo de mensaje, GET antiguo que podía sobrescribir preferencias guardadas y contención en creación concurrente de preferencias SQLite. Las regresiones respectivas pasan. La primera corrida de navegador pasó V01–V15 y se detuvo por una expectativa equivocada del texto503 normalizado; se corrigió solo el ejecutor y se repitió completo en otra base. El503 es inyectado, el reintento HTTP200 y la revocación de sesión son reales. Se conservan las bases y corridas anteriores, sin sumarlas a18/18.
+
+Rendimiento básico posterior a Desktop:30 GET APIClient independientes, diez por endpoint, sobre18ofertas/28postulaciones/14conversaciones/27mensajes/70avisos. Medianas: resumen1,5505ms, historial3,4805ms, pendientes3,2665ms; conteos conservados. Desktop8.516ms totales y33ms medios. Son lecturas locales, no carga ni medición productiva.
+
+[Resultados navegador](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/frontend/docs/evidencias/hu023-20261108/resultados.json) · [Manifest navegador](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/frontend/docs/evidencias/hu023-20261108/capturas-navegador.json) · [Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/resultados-desktop.json) · [Manifest Desktop](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/capturas-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/casos.postman_collection.json) · [Contraste Desktop](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/contraste-persistencia.json) · [Migraciones/rendimiento](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/migraciones-rendimiento.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/validacion-tecnica.json)
+
+**Publicación e integración**
+
+Django y sus pruebas publicados por Danilo2334: [#198](https://github.com/Danilo2334/Work_net/pull/198) → feature/backend-sprint-3 `d613493`, [#200](https://github.com/Danilo2334/Work_net/pull/200) → develop `42ff409`. Flutter y sus pruebas por francisco3788: [#199](https://github.com/Danilo2334/Work_net/pull/199) → frontend `df0c499`; backend revisado [#201](https://github.com/Danilo2334/Work_net/pull/201) → frontend `bba1984`. Evidencias/guía en [#202](https://github.com/Danilo2334/Work_net/pull/202) y entrega conjunta [#203](https://github.com/Danilo2334/Work_net/pull/203), por francisco3788. Publicador, autor y committer contrastados por separado; GitHub/web-flow es el committer automático de los merges. Protecciones efectivas respetadas, sin bypass ni cambios. El resultado final de main y los cierres se registra en los seguimientos únicos después de comprobar por separado SHA remoto, criterios originales, closed/completed, Done y contador 4/4 — 100 %. El contador no sustituye los criterios ni las evidencias.
+
+![Runner HU023 — ejecutar una iteración en una base QA nueva](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/00-resumen-desktop.jpg)
+
+**Caso Runner HU023.** **Esperado:** ejecutar una iteración en una base QA nueva. **Obtenido:** 58 peticiones y 91 PASS; cero fallos, errores u omitidas. **Alcance demostrado:** resumen auténtico Postman Desktop12.35.5; las consultas posteriores de respuestas no son nuevas ejecuciones.
+
+![HU023-P24 — notificar una postulación nueva a la empresa propietaria](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/02-aviso-nueva-postulacion-empresa.jpg)
+
+**Caso HU023-P24.** **Esperado:** notificar una postulación nueva a la empresa propietaria. **Obtenido:** HTTP200, aviso application_created y un pendiente; dos PASS. **Alcance demostrado:** P23 crea realmente la postulación28 en oferta1; no es una fixture atribuida a esta acción.
+
+![HU023-V05 — recibir el cambio de estado en el centro candidato](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/frontend/docs/evidencias/hu023-20261108/HU023-V05-aviso-real-cambio-de-estado.png)
+
+**Caso HU023-V05.** **Esperado:** recibir el cambio de estado en el centro candidato. **Obtenido:** En revisión, fecha, trece pendientes y enlace al evento. **Alcance demostrado:** un actor empresarial ficticio usa la API real; la UI consulta y permite navegar al detalle.
+
+![HU023-P32 — conservar pendiente el mensaje al leer su aviso](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/05-aviso-no-marca-mensaje.jpg)
+
+**Caso HU023-P32.** **Esperado:** conservar pendiente el mensaje al leer su aviso. **Obtenido:** HTTP200 y unread_count1 de mensajes; P31 y P32 con PASS. **Alcance demostrado:** acuse del aviso y lectura del chat son operaciones independientes.
+
+![HU023-P36 — deshabilitar solo avisos de mensajes futuros](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/backend/docs/evidencias/hu023-20261108/07-preferencias-solo-eventos-futuros.jpg)
+
+**Caso HU023-P36.** **Esperado:** deshabilitar solo avisos de mensajes futuros. **Obtenido:** HTTP200, message_received false y scope future_events_only; dos PASS. **Alcance demostrado:** P37–P43 contrastan mensaje persistido sin aviso, repetición sin reconstrucción y nuevo aviso tras habilitar.
+
+![HU023-V13 — permitir consultar la decisión de la cuenta rechazada](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/frontend/docs/evidencias/hu023-20261108/HU023-V13-rechazo-propio-sin-dashboard.png)
+
+**Caso HU023-V13.** **Esperado:** permitir consultar la decisión de la cuenta rechazada. **Obtenido:** rechazo propio con motivo, fecha, enlace y preferencias. **Alcance demostrado:** centro accesible sin aprobación; la restricción del dashboard se contrasta en V13 y P50.
+
+![HU023-V14 / lectura — marcar solo el aviso elegido y actualizar el contador](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/frontend/docs/evidencias/hu023-20261108/HU023-V14-lectura-y-contador-movil.png)
+
+**Caso HU023-V14 / lectura.** **Esperado:** marcar solo el aviso elegido y actualizar el contador. **Obtenido:** aviso leído con fecha, catorce pendientes y el aviso anterior todavía pendiente. **Alcance demostrado:** móvil web emulado 390×844; lectura explícita por API real.
+
+![HU023-V14 / preferencias — mostrar los ajustes y su efecto sobre eventos nuevos](https://raw.githubusercontent.com/Danilo2334/Work_net/6aef68192d6412bbeee4f798d247aba7ade87810/frontend/docs/evidencias/hu023-20261108/HU023-V14-preferencias-movil.png)
+
+**Caso HU023-V14 / preferencias.** **Esperado:** mostrar los ajustes y su efecto sobre eventos nuevos. **Obtenido:** cuatro preferencias, explicación del historial y botón Guardar. **Alcance demostrado:** interfaz móvil; la persistencia y supresión se contrastan con V09/V10 y P35–P43.
+
+**Seguimientos únicos**
+
+[#120](https://github.com/Danilo2334/Work_net/issues/120#issuecomment-6730818473) · [#121](https://github.com/Danilo2334/Work_net/issues/121#issuecomment-6730818706) · [#122](https://github.com/Danilo2334/Work_net/issues/122#issuecomment-6730818921) · [#123](https://github.com/Danilo2334/Work_net/issues/123#issuecomment-6730819202)
+
+**Reproducción**
+
+En checkouts aislados y con las dependencias fijadas: `python manage.py test`, `python manage.py check`, `python manage.py makemigrations --check --dry-run`; en frontend `flutter test` y `flutter analyze`. Navegador: `python frontend/tool/browser_qa/run.py --suite hu023 --frontend-ref REFERENCIA_PUBLICADA --backend-ref REFERENCIA_DJANGO`; crea venv, compilación y base nuevos. Desktop: `python frontend/tool/browser_qa/hu023_api.py prepare --port PUERTO_LIBRE`; `python backend/postman/qa.py serve --run RUN_NUEVO`; importar sus dos archivos import-hu023 y ejecutar una sola iteración conservando respuestas. Contrastar con `python frontend/tool/browser_qa/hu023_api.py contrast --run RUN_NUEVO`. No reutilizar bases consumidas ni publicar entornos, bases o correo.
+
+<details>
+<summary>Antecedentes y dependencias conservadas</summary>
+
+HU021/HU022 aportaron eventos y mensajes; sus avisos antiguos se mantienen con su procedencia. La primera corrida incompleta del ejecutor y todas las bases anteriores se conservan como antecedentes. HU024–HU027 y los pendientes de HU006/HU007 siguen separados; las páginas estáticas de LinkedIn preparan el registro de la app y no acreditan OAuth real.
+
+</details>
+
+<!-- hu023-vigente-fin -->
+
 <!-- hu021-hu022-vigente-inicio -->
 ## HU021 — Cambio de estado / HU022 — Mensajería — 08/11/2026
 

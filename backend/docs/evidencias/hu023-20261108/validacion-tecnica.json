@@ -1,0 +1,44 @@
+{
+  "backend_sha": "5e1b6cbd23e49175d1d74b99ab4c9aa6110e281d",
+  "flutter_full_test_sha": "4a8e5c28145cd38f92e2b3ff2136564bb0ed82ad",
+  "browser_executor_sha": "7098e65afc7505f3025025f9deb27fb26d42e0ad",
+  "functional_lib_test_identity": "7098 y 4a8 tienen lib/test idénticos; 7098 corrige solo la expectativa del texto genérico 503 del ejecutor. Head 776 conserva el mismo producto y añade recursos estáticos LinkedIn.",
+  "django": {
+    "total_passed": 249,
+    "new": 13,
+    "check": "sin incidencias",
+    "makemigrations": "sin cambios",
+    "migration": "0009 aplicada en ambas QA, plan pendiente cero; prueba conservadora de avisos legados"
+  },
+  "flutter": {
+    "total_passed": 186,
+    "new": 9,
+    "analyze": "sin incidencias",
+    "build": "web JavaScript release mediante ejecutor de aceptación"
+  },
+  "guards": {
+    "python_passed": 20,
+    "node_passed": 6
+  },
+  "delegated_review": {
+    "type": "Revisión técnica delegada del agente autorizado; no aprobación personal ni humana.",
+    "resolved": [
+      "Excluir PDF y cuerpos de mensajes del SQL del historial; aserción de consultas.",
+      "Evitar GET antiguo que sobrescribe PATCH de preferencias: bloqueo durante carga y generación; regresión widget.",
+      "Reintentar transacción completa en creación concurrente de preferencias SQLite; test de contención forzada."
+    ],
+    "status": "Tres hallazgos P2 corregidos y revisados; aceptación final posterior."
+  },
+  "versions": {
+    "Python": "3.12.10",
+    "Django": "6.1.1",
+    "DRF": "3.18.3",
+    "Flutter": "3.47.5",
+    "Dart": "3.13.4",
+    "Playwright": "1.65.0",
+    "Chromium": "158.0.8127.18",
+    "Postman Desktop": "12.35.5"
+  },
+  "limits": "Windows/SQLite local y móvil web emulado; no PostgreSQL, dispositivo físico, entrega externa push ni carga.",
+  "antecedent": "Primera corrida navegador V01–V15 aprobados, V16 falló por expectativa errónea del texto 503 normalizado; ejecutor corregido y corrida completa nueva 18/18 en otra base. No se suma a aceptación vigente."
+}

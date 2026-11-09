@@ -1,0 +1,30 @@
+{
+  "schema": "worknet-hu023-desktop-v1",
+  "source": "Transcripción del resumen observado en Runner Desktop, contrastada con capturas originales; no es una exportación cruda de respuestas.",
+  "execution_start_utc": "2026-11-09T02:12:33.585Z",
+  "date_local": "08/11/2026 21:12:33 America/Bogota",
+  "run": "run-20261109T020533-64f14ab7",
+  "postman_version": "12.35.5",
+  "backend_sha": "5e1b6cbd23e49175d1d74b99ab4c9aa6110e281d",
+  "preparer_sha": "4a8e5c28145cd38f92e2b3ff2136564bb0ed82ad",
+  "server_checkout_at_start": "77ae274936f640d448ae18690c5dd9b3f332900f",
+  "requests": 58,
+  "iterations": 1,
+  "assertions_passed": 91,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_ms": 8516,
+  "average_response_ms": 33,
+  "base": "SQLite nueva, datos ficticios y correo a archivos; independiente de la corrida de navegador",
+  "initial_dataset": {
+    "offers": 18,
+    "applications": 27,
+    "conversations": 14,
+    "messages": 23,
+    "notifications": 63,
+    "candidate_notifications": 27,
+    "candidate_unread": 13
+  },
+  "scope": "Colección de 58 casos con aserciones públicas; capturas de respuestas persistidas y Test Results, sin volver a ejecutarlas."
+}

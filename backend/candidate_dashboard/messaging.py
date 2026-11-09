@@ -216,6 +216,9 @@ class MessagesView(MessageView):
                 msg=Message.objects.create(conversation=locked,sender_id=request.user.pk,recipient_id=recipient_id,
                     text=p['text'],client_message_id=p['client_message_id'])
                 locked.last_activity_at=msg.created_at;locked.save(update_fields=['last_activity_at'])
+                from .notification_events import notify
+                notify(recipient_id=recipient_id,event_kind='message_received',message=msg,
+                       title=f'Nuevo mensaje sobre {app.offer.title}')
                 return msg,True
         msg,created=retry_write(write)
         return Response({'message':message_data(msg),'created':created},status=201 if created else 200)

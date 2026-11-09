@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/notifications/notifications_page.dart';
 import 'package:worknet/features/applications/presentation/apply_page.dart';
 import 'package:worknet/features/applications/presentation/application_history_page.dart';
 import 'package:worknet/features/applications/presentation/application_detail_page.dart';
@@ -91,6 +92,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
     GoRouter.optionURLReflectsImperativeAPIs = true;
     const protected = {
       '/dashboard',
+      '/notifications',
       '/offers/search',
       '/offers/saved',
       '/applications',
@@ -177,6 +179,17 @@ class _WorkNetAppState extends State<WorkNetApp> {
       },
       routes: [
         GoRoute(
+          path: '/notifications',
+          builder: (_, _) => _protected(
+            null,
+            () => NotificationsPage(
+              key: ValueKey(_session.session?.token),
+              session: _session,
+              repository: _dependencies.notifications,
+            ),
+          ),
+        ),
+        GoRoute(
           path: '/messages',
           builder: (_, state) => _protected(
             null,
@@ -205,6 +218,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 session: _session,
                 repository: _dependencies.messages,
                 routeObserver: _messageObserver,
+                returnToNotifications: state.extra == 'notifications',
                 id: id,
               ),
             );
@@ -495,6 +509,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               controller: _session,
               repository: _dependencies.dashboard,
               favorites: _dependencies.favorites,
+              notifications: _dependencies.notifications,
               messages: _dependencies.messages,
             ),
           ),
@@ -526,6 +541,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
             () => CompanyPage(
               session: _session,
               repository: _dependencies.company,
+              notifications: _dependencies.notifications,
             ),
           ),
         ),
@@ -537,6 +553,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               session: _session,
               repository: _dependencies.company,
               admin: false,
+              notifications: _dependencies.notifications,
               messages: _dependencies.messages,
             ),
           ),
@@ -549,6 +566,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
               session: _session,
               repository: _dependencies.company,
               admin: true,
+              notifications: _dependencies.notifications,
             ),
           ),
         ),
