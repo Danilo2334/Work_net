@@ -15,7 +15,15 @@ from .views import (
 )
 
 
+from .admin_mfa import MFASetupView, MFAVerifyView
+from .admin_accounts import AdminAccountsView, AdminAccountView, AdminEventsView
+
 urlpatterns = [
+    path("admin/mfa/setup/", MFASetupView.as_view()),
+    path("admin/mfa/verify/", MFAVerifyView.as_view()),
+    path("admin/accounts/", AdminAccountsView.as_view()),
+    path("admin/accounts/<int:pk>/", AdminAccountView.as_view()),
+    path("admin/events/", AdminEventsView.as_view()),
     path("register/role/", SelectRoleView.as_view(), name="select-role"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("company/", CompanyView.as_view(), name="company-information"),

@@ -1,5 +1,5 @@
 """Lectura de perfiles limitada a postulaciones de la propia empresa."""
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response

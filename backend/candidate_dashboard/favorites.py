@@ -5,7 +5,7 @@ from django.db import OperationalError, connection, transaction
 from django.db.models import Exists, OuterRef
 from django.utils import timezone
 from rest_framework import serializers
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.exceptions import APIException, NotFound, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response

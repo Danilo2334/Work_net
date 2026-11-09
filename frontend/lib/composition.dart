@@ -1,3 +1,4 @@
+import 'package:worknet/features/administration/admin_repository.dart';
 import 'package:worknet/core/api/worknet_api.dart';
 import 'package:worknet/features/statistics/statistics_repository.dart';
 import 'package:worknet/features/notifications/notifications_repository.dart';
@@ -24,6 +25,7 @@ import 'package:worknet/features/curriculum/data/curriculum_download.dart';
 /// Composition root: concrete HTTP/storage adapters are selected only here.
 class AppDependencies {
   AppDependencies(WorkNetApi api, SessionStore store) {
+    administration = HttpAdminRepository(api);
     access = HttpAccessRepository(api, store);
     session = SessionController(repository: access);
     account = HttpAccountRepository(api);
@@ -43,6 +45,7 @@ class AppDependencies {
     curriculum = HttpCurriculumRepository(api);
     generatedCurriculum = HttpGeneratedCurriculumRepository(api);
   }
+  late final HttpAdminRepository administration;
   late final HttpAccessRepository access;
   late final SessionController session;
   late final HttpAccountRepository account;

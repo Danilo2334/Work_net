@@ -4,7 +4,7 @@
 
 Por decisión del usuario del **08/11/2026**, HU027 — Integración con LinkedIn está **cancelada y fuera de alcance**. #28 y #137–#141 están cerradas como `not_planned` y con estado **Cancelada** en WORK_NET; no son historias implementadas ni aceptadas. No se necesita crear una aplicación ni proporcionar credenciales. WorkNet mantiene el perfil y CV manuales.
 
-La preparación estática de #196/#197 se conserva como antecedente, sin anunciar conexión disponible. La entrega final requiere completar y comprobar HU001–HU026, incluidas estadísticas, exportaciones y doble factor administrativo. Los avances se registran en la guía existente.
+La preparación estática de #196/#197 se conserva como antecedente, sin anunciar conexión disponible. El alcance funcional implementado comprende HU001–HU026, incluidas estadísticas, exportaciones y doble factor administrativo. La aceptación vigente, el flujo de integración y los cierres verificados se registran en [la guía existente](docs/REVISION.md) y sus seguimientos únicos.
 
 <details>
 <summary>Preparación histórica de LinkedIn, cancelada; no ejecutar estos pasos</summary>
@@ -72,10 +72,15 @@ están conectados a Django. La empresa completa su información, envía la solic
 consulta su estado y puede corregir un rechazo. El administrador revisa solicitudes
 y aprueba o rechaza con motivo. Los dashboards usan métricas reales del backend.
 
+<details>
+<summary>Antecedente de revisión y planificación del 07/11/2026</summary>
+
 La revisión humana sigue pendiente y el PR #146 permanece en borrador.
 El Project WORK_NET se consultó con Francisco y `read:project`: HU005–HU010
 y #47–#70 están en Sprint 2; HU011–HU017 y #71–#79, en Sprint 3.
 Las tareas #80–#99 todavía no tienen Sprint asignado, aunque sus historias sí.
+
+</details>
 
 ## Recorrido actual
 
@@ -109,10 +114,15 @@ local.** Si falla la red no anuncia revocación confirmada y permite reintentar;
 un token ya inválido también permite terminar el cierre local. HTTP 401 limpia la
 sesión. La recuperación invalida los tokens anteriores y exige nuevo login.
 
+Para cuentas administrativas, la contraseña devuelve HTTP202 con un desafío y ningún Token. El panel de doble factor configura el autenticador y exige TOTP confirmado antes de aceptar la sesión; las claves y los códigos de recuperación permanecen ocultos por defecto. Recuperar el acceso obliga a enrolar otro autenticador. El principal crea cuentas desde `/admin/accounts`; los permisos determinan los accesos a cuentas, solicitudes y `/admin/events`.
+
+Las respuestas tardías de operaciones anteriores no pueden modificar ni cerrar otra sesión. La descarga de CV generado usa el selector nativo de documentos en Android y conserva el guardado de bytes en web; no expone Tokens en enlaces.
+
 ## Arquitectura
 
-Cada funcionalidad usa `features/<funcionalidad>/data`, `domain` y `presentation`:
-`registration`, `access`, `account`, `dashboard`, `profile`, `company` y `curriculum`.
+Las funcionalidades usan `features/<funcionalidad>/data`, `domain` y `presentation`.
+Incluyen acceso, cuenta, dashboards, perfil, empresa, CV, ofertas, postulaciones,
+postulantes, estados, mensajes, notificaciones, estadísticas y administración.
 
 - **Domain** define entidades, contratos de repositorio y reglas independientes
   de Flutter/HTTP. `SessionLifecycle` establece restauración, persistencia, salida
@@ -136,8 +146,10 @@ No se añadieron paquetes para esta reorganización ni casos de uso que solo
 dupliquen cada método CRUD. Los registros profesionales conservan sus campos
 estructurados para reutilizarlos en CV. El editor de HU012 usa la precarga del
 backend, conserva una copia independiente y ofrece tres plantillas, vista previa
-y descarga del PDF guardado. La aceptación visual y de Postman Desktop de este
-nuevo recorrido sigue pendiente; las pruebas automáticas no la sustituyen.
+y descarga del PDF guardado. La aceptación visual y de Postman Desktop está
+documentada en la guía, incluida la selección del CV en HU018. La revisión final
+añade el guardado auténtico por SAF en Android emulado, con cancelación y contraste
+del PDF contra la base QA independiente.
 
 `WorkNetColors`, `ThemeData` y `ColorScheme` siguen en
 `lib/core/theme/worknet_theme.dart`. Los colores compartidos, incluido el texto
@@ -161,6 +173,14 @@ consumen el tema y los componentes comunes.
 | /company-dashboard | Resumen de empresa aprobada |
 | /admin-dashboard | Métricas, avisos y eventos administrativos |
 | /company-reviews | Listado paginado y revisión inicial de empresas |
+| /offers/search, /offers/saved | Buscador y favoritos del candidato |
+| /offers/:id/apply | Postulación y selección del CV |
+| /applications, /applications/:id | Historial y detalle propio |
+| /company/offers, /company/offers/preserved | Ofertas propias activas y conservadas |
+| /company/applicants, /company/offers/:id/applicants | Postulantes autorizados y filtros |
+| /messages, /messages/:id | Conversaciones autorizadas |
+| /notifications, /statistics | Avisos y métricas según rol |
+| /admin/accounts, /admin/events | Cuentas, permisos y eventos administrativos |
 
 ## Ejecutar
 
@@ -186,19 +206,24 @@ Los enlaces de la QA anterior se capturaron a archivos y no acreditan recepción
 
 El hosting debe resolver las rutas de Flutter a `index.html`. En desarrollo web
 el origen de recuperación debe coincidir con el puerto usado. La validación
-visual corresponde a escritorio y **móvil web**, no ejecución nativa.
+visual general corresponde a escritorio y **móvil web**; las comprobaciones
+nativas específicas de exportación y CV en Android emulado se describen aparte.
 
 ## Pruebas y límites
 
 Los resultados y las capturas de Flutter y Postman se conservan en el comentario único de cada tarea en GitHub. Las instrucciones de ejecución anteriores permiten iniciar la aplicación; las cuentas y datos de QA se describen en la guía de revisión.
 
-La consulta de perfil por empresa autorizada ya tiene backend y evidencia
-en `feature/backend-sprint-3`; falta su recorrido empresarial en Flutter.
-Siguen pendientes búsqueda/mensajes/historial y
-detalle/postulación, gestión empresarial de ofertas/postulantes/estadísticas y
-gestión de administradores/permisos. Los accesos inexistentes se identifican
-claramente, sin aparentar que sus módulos están implementados. Falta revisión
-humana y validación nativa; no se declara terminado el Sprint.
+La verificación conjunta final aprobó 227 pruebas Flutter y 285 Django;
+análisis sin incidencias, compilación web y APK debug. HU026 cuenta con 55
+peticiones/90 PASS en Postman Desktop y 18/18 casos de navegador. La guía distingue
+las corridas nuevas, las capturas históricas y los renders de PDF, con versiones,
+fuentes y alcance de cada evidencia. La revisión técnica fue delegada a un agente;
+no se presenta como aprobación humana de Danilo o Francisco.
+
+La aceptación incluye escritorio, móvil web emulado y recorridos específicos de
+exportación/CV en Android emulado. No acredita todos los recorridos en un teléfono
+físico, iOS, una prueba de carga ni un despliegue productivo. Los cortes anteriores
+de planificación se conservan como antecedentes; Sprint y fechas no se cambiaron.
 
 [Guía breve para revisar y explicar lo que funciona](docs/REVISION.md).
 

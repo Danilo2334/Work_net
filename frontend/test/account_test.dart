@@ -226,6 +226,7 @@ void main() {
       await passwords(tester);
       await tap(tester, 'save_account_password');
       expect(jsonDecode(store.value!)['token'], 'qa-renovado');
+      expect(find.text('Contraseña actualizada. Tu sesión sigue activa.'), findsOneWidget);
       expect(
         tester
             .widget<TextFormField>(

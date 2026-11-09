@@ -31,6 +31,17 @@ Map<String, dynamic> sessionData({
     'email': 'qa@example.com',
     'role': role,
     'email_verified': true,
+    if (role == 'admin') ...{
+      'mfa_verified': true,
+      'administrative_role': 'principal',
+      'permissions': [
+        'dashboard',
+        'review_companies',
+        'view_events',
+        'manage_admins',
+        'manage_permissions',
+      ],
+    },
   },
 };
 

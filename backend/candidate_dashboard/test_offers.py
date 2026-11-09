@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from django.test import TestCase, override_settings
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
@@ -19,7 +20,7 @@ class PublishOfferTests(TestCase):
         self.authenticate(self.company)
 
     def authenticate(self, user):
-        self.client.credentials(HTTP_AUTHORIZATION=f"Token {Token.objects.get_or_create(user=user)[0].key}")
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {fixture_token(user).key}")
 
     def test_publishes_owned_offer_with_all_fields_and_updates_dashboard(self):
         response = self.client.post(self.url, self.data, format="json")
@@ -82,6 +83,7 @@ class PublishOfferTests(TestCase):
         for role, staff, verified in (("candidato", False, True), ("empresa", True, True), ("empresa", False, False)):
             self.company.role, self.company.is_staff, self.company.email_verified = role, staff, verified
             self.company.save()
+            self.authenticate(self.company)
             self.assertEqual(self.client.post(self.url, self.data, format="json").status_code, 403)
         self.client.credentials()
         self.assertEqual(self.client.post(self.url, self.data, format="json").status_code, 401)

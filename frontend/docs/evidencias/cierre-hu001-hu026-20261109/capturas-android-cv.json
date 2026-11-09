@@ -1,0 +1,98 @@
+[
+  {
+    "archivo": "A01-cv-guardado-desde-api.jpg",
+    "sha256": "4bf82d000f868d6336189924fc06855bfa8ab6d18075e7fea55ebd8d834d6635",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:39:28.106Z",
+    "original": true,
+    "avd": "WorkNet_QA_HU025:5556",
+    "width": 482,
+    "height": 724,
+    "scope": "Antecedente: encuadre incompleto, sin guardado demostrado"
+  },
+  {
+    "archivo": "A02-controles-descargar-pdf-guardado.jpg",
+    "sha256": "7ada1ea2561dc9850c205387384e62c0cf55cf4c1d7cf43a5cbdccf6b55170d0",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:43:40.399Z",
+    "original": true,
+    "avd": "WorkNet_QA_HU025:5556",
+    "width": 482,
+    "height": 754,
+    "scope": "Antecedente: encuadre incompleto, sin guardado demostrado"
+  },
+  {
+    "archivo": "A03-avd-nuevo-cv-api.jpg",
+    "sha256": "51b81bc5b91ddd410d85271321840f7e9f81c93ca55d4a5cedfee42165497ab1",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:53:29.896Z",
+    "original": true,
+    "avd": "WorkNet_QA_Cierre:5558",
+    "width": 362,
+    "height": 671,
+    "scope": "Aceptación nativa actual, usuarios ficticios"
+  },
+  {
+    "archivo": "A04-descarga-cv-nativo-definitivo.jpg",
+    "sha256": "ccafd0dc74169bd335d44a5c19a1aeda81d05c81c72dbdab4f2ac88c2d07e8d6",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:57:35.567Z",
+    "original": true,
+    "avd": "WorkNet_QA_Cierre:5558",
+    "width": 362,
+    "height": 671,
+    "scope": "Aceptación nativa actual, usuarios ficticios"
+  },
+  {
+    "archivo": "A05-selector-saf-pdf-sin-archivos-previos.jpg",
+    "sha256": "ef9a66445249f4bf0ab70c9a4eda996218806627f72e029d80cc1bb69d476232",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:58:01.663Z",
+    "original": true,
+    "avd": "WorkNet_QA_Cierre:5558",
+    "width": 362,
+    "height": 671,
+    "scope": "Aceptación nativa actual, usuarios ficticios"
+  },
+  {
+    "archivo": "A06-retorno-tras-cancelar-sin-archivo.jpg",
+    "sha256": "199b67a6fdf9da7da3bf4edaff38209c92a943ad95bc12e3c45a7833d4d68b31",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:58:52.828Z",
+    "original": true,
+    "avd": "WorkNet_QA_Cierre:5558",
+    "width": 362,
+    "height": 671,
+    "scope": "Aceptación nativa actual, usuarios ficticios"
+  },
+  {
+    "archivo": "A07-selector-saf-guardar-pdf.jpg",
+    "sha256": "b54fa5925591fde1a64e92c5a7d5612c1733d5918714be3464d6d74b0c3a33bd",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T06:59:05.578Z",
+    "original": true,
+    "avd": "WorkNet_QA_Cierre:5558",
+    "width": 362,
+    "height": 671,
+    "scope": "Aceptación nativa actual, usuarios ficticios"
+  },
+  {
+    "archivo": "A08-descarga-pdf-confirmada.jpg",
+    "sha256": "9cc0decb34c70ac1c8415ff9aa5477d5b95e32448f7347b8f85f8f2f0d415c24",
+    "run": "run-20261109T063447-a0a3b4ff",
+    "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+    "utc": "2026-11-09T07:02:56.857Z",
+    "original": true,
+    "avd": "WorkNet_QA_Cierre:5558",
+    "width": 362,
+    "height": 671,
+    "scope": "Aceptación nativa actual, usuarios ficticios"
+  }
+]
