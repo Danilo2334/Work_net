@@ -126,9 +126,14 @@ class NotificationPreferencesView(NoticeView):
         no_query(request);data=PreferencesInput(data=request.data);data.is_valid(raise_exception=True)
         def write():
             with transaction.atomic():
-                User.objects.select_for_update(no_key=True).get(pk=request.user.pk)
-                item,_=NotificationPreference.objects.get_or_create(user=request.user)
-                for key,value in data.validated_data.items():setattr(item,key,value)
-                item.save(update_fields=list(data.validated_data))
-        retry_write(write)
-        return self.get(request)
+                # Start with a write: two SQLite readers upgrading to writers can
+                # keep blocking each other. ON CONFLICT also updates only the
+                # submitted columns, preserving concurrent partial preferences.
+                NotificationPreference.objects.bulk_create(
+                    [NotificationPreference(user=request.user, **data.validated_data)],
+                    update_conflicts=True,
+                    update_fields=list(data.validated_data),
+                    unique_fields=['user'],
+                )
+                return self.get(request)
+        return retry_write(write)
