@@ -1,0 +1,7 @@
+{
+  "archivo": "CV-Android-render-1.png",
+  "sha256": "185febdf38b27092130d21c4d4b92903dab72f0e5f6b5b6f28f0b92541403f5c",
+  "source_pdf": "CV-Android-guardado.pdf",
+  "render": "Poppler pdftoppm,110dpi,PNG",
+  "review": "Una página inspeccionada visualmente: campos y secciones legibles, sin recortes/solapamientos, numeración1; no es captura de pantalla."
+}
