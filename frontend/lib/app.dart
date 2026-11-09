@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:worknet/features/statistics/statistics_page.dart';
 import 'package:worknet/features/notifications/notifications_page.dart';
 import 'package:worknet/features/applications/presentation/apply_page.dart';
 import 'package:worknet/features/applications/presentation/application_history_page.dart';
@@ -93,6 +94,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
     const protected = {
       '/dashboard',
       '/notifications',
+      '/statistics',
       '/offers/search',
       '/offers/saved',
       '/applications',
@@ -147,6 +149,15 @@ class _WorkNetAppState extends State<WorkNetApp> {
           if (messageFeature && !['candidato', 'empresa'].contains(role)) {
             return _home();
           }
+          if (path == '/statistics' &&
+              !['candidato', 'empresa'].contains(role)) {
+            return _home();
+          }
+          if (path == '/statistics' &&
+              role == 'empresa' &&
+              _session.session?.companyState != 'approved') {
+            return '/company';
+          }
           if ([
                 '/dashboard',
                 '/offers/search',
@@ -178,6 +189,18 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/statistics',
+          builder: (_, _) => _protected(
+            null,
+            () => StatisticsPage(
+              key: ValueKey(_session.session?.token),
+              session: _session,
+              repository: _dependencies.statistics,
+              routeObserver: _messageObserver,
+            ),
+          ),
+        ),
         GoRoute(
           path: '/notifications',
           builder: (_, _) => _protected(
@@ -252,6 +275,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 repository: _dependencies.applicants,
                 offerId: id,
                 query: ApplicantQuery.fromUri(state.uri),
+                returnToStatistics: state.extra == 'statistics',
               ),
             );
           },
@@ -310,12 +334,13 @@ class _WorkNetAppState extends State<WorkNetApp> {
         ),
         GoRoute(
           path: '/applications',
-          builder: (_, _) => _protected(
+          builder: (_, state) => _protected(
             'candidato',
             () => ApplicationHistoryPage(
               key: ValueKey('${_session.session?.token}:applications'),
               session: _session,
               repository: _dependencies.applications,
+              returnToStatistics: state.extra == 'statistics',
             ),
           ),
         ),

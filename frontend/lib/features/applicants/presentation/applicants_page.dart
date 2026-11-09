@@ -12,11 +12,13 @@ class ApplicantsPage extends StatefulWidget {
     required this.repository,
     required this.offerId,
     required this.query,
+    this.returnToStatistics = false,
   });
   final SessionController session;
   final ApplicantsRepository repository;
   final int offerId;
   final ApplicantQuery query;
+  final bool returnToStatistics;
   @override
   State<ApplicantsPage> createState() => _ApplicantsPageState();
 }
@@ -95,7 +97,10 @@ class _ApplicantsPageState extends State<ApplicantsPage> {
       _load();
       return;
     }
-    context.replace(query.location(widget.offerId));
+    context.replace(
+      query.location(widget.offerId),
+      extra: widget.returnToStatistics ? 'statistics' : null,
+    );
   }
 
   void _apply() {
@@ -150,8 +155,20 @@ class _ApplicantsPageState extends State<ApplicantsPage> {
         child: const Text('Seleccionar otra oferta'),
       ),
       TextButton(
-        onPressed: () => context.go('/company-dashboard'),
-        child: const Text('Volver al dashboard'),
+        onPressed: () {
+          if (widget.returnToStatistics && context.canPop()) {
+            context.pop();
+          } else {
+            context.go(
+              widget.returnToStatistics ? '/statistics' : '/company-dashboard',
+            );
+          }
+        },
+        child: Text(
+          widget.returnToStatistics
+              ? 'Volver a estadísticas'
+              : 'Volver al dashboard',
+        ),
       ),
       TextButton(
         onPressed: _loading ? null : _load,
