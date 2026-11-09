@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from datetime import timedelta
 
 from django.db import IntegrityError, transaction
@@ -156,7 +157,7 @@ class CandidateDashboardTests(APITestCase):
         superuser.save(update_fields=["is_superuser"])
         for user in (self.company, admin, superuser):
             with self.subTest(email=user.email):
-                token = Token.objects.create(user=user)
+                token = fixture_token(user)
                 self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
                 self.assertEqual(self.client.get(self.url).status_code, 403)
 

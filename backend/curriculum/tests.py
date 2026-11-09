@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from copy import deepcopy
 from io import BytesIO
 
@@ -55,7 +56,7 @@ class CurriculumTests(TestCase):
         self.authenticate(self.owner)
 
     def authenticate(self, user):
-        token, _ = Token.objects.get_or_create(user=user)
+        token = fixture_token(user)
         self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     def save_generated(self, template="clasica", data=None):

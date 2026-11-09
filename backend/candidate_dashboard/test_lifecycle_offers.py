@@ -75,6 +75,7 @@ class LifecycleOfferTests(TestCase):
                 ('empresa', False, False, 'approved'), ('empresa', False, True, 'pending'), ('empresa', False, True, 'rejected')]:
             self.company.role, self.company.is_staff, self.company.email_verified = role, staff, verified
             self.company.save()
+            self.authenticate(self.company)
             self.profile.state = state
             self.profile.save()
             self.assertEqual(self.transition().status_code, 403)

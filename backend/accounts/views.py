@@ -192,6 +192,10 @@ class LoginView(APIView):
                 "user"
             ]
 
+            if user.is_staff or user.is_superuser:
+                from .admin_mfa import begin_challenge
+                return begin_challenge(user)
+
             token, _ = Token.objects.get_or_create(
                 user=user
             )

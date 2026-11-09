@@ -5,7 +5,7 @@ import re
 from django.db.models import Case, Exists, IntegerField, OuterRef, Q, Value, When
 from django.utils import timezone
 from rest_framework import serializers
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView

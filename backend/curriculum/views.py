@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponse
 from django.utils.http import content_disposition_header
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated

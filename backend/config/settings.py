@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
 
+    'django_otp',
+    'django_otp.plugins.otp_totp',
     'accounts',
     'candidate_dashboard',
     'curriculum',
@@ -45,7 +47,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
+        "accounts.authentication.TokenAuthentication",
     ],
 }
 
@@ -57,6 +59,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -203,3 +206,8 @@ AUTH_USER_MODEL = 'accounts.User'
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# HU026: stable RFC6238 clock window and exponential device throttling.
+OTP_TOTP_ISSUER = "WorkNet"
+OTP_TOTP_SYNC = False
+OTP_TOTP_THROTTLE_FACTOR = 1

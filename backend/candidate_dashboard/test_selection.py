@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from django.test import TestCase, override_settings
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
@@ -38,7 +39,7 @@ class ApplicationProfileTests(TestCase):
         )
 
     def authenticate(self, user):
-        token, _ = Token.objects.get_or_create(user=user)
+        token = fixture_token(user)
         self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
 
     def test_offer_owner_reads_applicant_profile_without_account_secrets(self):
