@@ -1,5 +1,18 @@
 # Guía para revisar WorkNet
 
+<!-- alcance-hu001-hu026-inicio -->
+## Alcance vigente — HU001–HU026 — 08/11/2026
+
+**Cambio de alcance solicitado por el usuario.** La entrega final comprende HU001–HU026. **HU027 #28 y #137–#141 están canceladas, fuera de alcance y cerradas con motivo `not_planned`**, con estado **Cancelada** en WORK_NET, separado de Done. No se presentan como implementadas, probadas o completadas; no se requiere aplicación, permiso, credencial ni consentimiento de LinkedIn. El contador automático de subtareas cerradas no acredita cumplimiento de sus criterios.
+
+Se detuvo la configuración y cualquier implementación adicional de LinkedIn. La preparación de sitio, logo, propuesta de privacidad y retorno estático de [#196](https://github.com/Danilo2334/Work_net/pull/196)/[#197](https://github.com/Danilo2334/Work_net/pull/197), publicada en main `a9bbf324c8deeec45b462cba84eb620b0dbf0f18`, se conserva como antecedente. Nunca ejecutó OAuth ni importó datos reales. [Versión preparatoria conservada](https://github.com/Danilo2334/Work_net/blob/a9bbf324c8deeec45b462cba84eb620b0dbf0f18/frontend/README.md). Las páginas actuales anuncian la cancelación y el perfil/CV manual continúa disponible.
+
+HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. HU024–HU026 y los pendientes de HU006/HU007 continúan hasta satisfacer sus criterios. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
+
+Los seis IDs, responsables, relaciones, criterios y antecedentes originales de HU027 permanecen conservados. La opción Cancelada se añadió preservando los IDs y valores de todos los estados existentes; no se cambian Sprint ni fechas. Ningún cierre not_planned se contará como entrega funcional.
+
+<!-- alcance-hu001-hu026-fin -->
+
 <!-- hu023-vigente-inicio -->
 ## HU023 — Sistema de notificaciones — 08/11/2026
 
@@ -1021,7 +1034,7 @@ La comprobación personal mínima comunicada por Francisco el 06/11 en #38 y la
 recepción SMTP aportada por el usuario conservan su alcance y fecha; no se
 atribuyen nuevas revisiones personales ni aprobaciones cruzadas.
 
-**Regla de presentación desde HU016 hasta HU027.** Aplicar este formato al
+**Regla de presentación desde HU016 hasta HU026.** Aplicar este formato al
 seguimiento existente de cada subtarea, sin iniciar esas historias en este bloque:
 
 1. Comenzar con **Qué se hizo**, seguido de una explicación breve y específica
