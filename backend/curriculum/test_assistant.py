@@ -61,6 +61,14 @@ class CurriculumAssistantTests(TestCase):
         with override_settings(GEMINI_API_KEY=""):
             self.assertFalse(self.client.get(URL).data["available"])
 
+    def test_json_field_names_do_not_count_as_user_supplied_facts(self):
+        value = proposal()
+        value["data"]["skills"] = [{"name": "text", "level": ""}]
+        self.generator.return_value = (value, "fixture-model")
+        response = self.post()
+        self.assertEqual(response.status_code, 502)
+        self.assertEqual(GeneratedCurriculum.objects.count(), 0)
+
     def test_generation_proposes_without_saving_and_does_not_read_other_profile(self):
         CandidateProfile.objects.create(candidate=self.other, professional_summary="SECRET_OTHER_PROFILE")
         response = self.post()
