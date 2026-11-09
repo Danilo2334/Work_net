@@ -313,19 +313,27 @@ class _AccountPageState extends State<AccountPage> {
     ),
   ]);
 
-  Widget _danger() => _panel('Eliminar cuenta', [
-    const Text(
-      'Esta acción eliminará tu cuenta de forma permanente. Te pediremos la contraseña actual y una confirmación antes de continuar.',
-    ),
-    const SizedBox(height: 20),
-    OutlinedButton.icon(
-      key: const Key('request_delete_account'),
-      onPressed: _busy ? null : _deleteAccount,
-      style: OutlinedButton.styleFrom(foregroundColor: Colors.red.shade800),
-      icon: const Icon(Icons.delete_outline),
-      label: const Text('Eliminar mi cuenta'),
-    ),
-  ], danger: true);
+  Widget _danger() => widget.controller.session?.role == 'admin'
+      ? _panel('Cuenta administrativa protegida', [
+          const Text(
+            'Las cuentas administrativas no se eliminan desde configuración. Su estado y autoridad se gestionan con los permisos correspondientes.',
+          ),
+        ])
+      : _panel('Eliminar cuenta', [
+          const Text(
+            'Esta acción eliminará tu cuenta de forma permanente. Te pediremos la contraseña actual y una confirmación antes de continuar.',
+          ),
+          const SizedBox(height: 20),
+          OutlinedButton.icon(
+            key: const Key('request_delete_account'),
+            onPressed: _busy ? null : _deleteAccount,
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.red.shade800,
+            ),
+            icon: const Icon(Icons.delete_outline),
+            label: const Text('Eliminar mi cuenta'),
+          ),
+        ], danger: true);
 
   Widget _pair(Widget left, Widget right) => LayoutBuilder(
     builder: (_, constraints) => constraints.maxWidth >= 800

@@ -156,16 +156,31 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
           onPressed: () => context.go('/account'),
           child: const Text('Configuración de cuenta'),
         ),
-        if (widget.admin)
+        if (widget.admin &&
+            widget.session.session?.can('review_companies') == true)
           FilledButton(
             key: const Key('open_company_reviews'),
             onPressed: () => context.go('/company-reviews'),
             child: const Text('Revisar empresas'),
-          )
-        else
+          ),
+        if (!widget.admin)
           TextButton(
             onPressed: () => context.go('/company'),
             child: const Text('Información de empresa'),
+          ),
+        if (widget.admin &&
+            (widget.session.session?.can('manage_admins') == true ||
+                widget.session.session?.can('manage_permissions') == true))
+          FilledButton(
+            key: const Key('open_administrators'),
+            onPressed: () => context.go('/admin/accounts'),
+            child: const Text('Administradores y permisos'),
+          ),
+        if (widget.admin && widget.session.session?.can('view_events') == true)
+          OutlinedButton(
+            key: const Key('open_admin_events'),
+            onPressed: () => context.go('/admin/events'),
+            child: const Text('Eventos administrativos'),
           ),
         TextButton(
           onPressed: _loading ? null : _load,
@@ -199,15 +214,6 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
               'Eventos de validación empresarial',
               d.events,
               'Todavía no hay eventos de validación.',
-            ),
-          if (widget.admin)
-            WorkspacePanel(
-              title: 'Próximas funciones',
-              children: [
-                const Text(
-                  'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.',
-                ),
-              ],
             ),
         ],
       ],

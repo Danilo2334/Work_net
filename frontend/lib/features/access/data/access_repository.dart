@@ -1,7 +1,34 @@
 import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:worknet/core/api/worknet_api.dart';
 import 'package:worknet/features/access/domain/access.dart';
+import 'package:worknet/features/access/domain/admin_mfa.dart';
+
+const adminPermissionKeys = {
+  'dashboard',
+  'review_companies',
+  'view_events',
+  'manage_admins',
+  'manage_permissions',
+};
+
+MfaRequired? parseMfa(Map<String, dynamic> json) {
+  if (json['mfa_required'] != true) return null;
+  final expires = DateTime.tryParse(json['expires_at']?.toString() ?? '');
+  if (json.containsKey('token') ||
+      json['challenge'] is! String ||
+      !RegExp(
+        r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+      ).hasMatch(json['challenge']) ||
+      json['enrollment_required'] is! bool ||
+      expires == null) {
+    throw const ApiFailure(
+      'El servicio no confirmó un desafío de doble factor válido.',
+    );
+  }
+  return MfaRequired(json['challenge'], json['enrollment_required'], expires);
+}
 
 abstract interface class SessionStore {
   Future<String?> read();
@@ -45,6 +72,21 @@ abstract final class SessionModel {
         ].contains(user['role'])) {
       throw const ApiFailure('El servicio no confirmó una sesión válida.');
     }
+    if (user['role'] == 'admin' &&
+        (user['mfa_verified'] != true ||
+            ![
+              'principal',
+              'gestor',
+              'revisor',
+            ].contains(user['administrative_role']) ||
+            user['permissions'] is! List ||
+            (user['permissions'] as List).any(
+              (p) => !adminPermissionKeys.contains(p),
+            ))) {
+      throw const ApiFailure(
+        'La sesión administrativa requiere doble factor y permisos confirmados.',
+      );
+    }
     return UserSession(
       token: json['token'],
       id: user['id'],
@@ -52,6 +94,10 @@ abstract final class SessionModel {
       email: user['email'],
       role: user['role'],
       companyState: user['company_state'] as String?,
+      administrativeRole: user['administrative_role'] as String?,
+      permissions: user['role'] == 'admin'
+          ? List<String>.unmodifiable(user['permissions'])
+          : const [],
     );
   }
 
@@ -64,22 +110,72 @@ abstract final class SessionModel {
       'role': s.role,
       'email_verified': true,
       'company_state': s.companyState,
+      if (s.role == 'admin') ...{
+        'mfa_verified': true,
+        'administrative_role': s.administrativeRole,
+        'permissions': s.permissions,
+      },
     },
   };
 }
 
-class HttpAccessRepository implements AccessRepository {
+class HttpAccessRepository implements AccessRepository, AdminMfaRepository {
   HttpAccessRepository(this.api, this.store);
   final WorkNetApi api;
   final SessionStore store;
   @override
-  Future<UserSession> login(String email, String password) async =>
-      SessionModel.parse(
-        await api.request(
-          'login/',
-          data: {'email': email, 'password': password},
-        ),
+  Future<UserSession> login(String email, String password) async {
+    final response = await api.request(
+      'login/',
+      data: {'email': email, 'password': password},
+    );
+    final mfa = parseMfa(response);
+    if (mfa != null) throw mfa;
+    return SessionModel.parse(response);
+  }
+
+  @override
+  Future<MfaSetup> setupMfa(String challenge) async {
+    final response = await api.request(
+      'admin/mfa/setup/',
+      data: {'challenge': challenge},
+    );
+    final secret = response['secret'];
+    if (secret is! String || !RegExp(r'^[A-Z2-7]{32}$').hasMatch(secret)) {
+      throw const ApiFailure(
+        'El servicio no confirmó una clave de autenticador válida.',
       );
+    }
+    return MfaSetup(secret);
+  }
+
+  @override
+  Future<MfaResult> verifyMfa(
+    String challenge,
+    String code, {
+    bool recovery = false,
+  }) async {
+    final response = await api.request(
+      'admin/mfa/verify/',
+      data: {'challenge': challenge, 'code': code, 'recovery': recovery},
+    );
+    final next = parseMfa(response);
+    if (next != null) throw next;
+    final codes = response['recovery_codes'] ?? <String>[];
+    if (codes is! List ||
+        codes.any(
+          (c) => c is! String || !RegExp(r'^[0-9a-f]{32}$').hasMatch(c),
+        )) {
+      throw const ApiFailure(
+        'No pudimos interpretar los códigos de recuperación.',
+      );
+    }
+    return MfaResult(
+      SessionModel.parse(response),
+      List<String>.unmodifiable(codes),
+    );
+  }
+
   @override
   Future<UserSession?> restore() async {
     final value = await store.read();
