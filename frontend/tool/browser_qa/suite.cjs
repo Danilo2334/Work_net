@@ -38,6 +38,8 @@ async function main() {
   const hu01920 = cfg.suite === 'hu019-hu020';
   const hu023 = cfg.suite === 'hu023';
   const hu024 = cfg.suite === 'hu024';
+  const hu026 = cfg.suite === 'hu026';
+  if(hu026) assert.equal(bridge('hu026_prepare').administrators,28);
   const hu025 = cfg.suite === 'hu025';
   if(hu025) assert.equal(bridge('hu025_prepare').offers,18);
   if(hu024) assert.equal(bridge('hu024_prepare').offers,18);
@@ -103,6 +105,14 @@ async function main() {
     const allowedApplicantQuery=(hu01920||hu02122||hu024||hu025)&&require('./safe_applicant_query.cjs')(captureUrl);
     const allowedMessageQuery=hu02122&&require('./safe_message_query.cjs')(captureUrl);
     if(!allowedReturn&&!allowedApplicantQuery&&!allowedMessageQuery) assert.equal(captureUrl.search, '');
+    if(hu026){
+      for(const name of ['Contraseña inicial privada','Código del autenticador','Código de recuperación privado']){
+        const field=page.getByRole('textbox',{name,exact:true});
+        if(await field.count())assert.equal(await field.inputValue(),'');
+      }
+      const visible=await ui();
+      assert.equal(/(?:[A-Z2-7]{32}|[a-f0-9]{32})/.test(visible),false);
+    }
     const password = page.getByRole('textbox', { name: 'Contraseña', exact: true });
     if (await password.count()) assert.equal(await password.inputValue(), '');
     await page.waitForTimeout(450);
@@ -242,7 +252,9 @@ async function main() {
       await page.getByRole('textbox', { name: 'Correo electrónico', exact: true }).waitFor();
       await capture('login');
     });
-    if (hu025) {
+    if (hu026) {
+      await require('./hu026.cjs')({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results,privacy:v=>{authenticating=v;},privateCredentials:account=>({email:values[account+'_email'],password:values.qa_password})});
+    } else if (hu025) {
       await require('./hu025.cjs')({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results});
     } else if (hu024) {
       await require('./hu024.cjs')({page,cfg,run,capture,bridge,ui,click,waitText,login,logout,semantics,fault,faults,results});
@@ -432,11 +444,11 @@ async function main() {
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
     }
-    const expected = hu025 ? 13 : hu024 ? 16 : hu023 ? 18 : accessOnly ? 5 : hu02122 ? 34 : hu01920 ? 28 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
+    const expected = hu026 ? 18 : hu025 ? 13 : hu024 ? 16 : hu023 ? 18 : accessOnly ? 5 : hu02122 ? 34 : hu01920 ? 28 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
     assert.equal(results.casos.length, expected);
     assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
-    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 && !hu016 && !hu017 && !hu018 && !hu01920 && !hu02122 && !hu023 && !hu024 && !hu025 ? { pdf_texto_coincidente: true } : {}) };
+    results.contrastes = { profile_unchanged: final.profile_unchanged, account_unchanged: final.account_unchanged, ofertas: final.offers.length, cv_generados: final.curricula.length, ...(!hu014 && !hu015 && !hu016 && !hu017 && !hu018 && !hu01920 && !hu02122 && !hu023 && !hu024 && !hu025 && !hu026 ? { pdf_texto_coincidente: true } : {}) };
     results.resultado = 'aprobado'; save(); console.log(expected + '/' + expected + ' OK; sin aprobación humana.');
   } catch (error) {
     results.resultado = 'fallido'; results.ultimo_caso = active; save();
