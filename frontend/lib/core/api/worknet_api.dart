@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 import 'package:worknet/core/domain/failure.dart';
+import 'package:worknet/features/applicants/domain/applicant_export.dart';
 export 'package:worknet/core/domain/failure.dart';
 
 class WorkNetApi {
@@ -142,6 +143,75 @@ class WorkNetApi {
       );
     }
     return response.bodyBytes;
+  }
+
+  Future<ApplicantExportFile> applicantExport({
+    required String token,
+    required int offerId,
+    required Map<String, String> parameters,
+    required ApplicantExportType type,
+  }) async {
+    final path = Uri(
+      path: 'company/offers/$offerId/applications/export/',
+      queryParameters: parameters,
+    ).toString();
+    final response = await _transport(
+      () => _client.get(
+        _base.resolve(path),
+        headers: {
+          'Authorization': 'Token $token',
+          'Accept': type == ApplicantExportType.csv
+              ? 'text/csv, application/json'
+              : 'application/pdf, application/json',
+        },
+      ),
+    );
+    if (response.statusCode != 200) _decode(response, path);
+    final expectedName = 'postulantes-oferta-$offerId.${type.name}';
+    final count = int.tryParse(response.headers['x-export-count'] ?? '');
+    final mime = response.headers['content-type']?.split(';').first.trim();
+    final csv = type == ApplicantExportType.csv;
+    final bytes = response.bodyBytes;
+    if (mime != (csv ? 'text/csv' : 'application/pdf') ||
+        response.headers['content-disposition'] !=
+            'attachment; filename="$expectedName"' ||
+        response.headers['x-export-scope'] != 'all_filtered_applicants' ||
+        count == null ||
+        count < 1 ||
+        count > 5000 ||
+        bytes.length < 5 ||
+        bytes.length > 30 * 1024 * 1024 ||
+        (!csv &&
+            ascii.decode(bytes.take(5).toList(), allowInvalid: true) !=
+                '%PDF-')) {
+      throw const ApiFailure(
+        'No pudimos interpretar la exportación. Actualiza los postulantes y vuelve a intentarlo.',
+      );
+    }
+    if (csv) {
+      try {
+        if (bytes[0] != 0xEF ||
+            bytes[1] != 0xBB ||
+            bytes[2] != 0xBF ||
+            !utf8
+                .decode(bytes)
+                .startsWith(
+                  '"Oferta ID","Oferta","Postulación ID","Nombre","Fecha UTC","Estado","CV enviado"\r\n',
+                )) {
+          throw const FormatException();
+        }
+      } on FormatException {
+        throw const ApiFailure(
+          'No pudimos interpretar el CSV. Vuelve a intentarlo.',
+        );
+      }
+    }
+    return ApplicantExportFile(
+      bytes: bytes,
+      name: expectedName,
+      type: type,
+      count: count,
+    );
   }
 
   Future<Uint8List> profilePhoto({

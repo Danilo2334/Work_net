@@ -1,0 +1,51 @@
+{
+  "date_local": "08/11/2026 America/Bogota",
+  "backend": {
+    "source": "234ed32a34abee4bd144f37331439b2806c1fb05",
+    "full_passed": 265,
+    "new": 8,
+    "full_seconds": 58.314,
+    "final_affected_passed": 19,
+    "note": "Suite completa antes de añadir exposición CORS por respuesta;19afectadas repetidas después",
+    "check": "clean",
+    "makemigrations": "no changes",
+    "migrations_pending": 0
+  },
+  "frontend": {
+    "functional_source": "e2194dbf3295c2c6cf37a35cc2613e2e1af1d1fd",
+    "full_passed": 203,
+    "new": 8,
+    "analyze": "clean",
+    "later_changes": "QA tools only; lib/test identical",
+    "analyze_qa": "clean after QA Android entry",
+    "qa_sources": {
+      "browser": "9e131b391b80d03b9cc1a435a0fc8634545aa3f6",
+      "android": "ae6ce8423a53891efc805f973ba1d097967d20d1"
+    }
+  },
+  "guards": {
+    "python": 20,
+    "node": 6
+  },
+  "review": "Delegated read-only; BOM/CORS defects corrected and reviewed, no humanapproval",
+  "desktop": "28requests40PASS1iteration, no rerun",
+  "android": {
+    "standard_debug_x64": "PASS444.7s",
+    "source_at_build": "f06675c47fb91a80ddb4cec0098b9c5d8435eb01",
+    "java": "25.0.3",
+    "scope": "Aceptación nativa: dos descargas SAF reales de14 registros, CSV/PDF contrastados contraSQL;8JPEG originales. Emulador17/API37 x86_64 vacío,480x800; no dispositivo físico.",
+    "jvm_option": "per-command jdk.net.unixdomain.tmpdir in private QA folder; globalconfigunchanged",
+    "qa_source": "ae6ce8423a53891efc805f973ba1d097967d20d1",
+    "probe_build_seconds": 40.4,
+    "probe_private": true
+  },
+  "versions": {
+    "Python": "3.12.10",
+    "Django": "6.1.1",
+    "DRF": "3.18.3",
+    "Flutter": "3.47.5",
+    "Dart": "3.13.4",
+    "ReportLab": "5.1.0",
+    "PostmanDesktop": "12.35.5"
+  }
+}

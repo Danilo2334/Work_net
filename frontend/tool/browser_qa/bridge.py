@@ -81,6 +81,21 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu025_'):
+        require(config.get('suite') == 'hu025')
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('hu025_qa', root / 'source/frontend/tool/browser_qa/hu025_api.py')
+        module = importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        if action == 'hu025_prepare':return module.fixtures(run)
+        if action == 'hu025_seed':return module.seed(run)
+        if action == 'hu025_snapshot':return module.contrast(run)
+        if action == 'hu025_download':
+            require(len(args)==3)
+            return module.validate_download(run,root/'artifacts',*args)
+        require(action=='hu025_revoke')
+        from hu018_api import configure,client
+        configure(run);actor,_=client('company');r=actor.post('/api/logout/',{},format='json');require(r.status_code==200)
+        return {'actor_qa':'empresa_ficticia_API','operation':'POST /api/logout/','revoked':True}
     if action.startswith('hu024_'):
         require(config.get('suite') == 'hu024')
         import importlib.util
