@@ -304,13 +304,21 @@ void main() {
           return jsonResponse(challenge(), 202);
         }
         expect(jsonDecode(r.body)['recovery'], true);
-        return jsonResponse(challenge(enrollment: true), 202);
+        return jsonResponse({
+          ...challenge(enrollment: true),
+          'challenge': '22222222-2222-4222-8222-222222222222',
+        }, 202);
       });
       await login(t);
+      final previousInput = t.state(find.byKey(const Key('mfa_code')));
       await tap(t, find.byKey(const Key('mfa_use_recovery')));
       await t.enterText(find.byKey(const Key('mfa_code')), 'a' * 32);
       await tap(t, find.byKey(const Key('mfa_verify')));
       expect(find.text('Configurar doble factor'), findsOneWidget);
+      expect(
+        identical(previousInput, t.state(find.byKey(const Key('mfa_code')))),
+        false,
+      );
       expect(
         t.widget<TextField>(find.byKey(const Key('mfa_code'))).controller!.text,
         isEmpty,

@@ -45,7 +45,8 @@ class _CompanyPageState extends State<CompanyPage> {
   Uint8List? _logo;
   bool _loading = true, _busy = false;
   String? _error, _success;
-  String get _token => widget.session.session!.token;
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.session.session?.token == token;
   @override
   void initState() {
     super.initState();
@@ -80,40 +81,46 @@ class _CompanyPageState extends State<CompanyPage> {
   }
 
   Future<void> _load() async {
+    final token = widget.session.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _loading = true;
       _error = null;
     });
     try {
-      final c = await widget.repository.load(_token);
+      final c = await widget.repository.load(token!);
       Uint8List? logo;
-      if (c.hasLogo) logo = await widget.repository.logo(_token);
-      if (mounted) {
+      if (!_isCurrent(token)) return;
+      if (c.hasLogo) logo = await widget.repository.logo(token);
+      if (_isCurrent(token)) {
         setState(() {
           _apply(c);
           _logo = logo;
         });
       }
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.session.expire();
-      if (mounted) setState(() => _error = e.message);
+      if (_isCurrent(token)) setState(() => _error = e.message);
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (_isCurrent(token)) setState(() => _loading = false);
     }
   }
 
-  Future<void> _run(Future<void> Function() action) async {
-    if (_busy) return;
+  Future<void> _run(Future<void> Function(String token) action) async {
+    final token = widget.session.session?.token;
+    if (_busy || !_isCurrent(token)) return;
     setState(() {
       _busy = true;
       _error = null;
       _success = null;
     });
     try {
-      await action();
+      await action(token!);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.session.expire();
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _error = e.fields.isEmpty
               ? e.message
@@ -121,7 +128,7 @@ class _CompanyPageState extends State<CompanyPage> {
         );
       }
     } finally {
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(() => _busy = false);
         if (_scroll.hasClients) {
           await _scroll.animateTo(
@@ -136,7 +143,7 @@ class _CompanyPageState extends State<CompanyPage> {
 
   Future<void> _save({bool submit = false}) async {
     if (!_form.currentState!.validate()) return;
-    await _run(() async {
+    await _run((token) async {
       final d = CompanyDraft(
         name: _fields['name']!.text,
         taxId: _fields['taxId']!.text,
@@ -146,9 +153,9 @@ class _CompanyPageState extends State<CompanyPage> {
         description: _fields['description']!.text,
       );
       final c = submit
-          ? await SubmitCompany(widget.repository)(_token, d)
-          : await widget.repository.save(_token, d);
-      if (mounted) {
+          ? await SubmitCompany(widget.repository)(token, d)
+          : await widget.repository.save(token, d);
+      if (_isCurrent(token)) {
         setState(() {
           _apply(c);
           _success = submit
@@ -160,6 +167,8 @@ class _CompanyPageState extends State<CompanyPage> {
   }
 
   Future<void> _pickLogo() async {
+    final pickerToken = widget.session.session?.token;
+    if (!_isCurrent(pickerToken)) return;
     final file = await openFile(
       acceptedTypeGroups: [
         const XTypeGroup(
@@ -168,18 +177,17 @@ class _CompanyPageState extends State<CompanyPage> {
         ),
       ],
     );
-    if (file == null || !mounted) return;
-    await _run(() async {
+    if (file == null || !_isCurrent(pickerToken)) return;
+    await _run((token) async {
       if (await file.length() > 2 * 1024 * 1024) {
         throw const ApiFailure('El logo no puede superar 2 MiB.');
       }
-      await widget.repository.uploadLogo(
-        _token,
-        await file.readAsBytes(),
-        file.name,
-      );
+      final bytes = await file.readAsBytes();
+      if (!_isCurrent(token)) return;
+      await widget.repository.uploadLogo(token, bytes, file.name);
+      if (!_isCurrent(token)) return;
       await _load();
-      if (mounted) setState(() => _success = 'Logo guardado.');
+      if (_isCurrent(token)) setState(() => _success = 'Logo guardado.');
     });
   }
 
@@ -214,7 +222,7 @@ class _CompanyPageState extends State<CompanyPage> {
           onReturn: _load,
         ),
         OutlinedButton(
-          onPressed: _busy ? null : () => _run(widget.session.logout),
+          onPressed: _busy ? null : () => _run((_) => widget.session.logout()),
           child: const Text('Cerrar sesión'),
         ),
         TextButton(
@@ -325,9 +333,9 @@ class _CompanyPageState extends State<CompanyPage> {
                       TextButton(
                         onPressed: _busy
                             ? null
-                            : () => _run(() async {
-                                await widget.repository.removeLogo(_token);
-                                await _load();
+                            : () => _run((token) async {
+                                await widget.repository.removeLogo(token);
+                                if (_isCurrent(token)) await _load();
                               }),
                         child: const Text('Eliminar logo'),
                       ),
@@ -347,16 +355,17 @@ class _CompanyPageState extends State<CompanyPage> {
                   maxLines: 3,
                   decoration: const InputDecoration(
                     labelText: 'Redes sociales (un enlace por línea)',
-                    helperText: 'Usa enlaces completos, por ejemplo https://example.org',
+                    helperText:
+                        'Usa enlaces completos, por ejemplo https://example.org',
                   ),
                 ),
                 const SizedBox(height: 20),
                 FilledButton(
                   onPressed: _busy
                       ? null
-                      : () => _run(() async {
+                      : () => _run((token) async {
                           final saved = await widget.repository.saveExtras(
-                            _token,
+                            token,
                             _fields['website']!.text,
                             _fields['social']!.text
                                 .split('\n')
@@ -364,7 +373,7 @@ class _CompanyPageState extends State<CompanyPage> {
                                 .where((s) => s.isNotEmpty)
                                 .toList(),
                           );
-                          if (mounted) {
+                          if (_isCurrent(token)) {
                             setState(() {
                               _apply(saved);
                               _success = 'Información complementaria guardada.';

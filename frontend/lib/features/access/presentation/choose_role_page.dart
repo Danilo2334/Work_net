@@ -20,21 +20,22 @@ class ChooseRolePage extends StatefulWidget {
 class _ChooseRolePageState extends State<ChooseRolePage> {
   bool _busy = false;
   String? _error;
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.session.session?.token == token;
   Future<void> _choose(String role) async {
+    final token = widget.session.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _busy = true;
       _error = null;
     });
     try {
-      final saved = await widget.repository.chooseRole(
-        widget.session.session!.token,
-        role,
-      );
-      await widget.session.update(role: saved);
+      final saved = await widget.repository.chooseRole(token!, role);
+      if (_isCurrent(token)) await widget.session.update(role: saved);
     } on ApiFailure catch (e) {
-      if (mounted) setState(() => _error = e.message);
+      if (_isCurrent(token)) setState(() => _error = e.message);
     } finally {
-      if (mounted) setState(() => _busy = false);
+      if (_isCurrent(token)) setState(() => _busy = false);
     }
   }
 

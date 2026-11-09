@@ -198,20 +198,25 @@ class _AdminMfaPanelState extends State<AdminMfaPanel> {
               const Text('TOTP · 6 dígitos · 30 segundos · SHA-1'),
             ],
           ],
-          TextField(
-            key: const Key('mfa_code'),
-            controller: _code,
-            enabled: !_busy,
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: _recovery ? TextInputType.text : TextInputType.number,
-            decoration: InputDecoration(
-              labelText: _recovery
-                  ? 'Código de recuperación privado'
-                  : 'Código del autenticador',
+          KeyedSubtree(
+            key: ValueKey(_challenge.challenge),
+            child: TextField(
+              key: const Key('mfa_code'),
+              controller: _code,
+              enabled: !_busy,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              keyboardType: _recovery
+                  ? TextInputType.text
+                  : TextInputType.number,
+              decoration: InputDecoration(
+                labelText: _recovery
+                    ? 'Código de recuperación privado'
+                    : 'Código del autenticador',
+              ),
+              onSubmitted: (_) => _verify(),
             ),
-            onSubmitted: (_) => _verify(),
           ),
           const SizedBox(height: 18),
           FilledButton(
