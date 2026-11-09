@@ -4,14 +4,17 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import hashlib
 import json
 import os
+import platform
 from pathlib import Path
 import secrets
 import socket
 import subprocess
 import sys
 import threading
+import time
 import uuid
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
@@ -24,6 +27,12 @@ class Quiet(WSGIRequestHandler):
 
 
 class WebHandler(SimpleHTTPRequestHandler):
+    qa_run = ""
+
+    def end_headers(self):
+        self.send_header("X-WorkNet-QA-Run", self.qa_run)
+        super().end_headers()
+
     def do_GET(self):
         target = Path(self.translate_path(self.path))
         if not target.is_file() and not Path(self.path.split("?", 1)[0]).suffix:
@@ -40,6 +49,8 @@ def main():
     parser.add_argument("--web-port", type=int, default=18489)
     parser.add_argument("--provider-real", action="store_true", help="Explicitly use the configured provider with fictitious QA data; requires authorized private key/model.")
     parser.add_argument("--serve", action="store_true", help="Keep only this newly created QA run available on loopback.")
+    parser.add_argument("--prepare-only", action="store_true", help="Prepare a fresh QA without running the HTTP suite, for independent browser/Desktop acceptance.")
+    parser.add_argument("--private-env", type=Path, help="Read only Gemini server configuration from a private local dotenv file; never copy it into artifacts or clients.")
     args = parser.parse_args()
     if args.api_port == args.web_port or any(not 1024 <= p <= 65535 for p in [args.api_port, args.web_port]):
         parser.error("Use two distinct unprivileged ports.")
@@ -52,6 +63,12 @@ def main():
     run.mkdir(parents=True, exist_ok=False, mode=0o700)
     (run / "mode.json").write_text('{"mode":"unconfigured"}')
     sys.path.insert(0, str(repo / "backend"))
+    if args.private_env:
+        from dotenv import dotenv_values
+        private_values = dotenv_values(args.private_env.resolve(strict=True))
+        for name in ["GEMINI_API_KEY", "GEMINI_MODEL"]:
+            if private_values.get(name):
+                os.environ[name] = private_values[name]
     os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings"
     from django.conf import settings
     real_key = getattr(settings, "GEMINI_API_KEY", "")
@@ -65,6 +82,7 @@ def main():
     settings.CORS_ALLOWED_ORIGINS = [f"http://127.0.0.1:{args.web_port}"]
     settings.CURRICULUM_AI_RATE = "1000/hour"
     settings.DEBUG = False
+    settings.SECRET_KEY = secrets.token_urlsafe(48)
     settings.GEMINI_API_KEY = ""
     settings.GEMINI_MODEL = ""
     import django
@@ -114,6 +132,31 @@ def main():
 
     if not args.provider_real:
         assistant.generate = provider_double
+    else:
+        real_generate = assistant.generate
+        provider_calls = []
+
+        def audited_real_generate(source):
+            configured = all(assistant.configuration())
+            if not configured:
+                return real_generate(source)
+            started = time.perf_counter()
+            record = {"requested_model": real_model, "profile_included": "profile" in source,
+                      "source_sha256": hashlib.sha256(json.dumps(source, sort_keys=True, ensure_ascii=False).encode()).hexdigest()}
+            try:
+                value, model = real_generate(source)
+                record["returned_json"] = True
+                record["result_sha256"] = hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+                return value, model
+            except assistant.AssistantFailure as error:
+                record.update(returned_json=False, http_status=error.status_code, error_code=error.get_codes())
+                raise
+            finally:
+                record["elapsed_ms"] = round((time.perf_counter() - started) * 1000, 2)
+                provider_calls.append(record)
+                (run / "provider-calls.json").write_text(json.dumps(provider_calls, indent=2), encoding="utf-8")
+
+        assistant.generate = audited_real_generate
     application = get_wsgi_application()
 
     def guarded_app(environ, start_response):
@@ -121,7 +164,7 @@ def main():
         settings.GEMINI_API_KEY = (real_key if args.provider_real else "qa-double-not-a-real-key") if mode != "unconfigured" else ""
         settings.GEMINI_MODEL = (real_model if args.provider_real else "gemini-3.5-flash-lite") if mode != "unconfigured" else ""
         def marked(status, headers, exc_info=None):
-            return start_response(status, [*headers, ("X-WorkNet-QA", marker)], exc_info)
+            return start_response(status, [*headers, ("X-WorkNet-QA", marker), ("X-WorkNet-QA-Run", run.name)], exc_info)
         return application(environ, marked)
 
     api = make_server("127.0.0.1", args.api_port, guarded_app, handler_class=Quiet)
@@ -143,10 +186,13 @@ def main():
         results.append({"case": case, "expected_http": expected, "obtained_http": status, "passed": True})
         return json.loads(raw) if not raw.startswith(b"%PDF-") else raw
 
-    results_path = repo / "backend/docs/evidencias/hu028-20261109"
+    # Keep every new run independent; never overwrite the published historical evidence.
+    results_path = run / "artifacts"
     results_path.mkdir(parents=True, exist_ok=True)
     try:
-        if args.provider_real:
+        if args.prepare_only:
+            pass
+        elif args.provider_real:
             (run / "mode.json").write_text('{"mode":"real"}')
             available = request("R01 configuración de proveedor real")
             assert available["available"]
@@ -195,20 +241,21 @@ def main():
                 (results_path / ("HU028-PDF-" + template + "-doble-controlado.pdf")).write_bytes(document)
                 assert document.startswith(b"%PDF-")
             request("A14 otro candidato no lee PDF", "curriculum/generated/pdf/", token="other", expected=404)
-        results_path = repo / "backend/docs/evidencias/hu028-20261109"
-        results_path.mkdir(parents=True, exist_ok=True)
         report = {"date_utc": datetime.now(timezone.utc).isoformat(), "run": run.name,
-                  "platform": "Linux / SQLite / loopback", "django": django.get_version(),
-                  "provider_real_tested": args.provider_real, "provider_double": None if args.provider_real else "controlled test fixture; not Gemini",
+                  "platform": platform.system() + " / SQLite / loopback", "python": platform.python_version(), "django": django.get_version(),
+                  "source_sha": subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip(),
+                  "provider_real_tested": args.provider_real and not args.prepare_only, "provider_double": None if args.provider_real else "controlled test fixture; not Gemini",
                   "requests_checked": len(results), "cases": results,
                   "pending": ["Postman Desktop evidence"] if args.provider_real else ["authorized provider key and model", "real provider acceptance", "Postman Desktop evidence"]}
-        (results_path / ("http-proveedor-real.json" if args.provider_real else "http-resultados.json")).write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
+        report_name = "preparacion.json" if args.prepare_only else ("http-proveedor-real.json" if args.provider_real else "http-resultados.json")
+        (results_path / report_name).write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
         (run / "mode.json").write_text(json.dumps({"mode": "real" if args.provider_real else "unconfigured"}))
-        print(json.dumps({"run": str(run), "requests_checked": len(results), "provider_real_tested": args.provider_real}), flush=True)
+        print(json.dumps({"run": str(run), "requests_checked": len(results), "provider_real_tested": args.provider_real and not args.prepare_only}), flush=True)
         if args.serve:
             webroot = repo / "frontend/build/web"
             if not (webroot / "index.html").is_file():
                 raise RuntimeError("Build the web application first.")
+            WebHandler.qa_run = run.name
             web = ThreadingHTTPServer(("127.0.0.1", args.web_port), partial(WebHandler, directory=str(webroot)))
             try:
                 web.serve_forever()
