@@ -2,6 +2,7 @@
 // Las credenciales ficticias se inyectan desde un archivo privado de defines.
 // Nunca se utiliza como lib/main.dart ni se publica un APK con esos valores.
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:worknet/app.dart';
 import 'package:worknet/core/api/worknet_api.dart';
 import 'package:worknet/features/access/data/access_repository.dart';
@@ -43,6 +44,12 @@ Future<void> main() async {
       throw StateError('Solo una QA Android ficticia aislada.');
     }
     final store = _EphemeralStore();
+    final check = await http
+        .get(uri.resolve('company/offers/'))
+        .timeout(const Duration(seconds: 10));
+    if (check.headers['x-worknet-qa-run'] != run || check.statusCode != 401) {
+      throw StateError('El servidor no acredita esta QA aislada.');
+    }
     final api = WorkNetApi(baseUri: uri);
     final auth = HttpAccessRepository(api, store);
     final user = await auth.login(email, password);
