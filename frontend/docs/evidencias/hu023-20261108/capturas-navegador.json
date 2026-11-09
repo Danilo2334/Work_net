@@ -1,0 +1,234 @@
+{
+  "run": "browser-qa-20261109T021122-1cd98433",
+  "frontend_sha": "7098e65afc7505f3025025f9deb27fb26d42e0ad",
+  "backend_sha": "5e1b6cbd23e49175d1d74b99ab4c9aa6110e281d",
+  "date_local": "08/11/2026 America/Bogota",
+  "source": "25 capturas PNG originales, sin edición, aceptación18/18; móvil web emulado390×844, no dispositivo físico",
+  "captures": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU023-V01-historial-y-contador-escritorio.png",
+      "caso": "HU023-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "95188170b0fa02cdbd8d14cd5c95dc54eea6001037e7a5234b4104633ee79507"
+    },
+    {
+      "archivo": "HU023-V02-pagina-dos-sin-repeticiones.png",
+      "caso": "HU023-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a782686352b662d82dc1efb723a0fa50c4fd4254439f750de55ae32795b9d306"
+    },
+    {
+      "archivo": "HU023-V03-filtro-pendientes.png",
+      "caso": "HU023-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a38d21f474224f345afc75c49382cf166ab741b36aae3ad88d254ba9da7eadf9"
+    },
+    {
+      "archivo": "HU023-V03-filtro-leidas.png",
+      "caso": "HU023-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8da9cba4e77ca7ac73fc1f2acab539be5cccbee702831731691b78af006b21e3"
+    },
+    {
+      "archivo": "HU023-V04-lectura-explicita-y-fecha.png",
+      "caso": "HU023-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2a4fc4b6a5c53cb644899fa06c029bb2271ba63ed463d066692d65d4bb6c5082"
+    },
+    {
+      "archivo": "HU023-V05-aviso-real-cambio-de-estado.png",
+      "caso": "HU023-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "04041bf513c723a2981c6ba6ce05f8668480e21080ebe3cfd2196fca656cf4d6"
+    },
+    {
+      "archivo": "HU023-V05-detalle-del-aviso-real.png",
+      "caso": "HU023-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "777cbe13c008ba0b0d146530e3080a8f5a575677b1dd0ea82a32d4b6fed8bcff"
+    },
+    {
+      "archivo": "HU023-V06-aviso-mensaje-destinatario.png",
+      "caso": "HU023-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b26bb0f0741803972e39bd49d8be419edf6e90ae09e5e595f50160f3a204280d"
+    },
+    {
+      "archivo": "HU023-V07-llegada-nueva-sigue-pendiente.png",
+      "caso": "HU023-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1010f8f544d0a2e4cc8278c17d6ae6dcf98bb574808271e17921f1586926ed50"
+    },
+    {
+      "archivo": "HU023-V08-conversacion-del-aviso.png",
+      "caso": "HU023-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0ef78c33e558b7fa185706c86c16a91f83b2c5287bb1f662422434c29df9179a"
+    },
+    {
+      "archivo": "HU023-V08-leer-chat-no-lee-aviso.png",
+      "caso": "HU023-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1010f8f544d0a2e4cc8278c17d6ae6dcf98bb574808271e17921f1586926ed50"
+    },
+    {
+      "archivo": "HU023-V09-preferencia-futura-deshabilitada.png",
+      "caso": "HU023-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b1e1b164ef7237f861351da70039c997415aca788bc6e1a73b5850efbff43dab"
+    },
+    {
+      "archivo": "HU023-V10-evento-nuevo-despues-de-habilitar.png",
+      "caso": "HU023-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9dc9b23c6f525f1892447cd5030d13f768d0bf1ad99aed1f09cd2dd07609762e"
+    },
+    {
+      "archivo": "HU023-V11-empresa-recibe-nueva-postulacion.png",
+      "caso": "HU023-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "550fad924ec01b8da49bacbf3d82a4f3912a00430c11e06a465b99a11496edd3"
+    },
+    {
+      "archivo": "HU023-V12-aprobacion-propia.png",
+      "caso": "HU023-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ccba134ea5c4a75a92722c9c150c1aa1421e908299524dd2f58950a9010f560a"
+    },
+    {
+      "archivo": "HU023-V13-rechazo-propio-sin-dashboard.png",
+      "caso": "HU023-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "23a07e9e04fcd04376af026f7dd255e155487d63e5677c2035a17f12c6d99cff"
+    },
+    {
+      "archivo": "HU023-V13-cuenta-rechazada-conserva-restricciones.png",
+      "caso": "HU023-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0f72e48c0530ec2d2ea27a2ebfe1a22b434b05d66e942cee5c2b4d0578f26c42"
+    },
+    {
+      "archivo": "HU023-V14-historial-movil.png",
+      "caso": "HU023-V14",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "f409c2975d2ea22132b5ab2f3233d880a67b2892d76bc9a9215be3205138619c"
+    },
+    {
+      "archivo": "HU023-V14-lectura-y-contador-movil.png",
+      "caso": "HU023-V14",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "e422dc2eb67b219803ba15d3ccce3f3ecdb681f6e4851a47076ed3f0714d2d41"
+    },
+    {
+      "archivo": "HU023-V14-preferencias-movil.png",
+      "caso": "HU023-V14",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "36db3e4c85e9e55b3defdc93d96e3b3b6288da35a1f4da692a4ccc202f3e003d"
+    },
+    {
+      "archivo": "HU023-V15-historial-vacio-otro-usuario.png",
+      "caso": "HU023-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7a08ea6011bd9d25c490d589e5b788b42e7750480395935e62eaba249e928791"
+    },
+    {
+      "archivo": "HU023-V16-error-inyectado-identificado.png",
+      "caso": "HU023-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8a73aede65c7fd7751ed3058fad2a467cd34ec2f290f81248ee14e2de7ca1420"
+    },
+    {
+      "archivo": "HU023-V16-reintento-real.png",
+      "caso": "HU023-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7a08ea6011bd9d25c490d589e5b788b42e7750480395935e62eaba249e928791"
+    },
+    {
+      "archivo": "HU023-V17-sesion-revocada-sin-datos.png",
+      "caso": "HU023-V17",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+    }
+  ]
+}
