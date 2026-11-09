@@ -115,12 +115,12 @@ class SessionLifecycle {
   }
 
   Future<void> expire() async {
-    final operation = ++_epoch;
+    ++_epoch;
     current = null;
     remembered = false;
-    await _store(() async {
-      if (operation == _epoch) await repository.clear();
-    });
+    // Expiration is already confirmed. A later password attempt (including MFA202
+    // or failure) must not cancel this erase. Any accepted new session is queued after it.
+    await _store(repository.clear);
   }
 
   Future<void> update({String? name, String? token, String? role}) async {
