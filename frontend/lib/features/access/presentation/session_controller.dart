@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/features/access/domain/access.dart';
+import 'package:worknet/features/access/domain/admin_mfa.dart';
 export 'package:worknet/features/access/domain/access.dart' show UserSession;
 
 class SessionController extends ChangeNotifier {
@@ -11,6 +12,16 @@ class SessionController extends ChangeNotifier {
   bool restoring = true;
   String? notice;
   bool _disposed = false;
+  AdminMfaRepository? get mfa => _lifecycle.repository is AdminMfaRepository
+      ? _lifecycle.repository as AdminMfaRepository
+      : null;
+
+  Future<void> completeMfa(UserSession next, {required bool remember}) async {
+    await _lifecycle.accept(next, remember);
+    notice = null;
+    notifyListeners();
+  }
+
   @override
   void notifyListeners() {
     if (!_disposed) super.notifyListeners();
@@ -54,13 +65,14 @@ class SessionController extends ChangeNotifier {
   }
 
   Future<void> expire({bool announce = true}) async {
-    try {
-      await _lifecycle.expire();
-    } catch (_) {}
+    final clearing = _lifecycle.expire();
     notice = announce
         ? 'Tu sesión ya no es válida. Inicia sesión de nuevo.'
         : null;
     notifyListeners();
+    try {
+      await clearing;
+    } catch (_) {}
   }
 
   Future<void> update({String? name, String? token, String? role}) async {

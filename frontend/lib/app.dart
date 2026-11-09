@@ -1,3 +1,4 @@
+import 'package:worknet/features/administration/admin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:worknet/features/statistics/statistics_page.dart';
 import 'package:worknet/features/notifications/notifications_page.dart';
@@ -107,6 +108,8 @@ class _WorkNetAppState extends State<WorkNetApp> {
       '/company/offers/new',
       '/admin-dashboard',
       '/company-reviews',
+      '/admin/accounts',
+      '/admin/events',
       '/choose-role',
       '/access-pending',
     };
@@ -181,7 +184,12 @@ class _WorkNetAppState extends State<WorkNetApp> {
               role != 'empresa') {
             return _home();
           }
-          if (['/admin-dashboard', '/company-reviews'].contains(path) &&
+          if ([
+                '/admin-dashboard',
+                '/company-reviews',
+                '/admin/accounts',
+                '/admin/events',
+              ].contains(path) &&
               role != 'admin') {
             return _home();
           }
@@ -189,6 +197,26 @@ class _WorkNetAppState extends State<WorkNetApp> {
         return null;
       },
       routes: [
+        GoRoute(
+          path: '/admin/accounts',
+          builder: (_, _) => _protected(
+            'admin',
+            () => AdminAccountsPage(
+              session: _session,
+              repository: _dependencies.administration,
+            ),
+          ),
+        ),
+        GoRoute(
+          path: '/admin/events',
+          builder: (_, _) => _protected(
+            'admin',
+            () => AdminEventsPage(
+              session: _session,
+              repository: _dependencies.administration,
+            ),
+          ),
+        ),
         GoRoute(
           path: '/statistics',
           builder: (_, _) => _protected(
