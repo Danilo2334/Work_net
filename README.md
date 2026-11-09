@@ -5,7 +5,7 @@ Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com
 
 ## Alcance vigente
 
-La entrega final comprende **HU001–HU026**. Por decisión expresa del usuario del **08/11/2026**, HU027 — Integración con LinkedIn y #137–#141 están **canceladas/fuera de alcance**, cerradas con motivo `not_planned` y estado **Cancelada** en WORK_NET. Su preparación estática se conserva como antecedente; no hay integración LinkedIn disponible ni se requieren credenciales externas.
+La entrega estable comprende **HU001–HU026**. HU027 — Integración con LinkedIn queda **pendiente de desarrollo**, fuera de esta entrega, con #28 y #137–#141 abiertas. Se retiró su retorno estático y la configuración preparatoria de los archivos actuales. Los antecedentes permanecen en Git. **HU028 — Asistente de creación de currículum con IA (#224)** se desarrolla por separado; su aceptación con proveedor real requiere configuración privada y permanece pendiente.
 
 Los resultados de implementación, aceptación, documentación e integración de HU001–HU026 se registran en [la guía y evidencias vigentes](frontend/docs/REVISION.md). Los cortes anteriores conservan su fecha y procedencia en los antecedentes; no constituyen una ejecución nueva.
 
