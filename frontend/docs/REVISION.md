@@ -113,6 +113,17 @@ Este modo sí realiza una generación contra Gemini y puede consumir cuota. Comp
 
 La colección [hu028.postman_collection.json](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/postman/hu028.postman_collection.json) no contiene credenciales. Importar únicamente el entorno privado del nuevo run. Separar carpetas de permisos/validación, falta de configuración y proveedor real; no ejecutar la carpeta real sin autorización/configuración. La QA eleva su límite a 1000/h únicamente en el proceso aislado para permitir casos negativos; producción mantiene 5/h por usuario. En despliegues con varios procesos se necesita un caché compartido para un límite global.
 
+### Seguimientos de HU028 y continuación
+
+| Tarea | Seguimiento único | Evidencia y estado |
+|---|---|---|
+| #225 API — Danilo | [Comentario](https://github.com/Danilo2334/Work_net/issues/225#issuecomment-6740954009) | 15 pruebas propias y 19 peticiones HTTP documentadas; capturas Postman Desktop pendientes. |
+| #226 Flutter — Francisco | [Comentario](https://github.com/Danilo2334/Work_net/issues/226#issuecomment-6740954415) | Cuatro renders explicados de consentimiento, revisión, aplicación y móvil; navegador real pendiente. |
+| #227 Integración — Francisco | [Comentario](https://github.com/Danilo2334/Work_net/issues/227#issuecomment-6740954688) | Tres PDF y primeras páginas, guardado explícito por HTTP; recorrido conjunto con Gemini real pendiente. |
+| #228 QA — Francisco | [Comentario](https://github.com/Danilo2334/Work_net/issues/228#issuecomment-6740954963) | Dos renders de casos específicos reutilizados, manifiesto y resultados; aceptación externa pendiente. |
+
+[PR #231](https://github.com/Danilo2334/Work_net/pull/231) contiene API de Danilo; [PR #232](https://github.com/Danilo2334/Work_net/pull/232) contiene Flutter/QA/guía de Francisco. Ambos permanecen en borrador. La [rama combinada](https://github.com/Danilo2334/Work_net/tree/codex/hu028-curriculum-ai-integracion) conserva ambos historiales para continuar; el corte de implementación comprobado es [`ebd3f0f`](https://github.com/Danilo2334/Work_net/commit/ebd3f0fe1413ae7401dc91d4b6398ba15b74ec7a). Cada archivo funcional y original se contrastó con el árbol remoto; no se fusionó HU028 en main.
+
 ### Pendientes concretos de aceptación y publicación
 
 1. Configurar clave y modelo autorizados y comprobar Gemini real, incluida utilidad/fidelidad de las propuestas.
