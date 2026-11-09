@@ -45,12 +45,13 @@ def collection(run, port):
     source = (Path(__file__).parent/'hu026_totp.cjs').read_text(encoding='utf-8').split("if (typeof module")[0]
     def otp_pre(actor, invalid=False):
         # Wait for the real clock, never edit server time/last_t. First invalid attempt needs 1s throttle recovery.
-        text = source+f"\nconst actor={json.dumps(actor)};\nconst secret=pm.variables.get(actor+'_secret');\n"
+        text = "const qaKeepAlive=setInterval(()=>{},100);try{\n"+source+f"\nconst actor={json.dumps(actor)};\nconst secret=pm.variables.get(actor+'_secret');\n"
         text += "const last=Number(pm.variables.get(actor+'_last_step')??-1);if(last>=Math.floor(Date.now()/30000)){await new Promise(r=>setTimeout(r,(last+1)*30000-Date.now()+150));}\n"
         text += "await new Promise(r=>setTimeout(r,1200));const remainder=Date.now()%30000;if(remainder>15000){await new Promise(r=>setTimeout(r,30000-remainder+150));}const step=Math.floor(Date.now()/30000);let code=await hu026Totp(secret,step);\n"
         if invalid:
             text += "const valid=new Set(await Promise.all([step-1,step,step+1].map(t=>hu026Totp(secret,t))));let n=0;while(valid.has(String(n).padStart(6,'0')))n++;code=String(n).padStart(6,'0');\n"
         text += "pm.variables.set(actor+'_current_code',code);pm.variables.set(actor+'_sent_step',step);const resolved=pm.variables.replaceIn('{{'+actor+'_current_code}}');if(typeof code!=='string'||!/^\\d{6}$/.test(code)||resolved!==code){pm.execution.skipRequest();throw Error('QA_OTP_NOT_READY');}"
+        text += "\npm.request.body.update(JSON.stringify({challenge:pm.variables.get(actor+'_challenge'),code,recovery:false}));}finally{clearInterval(qaKeepAlive);}"
         return text
     def verify(actor, invalid=False):
         if invalid:

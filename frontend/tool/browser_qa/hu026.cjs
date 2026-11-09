@@ -103,7 +103,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,write,click,waitText,login,
   });
   await run('HU026-V15',async()=>{
     await logout();await passwordStep('created',{enrollment:false});await click('Perdí mi autenticador');privacy(true);await write('Código de recuperación privado',backups.get('created'));
-    const p=response('POST','admin/mfa/verify/');await click('Verificar segundo factor');const r=await p;assert.equal(r.status(),202);tokenless(await r.json());await text('Configurar doble factor');privacy(false);await capture('recuperacion-obliga-a-reenrolar');
+    const p=response('POST','admin/mfa/verify/');await click('Verificar segundo factor');const r=await p;assert.equal(r.status(),202);tokenless(await r.json());await text('Configurar doble factor');for(let i=0;i<20;i++){const field=page.getByRole('textbox',{name:'Código del autenticador',exact:true});if(await field.count()&&(await field.inputValue())==='')break;await page.waitForTimeout(100);}privacy(false);await capture('recuperacion-obliga-a-reenrolar');
     await prepare();await finish('created',{enrollment:true});await capture('acceso-recuperado-con-segundo-factor');
   });
   await run('HU026-V16',async()=>{
