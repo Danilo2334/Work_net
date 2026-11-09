@@ -114,6 +114,40 @@ Future<void> login(WidgetTester t) async {
 
 void main() {
   test(
+    'expirar borra escritura pendiente aunque otro login quede en MFA o falle',
+    () async {
+      for (final status in [202, 400]) {
+        final store = DelayedWriteStore();
+        final api = WorkNetApi(
+          client: MockClient(
+            (_) async => jsonResponse(
+              status == 202
+                  ? challenge()
+                  : {'message': 'Contraseña incorrecta'},
+              status,
+            ),
+          ),
+        );
+        final lifecycle = SessionLifecycle(HttpAccessRepository(api, store));
+        final accepting = lifecycle.accept(
+          SessionModel.parse(sessionData(role: 'admin')),
+          true,
+        );
+        await store.started.future;
+        final expiring = lifecycle.expire();
+        await expectLater(
+          lifecycle.login('new@worknet.test', 'Privada', true),
+          throwsA(isA<ApiFailure>()),
+        );
+        store.release.complete();
+        await Future.wait([accepting, expiring]);
+        expect(lifecycle.current, isNull);
+        expect(store.value, isNull);
+        api.close();
+      }
+    },
+  );
+  test(
     'aceptación pendiente no restaura sesión ni credencial tras expirar',
     () async {
       final store = DelayedWriteStore();
