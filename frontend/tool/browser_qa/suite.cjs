@@ -108,10 +108,10 @@ async function main() {
     if(hu026){
       for(const name of ['Contraseña inicial privada','Código del autenticador','Código de recuperación privado']){
         const field=page.getByRole('textbox',{name,exact:true});
-        if(await field.count())assert.equal(await field.inputValue(),'');
+        if(await field.count()){const empty=(await field.inputValue())==='';results.hu026_capture_guard={field:name,empty};assert.equal(empty,true);}
       }
       const visible=await ui();
-      assert.equal(/(?:[A-Z2-7]{32}|[a-f0-9]{32})/.test(visible),false);
+      results.hu026_capture_guard={...results.hu026_capture_guard,visible_private_pattern:/(?:[A-Z2-7]{32}|[a-f0-9]{32})/.test(visible)};assert.equal(results.hu026_capture_guard.visible_private_pattern,false);
     }
     const password = page.getByRole('textbox', { name: 'Contraseña', exact: true });
     if (await password.count()) assert.equal(await password.inputValue(), '');

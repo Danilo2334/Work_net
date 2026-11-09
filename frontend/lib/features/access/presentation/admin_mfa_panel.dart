@@ -57,6 +57,8 @@ class _AdminMfaPanelState extends State<AdminMfaPanel> {
           _setup = null;
           _result = null;
           _recovery = false;
+          _saved = false;
+          _showRecovery = false;
           _showSecret = false;
         });
       }
