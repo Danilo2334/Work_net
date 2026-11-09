@@ -56,6 +56,26 @@ def paginated(query, params):
             "previous_page": page - 1 if page > 1 else None}, query[(page - 1) * size:page * size]
 
 
+def owned_offer(user, offer_id):
+    offer = JobOffer.objects.filter(pk=offer_id, company=user).first()
+    if offer is None:
+        raise NotFound("No encontramos esa oferta entre las de tu empresa.")
+    return offer
+
+
+def filtered_applicants(offer, params):
+    """La lista y la exportación comparten filtros y desempates estables."""
+    query = Application.objects.filter(offer=offer)
+    for key, section in (("experience", "experience"), ("education", "education"), ("skill", "skills")):
+        text = normalized(params[key])
+        if text:
+            query = query.filter(**{"candidate__candidateprofile__selection_" + section + "__contains": text})
+    order = {"newest": ("-created_at", "-pk"), "oldest": ("created_at", "pk"),
+             "name": (Lower("candidate__full_name"), "candidate_id", "pk"),
+             "name_desc": (Lower("candidate__full_name").desc(), "-candidate_id", "-pk")}[params["order"]]
+    return query.order_by(*order)
+
+
 class CompanyApplicantOffersView(ApplicationProfileView):
     def get(self, request):
         params = OfferSelectionParameters(data=request.query_params)
@@ -69,22 +89,13 @@ class CompanyApplicantOffersView(ApplicationProfileView):
 
 class CompanyOfferApplicantsView(ApplicationProfileView):
     def get(self, request, offer_id):
-        offer = JobOffer.objects.filter(pk=offer_id, company=request.user).first()
-        if offer is None:
-            raise NotFound("No encontramos esa oferta entre las de tu empresa.")
+        offer = owned_offer(request.user, offer_id)
         serializer = ApplicantParameters(data=request.query_params)
         serializer.is_valid(raise_exception=True)
         params = serializer.validated_data
-        query = Application.objects.filter(offer=offer).select_related("offer", "candidate").defer("cv_document").annotate(
+        query = filtered_applicants(offer, params).select_related("offer", "candidate").defer("cv_document").annotate(
             available=Exists(visible_offers(JobOffer.objects.filter(pk=OuterRef("offer_id")))))
-        for key, section in (("experience", "experience"), ("education", "education"), ("skill", "skills")):
-            text = normalized(params[key])
-            if text:
-                query = query.filter(**{"candidate__candidateprofile__selection_" + section + "__contains": text})
-        order = {"newest": ("-created_at", "-pk"), "oldest": ("created_at", "pk"),
-                 "name": (Lower("candidate__full_name"), "candidate_id", "pk"),
-                 "name_desc": (Lower("candidate__full_name").desc(), "-candidate_id", "-pk")}[params["order"]]
-        meta, rows = paginated(query.order_by(*order), params)
+        meta, rows = paginated(query, params)
         return Response({**meta, "offer": offer_data(offer), "filter_scope": "current_profile",
                          "applications": [{**application_data(item), "candidate": {
                              "id": item.candidate_id, "full_name": item.candidate.full_name}} for item in rows]},
