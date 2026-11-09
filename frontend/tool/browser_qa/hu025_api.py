@@ -6,6 +6,7 @@ from hashlib import sha256
 import importlib.util
 from io import StringIO
 import json
+import re
 from pathlib import Path
 import shutil
 import sqlite3
@@ -38,7 +39,7 @@ def fixtures(run):
         values[key]['value']=Token.objects.get_or_create(user=actor)[0].key
     (run/'local.postman_environment.json').write_text(json.dumps(env,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     connection.close();shutil.copy2(run/'qa.sqlite3',run/'initial.sqlite3')
-    b={**previous_seed(run),'special_names':'Fórmulas, espacios, tildes, comillas/comas y nombres/CV extensos preparados; no datos reales.'}
+    b={**previous_seed(run),'special_names':'Fórmulas, espacios, tildes, comillas/comas y nombres extensos preparados; nombres de CV y documentos enviados originales conservados. Datos ficticios.'}
     (run/'hu025-baseline.json').write_text(json.dumps(b,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return b
 
@@ -74,18 +75,29 @@ def neutral(value):
 def validate_download(run,artifacts,filename,offer,query):
     require(Path(filename).name==filename and filename.startswith('HU025-') and Path(filename).suffix in ('.csv','.pdf'))
     path=artifacts/filename;raw=path.read_bytes();expected=expected_rows(run,int(offer),query);require(bool(expected))
-    result={'file':filename,'bytes':len(raw),'sha256':sha256(raw).hexdigest(),'row_count':len(expected),'application_ids':[int(x[2]) for x in expected],'query':query,'sql_equal':True}
+    result={'file':filename,'bytes':len(raw),'sha256':sha256(raw).hexdigest(),'row_count':len(expected),'query':query,'sql_equal':True}
     if filename.endswith('.csv'):
         require(raw.startswith(b'\xef\xbb\xbf'));rows=list(csv.reader(StringIO(raw.decode('utf-8-sig'))))
         require(rows[0]==['Oferta ID','Oferta','Postulación ID','Nombre','Fecha UTC','Estado','CV enviado'])
         require(rows[1:]==[[neutral(v) for v in row] for row in expected])
+        result['application_ids']=[int(row[2]) for row in rows[1:]]
+        result['comparison']='CSV: todas las filas, siete campos y orden, con neutralización de fórmulas'
         result['formula_cells_neutralized']=sum(x[3].lstrip().startswith(('=','+','-','@')) for x in expected)
     else:
         from pypdf import PdfReader
         reader=PdfReader(path);text='\n'.join(p.extract_text() for p in reader.pages)
         compact=lambda v:''.join(v.split())
         require(f'{len(expected)} coincidencias.' in text and 'Todas las páginas' in text)
-        for row in expected:require(compact(row[3]) in compact(text) and compact(row[6]) in compact(text))
+        require(compact(expected[0][0]+' - '+expected[0][1]) in compact(text))
+        # En esta fixture los IDs son la única celda con una línea exclusivamente numérica.
+        matches=list(re.finditer(r'(?m)^([1-9]\d*)\s*$',text))
+        actual_ids=[int(m.group(1)) for m in matches]
+        require(actual_ids==[int(row[2]) for row in expected])
+        for i,row in enumerate(expected):
+            block=compact(text[matches[i].end():matches[i+1].start() if i+1<len(matches) else len(text)])
+            require(all(compact(row[k]) in block for k in [3,4,5,6]))
+        result['application_ids']=actual_ids
+        result['comparison']='PDF: IDs extraídos y orden, nombre/fecha UTC/estado/CV por bloque de fila; oferta, conteo y páginas'
         require(all('Página ' in p.extract_text() for p in reader.pages));result['pages']=len(reader.pages)
     require('@worknet.test' not in raw.decode('utf-8',errors='ignore'))
     return result
