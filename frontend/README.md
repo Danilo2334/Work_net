@@ -1,71 +1,12 @@
 # WorkNet · Flutter conectado a Django
 
-## Alcance vigente — HU001–HU026
+## Alcance vigente
 
-Por decisión del usuario del **08/11/2026**, HU027 — Integración con LinkedIn está **cancelada y fuera de alcance**. #28 y #137–#141 están cerradas como `not_planned` y con estado **Cancelada** en WORK_NET; no son historias implementadas ni aceptadas. No se necesita crear una aplicación ni proporcionar credenciales. WorkNet mantiene el perfil y CV manuales.
+HU001–HU026 conservan su entrega. **HU027 — Integración con LinkedIn está pendiente de desarrollo** (#28 y #137–#141 abiertas); su preparación específica se retiró de los archivos vigentes. El perfil y CV manuales siguen disponibles. El antecedente de #196/#197 permanece en Git, sin callback operativo ni pasos de configuración activos.
 
-La preparación estática de #196/#197 se conserva como antecedente, sin anunciar conexión disponible. El alcance funcional implementado comprende HU001–HU026, incluidas estadísticas, exportaciones y doble factor administrativo. La aceptación vigente, el flujo de integración y los cierres verificados se registran en [la guía existente](docs/REVISION.md) y sus seguimientos únicos.
+**HU028 — Asistente de creación de currículum con IA (#224)** añade una propuesta revisable al generador existente. Se informa el envío a Gemini y se exige consentimiento; el perfil propio se incluye solo al marcarlo. Generar no guarda: aplicar cambia el borrador local y Guardar confirma la persistencia. Las tres plantillas y la descarga PDF reutilizan HU012. Clave y modelo se configuran únicamente en backend, fuera de Git. La aceptación con proveedor real permanece pendiente.
 
-<details>
-<summary>Preparación histórica de LinkedIn, cancelada; no ejecutar estos pasos</summary>
-
-Esta propuesta anterior nunca se implementó ni tuvo aceptación OAuth real. Se conserva para trazabilidad. Sus instrucciones y variables no forman parte de la configuración vigente.
-
-## Preparar una aplicación de LinkedIn — HU027
-
-La conexión es opcional. Esta preparación de la aplicación externa no acredita
-todavía una aceptación OAuth real ni el cierre de HU027. No solicita un CV completo
-ni cambia la identidad o el correo verificado de WorkNet.
-
-1. Abre [LinkedIn Developer](https://www.linkedin.com/developers/apps) e inicia
-   sesión personalmente. Elige **Create app**. Nombre: **WorkNet**. Descripción:
-   «Bolsa de empleo para gestionar perfiles, currículums, ofertas, postulaciones
-   y comunicación autorizada entre candidatos y empresas».
-2. Selecciona una LinkedIn Page que represente realmente al proyecto y que puedas
-   administrar. Si no existe, utiliza la opción de crear una página y completa
-   sus datos reales. No asocies la aplicación a una organización ajena. Si el
-   portal ofrece una página predeterminada para desarrolladores individuales,
-   utiliza esa opción solo cuando corresponda al producto solicitado.
-3. Sitio del proyecto: `https://danilo2334.github.io/Work_net/`.
-   Política: `https://danilo2334.github.io/Work_net/privacy.html`.
-   Logo: `docs/branding/worknet-logo.png`, PNG cuadrado de512×512; el SVG editable
-   permanece junto a él. Estos recursos son preparación de marca, no evidencia QA.
-4. Revisa los términos y crea la aplicación. Si LinkedIn solicita verificar su
-   asociación con la Page, completa personalmente esa verificación como su
-   administrador. No publiques enlaces privados de verificación.
-5. En **Products**, solicita **Sign In with LinkedIn using OpenID Connect**.
-   Espera a que figure aprobado/habilitado. En **Auth**, comprueba que estén
-   disponibles `openid` y `profile`; WorkNet pedirá solamente esos permisos.
-   No necesita `email`, publicaciones, contactos ni permisos de Marketing.
-6. En **Auth → Authorized redirect URLs**, añade exactamente:
-   `https://danilo2334.github.io/Work_net/linkedin/callback.html`.
-   Respeta HTTPS, mayúsculas del nombre del repositorio, ruta y ausencia de barra
-   final. La página de retorno quedará conectada al flujo de WorkNet al implementar
-   HU027; registrar la URL ahora no equivale a haber ejecutado una autorización.
-7. Copia Client ID y Client Secret únicamente a un archivo privado local
-   `linkedin.env`, fuera del repositorio. Conserva estas claves:
-
-   ```dotenv
-   LINKEDIN_CLIENT_ID=
-   LINKEDIN_CLIENT_SECRET=
-   LINKEDIN_REDIRECT_URI=https://danilo2334.github.io/Work_net/linkedin/callback.html
-   LINKEDIN_SCOPES=openid profile
-   ```
-
-   No lo adjuntes al chat ni a GitHub, no lo incluyas en capturas y no guardes las
-   claves en el entorno público de Postman. El servidor recibirá la ruta del
-   archivo mediante `WORKNET_LINKEDIN_ENV_FILE`; el secreto nunca se compila en
-   Flutter. La carga de esa configuración forma parte de la implementación HU027.
-8. Comunica únicamente «aplicación creada, producto habilitado y archivo privado
-   guardado», junto al nombre del producto y los permisos que aparecen en Auth.
-   La aceptación real se hará después, con consentimiento personal en LinkedIn;
-   las pruebas simuladas se registrarán por separado.
-
-Referencias: [crear aplicación](https://www.linkedin.com/help/lms/answer/a1672377),
-[OIDC y permisos](https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2),
-[flujo OAuth y URI de retorno](https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow).
-
-</details>
+La procedencia, comprobaciones y límites se registran en [la guía existente](docs/REVISION.md).
 
 El registro, acceso, recuperación, configuración, dashboard y perfil del candidato
 están conectados a Django. La empresa completa su información, envía la solicitud,

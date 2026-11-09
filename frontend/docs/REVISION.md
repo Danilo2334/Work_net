@@ -1,5 +1,17 @@
 # Guía para revisar WorkNet
 
+<!-- alcance-vigente-inicio -->
+## Alcance vigente — 09/11/2026
+
+HU001–HU026 conservan su entrega estable en main `c49d0f7fe658aa8641dba52070a2c83172f69f83`. **HU027 #28 y #137–#141 quedan abiertas y pendientes de desarrollo**, por instrucción expresa del usuario. Su retorno estático y los pasos/configuración preparatorios se retiraron de la versión actual; los antecedentes de #196/#197 permanecen en Git. Se conservaron el sitio, logo y política generales de WorkNet. No existe integración LinkedIn operativa ni aceptación OAuth.
+
+El barrido de este checkout no encontró servicios, rutas o dependencias funcionales LinkedIn en `backend/` ni `frontend/lib/`; el elemento específico publicado era `docs/linkedin/callback.html`. No hay acceso al disco del Windows del usuario desde esta sesión; los posibles cambios locales no publicados de ese computador no se inspeccionaron ni se declaran eliminados.
+
+**HU028 #224 — Asistente de creación de currículum con IA**, tareas #225–#228, se prepara por separado. La clave y aceptación real del proveedor permanecen pendientes; los dobles de prueba se identifican explícitamente. Las relaciones nativas de subtareas y los estados del Project requieren verificación adicional: el conector de esta sesión no expone esas mutaciones; no se atribuye actualización de WORK_NET.
+
+<details>
+<summary>Antecedente de alcance del cierre HU001–HU026; sustituido por la decisión del 09/11/2026</summary>
+
 <!-- alcance-hu001-hu026-inicio -->
 ## Alcance vigente — HU001–HU026 — 09/11/2026
 
@@ -12,6 +24,9 @@ HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9
 Los seis IDs, responsables, relaciones, criterios y antecedentes originales de HU027 permanecen conservados. La opción Cancelada se añadió preservando los IDs y valores de todos los estados existentes; no se cambian Sprint ni fechas. Ningún cierre not_planned se contará como entrega funcional.
 
 <!-- alcance-hu001-hu026-fin -->
+
+</details>
+<!-- alcance-vigente-fin -->
 
 <!-- hu026-vigente-inicio -->
 ## HU026 — Administradores, permisos y doble factor — 09/11/2026
