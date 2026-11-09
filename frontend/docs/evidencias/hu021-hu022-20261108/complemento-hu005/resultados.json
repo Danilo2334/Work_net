@@ -1,0 +1,327 @@
+{
+  "schema": "worknet-browser-qa-results-v1",
+  "fecha": "2026-11-09T00:49:24.643Z",
+  "frontend_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+  "backend_sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+  "playwright": "1.65.0",
+  "modo": "Chromium headless nuevo, contextos temporales; sin perfil personal",
+  "escritorio": "1440x1000/1100",
+  "movil": "Viewport 390x844, ratón/teclado; no dispositivo físico",
+  "casos": [
+    {
+      "id": "NAVEGADOR-01",
+      "resultado": "aprobado",
+      "duracion_ms": 1929
+    },
+    {
+      "id": "HU005-C01",
+      "resultado": "aprobado",
+      "duracion_ms": 9821
+    },
+    {
+      "id": "HU005-C02",
+      "resultado": "aprobado",
+      "duracion_ms": 3271
+    },
+    {
+      "id": "HU005-C03",
+      "resultado": "aprobado",
+      "duracion_ms": 1858
+    },
+    {
+      "id": "HU005-C04",
+      "resultado": "aprobado",
+      "duracion_ms": 7171
+    }
+  ],
+  "capturas": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU005-C01-dashboard-escritorio-accesos.png",
+      "caso": "HU005-C01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0aaf116cee9a351062d6474ef8afa5bcec2c7eb678658c77e1503f362136e585"
+    },
+    {
+      "archivo": "HU005-C02-dashboard-movil-acceso-y-contador.png",
+      "caso": "HU005-C02",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "355ab49cc19f80ee2d3d2955e3e570e03be7afbd7bf0854eb291480877d9e5d8"
+    },
+    {
+      "archivo": "HU005-C03-clic-real-mensajes-movil.png",
+      "caso": "HU005-C03",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "11ba3014a77ee78103ff4a11be3a26215f8b93c0994bbde7f42ebb3a41503b4c"
+    },
+    {
+      "archivo": "HU005-C03-mensaje-recibido-leido.png",
+      "caso": "HU005-C03",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "e843d2779a44463bce08f3991afc25f1ddc4252ddbd0105c882ec3b7feef2005"
+    },
+    {
+      "archivo": "HU005-C04-contador-dashboard-despues-de-leer.png",
+      "caso": "HU005-C04",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "1f3e976a1b403b5c97cb7a940eaf69836cc35705d3daa3411ffd2cd2d5803623"
+    },
+    {
+      "archivo": "HU005-C04-regreso-dashboard-sin-alterar-datos.png",
+      "caso": "HU005-C04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "20766fe08fc9f7a0935e2fdde688e186da44014752214d4fb772a6c6d0ec4197"
+    }
+  ],
+  "red": [
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/conversations/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/conversations/3/messages/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/conversations/3/read/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/conversations/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/summary/",
+      "status": 200,
+      "inyectada": false
+    }
+  ],
+  "controles": {
+    "solo_base_qa_nueva": true,
+    "smtp": false,
+    "traces_har_storageState": false
+  },
+  "revision_humana": false,
+  "suite": "hu005-messages-access",
+  "chromium": "158.0.8127.18",
+  "complemento": {
+    "scope": "Otra QA nueva; cuatro comprobaciones visuales/de acceso más el control de arranque. No se suman a34/34 HU021/HU022.",
+    "preparacion": {
+      "offers": 18,
+      "own_offers": 17,
+      "own_applications": 13,
+      "applications": 27,
+      "selected_applicants": 14,
+      "own_ids": {
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12,
+        "13": 13
+      },
+      "foreign_offer": 18,
+      "foreign_application": 27,
+      "filters": {
+        "experience_Backend": 9,
+        "education_Ingenieria": 6,
+        "skill_Python": 6,
+        "combined": 4,
+        "experience_QA": 13
+      },
+      "controlled_state_target": 13,
+      "actor_qa": "Preparación nueva por APIClient existente. Estados previos son fixtures con fecha de transición desconocida; no se atribuyen a UI empresarial. Conversaciones y 23 mensajes previos se prepararon y leyeron por la API HU022.",
+      "conversations": 14,
+      "candidate_conversations": 12,
+      "company_conversations": 13,
+      "conversation_ids": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "10": 10,
+        "11": 11,
+        "12": 12
+      },
+      "foreign_conversation": 13,
+      "extra_company_conversation": 14,
+      "pagination_message_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "messages": 23,
+      "status_events": 0,
+      "candidate_id": 1,
+      "company_id": 3,
+      "notices": 27,
+      "candidate_metrics": {
+        "applications_count": 13,
+        "saved_offers_count": 6,
+        "pending_notifications_count": 2
+      },
+      "company_metrics": {
+        "active_offers": 11,
+        "closed_offers": 2,
+        "applications": 26
+      }
+    },
+    "actor_qa": {
+      "actor_qa": "empresa_ficticia_previa_al_acceso",
+      "method": "POST",
+      "path": "/api/conversations/3/messages/",
+      "message_id": 24,
+      "procedencia": "Mensaje real de otro actor por API antes de entrar al dashboard; no escrito por la pantalla capturada."
+    },
+    "click": {
+      "actor": "candidate",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "method": "GET",
+      "path": "/api/conversations/",
+      "status": 200,
+      "count": 12
+    },
+    "persistencia": {
+      "offers": 18,
+      "applications": 27,
+      "new_applications": 0,
+      "status_events": 0,
+      "new_status_notices": 0,
+      "new_created_notices": 0,
+      "conversations": 14,
+      "new_conversations": 0,
+      "messages": 24,
+      "new_messages": 1,
+      "message_intent_duplicates": 0,
+      "application_duplicates": 0,
+      "old_application_content_dates_relations_and_pdfs_unchanged": true,
+      "old_notices_unchanged": true,
+      "old_messages_and_read_dates_unchanged": true,
+      "new_status_notice_recipient_version_and_atomic_relation_correct": true,
+      "legacy_application_status_dates_not_invented": true,
+      "conserved": {
+        "candidate_dashboard_candidateprofile": true,
+        "candidate_dashboard_joboffer": true,
+        "candidate_dashboard_savedoffer": true
+      },
+      "principal_sources_remaining": 2
+    }
+  },
+  "contrastes": {
+    "profile_unchanged": true,
+    "account_unchanged": true,
+    "ofertas": 18,
+    "cv_generados": 7
+  },
+  "resultado": "aprobado"
+}

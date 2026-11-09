@@ -1,0 +1,3272 @@
+{
+  "info": {
+    "_postman_id": "6af59826-ab64-42dd-bb7a-d867ee46c715",
+    "name": "HU021–HU022 · Estados y mensajes QA · run-20261108T232223-937f2bc5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get('base_url')!=='http://127.0.0.1:8100/api'||pm.environment.get('qa_run_id')!=='run-20261108T232223-937f2bc5'||pm.environment.get('qa_confirmation')!=='SOLO_BASE_AISLADA'){pm.execution.skipRequest();throw Error('Solo otra QA HU021/HU022');}",
+          "if(pm.info.iteration>0){pm.execution.skipRequest();throw Error(\"Solo una iteración de esta base\");}",
+          "if(pm.info.requestName===\"HU021-P01 · Contexto y documento original\"){if(pm.collectionVariables.get('qa_consumed')){pm.execution.skipRequest();throw Error('Esta base ya fue consumida; prepara otra');}pm.collectionVariables.set('qa_consumed','run-20261108T232223-937f2bc5');}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "HU021-P01 · Contexto y documento original",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.status).eq('submitted');pm.expect(b.application.status_change.version).eq(0);pm.collectionVariables.set('original_date',b.application.created_at);pm.collectionVariables.set('uploaded_hash',b.application.cv.sha256);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P02 · Cancelar confirmación conserva datos",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"8e5d9d06-eee6-4dff-a13f-a3bbad2e8c25\", \"confirm\": false}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P03 · Estado sin cambios tras cancelar",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.status).eq('submitted');pm.expect(b.application.status_change.modified_at).eq(null);pm.expect(b.application.status_change.comment).eq('');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P04 · Cambiar a En revisión con comentario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"2e763e5e-8123-429f-a148-ce208b4ef357\", \"confirm\": true, \"comment\": \"Revisión empresarial real QA\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.replayed).eq(false);pm.expect(b.application.status).eq('in_review');pm.expect(b.application.status_change.comment).eq('Revisión empresarial real QA');pm.expect(b.application.status_change.version).eq(1);pm.expect(b.event.changed_at).eq(b.application.status_change.modified_at);pm.collectionVariables.set('review_date',b.event.changed_at);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P05 · Reintento mismo UUID no duplica aviso",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"2e763e5e-8123-429f-a148-ce208b4ef357\", \"confirm\": true, \"comment\": \"Revisión empresarial real QA\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.replayed).eq(true);pm.expect(b.application.status_change.modified_at).eq(pm.collectionVariables.get('review_date'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P06 · UUID reutilizado con otro comentario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"2e763e5e-8123-429f-a148-ce208b4ef357\", \"confirm\": true, \"comment\": \"Otro comentario\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 409',()=>pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P07 · Consultar operación aceptada sin reenviar",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/status/operations/2e763e5e-8123-429f-a148-ce208b4ef357/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.replayed).eq(true);pm.expect(b.event.to_status).eq('in_review');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P08 · Aviso real al destinatario candidato",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.metrics.pending_notifications_count).eq(3);pm.expect(b.notifications[0].event_kind).eq('application_status_changed');pm.expect(b.notifications[0].application_id).eq(3);pm.expect(b.notifications[0].title).include('En revisión');pm.expect(b.notifications[0].created_at).not.eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P09 · Historial candidato refleja cambio",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/applications/?page_size=50",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{const a=b.applications.find(a=>a.id===3);pm.expect(a.status).eq('in_review');pm.expect(a.status_change.comment).eq('Revisión empresarial real QA');pm.expect(a.created_at).eq(pm.collectionVariables.get('original_date'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P10 · Versión obsoleta no sobrescribe",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 0, \"request_id\": \"ef8fc3ed-a3ee-49a7-8e9a-81583192b0c3\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 409',()=>pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P11 · Cambiar a Aceptada sin comentario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 1, \"request_id\": \"7bc50c79-bdc7-4ef4-beea-3a9c66d4f1b1\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.status).eq('accepted');pm.expect(b.application.status_change.comment).eq('');pm.expect(b.application.status_change.version).eq(2);pm.expect(b.application.created_at).eq(pm.collectionVariables.get('original_date'));pm.expect(b.application.cv.sha256).eq(pm.collectionVariables.get('uploaded_hash'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P12 · Repetir decisión no altera fecha ni avisos",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 2, \"request_id\": \"6a59db82-fa8b-4ad3-b674-77d6a0b1dedd\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 409',()=>pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P13 · Decisión final no se reabre",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"rejected\", \"expected_version\": 2, \"request_id\": \"4c39f347-bc0b-4f15-9fce-31d7cb7b6103\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 409',()=>pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P14 · CV generado antes de transición",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/4/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.collectionVariables.set('generated_hash',b.application.cv.sha256);pm.collectionVariables.set('generated_original_date',b.application.created_at);pm.expect(b.application.status_change.modified_at).eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P15 · Cambiar a Rechazada con comentario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/4/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"rejected\", \"expected_version\": 0, \"request_id\": \"54269351-2262-49aa-8723-bc808be97b8a\", \"confirm\": true, \"comment\": \"Decisión empresarial QA\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.status).eq('rejected');pm.expect(b.application.status_change.version).eq(1);pm.expect(b.application.status_change.comment).eq('Decisión empresarial QA');pm.expect(b.application.cv.sha256).eq(pm.collectionVariables.get('generated_hash'));pm.expect(b.application.created_at).eq(pm.collectionVariables.get('generated_original_date'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P16 · Tres avisos sin duplicar alta HU018",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.metrics.pending_notifications_count).eq(5);pm.expect(b.notifications.filter(n=>n.event_kind==='application_status_changed').length).eq(3);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P17 · Permiso de cambio other_company",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 0, \"request_id\": \"5358a564-15ab-4c3f-bcd8-906d6875af20\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P18 · Permiso de cambio candidate",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 0, \"request_id\": \"af8d54d6-c1f8-46e0-9452-3f4f1933e5ae\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P19 · Permiso de cambio draft",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 0, \"request_id\": \"40afdb0e-1657-4d4f-9ebf-3da0c3339d5b\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P20 · Permiso de cambio None",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/3/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 0, \"request_id\": \"034cc3fa-7366-4482-b0d1-fb83a2f5933a\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P21 · Identificador de otra empresa",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/27/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"accepted\", \"expected_version\": 0, \"request_id\": \"a91d931c-213e-4af0-86b7-9da48e70cdd5\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P22 · Parámetro de estado inválido expected_version",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": true, \"request_id\": \"aea5e3cf-c177-4faa-8735-3aa79b1cc4d1\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P23 · Parámetro de estado inválido expected_version",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": \"0\", \"request_id\": \"93b73842-2551-4f52-83cd-e85fc60f650a\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P24 · Parámetro de estado inválido target_status",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"submitted\", \"expected_version\": 0, \"request_id\": \"d82ce695-b7e0-40bf-a7be-e88453fe2ad2\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P25 · Parámetro de estado inválido comment",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"0e093555-a58a-4b47-9170-14d64268fd61\", \"confirm\": true, \"comment\": null}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P26 · Parámetro de estado inválido comment",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"80686db2-775a-48c3-81b6-ecb1e7f8de73\", \"confirm\": true, \"comment\": 33}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P27 · Parámetro de estado inválido comment",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"7392c245-da50-49d4-b66c-47097b6c0c50\", \"confirm\": true, \"comment\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P28 · Parámetro de estado inválido request_id",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"invalid\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P29 · Parámetro de estado inválido candidate_id",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"f99c7167-7850-49ab-a0f4-edd439d0a93a\", \"confirm\": true, \"candidate_id\": 1}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P30 · Query no permitida",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/?page=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"092c08f9-db0b-4f64-996c-d61d6fcd30aa\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P31 · Transición propia adicional con aviso",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"41051c21-8eda-4147-a940-dd03e6e3d44f\", \"confirm\": true, \"comment\": \"Lectura y aviso sin modificar CV\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.status_change.version).eq(1);pm.expect(b.application.status).eq('in_review');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P32 · Modificar fuente generada",
+      "request": {
+        "method": "PATCH",
+        "url": "{{base_url}}/curriculum/generated/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"template\": \"minimalista\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.curriculum.template).eq('minimalista');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P33 · Eliminar fuente uploaded",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/curriculum/uploaded/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P34 · Eliminar fuente generated",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base_url}}/curriculum/generated/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b).to.be.an(\"object\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P35 · Metadatos enviados intactos uploaded",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.cv.sha256).eq(pm.collectionVariables.get('uploaded_hash'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P36 · PDF enviado intacto uploaded",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/3/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('PDF enviado privado',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P37 · Metadatos enviados intactos generated",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/4/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.cv.sha256).eq(pm.collectionVariables.get('generated_hash'));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P38 · PDF enviado intacto generated",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/4/cv/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('PDF enviado privado',()=>{pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.text().startsWith('%PDF-')).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU021-P39 · Histórico sin fecha inventada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/applications/1/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU021',()=>{pm.expect(b.application.cv).eq(null);pm.expect(b.application.status_change.modified_at).eq(null);pm.expect(b.application.status_change.version).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P01 · Resumen inicial sin mensajes pendientes",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/messages/summary/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.unread_count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P02 · Lista empresarial autorizada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(13);pm.expect(b.conversations.some(c=>c.id===13)).eq(false);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P03 · Conversación nueva por postulación real",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"application_id\": 13}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.created).eq(true);pm.expect(b.conversation.contact.id).eq(3);pm.collectionVariables.set('new_conversation',b.conversation.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P04 · Crear de nuevo devuelve la conversación original",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"application_id\": 13}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.created).eq(false);pm.expect(b.conversation.id).eq(Number(pm.collectionVariables.get('new_conversation')));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P05 · Búsqueda autorizada y paginada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/?q=Candidato&page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(13);pm.expect(b.conversations.length).eq(10);pm.collectionVariables.set(\"conversation_page1\",JSON.stringify(b.conversations.map(c=>c.id)));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P06 · Página dos conserva búsqueda",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/?q=Candidato&page_size=10&page=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.conversations.length).eq(3);pm.expect(b.conversations.every(c=>!JSON.parse(pm.collectionVariables.get(\"conversation_page1\")).includes(c.id))).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P07 · Búsqueda vacía",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/?q=Inexistente",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P08 · Contacto empresa y contexto correcto",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.conversation.contact.id).eq(3);pm.expect(b.conversation.application_id).eq(3);pm.expect(b.conversation.offer.id).eq(3);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P09 · Conversación inicialmente vacía",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(0);pm.expect(b.messages).deep.eq([]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P10 · Empresa envía texto al candidato",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.created).eq(true);pm.expect(b.message.sender_id).eq(3);pm.expect(b.message.recipient_id).eq(1);pm.expect(b.message.created_at).not.eq(null);pm.expect(b.message.read_at).eq(null);pm.collectionVariables.set('message1',b.message.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P11 · Reintento mismo mensaje no duplica",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.created).eq(false);pm.expect(b.message.id).eq(Number(pm.collectionVariables.get('message1')));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P12 · UUID con texto diferente es conflicto",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Texto distinto\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 409',()=>pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P13 · Recibo propio por GET de operación",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/operations/8e14830a-edbe-4775-9b7b-16a9376a013a/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.message.id).eq(Number(pm.collectionVariables.get('message1')));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P14 · Candidato tiene un pendiente",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/messages/summary/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.unread_count).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P15 · Consultar no marca lectura",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.messages.length).eq(1);pm.expect(b.messages[0].read_at).eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P16 · Candidato responde a la empresa",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Respuesta real del candidato QA\", \"client_message_id\": \"9f1d4267-52b1-4ba7-b568-417dd82d2c72\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.message.sender_id).eq(1);pm.expect(b.message.recipient_id).eq(3);pm.collectionVariables.set('message2',b.message.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P17 · Empresa tiene un pendiente",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/messages/summary/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.unread_count).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P18 · Confirmar solo el mensaje consultado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": [{{message1}}]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.marked_read).eq(1);pm.expect(b.unread_count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P19 · Fecha de lectura registrada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.collectionVariables.set('read_date',b.messages.find(m=>m.id===Number(pm.collectionVariables.get('message1'))).read_at);pm.expect(pm.collectionVariables.get('read_date')).not.eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P20 · Nuevo mensaje durante lectura",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Nuevo mensaje entre consulta y lectura QA\", \"client_message_id\": \"dfc802e0-e518-43ff-a2bb-7f3687fdf170\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.collectionVariables.set('message3',b.message.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P21 · Repetir lectura no consume el mensaje nuevo",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": [{{message1}}]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.marked_read).eq(0);pm.expect(b.unread_count).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P22 · Conservar pendiente nuevo y fecha anterior",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.messages.find(m=>m.id===Number(pm.collectionVariables.get('message1'))).read_at).eq(pm.collectionVariables.get('read_date'));pm.expect(b.messages.find(m=>m.id===Number(pm.collectionVariables.get('message3'))).read_at).eq(null);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P23 · Leer el nuevo recibido",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": [{{message3}}]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.marked_read).eq(1);pm.expect(b.unread_count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P24 · Empresa lee la respuesta recibida",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": [{{message2}}]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.marked_read).eq(1);pm.expect(b.unread_count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P25 · Mismo texto con clave nueva es legítimo",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"3be03baa-eacf-4255-a5f3-cd283737b618\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.created).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P26 · Ventana cronológica de mensajes previos",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/4/messages/?page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(23);pm.expect(b.messages.length).eq(10);pm.collectionVariables.set(\"message_anchor\",b.through_id);pm.collectionVariables.set(\"messages_page1\",JSON.stringify(b.messages.map(m=>m.id)));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P27 · Llegada nueva fuera de ventana",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/4/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Nuevo fuera de ventana fija QA\", \"client_message_id\": \"ad40ac4a-e0f6-4932-8951-501ebe7ec176\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.created).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P28 · Segunda ventana estable con ancla",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/4/messages/?page_size=10&page=2&through_id={{message_anchor}}",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(23);pm.expect(b.messages.every(m=>!JSON.parse(pm.collectionVariables.get(\"messages_page1\")).includes(m.id))).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P29 · Actualizar incluye mensaje nuevo",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/4/messages/?page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(24);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P30 · Texto rechazado str",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"\", \"client_message_id\": \"797e1310-a2de-41a7-826d-adab9f52b5d9\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P31 · Texto rechazado str",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"  \\n \", \"client_message_id\": \"89d0c78a-5572-4f2d-b817-c0210031dcc9\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P32 · Texto rechazado NoneType",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": null, \"client_message_id\": \"5e8c8ebc-5522-458b-b5ef-a0615c7964f1\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P33 · Texto rechazado int",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": 33, \"client_message_id\": \"198361ab-3a45-437e-9874-97d944008ee3\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P34 · Texto rechazado str",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", \"client_message_id\": \"5e9371b3-e003-4cc6-92e6-d680c5a2a5cd\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P35 · Límite de 4000 caracteres",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\", \"client_message_id\": \"4c3bab88-0f85-480b-a76a-6e8ce3021346\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.message.text.length).eq(4000);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P36 · Identidad no inyectable sender_id",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\", \"sender_id\": 1}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P37 · Identidad no inyectable recipient_id",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\", \"recipient_id\": 1}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P38 · Parámetro de mensaje inválido page_size=51",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/?page_size=51",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P39 · Parámetro de mensaje inválido page=999",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/?page=999",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P40 · Parámetro de mensaje inválido sender_id=1",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/?sender_id=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P41 · Parámetro de mensaje inválido page=1&page=1",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/?page=1&page=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P42 · Búsqueda inválida q=QA&q=Otro",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/?q=QA&q=Otro",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P43 · Búsqueda inválida q=xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/?q=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P44 · Búsqueda inválida recipient_id=1",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/?recipient_id=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P45 · No leer mensajes enviados por el mismo usuario",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": [{{message1}}]}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P46 · Detalle ajeno candidate",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/13/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P47 · Mensajes ajenos candidate",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/13/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P48 · Enviar en conversación ajena candidate",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/13/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P49 · Leer conversación ajena candidate",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/13/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": []}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P50 · Detalle ajeno company",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/13/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P51 · Mensajes ajenos company",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/13/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P52 · Enviar en conversación ajena company",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/13/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P53 · Leer conversación ajena company",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/13/read/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message_ids\": []}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P54 · Crear desde postulación ajena",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"application_id\": 3}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P55 · Tercero no ve conversaciones",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P56 · Otra empresa solo ve su contexto",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.count).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P57 · Rol o sesión no autorizado draft",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P58 · Envío no autorizado draft",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P59 · Rol o sesión no autorizado None",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P60 · Envío no autorizado None",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/conversations/3/messages/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"text\": \"Hola candidato, conversación empresarial real QA\", \"client_message_id\": \"8e14830a-edbe-4775-9b7b-16a9376a013a\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P61 · Consulta de oferta cerrada conserva contacto",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/3/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.conversation.application_id).eq(3);pm.expect(b.conversation.contact.role).eq('empresa');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU022-P62 · Consulta de archivada conserva mensajes",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/conversations/4/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU022',()=>{pm.expect(b.conversation.application_id).eq(4);});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

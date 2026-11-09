@@ -1,0 +1,791 @@
+{
+  "run": "browser-qa-20261109T004701-ddb4f801",
+  "source_frontend_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+  "source_backend_sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+  "start_utc": "2026-11-09T00:49:21.610Z",
+  "date_local": "08/11/2026 America/Bogota",
+  "format": "PNG original sin editar",
+  "scope": "78 imágenes de la aceptación completa34/34; sin credenciales ni perfil personal; móvil web emulado",
+  "captures": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "file_written_at_utc": "2026-11-09T00:49:25.138345+00:00"
+    },
+    {
+      "archivo": "HU021-V01-acceso-empresa.png",
+      "caso": "HU021-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "08cdb18dcb7921c5a201116bc0d72668fc612a8cc609c1ea8c3b346aa1bc3ef4",
+      "file_written_at_utc": "2026-11-09T00:49:31.029634+00:00"
+    },
+    {
+      "archivo": "HU021-V01-controles-y-contexto-propio.png",
+      "caso": "HU021-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d8fb968c8ffacad3d6e567644e7b548da795d2be3f2bc1d8651b1ad7fa2e5580",
+      "file_written_at_utc": "2026-11-09T00:49:35.101759+00:00"
+    },
+    {
+      "archivo": "HU021-V02-confirmacion-antes-de-cancelar.png",
+      "caso": "HU021-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ef57cf304fc13d694b7c920858871e7eeb3dcf305654ad4eabac3263aba933f2",
+      "file_written_at_utc": "2026-11-09T00:49:40.286482+00:00"
+    },
+    {
+      "archivo": "HU021-V02-cancelacion-sin-modificar.png",
+      "caso": "HU021-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "60affe2f7f271b713e70fbefef143d59b10885ffe3de75e9cdaaec664babf8b7",
+      "file_written_at_utc": "2026-11-09T00:49:43.669456+00:00"
+    },
+    {
+      "archivo": "HU021-V03-revision-confirmada-empresa.png",
+      "caso": "HU021-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a7f5e284f4d114b7ed939cfd328d649321fe1ada9097e52fe5fce0ebbf1b1916",
+      "file_written_at_utc": "2026-11-09T00:49:49.716885+00:00"
+    },
+    {
+      "archivo": "HU021-V04-aviso-real-recibido-candidato.png",
+      "caso": "HU021-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "148f7b6e46599b57f375d52d82a68069264446aa3ea2338debbed9a3ec40a643",
+      "file_written_at_utc": "2026-11-09T00:49:58.836186+00:00"
+    },
+    {
+      "archivo": "HU021-V04-detalle-desde-aviso.png",
+      "caso": "HU021-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2f896cc30828310b379dfa63971d252e535d9d5eabc344c5d865f61ae40b6e2c",
+      "file_written_at_utc": "2026-11-09T00:50:00.059073+00:00"
+    },
+    {
+      "archivo": "HU021-V04-historial-actualizado-cambio-empresarial.png",
+      "caso": "HU021-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "eb0789b956adfa9598793560671862a62d07893be304b77f8ba00ee0266f2391",
+      "file_written_at_utc": "2026-11-09T00:50:03.480280+00:00"
+    },
+    {
+      "archivo": "HU021-V05-aceptada-sin-comentario.png",
+      "caso": "HU021-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c74bea655c379eeef33ced79ceefe3608b191fe58f5b51664cfd9266608abdc6",
+      "file_written_at_utc": "2026-11-09T00:50:16.113526+00:00"
+    },
+    {
+      "archivo": "HU021-V06-rechazada-fecha-y-comentario.png",
+      "caso": "HU021-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5d7caea1b509c7a74af071da8ec84deb83f73954d57d6d7c39f9397204fdccd7",
+      "file_written_at_utc": "2026-11-09T00:50:23.268412+00:00"
+    },
+    {
+      "archivo": "HU021-V06-pdf-generated.png",
+      "caso": "HU021-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "579e3c5727be79320974bb8f1567b407c5bf97578121448d1919bffcc1e57d21",
+      "file_written_at_utc": "2026-11-09T00:50:25.470617+00:00"
+    },
+    {
+      "archivo": "HU021-V07-tres-avisos-con-fechas-y-contexto.png",
+      "caso": "HU021-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5d240d91a7ff6a61d658c4c1ec6a34ff9ab26495c33ce78b95b4590bfb91e508",
+      "file_written_at_utc": "2026-11-09T00:50:36.054564+00:00"
+    },
+    {
+      "archivo": "HU021-V07-aceptada-candidato.png",
+      "caso": "HU021-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c7b081b864093b3ebba5e664fcfaae77d5568c0f6b6556f5c5b08c4efb52c07b",
+      "file_written_at_utc": "2026-11-09T00:50:38.110592+00:00"
+    },
+    {
+      "archivo": "HU021-V07-rechazada-candidato.png",
+      "caso": "HU021-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ce8ea66bd44badb248f9a3c40b924ea35b548cdc69655c77938fb5c00cae8ab0",
+      "file_written_at_utc": "2026-11-09T00:50:40.198067+00:00"
+    },
+    {
+      "archivo": "HU021-V08-otra-empresa-rechazada.png",
+      "caso": "HU021-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "66597431127b6ad45c75eb8a0d768f6382ae84f2b9baf89daabd6e8bcca7dc08",
+      "file_written_at_utc": "2026-11-09T00:50:48.878592+00:00"
+    },
+    {
+      "archivo": "HU021-V08-empresa-pendiente-rechazada.png",
+      "caso": "HU021-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fd9a1fbb05f11a27005c23c9546552daccbf9de9217bdc4b3d6bd408ecbedf52",
+      "file_written_at_utc": "2026-11-09T00:50:57.372953+00:00"
+    },
+    {
+      "archivo": "HU021-V08-rol-candidato-protegido.png",
+      "caso": "HU021-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "873b2564a6283ba634c27da6957945b3ec00243c1bdb7f580f3fdda2d425a016",
+      "file_written_at_utc": "2026-11-09T00:51:06.672397+00:00"
+    },
+    {
+      "archivo": "HU021-V09-error-estado-inyectado.png",
+      "caso": "HU021-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "72115aa404e474e753c258bf8f88e60601baca95ca7bbc6eed92a3ea6ef9bacf",
+      "file_written_at_utc": "2026-11-09T00:51:16.580310+00:00"
+    },
+    {
+      "archivo": "HU021-V09-estado-recuperado-por-get.png",
+      "caso": "HU021-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5628977545820ad41a58b194e00495f444103396950e2eed8f3c0d5600d12b8d",
+      "file_written_at_utc": "2026-11-09T00:51:17.673862+00:00"
+    },
+    {
+      "archivo": "HU021-V10-respuesta-aceptada-perdida.png",
+      "caso": "HU021-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bfabe00a22a28f833387d40704cf081c0ba671d404349316142270c2874206af",
+      "file_written_at_utc": "2026-11-09T00:51:22.990579+00:00"
+    },
+    {
+      "archivo": "HU021-V10-cambio-conciliado-sin-reenvio.png",
+      "caso": "HU021-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "af15fd9f211001ccb36c82e2fa1defb86525696466ec881d147e4a6b870661e9",
+      "file_written_at_utc": "2026-11-09T00:51:24.894478+00:00"
+    },
+    {
+      "archivo": "HU021-V11-conflicto-sin-sobrescribir.png",
+      "caso": "HU021-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a2d6b6b5dd513f741197a52f626875de99d5e304cbcf305bc1703310a211ac66",
+      "file_written_at_utc": "2026-11-09T00:51:31.974172+00:00"
+    },
+    {
+      "archivo": "HU021-V11-confirmacion-nueva-version.png",
+      "caso": "HU021-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0868519e1119bd4d974310ef16301480e34031b7c167adaebda9fb1f9b4a902b",
+      "file_written_at_utc": "2026-11-09T00:51:36.171426+00:00"
+    },
+    {
+      "archivo": "HU021-V12-confirmacion-movil.png",
+      "caso": "HU021-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "3da2be1d784ad9021e4d79a26affa1912f1034e882ac210af9629c77dcdec4bc",
+      "file_written_at_utc": "2026-11-09T00:51:40.675664+00:00"
+    },
+    {
+      "archivo": "HU021-V12-rechazo-confirmado-movil.png",
+      "caso": "HU021-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "05c77dc860ca5f2d0b9a5ca2d9524c3f0aab2d05bc6ffa345121a94625370edd",
+      "file_written_at_utc": "2026-11-09T00:51:42.163019+00:00"
+    },
+    {
+      "archivo": "HU021-V12-rechazo-recibido-movil.png",
+      "caso": "HU021-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "12f820b6e48657fb1f2a7e8d7ad37dbe426ed61667276a6fe50fbea59ff10353",
+      "file_written_at_utc": "2026-11-09T00:51:51.667944+00:00"
+    },
+    {
+      "archivo": "HU021-V12-pdf-uploaded.png",
+      "caso": "HU021-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "aa72d7dd6bc26058b729696c4407ce4cc29f55700c5a9c659f021d993016a7fc",
+      "file_written_at_utc": "2026-11-09T00:51:53.459170+00:00"
+    },
+    {
+      "archivo": "HU021-V13-sesion-empresa-revocada.png",
+      "caso": "HU021-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf",
+      "file_written_at_utc": "2026-11-09T00:52:03.612207+00:00"
+    },
+    {
+      "archivo": "HU022-V01-mensajes-desde-dashboard-empresa.png",
+      "caso": "HU022-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "08cdb18dcb7921c5a201116bc0d72668fc612a8cc609c1ea8c3b346aa1bc3ef4",
+      "file_written_at_utc": "2026-11-09T00:52:08.402506+00:00"
+    },
+    {
+      "archivo": "HU022-V01-lista-contactos-y-contexto.png",
+      "caso": "HU022-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "edc5af6f4e25c0c51f33fc1042d2f24c652fa6d9ba87b2076b57ddf74d06d858",
+      "file_written_at_utc": "2026-11-09T00:52:09.734798+00:00"
+    },
+    {
+      "archivo": "HU022-V02-conversacion-nueva-autorizada-vacia.png",
+      "caso": "HU022-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5747c7faa9a58b37cde87e72b035083faa1ef98c57e7a5c28664cdd5793c453e",
+      "file_written_at_utc": "2026-11-09T00:52:13.393305+00:00"
+    },
+    {
+      "archivo": "HU022-V03-envio-empresarial-fecha-hora.png",
+      "caso": "HU022-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3bf4ba35b12437266ef3ed9034c900ef3c738cfe32e00814753e03f1b1e0d32a",
+      "file_written_at_utc": "2026-11-09T00:52:16.067197+00:00"
+    },
+    {
+      "archivo": "HU022-V04-indicador-candidato-antes-de-leer.png",
+      "caso": "HU022-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "46c8c3691b8e63d48197f74f2137338a199e5ac7565ad9a0a60851b27817ec53",
+      "file_written_at_utc": "2026-11-09T00:52:24.164015+00:00"
+    },
+    {
+      "archivo": "HU022-V04-nuevo-mensaje-conserva-pendiente.png",
+      "caso": "HU022-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ec3b2726108bc8f091eb5dfd997a1753e66a8d35dcab0067e1e74fc958aed830",
+      "file_written_at_utc": "2026-11-09T00:52:27.658792+00:00"
+    },
+    {
+      "archivo": "HU022-V05-lectura-solo-ventana-consultada.png",
+      "caso": "HU022-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4cf1b1155cdf1173aa65f4a7333d4e2b541f0cb325441aae809741c67cc2288a",
+      "file_written_at_utc": "2026-11-09T00:52:29.378061+00:00"
+    },
+    {
+      "archivo": "HU022-V06-conversacion-bidireccional-candidato.png",
+      "caso": "HU022-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d7df4a1466da4791b7a9ff76310365fd677f3e930187119b3494457c2d4d741d",
+      "file_written_at_utc": "2026-11-09T00:52:32.264395+00:00"
+    },
+    {
+      "archivo": "HU022-V07-indicador-empresa-antes-de-leer.png",
+      "caso": "HU022-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c65c21ec12fd08ee1750d59eda2c9f8a6bbbcb63a68879299349d1f71336e132",
+      "file_written_at_utc": "2026-11-09T00:52:39.382581+00:00"
+    },
+    {
+      "archivo": "HU022-V07-respuesta-candidata-recibida-empresa.png",
+      "caso": "HU022-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e31299ab4de577ca34d7e01a6e3ec49d06d3be3a365911b22d12f8e2d3c9425a",
+      "file_written_at_utc": "2026-11-09T00:52:42.580239+00:00"
+    },
+    {
+      "archivo": "HU022-V08-envio-aceptado-respuesta-perdida.png",
+      "caso": "HU022-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "caf001834b7ceb0d2d52c4284fae0a6d6090ffd79fd969c96b86058c90087067",
+      "file_written_at_utc": "2026-11-09T00:52:44.536022+00:00"
+    },
+    {
+      "archivo": "HU022-V08-recibo-por-get-sin-duplicar.png",
+      "caso": "HU022-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3076bc55461b8330f04c7cd17faa527e4a016d6233e5f95c4ff82f030f4ff9fa",
+      "file_written_at_utc": "2026-11-09T00:52:47.615452+00:00"
+    },
+    {
+      "archivo": "HU022-V09-fallo-antes-de-escribir.png",
+      "caso": "HU022-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5a7a5e1ff8525fda448d56f6180d150090f4dc5ce66d5e2a29f790bf0260153a",
+      "file_written_at_utc": "2026-11-09T00:52:50.719578+00:00"
+    },
+    {
+      "archivo": "HU022-V09-reintento-misma-intencion.png",
+      "caso": "HU022-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "08cdb87ca42d98d906441e873fa24309ac677d8d21a6ad195f7792c72ba711eb",
+      "file_written_at_utc": "2026-11-09T00:52:53.574949+00:00"
+    },
+    {
+      "archivo": "HU022-V10-mismo-texto-dos-intenciones-validas.png",
+      "caso": "HU022-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0b99b068fb51e6e5fb337e9db24ffa00087911b312965f39e4d7b9f935c753ca",
+      "file_written_at_utc": "2026-11-09T00:52:59.022736+00:00"
+    },
+    {
+      "archivo": "HU022-V11-busqueda-conservada-pagina-dos.png",
+      "caso": "HU022-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1b31ded048168a6f5c04e59e04d1b58e1fdef7e9047abc31b126b791d8ea0364",
+      "file_written_at_utc": "2026-11-09T00:53:03.152371+00:00"
+    },
+    {
+      "archivo": "HU022-V11-cambio-reinicia-y-vacio.png",
+      "caso": "HU022-V11",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7c55af5a0ce0c13947d7119e9689bce66a4f12944dd365fa486bdbd70f231497",
+      "file_written_at_utc": "2026-11-09T00:53:04.972717+00:00"
+    },
+    {
+      "archivo": "HU022-V12-ancla-paginacion-sin-consumir-nuevo.png",
+      "caso": "HU022-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "90d6a104fe508a34be2a6a83e3d5830c994ed4a0fbfefbad7ee8126c2e17c51b",
+      "file_written_at_utc": "2026-11-09T00:53:09.889206+00:00"
+    },
+    {
+      "archivo": "HU022-V12-actualizar-incluye-nuevo-mensaje.png",
+      "caso": "HU022-V12",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "74933c20959e835f16e4e0494b88cffc6375d3ccdaf110e51ba369f57459b7ea",
+      "file_written_at_utc": "2026-11-09T00:53:11.786330+00:00"
+    },
+    {
+      "archivo": "HU022-V13-mensajes-conservados-al-recargar.png",
+      "caso": "HU022-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a48dc2350ae08e0b13f4e4d453c17f00cd397fcd9b00f1823db962bd2ae58ecc",
+      "file_written_at_utc": "2026-11-09T00:53:14.562478+00:00"
+    },
+    {
+      "archivo": "HU022-V13-mensajes-en-nueva-sesion.png",
+      "caso": "HU022-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "da669beed9feb5ac130ed613c0ab6d53173140da6579cb574ca93105fb2931bd",
+      "file_written_at_utc": "2026-11-09T00:53:24.368666+00:00"
+    },
+    {
+      "archivo": "HU022-V14-mensaje-vacio-sin-envio.png",
+      "caso": "HU022-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "db04bc8e9d85ee253074062c8fd8d48ba8ffa45c8b5113cc18a36f3dbefe2c91",
+      "file_written_at_utc": "2026-11-09T00:53:26.934206+00:00"
+    },
+    {
+      "archivo": "HU022-V14-error-chat-inyectado.png",
+      "caso": "HU022-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "603298acea83aefc8b63ec9da8ef93cb88b469f1a1aabda94c026821a9af11bf",
+      "file_written_at_utc": "2026-11-09T00:53:28.768295+00:00"
+    },
+    {
+      "archivo": "HU022-V14-lectura-pendiente-por-fallo-inyectado.png",
+      "caso": "HU022-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ac489ea1649db187eb8f72a3054453194ecf710411e7e8187a04f79a652055d4",
+      "file_written_at_utc": "2026-11-09T00:53:32.024962+00:00"
+    },
+    {
+      "archivo": "HU022-V14-lectura-recuperada-ids-consultados.png",
+      "caso": "HU022-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d2393963e2462df662531137658f3e84577ad1a30613761b1ea3eb56e5a3f3a7",
+      "file_written_at_utc": "2026-11-09T00:53:33.013411+00:00"
+    },
+    {
+      "archivo": "HU022-V15-conversacion-ajena-empresa-404.png",
+      "caso": "HU022-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9047f39d1372645267079d34734a6d998a9f201ceb0c33648f58f962f0d287b6",
+      "file_written_at_utc": "2026-11-09T00:53:34.819433+00:00"
+    },
+    {
+      "archivo": "HU022-V15-tercero-lista-aislada.png",
+      "caso": "HU022-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f7d20f1992934d7f7bad5a1ab3950f0146a41d7fb436dbc54b5fbbeed573625b",
+      "file_written_at_utc": "2026-11-09T00:53:43.642510+00:00"
+    },
+    {
+      "archivo": "HU022-V15-tercero-acceso-directo-404.png",
+      "caso": "HU022-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9047f39d1372645267079d34734a6d998a9f201ceb0c33648f58f962f0d287b6",
+      "file_written_at_utc": "2026-11-09T00:53:45.399948+00:00"
+    },
+    {
+      "archivo": "HU022-V15-mensajeria-empresa-pendiente-403.png",
+      "caso": "HU022-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4f11e923648dfff6589bd0a801a50726fea3a1f58468aed5aa6ec4e94683dced",
+      "file_written_at_utc": "2026-11-09T00:53:54.202866+00:00"
+    },
+    {
+      "archivo": "HU022-V15-conversacion-sin-sesion-protegida.png",
+      "caso": "HU022-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+      "file_written_at_utc": "2026-11-09T00:53:59.095923+00:00"
+    },
+    {
+      "archivo": "HU022-V16-mensajes-dashboard-candidato-movil.png",
+      "caso": "HU022-V16",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "544913f5323434570b5dbdcb190906257a35174e0b8b1d01d06a86ce155a352a",
+      "file_written_at_utc": "2026-11-09T00:54:04.120018+00:00"
+    },
+    {
+      "archivo": "HU022-V16-contacto-y-lectura-movil.png",
+      "caso": "HU022-V16",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "7ceae1d0125f58c3b90aa9ab98aaaed919fca9432b50b3d2f187d7302ae0879e",
+      "file_written_at_utc": "2026-11-09T00:54:06.035270+00:00"
+    },
+    {
+      "archivo": "HU022-V16-envio-candidato-movil.png",
+      "caso": "HU022-V16",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "35159d6a38e2eeb95d6b17c1e2de32b68291bacbbe5c5782ee1d8fb637f53b02",
+      "file_written_at_utc": "2026-11-09T00:54:08.540072+00:00"
+    },
+    {
+      "archivo": "HU022-V16-respuesta-movil-recibida-empresa.png",
+      "caso": "HU022-V16",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "271c13196c809067bf8c733cbb8e7cb88987798eb283ba5dd35bdbd64b058d6f",
+      "file_written_at_utc": "2026-11-09T00:54:17.893495+00:00"
+    },
+    {
+      "archivo": "HU022-V17-sesion-chat-revocada.png",
+      "caso": "HU022-V17",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38",
+      "file_written_at_utc": "2026-11-09T00:54:18.966645+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-metricas-completitud-y-notificaciones.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ec0bc58f3764af76babd85e5e127251cc65a2fbeb1c0951db431cfdf93bc105b",
+      "file_written_at_utc": "2026-11-09T00:54:26.846407+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-todos-los-accesos-y-avisos.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e9f0a994e6a2077db4f51933e73a7eb0bdfff7a723aa34e7a0ea24d70824061a",
+      "file_written_at_utc": "2026-11-09T00:54:28.122405+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-acceso-perfil.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c8c33384ec43306ef9fbcf451a7f69e53940ef6964a0db92f307a576c7668fbb",
+      "file_written_at_utc": "2026-11-09T00:54:29.901464+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-acceso-curriculum.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7a2f294031582c813b4d3a3975fcd08e27ef480c65ba3f664bcd65b942d3e665",
+      "file_written_at_utc": "2026-11-09T00:54:32.499419+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-acceso-busqueda.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b24442e6bdce0594093ffb98a463778f6f3e55c4f26ff4752ece055c843229d9",
+      "file_written_at_utc": "2026-11-09T00:54:35.557696+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-guardados-conservados.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4d6899968d31a78b94554732543131dc9d75946220af4ce6e0d2d8324ffd140c",
+      "file_written_at_utc": "2026-11-09T00:54:38.254098+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-hu005-historial-real.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3bb95a3fea0ff1cc2ad4e3ad4d526c4724e23e99a8b307653406f0eb4fac5187",
+      "file_written_at_utc": "2026-11-09T00:54:40.759566+00:00"
+    },
+    {
+      "archivo": "REGRESION-V01-pdf-generated.png",
+      "caso": "REGRESION-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "08fb24164a0b65fbfe0981756f05f811698d09f4b173f3d7f03681e599b08671",
+      "file_written_at_utc": "2026-11-09T00:54:44.554932+00:00"
+    },
+    {
+      "archivo": "REGRESION-V02-hu006-metricas-mensajes-y-accesos.png",
+      "caso": "REGRESION-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "08cdb18dcb7921c5a201116bc0d72668fc612a8cc609c1ea8c3b346aa1bc3ef4",
+      "file_written_at_utc": "2026-11-09T00:54:53.762648+00:00"
+    },
+    {
+      "archivo": "REGRESION-V02-hu020-filtros-conservados.png",
+      "caso": "REGRESION-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c337598ede8b8aa12a8f9a7389ba4ab0d80dcc0cece41f17d01b62d65e338574",
+      "file_written_at_utc": "2026-11-09T00:54:58.690813+00:00"
+    },
+    {
+      "archivo": "REGRESION-V02-pdf-uploaded.png",
+      "caso": "REGRESION-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a7a7c9950d7dc4fee4f9ee0d6fc94ad5b51e251089cc57d4bf42157b574de507",
+      "file_written_at_utc": "2026-11-09T00:55:02.782494+00:00"
+    },
+    {
+      "archivo": "REGRESION-V02-hu020-detalle-y-copia-sin-fuente.png",
+      "caso": "REGRESION-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d804405340d1dd8cb645ce6db1dfea7c755771a2f1e3228ff6fcd6a7dc770ebb",
+      "file_written_at_utc": "2026-11-09T00:55:04.402836+00:00"
+    },
+    {
+      "archivo": "REGRESION-V03-hu018-postulacion-real-sin-regresion.png",
+      "caso": "REGRESION-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e212576763df8de29aaa1aafc9b4a3579ccff2fc16edbe6f1a514868a6267723",
+      "file_written_at_utc": "2026-11-09T00:55:14.161057+00:00"
+    },
+    {
+      "archivo": "REGRESION-V03-hu018-recarga-sin-duplicados.png",
+      "caso": "REGRESION-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e212576763df8de29aaa1aafc9b4a3579ccff2fc16edbe6f1a514868a6267723",
+      "file_written_at_utc": "2026-11-09T00:55:16.131423+00:00"
+    }
+  ]
+}

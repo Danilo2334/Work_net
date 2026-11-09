@@ -6,6 +6,8 @@ import 'package:worknet/features/access/presentation/session_controller.dart';
 
 import '../domain/application.dart';
 import 'application_document.dart';
+import 'package:worknet/features/messages/domain/message.dart';
+import 'package:worknet/features/messages/presentation/message_access.dart';
 
 class ApplicationDetailPage extends StatefulWidget {
   const ApplicationDetailPage({
@@ -13,10 +15,12 @@ class ApplicationDetailPage extends StatefulWidget {
     required this.session,
     required this.repository,
     required this.id,
+    this.messages,
   });
   final SessionController session;
   final ApplicationsRepository repository;
   final int id;
+  final MessagesRepository? messages;
   @override
   State<ApplicationDetailPage> createState() => _ApplicationDetailPageState();
 }
@@ -99,6 +103,13 @@ class _ApplicationDetailPageState extends State<ApplicationDetailPage> {
               session: widget.session,
               repository: widget.repository,
             ),
+            if (widget.messages case final repository?)
+              StartConversationButton(
+                session: widget.session,
+                repository: repository,
+                applicationId: item.id,
+                label: 'Conversar con la empresa',
+              ),
           ],
         ),
     ],

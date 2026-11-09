@@ -1,0 +1,832 @@
+{
+  "schema": "worknet-postman-desktop-summary-v1",
+  "run": "run-20261108T232223-937f2bc5",
+  "execution_started_utc": "2026-11-09T00:06:11Z",
+  "execution_local": "08/11/2026 19:06:11 America/Bogota",
+  "version": "12.35.5",
+  "backend_sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+  "server_checkout_at_start": "151ad4e3c27f9584ae25cd7a4ec6d3c3fc2117d2",
+  "preparer_sha": "f41541d91c6b67895dc34296bbf2bf5f8713e362",
+  "requests": 101,
+  "tests_passed": 154,
+  "tests_failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "iterations": 1,
+  "duration_ms": 12651,
+  "average_response_ms": 28,
+  "images_original_jpeg": 15,
+  "smtp": false,
+  "credentials_private": true,
+  "source": "Transcripción comprobada del resumen visible de Postman Desktop Runner; capturas originales. Los códigos/aserciones por caso proceden de la colección y quedaron validados por el total154PASS. No es una exportación de todas las respuestas HTTP ni de cabeceras privadas.",
+  "request_cases": [
+    {
+      "case": "HU021-P01 · Contexto y documento original",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P02 · Cancelar confirmación conserva datos",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P03 · Estado sin cambios tras cancelar",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P04 · Cambiar a En revisión con comentario",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P05 · Reintento mismo UUID no duplica aviso",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P06 · UUID reutilizado con otro comentario",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 409,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P07 · Consultar operación aceptada sin reenviar",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/3/status/operations/2e763e5e-8123-429f-a148-ce208b4ef357/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P08 · Aviso real al destinatario candidato",
+      "method": "GET",
+      "url_template": "{{base_url}}/dashboard/candidate/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P09 · Historial candidato refleja cambio",
+      "method": "GET",
+      "url_template": "{{base_url}}/applications/?page_size=50",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P10 · Versión obsoleta no sobrescribe",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 409,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P11 · Cambiar a Aceptada sin comentario",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P12 · Repetir decisión no altera fecha ni avisos",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 409,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P13 · Decisión final no se reabre",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 409,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P14 · CV generado antes de transición",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/4/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P15 · Cambiar a Rechazada con comentario",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/4/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P16 · Tres avisos sin duplicar alta HU018",
+      "method": "GET",
+      "url_template": "{{base_url}}/dashboard/candidate/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P17 · Permiso de cambio other_company",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P18 · Permiso de cambio candidate",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 403,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P19 · Permiso de cambio draft",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 403,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P20 · Permiso de cambio None",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/3/status/",
+      "http_status_asserted": 401,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P21 · Identificador de otra empresa",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/27/status/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P22 · Parámetro de estado inválido expected_version",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P23 · Parámetro de estado inválido expected_version",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P24 · Parámetro de estado inválido target_status",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P25 · Parámetro de estado inválido comment",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P26 · Parámetro de estado inválido comment",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P27 · Parámetro de estado inválido comment",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P28 · Parámetro de estado inválido request_id",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P29 · Parámetro de estado inválido candidate_id",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P30 · Query no permitida",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/?page=1",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P31 · Transición propia adicional con aviso",
+      "method": "POST",
+      "url_template": "{{base_url}}/company/applications/13/status/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P32 · Modificar fuente generada",
+      "method": "PATCH",
+      "url_template": "{{base_url}}/curriculum/generated/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P33 · Eliminar fuente uploaded",
+      "method": "DELETE",
+      "url_template": "{{base_url}}/curriculum/uploaded/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P34 · Eliminar fuente generated",
+      "method": "DELETE",
+      "url_template": "{{base_url}}/curriculum/generated/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P35 · Metadatos enviados intactos uploaded",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/3/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P36 · PDF enviado intacto uploaded",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/3/cv/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P37 · Metadatos enviados intactos generated",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/4/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P38 · PDF enviado intacto generated",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/4/cv/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU021-P39 · Histórico sin fecha inventada",
+      "method": "GET",
+      "url_template": "{{base_url}}/company/applications/1/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P01 · Resumen inicial sin mensajes pendientes",
+      "method": "GET",
+      "url_template": "{{base_url}}/messages/summary/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P02 · Lista empresarial autorizada",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P03 · Conversación nueva por postulación real",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P04 · Crear de nuevo devuelve la conversación original",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P05 · Búsqueda autorizada y paginada",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/?q=Candidato&page_size=10",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P06 · Página dos conserva búsqueda",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/?q=Candidato&page_size=10&page=2",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P07 · Búsqueda vacía",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/?q=Inexistente",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P08 · Contacto empresa y contexto correcto",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P09 · Conversación inicialmente vacía",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P10 · Empresa envía texto al candidato",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P11 · Reintento mismo mensaje no duplica",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P12 · UUID con texto diferente es conflicto",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 409,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P13 · Recibo propio por GET de operación",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/operations/8e14830a-edbe-4775-9b7b-16a9376a013a/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P14 · Candidato tiene un pendiente",
+      "method": "GET",
+      "url_template": "{{base_url}}/messages/summary/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P15 · Consultar no marca lectura",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P16 · Candidato responde a la empresa",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P17 · Empresa tiene un pendiente",
+      "method": "GET",
+      "url_template": "{{base_url}}/messages/summary/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P18 · Confirmar solo el mensaje consultado",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/read/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P19 · Fecha de lectura registrada",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P20 · Nuevo mensaje durante lectura",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P21 · Repetir lectura no consume el mensaje nuevo",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/read/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P22 · Conservar pendiente nuevo y fecha anterior",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P23 · Leer el nuevo recibido",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/read/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P24 · Empresa lee la respuesta recibida",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/read/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P25 · Mismo texto con clave nueva es legítimo",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P26 · Ventana cronológica de mensajes previos",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/4/messages/?page_size=10",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P27 · Llegada nueva fuera de ventana",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/4/messages/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P28 · Segunda ventana estable con ancla",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/4/messages/?page_size=10&page=2&through_id={{message_anchor}}",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P29 · Actualizar incluye mensaje nuevo",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/4/messages/?page_size=10",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P30 · Texto rechazado str",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P31 · Texto rechazado str",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P32 · Texto rechazado NoneType",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P33 · Texto rechazado int",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P34 · Texto rechazado str",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P35 · Límite de 4000 caracteres",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 201,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P36 · Identidad no inyectable sender_id",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P37 · Identidad no inyectable recipient_id",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P38 · Parámetro de mensaje inválido page_size=51",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/?page_size=51",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P39 · Parámetro de mensaje inválido page=999",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/?page=999",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P40 · Parámetro de mensaje inválido sender_id=1",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/?sender_id=1",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P41 · Parámetro de mensaje inválido page=1&page=1",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/?page=1&page=1",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P42 · Búsqueda inválida q=QA&q=Otro",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/?q=QA&q=Otro",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P43 · Búsqueda inválida q=xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/?q=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P44 · Búsqueda inválida recipient_id=1",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/?recipient_id=1",
+      "http_status_asserted": 400,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P45 · No leer mensajes enviados por el mismo usuario",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/read/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P46 · Detalle ajeno candidate",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/13/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P47 · Mensajes ajenos candidate",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/13/messages/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P48 · Enviar en conversación ajena candidate",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/13/messages/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P49 · Leer conversación ajena candidate",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/13/read/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P50 · Detalle ajeno company",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/13/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P51 · Mensajes ajenos company",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/13/messages/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P52 · Enviar en conversación ajena company",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/13/messages/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P53 · Leer conversación ajena company",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/13/read/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P54 · Crear desde postulación ajena",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/",
+      "http_status_asserted": 404,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P55 · Tercero no ve conversaciones",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P56 · Otra empresa solo ve su contexto",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P57 · Rol o sesión no autorizado draft",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 403,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P58 · Envío no autorizado draft",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 403,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P59 · Rol o sesión no autorizado None",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 401,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P60 · Envío no autorizado None",
+      "method": "POST",
+      "url_template": "{{base_url}}/conversations/3/messages/",
+      "http_status_asserted": 401,
+      "assertion_count": 1,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P61 · Consulta de oferta cerrada conserva contacto",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/3/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    },
+    {
+      "case": "HU022-P62 · Consulta de archivada conserva mensajes",
+      "method": "GET",
+      "url_template": "{{base_url}}/conversations/4/",
+      "http_status_asserted": 200,
+      "assertion_count": 2,
+      "runner_all_tests_passed": true
+    }
+  ]
+}

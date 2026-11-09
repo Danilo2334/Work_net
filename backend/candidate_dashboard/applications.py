@@ -63,6 +63,8 @@ def offer_data(offer, *, active=None):
 def application_data(item, *, offer=None):
     return {"id": item.pk, "offer": offer or offer_data(item.offer, active=getattr(item, "available", None)),
             "created_at": item.created_at, "status": item.status,
+            "status_change": {"version": item.status_version, "modified_at": item.status_modified_at,
+                              "comment": item.status_comment},
             "cv": {"source": item.cv_source, "source_id": item.cv_source_id,
                    "source_updated_at": item.cv_source_updated_at,
                    "filename": item.cv_filename, "template": item.cv_template,
@@ -128,7 +130,7 @@ def submit(candidate, offer_id, data):
                 except ModelValidationError as exc:
                     # El guard del modelo vuelve a comprobar vigencia al insertar.
                     raise NotFound("Esta oferta ya no está activa y no recibe nuevas postulaciones.") from exc
-                Notification.objects.create(application=item, recipient_id=offer.company_id,
+                Notification.objects.create(application=item, event_kind="application_created", recipient_id=offer.company_id,
                     title=f"Nueva postulación: {candidate.full_name} · {offer.title}"[:200])
                 return item, True
         except OperationalError as exc:
