@@ -100,9 +100,19 @@ La aceptación cubre Windows/SQLite, escritorio, móvil web emulado y recorridos
 
 ## Ramas y continuidad
 
-`main` conserva la entrega integrada; `develop`, `frontend` y `feature/backend-sprint-3` conservan las bases compartidas del flujo usado. Se retiraron **45 ramas temporales** cuyos commits eran antecesores de main. `feature/hu008-selection-profile` se conserva porque contiene un commit de evidencias no fusionado; no forma parte de la entrega estable. El [inventario de cierre](docs/auditoria-cierre-20261109.json) conserva nombres y SHA. Los checkouts locales del equipo no se eliminaron desde esta sesión.
+Se mantienen **tres ramas permanentes** del mismo repositorio:
 
-HU027 permanece en el backlog de la segunda versión. Las nuevas funciones deben partir de la entrega estable y acreditar su propia aceptación.
+| Rama | Responsabilidad |
+|---|---|
+| `main` | Entrega integrada y estable; base del próximo despliegue. |
+| `frontend` | Desarrollo Flutter e integración conjunta antes de entregar a main. |
+| `develop` | Backend Django consolidado. |
+
+Las ramas de construcción y de sprint se retiraron una vez comprobados sus commits. La evidencia exclusiva de HU008 se conserva en el tag `archivo/20261109/hu008-evidencias`, sin incorporarla automáticamente como funcionalidad nueva. La combinación local de QA con commits propios se conserva en una referencia de archivo local y en el respaldo Git privado. Se mantienen los checkouts históricos, sus cambios locales y sus entornos, fijados a sus commits.
+
+[Inventario y conservación](docs/limpieza-ramas-20261109.json). La rama temporal de esta documentación se retira al cerrar su integración, dejando únicamente las tres anteriores. Las mejoras de una versión futura utilizarán ramas temporales revisables y se retirarán después de fusionar.
+
+La entrega funcional está cerrada; **el despliegue sigue pendiente**. Tener una rama main estable todavía no significa que exista un servicio productivo publicado. HU027 permanece pendiente para una versión futura.
 
 ## Equipo
 

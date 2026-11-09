@@ -1,5 +1,18 @@
 # Guía para revisar WorkNet
 
+<!-- limpieza-ramas-permanentes-20261109 -->
+## Ramas permanentes y siguiente fase — 09/11/2026
+
+La entrega cerrada conserva tres ramas permanentes: **main** para la versión integrada estable, **frontend** para Flutter e integración y **develop** para Django. Las ramas de construcción y de sprint se retiran tras comprobar su procedencia. No se crean funcionalidades nuevas ni se vuelven a atribuir como actuales las pruebas anteriores.
+
+Los commits exclusivos de HU008 permanecen en `archivo/20261109/hu008-evidencias`; la combinación de QA no publicada permanece en un archivo Git local. Se verifica un respaldo completo antes de retirar referencias. Los 49 checkouts anteriores conservan HEAD, archivos y entornos; las tres copias con cambios locales permanecen intactas. Los checkouts históricos quedan separados de sus ramas y se prepara una copia limpia de main para continuar.
+
+[Inventario de ramas y conservación](../../docs/limpieza-ramas-20261109.json). La rama de revisión de esta documentación es temporal y se elimina después de su integración. El resultado final se contrasta en GitHub y localmente: solo main, frontend y develop. Se conservan los tags históricos y la autoría de todos los commits.
+
+**Pendiente: preparar el despliegue.** No se publican servicios ni se activan cargos. HU027 continúa abierta/Backlog para una versión futura. El cierre funcional HU001–HU026 y HU028 permanece vigente.
+
+<!-- limpieza-ramas-permanentes-20261109-fin -->
+
 <!-- revision-final-entrega-20261109 -->
 ## Cierre funcional y revisión final — 09/11/2026
 
