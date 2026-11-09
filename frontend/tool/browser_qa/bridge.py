@@ -82,7 +82,7 @@ def execute(manifest, action, args):
         return {'ready': True}
     require((root / '.suite-started').is_file())
     if action.startswith('hu02122_'):
-        require(config.get('suite') == 'hu021-hu022')
+        require(config.get('suite') in ('hu021-hu022', 'hu005-messages-access'))
         import importlib.util
         spec = importlib.util.spec_from_file_location('hu02122_qa', root / 'source/frontend/tool/browser_qa/hu02122_api.py')
         module = importlib.util.module_from_spec(spec)
