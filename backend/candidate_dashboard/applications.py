@@ -5,7 +5,7 @@ import time
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.exceptions import ValidationError as ModelValidationError
 from django.db import OperationalError, connection, transaction
-from django.db.models import Exists, OuterRef
+from django.db.models import Exists, F, OuterRef
 from rest_framework import serializers
 from rest_framework.exceptions import APIException, NotFound, ValidationError
 from rest_framework.response import Response
@@ -112,13 +112,20 @@ def submit(candidate, offer_id, data):
     for attempt in range(6):
         try:
             with transaction.atomic():
+                if connection.vendor == "sqlite":
+                    # Reserve the writer before reading. Concurrent read-to-write
+                    # upgrades can otherwise all fail in lockstep despite retries.
+                    # No offer value, timestamp or lifecycle event is changed.
+                    JobOffer.objects.filter(pk=offer_id).update(status=F("status"))
                 # Mismo bloqueo de oferta que HU015, sin invertir su orden con empresa.
                 offer = JobOffer.objects.select_for_update().filter(pk=offer_id).first()
                 if offer is None:
                     raise NotFound("No encontramos esa oferta.")
                 existing = Application.objects.filter(candidate=candidate, offer=offer).first()
                 if existing:
-                    return existing, False  # Conserva CV/fecha/aviso incluso tras cierre o borrado de fuente.
+                    # Serialize under the same lock: response construction must not
+                    # race a subsequent SQLite writer after this transaction commits.
+                    return application_data(existing, offer=offer_data(offer)), False
                 if not visible_offers(JobOffer.objects.filter(pk=offer_id)).exists():
                     raise NotFound("Esta oferta ya no está activa y no recibe nuevas postulaciones.")
                 frozen = snapshot(candidate, data)
@@ -133,7 +140,7 @@ def submit(candidate, offer_id, data):
                 from .notification_events import notify
                 notify(application=item, event_kind="application_created", recipient_id=offer.company_id,
                     title=f"Nueva postulación: {candidate.full_name} · {offer.title}"[:200])
-                return item, True
+                return application_data(item, offer=offer_data(offer)), True
         except OperationalError as exc:
             if connection.vendor != "sqlite" or not any(w in str(exc).lower() for w in ("locked", "busy")):
                 raise
@@ -162,9 +169,9 @@ class OfferApplicationView(CandidateApplicationsView):
         no_query(request)
         serializer = ApplicationInput(data=request.data)
         serializer.is_valid(raise_exception=True)
-        item, created = submit(request.user, offer_id, serializer.validated_data)
+        payload, created = submit(request.user, offer_id, serializer.validated_data)
         return Response({"created": created, "message": "Postulación enviada correctamente." if created else "Tu postulación ya estaba registrada.",
-                         "application": application_data(item)}, status=201 if created else 200)
+                         "application": payload}, status=201 if created else 200)
 
 
 class ApplicationsView(CandidateApplicationsView):

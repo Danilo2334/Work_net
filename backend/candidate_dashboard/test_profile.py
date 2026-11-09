@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from io import BytesIO
 import uuid
 
@@ -29,7 +30,7 @@ class CandidateProfileTests(TestCase):
         self.authenticate(self.owner)
 
     def authenticate(self, user):
-        token, _ = Token.objects.get_or_create(user=user)
+        token = fixture_token(user)
         self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     def test_empty_get_does_not_create_profile(self):
