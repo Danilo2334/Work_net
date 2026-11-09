@@ -5712,7 +5712,9 @@
     "additional_gemini_calls": 0,
     "new_browser_or_postman_acceptance": false,
     "live_smtp_retest": false,
-    "production_or_postgresql_tested": false
+    "production_or_postgresql_tested": false,
+    "django_version": "6.1.1",
+    "flutter_version": "3.47.5"
   },
   "accepted_evidence_retained": {
     "hu028_real_generations": 4,
