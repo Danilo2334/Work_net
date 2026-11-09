@@ -7,11 +7,100 @@
 
 Se detuvo la configuración y cualquier implementación adicional de LinkedIn. La preparación de sitio, logo, propuesta de privacidad y retorno estático de [#196](https://github.com/Danilo2334/Work_net/pull/196)/[#197](https://github.com/Danilo2334/Work_net/pull/197), publicada en main `a9bbf324c8deeec45b462cba84eb620b0dbf0f18`, se conserva como antecedente. Nunca ejecutó OAuth ni importó datos reales. [Versión preparatoria conservada](https://github.com/Danilo2334/Work_net/blob/a9bbf324c8deeec45b462cba84eb620b0dbf0f18/frontend/README.md). Las páginas actuales anuncian la cancelación y el perfil/CV manual continúa disponible.
 
-HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. El resultado de HU024 y HU006 se presenta en la sección vigente siguiente. HU025/HU026 y la revisión final de HU007 continúan dentro del alcance. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
+HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. El resultado de HU024 y HU006 se presenta en la sección vigente siguiente. HU025 presenta su resultado en la sección siguiente; HU026 y la revisión final de HU007 continúan dentro del alcance. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
 
 Los seis IDs, responsables, relaciones, criterios y antecedentes originales de HU027 permanecen conservados. La opción Cancelada se añadió preservando los IDs y valores de todos los estados existentes; no se cambian Sprint ni fechas. Ningún cierre not_planned se contará como entrega funcional.
 
 <!-- alcance-hu001-hu026-fin -->
+
+<!-- hu025-vigente-inicio -->
+## HU025 — Exportación de postulantes — 08/11/2026
+
+**Qué se hizo**
+
+CSV/PDF de todas las coincidencias autorizadas, filtros/orden conservados, vacío, validación y protección de fórmulas. Descargas reales en escritorio, móvil web y Android nativo emulado, con negocio intacto.
+
+| Criterio original HU025 | Evidencia vigente |
+|---|---|
+| Exportar CSV | V02/V04/V05/V06/V09/V10, P02/P04–P10, Android SAF CSV y archivos reales |
+| Exportar PDF | V03/V06/V09, P03/P11, Android SAF PDF y documentos legibles |
+| Solo información autorizada | Proyección explícita; P21–P25, 403/404/401 y pruebas SQL sin documentos/contactos |
+| Respetar filtros aplicados | Consulta HU020 compartida; individuales 9/6/6 y combinados 4; orden estable contrastado |
+| Sin registros | V07/V08 deshabilitados, P13 informa 400 sin archivo |
+| Archivo corresponde con sistema | Todas las filas/campos/orden contra SQL en CSV/PDF, 14 totales/4 combinadas/6 móvil; negocio intacto |
+
+**Preparación**
+
+Aceptación del **08/11/2026, America/Bogota**, Windows. Base main `491f4ef0c210125eb6cf60e460f77214917b5fd9`. Django [`234ed32`](https://github.com/Danilo2334/Work_net/commit/234ed32a34abee4bd144f37331439b2806c1fb05); Flutter funcional y sus pruebas [`e2194db`](https://github.com/Danilo2334/Work_net/commit/e2194dbf3295c2c6cf37a35cc2613e2e1af1d1fd), con lib/test idénticos en los ejecutores posteriores. Navegador final [`9e131b3`](https://github.com/Danilo2334/Work_net/commit/9e131b391b80d03b9cc1a435a0fc8634545aa3f6); entrada/servidor QA Android [`ae6ce84`](https://github.com/Danilo2334/Work_net/commit/ae6ce8423a53891efc805f973ba1d097967d20d1). Medios permanentes `d420bd3c5cf427a16773a7f5ef22c4ca422f67d7`: identifica su publicación, no otra ejecución.
+
+Tres SQLite nuevas e independientes, **18 ofertas/27 postulaciones, 14 sobre la oferta 3 cerrada**, usuarios ficticios, correo a archivos y credenciales privadas. Perfiles actuales conocidos: filtros Backend 9, educación Ingenieria 6, habilidad Python 6 y combinados 4. Nombres ficticios con fórmulas, espacios, tildes, comillas/comas y nombres extensos; los nombres y bytes originales de los CV enviados se conservan. Estados iniciales son fixtures, no transiciones empresariales observadas en esta aceptación.
+
+Navegador `browser-qa-20261109T043030-f398e5ed`: **13/13**, 18 PNG originales y 11 descargas reales; escritorio 1440×1000 y móvil web390×844 emulado. CSV: siete campos, IDs y orden de todas las filas; PDF: IDs extraídos y orden, nombre/fecha UTC/estado/CV por bloque, oferta, conteo y páginas, contra SQL independiente. PDF completo14 filas/dos páginas y combinado4/una página inspeccionados visualmente. Los tres renders Poppler se identifican como derivados del archivo.
+
+Postman Desktop `run-20261109T041747-2b35c70d`, puerto 8103: **28 peticiones/40 PASS**, una iteración, cero fallos/errores/omitidas,4.338 ms totales y 42 ms medios;12 JPEG originales. Preparador `f06675c`, checkout servidor `077322df66c654465d9c6ea15f00b7233c70e806`, backend funcional234ed32. Inicio UTC2026-11-09T04:22:29.285Z. Resumen transcrito del Runner observado, no ejecución CLI ni exportación de respuestas. Se importaron solo los dos archivos de esa corrida, sin abrir valores privados ni Vault; no se repite la colección consumida.
+
+Android `run-20261109T043031-766ab00b`, puerto 8104: AVD QA nuevo y vacío, Android 17/API 37 x86_64,480×800/160 dpi,2 GB RAM/2 CPU. WorkNetApp y guards reales; preflight de identidad QA, login API ficticio y restauración de sesión solo en memoria. Dashboard → ofertas propias/página 2 → oferta 3 cerrada/14 → guardar CSV y PDF con SAF. **Dos archivos realmente persistidos**, extraídos de Downloads y contrastados con SQL, 8 JPEG originales. No prueba de login manual ni de dispositivo físico. APK/defines/credenciales/AVD permanecen privados.
+
+Python 3.12.10, Django 6.1.1, DRF 3.18.3, ReportLab 5.1.0, Flutter 3.47.5, Dart 3.13.4, Playwright 1.65.0, Chromium 158.0.8127.18 y Postman Desktop 12.35.5. Windows/SQLite local; sin PostgreSQL ni prueba de carga. Las38 capturas originales y tres renders son conjuntos compartidos entre tareas, no se multiplican al reutilizarlos.
+
+**Contrato y resultados**
+
+`GET /api/company/offers/{id}/applications/export/?file_type=csv|pdf` admite experience, education, skill y order=newest|oldest|name|name_desc, los mismos filtros de perfil actual y desempates de HU020. Incluye **todas las coincidencias**, hasta5.000, sin page/page_size. Una exportación consulta el estado actual; no congela el listado entre peticiones. CSV/PDF contienen solo oferta/ID, postulación/ID, nombre, fecha UTC, estado y nombre del CV ya consultables; no correos, contactos, perfiles completos, documentos, hashes ni tokens. Nombre seguro `postulantes-oferta-ID.csv|pdf`, privado/no-store. La empresa debe estar autenticada, verificada, aprobada y ser propietaria, incluso en ofertas inactivas.
+
+Las tres bases conservan cuentas, perfiles, ofertas, postulaciones, relaciones/fechas, documentos y avisos: **cero registros de negocio nuevos y cero duplicados**. CSV ante `= + - @` tras espacios/controles: apóstrofo protector, comillas CSV y UTF-8/BOM; el dato original no cambia. PDF con texto escapado, ajuste de filas, cabecera repetida y pie. Vacío/consulta inválida400, rol/aprobación403, oferta ajena404, sesión ausente/revocada401 y escritura405. Error503 de interfaz identificado como inyectado; su reintento descarga contra API real200. Una respuesta tardía no se guarda tras expirar la sesión.
+
+**Pruebas y revisión**
+
+**265 Django, 203 Flutter**, ocho nuevas por implementación;19 Django de exportación/HU020 repetidas después de exponer las cabeceras CORS, check limpio, sin cambios de migraciones y cero pendientes. Análisis Flutter limpio, incluida entrada QA;20 guards Python/6 Node. Compilación web release por el ejecutor; Android debug x64 estándar444,7 s y entrada QA40,4 s. JVM 25.0.3 requirió una ruta temporal privada de sockets por comando; no se cambiaron configuración global ni ajustes de seguridad. Advertencia futura de KGP/pdfx conservada, sin fallo en esta versión.
+
+Revisión técnica delegada de código, QA y evidencias: sin hallazgos pendientes tras corregir BOM del decodificador y exposición CORS; no se atribuye aprobación humana. Rendimiento local adicional:20 GET APIClient sobre18 ofertas/27 postulaciones/14 filas, medianas CSV 3,0818 ms y PDF 23,6194 ms, con negocio idéntico antes/después. Son lecturas suplementarias con sesión QA, no peticiones nuevas de Postman ni carga productiva. Regresión completa incluye HU020 y HU024.
+
+[Resultados web](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/resultados.json) · [Descargas Android](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/resultados-android.json) · [Capturas Android](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/capturas-android.json) · [Revisión PDF](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/revision-pdf.json) · [Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/resultados-desktop.json) · [Capturas Desktop](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/capturas-desktop.json) · [Colección pública](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/casos.postman_collection.json) · [Persistencia Desktop](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/contraste-persistencia.json) · [Migraciones/rendimiento](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/migraciones-rendimiento.json) · [Validación técnica](https://github.com/Danilo2334/Work_net/blob/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/validacion-tecnica.json)
+
+**Publicación e integración**
+
+Django y sus pruebas por Danilo2334: [#212](https://github.com/Danilo2334/Work_net/pull/212) → feature/backend-sprint-3 `26fcfa8`, [#214](https://github.com/Danilo2334/Work_net/pull/214) → develop `08babe4`. Flutter y sus pruebas por francisco3788: [#213](https://github.com/Danilo2334/Work_net/pull/213) → frontend `e2c980b`; backend revisado [#215](https://github.com/Danilo2334/Work_net/pull/215) → frontend `788e098`. Evidencias/guía en [#216](https://github.com/Danilo2334/Work_net/pull/216), entrega conjunta [#217](https://github.com/Danilo2334/Work_net/pull/217), por francisco3788. Publicador, autor y committer contrastados por separado; merges de GitHub con committer automático web-flow. Protecciones efectivas respetadas, sin bypass ni cambios.
+
+El resultado de main y los cierres se registra en los seguimientos únicos tras contrastar SHA remoto y árbol completo, seis criterios originales, closed/completed, Done y relación4/4 — 100 % por separado. El contador no sustituye los criterios ni las evidencias. HU026 y el pendiente HU007 continúan; HU027 conserva not_planned/Cancelada, fuera del alcance HU001–HU026.
+
+![HU025 Desktop](https://raw.githubusercontent.com/Danilo2334/Work_net/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/backend/docs/evidencias/hu025-20261108/00-resumen-desktop.jpg)
+
+**Caso Desktop.** **Esperado:** Ejecutar una iteración sobre otra QA aislada. **Obtenido:** 28 peticiones y 40 PASS; cero fallos, errores u omitidas. **Alcance demostrado:** Runner real del 08/11/2026; no resultados históricos de otra historia.
+
+![HU025 V01](https://raw.githubusercontent.com/Danilo2334/Work_net/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/HU025-V01-controles-alcance-todas-las-paginas.png)
+
+**Caso V01.** **Esperado:** Acceder desde empresa y explicar la descarga. **Obtenido:** Controles CSV/PDF y alcance de 14 coincidencias, filtros aplicados y todas las páginas. **Alcance demostrado:** Escritorio real1440×1000 con API de otro origen; no maqueta.
+
+![HU025 PDF página 1](https://raw.githubusercontent.com/Danilo2334/Work_net/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/PDF-todas-1.png)
+
+**Caso PDF página 1.** **Esperado:** Obtener un documento legible con filas extensas. **Obtenido:** Primera página con cabecera, fechas UTC, nombres y CV; sin recortes ni solapamientos. **Alcance demostrado:** Raster Poppler110 dpi del PDF auténtico descargado de 14 filas; es un render del archivo, no captura de navegador o Postman.
+
+![HU025 PDF página 2](https://raw.githubusercontent.com/Danilo2334/Work_net/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/PDF-todas-2.png)
+
+**Caso PDF página 2.** **Esperado:** Continuar la tabla y conservar caracteres especiales. **Obtenido:** Cabecera repetida, filas restantes, tildes/comillas y pie Página2 legibles. **Alcance demostrado:** Segunda página del mismo archivo; no una ejecución adicional.
+
+![HU025 Android PDF](https://raw.githubusercontent.com/Danilo2334/Work_net/d420bd3c5cf427a16773a7f5ef22c4ca422f67d7/frontend/docs/evidencias/hu025-20261108/A08-pdf-confirmado.jpg)
+
+**Caso Android PDF.** **Esperado:** Guardar el PDF en Android. **Obtenido:** Confirmación de 14 coincidencias después de guardar con SAF. **Alcance demostrado:** PDF persistido de dos páginas; IDs, orden y campos contrastados con SQL. No se atribuye prueba de dispositivo físico.
+
+**Seguimientos únicos**
+
+[#128](https://github.com/Danilo2334/Work_net/issues/128#issuecomment-6732593307) · [#129](https://github.com/Danilo2334/Work_net/issues/129#issuecomment-6732593623) · [#130](https://github.com/Danilo2334/Work_net/issues/130#issuecomment-6732593953) · [#131](https://github.com/Danilo2334/Work_net/issues/131#issuecomment-6732594259)
+
+**Reproducción**
+
+En checkouts aislados con dependencias fijadas: backend `python manage.py test`, `python manage.py check` y `python manage.py makemigrations --check --dry-run`; frontend `flutter test`, `flutter analyze` y `flutter build web --release --no-web-resources-cdn`. Navegador: `python frontend/tool/browser_qa/run.py --suite hu025 --frontend-ref SHA_FLUTTER --backend-ref SHA_DJANGO`, que crea venv, compilación y base nuevos. Desktop: `python frontend/tool/browser_qa/hu025_api.py prepare --port PUERTO_LIBRE`, servir esa corrida con `python backend/postman/qa.py serve --run RUN`, importar sus dos archivos import-hu025 y ejecutar una sola iteración conservando respuestas; después `python frontend/tool/browser_qa/hu025_api.py contrast --run RUN`. Nunca reutilizar bases consumidas ni publicar entornos, correo, bases o APK QA.
+
+Android usa un AVD QA vacío separado y la misma preparación en otro puerto. `python frontend/tool/browser_qa/android_hu025_server.py --run RUN` sirve solo127.0.0.1 y admite el alias del emulador10.0.2.2; la entrada `android_hu025.dart` exige marcador/servidor QA antes del login. Inyectar defines ficticios únicamente desde archivo privado, compilar el target QA y conservar el APK privado; el target normal sigue siendo lib/main.dart. La aceptación aquí no modifica un AVD personal ni emplea sus archivos.
+
+<details>
+<summary>Antecedentes y límites conservados</summary>
+
+Primera preparación rechazó un intento del ejecutor de cambiar cv_filename inmutable; se corrigió el preparador y se usaron bases nuevas, conservando la incompleta. Corrida inicial `f06675c`: 13/13 conservada, con validación PDF entonces limitada a nombres/CV/conteo/páginas; la vigente `9e131b3` añade IDs extraídos, orden y campos por fila. El metadato anterior «CV extensos» se corrigió: los nombres de CV y sus bytes siempre se conservaron. La instancia Android inicial sin ventana capturable se detuvo; la aceptación vigente usa un AVD QA vacío propio. No se atribuye prueba física, PostgreSQL o carga. HU026 y el cierre pendiente de HU007 continúan; HU027 está cancelada.
+
+</details>
+
+<!-- hu025-vigente-fin -->
 
 <!-- hu024-vigente-inicio -->
 ## HU024 — Estadísticas / cierre de HU006 — 08/11/2026
