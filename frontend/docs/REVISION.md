@@ -9,6 +9,122 @@ El barrido de este checkout no encontró servicios, rutas o dependencias funcion
 
 **HU028 #224 — Asistente de creación de currículum con IA**, tareas #225–#228, se prepara por separado. La clave y aceptación real del proveedor permanecen pendientes; los dobles de prueba se identifican explícitamente. Las relaciones nativas de subtareas y los estados del Project requieren verificación adicional: el conector de esta sesión no expone esas mutaciones; no se atribuye actualización de WORK_NET.
 
+<!-- hu028-avance-inicio -->
+## HU028 — Asistente de creación de currículum con IA — avance del 09/11/2026
+
+**Estado: en desarrollo, sin cierre ni aceptación del proveedor real.** Historia [#224](https://github.com/Danilo2334/Work_net/issues/224), tareas #225–#228 abiertas. La implementación se conserva en ramas de trabajo y PR en borrador; no modifica el producto estable de main. HU027 permanece pendiente de desarrollo.
+
+### Qué se hizo
+
+El generador conserva sus tres plantillas y permite «Completar mi CV con IA». El candidato escribe información, elige si incluye su perfil propio y autoriza su envío a Gemini. Revisa una propuesta estructurada, ve faltantes y decide aplicar al borrador o descartar. Aplicar conserva la plantilla y los contactos que no se hayan proporcionado; sustituye el resumen y las secciones, con aviso previo. El guardado y el PDF requieren la acción habitual del candidato.
+
+La API GET/POST `/api/curriculum/generated/assistant/` exige candidato autenticado y verificado. Comprueba consentimiento, texto, perfil propio y contrato del CV; generar nunca persiste un CV ni altera postulaciones. La clave y el modelo se configuran solo en backend. Se limita el uso por usuario, el tamaño de entrada/respuesta y el tiempo de espera; no se siguen redirecciones ni se reintentan llamadas automáticamente. Se rechazan hechos estructurados ausentes del texto/perfil autorizado. Esta comparación textual no garantiza la veracidad del resumen o de las descripciones: la revisión humana sigue siendo obligatoria. Las fechas incompletas permanecen sin día/mes inventados; las fechas completas deben coincidir con el formato ISO suministrado.
+
+### Preparación y procedencia
+
+- Fecha: **09/11/2026**. Clon cloud aislado Linux; Python 3.12.14, Django 6.1.1, Flutter 3.47.9 y Dart 3.13.7.
+- Base estable original `c49d0f7fe658aa8641dba52070a2c83172f69f83`; limpieza HU027 ya integrada en main `1da868605d117b3375edaed10af839a51d3c6bf5`. API de Danilo: [`6675613`](https://github.com/Danilo2334/Work_net/commit/6675613655748fbbba964c80493533b8e5d69659), PR #231. Flutter, QA y originales de Francisco: [`606ce39`](https://github.com/Danilo2334/Work_net/commit/606ce394290562db22a402ce1d56f50be1acb36f).
+- Fuentes y originales comprobables en [manifest.json](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/manifest.json), con SHA-256 y SHA de blob Git. No contiene credenciales.
+- **UI:** renderizaciones auténticas del componente Flutter en pruebas de widgets, repositorio ficticio y datos «Candidata QA / Universidad QA / Django». Vistas lógicas 1280×1000 y 390×844, factor de captura 1.5. Roboto y MaterialIcons cargados; el arnés de capturas fija Roboto en botones para evitar la fuente Ahem de pruebas. No son capturas de navegador, dispositivo ni Postman.
+- **API/PDF:** servidor Django HTTP real en loopback, otra SQLite por ejecución, correo a archivos y proveedor sustituido por un doble controlado. Datos separados: «Ana QA / Equipo QA / Universidad QA / Python». Estos PDF no pertenecen a la sesión de las imágenes Flutter. No se llamó a Gemini.
+- La ejecución HTTP final fue `run-20261109T130456Z-f9bc3f60`: [19 peticiones comprobadas](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/http-resultados.json). Los tokens y contraseñas quedaron únicamente en el directorio privado de esa QA, fuera de los archivos publicados.
+
+### Evidencias de interfaz, visibles y específicas
+
+![HU028 V01 — asistente sin configuración](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V01-sin-configuracion-render-flutter.png)
+
+**V01.** Abrir el asistente sin clave/modelo. Se esperaba un mensaje claro y la posibilidad de cancelar; se obtuvo el estado «pendiente de configuración». Acredita la presentación del componente. El HTTP 503 se comprueba por separado en A08; la imagen no prueba permisos.
+
+![HU028 V02 — edición manual conservada](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V02-editor-manual-conservado-render-flutter.png)
+
+**V02.** Cancelar el estado anterior. Se esperaba recuperar el resumen existente «Resumen del perfil» y no guardar; se ve el editor con ese contenido. El test comprueba además cero guardados en el repositorio ficticio. La persistencia de base de datos se comprueba en pruebas Django, no mediante esta imagen.
+
+![HU028 V03 — texto, perfil optativo y consentimiento](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V03-consentimiento-render-flutter.png)
+
+**V03.** Introducir formación y habilidad propias y autorizar el envío manteniendo el perfil desmarcado. Se esperaba explicar el destinatario y el alcance antes de generar; se obtuvo texto, opción independiente de perfil y consentimiento explícito.
+
+![HU028 V04 — revisión de propuesta de prueba](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V04-propuesta-doble-controlado-render-flutter.png)
+
+**V04.** Recibir la respuesta del repositorio ficticio. Se esperaba mostrar resumen, formación, habilidad y fecha pendiente, con «Aplicar» desactivado hasta revisar; así aparece. El aviso identifica la propuesta como prueba controlada. No acredita respuesta de Gemini.
+
+![HU028 V05 — propuesta aplicada a borrador editable](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V05-borrador-sin-autoguardado-render-flutter.png)
+
+**V05.** Confirmar revisión y aplicar. Se esperaba trasladar «Resumen propuesto para revisar» y formación al editor; ambos están visibles. El test comprueba que no se invocó guardar y que la plantilla se conserva. El candidato debe decidir el guardado definitivo.
+
+![HU028 V06 — consentimiento en ancho móvil](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V06-consentimiento-movil-render-flutter.png)
+
+**V06.** Repetir el formulario a 390×844. Se esperaba poder leer el aviso, marcar consentimiento y alcanzar el botón; los controles caben y son legibles. Es una prueba de layout Flutter, no un teléfono físico.
+
+![HU028 V07 — revisión y descarte en ancho móvil](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V07-propuesta-movil-doble-controlado-render-flutter.png)
+
+**V07.** Revisar la propuesta en ancho móvil. Se esperaba contenido legible, faltantes, revisión obligatoria y opción de descartar; se obtuvo sin desbordamiento. Tras descartar, el test confirma resumen previo y cero guardados. Sigue pendiente el recorrido en navegador real.
+
+### Integración con las tres plantillas y PDF
+
+![HU028 PDF Clásica — datos ficticios del doble controlado](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.png)
+
+**PDF Clásica.** Guardar expresamente la propuesta ficticia mediante PUT y consultar el PDF propio por HTTP. Se esperaba 200/201 para guardar y 200 con PDF legible; se obtuvo el documento de Ana QA con formación, experiencia y habilidades conservadas. [PDF original](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.pdf). La imagen es la primera página renderizada por `pdftoppm`; no es una captura de Postman ni acredita IA real.
+
+![HU028 PDF Moderna — datos ficticios del doble controlado](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.png)
+
+**PDF Moderna.** Guardar expresamente la propuesta ficticia mediante PUT y consultar el PDF propio por HTTP. Se esperaba 200/201 para guardar y 200 con PDF legible; se obtuvo el documento de Ana QA con formación, experiencia y habilidades conservadas. [PDF original](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.pdf). La imagen es la primera página renderizada por `pdftoppm`; no es una captura de Postman ni acredita IA real.
+
+![HU028 PDF Minimalista — datos ficticios del doble controlado](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.png)
+
+**PDF Minimalista.** Guardar expresamente la propuesta ficticia mediante PUT y consultar el PDF propio por HTTP. Se esperaba 200/201 para guardar y 200 con PDF legible; se obtuvo el documento de Ana QA con formación, experiencia y habilidades conservadas. [PDF original](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.pdf). La imagen es la primera página renderizada por `pdftoppm`; no es una captura de Postman ni acredita IA real.
+
+### Comprobaciones realizadas
+
+| Comprobación | Resultado y alcance |
+|---|---|
+| Django | 300 aprobadas; 15 nuevas de HU028. Permisos, consentimiento, límites, perfil propio, datos inválidos, transporte, fallos y ausencia de persistencia. Proveedor simulado. |
+| Flutter | 237 aprobadas; 7 nuevas de contrato/interfaz y 3 de recorrido/render. Revisión, descartar, errores, cancelación y borrador sin guardado. |
+| Análisis y compilación | `flutter analyze` sin incidencias; build web release correcto. Se conservan avisos conocidos de soporte Wasm de secure storage y fuente Cupertino. |
+| Django check / migraciones | Correctos; sin nuevas migraciones. |
+| HTTP aislado | 19/19 peticiones con resultados esperados. 401/403/400, configuración 503, propuesta, cuota 429, respuesta inválida 502, guardado/PDF de tres plantillas y PDF ajeno 404. |
+| Gemini real | Pendiente; ninguna petición al proveedor realizada. |
+| Navegador / Postman Desktop | Pendientes. Los renders de widgets y las peticiones Python no sustituyen esta aceptación. |
+
+### Cómo reproducir y completar
+
+Usar una copia aislada de `codex/hu028-curriculum-ai-integracion`, que reúne API y Flutter. No ejecutar la colección completa contra una QA histórica consumida ni contra datos reales. Instalar las dependencias del backend y ejecutar desde la raíz:
+
+```bash
+python backend/postman/hu028_qa.py
+```
+
+Cada ejecución crea otra SQLite y correo a archivos bajo el directorio Git común `hu028-qa/run-...`. Usa solo loopback, puertos 18488/18489 libres, y sobrescribe únicamente los resultados HU028 del checkout actual. No toca bases anteriores. Por defecto usa un doble **sin consumo del proveedor** y termina sus servidores. `--serve` mantiene solo esa nueva QA para inspección, inicialmente sin configuración. Sus archivos privados `private.json` y `private.postman_environment.json` no se publican.
+
+Para generar capturas de widgets desde `frontend/`, con Flutter instalado:
+
+```bash
+CI=true FLUTTER_SUPPRESS_ANALYTICS=true flutter test test/curriculum_assistant_evidence_test.dart --dart-define=HU028_QA_SCREENSHOTS=true --dart-define=HU028_QA_FONT=/ruta/flutter/bin/cache/artifacts/material_fonts/Roboto-Regular.ttf
+```
+
+Para completar el proveedor real, guardar **GEMINI_API_KEY** y **GEMINI_MODEL** únicamente en variables privadas del backend o su `backend/.env` ignorado por Git. No pegarlos en issues, chats, Dart, capturas o colecciones. Elegir un modelo Gemini habilitado en la cuenta que admita salida estructurada; no hay un modelo ni facturación autorizados asumidos. Reiniciar backend. La vista GET indica configuración, no garantiza cuota ni funcionamiento.
+
+Una vez disponible la credencial autorizada, ejecutar explícitamente con datos ficticios:
+
+```bash
+python backend/postman/hu028_qa.py --provider-real --serve
+```
+
+Este modo sí realiza una generación contra Gemini y puede consumir cuota. Comprueba que generar no guarda, guarda expresamente en las tres plantillas y deja un informe `http-proveedor-real.json` separado. Mantiene un servidor QA nuevo para completar navegador y Postman. Si falta clave/modelo, falla antes de llamar al proveedor.
+
+La colección [hu028.postman_collection.json](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/postman/hu028.postman_collection.json) no contiene credenciales. Importar únicamente el entorno privado del nuevo run. Separar carpetas de permisos/validación, falta de configuración y proveedor real; no ejecutar la carpeta real sin autorización/configuración. La QA eleva su límite a 1000/h únicamente en el proceso aislado para permitir casos negativos; producción mantiene 5/h por usuario. En despliegues con varios procesos se necesita un caché compartido para un límite global.
+
+### Pendientes concretos de aceptación y publicación
+
+1. Configurar clave y modelo autorizados y comprobar Gemini real, incluida utilidad/fidelidad de las propuestas.
+2. Completar el recorrido navegador: texto/perfil/consentimiento → propuesta → revisar/aplicar o descartar → editar → guardar → vista previa/descarga, escritorio y móvil web.
+3. Publicar capturas auténticas de Postman Desktop con petición, respuesta HTTP y Test Results para #225/#228, sin encabezados ni valores secretos.
+4. Asociar #225–#228 como subtareas nativas de #224 y verificar sus campos de Project. En esta sesión solo se pudieron crear referencias Markdown; no se declara ese contador ni un cambio de estado en WORK_NET.
+5. Revisar y entregar las ramas por el flujo habitual después de la aceptación. Danilo publica API; Francisco publica Flutter/integración/QA. No hay aprobación humana atribuida ni historias cerradas.
+
+El instalador de Chromium de Playwright devolvió HTML `Site Unavailable` con HTTP 200 en lugar del ZIP; el navegador cloud tampoco alcanzó el servidor loopback del ejecutor (`ERR_CONNECTION_REFUSED`). No se ocultaron esas limitaciones ni se inventaron capturas. Esta sesión no controla el Windows del usuario ni inspeccionó posibles cambios LinkedIn locales sin publicar.
+
+<!-- hu028-avance-fin -->
+
 <details>
 <summary>Antecedente de alcance del cierre HU001–HU026; sustituido por la decisión del 09/11/2026</summary>
 
