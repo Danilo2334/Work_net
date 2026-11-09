@@ -223,8 +223,11 @@ class Notification(models.Model):
     event_kind = models.CharField(max_length=32, default="legacy", choices=[
         ("legacy", "Aviso existente"), ("application_created", "Nueva postulación"),
         ("application_status_changed", "Cambio de estado"),
+        ("message_received", "Mensaje recibido"), ("company_reviewed", "Decisión empresarial"),
     ])
     status_event = models.OneToOneField(ApplicationStatusEvent, on_delete=models.CASCADE, null=True, blank=True, related_name="notification")
+    message = models.OneToOneField("Message", on_delete=models.CASCADE, null=True, blank=True, related_name="notification")
+    company_review = models.OneToOneField("accounts.CompanyReview", on_delete=models.CASCADE, null=True, blank=True, related_name="notification")
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -240,11 +243,21 @@ class Notification(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["application"], condition=Q(event_kind="application_created"), name="unique_application_created_notice"),
             models.CheckConstraint(condition=(
-                Q(event_kind="legacy", application__isnull=True, status_event__isnull=True)
-                | Q(event_kind="application_created", application__isnull=False, status_event__isnull=True)
-                | Q(event_kind="application_status_changed", application__isnull=False, status_event__isnull=False)
+                Q(event_kind="legacy", application__isnull=True, status_event__isnull=True, message__isnull=True, company_review__isnull=True)
+                | Q(event_kind="application_created", application__isnull=False, status_event__isnull=True, message__isnull=True, company_review__isnull=True)
+                | Q(event_kind="application_status_changed", application__isnull=False, status_event__isnull=False, message__isnull=True, company_review__isnull=True)
+                | Q(event_kind="message_received", application__isnull=True, status_event__isnull=True, message__isnull=False, company_review__isnull=True)
+                | Q(event_kind="company_reviewed", application__isnull=True, status_event__isnull=True, message__isnull=True, company_review__isnull=False)
             ), name="notification_event_context"),
         ]
+
+
+class NotificationPreference(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    application_created = models.BooleanField(default=True)
+    application_status_changed = models.BooleanField(default=True)
+    message_received = models.BooleanField(default=True)
+    company_reviewed = models.BooleanField(default=True)
 
 
 class Conversation(models.Model):

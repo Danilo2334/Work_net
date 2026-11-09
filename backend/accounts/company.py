@@ -207,8 +207,10 @@ class ReviewCompanyView(APIView):
         if not changed:
             return Response({"message": "La solicitud cambió. Actualiza el listado antes de decidir."}, status=409)
         profile.refresh_from_db()
-        CompanyReview.objects.create(profile=profile, actor=request.user, action=action, reason=profile.rejection_reason, snapshot={key: getattr(profile, key) for key in CompanySerializer.Meta.fields})
-        Notification.objects.create(recipient=profile.company, title=("Tu empresa fue aprobada." if action == "approved" else f"Tu solicitud fue rechazada: {profile.rejection_reason}"))
+        review = CompanyReview.objects.create(profile=profile, actor=request.user, action=action, reason=profile.rejection_reason, snapshot={key: getattr(profile, key) for key in CompanySerializer.Meta.fields})
+        from candidate_dashboard.notification_events import notify
+        notify(recipient_id=profile.company_id, event_kind="company_reviewed", company_review=review,
+               title=("Tu empresa fue aprobada." if action == "approved" else f"Tu solicitud fue rechazada: {profile.rejection_reason}"))
         return Response({"company": profile_data(profile), "message": "Decisión registrada."})
 
 
