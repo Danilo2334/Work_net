@@ -1,17 +1,150 @@
 # Guía para revisar WorkNet
 
 <!-- alcance-hu001-hu026-inicio -->
-## Alcance vigente — HU001–HU026 — 08/11/2026
+## Alcance vigente — HU001–HU026 — 09/11/2026
 
 **Cambio de alcance solicitado por el usuario.** La entrega final comprende HU001–HU026. **HU027 #28 y #137–#141 están canceladas, fuera de alcance y cerradas con motivo `not_planned`**, con estado **Cancelada** en WORK_NET, separado de Done. No se presentan como implementadas, probadas o completadas; no se requiere aplicación, permiso, credencial ni consentimiento de LinkedIn. El contador automático de subtareas cerradas no acredita cumplimiento de sus criterios.
 
 Se detuvo la configuración y cualquier implementación adicional de LinkedIn. La preparación de sitio, logo, propuesta de privacidad y retorno estático de [#196](https://github.com/Danilo2334/Work_net/pull/196)/[#197](https://github.com/Danilo2334/Work_net/pull/197), publicada en main `a9bbf324c8deeec45b462cba84eb620b0dbf0f18`, se conserva como antecedente. Nunca ejecutó OAuth ni importó datos reales. [Versión preparatoria conservada](https://github.com/Danilo2334/Work_net/blob/a9bbf324c8deeec45b462cba84eb620b0dbf0f18/frontend/README.md). Las páginas actuales anuncian la cancelación y el perfil/CV manual continúa disponible.
 
-HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. Los resultados verificados de HU024 y HU006 se conservan en su sección. HU025 presenta su resultado en la sección siguiente; HU026 y la revisión final de HU007 continúan dentro del alcance. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
+HU023 se entregó y verificó en [main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`](https://github.com/Danilo2334/Work_net/commit/5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9), #24 y #120–#123 closed/completed y Done, relación exacta **4/4 — 100 %**. Los resultados verificados de HU024 y HU006 se conservan en su sección. HU025 y HU026 presentan sus resultados comprobados en las secciones siguientes. HU026 resuelve los accesos de cuentas, permisos y eventos pendientes en HU007; la entrega conjunta y los cierres remotos se registran en los seguimientos únicos. Los cortes de aceptación anteriores conservan su fecha, fuente y alcance; las referencias históricas a HU027 no representan el alcance vigente.
 
 Los seis IDs, responsables, relaciones, criterios y antecedentes originales de HU027 permanecen conservados. La opción Cancelada se añadió preservando los IDs y valores de todos los estados existentes; no se cambian Sprint ni fechas. Ningún cierre not_planned se contará como entrega funcional.
 
 <!-- alcance-hu001-hu026-fin -->
+
+<!-- hu026-vigente-inicio -->
+## HU026 — Administradores, permisos y doble factor — 09/11/2026
+
+**Qué se hizo**
+
+Listado y alta por administrador principal; estados, roles y permisos granulares guardados con versión. Las cuentas administrativas requieren contraseña y TOTP. Recuperar el acceso revoca lo anterior y exige un autenticador nuevo. Completa los accesos de gestión y eventos de HU007, manteniendo a administración fuera de las postulaciones.
+
+| Criterio original HU026 | Comprobación |
+|---|---|
+| Listado de administradores | V06, P14/P15; páginas de 20 y 8 iniciales |
+| Nombre, correo, rol y estado | V06/V11, contrato estricto y proyección del servidor |
+| Alta por principal | V07/V13, P20/P21/P23/P34; correo a archivos y MFA antes del acceso |
+| Activar/desactivar | V09, P36–P40; revocación y conflicto409 |
+| Sección de permisos | V08/V11/V12, P33/P35 |
+| Asignar/retirar según rol | V08, P35/P40/P43; no concede autoridad que no posee |
+| Guardar cambios | V08/V09 y pruebas Flutter de versión, error y conflicto |
+| Segundo factor obligatorio | V02–V04/V12/V13/V15, P02/P05–P12/P25–P32/P45–P55; Django incluido /admin/ |
+| Solo autoridad suficiente modifica otros | P22–P24/P29/P34/P35, Django protección de principal/propia cuenta |
+
+**Preparación**
+
+Aceptación del 09/11/2026, America/Bogota, Windows; base main `fc386bc843735573a5786c455b6a3570b34c4da5`. Backend Danilo [`1fd39be`](https://github.com/Danilo2334/Work_net/commit/1fd39be5797c69ad9a241a155c44fa18306ed38a), más corrección de concurrencia HU018 [`4bfffac`](https://github.com/Danilo2334/Work_net/commit/4bfffaca80a2a0bd3e420f1281a3bf9c405b8a63). Flutter/QA Frank, fuente de navegador [`727855f`](https://github.com/Danilo2334/Work_net/commit/727855f428f08a89e14877c44899a1c14b62970d); código funcional idéntico al último checkout de aceptación, cambios posteriores solo pruebas/entrada Android/evidencias.
+
+Dos SQLite nuevas independientes con 18 ofertas, 27 postulaciones y 28 administradores iniciales/29 finales, usuarios ficticios, correo a archivos, sin SMTP. Desktop `run-20261109T062516-fbcf48eb`, colección [`fc89eee`](https://github.com/Danilo2334/Work_net/commit/fc89eee7d555c0e2f5e70c215aa3908ec54b5f60), servidor `03f9352ed5f6c7893048b0e94010a251dc9e4f16`, una iteración, 55 peticiones/90 PASS, 0 fallos/errores/omitidas; 46,551s, media HTTP 249ms. Navegador `browser-qa-20261109T063259-6fe5ad04`: 18/18, 30 PNG, 1440×1000 y 390×844, Chromium 158.0.8127.18/Playwright 1.65.0. Postman 12.35.5. Flutter 3.47.5/Dart 3.13.4; Django 6.1.1/DRF 3.18.3/django-otp 1.7.5, Python 3.12.10/SQLite 3.49.1. Medios permanentes `1dd49544a7def685a414b7cda931b694f8ada8ae`: 30 PNG de aceptación, 11 JPEG de la corrida vigente y 9 JPEG históricos identificados;50/50 HTTP200/SHA256 idénticos. No se publican entornos, bases, correo ni valores de autenticación.
+
+285 pruebas Django aprobadas y 227 Flutter en la verificación conjunta completa, incluido el nuevo caso de reemplazo de usuario; análisis sin incidencias, web release, check 0, sin migraciones pendientes ni cambios adicionales de modelos sin migración. 20 pruebas Python y 7 comprobaciones Node, seis vectores RFC6238. Contraste de 13 tablas de negocio y cuentas no administrativas idénticas en ambas QA; autoridad/cuentas/eventos administrativos sí cambian por las operaciones probadas.
+
+Rendimiento adicional, separado del Runner: 30 GET HTTP 200 secuenciales de listado con 29 administradores/20 filas; media 53,93 ms, mediana 50,73 ms, p95 67,48 ms. SQLite local pequeño; no carga ni PostgreSQL. TOTP de autenticador software QA ficticio con reloj real, validado por django-otp sin simular servidor; no se atribuye aplicación autenticadora o equipo físico. El caso negativo Desktop acredita seis dígitos incorrectos y contador 0→1. El 503 de navegador es una inyección identificada; el reintento 200 es real.
+
+![HU026 V06 listado](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/HU026-V06-listado-nombre-correo-rol-estado-principal-protegido.png)
+
+**Caso V06 listado.** **Esperado:** Mostrar nombre, correo, rol y estado. **Obtenido:** Listado real con cuenta principal protegida y controles según autoridad. **Alcance demostrado:** Flutter de escritorio conectado a Django; no maqueta.
+
+![HU026 V11 móvil](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/HU026-V11-movil-configuracion-permisos-guardar.png)
+
+**Caso V11 móvil.** **Esperado:** Consultar la configuración según el rol en móvil. **Obtenido:** Nombre, rol, estado y permisos visibles en 390×844. **Alcance demostrado:** Captura parcial del formulario desplazable; el botón Guardar queda fuera de este encuadre. Guardado acreditado en V08 de escritorio y pruebas Flutter; móvil web emulado, no equipo físico.
+
+![HU026 V07 alta](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/HU026-V07-alta-confirmada-verificacion-y-mfa-pendientes.png)
+
+**Caso V07 alta.** **Esperado:** Crear por principal sin conceder acceso antes de verificar correo y TOTP. **Obtenido:** Alta confirmada con verificación y segundo factor pendientes. **Alcance demostrado:** No acredita entrega SMTP; V13 consume el enlace real del correo a archivos.
+
+![HU026 V04 doble factor](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/HU026-V04-autenticador-confirmado-codigos-ocultos.png)
+
+**Caso V04 doble factor.** **Esperado:** Entrar solo después de verificar TOTP y guardar los códigos de recuperación. **Obtenido:** Autenticador confirmado, códigos ocultos y confirmación pendiente. **Alcance demostrado:** Autenticador software ficticio con reloj real; verificación django-otp, sin simulación.
+
+![HU026 V15 recuperación](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/HU026-V15-recuperacion-obliga-a-reenrolar.png)
+
+**Caso V15 recuperación.** **Esperado:** Un código de recuperación debe revocar la sesión anterior y exigir otro autenticador. **Obtenido:** Se presenta configurar doble factor, con campo privado vacío. **Alcance demostrado:** La corrida completa configura y verifica TOTP nuevo; no omite MFA.
+
+![HU026 Desktop completo](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/10-runner-90-tests-aprobados.jpg)
+
+**Caso Desktop completo.** **Esperado:** Ejecutar una sola iteración sobre otra base QA aislada. **Obtenido:** 55 peticiones, 90 PASS, cero fallos/errores/omitidas. **Alcance demostrado:** Postman Desktop 12.35.5 original; no historial de otra historia.
+
+![HU026 P33–P37 permisos](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/15-gestor-limites-baja-y-revocacion.jpg)
+
+**Caso P33–P37 permisos.** **Esperado:** Denegar crear/conceder autoridad sin permiso y revocar tras baja. **Obtenido:** 200/403/403/200/401, todas las aserciones PASS. **Alcance demostrado:** Restricciones reales del servidor; no depende de ocultar botones.
+
+![HU026 V14 eventos](https://raw.githubusercontent.com/Danilo2334/Work_net/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/HU026-V14-eventos-altas-y-doble-factor.png)
+
+**Caso V14 eventos.** **Esperado:** Mostrar eventos administrativos autorizados sin secretos. **Obtenido:** Altas y segundo factor visibles con actor/cuenta/fecha. **Alcance demostrado:** No cambia la gestión normal de postulaciones.
+
+**Registros verificables y publicación**
+
+[Resultado Desktop](https://github.com/Danilo2334/Work_net/blob/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/resultado-desktop.json) · [Resultado navegador](https://github.com/Danilo2334/Work_net/blob/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/resultado-navegador.json) · [Manifest Desktop](https://github.com/Danilo2334/Work_net/blob/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/capturas-postman.json) · [Manifest navegador](https://github.com/Danilo2334/Work_net/blob/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/capturas-navegador.json) · [Rendimiento](https://github.com/Danilo2334/Work_net/blob/1dd49544a7def685a414b7cda931b694f8ada8ae/backend/docs/evidencias/hu026-20261109/rendimiento.json).
+
+Django por Danilo2334: [#218](https://github.com/Danilo2334/Work_net/pull/218), sprint `bbce05db50f137dba2fe99b563fca3887593315f`; [#220](https://github.com/Danilo2334/Work_net/pull/220), develop `ba3e72c778d5d8785550ec5254e19694f3ac33cc`. Flutter y sus pruebas por francisco3788: [#219](https://github.com/Danilo2334/Work_net/pull/219), frontend `67b98364af5afd2ea406c98bed7bbb84f03b6463`; incorporación del backend revisado [#221](https://github.com/Danilo2334/Work_net/pull/221), frontend `0993033fe0df3128b71105412b6627672c19d973`. Archivos funcionales remotos contrastados con el conjunto aceptado. El PR de entrega a main es [#222](https://github.com/Danilo2334/Work_net/pull/222). Los seguimientos únicos enlazados registran el SHA definitivo y el contraste independiente de cierre, Done y contadores. La revisión técnica delegada no se atribuye como aprobación humana.
+
+**Seguimientos únicos**
+
+[#132](https://github.com/Danilo2334/Work_net/issues/132#issuecomment-6734102930) · [#133](https://github.com/Danilo2334/Work_net/issues/133#issuecomment-6734103236) · [#134](https://github.com/Danilo2334/Work_net/issues/134#issuecomment-6734103540) · [#135](https://github.com/Danilo2334/Work_net/issues/135#issuecomment-6734103787) · [#136](https://github.com/Danilo2334/Work_net/issues/136#issuecomment-6734104096).
+
+**Reproducción**
+
+En checkouts aislados, instalar requirements fijados; `python manage.py test`, `python manage.py check`, `python manage.py makemigrations --check --dry-run`; frontend `flutter test`, `flutter analyze`, `flutter build web --release --no-web-resources-cdn`. HU026 añade accounts0005 y las migraciones de django-otp; aplicar únicamente a la base que se vaya a usar, conservando los entornos existentes.
+
+Navegador: `python frontend/tool/browser_qa/run.py --suite hu026 --frontend-ref SHA_FLUTTER --backend-ref SHA_DJANGO`. Exporta fuentes, instala dependencias fijadas y crea otra base y contextos temporales; nunca registra HAR, storageState ni secretos. Desktop: `python frontend/tool/browser_qa/hu026_api.py prepare --port PUERTO_LIBRE`; generar colección con `hu026_collection.py --run RUN --port PUERTO`, servir con `hu026_server.py --run RUN --port PUERTO`, importar los dos archivos de import-hu026 y seleccionar solo el entorno de esa corrida sin abrir valores. Runner Functional/Local,55 seleccionadas, 1 iteración, conservar respuestas, detener ante error, sin cookies anteriores ni guardar cookies. No repetir una base consumida. Contrastar con `hu026_api.py contrast --run RUN`.
+
+**Administración local**
+
+Un principal se prepara mediante el mecanismo Django existente `python manage.py createsuperuser` sobre la base local elegida. El mecanismo de aprovisionamiento local crea ese principal con correo verificado; no acredita recepción de correo. Las cuentas nuevas creadas desde la interfaz sí deben verificar el enlace real enviado por el backend antes del acceso. La aplicación exige registrar un autenticador TOTP privado de seis dígitos/30 segundos/SHA1 y confirmar sus ocho códigos de recuperación; no introducir valores en Issues, capturas, consola o documentación. Una cuenta administrativa anterior también debe enrolarse: su Token antiguo no acredita MFA. El sitio Django usa un segundo factor igualmente y no expone editores brutos de Tokens/dispositivos/permisos. La clave de desarrollo y DEBUG del settings general no acreditan un despliegue productivo; el preparador QA los sustituye por configuración privada, DEBUG=False y hosts de loopback. No se desplegó ni se activó ningún servicio cloud.
+
+<details>
+<summary>Antecedentes de aceptación conservados</summary>
+
+Desktop 383c377d: 7 HTTP/10 PASS, error de ejecutor globalThis antes de P08. f3020868:27 HTTP/42 PASS/1 fallo y 1 error, primer OTP de revisor no tenía formato válido. fac04ca3:50 HTTP/80 PASS/1 fallo y 1 error en reenrolamiento; auditoría detectó P08 con marcador de preparación, por lo que no acredita TOTP incorrecto. Corrección del ejecutor: mantener el evento hasta terminar WebCrypto y componer el cuerpo después, antes de enviar. La corrida vigente fbcf48eb es una base nueva; no se reejecutaron las consumidas. Importación transitoria Collection not found resuelta conservando la colección anterior, sin cambiar cuenta/workspace/entornos previos.
+
+Navegador a2b6c12f y 0085ff0e se detuvieron en V14; el segundo identificó una fuente externa de un símbolo nuevo. Se sustituyó por etiquetas locales y se mantuvo el bloqueo de red. 95dfd713/553516f2 llegaron hasta V14 y el guard de V15 encontró un campo oculto de recuperación no vacío en el DOM; ninguna captura de ese estado se guardó. Se reconstruyó la entrada al cambiar desafío y se repitió en otra base. La vigente 6fe5ad04 acredita 18/18 y campo vacío. Estos antecedentes no se cuentan como aceptación completa.
+
+Revisión técnica delegada del agente; no aprobación humana de Danilo o Francisco. Los defectos de sesiones tardías y guardado Android del CV descubiertos en revisión final se documentan por separado, con sus pruebas y procedencia. HU027 sigue cancelada/not_planned/Cancelada, no implementada ni probada.
+
+</details>
+
+<!-- hu026-vigente-fin -->
+
+<!-- cierre-regresiones-20261109 -->
+## Revisión final HU001–HU026: sesión y CV Android — 09/11/2026
+
+**Qué se hizo**
+
+La revisión técnica delegada detectó y corrigió respuestas tardías de páginas anteriores que podían cerrar otra sesión o aplicar a ella un nombre, rol o Token. Se conserva la credencial de cada operación antes de efectos posteriores y de encadenar foto/logo; el contenido protegido se reinicia al cambiar usuario/rol. La rotación legítima de contraseña conserva la confirmación y borra los campos privados. Corrección Flutter y pruebas propias por francisco3788, [cee027e](https://github.com/Danilo2334/Work_net/commit/cee027e3c7097c1b194f921a6e1ba7b55e8aa89a).
+
+También se corrigió el guardado nativo del CV generado: file_selector no implementa esa operación en Android. Se reutiliza file_saver 0.7.0/SAF, manteniendo los bytes autenticados y el guardado web. Tres pruebas del canal comprueban bytes/nombre/MIME, cancelación y error; ocho casos de aislamiento comprueban 401/éxito tardío, cadena de foto y reemplazo real de usuario en WorkNetApp. [Corrección CV 5b10458](https://github.com/Danilo2334/Work_net/commit/5b10458413c57ab79ce7e74688fce727d8ffdf1a). La verificación conjunta completa pasó 227 Flutter; tras dos ajustes de estilo sin cambio de comportamiento pasaron los ocho casos afectados y el análisis final sin incidencias. Las 285 pruebas Django y la aceptación HU026 descritas arriba conservan sus fuentes propias.
+
+**Preparación**
+
+Otra base QA `run-20261109T063447-a0a3b4ff`, puerto 8106, 18 ofertas/27 postulaciones y CV ficticio guardado, correo a archivos y credenciales privadas. Se reutiliza el preparador HU025 para generar esos datos, sin atribuir esta descarga a su aceptación anterior. APK debug del target QA explícito `tool/browser_qa/android_final.dart`, fuente `d7b8c2409e68d1f651040df826d06532fb008f12`; backend `4bfffaca80a2a0bd3e420f1281a3bf9c405b8a63`. AVD nuevo vacío propio WorkNet_QA_Cierre, API 37/Android 17 emulado, 360×640/160dpi, 2GB/2CPU; se conservaron los AVD previos. No se usa como target normal lib/main.dart ni se publica el APK con defines privados.
+
+Se canceló el primer selector: retorno a WorkNet y ausencia del archivo comprobada en el AVD. Se volvió a abrir y se guardó realmente `Downloads/curriculum-worknet.pdf`: 42.425 bytes, SHA256 `cb30764198f02831d08e55ebc42cbeb28ec0348c0def6f7bc444a5c1bd510e08`, una página de plantilla moderna. Diez valores del CV coinciden con SQLite; trece tablas de negocio permanecen idénticas a la copia inicial. Render Poppler 110dpi inspeccionado, legible y sin recortes/solapamientos. No se afirma identidad binaria entre generaciones PDF distintas, prueba física, SMTP o carga.
+
+[Resultado y contraste Android](https://github.com/Danilo2334/Work_net/blob/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/aceptacion-android-cv.json) · [Manifest de ocho JPEG originales](https://github.com/Danilo2334/Work_net/blob/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/capturas-android-cv.json) · [PDF original guardado](https://github.com/Danilo2334/Work_net/blob/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/CV-Android-guardado.pdf) · [Inspección del render](https://github.com/Danilo2334/Work_net/blob/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/revision-pdf.json). Diez binarios remotos HTTP 200 y SHA256 idénticos: ocho JPEG, PDF y render. A01/A02 son antecedentes del primer AVD con encuadre incompleto; A03–A08 corresponden al definitivo y no se cuentan como ocho casos distintos. Servidores y emuladores propios detenidos; bases, archivos y entornos conservados.
+
+![Android cancelar](https://raw.githubusercontent.com/Danilo2334/Work_net/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/A05-selector-saf-pdf-sin-archivos-previos.jpg)
+
+**Caso Android cancelar.** **Esperado:** Abrir el selector del PDF y permitir cancelar. **Obtenido:** SAF muestra Downloads sin archivos y el nombre propuesto. **Alcance demostrado:** Imagen previa a cancelar; la ausencia posterior se comprobó por el nombre exacto en ese AVD propio.
+
+![Android retorno](https://raw.githubusercontent.com/Danilo2334/Work_net/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/A06-retorno-tras-cancelar-sin-archivo.jpg)
+
+**Caso Android retorno.** **Esperado:** Volver sin anunciar un archivo guardado. **Obtenido:** WorkNet vuelve a mostrar el CV guardado y sus controles. **Alcance demostrado:** La imagen demuestra el retorno; el contraste del AVD acredita que no existe el archivo tras cancelar.
+
+![Android guardar](https://raw.githubusercontent.com/Danilo2334/Work_net/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/A08-descarga-pdf-confirmada.jpg)
+
+**Caso Android guardar.** **Esperado:** Guardar por SAF el PDF generado persistido. **Obtenido:** WorkNet confirma que se solicitó la descarga del PDF guardado. **Alcance demostrado:** La persistencia se acredita además con el archivo extraído y sus 42.425 bytes/diez campos contra SQLite; no solo con este mensaje.
+
+![PDF nativo guardado](https://raw.githubusercontent.com/Danilo2334/Work_net/24874d632129d4045fb6e222b227e05c6616c953/frontend/docs/evidencias/cierre-hu001-hu026-20261109/CV-Android-render-1.png)
+
+**Caso PDF nativo guardado.** **Esperado:** Obtener un CV legible con los datos persistidos. **Obtenido:** Nombre/correo ficticios, resumen, experiencia, formación, certificación, habilidad e idioma y página 1 legibles. **Alcance demostrado:** Render Poppler del PDF auténtico descargado; no captura de navegador, Android ni Postman.
+
+**Reproducción**
+
+Crear otra QA con `hu025_api.py prepare --port PUERTO_LIBRE` y servir esa corrida con `android_hu025_server.py --run RUN`, que verifica el marcador del preparador, correo a archivos y loopback. Preparar un AVD QA vacío separado; la entrada `android_final.dart` exige host 10.0.2.2, identidad de servidor, candidato ficticio y confirmación de aislamiento. Inyectar defines solo desde archivo privado ignorado con `flutter build apk --debug --target tool/browser_qa/android_final.dart --dart-define-from-file=ARCHIVO_PRIVADO`; no publicar ese archivo ni el APK. Abrir el CV guardado, cancelar el selector y volver a guardar. Contrastar el PDF extraído con el CV y las tablas de la SQLite de esa corrida, y revisar su render. El flujo normal conserva lib/main.dart y el perfil/CV manual; HU027 sigue cancelada.
+
+<!-- cierre-regresiones-20261109-fin -->
 
 <!-- hu025-vigente-inicio -->
 ## HU025 — Exportación de postulantes — 08/11/2026
@@ -430,7 +563,14 @@ Windows/SQLite local, 18 ofertas, 27 postulaciones, 14 conversaciones y 23 mensa
 
 **Dependencias y antecedentes**
 
+Resultado vigente: HU005 se completó con HU022; HU006 con HU024; HU007 con HU026. HU018 resolvió la selección del CV en HU011/HU012/#79 y el bloqueo de postulación de HU015/#91. HU027 quedó cancelada, fuera del alcance funcional. Los seguimientos únicos enlazados conservan la verificación remota y los criterios originales.
+
+<details>
+<summary>Dependencias del corte HU021/HU022; HU006 se resolvió con HU024 y HU023 ya se entregó</summary>
+
 HU005 deja de tener Mensajes pendiente: se contrastaron los diez criterios originales, no solo el contador de subtareas. HU006 incorpora Mensajes y conserva Estadísticas HU024 pendiente; #51/#53/#54 continúan abiertas hasta su alcance completo. HU019 obtiene ahora empresa → cambio confirmado → aviso → historial actualizado; el actor ORM de su primera aceptación permanece como antecedente, sin atribuirle una acción empresarial. HU019/HU020 y HU011/HU012/HU015 conservan sus cierres salvo regresión demostrada; no se detectó ninguna. HU023 recibe eventos/lectura reutilizables, sus funciones adicionales no se iniciaron.
+
+</details>
 
 Las tres vistas de HU020 P28/P33/P35 ya se capturaron de las respuestas históricas conservadas, sin nuevas peticiones: sección siguiente y seguimientos #109/#110/#111. Su ejecución es la del08/11/2026 14:05:14 Bogotá, Postman12.34.1, no la nueva Desktop12.35.5. Se preserva el bloqueo anterior como histórico.
 
@@ -612,7 +752,14 @@ El control nativo rechazó tres vistas adicionales de resultados con `user input
 
 **Dependencias y límites**
 
+Resultado vigente: HU005 se completó con HU022; HU006 con HU024; HU007 con HU026. HU018 resolvió la selección del CV en HU011/HU012/#79 y el bloqueo de postulación de HU015/#91. HU027 quedó cancelada, fuera del alcance funcional. Los seguimientos únicos enlazados conservan la verificación remota y los criterios originales.
+
+<details>
+<summary>Dependencias del corte HU019/HU020; HU005 y HU006 ya están completas</summary>
+
 HU005/#47/#50 avanza con historial completo y permanece abierta por mensajes HU022. HU006/#51/#53/#54 avanza con gestión de postulantes y mantiene mensajes HU022 y estadísticas HU024. No se cierran tareas con navegación parcial. Se conservan sus comentarios únicos, IDs, autores y antecedentes, y se actualizan los resúmenes padre. HU011/HU012/HU015 siguen cerradas; se verifican documentos y ofertas inactivas sin regresión. HU021 conserva el flujo empresarial de cambios de estado; HU022–HU027 no se inician.
+
+</details>
 
 **Publicación y cierre**
 
@@ -729,7 +876,14 @@ GET `/api/applications/` consulta solo el historial propio, page positiva y page
 
 HU011 (#12, ocho criterios) añade la selección del subido con V02/P02. HU012 (#13/#79, once criterios) añade la del generado con V03/P07/P56. HU015 (#16/#91, siete criterios) añade el rechazo a nuevas postulaciones desde API/pantalla y conserva las anteriores al cerrar/archivar; #90 conserva la exclusión del buscador acreditada por HU016. Sus pruebas previas siguen vigentes y se conservan en los seguimientos. Los contadores a contrastar tras entrega son HU011 4/4, HU012 5/5, HU015 4/4 y HU018 4/4 — 100 %, además de completed y Status Done independientes.
 
+Resultado vigente: HU005 se completó con HU022; HU006 con HU024; HU007 con HU026. HU018 resolvió la selección del CV en HU011/HU012/#79 y el bloqueo de postulación de HU015/#91. HU027 quedó cancelada, fuera del alcance funcional. Los seguimientos únicos enlazados conservan la verificación remota y los criterios originales.
+
+<details>
+<summary>Dependencias del corte HU018; HU019/HU022/HU023 ya se entregaron</summary>
+
 HU005 avanza con Mis postulaciones básico desde el dashboard; mantiene los requisitos adicionales de HU019 y mensajes HU022. HU019/HU023 disponen de registro, documento y aviso interno reutilizables; sus funcionalidades adicionales no se implementan ni se cierran en este bloque. HU019–HU027 no se inician.
+
+</details>
 
 **Corrección documental de HU017**
 
@@ -865,12 +1019,19 @@ incluye transporte local y no representa rendimiento de producción.
 
 **Criterios anteriores reevaluados**
 
+Resultado vigente: HU005 se completó con HU022; HU006 con HU024; HU007 con HU026. HU018 resolvió la selección del CV en HU011/HU012/#79 y el bloqueo de postulación de HU015/#91. HU027 quedó cancelada, fuera del alcance funcional. Los seguimientos únicos enlazados conservan la verificación remota y los criterios originales.
+
+<details>
+<summary>Dependencias del corte HU017; HU018/HU019/HU022 ya resolvieron estos criterios</summary>
+
 HU005/#47/#50 avanzan con acceso real a Guardados, acciones en trabajos recientes
 y contador reconsultado. Continúan abiertos los criterios de historial HU019 y
 mensajes HU022. La conservación y exclusión de inactivas refuerzan HU015/HU016;
 #90 ya estaba cerrada y se conserva. HU015/#91 siguen pendientes del recorrido
 de postulación HU018. HU011/HU012/#79 conservan selección de CV dependiente
 de HU018. No se inició HU018–HU027 ni se cerraron criterios futuros.
+
+</details>
 
 **Integración, procedencia y revisión**
 
@@ -893,7 +1054,14 @@ se revisó su legibilidad y correspondencia con cada caso.
 [Resultados Desktop](https://github.com/Danilo2334/Work_net/blob/6248a49b6f9f34b2af6f5557ad30c0a28b033090/backend/docs/evidencias/hu017-20261108/resultados-desktop.json) ·
 [Conservación Desktop](https://github.com/Danilo2334/Work_net/blob/842a89134cd2813488732eb3e8e0933b13333836/backend/docs/evidencias/hu017-20261108/contraste-persistencia.json).
 Los servidores propios terminaron y se comprobaron cerrados 8097/51168/51169.
-Los checkouts, entornos y corridas anteriores se conservan. HU018–HU027 no se iniciaron.
+Los checkouts, entornos y corridas anteriores se conservan.
+
+<details>
+<summary>Límite del corte HU017 del 08/11/2026; alcance posterior ya contrastado</summary>
+
+HU018–HU027 no se iniciaron en aquel bloque. Posteriormente se entregaron HU018–HU026 y se canceló HU027; las secciones vigentes y los seguimientos únicos registran esos resultados.
+
+</details>
 
 <details>
 <summary>Antecedentes de esta implementación, conservados con su alcance</summary>
@@ -1070,12 +1238,24 @@ pendientes detectados en código y aceptación de navegador. No es aprobación h
 
 **Seguimientos únicos vigentes:** [#92](https://github.com/Danilo2334/Work_net/issues/92#issuecomment-6720473511) · [#93](https://github.com/Danilo2334/Work_net/issues/93#issuecomment-6720582888) · [#94](https://github.com/Danilo2334/Work_net/issues/94#issuecomment-6720473704) · [#95](https://github.com/Danilo2334/Work_net/issues/95#issuecomment-6720588402). Cada imagen conserva caso, esperado, obtenido y alcance.
 
+Resultado vigente: HU005 se completó con HU022; HU006 con HU024; HU007 con HU026. HU018 resolvió la selección del CV en HU011/HU012/#79 y el bloqueo de postulación de HU015/#91. HU027 quedó cancelada, fuera del alcance funcional. Los seguimientos únicos enlazados conservan la verificación remota y los criterios originales.
+
+<details>
+<summary>Dependencias del corte HU016; HU005, HU011/HU012/#79 y HU015/#91 ya están resueltas</summary>
+
 **Dependencias:** HU005 ya tiene el acceso al buscador; conserva mensajes HU022
 e historial HU019, así como los criterios parciales de #47/#50. #90 cuenta con aceptación completa de exclusión
 y se cierra al verificar la entrega remota; HU015/#91 conservan postulación HU018.
 HU011/HU012/#79 mantienen la selección de CV al postular pendiente de HU018.
 HU017–HU027 no se iniciaron.
+
+</details>
 <!-- hu016-vigente-fin -->
+
+<details>
+<summary>Antecedentes íntegros hasta el07/11/2026: versiones, pendientes y comprobaciones de esos cortes</summary>
+
+Los pendientes que figuran en este bloque son históricos. El alcance y las aceptaciones vigentes se presentan arriba; la revisión final conserva los cierres actuales en los seguimientos únicos, sin atribuir nuevas ejecuciones a estas imágenes.
 
 ## Antecedente: normalización HU001–HU015 y regla documental — 07/11/2026
 
@@ -2213,3 +2393,5 @@ casillas por cambiar de cuenta. HU012/#79 y la selección de CV conservan HU018
 pendiente. Estados, roles, criterios pendientes y orden #148→#147, #149→frontend,
 backend revisado→entrega→#146 permanecen vigentes. No se fusionó ningún PR, no se
 cerró una historia ni se inició HU014–HU027.
+
+</details>

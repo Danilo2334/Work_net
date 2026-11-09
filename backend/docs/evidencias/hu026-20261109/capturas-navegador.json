@@ -1,0 +1,272 @@
+[
+  {
+    "archivo": "NAVEGADOR-01-login.png",
+    "caso": "NAVEGADOR-01",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+  },
+  {
+    "archivo": "HU026-V01-ruta-administrativa-protegida.png",
+    "caso": "HU026-V01",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+  },
+  {
+    "archivo": "HU026-V02-contrasena-sin-sesion-exige-doble-factor.png",
+    "caso": "HU026-V02",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "9bf6e5871ae2f83ddb4655ab57111b3ab2096f8f4a9fb325f506298c2ede64f6"
+  },
+  {
+    "archivo": "HU026-V03-preparacion-autenticador-clave-oculta.png",
+    "caso": "HU026-V03",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "1a5e901f94d1d0afeeaa6541b80b5337ddd09e08d41122b6c54c462f8addc9c7"
+  },
+  {
+    "archivo": "HU026-V04-codigo-incorrecto-rechazado.png",
+    "caso": "HU026-V04",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "9cc409f5cb96fc1247cfca9f169e8a62519fdcaa469e6fe076ef1e354f5bf2c5"
+  },
+  {
+    "archivo": "HU026-V04-autenticador-confirmado-codigos-ocultos.png",
+    "caso": "HU026-V04",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "d59b6fdd02c4bccc71e29f15ad3ee1d0f8c48dbc7d68d5dc7d0f79d5729334c5"
+  },
+  {
+    "archivo": "HU026-V05-hu007-dashboard-conteos-accesos.png",
+    "caso": "HU026-V05",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "fa4ddacb02b6e403bc283195155fe20401e5d33ade158106a2c723412efb6dc4"
+  },
+  {
+    "archivo": "HU026-V05-solicitud-empresarial-pendiente.png",
+    "caso": "HU026-V05",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "b008509c56d25dc52972223706fc0806322b72a6f4e6b83da77db1dcc769d98d"
+  },
+  {
+    "archivo": "HU026-V06-listado-nombre-correo-rol-estado-principal-protegido.png",
+    "caso": "HU026-V06",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "f5d145833489b7ef3a1f1273b068e52c5146dc01c5ff6ab0e129c8d18f18978b"
+  },
+  {
+    "archivo": "HU026-V06-paginacion-segunda-pagina.png",
+    "caso": "HU026-V06",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "879bc0dfba2beb0a3b9e6429be760993664b5a676d71db23996287985fbb0852"
+  },
+  {
+    "archivo": "HU026-V07-alta-confirmada-verificacion-y-mfa-pendientes.png",
+    "caso": "HU026-V07",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "4411ee46b9210b21a7df97ac84712b0bda6c4f3c91124abf626695f092df6e0a"
+  },
+  {
+    "archivo": "HU026-V08-permisos-retirados-guardados.png",
+    "caso": "HU026-V08",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "ee80a962f63ebdb778f66cfb89be438b56058876d4622324a4cc9b0a3ee989e1"
+  },
+  {
+    "archivo": "HU026-V09-cuenta-desactivada.png",
+    "caso": "HU026-V09",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "b93adcea9baf6b94800f0b468e0698966066f6c6da1dbdd8705bef114ce6fa6e"
+  },
+  {
+    "archivo": "HU026-V09-cuenta-reactivada.png",
+    "caso": "HU026-V09",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "ee80a962f63ebdb778f66cfb89be438b56058876d4622324a4cc9b0a3ee989e1"
+  },
+  {
+    "archivo": "HU026-V10-error-carga-inyectado-identificado.png",
+    "caso": "HU026-V10",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "28b3798a7b11210d8846d0841e74f98f45e9979cee2bbf669244b1b4e2b85840"
+  },
+  {
+    "archivo": "HU026-V10-reintento-real-listado.png",
+    "caso": "HU026-V10",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "ee80a962f63ebdb778f66cfb89be438b56058876d4622324a4cc9b0a3ee989e1"
+  },
+  {
+    "archivo": "HU026-V11-movil-listado-administrativo.png",
+    "caso": "HU026-V11",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "ff39a488cdd004691ca366dd23775074fed70bfa86e2a6b1d48af6f4d9befaea"
+  },
+  {
+    "archivo": "HU026-V11-movil-configuracion-permisos-guardar.png",
+    "caso": "HU026-V11",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "67f731e2972f2e74df80f64a375fcd6dedaa7c595c5047f40bc13c81e00efee7"
+  },
+  {
+    "archivo": "HU026-V12-autenticador-confirmado-codigos-ocultos.png",
+    "caso": "HU026-V12",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "3b8a1ab81e88f46d8c0266c5e65a2a8b1e5fa1373c5aba57dd405c7fc257f429"
+  },
+  {
+    "archivo": "HU026-V12-gestor-accesos-limitados-por-permisos.png",
+    "caso": "HU026-V12",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "d38317b3f1d7c62788245a5c12e4658e9b842de07748f8dd6eaf0fe5c8eb29a1"
+  },
+  {
+    "archivo": "HU026-V12-gestor-sin-edicion-de-permisos.png",
+    "caso": "HU026-V12",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "sha256": "d5635ba97295f4ad57a6eadbebf5845a8c5e48647fd5c6d0203391616ac93b45"
+  },
+  {
+    "archivo": "HU026-V13-cuenta-nueva-correo-verificado-exige-mfa.png",
+    "caso": "HU026-V13",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "971f364b52aca7b8c035d96b43d81ef5df955f43fbc04bb4a6ead334a3babcfb"
+  },
+  {
+    "archivo": "HU026-V13-autenticador-confirmado-codigos-ocultos.png",
+    "caso": "HU026-V13",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "2f4bf1014b9b86404dcd18c4615b37fb6fd6baaca0712e2a173850da94b44b9c"
+  },
+  {
+    "archivo": "HU026-V14-eventos-altas-y-doble-factor.png",
+    "caso": "HU026-V14",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "bb598b5603b3aa72d242bbbf2cf77fa78f3797a11b27d6e37ba22b8c257474b3"
+  },
+  {
+    "archivo": "HU026-V14-cuenta-gestora-sin-alta-reservada-al-principal.png",
+    "caso": "HU026-V14",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "c3ee002e49208444d9cee4bd0e1f93068179718074a65809001edf1a301d3dc1"
+  },
+  {
+    "archivo": "HU026-V15-recuperacion-obliga-a-reenrolar.png",
+    "caso": "HU026-V15",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "3f9c8a8a4d06ef83c6b767fc0f118bd4118cf7b5392318e9bd9b8ba40929e4cc"
+  },
+  {
+    "archivo": "HU026-V15-autenticador-confirmado-codigos-ocultos.png",
+    "caso": "HU026-V15",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "2f4bf1014b9b86404dcd18c4615b37fb6fd6baaca0712e2a173850da94b44b9c"
+  },
+  {
+    "archivo": "HU026-V15-acceso-recuperado-con-segundo-factor.png",
+    "caso": "HU026-V15",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "4e1104197cb5f2f911e238da24081776c53989b0ca13ea49706d5fe97b1f05c2"
+  },
+  {
+    "archivo": "HU026-V16-sesion-revocada-sin-cuentas-privadas.png",
+    "caso": "HU026-V16",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+  },
+  {
+    "archivo": "HU026-V17-candidato-sin-acceso-administrativo.png",
+    "caso": "HU026-V17",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "sha256": "14234ccb96e662c75720af7465fe0952d2f6e54833851907a0365c30e56b6a61"
+  }
+]

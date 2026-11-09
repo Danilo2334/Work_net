@@ -7,7 +7,7 @@ Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com
 
 La entrega final comprende **HU001–HU026**. Por decisión expresa del usuario del **08/11/2026**, HU027 — Integración con LinkedIn y #137–#141 están **canceladas/fuera de alcance**, cerradas con motivo `not_planned` y estado **Cancelada** en WORK_NET. Su preparación estática se conserva como antecedente; no hay integración LinkedIn disponible ni se requieren credenciales externas.
 
-HU023 está integrada y verificada por [#203](https://github.com/Danilo2334/Work_net/pull/203), main `5cdd951e7e0f4c7e9fb829e1adf94beece8c5bc9`. Continúan HU024–HU026 y la revisión de los pendientes anteriores de HU006/HU007. [Guía y evidencias vigentes](frontend/docs/REVISION.md).
+Los resultados de implementación, aceptación, documentación e integración de HU001–HU026 se registran en [la guía y evidencias vigentes](frontend/docs/REVISION.md). Los cortes anteriores conservan su fecha y procedencia en los antecedentes; no constituyen una ejecución nueva.
 
 <details>
 <summary>Corte histórico del 07/11/2026; no es el estado vigente</summary>
@@ -38,6 +38,22 @@ La consolidación conserva los commits anteriores y retira los archivos del fron
 
 ## Backend disponible
 
+- HU001–HU004: registro y verificación, acceso, recuperación y configuración de cuenta.
+- HU005–HU007: dashboards de candidato, empresa y administración con datos y accesos reales.
+- HU008–HU012: perfil, solicitudes empresariales y CV PDF privado subido o generado desde el perfil.
+- HU013–HU015: publicar, editar, cerrar y archivar ofertas con sus reglas de actividad.
+- HU016–HU018: búsqueda/filtros/orden/paginación, favoritos y postulación con copia inmutable del CV elegido.
+- HU019–HU022: historial y detalle, consulta y filtros de postulantes, cambios de estado y mensajes autorizados.
+- HU023–HU025: notificaciones internas, estadísticas reales y exportación CSV/PDF de coincidencias autorizadas.
+- HU026: cuentas administrativas, permisos por rol y doble factor TOTP obligatorio, con recuperación de un solo uso.
+
+Django y sus pruebas: Danilo2334. Flutter, integración y QA: francisco3788. La guía registra referencias permanentes, versiones y límites reales de cada aceptación; la revisión técnica delegada no representa aprobación humana.
+
+<details>
+<summary>Inventario histórico hasta HU015; sus dependencias ya se contrastaron con HU016–HU026</summary>
+
+## Backend disponible
+
 - HU001: creación de cuenta, selección posterior de rol público y verificación de correo.
 - HU002: login con token, estados empresariales reales y cierre de sesión con revocación remota.
 - HU003: recuperación de contraseña con token de un solo uso y revocación del acceso anterior.
@@ -59,6 +75,9 @@ asignaciones. La revisión técnica delegada y su integración se documentan en 
 guía vigente; los módulos futuros conservan su alcance pendiente.
 
 La selección de CV al postular sigue pendiente de HU018.
+
+
+</details>
 
 ## Ejecutar en Windows / PowerShell
 
@@ -102,7 +121,12 @@ La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=
 | GET | `/api/admin/companies/` | Administrador; listado paginado |
 | POST | `/api/admin/companies/{id}/review/` | Administrador; versión y motivo si rechaza |
 | GET | `/api/dashboard/company/` | Empresa aprobada |
-| GET | `/api/dashboard/admin/` | Administrador |
+| GET | `/api/dashboard/admin/` | Administrador con sesión MFA y permiso dashboard |
+| GET, POST | `/api/admin/accounts/` | MFA y permiso; alta reservada al principal |
+| PATCH | `/api/admin/accounts/<id>/` | MFA, autoridad suficiente y versión actual |
+| GET | `/api/admin/events/` | MFA y permiso de eventos |
+| POST | `/api/admin/mfa/setup/` | Desafío de contraseña válido; no es una sesión |
+| POST | `/api/admin/mfa/verify/` | TOTP privado o recuperación que exige nuevo autenticador |
 | GET, POST, PATCH, DELETE | `/api/profile/candidate/` | Candidato propietario verificado |
 | GET, POST | `/api/profile/candidate/<section>/` | Candidato propietario verificado |
 | GET, PATCH, DELETE | `/api/profile/candidate/<section>/<uuid>/` | Candidato propietario verificado |
@@ -180,10 +204,14 @@ recursos remotos. Hay paginación automática y números de página. DELETE sobr
 
 Sin sesión se devuelve 401; roles ajenos o candidato sin verificar, 403;
 documento guardado ausente, 404. Los errores de datos devuelven 400 con `message`
-y `errors`. La empresa todavía no descarga un CV: HU018/HU020 deberán conservar
-el documento elegido en la postulación y aplicar la autorización correspondiente.
+y `errors`. La empresa aprobada propietaria consulta la copia de CV enviada con la postulación mediante HU018/HU020. El documento y sus metadatos quedan conservados aunque la fuente actual se sustituya o retire; los registros antiguos sin copia informan su ausencia. Se mantiene la autorización por propiedad y postulación.
 
-## HU005 y futuras historias
+## HU005: alcance resuelto y antecedente
+
+Los criterios de acceso a CV, buscador, historial y mensajes están acreditados en HU011/HU012/HU016/HU018/HU019/HU022. Estadísticas de HU006 se completan con HU024; los accesos pendientes de HU007 se completan con HU026. Los cortes siguientes conservan su fecha histórica.
+
+<details>
+<summary>Seguimiento anterior de HU005</summary>
 
 El resumen consulta datos persistentes en `candidate_dashboard`: perfil, ofertas, postulaciones, guardados y notificaciones. El perfil propio ya se edita desde Flutter. CV subido/generado y publicación HU013 ya están implementados en los PR #146–#149 y comprobados en combinación aislada; su integración se valida en el bloque delegado actual. Gestión de ofertas, búsqueda, mensajes, estadísticas y gestión de postulantes pertenecen a historias futuras; no se iniciaron en este bloque. Las siguientes historias deben reutilizar las entidades existentes.
 
@@ -192,6 +220,8 @@ El login distingue empresa Pendiente/Aprobada/Rechazada. Solo la aprobada accede
 La consulta empresarial del perfil usa una postulación existente y comprueba
 la propiedad de su oferta en cada petición. No implementa el listado, filtros,
 cambios de estado o selección de CV de los módulos futuros.
+
+</details>
 
 ## Integración y evidencias
 
@@ -204,6 +234,11 @@ Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas
 
 ## Historial: retoma hasta HU013 — 07/11/2026
 
+<details>
+<summary>Corte histórico hasta HU013; consultar la guía vigente para el resultado posterior</summary>
+
 El seguimiento vigente y la aceptación técnica conjunta están en la [guía existente](frontend/docs/REVISION.md#retoma-de-danilo-aceptación-hasta-hu013--07112026), con [resultados sin secretos](frontend/docs/evidencias/retoma-20261107/resultados.json). Nuevo QA de aceptación/Postman/evidencias: Francisco; backend: Danilo. Se conserva la autoría histórica de sus implementaciones y pruebas.
 
 Los PR #146–#149 continúan en borrador. HU013 está publicado en #148 (backend) y #149 (Flutter); las APIs de CV y ofertas todavía requieren incorporar de forma revisada #148/#147 al backend de entrega antes de #146. La combinación aislada pasó 141 Django, 110 Flutter, análisis y compilación JavaScript, más comprobaciones HTTP y Newman identificadas por separado. En el primer bloque no conectó Computer Use; su error de pipe nativo continúa y no se repitió Postman Desktop. En la continuación autorizada, un Chromium temporal independiente sí completó la aceptación visual restante HU012/HU013: [25 casos y 37 capturas inspeccionadas](frontend/docs/evidencias/retoma-20261107/aceptacion-visual/resultados.json). Se corrigió la reentrada rápida del editor después de descartar cambios; pasaron 46 pruebas pertinentes, análisis y compilación. [Resultados y revisiones preparadas](frontend/docs/REVISION.md#aceptación-visual-y-revisiones-preparadas--07112026). HU018 mantiene pendiente la selección del CV en postulaciones. La evidencia histórica conserva su fecha y alcance; no se inició HU014–HU027, no se fusionó ni se inventaron revisiones humanas.
+
+</details>
