@@ -1,0 +1,371 @@
+{
+  "info": {
+    "name": "WorkNet HU028 · Asistente CV · QA privada",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Usar solo en otra QA aislada con usuarios ficticios. La carpeta R01 necesita clave/modelo autorizados y proveedor real; nunca la presentes como aprobada por ejecutar un doble. Ajustar CURRICULUM_AI_RATE solo en QA para probar casos negativos sin consumir el límite de producción. Importar el entorno privado generado por hu028_qa.py; no publicar sus valores ni capturar Authorization."
+  },
+  "item": [
+    {
+      "name": "01 Permisos y validación",
+      "item": [
+        {
+          "name": "C01 Estado de configuración",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Disponible booleano\", () => pm.expect(pm.response.json().available).to.be.a(\"boolean\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C02 Sin sesión",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C03 Empresa sin permiso",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_company_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C04 Candidato sin verificar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_unverified_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C05 Consentimiento denegado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"consent\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C06 Texto vacío",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"\",\n  \"consent\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C07 Propietario inyectado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"consent\": true,\n  \"candidate\": 9999\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 Sin proveedor configurado",
+      "item": [
+        {
+          "name": "M01 Configuración ausente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"No configurado\", () => pm.expect(pm.response.json().available).to.eql(false));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M02 Generación sin proveedor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"consent\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 503\", () => pm.response.to.have.status(503));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Proveedor real, pendiente de autorización y configuración",
+      "item": [
+        {
+          "name": "R01 Propuesta con proveedor real autorizado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"include_profile\": false,\n  \"consent\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const result = pm.response.json();",
+                  "pm.test(\"No se guarda automáticamente\", () => pm.expect(result.saved).to.eql(false));",
+                  "pm.test(\"Contrato del borrador\", () => { pm.expect(result.suggestion.data.personal.full_name).to.be.a(\"string\"); for (const k of [\"education\",\"experience\",\"skills\",\"languages\",\"certifications\",\"extra_sections\"]) pm.expect(result.suggestion.data[k]).to.be.an(\"array\"); });",
+                  "pm.test(\"Proveedor real identificado\", () => { pm.expect(result.provider).to.eql(\"Gemini\"); pm.expect(result.model).not.to.contain(\"qa-\"); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

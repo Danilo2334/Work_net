@@ -1,0 +1,218 @@
+{
+  "story": "HU028",
+  "date": "2026-11-09",
+  "status": "implementation_in_draft_real_provider_acceptance_pending",
+  "base_main": "c49d0f7fe658aa8641dba52070a2c83172f69f83",
+  "linkedin_cleanup_main": "1da868605d117b3375edaed10af839a51d3c6bf5",
+  "backend_commit": "6675613655748fbbba964c80493533b8e5d69659",
+  "environment": {
+    "os": "Linux cloud isolated clone",
+    "python": "3.12.14",
+    "django": "6.1.1",
+    "flutter": "3.47.9",
+    "dart": "3.13.7",
+    "database": "fresh SQLite; file-based mail; loopback only"
+  },
+  "checks": {
+    "django_tests": {
+      "passed": 300,
+      "new_specific": 15,
+      "provider": "mocked, not real Gemini"
+    },
+    "flutter_tests": {
+      "passed": 237,
+      "new_specific": 10,
+      "provider": "fake repository / MockClient"
+    },
+    "flutter_analyze": "passed",
+    "web_release_build": "passed; existing Wasm secure-storage and Cupertino-font notices retained",
+    "django_check": "passed",
+    "makemigrations_check": "no changes",
+    "isolated_http": {
+      "passed": 19,
+      "provider": "controlled double; no external request",
+      "report": "http-resultados.json"
+    }
+  },
+  "provenance": {
+    "flutter_png": "Actual Flutter widget-test RepaintBoundary renders with fictitious repository. Not browser screenshots. Viewports 1280x1000 and 390x844; capture ratio 1.5; Roboto + MaterialIcons loaded and button font family overridden only in capture harness.",
+    "pdf": "Actual Django HTTP save and PDF endpoints, fictional Ana QA data from controlled provider double. PNGs render the first page with pdftoppm. Separate fixture from Flutter Candidata QA."
+  },
+  "real_gemini_tested": false,
+  "postman_desktop_tested": false,
+  "browser_acceptance_tested": false,
+  "blockers": {
+    "provider": "No authorized GEMINI_API_KEY or GEMINI_MODEL available; no real credential created or read.",
+    "browser": "Playwright Chromium download returned HTTP200 Site Unavailable HTML instead of ZIP; cloud browser cannot reach executor loopback (ERR_CONNECTION_REFUSED).",
+    "postman": "Native Windows desktop unavailable in this cloud session.",
+    "github_project": "Connector has no native subissue-association or Project status mutation; Markdown parent/child references created."
+  },
+  "pending": [
+    "Configure authorized backend-only provider key/model privately.",
+    "Run real-provider QA with fictitious data.",
+    "Complete browser acceptance desktop/mobile against API.",
+    "Capture real Postman Desktop request/HTTP response/Test Results.",
+    "Verify native subissue associations and Project fields.",
+    "Review PRs and integrate through existing branch flow; no human approval simulated."
+  ],
+  "sources": [
+    {
+      "path": "backend/.env.example",
+      "bytes": 370,
+      "sha256": "0d61c95627be8e76fe3b69efae8807511dc4aef167a3a5de53395d5e98438e85",
+      "git_blob_sha": "11716806ac3f25c9c3e13c3a0a3589b22a5a5398"
+    },
+    {
+      "path": "backend/config/settings.py",
+      "bytes": 4327,
+      "sha256": "13ca687260b4d7ab9fa34158eafc9cfbe83c128b101f562412a6926029271081",
+      "git_blob_sha": "cd01d3598d40360cbb7d949ea84ba2911741b809"
+    },
+    {
+      "path": "backend/curriculum/urls.py",
+      "bytes": 765,
+      "sha256": "72a4e0537d84cf972e2ac755c6c77472186c59ff50b1d447b5adfe5efd6a9adc",
+      "git_blob_sha": "4c90f8d4a3d9f35d4e1ce29fda0bd07109b2b565"
+    },
+    {
+      "path": "backend/curriculum/assistant.py",
+      "bytes": 13196,
+      "sha256": "042c5b33e67acd428fca2d5404cd7fc9f279457192a18f50a7f620a65bee960e",
+      "git_blob_sha": "382958b65438e5457d9f90e83a15012bc48a7650"
+    },
+    {
+      "path": "backend/curriculum/test_assistant.py",
+      "bytes": 12124,
+      "sha256": "0482b263323feb1e86aeda5fb3aefc640b9859255e3f258935c6c1e0c4e9af6c",
+      "git_blob_sha": "ba82d949226f20025de67ae13082d7f0df4aff03"
+    },
+    {
+      "path": "frontend/lib/features/curriculum/domain/curriculum_assistant.dart",
+      "bytes": 1143,
+      "sha256": "c5dd23b107d6aa2789800410a380e6c8fed9a7f0d984683f93f7b740cc418633",
+      "git_blob_sha": "e0a0b123fff1d5806cf1edca0c993dbefd10ae8d"
+    },
+    {
+      "path": "frontend/lib/features/curriculum/presentation/curriculum_assistant_dialog.dart",
+      "bytes": 10193,
+      "sha256": "8a8ed05acef82d1ff4de465751366717bec6c609a8e5abe774caf85646e98cb1",
+      "git_blob_sha": "bd55917f3aae8bc52c1096149ca3040d58d69035"
+    },
+    {
+      "path": "frontend/lib/features/curriculum/data/generated_curriculum_repository.dart",
+      "bytes": 4173,
+      "sha256": "aae3ac250c6934f6e6008863e072db7ec12d16114c2c715138b82c30787fcc84",
+      "git_blob_sha": "8ef54caeb0f1989235180153ccaae39bc75de1d2"
+    },
+    {
+      "path": "frontend/lib/features/curriculum/presentation/generated_curriculum_page.dart",
+      "bytes": 18767,
+      "sha256": "477b1a6733524070da270b2fd1bda46ad21f6126e5915d2e9d29877b6b3b47c8",
+      "git_blob_sha": "22f58ab312f40011cad3a3eb1e32cf33d5af4f52"
+    },
+    {
+      "path": "frontend/test/curriculum_assistant_test.dart",
+      "bytes": 10840,
+      "sha256": "5273acfe98cbda4c5fdafd24888195c8f75fb29e679326ce1c1cd468b403bbe1",
+      "git_blob_sha": "81e1b95e17529287b67a4f76b56111c378d4bc53"
+    },
+    {
+      "path": "frontend/test/curriculum_assistant_evidence_test.dart",
+      "bytes": 6923,
+      "sha256": "965eafd368cd6892c2fe48c58f87414d34f27b42f99f34759d3cda4c34b3708f",
+      "git_blob_sha": "a509c9f49ec22621e90a3f31732f2c26d634ec42"
+    },
+    {
+      "path": "backend/postman/hu028_qa.py",
+      "bytes": 14108,
+      "sha256": "9b3ee911d536116d721b3aba73eb8c6956177d793f1f9f03cd8a507e58c61938",
+      "git_blob_sha": "35ea136bdbb7ee449c2c52627fb54cbc27b4db15"
+    },
+    {
+      "path": "backend/postman/hu028.postman_collection.json",
+      "bytes": 11948,
+      "sha256": "c98cea5b8694061460da3488287841bd96d4502d4e0fec2d3b9334cd114b07f1",
+      "git_blob_sha": "61eda0705e2b5722c6d06c30058aaacdea024bed"
+    }
+  ],
+  "assets": [
+    {
+      "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.pdf",
+      "bytes": 42241,
+      "sha256": "46dd0b4de920da44ee6328ab0a2f12f85244f3d6916a126f560cc376b7f0672d",
+      "git_blob_sha": "aa07f1f4638dc079135824a118d60b1a05bcaf9f"
+    },
+    {
+      "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.png",
+      "bytes": 41610,
+      "sha256": "66b81283fa90a90de63d859d9362258f902d7fa36647b04dc84a97457937e2f0",
+      "git_blob_sha": "26b26589db7e7305fd1ef8d5dd4022b67c86c96d"
+    },
+    {
+      "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.pdf",
+      "bytes": 42130,
+      "sha256": "669375562943d0a8fd024a087c5f14d3cf2519539c6a7ae123f3ce0a4bf24566",
+      "git_blob_sha": "330218fa384b36efd57dd6db71c40790947426aa"
+    },
+    {
+      "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.png",
+      "bytes": 41208,
+      "sha256": "bfcedc0406133ba2bf3a58290732b8ef96de9aa9b1023bca4c9a364b8d825285",
+      "git_blob_sha": "68570a9dbf954de1885612efe0587ce9bbeb2727"
+    },
+    {
+      "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.pdf",
+      "bytes": 42256,
+      "sha256": "a7bc3803eeed713b522466fb7a3fd13f4ffef85d610e0d7e2d767d9e9be28aaa",
+      "git_blob_sha": "2af13f8c1e7b6cee3f9aef70ef71e03f6741a845"
+    },
+    {
+      "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.png",
+      "bytes": 40987,
+      "sha256": "2b8e79a309837c5baaa7795e863fab8ab047eb462c403812892cee343f678b23",
+      "git_blob_sha": "ee8fceb58a67b1dfa61f22edaf5c1a7ef4a2327a"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V01-sin-configuracion-render-flutter.png",
+      "bytes": 140374,
+      "sha256": "51d08736594c4406a97df89e0970c99320f3e561f718aca40da50ed9f505340a",
+      "git_blob_sha": "6a0a4a3842d4143e1cb54dbdb2a0f54d3ae8484b"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V02-editor-manual-conservado-render-flutter.png",
+      "bytes": 107709,
+      "sha256": "a9499692124fd2fb49162371128412192e0be83923053bbf2b3c328920e51bb9",
+      "git_blob_sha": "22d603ce0742f8903d89da2c3874c0a9198e0327"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V03-consentimiento-render-flutter.png",
+      "bytes": 197615,
+      "sha256": "83dd48f4cd1c4f3341d0ab3c6fce5c7767f933a70f964f0b1ecc080de17999ed",
+      "git_blob_sha": "225be9135ebac1eeece0bbaf4950aac72a283c2f"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V04-propuesta-doble-controlado-render-flutter.png",
+      "bytes": 191133,
+      "sha256": "d6a54e494309dae5173ea48c4a032eaf61174b3211bd61f704f61e66e171b4ee",
+      "git_blob_sha": "339ef2ba30cf4d05ebdcc4f8c1b66a8b961a878b"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V05-borrador-sin-autoguardado-render-flutter.png",
+      "bytes": 110981,
+      "sha256": "5f50680f745d2363d628e37343f46e05bb4b673aa5288aec82bc7939b229775d",
+      "git_blob_sha": "3a5440cf4eee301abe127e7331980483c48a7159"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V06-consentimiento-movil-render-flutter.png",
+      "bytes": 132530,
+      "sha256": "7543cac3641b5312d610cc505325561704c04f617a036b92dc1f9657527deb64",
+      "git_blob_sha": "2df0cdb2f8bb3b371d28f5d36fb9fb4cbda12915"
+    },
+    {
+      "path": "frontend/docs/evidencias/hu028-20261109/HU028-V07-propuesta-movil-doble-controlado-render-flutter.png",
+      "bytes": 126017,
+      "sha256": "4bf16179bdc601dde9207833c0c6df178e8551b839edbc427e12c039f66ae088",
+      "git_blob_sha": "0b589ce2790c3773cfbf019e8d2494639342f112"
+    }
+  ]
+}
