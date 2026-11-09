@@ -1,0 +1,28 @@
+{
+  "fecha": "2026-11-09T06:32:49.747Z",
+  "local_date": "09/11/2026 America/Bogota",
+  "run": "run-20261109T062516-fbcf48eb",
+  "postman": "12.35.5 Desktop Windows",
+  "collection_source": "fc89eee7d555c0e2f5e70c215aa3908ec54b5f60",
+  "server_source": "03f9352ed5f6c7893048b0e94010a251dc9e4f16",
+  "backend": "4bfffaca80a2a0bd3e420f1281a3bf9c405b8a63",
+  "iterations": 1,
+  "requests": 55,
+  "tests_pass": 90,
+  "tests_fail": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_ms": 46551,
+  "mean_http_ms": 249,
+  "isolation": "SQLite nueva, ficticios, correo a archivos, sin cookies almacenadas; entornos anteriores preservados",
+  "authentication": "Contraseña202 sinToken; TOTP generado por autenticador software QA con reloj real; verificación django-otp sin simulación",
+  "wrong_totp_audit": {
+    "six_ascii_digits": true,
+    "unresolved_template": false,
+    "http": 400,
+    "device_failures_before": 0,
+    "device_failures_after": 1
+  },
+  "limitation": "No acredita aplicación autenticadora física, SMTP, PostgreSQL ni carga. Ver preparador/colección publicados para escenarios; capturas originales parciales, no muestran todos los cuerpos.",
+  "business_contrast": "13 tablas de negocio y todas las cuentas no administrativas idénticas; cuentas administrativas/eventos cambian según pruebas;29 administradores finales"
+}

@@ -1,0 +1,860 @@
+{
+  "schema": "worknet-browser-qa-results-v1",
+  "fecha": "2026-11-09T06:36:13.700Z",
+  "frontend_sha": "727855f428f08a89e14877c44899a1c14b62970d",
+  "backend_sha": "727855f428f08a89e14877c44899a1c14b62970d",
+  "playwright": "1.65.0",
+  "modo": "Chromium headless nuevo, contextos temporales; sin perfil personal",
+  "escritorio": "1440x1000/1100",
+  "movil": "Viewport 390x844, ratón/teclado; no dispositivo físico",
+  "casos": [
+    {
+      "id": "NAVEGADOR-01",
+      "resultado": "aprobado",
+      "duracion_ms": 2959
+    },
+    {
+      "id": "HU026-V01",
+      "resultado": "aprobado",
+      "duracion_ms": 2252
+    },
+    {
+      "id": "HU026-V02",
+      "resultado": "aprobado",
+      "duracion_ms": 5181
+    },
+    {
+      "id": "HU026-V03",
+      "resultado": "aprobado",
+      "duracion_ms": 1441
+    },
+    {
+      "id": "HU026-V04",
+      "resultado": "aprobado",
+      "duracion_ms": 11697
+    },
+    {
+      "id": "HU026-V05",
+      "resultado": "aprobado",
+      "duracion_ms": 4979
+    },
+    {
+      "id": "HU026-V06",
+      "resultado": "aprobado",
+      "duracion_ms": 5139
+    },
+    {
+      "id": "HU026-V07",
+      "resultado": "aprobado",
+      "duracion_ms": 12914
+    },
+    {
+      "id": "HU026-V08",
+      "resultado": "aprobado",
+      "duracion_ms": 4134
+    },
+    {
+      "id": "HU026-V09",
+      "resultado": "aprobado",
+      "duracion_ms": 7734
+    },
+    {
+      "id": "HU026-V10",
+      "resultado": "aprobado",
+      "duracion_ms": 2367
+    },
+    {
+      "id": "HU026-V11",
+      "resultado": "aprobado",
+      "duracion_ms": 3320
+    },
+    {
+      "id": "HU026-V12",
+      "resultado": "aprobado",
+      "duracion_ms": 13054
+    },
+    {
+      "id": "HU026-V13",
+      "resultado": "aprobado",
+      "duracion_ms": 16372
+    },
+    {
+      "id": "HU026-V14",
+      "resultado": "aprobado",
+      "duracion_ms": 4182
+    },
+    {
+      "id": "HU026-V15",
+      "resultado": "aprobado",
+      "duracion_ms": 13310
+    },
+    {
+      "id": "HU026-V16",
+      "resultado": "aprobado",
+      "duracion_ms": 4703
+    },
+    {
+      "id": "HU026-V17",
+      "resultado": "aprobado",
+      "duracion_ms": 7121
+    }
+  ],
+  "capturas": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU026-V01-ruta-administrativa-protegida.png",
+      "caso": "HU026-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU026-V02-contrasena-sin-sesion-exige-doble-factor.png",
+      "caso": "HU026-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9bf6e5871ae2f83ddb4655ab57111b3ab2096f8f4a9fb325f506298c2ede64f6"
+    },
+    {
+      "archivo": "HU026-V03-preparacion-autenticador-clave-oculta.png",
+      "caso": "HU026-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1a5e901f94d1d0afeeaa6541b80b5337ddd09e08d41122b6c54c462f8addc9c7"
+    },
+    {
+      "archivo": "HU026-V04-codigo-incorrecto-rechazado.png",
+      "caso": "HU026-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9cc409f5cb96fc1247cfca9f169e8a62519fdcaa469e6fe076ef1e354f5bf2c5"
+    },
+    {
+      "archivo": "HU026-V04-autenticador-confirmado-codigos-ocultos.png",
+      "caso": "HU026-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d59b6fdd02c4bccc71e29f15ad3ee1d0f8c48dbc7d68d5dc7d0f79d5729334c5"
+    },
+    {
+      "archivo": "HU026-V05-hu007-dashboard-conteos-accesos.png",
+      "caso": "HU026-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fa4ddacb02b6e403bc283195155fe20401e5d33ade158106a2c723412efb6dc4"
+    },
+    {
+      "archivo": "HU026-V05-solicitud-empresarial-pendiente.png",
+      "caso": "HU026-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b008509c56d25dc52972223706fc0806322b72a6f4e6b83da77db1dcc769d98d"
+    },
+    {
+      "archivo": "HU026-V06-listado-nombre-correo-rol-estado-principal-protegido.png",
+      "caso": "HU026-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f5d145833489b7ef3a1f1273b068e52c5146dc01c5ff6ab0e129c8d18f18978b"
+    },
+    {
+      "archivo": "HU026-V06-paginacion-segunda-pagina.png",
+      "caso": "HU026-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "879bc0dfba2beb0a3b9e6429be760993664b5a676d71db23996287985fbb0852"
+    },
+    {
+      "archivo": "HU026-V07-alta-confirmada-verificacion-y-mfa-pendientes.png",
+      "caso": "HU026-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4411ee46b9210b21a7df97ac84712b0bda6c4f3c91124abf626695f092df6e0a"
+    },
+    {
+      "archivo": "HU026-V08-permisos-retirados-guardados.png",
+      "caso": "HU026-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ee80a962f63ebdb778f66cfb89be438b56058876d4622324a4cc9b0a3ee989e1"
+    },
+    {
+      "archivo": "HU026-V09-cuenta-desactivada.png",
+      "caso": "HU026-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b93adcea9baf6b94800f0b468e0698966066f6c6da1dbdd8705bef114ce6fa6e"
+    },
+    {
+      "archivo": "HU026-V09-cuenta-reactivada.png",
+      "caso": "HU026-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ee80a962f63ebdb778f66cfb89be438b56058876d4622324a4cc9b0a3ee989e1"
+    },
+    {
+      "archivo": "HU026-V10-error-carga-inyectado-identificado.png",
+      "caso": "HU026-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "28b3798a7b11210d8846d0841e74f98f45e9979cee2bbf669244b1b4e2b85840"
+    },
+    {
+      "archivo": "HU026-V10-reintento-real-listado.png",
+      "caso": "HU026-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ee80a962f63ebdb778f66cfb89be438b56058876d4622324a4cc9b0a3ee989e1"
+    },
+    {
+      "archivo": "HU026-V11-movil-listado-administrativo.png",
+      "caso": "HU026-V11",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ff39a488cdd004691ca366dd23775074fed70bfa86e2a6b1d48af6f4d9befaea"
+    },
+    {
+      "archivo": "HU026-V11-movil-configuracion-permisos-guardar.png",
+      "caso": "HU026-V11",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "67f731e2972f2e74df80f64a375fcd6dedaa7c595c5047f40bc13c81e00efee7"
+    },
+    {
+      "archivo": "HU026-V12-autenticador-confirmado-codigos-ocultos.png",
+      "caso": "HU026-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "3b8a1ab81e88f46d8c0266c5e65a2a8b1e5fa1373c5aba57dd405c7fc257f429"
+    },
+    {
+      "archivo": "HU026-V12-gestor-accesos-limitados-por-permisos.png",
+      "caso": "HU026-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "d38317b3f1d7c62788245a5c12e4658e9b842de07748f8dd6eaf0fe5c8eb29a1"
+    },
+    {
+      "archivo": "HU026-V12-gestor-sin-edicion-de-permisos.png",
+      "caso": "HU026-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "d5635ba97295f4ad57a6eadbebf5845a8c5e48647fd5c6d0203391616ac93b45"
+    },
+    {
+      "archivo": "HU026-V13-cuenta-nueva-correo-verificado-exige-mfa.png",
+      "caso": "HU026-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "971f364b52aca7b8c035d96b43d81ef5df955f43fbc04bb4a6ead334a3babcfb"
+    },
+    {
+      "archivo": "HU026-V13-autenticador-confirmado-codigos-ocultos.png",
+      "caso": "HU026-V13",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2f4bf1014b9b86404dcd18c4615b37fb6fd6baaca0712e2a173850da94b44b9c"
+    },
+    {
+      "archivo": "HU026-V14-eventos-altas-y-doble-factor.png",
+      "caso": "HU026-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bb598b5603b3aa72d242bbbf2cf77fa78f3797a11b27d6e37ba22b8c257474b3"
+    },
+    {
+      "archivo": "HU026-V14-cuenta-gestora-sin-alta-reservada-al-principal.png",
+      "caso": "HU026-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c3ee002e49208444d9cee4bd0e1f93068179718074a65809001edf1a301d3dc1"
+    },
+    {
+      "archivo": "HU026-V15-recuperacion-obliga-a-reenrolar.png",
+      "caso": "HU026-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3f9c8a8a4d06ef83c6b767fc0f118bd4118cf7b5392318e9bd9b8ba40929e4cc"
+    },
+    {
+      "archivo": "HU026-V15-autenticador-confirmado-codigos-ocultos.png",
+      "caso": "HU026-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2f4bf1014b9b86404dcd18c4615b37fb6fd6baaca0712e2a173850da94b44b9c"
+    },
+    {
+      "archivo": "HU026-V15-acceso-recuperado-con-segundo-factor.png",
+      "caso": "HU026-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4e1104197cb5f2f911e238da24081776c53989b0ca13ea49706d5fe97b1f05c2"
+    },
+    {
+      "archivo": "HU026-V16-sesion-revocada-sin-cuentas-privadas.png",
+      "caso": "HU026-V16",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3cb0fb8d0bef2e1a154c683e5ca4fb24d0f9ad2863a4641e958c0dbb4d55decf"
+    },
+    {
+      "archivo": "HU026-V17-candidato-sin-acceso-administrativo.png",
+      "caso": "HU026-V17",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "14234ccb96e662c75720af7465fe0952d2f6e54833851907a0365c30e56b6a61"
+    }
+  ],
+  "red": [
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 202,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/setup/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/verify/",
+      "status": 400,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/verify/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/companies/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/accounts/",
+      "status": 201,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/admin/accounts/6/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/admin/accounts/6/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/admin/accounts/6/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 503,
+      "inyectada": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 202,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/setup/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/verify/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 400,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 202,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/setup/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/verify/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/events/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 202,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/verify/",
+      "status": 202,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/setup/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/mfa/verify/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/admin/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/accounts/",
+      "status": 401,
+      "inyectada": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/summary/",
+      "status": 200,
+      "inyectada": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "inyectada": false
+    }
+  ],
+  "controles": {
+    "solo_base_qa_nueva": true,
+    "smtp": false,
+    "traces_har_storageState": false
+  },
+  "revision_humana": false,
+  "suite": "hu026",
+  "chromium": "158.0.8127.18",
+  "hu026_capture_guard": {
+    "field": "Código del autenticador",
+    "empty": true,
+    "visible_private_pattern": false
+  },
+  "preparacion_qa": {
+    "offers": 18,
+    "administrators": 28,
+    "principal_id": 21,
+    "manager_id": 22,
+    "reviewer_id": 6,
+    "pending_company_id": 3,
+    "date": "2026-11-09T06:36:13.487476+00:00",
+    "mfa": "Inicialmente sin configurar; se enrola por la API/interfaz real con autenticador TOTP local ficticio.",
+    "data": "Usuarios ficticios; correo a archivos; sin SMTP ni proveedor externo."
+  },
+  "persistencia": {
+    "business_unchanged": true,
+    "non_admin_accounts_unchanged": true,
+    "tables": {
+      "accounts_companyprofile": {
+        "rows": 3,
+        "sha256": "f8b58fe6633af9b4e784700b19adedbc5a720d3b636f73bb24eeb3ff44d512b2",
+        "unchanged": true
+      },
+      "accounts_companyreview": {
+        "rows": 1,
+        "sha256": "36ba62b323a849670c6146eb082de191a4ba0cde5d512eb106c28a0757bdfb3b",
+        "unchanged": true
+      },
+      "candidate_dashboard_application": {
+        "rows": 27,
+        "sha256": "fcd1856606cf481391b5dcfcd157fb819379f34dd56632cdbee1ac4e3ff32108",
+        "unchanged": true
+      },
+      "candidate_dashboard_applicationstatusevent": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      },
+      "candidate_dashboard_candidateprofile": {
+        "rows": 13,
+        "sha256": "acd2f004d0d06c3947bcc30fa7897b97015f96cad55efbf38dd4de8cec4fc9ce",
+        "unchanged": true
+      },
+      "candidate_dashboard_conversation": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      },
+      "candidate_dashboard_joboffer": {
+        "rows": 18,
+        "sha256": "4f330413598e8c5135aa8e802e8220285a28a0c1d734a8b2d11ed9f3b0842d7f",
+        "unchanged": true
+      },
+      "candidate_dashboard_message": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      },
+      "candidate_dashboard_notification": {
+        "rows": 30,
+        "sha256": "54822e196af3e4bc21aba6344400aec9bce9d9bb01dd06ee6ed86e2a69333203",
+        "unchanged": true
+      },
+      "candidate_dashboard_notificationpreference": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      },
+      "candidate_dashboard_savedoffer": {
+        "rows": 8,
+        "sha256": "17e76dedb00a4399cd7e20ff7cc9eaeab2fcf09771bd0072feec7c1607a36147",
+        "unchanged": true
+      },
+      "curriculum_generatedcurriculum": {
+        "rows": 7,
+        "sha256": "8d02fff6b97e3a06256f8bb2a3920dde51eb7f44d5954c6fb70b0d05dbbc7228",
+        "unchanged": true
+      },
+      "curriculum_uploadedcurriculum": {
+        "rows": 9,
+        "sha256": "be325082a65d7c71dc21a3fd5a4be9cb7c2a970a14bae470bd7520c62373d832",
+        "unchanged": true
+      }
+    },
+    "administrators": 29,
+    "events": [
+      [
+        "admin_authority_changed",
+        3
+      ],
+      [
+        "admin_created",
+        1
+      ],
+      [
+        "mfa_enrolled",
+        4
+      ],
+      [
+        "mfa_recovery",
+        1
+      ]
+    ],
+    "administrative_sessions": 0,
+    "no_duplicate_emails": true
+  },
+  "alcance": "17 casos HU026 más inicio: UI real de escritorio y móvil web emulado, contraseñas sin sesión antes de TOTP, alta/estado/permisos, cuenta principal protegida, error inyectado identificado y reintento real, enlace real de correo a archivos, autenticador software QA local con reloj real y servidor django-otp, recuperación/reenrolamiento y revocación. No acredita SMTP ni dispositivo físico. Sin cambios a negocio ni cuentas no administrativas.",
+  "contrastes": {
+    "profile_unchanged": true,
+    "account_unchanged": true,
+    "ofertas": 18,
+    "cv_generados": 7
+  },
+  "resultado": "aprobado"
+}

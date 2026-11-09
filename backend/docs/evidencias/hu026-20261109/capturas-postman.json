@@ -1,0 +1,182 @@
+[
+  {
+    "file": "00-runner-preparacion.jpg",
+    "sha256": "870a8300e43c0f7eb3c32129e037a3e2eb7798dce82860a57872abd170feb84b",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T05:49:25.284Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T054036-383c377d"
+  },
+  {
+    "file": "01-runner-antecedente-error.jpg",
+    "sha256": "5af133e7140c6e3125ce44690299da1e2e85a1682cf964fca4b7693e1c8d1608",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T05:50:02.834Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T054036-383c377d"
+  },
+  {
+    "file": "02-antecedente-globalthis-no-definido.jpg",
+    "sha256": "22e35cf3953867a0a6eb2a3f2d3e3c029dcc52935554ba88d571e1871692775e",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T05:50:39.745Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T054036-383c377d"
+  },
+  {
+    "file": "03-runner-nueva-base-preparacion.jpg",
+    "sha256": "ee788bb28324af47306152ac09775606b35a1142d5bff8817d697ff069c5043b",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T05:58:52.419Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T055032-f3020868"
+  },
+  {
+    "file": "04-antecedente-totp-revisor-http400.jpg",
+    "sha256": "0a37b2414f4c9e6cfbcb479049589d39ca92a1232b301af1985ae0cf87db3222",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T05:59:56.240Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T055032-f3020868"
+  },
+  {
+    "file": "05-antecedente-respuesta-revisor-invalida.jpg",
+    "sha256": "51d466801ece80d89433bedb1ee8bde8c29f8a7ce554c4fc6d01b5c65349f5f7",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:03:39.769Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T055032-f3020868"
+  },
+  {
+    "file": "06-runner-tercera-base-preparacion.jpg",
+    "sha256": "0b930bde8aca9d0aeaa8c3cdc6cfaad29dba406440be71beb9995a8cda0c707b",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:21:51.550Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T060826-fac04ca3"
+  },
+  {
+    "file": "07-antecedente-reenrolamiento-http400.jpg",
+    "sha256": "3b72309484e71df6817cc6bddb6b4f81f95b48cda7b64c504733190eebd138eb",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:23:14.055Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T060826-fac04ca3"
+  },
+  {
+    "file": "08-antecedente-confirmacion-nuevo-totp.jpg",
+    "sha256": "533a68a176013b462c952e9a15cf776a5de6876be0a966eee798182b3946f286",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:23:53.762Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T060826-fac04ca3"
+  },
+  {
+    "file": "09-runner-espera-crypto-preparacion.jpg",
+    "sha256": "415d0bd47cfc18a69b593de7147dc3d8264b4c66ee55f833045bf14a3334b425",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:32:49.746Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "10-runner-90-tests-aprobados.jpg",
+    "sha256": "726c597c3b25fa8052287f8f00bb6aa81e4f19dc7366894eea13358f605b1f98",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:34:07.309Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "11-dashboard-hu007-y-paginacion.jpg",
+    "sha256": "e2bc51fb484b506687e9244f549b82e68c4fb55023b3f729bf2509ae064d73e5",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:34:30.026Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "12-respuesta-dashboard-conteos-aviso-evento.jpg",
+    "sha256": "08c9f035be13d914e9f4048167751feac269f75b0095099a16dd646e5a7906f6",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:35:03.427Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "13-alta-verificacion-principal-protegido.jpg",
+    "sha256": "9c1a32b720c1aacb5917efc4d2a5540a4267209c4f409cb408abe6e9756891e9",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:36:03.965Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "14-totp-revisor-y-permisos-por-rol.jpg",
+    "sha256": "e4fec768f2c479e38ca5ba2837b0c3c154c770a693292e1ce418304bfdd77fcd",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:36:21.134Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "15-gestor-limites-baja-y-revocacion.jpg",
+    "sha256": "c8699fc698742f48ca444a032fa5d5b15b0392a734ba4c7ccc082e2508d2067b",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:36:44.598Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "16-reautenticacion-permisos-y-no-intervencion.jpg",
+    "sha256": "873b0a895d986660ff07b0f648ed1d2db212d97da917e759a02825f9d11bc667",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:36:55.825Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "17-recuperacion-revoca-y-exige-nuevo-totp.jpg",
+    "sha256": "a3b5b11157cd2933320f4b1dc4db0e88d1aa448453b3a9c76b699b1612d8913c",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:37:18.725Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "18-recuperacion-no-reutilizable-y-sesion-cerrada.jpg",
+    "sha256": "5d05ffdaf8e88fad1c29e7622383efa9741c8beec4b13aa9806017aece7be50d",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:37:30.495Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  },
+  {
+    "file": "19-respuesta-401-despues-de-logout.jpg",
+    "sha256": "f99de6216deff844a60c9390e97ff3052a99c15569acf29458a02b1a89c7831e",
+    "width": 1536,
+    "height": 864,
+    "fecha": "2026-11-09T06:37:42.616Z",
+    "provenance": "Postman Desktop 12.35.5, Windows; captura original sin editar",
+    "run": "run-20261109T062516-fbcf48eb"
+  }
+]

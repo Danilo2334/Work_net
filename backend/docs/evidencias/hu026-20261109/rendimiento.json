@@ -1,0 +1,21 @@
+{
+  "scope": "30 GET HTTP secuenciales adicionales, fuera del Runner Desktop; gestor QA ya autenticado por MFA real",
+  "requests": 30,
+  "all_http200": true,
+  "administrators": 29,
+  "page_rows": 20,
+  "offers": 18,
+  "applications": 27,
+  "os": "Windows",
+  "python": "3.12.10",
+  "sqlite": "3.49.1",
+  "port": 8105,
+  "run": "run-20261109T062516-fbcf48eb",
+  "source": "03f9352ed5f6c7893048b0e94010a251dc9e4f16",
+  "mean_ms": 53.93,
+  "median_ms": 50.73,
+  "p95_ms": 67.48,
+  "min_ms": 21.87,
+  "max_ms": 168.29,
+  "limitation": "SQLite local y pequeño tamaño; sin carga concurrente ni PostgreSQL"
+}
