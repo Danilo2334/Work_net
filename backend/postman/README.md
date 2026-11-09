@@ -445,4 +445,3 @@ Usar la rama combinada `codex/hu028-curriculum-ai-integracion`; la rama UI por s
 `--provider-real --serve` requiere GEMINI_API_KEY y GEMINI_MODEL en configuración privada de backend, realiza una petición real con datos ficticios y puede consumir cuota; guarda informe y PDF separados. No ejecutarlo hasta contar con credencial autorizada. El límite del asistente en esa QA es 1000/h; el valor productivo predeterminado es 5/h por usuario. El GET solo acredita configuración, no disponibilidad efectiva. No ejecutar todas las carpetas contra un mismo estado incompatible.
 
 La aceptación pendiente exige capturas reales de petición, HTTP y Test Results, con datos ficticios y secretos ocultos. Los renders de Flutter y PNG de PDF existentes se identifican por su procedencia; no son capturas Desktop. Ver preparación, diez imágenes explicadas, fuentes y pendientes en la sección HU028 de `frontend/docs/REVISION.md` y los seguimientos de #225–#228.
-
