@@ -1,9 +1,38 @@
 # Guía para revisar WorkNet
 
+<!-- revision-final-entrega-20261109 -->
+## Cierre funcional y revisión final — 09/11/2026
+
+**Entrega cerrada: HU001–HU026 y HU028, 27 historias y 112 subtareas.** GitHub confirma `closed/completed`, los 27 contadores nativos al 100 % y **Done** para las historias y tareas en WORK_NET. Los 112 seguimientos conservan un único comentario y su ID/autor; 35 leyendas se aclararon con caso, esperado, obtenido y alcance, sin atribuir ejecuciones nuevas a imágenes históricas. Se conservaron responsables, Sprint, fechas e históricos.
+
+**HU027 — LinkedIn queda pendiente para una versión futura.** #28 y #137–#141 permanecen abiertas, Backlog y 0/5. No forma parte de esta entrega cerrada ni se presenta como implementada, probada o cancelada actualmente. Sus criterios y preparación histórica se conservan.
+
+### Qué se comprobó y corrigió
+
+Se partió del cierre documental posterior `80bdfa60784c4a15e834b61affceb2a39a8bea47`, conservando la aceptación real HU028 y el tag histórico `entrega-academica-2026-11-09`. La regresión nueva detectó dos PATCH iniciales de preferencias HU023 con respuesta 503 en SQLite. La corrección [daef910](https://github.com/Danilo2334/Work_net/commit/daef910366bacb8563b1bb7f694cd40d91891903), de Danilo2334 con su prueba propia, usa una escritura atómica por usuario, modifica solo los campos enviados y obtiene la respuesta dentro de la transacción. No cambia el contrato HTTP ni migraciones. Se revisó e integró por #239/#240 antes de la combinación Flutter.
+
+### Preparación y resultados nuevos
+
+Checkout de revisión aislado, Windows, Python 3.12.10, Django 6.1.1, Flutter 3.47.5/Dart 3.13.4. Fuente conjunta `76ea437eb9c883e40c01093f082f8ba3867b0ce2`. Bases de prueba nuevas, correo a archivos y sin credenciales del proveedor en los procesos de test. El hasher MD5 se usa solo para fixtures en ese proceso de pruebas; no cambia la configuración de contraseñas del producto.
+
+| Comprobación de esta revisión | Resultado |
+|---|---|
+| Regresión Django conjunta | **301 aprobadas**, 13,709 s. |
+| Concurrencia de preferencias | **20/20** rondas en SQLite compartida y **20/20** con archivo; dos HTTP 200, una fila y cambios parciales conservados. |
+| Flutter | **237 aprobadas**, 27 s; análisis sin incidencias y build web release correcto. |
+| Check y migraciones | Sin incidencias ni migraciones nuevas; otra SQLite migrada y cero pendientes. |
+| Evidencias y GitHub | 418 referencias con SHA completo y 39 abreviadas resueltas, sin blobs ausentes; 26 adjuntos históricos HTTP 200. |
+
+[Auditoría completa y trazabilidad de las 27 historias](../../docs/auditoria-final-20261109.json) · [Presentación](../../docs/ENTREGA.md) · [Plan concreto de despliegue](../../docs/DESPLIEGUE.md).
+
+Esta revisión no vuelve a enviar correos ni consumir Gemini, y no constituye otra aceptación de navegador o Postman Desktop. Las pruebas reales anteriores, los renders PDF y los dobles conservan su fecha, versiones y procedencia en las secciones siguientes. Revisión técnica del agente principal, sin aprobación humana o revisión delegada nuevas. **El producto está listo para demostración local; el despliegue productivo es la siguiente fase y aún no está ejecutado.**
+
+<!-- revision-final-entrega-20261109-fin -->
+
 <!-- alcance-vigente-inicio -->
 ## Alcance vigente — 09/11/2026
 
-HU001–HU026 conservan su entrega estable en main `c49d0f7fe658aa8641dba52070a2c83172f69f83`. **HU027 #28 y #137–#141 quedan abiertas y pendientes de desarrollo**, por instrucción expresa del usuario. Su retorno estático y los pasos/configuración preparatorios se retiraron de la versión actual; los antecedentes de #196/#197 permanecen en Git. Se conservaron el sitio, logo y política generales de WorkNet. No existe integración LinkedIn operativa ni aceptación OAuth.
+La entrega vigente comprende HU001–HU026 y HU028; las fuentes y comprobaciones finales se registran arriba. El corte estable HU001–HU026 original fue `c49d0f7fe658aa8641dba52070a2c83172f69f83`. **HU027 #28 y #137–#141 quedan abiertas y pendientes de desarrollo**, por instrucción expresa del usuario. Su retorno estático y los pasos/configuración preparatorios se retiraron de la versión actual; los antecedentes de #196/#197 permanecen en Git. Se conservaron el sitio, logo y política generales de WorkNet. No existe integración LinkedIn operativa ni aceptación OAuth.
 
 El barrido de este checkout no encontró servicios, rutas o dependencias funcionales LinkedIn en `backend/` ni `frontend/lib/`; el elemento específico publicado era `docs/linkedin/callback.html`. En la continuación Windows se inspeccionó el checkout preparatorio LinkedIn: limpio y ya contenido en el historial remoto. La entrega actual no contiene archivos exclusivos LinkedIn; se conservan la preparación histórica, los componentes generales y los entornos privados anteriores, sin reactivar la integración.
 
@@ -26,22 +55,22 @@ Opción «Completar mi CV con IA», texto y perfil optativo, consentimiento info
 
 Fuente conjunta de aceptación [`169115f`](https://github.com/Danilo2334/Work_net/commit/169115f58199d582d7f0a431316c2f2bd928bcaf), backend [`6c76159`](https://github.com/Danilo2334/Work_net/commit/6c76159ecdc90183cc12f3da43fcf10ccf6d0500) y herramientas QA [`bf74181`](https://github.com/Danilo2334/Work_net/commit/bf74181a280af28d6f5225d203766b8eac3b1548). No hubo cambios funcionales Dart después del análisis/build. Originales permanentes en [`625839f`](https://github.com/Danilo2334/Work_net/commit/625839ff6cad5fee62418b95d95fdf1671c37f40), [manifest](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/manifest.json) con SHA256 y blobsGit.
 
-Tres bases nuevas, SQLite y correo a archivos: API `run-20261109T184303Z-4eb93e57`, navegador `run-20261109T185051Z-13e75b29`, Postman `run-20261109T184717Z-0165b8da`. Cuatro usuarios ficticios por QA; el control Postman añade2 perfiles, 1 oferta y 1 postulación histórica. No se reutilizaron bases anteriores. La clave autorizada permanece fuera del repositorio, solo en backend; el usuario confirmó Free Tier. Modelo `gemini-3.5-flash-lite` listado para esa clave y probado con JSON estructurado. No se activaron facturación ni servicios de pago.
+Tres bases nuevas, SQLite y correo a archivos: API `run-20261109T184303Z-4eb93e57`, navegador `run-20261109T185051Z-13e75b29`, Postman `run-20261109T184717Z-0165b8da`. Cuatro usuarios ficticios por QA; el control Postman añade 2 perfiles, 1 oferta y 1 postulación histórica. No se reutilizaron bases anteriores. La clave autorizada permanece fuera del repositorio, solo en backend; el usuario confirmó Free Tier. Modelo `gemini-3.5-flash-lite` listado para esa clave y probado con JSON estructurado. No se activaron facturación ni servicios de pago.
 
 **Resultados y procedencia**
 
-- **301 Django**,16 pruebas HU028,19,418s; **237 Flutter**,52 s; analyze sin incidencias y web release correcto. Check, makemigrations en seco y plan de migraciones de la QA correctos. Dobles en las pruebas unitarias, no llamadasGemini.
-- **API real 8/8**,1 generación Gemini,2129,56 ms y 3 PDF. [Informe](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/api-real-resultados.json).
-- **Navegador 14/14**,20 PNG originales,2 generaciones Gemini y3 descargas PDF. [Informe](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/browser-resultados.json).503/429 y respuesta tardía se inyectan localmente y no cuentan como fallos reales del proveedor.
-- **Postman Desktop 18 peticiones, 52 PASS**,0 fallos:9 negativas / 20 PASS sin proveedor y9 positivas / 32 PASS con1 generación real. [Resultados nativos](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/resultados.json).
-- **6 PDF**(3 API + 3 navegador) leídos,renderizados e inspeccionados; [revisión](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/pdf-review.json). [Filas de negocio intactas](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/business-contrast.json).
+- **301 Django**, 16 pruebas HU028, 19, 418 s; **237 Flutter**, 52 s; analyze sin incidencias y web release correcto. Check, makemigrations en seco y plan de migraciones de la QA correctos. Dobles en las pruebas unitarias, no llamadas Gemini.
+- **API real 8/8**, 1 generación Gemini, 2129, 56 ms y 3 PDF. [Informe](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/api-real-resultados.json).
+- **Navegador 14/14**, 20 PNG originales, 2 generaciones Gemini y 3 descargas PDF. [Informe](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/browser-resultados.json).503/429 y respuesta tardía se inyectan localmente y no cuentan como fallos reales del proveedor.
+- **Postman Desktop 18 peticiones, 52 PASS**, 0 fallos:9 negativas / 20 PASS sin proveedor y 9 positivas / 32 PASS con 1 generación real. [Resultados nativos](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/resultados.json).
+- **6 PDF**(3 API + 3 navegador) leídos, renderizados e inspeccionados; [revisión](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/pdf-review.json). [Filas de negocio intactas](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/business-contrast.json).
 - **4 generaciones reales en la aceptación vigente**. El antecedente parcial de navegador generó 2 más; el primer intento de transporte fue rechazado 400 y se corrigió. Total del bloque:7 intentos, 6 generaciones satisfactorias, sin reintentos automáticos. [Auditoría vigente](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/provider-calls-accepted.json), [procedencia y límites](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/aceptacion.json).
 
 ### Verificación conjunta antes de main
 
 Tras fusionar [#231](https://github.com/Danilo2334/Work_net/pull/231) a backend y [#233](https://github.com/Danilo2334/Work_net/pull/233) a develop, se integró [#232](https://github.com/Danilo2334/Work_net/pull/232) en frontend y se incorporó el backend revisado mediante [#234](https://github.com/Danilo2334/Work_net/pull/234). Frontend quedó en `f4cecc2ac21b83f3da9647d35dab3a0552c68cdb`; la combinación publicada `3cd731ba4b4d097227fdb2d17767f672fbf29aaa` tiene el mismo árbol. Su código funcional Django/Dart y dependencias coincide byte por byte con el usado en la aceptación real `169115f`.
 
-Sobre esa combinación se repitieron **301 Django aprobadas en 16,485 s** y **19/19 peticiones HTTP con doble** en otra QA nueva `run-20261109T192617Z-be33b9fd`, sin llamadas adicionales a Gemini. Flutter, análisis y build previos conservan validez al mantenerse idénticas sus fuentes y dependencias. Se verificaron los 44 blobs de evidencias remotos y la cuenta, autor y committer de las once aportaciones HU028. [Informe conjunto](../../backend/docs/evidencias/hu028-real-20261109/verificacion-conjunta.json). No hay reglas de protección, comprobaciones CI ni revisiones obligatorias configuradas en estas ramas; no se alteró ninguna protección ni se atribuyó aprobación humana.
+Sobre esa combinación se repitieron **301 Django aprobadas en 16, 485 s** y **19/19 peticiones HTTP con doble** en otra QA nueva `run-20261109T192617Z-be33b9fd`, sin llamadas adicionales a Gemini. Flutter, análisis y build previos conservan validez al mantenerse idénticas sus fuentes y dependencias. Se verificaron los 44 blobs de evidencias remotos y la cuenta, autor y committer de las once aportaciones HU028. [Informe conjunto](../../backend/docs/evidencias/hu028-real-20261109/verificacion-conjunta.json). No hay reglas de protección, comprobaciones CI ni revisiones obligatorias configuradas en estas ramas; no se alteró ninguna protección ni se atribuyó aprobación humana.
 
 ### Evidencias específicas
 
@@ -71,23 +100,23 @@ Sobre esa combinación se repitieron **301 Django aprobadas en 16,485 s** y **19
 
 ![Postman R01 — petición real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/10-real-peticion-consentimiento.jpg)
 
-**Caso: Postman R01 — petición real. Acción:** Enviar texto ficticio Ana QA con consent=true e include_profile=false. **Esperado:** HTTP 200 y propuesta no persistida de Gemini. **Obtenido:** Cuerpo enviado visible,HTTP 200 y6 pruebas R01 PASS; R02 confirma CV sin guardar. **Alcance demostrado:** Petición/estado/Test Results auténticos, sin mostrar Authorization ni valores del entorno.
+**Caso: Postman R01 — petición real. Acción:** Enviar texto ficticio Ana QA con consent=true e include_profile=false. **Esperado:** HTTP 200 y propuesta no persistida de Gemini. **Obtenido:** Cuerpo enviado visible, HTTP 200 y 6 pruebas R01 PASS; R02 confirma CV sin guardar. **Alcance demostrado:** Petición/estado/Test Results auténticos, sin mostrar Authorization ni valores del entorno.
 
 ![Postman R01 — respuesta real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/09-real-respuesta-http-200.jpg)
 
-**Caso: Postman R01 — respuesta real. Acción:** Inspeccionar la respuesta de la corrida positiva. **Esperado:** JSON compatible, datos aportados y fechas desconocidas nulas. **Obtenido:** Respuesta200 con Ana QA, Universidad QA y Equipo QA, contactos vacíos y fechas null;32 PASS globales. **Alcance demostrado:** Respuesta HTTP real; auditoría backend acredita exactamente1 generación Gemini en esta base.
+**Caso: Postman R01 — respuesta real. Acción:** Inspeccionar la respuesta de la corrida positiva. **Esperado:** JSON compatible, datos aportados y fechas desconocidas nulas. **Obtenido:** Respuesta200 con Ana QA, Universidad QA y Equipo QA, contactos vacíos y fechas null; 32 PASS globales. **Alcance demostrado:** Respuesta HTTP real; auditoría backend acredita exactamente1 generación Gemini en esta base.
 
 ![Postman — permisos y validación](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/02-negativos-20-pass.jpg)
 
-**Caso: Postman — permisos y validación. Acción:** Ejecutar C01–C07 y M01–M02 en Functional/Local, una iteración, sin proveedor configurado. **Esperado:** 401/403/400 y fallback503, sin llamada al proveedor. **Obtenido:** 9 peticiones,20 PASS, 0 fallos/errores/omitidas;1 s 614 ms, media HTTP 19 ms. **Alcance demostrado:** Corrida auténtica de Postman Desktop; no es Newman ni una imagen reconstruida.
+**Caso: Postman — permisos y validación. Acción:** Ejecutar C01–C07 y M01–M02 en Functional/Local, una iteración, sin proveedor configurado. **Esperado:** 401/403/400 y fallback503, sin llamada al proveedor. **Obtenido:** 9 peticiones, 20 PASS, 0 fallos/errores/omitidas; 1 s 614 ms, media HTTP 19 ms. **Alcance demostrado:** Corrida auténtica de Postman Desktop; no es Newman ni una imagen reconstruida.
 
 ![Postman — aceptación positiva](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/08-real-propuesta-test-results.jpg)
 
-**Caso: Postman — aceptación positiva. Acción:** Ejecutar solo R01–R09 con el backend real habilitado. **Esperado:** Generar sin guardar, tres guardados/PDF y404ajeno. **Obtenido:** 9 peticiones,32 PASS,0 fallos/errores/omitidas;3 s 558 ms, media 253 ms. **Alcance demostrado:** Runner Desktop auténtico; exactamente 1 llamada Gemini, 2133,40 ms en backend.
+**Caso: Postman — aceptación positiva. Acción:** Ejecutar solo R01–R09 con el backend real habilitado. **Esperado:** Generar sin guardar, tres guardados/PDF y 404ajeno. **Obtenido:** 9 peticiones, 32 PASS, 0 fallos/errores/omitidas; 3 s 558 ms, media 253 ms. **Alcance demostrado:** Runner Desktop auténtico; exactamente 1 llamada Gemini, 2133, 40 ms en backend.
 
 ![Postman R07–R09 — PDF e aislamiento](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/12-real-minimalista-aislamiento-404.jpg)
 
-**Caso: Postman R07–R09 — PDF e aislamiento. Acción:** Guardar Minimalista, descargar y consultar PDF con otro candidato. **Esperado:** Guardado200,PDF200,otrocandidato404. **Obtenido:** Todas las comprobaciones aprobadas;respuesta 404 sin documento ajeno visible. **Alcance demostrado:** HTTP real y Test Results; la conservación de4usuarios,2 perfiles, 1 oferta y 1 postulación se acredita además por hash de filas antes/después.
+**Caso: Postman R07–R09 — PDF e aislamiento. Acción:** Guardar Minimalista, descargar y consultar PDF con otro candidato. **Esperado:** Guardado200, PDF200, otrocandidato404. **Obtenido:** Todas las comprobaciones aprobadas; respuesta 404 sin documento ajeno visible. **Alcance demostrado:** HTTP real y Test Results; la conservación de4 usuarios, 2 perfiles, 1 oferta y 1 postulación se acredita además por hash de filas antes/después.
 
 ![PDF clasica — descarga real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-clasica-generacion-real-render-1.png)
 

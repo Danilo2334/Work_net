@@ -1,0 +1,5747 @@
+{
+  "date": "2026-11-09",
+  "source_sha": "80bdfa60784c4a15e834b61affceb2a39a8bea47",
+  "stories": [
+    {
+      "number": 2,
+      "title": "HU001 Registro de Usuario y Selección de Rol",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 3,
+      "title": "HU002 Inicio de Sesión",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 4,
+      "title": "HU003 Recuperación de Contraseña",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 5,
+      "title": "HU004 Configuración de Cuenta",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 6,
+      "title": "HU005 Dashboard del Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 7,
+      "title": "HU006 Dashboard de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 8,
+      "title": "HU007 Dashboard de Administrador",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 9,
+      "title": "HU008 Perfil de Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 10,
+      "title": "HU009 Registro de Información de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 11,
+      "title": "HU010 Validación de Cuenta de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 12,
+      "title": "HU011 Subir Currículum",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 13,
+      "title": "HU012 Crear y Editar Currículum con Plantillas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 14,
+      "title": "HU013 Publicación de Oferta de Empleo",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 15,
+      "title": "HU014 Edición de Oferta de Empleo",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 16,
+      "title": "HU015 Cierre y Archivado de Oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 17,
+      "title": "HU016 Búsqueda y Filtrado de Ofertas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 18,
+      "title": "HU017 Guardar Ofertas Favoritas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 19,
+      "title": "HU018 Postulación a Oferta de Empleo",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 20,
+      "title": "HU019 Historial de Postulaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 21,
+      "title": "HU020 Gestión y Filtrado de Postulantes",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 22,
+      "title": "HU021 Cambio de Estado de Postulación",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 23,
+      "title": "HU022 Mensajería Interna",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 24,
+      "title": "HU023 Sistema de Notificaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 25,
+      "title": "HU024 Estadísticas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 26,
+      "title": "HU025 Exportación de Postulantes",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 27,
+      "title": "HU026 Gestión de Administradores y Permisos",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 224,
+      "title": "HU028 Asistente de creación de currículum con IA",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_summary": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "number": 228,
+      "title": "TASK-HU028-04 QA y evidencias del asistente de CV",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 227,
+      "title": "TASK-HU028-03 Integración con editor, plantillas y PDF del currículum",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 226,
+      "title": "TASK-HU028-02 Interfaz de información, revisión y aplicación del borrador con IA",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 225,
+      "title": "TASK-HU028-01 API privada y adaptación del borrador de CV con IA",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 136,
+      "title": "TASK-HU026-05 Probar administradores y 2FA",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 135,
+      "title": "TASK-HU026-04 Integrar gestión administrativa",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 134,
+      "title": "TASK-HU026-03 Implementar 2FA de administradores",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 133,
+      "title": "TASK-HU026-02 Implementar cuentas y permisos",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 132,
+      "title": "TASK-HU026-01 Crear interfaz de administradores",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 131,
+      "title": "TASK-HU025-04 Probar exportaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 130,
+      "title": "TASK-HU025-03 Integrar descarga",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 129,
+      "title": "TASK-HU025-02 Implementar exportación filtrada",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 128,
+      "title": "TASK-HU025-01 Crear controles de exportación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 127,
+      "title": "TASK-HU024-04 Probar estadísticas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 126,
+      "title": "TASK-HU024-03 Integrar métricas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 125,
+      "title": "TASK-HU024-02 Crear endpoints de estadísticas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 124,
+      "title": "TASK-HU024-01 Diseñar visualización de estadísticas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 123,
+      "title": "TASK-HU023-04 Probar notificaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 122,
+      "title": "TASK-HU023-03 Integrar eventos del sistema",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 121,
+      "title": "TASK-HU023-02 Crear modelo y API de notificaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 120,
+      "title": "TASK-HU023-01 Crear centro de notificaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 119,
+      "title": "TASK-HU022-04 Probar mensajería",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 118,
+      "title": "TASK-HU022-03 Integrar envío y lectura",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 117,
+      "title": "TASK-HU022-02 Crear modelos y API de mensajería",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 116,
+      "title": "TASK-HU022-01 Crear interfaz de conversaciones y chat",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 115,
+      "title": "TASK-HU021-04 Probar cambios de estado",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 114,
+      "title": "TASK-HU021-03 Integrar cambio y notificación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 113,
+      "title": "TASK-HU021-02 Implementar API de estados",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 112,
+      "title": "TASK-HU021-01 Crear controles de cambio de estado",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 111,
+      "title": "TASK-HU020-04 Probar gestión de postulantes",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 110,
+      "title": "TASK-HU020-03 Integrar perfil y CV",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 109,
+      "title": "TASK-HU020-02 Crear API de postulantes por oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 108,
+      "title": "TASK-HU020-01 Crear listado y filtros de postulantes",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 107,
+      "title": "TASK-HU019-04 Probar historial",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 106,
+      "title": "TASK-HU019-03 Integrar cambios de estado",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 105,
+      "title": "TASK-HU019-02 Crear API de historial",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 104,
+      "title": "TASK-HU019-01 Crear historial de postulaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 103,
+      "title": "TASK-HU018-04 Probar postulación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 102,
+      "title": "TASK-HU018-03 Integrar postulación y notificación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 101,
+      "title": "TASK-HU018-02 Crear modelo y API de postulaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 100,
+      "title": "TASK-HU018-01 Crear flujo de postulación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 99,
+      "title": "TASK-HU017-04 Probar favoritos",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 98,
+      "title": "TASK-HU017-03 Integrar favoritos",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 97,
+      "title": "TASK-HU017-02 Crear modelo y API de favoritos",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 96,
+      "title": "TASK-HU017-01 Crear interfaz de favoritos",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 95,
+      "title": "TASK-HU016-04 Probar búsqueda",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 94,
+      "title": "TASK-HU016-03 Integrar resultados",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 93,
+      "title": "TASK-HU016-02 Implementar filtros y paginación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 92,
+      "title": "TASK-HU016-01 Crear buscador y filtros",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 91,
+      "title": "TASK-HU015-04 Probar cierre y archivado",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 90,
+      "title": "TASK-HU015-03 Integrar estados en listados",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 89,
+      "title": "TASK-HU015-02 Implementar estados Cerrada/Archivada",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 88,
+      "title": "TASK-HU015-01 Crear acciones de cierre y archivado",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 87,
+      "title": "TASK-HU014-04 Probar edición de oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 86,
+      "title": "TASK-HU014-03 Integrar edición",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 85,
+      "title": "TASK-HU014-02 Implementar API de actualización",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 84,
+      "title": "TASK-HU014-01 Crear pantalla de edición de oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 83,
+      "title": "TASK-HU013-04 Probar publicación de ofertas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 82,
+      "title": "TASK-HU013-03 Integrar publicación de oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 81,
+      "title": "TASK-HU013-02 Crear modelo y API de ofertas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 80,
+      "title": "TASK-HU013-01 Crear formulario de publicación de oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 79,
+      "title": "TASK-HU012-05 Probar creador de CV",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 78,
+      "title": "TASK-HU012-04 Integrar perfil, editor y descarga",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 77,
+      "title": "TASK-HU012-03 Implementar generación de PDF",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 76,
+      "title": "TASK-HU012-02 Crear modelo de currículum generado",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 75,
+      "title": "TASK-HU012-01 Diseñar selector y editor de plantillas de CV",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 74,
+      "title": "TASK-HU011-04 Probar carga de currículum",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 73,
+      "title": "TASK-HU011-03 Integrar carga y reemplazo",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 72,
+      "title": "TASK-HU011-02 Implementar almacenamiento y validación de PDF",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 71,
+      "title": "TASK-HU011-01 Crear interfaz para subir CV",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 70,
+      "title": "TASK-HU010-04 Probar validación empresarial",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 69,
+      "title": "TASK-HU010-03 Integrar validación y notificación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 68,
+      "title": "TASK-HU010-02 Implementar aprobación/rechazo",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 67,
+      "title": "TASK-HU010-01 Crear vista de empresas pendientes",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 66,
+      "title": "TASK-HU009-04 Probar registro empresarial",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 65,
+      "title": "TASK-HU009-03 Integrar envío y pantalla de espera",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 64,
+      "title": "TASK-HU009-02 Crear modelo y API empresarial",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 63,
+      "title": "TASK-HU009-01 Crear formulario de información empresarial",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 62,
+      "title": "TASK-HU008-04 Probar perfil de candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 61,
+      "title": "TASK-HU008-03 Integrar perfil y fotografía",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 60,
+      "title": "TASK-HU008-02 Crear modelos y API del perfil",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 59,
+      "title": "TASK-HU008-01 Crear formulario de Perfil de Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 58,
+      "title": "TASK-HU007-04 Probar permisos del administrador",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 57,
+      "title": "TASK-HU007-03 Integrar avisos de nuevas empresas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 56,
+      "title": "TASK-HU007-02 Crear API de métricas administrativas",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 55,
+      "title": "TASK-HU007-01 Diseñar Dashboard de Administrador",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 54,
+      "title": "TASK-HU006-04 Probar Dashboard de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 53,
+      "title": "TASK-HU006-03 Integrar dashboard con datos reales",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 52,
+      "title": "TASK-HU006-02 Crear API resumen de empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 51,
+      "title": "TASK-HU006-01 Diseñar Dashboard de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 50,
+      "title": "TASK-HU005-04 Probar Dashboard del Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 49,
+      "title": "TASK-HU005-03 Integrar datos reales en el dashboard",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 48,
+      "title": "TASK-HU005-02 Crear API resumen del candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 47,
+      "title": "TASK-HU005-01 Diseñar Dashboard del Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 46,
+      "title": "TASK-HU004-04 Integrar y probar configuración",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788",
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 45,
+      "title": "TASK-HU004-03 Implementar preferencias de notificaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 44,
+      "title": "TASK-HU004-02 Implementar endpoints de configuración",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 43,
+      "title": "TASK-HU004-01 Crear interfaz de configuración de cuenta",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 42,
+      "title": "TASK-HU003-04 Probar recuperación y expiración",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 41,
+      "title": "TASK-HU003-03 Integrar recuperación Flutter-Django",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 40,
+      "title": "TASK-HU003-02 Implementar tokens y correo de recuperación",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 39,
+      "title": "TASK-HU003-01 Crear pantallas de recuperación de contraseña",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 38,
+      "title": "TASK-HU002-05 Probar criterios de aceptación del login",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 37,
+      "title": "TASK-HU002-04 Manejar estados especiales de empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 36,
+      "title": "TASK-HU002-03 Implementar sesión y redirección por rol",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 35,
+      "title": "TASK-HU002-02 Implementar autenticación y endpoint de login",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 34,
+      "title": "TASK-HU002-01 Crear pantalla de inicio de sesión en Flutter",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 33,
+      "title": "TASK-HU001-05 Probar criterios de aceptación de registro",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 32,
+      "title": "TASK-HU001-04 Integrar registro Flutter con Django",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    },
+    {
+      "number": 31,
+      "title": "TASK-HU001-03 Implementar verificación de correo",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 30,
+      "title": "TASK-HU001-02 Implementar usuario, roles y API de registro",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "Danilo2334"
+      ]
+    },
+    {
+      "number": 29,
+      "title": "TASK-HU001-01 Crear interfaz de registro en Flutter",
+      "state": "closed",
+      "state_reason": "completed",
+      "project_status": "Done",
+      "assignees": [
+        "francisco3788"
+      ]
+    }
+  ],
+  "hu027": [
+    {
+      "number": 28,
+      "state": "open",
+      "project_status": "Backlog",
+      "scope": "future version, not part of closed delivery"
+    },
+    {
+      "number": 137,
+      "state": "open",
+      "project_status": "Backlog",
+      "scope": "future version, not part of closed delivery"
+    },
+    {
+      "number": 138,
+      "state": "open",
+      "project_status": "Backlog",
+      "scope": "future version, not part of closed delivery"
+    },
+    {
+      "number": 139,
+      "state": "open",
+      "project_status": "Backlog",
+      "scope": "future version, not part of closed delivery"
+    },
+    {
+      "number": 140,
+      "state": "open",
+      "project_status": "Backlog",
+      "scope": "future version, not part of closed delivery"
+    },
+    {
+      "number": 141,
+      "state": "open",
+      "project_status": "Backlog",
+      "scope": "future version, not part of closed delivery"
+    }
+  ],
+  "comments": [
+    {
+      "task": 228,
+      "id": 6740954963,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 227,
+      "id": 6740954688,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 9,
+      "rendered_images": 9,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 226,
+      "id": 6740954415,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 9,
+      "rendered_images": 9,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 225,
+      "id": 6740954009,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 136,
+      "id": 6734104096,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 8,
+      "rendered_images": 8,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 135,
+      "id": 6734103787,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 8,
+      "rendered_images": 8,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 134,
+      "id": 6734103540,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 133,
+      "id": 6734103236,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 132,
+      "id": 6734102930,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 8,
+      "rendered_images": 8,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 131,
+      "id": 6732594259,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 8,
+      "rendered_images": 8,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 130,
+      "id": 6732593953,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 129,
+      "id": 6732593623,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 128,
+      "id": 6732593307,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 127,
+      "id": 6731890798,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 126,
+      "id": 6731890587,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 125,
+      "id": 6731890376,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 124,
+      "id": 6731890135,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 123,
+      "id": 6730819202,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 122,
+      "id": 6730818921,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 121,
+      "id": 6730818706,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 120,
+      "id": 6730818473,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 119,
+      "id": 6729704599,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 118,
+      "id": 6729704395,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 117,
+      "id": 6729704167,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 116,
+      "id": 6729703915,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 115,
+      "id": 6729703738,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 114,
+      "id": 6729703530,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 113,
+      "id": 6729703288,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 112,
+      "id": 6729702948,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 111,
+      "id": 6726057526,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 12,
+      "rendered_images": 12,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 110,
+      "id": 6726057346,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 9,
+      "rendered_images": 9,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 109,
+      "id": 6726057151,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 12,
+      "rendered_images": 12,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 108,
+      "id": 6726056988,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 11,
+      "rendered_images": 11,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 107,
+      "id": 6726056804,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 10,
+      "rendered_images": 10,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 106,
+      "id": 6726056648,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 9,
+      "rendered_images": 9,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 105,
+      "id": 6726051608,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 10,
+      "rendered_images": 10,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 104,
+      "id": 6726051397,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 103,
+      "id": 6724921065,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 14,
+      "rendered_images": 14,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 102,
+      "id": 6724920715,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 8,
+      "rendered_images": 8,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 101,
+      "id": 6724918766,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 11,
+      "rendered_images": 11,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 100,
+      "id": 6724917102,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 8,
+      "rendered_images": 8,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 99,
+      "id": 6723918109,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 11,
+      "rendered_images": 11,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 98,
+      "id": 6723917922,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 97,
+      "id": 6723913866,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 96,
+      "id": 6723913633,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 95,
+      "id": 6720588402,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 11,
+      "rendered_images": 11,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 94,
+      "id": 6720473704,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 93,
+      "id": 6720582888,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 92,
+      "id": 6720473511,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 91,
+      "id": 6713610614,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 29,
+      "rendered_images": 29,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 90,
+      "id": 6713610102,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 89,
+      "id": 6713609559,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 16,
+      "rendered_images": 16,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 88,
+      "id": 6713608969,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 87,
+      "id": 6713015077,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 19,
+      "rendered_images": 19,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 86,
+      "id": 6713014288,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 85,
+      "id": 6713013329,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 16,
+      "rendered_images": 16,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 84,
+      "id": 6713011975,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 83,
+      "id": 6679338987,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 82,
+      "id": 6679338031,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 3,
+      "rendered_images": 3,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 81,
+      "id": 6679337039,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 80,
+      "id": 6679336067,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 79,
+      "id": 6677474473,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 25,
+      "rendered_images": 25,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 78,
+      "id": 6677451237,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 77,
+      "id": 6677474163,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 11,
+      "rendered_images": 11,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 76,
+      "id": 6677473873,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 9,
+      "rendered_images": 9,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 75,
+      "id": 6677450277,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 74,
+      "id": 6393909202,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 73,
+      "id": 6393908849,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 72,
+      "id": 6393909036,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 71,
+      "id": 6393908663,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 70,
+      "id": 6260279554,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 69,
+      "id": 6260294733,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 68,
+      "id": 6272925177,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 67,
+      "id": 6260294278,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 66,
+      "id": 6260278891,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 65,
+      "id": 6260293907,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 64,
+      "id": 6272924656,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 1,
+      "rendered_images": 1,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 63,
+      "id": 6260293510,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 62,
+      "id": 6246223309,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 12,
+      "rendered_images": 12,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 61,
+      "id": 6246221840,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 60,
+      "id": 6272924156,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 14,
+      "rendered_images": 14,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 59,
+      "id": 6246221677,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 58,
+      "id": 6260277494,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 57,
+      "id": 6260292130,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 56,
+      "id": 6272923641,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 1,
+      "rendered_images": 1,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 55,
+      "id": 6260291727,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 54,
+      "id": 6260276785,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 17,
+      "rendered_images": 17,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 53,
+      "id": 6260291383,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 16,
+      "rendered_images": 16,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 52,
+      "id": 6272923113,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 1,
+      "rendered_images": 1,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 51,
+      "id": 6260291090,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 16,
+      "rendered_images": 16,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 50,
+      "id": 6245480602,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 16,
+      "rendered_images": 16,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 49,
+      "id": 6245479981,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 48,
+      "id": 6272922606,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 1,
+      "rendered_images": 1,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 47,
+      "id": 6245479801,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 15,
+      "rendered_images": 15,
+      "hu001_model_keywords_present": true
+    },
+    {
+      "task": 46,
+      "id": 6245716821,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 45,
+      "id": 6272922011,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 9,
+      "rendered_images": 9,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 44,
+      "id": 6272921535,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 16,
+      "rendered_images": 16,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 43,
+      "id": 6245716590,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 42,
+      "id": 6245480431,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 41,
+      "id": 6245479640,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 3,
+      "rendered_images": 3,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 40,
+      "id": 6272921015,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 6,
+      "rendered_images": 6,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 39,
+      "id": 6245479481,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 1,
+      "rendered_images": 1,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 38,
+      "id": 6245480254,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 37,
+      "id": 6260288501,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 36,
+      "id": 6245479333,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 35,
+      "id": 6272920507,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 34,
+      "id": 6245479135,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 33,
+      "id": 6245223825,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 4,
+      "rendered_images": 4,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 32,
+      "id": 6245224132,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 31,
+      "id": 6272920035,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 7,
+      "rendered_images": 7,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 30,
+      "id": 6272919540,
+      "author": "Danilo2334",
+      "count": 1,
+      "markdown_images": 5,
+      "rendered_images": 5,
+      "hu001_model_keywords_present": false
+    },
+    {
+      "task": 29,
+      "id": 6259568713,
+      "author": "francisco3788",
+      "count": 1,
+      "markdown_images": 2,
+      "rendered_images": 2,
+      "hu001_model_keywords_present": false
+    }
+  ],
+  "evidence": {
+    "immutable_git_images": 418,
+    "missing_objects": [],
+    "external_images": [
+      "https://github.com/user-attachments/assets/0592617f-29bb-4aff-9ef4-06600897d1e2",
+      "https://github.com/user-attachments/assets/0f9a31b5-afa4-410e-8b8f-8069a51c51cf",
+      "https://github.com/user-attachments/assets/29cf9847-439c-4cbf-a5b2-a103a8ff3b12",
+      "https://github.com/user-attachments/assets/2aaca649-7a12-4e7d-85a7-63aad5e4b036",
+      "https://github.com/user-attachments/assets/2bc7fca4-e1e7-4b09-8c3c-66b6afed7747",
+      "https://github.com/user-attachments/assets/3d182b90-f7e4-430b-8eff-eef3d9fb82b8",
+      "https://github.com/user-attachments/assets/45f65439-b183-45c2-b384-9d0ea2651566",
+      "https://github.com/user-attachments/assets/63edd6a3-fb72-460b-aaab-87e4a59d6c55",
+      "https://github.com/user-attachments/assets/6a8606ec-3597-4400-af5a-8d0a4eaedd4d",
+      "https://github.com/user-attachments/assets/6cd50d30-3fbe-4a3b-94db-f14189fe4554",
+      "https://github.com/user-attachments/assets/90bd5dc8-7342-4feb-9891-bf7cbf965cce",
+      "https://github.com/user-attachments/assets/9f5c6eb8-76cb-4d33-9b8e-610adf9110ae",
+      "https://github.com/user-attachments/assets/a3f87b47-8bab-41c0-8bf5-0348304612fe",
+      "https://github.com/user-attachments/assets/b8da4d07-f894-47dc-8bfd-cc8e02715fa4",
+      "https://github.com/user-attachments/assets/bc108269-77c6-4886-945b-c6e01102a554",
+      "https://github.com/user-attachments/assets/bc7abcc9-79ea-42ff-ac65-bc6b4316c203",
+      "https://github.com/user-attachments/assets/bff8f342-b5fb-45eb-9b35-66f37ef853cc",
+      "https://github.com/user-attachments/assets/c0e988c2-bfa6-413c-821a-21714914935e",
+      "https://github.com/user-attachments/assets/e1b187b8-95e4-4a51-aefb-a9461e80c7b2",
+      "https://github.com/user-attachments/assets/e90908db-00d4-4ce1-a0e2-098be48ea585",
+      "https://github.com/user-attachments/assets/eea47bdc-aef3-4338-8f39-b54b912085e8",
+      "https://github.com/user-attachments/assets/f3ba52c9-47af-4ee1-935a-f81541684a1e",
+      "https://github.com/user-attachments/assets/f3f0ab64-6f6a-4611-83aa-b9bb687d40ae",
+      "https://github.com/user-attachments/assets/f3fc3c45-77c8-457e-9805-592d5b5bd6ca",
+      "https://github.com/user-attachments/assets/f50a0ba9-4792-44b7-8635-4803a7440d62",
+      "https://github.com/user-attachments/assets/ff62008c-980a-45d9-9349-188110c724d1",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-escritorio.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-movil.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-escritorio.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-movil.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/aprobacion-confirmacion.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-escritorio.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-movil.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-vacio.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-logo.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-pendiente-escritorio.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/rechazo-motivo-obligatorio.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-confirmado.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-correo-duplicado.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-registro-duplicado.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-verificacion-pruebas.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-verificacion-respuesta.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu002-token-revocado.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu003-cambio-confirmado.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu003-solicitud.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-cuenta-eliminada-401.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-eliminacion.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-nombre-persistente.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-preferencia-persistente.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-token-anterior.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu005-resumen.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu006-resumen.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu007-resumen.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-permisos.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu009-informacion-persistente.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu010-aprobacion.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png",
+      "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu010-version-obsoleta.png"
+    ],
+    "git_blob_targets": [
+      {
+        "sha": "0ee9603e81496c9280018d9ddd1cdb3f129106d7",
+        "path": "frontend/docs/evidencias/hu011/01-escritorio-vacio.png",
+        "exists": true
+      },
+      {
+        "sha": "0ee9603e81496c9280018d9ddd1cdb3f129106d7",
+        "path": "frontend/docs/evidencias/hu011/04-pdf-reemplazado.png",
+        "exists": true
+      },
+      {
+        "sha": "0ee9603e81496c9280018d9ddd1cdb3f129106d7",
+        "path": "frontend/docs/evidencias/hu011/07-persistencia-recarga.png",
+        "exists": true
+      },
+      {
+        "sha": "0ee9603e81496c9280018d9ddd1cdb3f129106d7",
+        "path": "frontend/docs/evidencias/hu011/11-sesion-caducada.png",
+        "exists": true
+      },
+      {
+        "sha": "0ee9603e81496c9280018d9ddd1cdb3f129106d7",
+        "path": "frontend/docs/evidencias/hu011/13-movil-contenido-pdf.png",
+        "exists": true
+      },
+      {
+        "sha": "0ee9603e81496c9280018d9ddd1cdb3f129106d7",
+        "path": "frontend/docs/evidencias/hu011/15-cancelacion-nativa-windows.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/10-runner-90-tests-aprobados.jpg",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/13-alta-verificacion-principal-protegido.jpg",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/15-gestor-limites-baja-y-revocacion.jpg",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/16-reautenticacion-permisos-y-no-intervencion.jpg",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/17-recuperacion-revoca-y-exige-nuevo-totp.jpg",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/19-respuesta-401-despues-de-logout.jpg",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V04-autenticador-confirmado-codigos-ocultos.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V05-hu007-dashboard-conteos-accesos.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V06-listado-nombre-correo-rol-estado-principal-protegido.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V07-alta-confirmada-verificacion-y-mfa-pendientes.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V08-permisos-retirados-guardados.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V09-cuenta-desactivada.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V10-error-carga-inyectado-identificado.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V11-movil-configuracion-permisos-guardar.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V14-eventos-altas-y-doble-factor.png",
+        "exists": true
+      },
+      {
+        "sha": "1dd49544a7def685a414b7cda931b694f8ada8ae",
+        "path": "backend/docs/evidencias/hu026-20261109/HU026-V15-recuperacion-obliga-a-reenrolar.png",
+        "exists": true
+      },
+      {
+        "sha": "24874d632129d4045fb6e222b227e05c6616c953",
+        "path": "frontend/docs/evidencias/cierre-hu001-hu026-20261109/A05-selector-saf-pdf-sin-archivos-previos.jpg",
+        "exists": true
+      },
+      {
+        "sha": "24874d632129d4045fb6e222b227e05c6616c953",
+        "path": "frontend/docs/evidencias/cierre-hu001-hu026-20261109/A06-retorno-tras-cancelar-sin-archivo.jpg",
+        "exists": true
+      },
+      {
+        "sha": "24874d632129d4045fb6e222b227e05c6616c953",
+        "path": "frontend/docs/evidencias/cierre-hu001-hu026-20261109/A07-selector-saf-guardar-pdf.jpg",
+        "exists": true
+      },
+      {
+        "sha": "24874d632129d4045fb6e222b227e05c6616c953",
+        "path": "frontend/docs/evidencias/cierre-hu001-hu026-20261109/A08-descarga-pdf-confirmada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "24874d632129d4045fb6e222b227e05c6616c953",
+        "path": "frontend/docs/evidencias/cierre-hu001-hu026-20261109/CV-Android-render-1.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu004/cuenta-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu004/eliminacion-completada.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu004/eliminacion-confirmacion-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu004/nombre-guardado.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu004/preferencias-guardadas.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu008/fotografia-guardada.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu008/fotografia-invalida.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu008/perfil-completo-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "2970dea6ae115177e7d6044ad1f084acf4818730",
+        "path": "frontend/docs/evidencias/hu008/registros-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+        "path": "backend/docs/evidencias/hu013/desktop-resumen-20261106.png",
+        "exists": true
+      },
+      {
+        "sha": "3959d08385a8fd14161c53216179f3a01e769d42",
+        "path": "backend/docs/evidencias/hu012/desktop-resumen-20261106.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/00-resumen-desktop.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/01-estado-enviada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/02-estado-en-revision.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/03-estado-aceptada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/04-estado-rechazada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/05-historial-pagina-dos.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/06-privacidad-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/07-seleccion-ofertas-propias.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/08-listado-propio-paginado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/09-nombre-fecha-estado-y-cv.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/10-filtro-experiencia.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/11-filtro-educacion.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/12-filtro-habilidad.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/13-filtros-combinados.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/14-resultado-vacio.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/15-privacidad-empresa-oferta-ajena.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/17-perfil-experiencia-educacion-habilidades.jpg",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V01-acceso-dashboard.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V01-historial-estados.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V02-detalle-enviada.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V03-detalle-revision-actor-qa.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V04-historial-aceptada-actor-qa.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V05-detalle-rechazada-actor-qa.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V06-pagina-dos-historicos.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V07-historial-nueva-sesion.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V08-otro-candidato-vacio.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V09-recuperacion-real.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V11-detalle-movil-rechazada.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU019-V11-historial-movil-rechazada.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V01-acceso-dashboard-empresa.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V01-selector-conservadas.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V04-filtros-combinados.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V05-cambio-reinicia-pagina.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V05-filtro-orden-pagina-dos.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V06-perfil-actual-autorizado.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V08-pdf-generated.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V08-pdf-uploaded.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V09-oferta-ajena-404.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V11-recuperacion-real-lista.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V12-lista-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V12-perfil-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "3d26c94572a0d335b726b4799f4f4b4ca46be8c9",
+        "path": "frontend/docs/evidencias/hu019-hu020-20261108/HU020-V13-historico-sin-cv.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/02-combinados-filas-p06.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/04-relevancia-filas-p03.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/06-salario-opcional-p01.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/08-rango-inclusivo-p05.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/11-fecha-publicacion-p09.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/12-pagina-dos-p10.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/13-ultima-pagina-p11.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/14-vacio-p12.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/16-rango-invalido-p14.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/17-no-finito-p16.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/19-limite-pagina-p21.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/22-sin-sesion-p24.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/25-cerrada-excluida-p27.png",
+        "exists": true
+      },
+      {
+        "sha": "3d4e53d7cb880e34a237fcd6ac60cc9304c4b849",
+        "path": "backend/docs/evidencias/hu016-20261108/27-archivada-excluida-p29.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/01-runner-17-casos.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/02-carga-pdf-valido.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/04-reemplazo-persistido.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/05-pdf-corrupto.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/07-candidato-ajeno.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/08-eliminacion-persistida.png",
+        "exists": true
+      },
+      {
+        "sha": "47d5f1ec039d8f18321d8fafe9ff2ed0b2568493",
+        "path": "backend/docs/evidencias/hu011/10-candidato-sin-verificar.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/00-resumen-desktop.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/01-postulacion-cv-subido.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/02-reintento-sin-duplicado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/03-postulacion-cv-generado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/05-avisos-empresa-destinataria.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/06-otra-empresa-sin-avisos.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/07-privacidad-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/08-privacidad-empresa.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/09-cv-ajeno-rechazado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/10-version-cv-desactualizada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/11-oferta-cerrada-tras-formulario.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/12-oferta-archivada-tras-formulario.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/13-cv-eliminado-rechazado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/15-historial-generado-tras-archivar.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/16-historial-subido-tras-cerrar.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "backend/docs/evidencias/hu018-20261108/18-copia-generada-inmutable.jpg",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V01-selector-dos-cv.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V02-confirmacion-uploaded.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V02-revision-uploaded.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V03-confirmacion-generated.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V04-historial-nueva-sesion.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V06-avisos-empresa-destinataria.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V06-otra-empresa-sin-avisos.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V07-cierre-posterior-formulario-rechazado.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V08-archivado-posterior-formulario-rechazado.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V09-retorno-oferta-despues-crear-cv.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V10-cv-cambio-version-rechazado.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V13-reconciliacion-real-sin-reenvio.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V16-historial-con-postulaciones-conservadas.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V16-pdf-generated.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V16-pdf-uploaded.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V17-historial-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V17-vencida-guardada-no-postulable-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "55264de29a1fe7f8ea74f3c3311ce978044767b0",
+        "path": "frontend/docs/evidencias/hu018-20261108/HU018-V18-sesion-401-real.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V01-sin-configuracion-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V02-editor-manual-conservado-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V03-consentimiento-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V04-propuesta-doble-controlado-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V05-borrador-sin-autoguardado-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V06-consentimiento-movil-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "606ce394290562db22a402ce1d56f50be1acb36f",
+        "path": "frontend/docs/evidencias/hu028-20261109/HU028-V07-propuesta-movil-doble-controlado-render-flutter.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/00-resumen-desktop.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/01-estado-revision.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/02-aviso-real-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/03-conflicto-version.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/06-privacidad-empresa-ajena.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/07-contacto-contexto-autorizado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/08-envio-empresa-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/12-mensaje-nuevo-sigue-pendiente.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "backend/docs/evidencias/hu021-hu022-20261108/14-privacidad-conversacion-ajena.jpg",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V01-controles-y-contexto-propio.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V02-cancelacion-sin-modificar.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V04-aviso-real-recibido-candidato.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V04-historial-actualizado-cambio-empresarial.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V05-aceptada-sin-comentario.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V11-conflicto-sin-sobrescribir.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU021-V12-rechazo-confirmado-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V01-lista-contactos-y-contexto.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V04-nuevo-mensaje-conserva-pendiente.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V06-conversacion-bidireccional-candidato.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V07-respuesta-candidata-recibida-empresa.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V08-recibo-por-get-sin-duplicar.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V11-busqueda-conservada-pagina-dos.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/HU022-V16-respuesta-movil-recibida-empresa.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/HU005-C01-dashboard-escritorio-accesos.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/HU005-C02-dashboard-movil-acceso-y-contador.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/HU005-C03-clic-real-mensajes-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "61854161b28133eef9244a13e35c9857cc90df32",
+        "path": "frontend/docs/evidencias/hu021-hu022-20261108/complemento-hu005/HU005-C04-contador-dashboard-despues-de-leer.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/02-negativos-20-pass.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/03-permisos-403.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/05-sin-proveedor-503.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/08-real-propuesta-test-results.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/09-real-respuesta-http-200.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/10-real-peticion-consentimiento.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "backend/docs/evidencias/hu028-real-20261109/postman/12-real-minimalista-aislamiento-404.jpg",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-E429-error-429-inyectado-identificado.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V03-texto-consentimiento-perfil-optativo.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V04-aplicada-sin-guardar-conserva-plantilla.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V04-propuesta-real-faltantes-revision-obligatoria.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V05-edicion-y-guardado-expresos.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-consentimiento-perfil-propio.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-descartada-cv-previo-intacto.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/HU028-V09-sesion-revocada-sin-propuesta-privada.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-clasica-generacion-real-render-1.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-minimalista-generacion-real-render-1.png",
+        "exists": true
+      },
+      {
+        "sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+        "path": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-moderna-generacion-real-render-1.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/administracion-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/administracion-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/aprobacion-confirmacion.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/candidato-regresion.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-dashboard-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-dashboard-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-dashboard-vacio.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-logo.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-pendiente-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/empresa-reenvio.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/rechazo-motivo-obligatorio.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png",
+        "exists": true
+      },
+      {
+        "sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "path": "frontend/docs/evidencias/revision-sprint/solicitudes-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/00-resumen-desktop.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/01-historial-y-contador.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/02-aviso-nueva-postulacion-empresa.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/03-aviso-cambio-estado-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/04-aviso-mensaje-recibido.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/05-aviso-no-marca-mensaje.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/06-aviso-nuevo-conservado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/07-preferencias-solo-eventos-futuros.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/09-aprobacion-propia.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/11-rechazo-conserva-dashboard-restringido.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "backend/docs/evidencias/hu023-20261108/12-lote-ajeno-rechazado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V01-historial-y-contador-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V05-aviso-real-cambio-de-estado.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V08-conversacion-del-aviso.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V11-empresa-recibe-nueva-postulacion.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V13-rechazo-propio-sin-dashboard.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V14-lectura-y-contador-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V14-preferencias-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "6aef68192d6412bbeee4f798d247aba7ade87810",
+        "path": "frontend/docs/evidencias/hu023-20261108/HU023-V16-error-inyectado-identificado.png",
+        "exists": true
+      },
+      {
+        "sha": "75f2f1afc35f207dfddfe63afd75e8eb8662a73b",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/18-historico-sin-cv.jpg",
+        "exists": true
+      },
+      {
+        "sha": "75f2f1afc35f207dfddfe63afd75e8eb8662a73b",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/19-copia-subida-conservada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "75f2f1afc35f207dfddfe63afd75e8eb8662a73b",
+        "path": "backend/docs/evidencias/hu019-hu020-20261108/20-copia-generada-conservada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/01-agregar-activa.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/02-repetir-agregado.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/07-retiro-no-modifica-ajeno.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/08-permiso-empresa.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/10-archivar-endpoint-real.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/11-guardada-archivada.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/12-guardada-cerrada.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/14-archivada-excluida.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/16-retirar-archivada.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/17-vacio-real.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "backend/docs/evidencias/hu017-20261108/19-otro-candidato-conserva-cerrada.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V01-dashboard-acceso-y-acciones.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V02-guardar-desde-busqueda.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V02-retiro-reflejado-en-busqueda.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V03-persistencia-recarga.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V05-vacio-real.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V06-503-inyectado.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V07-guardar-en-ofertas-recientes.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V09-reconciliacion-sin-duplicados.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V11-pagina-dos-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V12-inactivas-cerrada-archivada.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V13-retirar-inactivas-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "842a89134cd2813488732eb3e8e0933b13333836",
+        "path": "frontend/docs/evidencias/hu017-20261108/HU017-V14-sesion-401-real.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu001-registro-duplicado.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu001-verificacion-pruebas.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu001-verificacion-respuesta.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu002-token-revocado.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu003-cambio-confirmado.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu003-solicitud.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu004-cuenta-eliminada-401.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu004-eliminacion.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu004-nombre-persistente.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu004-preferencia-persistente.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu004-token-anterior.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu005-resumen.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu006-resumen.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu007-resumen.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-permisos.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu009-informacion-persistente.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu010-aprobacion.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png",
+        "exists": true
+      },
+      {
+        "sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "path": "backend/docs/evidencias/postman/capturas/hu010-version-obsoleta.png",
+        "exists": true
+      },
+      {
+        "sha": "91207ad37f13f1dd9f647264b48717ae514cb2f7",
+        "path": "frontend/docs/evidencias/hu011/02-carga-confirmada.png",
+        "exists": true
+      },
+      {
+        "sha": "91207ad37f13f1dd9f647264b48717ae514cb2f7",
+        "path": "frontend/docs/evidencias/hu011/04-pdf-reemplazado.png",
+        "exists": true
+      },
+      {
+        "sha": "91207ad37f13f1dd9f647264b48717ae514cb2f7",
+        "path": "frontend/docs/evidencias/hu011/07-persistencia-recarga.png",
+        "exists": true
+      },
+      {
+        "sha": "91207ad37f13f1dd9f647264b48717ae514cb2f7",
+        "path": "frontend/docs/evidencias/hu011/10-movil-visor.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V01-carga-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V01-dashboard-acceso.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V02-relevancia.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V03-pagina-2-filtros-conservados.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V04-vacio-real.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V06-validacion-rango.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V09-red-inyectada.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V09-reintento-real.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V10-filtros-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V10-resultados-pagina-2-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V12-cerrada-excluida-real.png",
+        "exists": true
+      },
+      {
+        "sha": "91b4cc787d938fcc689396b8471681cda044c197",
+        "path": "frontend/docs/evidencias/hu016-20261108/HU016-V13-sesion-401-real.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/01-reconsulta-json-pm262.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/02-precarga-perfil-pm255.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/04-guardar-json-pm258.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/05-plantilla-moderna-pm259.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/06-descarga-moderna.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/07-plantilla-minimalista-pm260.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/08-descarga-minimalista.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/09-edicion-secciones-pm263.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/10-certificacion-extra-pm263.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/11-previa-clasica-pm265.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/12-previa-moderna-pm266.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/13-previa-minimalista-pm267.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/14-descarga-clasica-pm268.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/15-descarga-headers-pm268.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/16-sin-sesion-pm269.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/17-otra-cuenta-pm270.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/18-plantilla-invalida-pm271.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/19-reconsulta-tras-errores-pm275.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu012/20-empresa-rechazada.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu013/01-catalogos.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu013/02-publicacion-201.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu013/03-empresa-pendiente-403.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/01-listado-activo.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/01b-listado-propietarios-estados.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/02-precarga.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/03-patch-valido.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/04-reconsulta-persistida.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/05-invalido-400.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/06-sin-escritura-parcial.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/07-sin-sesion-401.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/08-candidato-403.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/09-empresa-pendiente-403.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/10-oferta-ajena-404.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/11-patch-ajeno-404.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/12-archivada-409.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/13-cerrada-409.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/14-borrador-409.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu014/15-vencida-409.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/01-activas-iniciales.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/02-conservadas-iniciales.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/03-confirmacion-invalida-400.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/04-invalido-sin-cambio.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/05-cierre-200.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/06-archivado-200.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/07-activas-exclusion.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/08-historial-count.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/08b-historial-estados.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/09-transicion-incompatible-409.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/10-oferta-ajena-404.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/11-sin-sesion-401.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/12-candidato-403.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/13-empresa-pendiente-403.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/14-reintento-idempotente.png",
+        "exists": true
+      },
+      {
+        "sha": "94481398738b9f7e43a4e47d7da1cce619253cc0",
+        "path": "backend/docs/evidencias/postman/20261108/hu015/15-relaciones-dashboard.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V01-activas-escritorio.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V02-confirmacion-archivar.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V03-cerrada-excluida.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V04-archivada-persistida.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V05-confirmacion-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V14-reintento-idempotente.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/hu015-20261107/integracion/HU015-V17-sesion-401.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V01-precarga.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V04-plantilla.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V05-salida.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V07-pdf-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V08-pdf-secciones.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V09-503-controlado.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU012-V12-reentrada.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V01-formulario.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V03-obligatorios-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V04-salario.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V05-confirmacion.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V05-dashboard-3.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V07-red-borrador.png",
+        "exists": true
+      },
+      {
+        "sha": "9a9dfb8dd382c4e910e51ace514cfe186cbe336b",
+        "path": "frontend/docs/evidencias/retoma-20261107/integracion/HU013-V11-403.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/00-resumen-desktop.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/01-conteos-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/02-totales-empresa-primera-pagina.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/03-segunda-pagina-total-conservado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/05-cambio-real-reflejado-candidato.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/06-cierre-conserva-postulaciones.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/07-dashboard-coherente-hu006.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/08-rol-ajeno-rechazado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/09-empresa-pendiente-rechazada-por-permiso.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/10-pagina-invalida.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "backend/docs/evidencias/hu024-20261108/11-sesion-revocada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V01-conteos-y-estados-candidato.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V02-retorno-candidato-actualizado.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V04-totales-empresa-primera-pagina.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V06-postulantes-paginados-retorno-contextual.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V06-retorno-empresa-tras-alta-real.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V07-dashboard-actualizado-al-volver.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V09-empresa-movil-segunda-pagina.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V11-vacio-movil-sin-dividir-por-cero.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V12-error-inyectado-identificado.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V15-hu006-accesos-funcionales.png",
+        "exists": true
+      },
+      {
+        "sha": "9d0bbb447f99d251ff0fe1e3a5576931e9262164",
+        "path": "frontend/docs/evidencias/hu024-20261108/HU024-V15-hu006-estadisticas-integradas.png",
+        "exists": true
+      },
+      {
+        "sha": "b0351ec2ef246787bd3869dedc39a8f47b783078",
+        "path": "frontend/docs/evidencias/hu014-20261107/HU014-V04-persistencia.png",
+        "exists": true
+      },
+      {
+        "sha": "b0351ec2ef246787bd3869dedc39a8f47b783078",
+        "path": "frontend/docs/evidencias/hu014-20261107/HU014-V05-persistencia-movil.png",
+        "exists": true
+      },
+      {
+        "sha": "b0351ec2ef246787bd3869dedc39a8f47b783078",
+        "path": "frontend/docs/evidencias/hu014-20261107/HU014-V08-red-borrador.png",
+        "exists": true
+      },
+      {
+        "sha": "b0351ec2ef246787bd3869dedc39a8f47b783078",
+        "path": "frontend/docs/evidencias/hu014-20261107/HU014-V12-no-editable-4.png",
+        "exists": true
+      },
+      {
+        "sha": "b0351ec2ef246787bd3869dedc39a8f47b783078",
+        "path": "frontend/docs/evidencias/hu014-20261107/HU014-V15-sesion-401.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-autorizada.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/consulta-sin-crear-perfil.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/empresa-ajena.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/empresa-sin-verificar.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/fotografia-privada.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/postulacion-retirada.png",
+        "exists": true
+      },
+      {
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "path": "backend/docs/evidencias/postman/capturas/hu008-seleccion/resumen-25-casos.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/00-resumen-desktop.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/01-csv-completo-y-test-results.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/03-pdf-metadatos-autorizados.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/04-filtros-combinados-cuatro-coincidencias.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/05-csv-formulas-neutralizadas.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/06-sin-datos-no-genera-archivo.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/07-parametro-pagina-rechazado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/08-candidato-no-autorizado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/10-oferta-ajena-404.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "backend/docs/evidencias/hu025-20261108/11-sesion-revocada.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/A04-controles-exportacion.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/A05-selector-csv.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/A06-csv-confirmado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/A08-pdf-confirmado.jpg",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V01-controles-alcance-todas-las-paginas.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V02-csv-descargado-14-coincidencias.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V04-pagina2-exporta-todas-sin-cambiar-consulta.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V07-vacio-controles-deshabilitados.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V09-movil-pdf-real.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V10-error-exportacion-inyectado-identificado.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/HU025-V10-reintento-http200-datos-conservados.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/PDF-todas-1.png",
+        "exists": true
+      },
+      {
+        "sha": "d420bd3c5cf427a16773a7f5ef22c4ca422f67d7",
+        "path": "frontend/docs/evidencias/hu025-20261108/PDF-todas-2.png",
+        "exists": true
+      }
+    ]
+  },
+  "summary": {
+    "completed_stories": 27,
+    "completed_tasks": 112,
+    "native_story_counters_all_100": true,
+    "task_project_done": 112,
+    "hu028_parent_project_done": true,
+    "hu027_open_backlog": 6,
+    "single_task_comments": 112,
+    "immutable_image_targets": 418,
+    "missing_image_blobs": 0,
+    "documentation_findings": 0,
+    "story_project_done": 27,
+    "caption_comments_updated_without_duplicates": 35,
+    "short_git_refs_resolved": 39,
+    "public_historical_attachments_http200": 26
+  },
+  "initial_caption_observations": [
+    {
+      "task": 92,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "alcance"
+      ]
+    },
+    {
+      "task": 86,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 84,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 70,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 69,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 68,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 67,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 66,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 65,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 64,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 63,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 61,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 59,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 57,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 56,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 52,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 48,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 46,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 45,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 44,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 43,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 42,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 41,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 40,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 39,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 38,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido"
+      ]
+    },
+    {
+      "task": 37,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 36,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 35,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 34,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 33,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 32,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 31,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 30,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    },
+    {
+      "task": 29,
+      "kind": "documentation headings/captions",
+      "missing": [
+        "esperado",
+        "obtenido",
+        "alcance"
+      ]
+    }
+  ],
+  "caption_corrections": [
+    {
+      "task": 92,
+      "id": 6720473511,
+      "author": "francisco3788",
+      "current_images": 4,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 86,
+      "id": 6713014288,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 84,
+      "id": 6713011975,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 70,
+      "id": 6260279554,
+      "author": "Danilo2334",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 69,
+      "id": 6260294733,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 68,
+      "id": 6272925177,
+      "author": "Danilo2334",
+      "current_images": 3,
+      "rendered_images": 6,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 67,
+      "id": 6260294278,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 66,
+      "id": 6260278891,
+      "author": "Danilo2334",
+      "current_images": 3,
+      "rendered_images": 5,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 65,
+      "id": 6260293907,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 64,
+      "id": 6272924656,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 1,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 63,
+      "id": 6260293510,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 61,
+      "id": 6246221840,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 59,
+      "id": 6246221677,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 57,
+      "id": 6260292130,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 56,
+      "id": 6272923641,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 1,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 52,
+      "id": 6272923113,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 1,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 48,
+      "id": 6272922606,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 1,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 46,
+      "id": 6245716821,
+      "author": "francisco3788",
+      "current_images": 4,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 45,
+      "id": 6272922011,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 9,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 44,
+      "id": 6272921535,
+      "author": "Danilo2334",
+      "current_images": 4,
+      "rendered_images": 16,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 43,
+      "id": 6245716590,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 42,
+      "id": 6245480431,
+      "author": "Danilo2334",
+      "current_images": 3,
+      "rendered_images": 6,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 41,
+      "id": 6245479640,
+      "author": "francisco3788",
+      "current_images": 3,
+      "rendered_images": 3,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 40,
+      "id": 6272921015,
+      "author": "Danilo2334",
+      "current_images": 2,
+      "rendered_images": 6,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 39,
+      "id": 6245479481,
+      "author": "francisco3788",
+      "current_images": 1,
+      "rendered_images": 1,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 38,
+      "id": 6245480254,
+      "author": "Danilo2334",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 37,
+      "id": 6260288501,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 36,
+      "id": 6245479333,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 35,
+      "id": 6272920507,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 5,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 34,
+      "id": 6245479135,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 33,
+      "id": 6245223825,
+      "author": "Danilo2334",
+      "current_images": 2,
+      "rendered_images": 4,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 32,
+      "id": 6245224132,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 31,
+      "id": 6272920035,
+      "author": "Danilo2334",
+      "current_images": 2,
+      "rendered_images": 7,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 30,
+      "id": 6272919540,
+      "author": "Danilo2334",
+      "current_images": 1,
+      "rendered_images": 5,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    },
+    {
+      "task": 29,
+      "id": 6259568713,
+      "author": "francisco3788",
+      "current_images": 2,
+      "rendered_images": 2,
+      "single_comment": true,
+      "explicit_captions": true,
+      "history_unchanged": true
+    }
+  ],
+  "external_evidence": {
+    "git": [
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-escritorio.png",
+        "full_sha": "1f0de2b366ca8b4a580cc6bec071323a32d8ff73",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/1f0de2b/frontend/docs/evidencias/correo-real/recuperacion-smtp-movil.png",
+        "full_sha": "1f0de2b366ca8b4a580cc6bec071323a32d8ff73",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-escritorio.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/administracion-movil.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/aprobacion-confirmacion.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/candidato-regresion.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-escritorio.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-movil.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-dashboard-vacio.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-logo.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-pendiente-escritorio.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/empresa-rechazada-movil.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/login-error-vigente.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/rechazo-motivo-obligatorio.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/recuperacion-confirmada.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-confirmado.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-candidato-rol-posterior.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/677aeba/frontend/docs/evidencias/revision-sprint/registro-correo-duplicado.png",
+        "full_sha": "677aebad368977ca5f7cf96d5ec5b9bc1aac681d",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-registro-duplicado.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-verificacion-pruebas.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu001-verificacion-respuesta.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu002-token-revocado.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu003-cambio-confirmado.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu003-solicitud.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-cuenta-eliminada-401.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-eliminacion.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-nombre-persistente.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-preferencia-persistente.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu004-token-anterior.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu005-resumen.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu006-resumen.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu007-resumen.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-educacion-persistente.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-foto-invalida.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu008-permisos.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu009-informacion-persistente.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu010-aprobacion.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu010-rechazo-notificado.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/8b5e975/backend/docs/evidencias/postman/capturas/hu010-version-obsoleta.png",
+        "full_sha": "8b5e975d630dfaff16d85e383f5041029a738b91",
+        "git_blob_exists": true
+      }
+    ],
+    "attachments": [
+      {
+        "url": "https://github.com/user-attachments/assets/0592617f-29bb-4aff-9ef4-06600897d1e2",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/0f9a31b5-afa4-410e-8b8f-8069a51c51cf",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/29cf9847-439c-4cbf-a5b2-a103a8ff3b12",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/2aaca649-7a12-4e7d-85a7-63aad5e4b036",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/2bc7fca4-e1e7-4b09-8c3c-66b6afed7747",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/3d182b90-f7e4-430b-8eff-eef3d9fb82b8",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/45f65439-b183-45c2-b384-9d0ea2651566",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/63edd6a3-fb72-460b-aaab-87e4a59d6c55",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/6a8606ec-3597-4400-af5a-8d0a4eaedd4d",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/6cd50d30-3fbe-4a3b-94db-f14189fe4554",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/90bd5dc8-7342-4feb-9891-bf7cbf965cce",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/9f5c6eb8-76cb-4d33-9b8e-610adf9110ae",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/a3f87b47-8bab-41c0-8bf5-0348304612fe",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/b8da4d07-f894-47dc-8bfd-cc8e02715fa4",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/bc108269-77c6-4886-945b-c6e01102a554",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/bc7abcc9-79ea-42ff-ac65-bc6b4316c203",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/bff8f342-b5fb-45eb-9b35-66f37ef853cc",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/c0e988c2-bfa6-413c-821a-21714914935e",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/e1b187b8-95e4-4a51-aefb-a9461e80c7b2",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/e90908db-00d4-4ce1-a0e2-098be48ea585",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/eea47bdc-aef3-4338-8f39-b54b912085e8",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/f3ba52c9-47af-4ee1-935a-f81541684a1e",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/f3f0ab64-6f6a-4611-83aa-b9bb687d40ae",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/f3fc3c45-77c8-457e-9805-592d5b5bd6ca",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/f50a0ba9-4792-44b7-8635-4803a7440d62",
+        "http": 200,
+        "mime": "image/png"
+      },
+      {
+        "url": "https://github.com/user-attachments/assets/ff62008c-980a-45d9-9349-188110c724d1",
+        "http": 200,
+        "mime": "image/png"
+      }
+    ]
+  },
+  "verification_source_sha": "76ea437eb9c883e40c01093f082f8ba3867b0ce2",
+  "source_advance": {
+    "known_hu028_main": "66d9f154068aa3e33cbef0bb5a751ff6c35df6ae",
+    "documentary_main_at_start": "80bdfa60784c4a15e834b61affceb2a39a8bea47",
+    "existing_tag_preserved": "entrega-academica-2026-11-09",
+    "only_functional_correction": "daef910366bacb8563b1bb7f694cd40d91891903"
+  },
+  "functional_correction": {
+    "story": 24,
+    "task": 121,
+    "area": "HU023 notification preferences",
+    "problem": "Concurrent first partial PATCH requests could both return503 due to SQLite read-to-write upgrade contention.",
+    "before_reproduced": {
+      "expected_http": [
+        200,
+        200
+      ],
+      "obtained_http": [
+        503,
+        503
+      ],
+      "full_regression": "300 passed,1failed"
+    },
+    "after": "Atomic upsert by unique user, only submitted columns updated; response built inside transaction/retry.",
+    "tests": "Existing real concurrent API test synchronizes first writes and verifies two200,one row,both changes and untouched fields.",
+    "author_and_committer": "Danilo2334",
+    "backend_prs": [
+      239,
+      240
+    ],
+    "database_migrations_changed": false
+  },
+  "new_regression": {
+    "date": "2026-11-09",
+    "os": "Windows",
+    "python": "3.12.10",
+    "django": {
+      "passed": 301,
+      "seconds": 13.709,
+      "database": "new in-memory test database",
+      "provider": "doubles only",
+      "fixture_password_hasher": "MD5 only in isolated test process"
+    },
+    "flutter": {
+      "passed": 237,
+      "seconds": 27,
+      "analyze": "No issues",
+      "analysis_seconds": 30.5,
+      "web_release": "PASS",
+      "web_compile_seconds": 44.1,
+      "dependency_lock_unchanged": true
+    },
+    "dart": "3.13.4",
+    "concurrency_stress": {
+      "shared_memory_rounds": 20,
+      "shared_memory_seconds": 1.007,
+      "file_rounds": 20,
+      "file_seconds": 2.978,
+      "expected_and_obtained_http_per_round": [
+        200,
+        200
+      ],
+      "new_isolated_sqlite_only": true
+    },
+    "migration_checks": {
+      "django_check": "PASS",
+      "makemigrations_dry_run": "No changes detected",
+      "fresh_sqlite_migrated": true,
+      "pending": 0
+    },
+    "additional_gemini_calls": 0,
+    "new_browser_or_postman_acceptance": false,
+    "live_smtp_retest": false,
+    "production_or_postgresql_tested": false,
+    "django_version": "6.1.1",
+    "flutter_version": "3.47.5"
+  },
+  "accepted_evidence_retained": {
+    "hu028_real_generations": 4,
+    "hu028_api_cases": 8,
+    "hu028_browser_cases": 14,
+    "hu028_postman_requests": 18,
+    "hu028_postman_assertions": 52,
+    "hu028_media_sha": "625839ff6cad5fee62418b95d95fdf1671c37f40",
+    "historical_results_are_not_new_executions": true,
+    "unit_regression_does_not_replace_browser_or_desktop": true
+  },
+  "render_readonly": {
+    "workspace": "My Workspace",
+    "account": "francisco3788",
+    "user_confirmation_reused": true,
+    "worknet_services": 0,
+    "worknet_postgres": 0,
+    "existing_unrelated_services_modified": false,
+    "resources_created": 0,
+    "billing_activated": false,
+    "recommendation": "Flutter static site + paid Django web service + managed PostgreSQL + shared cache; SMTP-compatible plan."
+  },
+  "review": "Principal-agent review; no new delegated or human approval claimed.",
+  "limits": [
+    "Existing acceptance uses fictitious data; newly rerun suites use isolated SQLite.",
+    "No new live Gemini or SMTP requests, browser or Postman execution in this review.",
+    "PostgreSQL, HTTPS origins, productive secrets, shared cache and backup restore remain deployment-phase checks.",
+    "HU027 remains open/Backlog for a future version; no LinkedIn implementation."
+  ]
+}
