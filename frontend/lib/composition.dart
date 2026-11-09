@@ -1,4 +1,5 @@
 import 'package:worknet/core/api/worknet_api.dart';
+import 'package:worknet/features/notifications/notifications_repository.dart';
 import 'package:worknet/features/status_changes/data/status_repository.dart';
 import 'package:worknet/features/messages/data/messages_repository.dart';
 import 'package:worknet/features/applications/data/applications_repository.dart';
@@ -33,6 +34,7 @@ class AppDependencies {
     applicants = HttpApplicantsRepository(api);
     statuses = HttpStatusRepository(api);
     messages = HttpMessagesRepository(api);
+    notifications = HttpNotificationsRepository(api);
     curriculum = HttpCurriculumRepository(api);
     generatedCurriculum = HttpGeneratedCurriculumRepository(api);
   }
@@ -49,6 +51,7 @@ class AppDependencies {
   late final HttpApplicantsRepository applicants;
   late final HttpStatusRepository statuses;
   late final HttpMessagesRepository messages;
+  late final HttpNotificationsRepository notifications;
   late final HttpCurriculumRepository curriculum;
   late final HttpGeneratedCurriculumRepository generatedCurriculum;
   final curriculumDownload = const FileSelectorCurriculumDownload();

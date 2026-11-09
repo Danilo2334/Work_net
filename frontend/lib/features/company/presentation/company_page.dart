@@ -1,6 +1,9 @@
 import 'dart:typed_data';
+
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:worknet/features/notifications/notifications_page.dart';
+import 'package:worknet/features/notifications/notifications_repository.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worknet/core/domain/failure.dart';
 import 'package:worknet/core/widgets/workspace.dart';
@@ -13,9 +16,11 @@ class CompanyPage extends StatefulWidget {
     super.key,
     required this.session,
     required this.repository,
+    this.notifications,
   });
   final SessionController session;
   final CompanyRepository repository;
+  final NotificationsRepository? notifications;
   @override
   State<CompanyPage> createState() => _CompanyPageState();
 }
@@ -203,6 +208,11 @@ class _CompanyPageState extends State<CompanyPage> {
       error: _error,
       onRetry: _busy ? null : _load,
       actions: [
+        NotificationsEntry(
+          session: widget.session,
+          repository: widget.notifications,
+          onReturn: _load,
+        ),
         OutlinedButton(
           onPressed: _busy ? null : () => _run(widget.session.logout),
           child: const Text('Cerrar sesión'),
@@ -337,8 +347,7 @@ class _CompanyPageState extends State<CompanyPage> {
                   maxLines: 3,
                   decoration: const InputDecoration(
                     labelText: 'Redes sociales (un enlace por línea)',
-                    helperText:
-                        'Usa enlaces completos, por ejemplo https://example.org',
+                    helperText: 'Usa enlaces completos, por ejemplo https://example.org',
                   ),
                 ),
                 const SizedBox(height: 20),
