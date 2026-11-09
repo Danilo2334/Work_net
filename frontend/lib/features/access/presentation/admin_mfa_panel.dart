@@ -50,6 +50,7 @@ class _AdminMfaPanelState extends State<AdminMfaPanel> {
     try {
       await action();
     } on MfaRequired catch (next) {
+      _code.clear();
       if (mounted) {
         setState(() {
           _challenge = next;

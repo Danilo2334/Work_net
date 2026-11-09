@@ -311,6 +311,10 @@ void main() {
       await t.enterText(find.byKey(const Key('mfa_code')), 'a' * 32);
       await tap(t, find.byKey(const Key('mfa_verify')));
       expect(find.text('Configurar doble factor'), findsOneWidget);
+      expect(
+        t.widget<TextField>(find.byKey(const Key('mfa_code'))).controller!.text,
+        isEmpty,
+      );
       expect(store.value, isNull);
       await tap(t, find.byKey(const Key('mfa_cancel')));
       expect(find.byKey(const Key('login_password')), findsOneWidget);
