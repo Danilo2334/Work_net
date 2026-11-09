@@ -36,7 +36,8 @@ async function main() {
   const hu017 = cfg.suite === 'hu017';
   const hu018 = cfg.suite === 'hu018';
   const hu01920 = cfg.suite === 'hu019-hu020';
-  const hu02122 = cfg.suite === 'hu021-hu022';
+  const accessOnly = cfg.suite === 'hu005-messages-access';
+  const hu02122 = cfg.suite === 'hu021-hu022' || accessOnly;
   if(hu02122) assert.equal(bridge('hu02122_prepare').offers,18);
   if(hu01920) assert.equal(bridge('hu01920_prepare').offers,18);
   if (hu018) assert.equal(bridge('hu018_prepare').offers, 17);
@@ -235,7 +236,9 @@ async function main() {
       await page.getByRole('textbox', { name: 'Correo electrónico', exact: true }).waitFor();
       await capture('login');
     });
-    if (hu02122) {
+    if (accessOnly) {
+      await require('./dashboard_access.cjs')({page,cfg,run,capture,bridge,login,semantics,waitText,results});
+    } else if (hu02122) {
       await require('./hu02122.cjs')({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results});
     } else if (hu01920) {
       await require('./hu01920.cjs')({page,cfg,run,capture,bridge,ui,write,click,waitText,login,logout,semantics,fault,faults,results});
@@ -417,7 +420,7 @@ async function main() {
       assert.equal((await denied).status(), 403); await waitText('espera la aprobación de tu empresa'); assert.equal(await page.getByRole('textbox').count(), 0); await capture('403');
     });
     }
-    const expected = hu02122 ? 34 : hu01920 ? 28 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
+    const expected = accessOnly ? 5 : hu02122 ? 34 : hu01920 ? 28 : hu018 ? 20 : hu017 ? 17 : hu016 ? 15 : hu015 ? 18 : hu014 ? 16 : 25;
     assert.equal(results.casos.length, expected);
     assert.equal(new Set(results.casos.map(x => x.id)).size, expected);
     const final = bridge('snapshot'); assert.ok(final.profile_unchanged && final.account_unchanged);
