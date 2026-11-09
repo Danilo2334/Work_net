@@ -16,8 +16,8 @@ async function hu026Totp(secret, counter = Math.floor(Date.now() / 30000)) {
   const message = new Uint8Array(8);
   let value = BigInt(counter);
   for (let i = 7; i >= 0; i--) { message[i] = Number(value & 255n); value >>= 8n; }
-  const key = await globalThis.crypto.subtle.importKey('raw', new Uint8Array(keyBytes), {name:'HMAC',hash:'SHA-1'}, false, ['sign']);
-  const signed = new Uint8Array(await globalThis.crypto.subtle.sign('HMAC', key, message));
+  const key = await crypto.subtle.importKey('raw', new Uint8Array(keyBytes), {name:'HMAC',hash:'SHA-1'}, false, ['sign']);
+  const signed = new Uint8Array(await crypto.subtle.sign('HMAC', key, message));
   const offset = signed[signed.length - 1] & 15;
   const binary = ((signed[offset] & 127) << 24) | (signed[offset+1] << 16) | (signed[offset+2] << 8) | signed[offset+3];
   return String(binary % 1000000).padStart(6, '0');
