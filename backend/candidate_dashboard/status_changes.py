@@ -119,7 +119,8 @@ def transition(user, application_id, data):
                 request_id=data["request_id"], version=item.status_version + 1,
                 from_status=item.status, to_status=data["target_status"], comment=data["comment"], changed_at=changed_at)
             label = Application.Status(data["target_status"]).label
-            Notification.objects.create(application=item, event_kind="application_status_changed", status_event=event,
+            from .notification_events import notify
+            notify(application=item, event_kind="application_status_changed", status_event=event,
                 recipient_id=item.candidate_id, title=f"{offer.company_name}: {label} · {offer.title}"[:200])
             item.refresh_from_db()
             return item, event, False
