@@ -55,8 +55,14 @@ Si Gemini no responde o agota cuota, mostrar el mensaje real, continuar con el e
 | ¿Cuál es el modelo HU001? | [Historia modelo](https://github.com/Danilo2334/Work_net/issues/2) y comentarios únicos de cada tarea. |
 | ¿Ya está en producción? | La página pública es informativa. El [plan de despliegue](DESPLIEGUE.md) identifica ajustes y validación pendientes. |
 
+## Organización final de ramas
+
+La preparación posterior conserva únicamente `main`, `frontend` y `develop` como ramas permanentes. Main es la entrega integrada para el despliegue; frontend mantiene Flutter e integración; develop mantiene Django. Las ramas temporales y de sprint se retiran preservando sus commits. [Inventario de limpieza](limpieza-ramas-20261109.json).
+
+Las evidencias exclusivas HU008 quedan bajo el tag `archivo/20261109/hu008-evidencias`; una combinación de QA solo local se archiva localmente y en un respaldo Git verificado. Los checkouts, datos y configuraciones anteriores se conservan en su mismo commit, y se prepara una copia limpia main para continuar. Esto no inicia el despliegue ni cambia el alcance cerrado o HU027.
+
 ## Limpieza realizada
 
-Se corrigieron los README que aún indicaban Gemini pendiente. La portada pública y la descripción del repositorio reflejan la IA entregada y LinkedIn v2. Se retiraron 45 ramas temporales cuyos commits estaban contenidos en main. Se conserva el [inventario con SHA](auditoria-cierre-20261109.json), el historial y las bases compartidas. HU008 conserva un commit exclusivo de evidencias: no se fusionó automáticamente ni se acredita como función nueva.
+Se corrigieron los README que aún indicaban Gemini pendiente. La portada pública y la descripción del repositorio reflejan la IA entregada y LinkedIn v2. Se retiraron 45 ramas temporales cuyos commits estaban contenidos en main. Se conserva el [inventario con SHA](auditoria-cierre-20261109.json), el historial y las bases compartidas. En aquel corte HU008 conservó una rama con un commit exclusivo de evidencias. La limpieza posterior descrita arriba conserva ese commit mediante un tag de archivo, sin incorporarlo automáticamente ni acreditarlo como función nueva.
 
 La limpieza documental previa no cambió código funcional. La revisión final posterior sí corrigió la concurrencia de preferencias HU023 y volvió a ejecutar 301 Django, 237 Flutter, análisis, build y migraciones, más 40 rondas de concurrencia. Conserva las aceptaciones históricas; no repite Gemini, SMTP, navegador o Postman. Los checkouts, cambios locales y configuración privada anteriores permanecen intactos.
