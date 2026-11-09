@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:worknet/core/api/worknet_api.dart';
+import 'package:worknet/app.dart';
 import 'package:worknet/features/access/data/access_repository.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
 import 'package:worknet/features/access/presentation/choose_role_page.dart';
@@ -18,6 +19,61 @@ import 'support/access_fakes.dart';
 import 'profile_test.dart' show profile;
 
 void main() {
+  testWidgets('WorkNet elimina datos de A al aceptar B con el mismo rol', (
+    t,
+  ) async {
+    final pendingB = Completer<http.Response>();
+    final store = MemorySessionStore()..value = jsonEncode(sessionData());
+    final api = WorkNetApi(
+      client: MockClient((r) async {
+        if (r.url.path.endsWith('notifications/'))
+          return jsonResponse({
+            'preferences': {'push_notifications': false},
+          });
+        if (r.headers['Authorization'] == 'Token token-B')
+          return pendingB.future;
+        return jsonResponse({'user': sessionData()['user']});
+      }),
+    );
+    addTearDown(api.close);
+    await t.pumpWidget(
+      WorkNetApp(api: api, sessionStore: store, initialLocation: '/account'),
+    );
+    await t.pumpAndSettle();
+    final previous = t.state(find.byType(AccountPage));
+    final controller = t
+        .widget<AccountPage>(find.byType(AccountPage))
+        .controller;
+    expect(find.text('Candidata QA'), findsOneWidget);
+    await controller.completeMfa(
+      const UserSession(
+        token: 'token-B',
+        id: 2,
+        name: 'Cuenta B',
+        email: 'b@worknet.test',
+        role: 'candidato',
+      ),
+      remember: true,
+    );
+    await t.pump();
+    await t.pump();
+    expect(previous.mounted, false);
+    expect(find.text('Candidata QA'), findsNothing);
+    pendingB.complete(
+      jsonResponse({
+        'user': {
+          'id': 2,
+          'full_name': 'Cuenta B',
+          'email': 'b@worknet.test',
+          'role': 'candidato',
+          'email_verified': true,
+        },
+      }),
+    );
+    await t.pumpAndSettle();
+    expect(find.text('Cuenta B'), findsOneWidget);
+    expect(jsonDecode(store.value!)['token'], 'token-B');
+  });
   Future<(SessionController, MemorySessionStore, WorkNetApi)> setup(
     Future<http.Response> Function(http.Request) handler,
   ) async {
