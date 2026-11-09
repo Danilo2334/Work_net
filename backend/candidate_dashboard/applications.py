@@ -130,7 +130,8 @@ def submit(candidate, offer_id, data):
                 except ModelValidationError as exc:
                     # El guard del modelo vuelve a comprobar vigencia al insertar.
                     raise NotFound("Esta oferta ya no está activa y no recibe nuevas postulaciones.") from exc
-                Notification.objects.create(application=item, event_kind="application_created", recipient_id=offer.company_id,
+                from .notification_events import notify
+                notify(application=item, event_kind="application_created", recipient_id=offer.company_id,
                     title=f"Nueva postulación: {candidate.full_name} · {offer.title}"[:200])
                 return item, True
         except OperationalError as exc:
