@@ -273,6 +273,8 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 key: ValueKey('${_session.session?.token}:${state.uri}'),
                 session: _session,
                 repository: _dependencies.applicants,
+                exports: _dependencies.applicantExports,
+                download: _dependencies.applicantExportDownload,
                 offerId: id,
                 query: ApplicantQuery.fromUri(state.uri),
                 returnToStatistics: state.extra == 'statistics',

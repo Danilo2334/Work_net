@@ -5,6 +5,8 @@ import 'package:worknet/features/status_changes/data/status_repository.dart';
 import 'package:worknet/features/messages/data/messages_repository.dart';
 import 'package:worknet/features/applications/data/applications_repository.dart';
 import 'package:worknet/features/applicants/data/applicants_repository.dart';
+import 'package:worknet/features/applicants/data/applicant_export_repository.dart';
+import 'package:worknet/features/applicants/data/applicant_export_download.dart';
 import 'package:worknet/features/offers/data/offer_repository.dart';
 import 'package:worknet/features/offers/data/search_repository.dart';
 import 'package:worknet/features/offers/data/favorites_repository.dart';
@@ -33,6 +35,7 @@ class AppDependencies {
     favorites = HttpSavedOffersRepository(api);
     applications = HttpApplicationsRepository(api);
     applicants = HttpApplicantsRepository(api);
+    applicantExports = HttpApplicantExportRepository(api);
     statuses = HttpStatusRepository(api);
     messages = HttpMessagesRepository(api);
     notifications = HttpNotificationsRepository(api);
@@ -51,6 +54,8 @@ class AppDependencies {
   late final HttpSavedOffersRepository favorites;
   late final HttpApplicationsRepository applications;
   late final HttpApplicantsRepository applicants;
+  late final HttpApplicantExportRepository applicantExports;
+  final applicantExportDownload = const FileApplicantExportDownload();
   late final HttpStatusRepository statuses;
   late final HttpMessagesRepository messages;
   late final HttpNotificationsRepository notifications;
