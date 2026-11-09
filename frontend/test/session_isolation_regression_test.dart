@@ -26,12 +26,14 @@ void main() {
     final store = MemorySessionStore()..value = jsonEncode(sessionData());
     final api = WorkNetApi(
       client: MockClient((r) async {
-        if (r.url.path.endsWith('notifications/'))
+        if (r.url.path.endsWith('notifications/')) {
           return jsonResponse({
             'preferences': {'push_notifications': false},
           });
-        if (r.headers['Authorization'] == 'Token token-B')
+        }
+        if (r.headers['Authorization'] == 'Token token-B') {
           return pendingB.future;
+        }
         return jsonResponse({'user': sessionData()['user']});
       }),
     );
