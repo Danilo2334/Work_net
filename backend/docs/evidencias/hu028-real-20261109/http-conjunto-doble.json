@@ -1,0 +1,132 @@
+{
+  "date_utc": "2026-11-09T19:26:22.305582+00:00",
+  "run": "run-20261109T192617Z-be33b9fd",
+  "platform": "Windows / SQLite / loopback",
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "source_sha": "3cd731ba4b4d097227fdb2d17767f672fbf29aaa",
+  "provider_real_tested": false,
+  "provider_double": "controlled test fixture; not Gemini",
+  "requests_checked": 19,
+  "cases": [
+    {
+      "case": "A01 estado sin configuración",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A02 sin sesión",
+      "expected_http": 401,
+      "obtained_http": 401,
+      "passed": true
+    },
+    {
+      "case": "A03 empresa",
+      "expected_http": 403,
+      "obtained_http": 403,
+      "passed": true
+    },
+    {
+      "case": "A04 candidato sin verificar",
+      "expected_http": 403,
+      "obtained_http": 403,
+      "passed": true
+    },
+    {
+      "case": "A05 sin consentimiento",
+      "expected_http": 400,
+      "obtained_http": 400,
+      "passed": true
+    },
+    {
+      "case": "A06 datos vacíos",
+      "expected_http": 400,
+      "obtained_http": 400,
+      "passed": true
+    },
+    {
+      "case": "A07 propietario no aceptado",
+      "expected_http": 400,
+      "obtained_http": 400,
+      "passed": true
+    },
+    {
+      "case": "A08 proveedor no configurado",
+      "expected_http": 503,
+      "obtained_http": 503,
+      "passed": true
+    },
+    {
+      "case": "A09 propuesta con doble controlado",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A10 perfil propio optativo",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A11 dato factual no proporcionado",
+      "expected_http": 502,
+      "obtained_http": 502,
+      "passed": true
+    },
+    {
+      "case": "A12 cuota",
+      "expected_http": 429,
+      "obtained_http": 429,
+      "passed": true
+    },
+    {
+      "case": "A13 guardado clasica",
+      "expected_http": "200/201",
+      "obtained_http": 201,
+      "passed": true
+    },
+    {
+      "case": "A13 PDF clasica",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A13 guardado moderna",
+      "expected_http": "200/201",
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A13 PDF moderna",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A13 guardado minimalista",
+      "expected_http": "200/201",
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A13 PDF minimalista",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "A14 otro candidato no lee PDF",
+      "expected_http": 404,
+      "obtained_http": 404,
+      "passed": true
+    }
+  ],
+  "pending": [
+    "authorized provider key and model",
+    "real provider acceptance",
+    "Postman Desktop evidence"
+  ]
+}
