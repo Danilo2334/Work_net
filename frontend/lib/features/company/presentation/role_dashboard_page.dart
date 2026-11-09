@@ -32,6 +32,8 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
   bool _loading = true, _busy = false;
   String? _error;
   int _generation = 0;
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.session.session?.token == token;
   @override
   void initState() {
     super.initState();
@@ -39,22 +41,24 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
   }
 
   Future<void> _load() async {
+    final token = widget.session.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _generation++;
       _loading = true;
       _error = null;
     });
     try {
-      final token = widget.session.session!.token;
       final data = await (widget.admin
-          ? widget.repository.adminSummary(token)
-          : widget.repository.companySummary(token));
-      if (mounted) setState(() => _data = data);
+          ? widget.repository.adminSummary(token!)
+          : widget.repository.companySummary(token!));
+      if (_isCurrent(token)) setState(() => _data = data);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.session.expire();
-      if (mounted) setState(() => _error = e.message);
+      if (_isCurrent(token)) setState(() => _error = e.message);
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (_isCurrent(token)) setState(() => _loading = false);
     }
   }
 

@@ -84,7 +84,10 @@ class _WorkNetAppState extends State<WorkNetApp> {
             _session.session == null ||
             (role != null && _session.session?.role != role)
         ? const Scaffold(body: Center(child: CircularProgressIndicator()))
-        : child(),
+        : KeyedSubtree(
+            key: ValueKey((_session.session!.id, _session.session!.role)),
+            child: child(),
+          ),
   );
   @override
   void initState() {
