@@ -90,6 +90,9 @@ def execute(manifest, action, args):
         if action == 'hu02122_prepare':return module.fixtures(run)
         if action == 'hu02122_seed':return module.seed(run)
         if action == 'hu02122_snapshot':return module.contrast(run)
+        if action == 'hu02122_unread_for_access':
+            require(config.get('suite') == 'hu005-messages-access')
+            return module.action(run,'unread_for_access')
         require(action in ('hu02122_concurrent_review','hu02122_message_during_read','hu02122_message_outside_window','hu02122_candidate_pending','hu02122_delete_sources'))
         return module.action(run,action.removeprefix('hu02122_'))
     if action.startswith('hu01920_'):
