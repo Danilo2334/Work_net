@@ -67,6 +67,10 @@ def seed(run):
 def action(run,name):
     b=seed(run);configure(run)
     company,_=client('company')
+    if name=='unread_for_access':
+        conv=b['conversation_ids']['3']
+        r=call(company,'POST',f'conversations/{conv}/messages/',{'text':'Mensaje de empresa para verificar lectura y regreso al dashboard QA','client_message_id':str(uuid.uuid4())},201)
+        return {'actor_qa':'empresa_ficticia_previa_al_acceso','method':'POST','path':f'/api/conversations/{conv}/messages/','message_id':r['message']['id'],'procedencia':'Mensaje real de otro actor por API antes de entrar al dashboard; no escrito por la pantalla capturada.'}
     if name=='concurrent_review':
         pk=b['own_ids']['11'];r=call(company,'POST',f'company/applications/{pk}/status/',{
             'target_status':'in_review','expected_version':0,'request_id':str(uuid.uuid4()),
