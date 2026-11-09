@@ -5,3 +5,4 @@ python-dotenv==1.2.4
 Pillow==13.0.0
 pypdf==6.21.2
 reportlab==5.1.0
+django-otp==1.7.5

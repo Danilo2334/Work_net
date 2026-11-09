@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import timedelta
@@ -43,7 +44,7 @@ class ApplicationFixture:
             location='Pasto', contract_type='Indefinido', status='published', published_at=timezone.now()-timedelta(days=1)) | changes))
 
     def authenticate(self, user):
-        self.client.credentials(HTTP_AUTHORIZATION='Token '+Token.objects.get_or_create(user=user)[0].key)
+        self.client.credentials(HTTP_AUTHORIZATION='Token '+fixture_token(user).key)
 
     def body(self, source='uploaded', item=None):
         item = item or (self.uploaded if source=='uploaded' else self.generated)

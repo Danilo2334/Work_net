@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.db.models import Exists, OuterRef
 from rest_framework import serializers
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
