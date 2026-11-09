@@ -31,7 +31,6 @@ def fixtures(run):
         user=User.objects.get(email=f'postulante.{i:02}@hu020.invalid')
         user.full_name=names[i-1] if i<=4 else f'Postulante HU025 {i:02} '+('Nombre extenso Áé & QA '*5)
         user.full_name=user.full_name[:150];user.save(update_fields=['full_name'])
-    Application.objects.filter(offer_id=3).update(cv_filename='curriculum-'+('detalle-'*18)+'.pdf')
     env=json.loads((run/'local.postman_environment.json').read_text(encoding='utf-8'));values={v['key']:v for v in env['values']}
     for role in ['candidate','company','admin','draft','other_company']:
         actor=User.objects.get(email=role+'.postman@worknet.test');key=role+'_token'
