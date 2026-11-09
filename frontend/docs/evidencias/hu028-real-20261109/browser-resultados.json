@@ -1,0 +1,488 @@
+{
+  "date_utc": "2026-11-09T18:51:21.822Z",
+  "run": "run-20261109T185051Z-13e75b29",
+  "source_sha": "169115f58199d582d7f0a431316c2f2bd928bcaf",
+  "browser_script_sha256": "4ea4abf270769b4b82956f423874fea0298200b662ef27acd7988e9b3d4e4da9",
+  "platform": "win32",
+  "playwright": "1.65.0",
+  "provider_real_mode": true,
+  "provider_generations_accepted": 2,
+  "cases": [
+    {
+      "id": "HU028-V01",
+      "passed": true,
+      "elapsed_ms": 6888
+    },
+    {
+      "id": "HU028-V02",
+      "passed": true,
+      "elapsed_ms": 2403
+    },
+    {
+      "id": "HU028-V03",
+      "passed": true,
+      "elapsed_ms": 2418
+    },
+    {
+      "id": "HU028-V04",
+      "passed": true,
+      "elapsed_ms": 6614
+    },
+    {
+      "id": "HU028-V05",
+      "passed": true,
+      "elapsed_ms": 2217
+    },
+    {
+      "id": "HU028-PDF-clasica",
+      "passed": true,
+      "elapsed_ms": 7141
+    },
+    {
+      "id": "HU028-PDF-moderna",
+      "passed": true,
+      "elapsed_ms": 7252
+    },
+    {
+      "id": "HU028-PDF-minimalista",
+      "passed": true,
+      "elapsed_ms": 7299
+    },
+    {
+      "id": "HU028-V06",
+      "passed": true,
+      "elapsed_ms": 5996
+    },
+    {
+      "id": "HU028-V07",
+      "passed": true,
+      "elapsed_ms": 5024
+    },
+    {
+      "id": "HU028-E503",
+      "passed": true,
+      "elapsed_ms": 3853
+    },
+    {
+      "id": "HU028-E429",
+      "passed": true,
+      "elapsed_ms": 3798
+    },
+    {
+      "id": "HU028-V08",
+      "passed": true,
+      "elapsed_ms": 639
+    },
+    {
+      "id": "HU028-V09",
+      "passed": true,
+      "elapsed_ms": 1645
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "HU028-V01-editor-manual-plantilla-contactos.png",
+      "case": "HU028-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a9cb3a944405506079d57956647de935d02d0cda34e779c8bc6e50191ffa6743"
+    },
+    {
+      "file": "HU028-V02-sin-configuracion-edicion-manual-disponible.png",
+      "case": "HU028-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "03f10bdc78c2687b99528382ce33b74fa6cd95e4819c69d61f90d7585f3f9010"
+    },
+    {
+      "file": "HU028-V03-texto-consentimiento-perfil-optativo.png",
+      "case": "HU028-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0a94cd7a329efc7b16a25fd8a702a4a0ab047135e44e111f686f9464b137349e"
+    },
+    {
+      "file": "HU028-V04-propuesta-real-faltantes-revision-obligatoria.png",
+      "case": "HU028-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e450b6e0055981bc5dc933acc8c652dc751c637758ede883e8217d79a8d1cac7"
+    },
+    {
+      "file": "HU028-V04-aplicada-sin-guardar-conserva-plantilla.png",
+      "case": "HU028-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "145a48c7f179798a3bfa40183c2e4b8da3573a7ba0fca0311c436879dee42b49"
+    },
+    {
+      "file": "HU028-V05-edicion-y-guardado-expresos.png",
+      "case": "HU028-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "30f08ad148a30222320c0922f98986c91db44edf7cd2edef88689387ff75ead9"
+    },
+    {
+      "file": "HU028-PDF-clasica-vista-previa-pdf-clasica.png",
+      "case": "HU028-PDF-clasica",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1f09174323229ec0a72a4174e9e4583399cc23a62bd91eb1cac092df1f4eae1c"
+    },
+    {
+      "file": "HU028-PDF-clasica-descarga-real-clasica.png",
+      "case": "HU028-PDF-clasica",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "39fc99e707b48b726fac862fe39971b9f4516dc07d631c3bdc578790967bf784"
+    },
+    {
+      "file": "HU028-PDF-moderna-vista-previa-pdf-moderna.png",
+      "case": "HU028-PDF-moderna",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fe4d57ed50fd848d6b0a7824edcbefccc04e5abaf55c1daee488d151eaa878d9"
+    },
+    {
+      "file": "HU028-PDF-moderna-descarga-real-moderna.png",
+      "case": "HU028-PDF-moderna",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "39fc99e707b48b726fac862fe39971b9f4516dc07d631c3bdc578790967bf784"
+    },
+    {
+      "file": "HU028-PDF-minimalista-vista-previa-pdf-minimalista.png",
+      "case": "HU028-PDF-minimalista",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fb5fff3b43839fb30601e51f6a1de56790c6827e7499dc8c0217bf9544baf074"
+    },
+    {
+      "file": "HU028-PDF-minimalista-descarga-real-minimalista.png",
+      "case": "HU028-PDF-minimalista",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "39fc99e707b48b726fac862fe39971b9f4516dc07d631c3bdc578790967bf784"
+    },
+    {
+      "file": "HU028-V06-movil-consentimiento-perfil-propio.png",
+      "case": "HU028-V06",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "9407a2c14916fc3f3be186c5be6acdf62777bef8e6b8ac3a8b428a71dbf3ecf7"
+    },
+    {
+      "file": "HU028-V06-movil-propuesta-real-y-descarte.png",
+      "case": "HU028-V06",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "fe1d93a64dcbd1b4333cd2a801e7d3b82fd68f35231355c185f9e3233e8ddd51"
+    },
+    {
+      "file": "HU028-V06-movil-descartada-cv-previo-intacto.png",
+      "case": "HU028-V06",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "0869c60d7d591948d33771b1e5ba069924bb90694b412ff8ba9b1eed670d6058"
+    },
+    {
+      "file": "HU028-V07-cancelacion-respuesta-tardia-controlada.png",
+      "case": "HU028-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1d6cf86e526cc0a92b3bcd6f7339d05b4cd7e469507a8681f7d6bc10d66cfe66"
+    },
+    {
+      "file": "HU028-E503-error-503-inyectado-identificado.png",
+      "case": "HU028-E503",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d8be58e9b04a08842376b9cf6ff4d0345790885feecf3eb9161be19b4b1ff298"
+    },
+    {
+      "file": "HU028-E429-error-429-inyectado-identificado.png",
+      "case": "HU028-E429",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6e62b9b70c8cceb4f45b6337032996ae0a758f0d89561897e7c8130ff41c31fa"
+    },
+    {
+      "file": "HU028-V08-aislamiento-contraste-api-separado.png",
+      "case": "HU028-V08",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b4beb9e16811b3c7c9f98e54a550d1422992331a9fc2e67608facfb134b4e946"
+    },
+    {
+      "file": "HU028-V09-sesion-revocada-sin-propuesta-privada.png",
+      "case": "HU028-V09",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "438caf3946d7027fed41295b41c9eb395fb4df15ce5b069c21d9782cff8ebc04"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "HU028-CV-clasica-generacion-real.pdf",
+      "template": "clasica",
+      "bytes": 42363,
+      "sha256": "19a87d6399ff41397e688012f7add332c91583cdb25802a5a9250451e11870b7"
+    },
+    {
+      "file": "HU028-CV-moderna-generacion-real.pdf",
+      "template": "moderna",
+      "bytes": 42363,
+      "sha256": "d6fb6f8cc770afffe5d4fe46d6a3e348182584f6cb3fee1d30ef4560721c0068"
+    },
+    {
+      "file": "HU028-CV-minimalista-generacion-real.pdf",
+      "template": "minimalista",
+      "bytes": 42235,
+      "sha256": "1fa952779c3ee68fcf71b2d00959cb51ba0a593137b856146e7e98630e783476"
+    }
+  ],
+  "network": [
+    {
+      "method": "POST",
+      "path": "/api/login/",
+      "status": 200,
+      "case": "HU028-V00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/candidate/",
+      "status": 200,
+      "case": "HU028-V01"
+    },
+    {
+      "method": "GET",
+      "path": "/api/messages/summary/",
+      "status": 200,
+      "case": "HU028-V01"
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/summary/",
+      "status": 200,
+      "case": "HU028-V01"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/",
+      "status": 200,
+      "case": "HU028-V01"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "case": "HU028-V01"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 201,
+      "case": "HU028-V01"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V02"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V03"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V04"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V04"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "case": "HU028-V05"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 200,
+      "case": "HU028-PDF-clasica"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "case": "HU028-PDF-clasica"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/pdf/",
+      "status": 200,
+      "case": "HU028-PDF-clasica"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 200,
+      "case": "HU028-PDF-moderna"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "case": "HU028-PDF-moderna"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/pdf/",
+      "status": 200,
+      "case": "HU028-PDF-moderna"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/preview/",
+      "status": 200,
+      "case": "HU028-PDF-minimalista"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/curriculum/generated/",
+      "status": 200,
+      "case": "HU028-PDF-minimalista"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/pdf/",
+      "status": 200,
+      "case": "HU028-PDF-minimalista"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V06"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V06"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V07"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-V07"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-E503"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 503,
+      "case": "HU028-E503"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-E503"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-E429"
+    },
+    {
+      "method": "POST",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 429,
+      "case": "HU028-E429"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 200,
+      "case": "HU028-E429"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/generated/assistant/",
+      "status": 401,
+      "case": "HU028-V09"
+    }
+  ],
+  "controlled_faults": [
+    "V07 delayed locally replayed response; no provider request",
+    "E503 local browser route, not an actual provider outage/quota",
+    "E429 local browser route, not an actual provider outage/quota"
+  ],
+  "personal_browser_profile": false,
+  "har_trace_storageState": false,
+  "chromium": "158.0.8127.18",
+  "other_candidate_pdf_http": 404,
+  "scope": "Two actual Gemini generations in a fresh QA; desktop apply/edit/explicit save and three PDF previews/downloads; mobile own-profile generation and discard. Cancellation/error routes are controlled and separately identified. No real-person data or physical-device claim."
+}

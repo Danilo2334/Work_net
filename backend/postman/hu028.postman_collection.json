@@ -1,8 +1,8 @@
 {
   "info": {
-    "name": "WorkNet HU028 · Asistente CV · QA privada",
+    "name": "WorkNet HU028 - Asistente CV - QA aislada",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Usar solo en otra QA aislada con usuarios ficticios. La carpeta R01 necesita clave/modelo autorizados y proveedor real; nunca la presentes como aprobada por ejecutar un doble. Ajustar CURRICULUM_AI_RATE solo en QA para probar casos negativos sin consumir el límite de producción. Importar el entorno privado generado por hu028_qa.py; no publicar sus valores ni capturar Authorization."
+    "description": "Importar solo con el entorno privado de una QA nueva de hu028_qa.py. La clave Gemini permanece exclusivamente en backend. Ejecutar 01/02 en modo sin configuración, y 03 una vez con proveedor real autorizado. Datos ficticios; las respuestas privadas solo contienen los datos de esa QA. No abrir valores secretos del entorno."
   },
   "item": [
     {
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "name": "03 Proveedor real, pendiente de autorización y configuración",
+      "name": "03 Gemini real - propuesta, guardado explícito y PDF",
       "item": [
         {
           "name": "R01 Propuesta con proveedor real autorizado",
@@ -359,13 +359,309 @@
                   "const result = pm.response.json();",
                   "pm.test(\"No se guarda automáticamente\", () => pm.expect(result.saved).to.eql(false));",
                   "pm.test(\"Contrato del borrador\", () => { pm.expect(result.suggestion.data.personal.full_name).to.be.a(\"string\"); for (const k of [\"education\",\"experience\",\"skills\",\"languages\",\"certifications\",\"extra_sections\"]) pm.expect(result.suggestion.data[k]).to.be.an(\"array\"); });",
-                  "pm.test(\"Proveedor real identificado\", () => { pm.expect(result.provider).to.eql(\"Gemini\"); pm.expect(result.model).not.to.contain(\"qa-\"); });"
+                  "pm.test(\"Proveedor real identificado\", () => { pm.expect(result.provider).to.eql(\"Gemini\"); pm.expect(result.model).not.to.contain(\"qa-\"); });",
+                  "pm.test('Esquema revisable', () => pm.expect(pm.response.json().suggestion.missing_information).to.be.an('array'));",
+                  "pm.variables.set('hu028_proposal_json', JSON.stringify(pm.response.json().suggestion.data));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R02 Generar no guarda el CV",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('CV sin guardar después de generar', () => pm.expect(pm.response.json().exists).to.eql(false));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R03 Guardado explícito clasica",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"template\":\"clasica\",\"data\":{{hu028_proposal_json}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Guardado 200 o 201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));",
+                  "pm.test('Plantilla clasica', () => pm.expect(pm.response.json().curriculum.template).to.eql('clasica'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R04 PDF privado clasica",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PDF auténtico', () => pm.expect(pm.response.text().slice(0,5)).to.eql('%PDF-'));",
+                  "pm.test('Tipo PDF', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R05 Guardado explícito moderna",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"template\":\"moderna\",\"data\":{{hu028_proposal_json}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Guardado 200 o 201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));",
+                  "pm.test('Plantilla moderna', () => pm.expect(pm.response.json().curriculum.template).to.eql('moderna'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R06 PDF privado moderna",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PDF auténtico', () => pm.expect(pm.response.text().slice(0,5)).to.eql('%PDF-'));",
+                  "pm.test('Tipo PDF', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R07 Guardado explícito minimalista",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"template\":\"minimalista\",\"data\":{{hu028_proposal_json}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Guardado 200 o 201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));",
+                  "pm.test('Plantilla minimalista', () => pm.expect(pm.response.json().curriculum.template).to.eql('minimalista'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R08 PDF privado minimalista",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PDF auténtico', () => pm.expect(pm.response.text().slice(0,5)).to.eql('%PDF-'));",
+                  "pm.test('Tipo PDF', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R09 Otra candidata no consulta el PDF",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_other_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404, sin documento ajeno', () => pm.response.to.have.status(404));"
                 ]
               }
             }
           ]
         }
       ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const origin = pm.environment.get('hu028_api_origin');",
+          "if (!/^http:\\/\\/127\\.0\\.0\\.1:[0-9]{4,5}$/.test(origin || '') || !/^run-/.test(pm.environment.get('hu028_run_id') || '')) { throw new Error('Solo QA HU028 aislada y nueva'); }"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test('QA aislada correcta', () => pm.expect(pm.response.headers.get('X-WorkNet-QA-Run')).to.eql(pm.environment.get('hu028_run_id')));"
+        ]
+      }
     }
   ]
 }

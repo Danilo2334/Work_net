@@ -1,0 +1,360 @@
+{
+  "date": "2026-11-09",
+  "assets": [
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V01-editor-manual-plantilla-contactos.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 71869,
+      "sha256": "a9cb3a944405506079d57956647de935d02d0cda34e779c8bc6e50191ffa6743",
+      "git_blob": "edf59c4ddddca91f59cbd26c296cc4d8087f7b08"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V02-sin-configuracion-edicion-manual-disponible.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 75441,
+      "sha256": "03f10bdc78c2687b99528382ce33b74fa6cd95e4819c69d61f90d7585f3f9010",
+      "git_blob": "3af0f693a68d771a8a06d8c7b042065b0663a106"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V03-texto-consentimiento-perfil-optativo.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 115870,
+      "sha256": "0a94cd7a329efc7b16a25fd8a702a4a0ab047135e44e111f686f9464b137349e",
+      "git_blob": "655eedaad4418ad1803095d7595586d1c2ba57ab"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V04-propuesta-real-faltantes-revision-obligatoria.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 150608,
+      "sha256": "e450b6e0055981bc5dc933acc8c652dc751c637758ede883e8217d79a8d1cac7",
+      "git_blob": "02a9eff2d5d1cc2de841cdb900017dfbe9f642ab"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V04-aplicada-sin-guardar-conserva-plantilla.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 70375,
+      "sha256": "145a48c7f179798a3bfa40183c2e4b8da3573a7ba0fca0311c436879dee42b49",
+      "git_blob": "f866aeacf4499985e4959ccb8ab1c2effee3cdef"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V05-edicion-y-guardado-expresos.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 71857,
+      "sha256": "30f08ad148a30222320c0922f98986c91db44edf7cd2edef88689387ff75ead9",
+      "git_blob": "0d51c0b196da202ac9610e0e64c6a85a00995493"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-PDF-clasica-vista-previa-pdf-clasica.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 70592,
+      "sha256": "1f09174323229ec0a72a4174e9e4583399cc23a62bd91eb1cac092df1f4eae1c",
+      "git_blob": "63144dba173f3723873797732dde0a4010af0cd8"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-PDF-clasica-descarga-real-clasica.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 68378,
+      "sha256": "39fc99e707b48b726fac862fe39971b9f4516dc07d631c3bdc578790967bf784",
+      "git_blob": "be0166f120de727197683603a9501324a413c382"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-PDF-moderna-vista-previa-pdf-moderna.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 70602,
+      "sha256": "fe4d57ed50fd848d6b0a7824edcbefccc04e5abaf55c1daee488d151eaa878d9",
+      "git_blob": "cf0af4cf98db3c8f1af88a753c532426b3d500a2"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-PDF-moderna-descarga-real-moderna.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 68378,
+      "sha256": "39fc99e707b48b726fac862fe39971b9f4516dc07d631c3bdc578790967bf784",
+      "git_blob": "be0166f120de727197683603a9501324a413c382"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-PDF-minimalista-vista-previa-pdf-minimalista.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 70769,
+      "sha256": "fb5fff3b43839fb30601e51f6a1de56790c6827e7499dc8c0217bf9544baf074",
+      "git_blob": "7aae45c9818f3153c7fcafa6c2fc397701cbbd67"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-PDF-minimalista-descarga-real-minimalista.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 68378,
+      "sha256": "39fc99e707b48b726fac862fe39971b9f4516dc07d631c3bdc578790967bf784",
+      "git_blob": "be0166f120de727197683603a9501324a413c382"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-consentimiento-perfil-propio.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 70631,
+      "sha256": "9407a2c14916fc3f3be186c5be6acdf62777bef8e6b8ac3a8b428a71dbf3ecf7",
+      "git_blob": "3a14c2f3d1b301a1740c8666a357bf38eee608a4"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-propuesta-real-y-descarte.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 65306,
+      "sha256": "fe1d93a64dcbd1b4333cd2a801e7d3b82fd68f35231355c185f9e3233e8ddd51",
+      "git_blob": "66796055fdc686cbd635d105436f49669ea7a4ed"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-descartada-cv-previo-intacto.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 53611,
+      "sha256": "0869c60d7d591948d33771b1e5ba069924bb90694b412ff8ba9b1eed670d6058",
+      "git_blob": "e4d8605e001eb384e56bf73bfe92a3e803ccf66a"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V07-cancelacion-respuesta-tardia-controlada.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 72299,
+      "sha256": "1d6cf86e526cc0a92b3bcd6f7339d05b4cd7e469507a8681f7d6bc10d66cfe66",
+      "git_blob": "021dbe01713ac1868444a9f8a7ef936c98535b4e"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-E503-error-503-inyectado-identificado.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 122592,
+      "sha256": "d8be58e9b04a08842376b9cf6ff4d0345790885feecf3eb9161be19b4b1ff298",
+      "git_blob": "27e7db4cd34faca9f221725b704ddb292b1be4ea"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-E429-error-429-inyectado-identificado.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 122306,
+      "sha256": "6e62b9b70c8cceb4f45b6337032996ae0a758f0d89561897e7c8130ff41c31fa",
+      "git_blob": "e39edfb1efbe189f69f43fb0647b7222f345250c"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V08-aislamiento-contraste-api-separado.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 72440,
+      "sha256": "b4beb9e16811b3c7c9f98e54a550d1422992331a9fc2e67608facfb134b4e946",
+      "git_blob": "ab88d5ca30021118440353230de0f9a4d3ba80c9"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/HU028-V09-sesion-revocada-sin-propuesta-privada.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original Chromium screenshot, no editing",
+      "bytes": 62322,
+      "sha256": "438caf3946d7027fed41295b41c9eb395fb4df15ce5b069c21d9782cff8ebc04",
+      "git_blob": "b3e572bebfe3bd3168920c5ef28b27e31a3f237a"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/pdf-api/HU028-PDF-clasica-proveedor-real.pdf",
+      "source_run": "run-20261109T184303Z-4eb93e57",
+      "kind": "Original API PDF",
+      "bytes": 42230,
+      "sha256": "ca660fddda35033a76f6f156e7a0d54f7b9944ba2a032a3d58443149212a8cec",
+      "git_blob": "96e4901f25323c518b47758618f666fa03497d8b"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/pdf-api/HU028-PDF-minimalista-proveedor-real.pdf",
+      "source_run": "run-20261109T184303Z-4eb93e57",
+      "kind": "Original API PDF",
+      "bytes": 42123,
+      "sha256": "0c52ef164c0c4ebf93f1f6eeeacccdee9241b0defeb13b65254715bd2d83923c",
+      "git_blob": "9b5a3777e1c9113f528f1bf65c778eda86d1298d"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/pdf-api/HU028-PDF-moderna-proveedor-real.pdf",
+      "source_run": "run-20261109T184303Z-4eb93e57",
+      "kind": "Original API PDF",
+      "bytes": 42248,
+      "sha256": "3954617f04bc950a759654ef30ba40206dbb64ac1ff47c29c5a9665c442e5957",
+      "git_blob": "fcbde59fe4f0ea07da9b7c4958914b453ce15786"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/pdf-api/HU028-PDF-clasica-proveedor-real-render-1.png",
+      "source_run": "run-20261109T184303Z-4eb93e57",
+      "kind": "PDF render Poppler 110dpi, not UI screenshot",
+      "bytes": 36439,
+      "sha256": "94177934bfacf811f1541a7d0a8f199e409a35e59000f8115ef91176c9341bbe",
+      "git_blob": "3972c00ba36cf9eeab934cbb5cbc440c19d6a3cf"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/pdf-api/HU028-PDF-minimalista-proveedor-real-render-1.png",
+      "source_run": "run-20261109T184303Z-4eb93e57",
+      "kind": "PDF render Poppler 110dpi, not UI screenshot",
+      "bytes": 35823,
+      "sha256": "cd925e1ab4e0d1e83e086f133f740aba956c47e424dfd93df5b1a62e81d7088f",
+      "git_blob": "8941f448ae41f2fbc8ce5dfa58e288a2f5c3fe3f"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/pdf-api/HU028-PDF-moderna-proveedor-real-render-1.png",
+      "source_run": "run-20261109T184303Z-4eb93e57",
+      "kind": "PDF render Poppler 110dpi, not UI screenshot",
+      "bytes": 37133,
+      "sha256": "433fe410daf025545c7dcc98983904560f0d69748ac9fe85cee6a077ba7c6461",
+      "git_blob": "ece74cac8025977c92ecea5f7c43e87013df0d45"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-clasica-generacion-real.pdf",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original browser PDF download",
+      "bytes": 42363,
+      "sha256": "19a87d6399ff41397e688012f7add332c91583cdb25802a5a9250451e11870b7",
+      "git_blob": "ceee161c6eb8617a101224df5d32f370949a048f"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-minimalista-generacion-real.pdf",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original browser PDF download",
+      "bytes": 42235,
+      "sha256": "1fa952779c3ee68fcf71b2d00959cb51ba0a593137b856146e7e98630e783476",
+      "git_blob": "f20d59e01247bfa7eff762b1c130d7bab979dffb"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-moderna-generacion-real.pdf",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "Original browser PDF download",
+      "bytes": 42363,
+      "sha256": "d6fb6f8cc770afffe5d4fe46d6a3e348182584f6cb3fee1d30ef4560721c0068",
+      "git_blob": "75e97252e8f21fd0a09b7763b8c9d627fe79189c"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-clasica-generacion-real-render-1.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "PDF render Poppler 110dpi, not UI screenshot",
+      "bytes": 53671,
+      "sha256": "272dd0f6881d8edde4e5e003425e4ef023c2f49fcafccc49c9b9e98c8aa5ad30",
+      "git_blob": "addcf8474f4c6aa915c7e8e8f7e3cdd6d52b4888"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-minimalista-generacion-real-render-1.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "PDF render Poppler 110dpi, not UI screenshot",
+      "bytes": 53946,
+      "sha256": "1a1f7e7d81fbcbc9de547f90a12c4b3f8f1e73f84f09aa163676b359086c3680",
+      "git_blob": "b0d9678d126dc14f15d458e7f6c83bd58c8bfdc5"
+    },
+    {
+      "file": "frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-moderna-generacion-real-render-1.png",
+      "source_run": "run-20261109T185051Z-13e75b29",
+      "kind": "PDF render Poppler 110dpi, not UI screenshot",
+      "bytes": 55987,
+      "sha256": "46d7b688d2a9f137be97b301a4990a838f870c8d8eca5542f88ab748f4b14c30",
+      "git_blob": "6d5cb87a93112348eb5c74fbb5de8f673c0723bd"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/01-preparacion-negativos.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 115218,
+      "sha256": "d4b039fa8a41f448e7e31622e69d4e8bac8a47083f0b306d3eb936274d40c9aa",
+      "git_blob": "d19e685959c186141f8a1974e230b2ade57b7641"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/02-negativos-20-pass.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 99370,
+      "sha256": "14b0ea00dd8c1004beb949a2e9b51e819b00a1190566cf1c62c681d2215871ef",
+      "git_blob": "dfb56b58a58ac888e459ed8fe671222a22b8097c"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/03-permisos-403.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 116317,
+      "sha256": "a2f836914e5a6f8be135092ee28930aa8c730f1ae0ce5db1128fa5d4f4b318c6",
+      "git_blob": "6ceb49ec843b2b7a438c2936b37855be22117745"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/04-validacion-400.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 114354,
+      "sha256": "b8623fe4a994c863a93a9a60b998574acbf15d8f7ea2763a73721856d9ba225e",
+      "git_blob": "99ec295e6d701c59a4f4158bfee0cb0cc7b20b8a"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/05-sin-proveedor-503.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 114634,
+      "sha256": "8cf08b94862be94f1130bc519ce1578a1b6ea1064f8060e13c624fd8d18b555e",
+      "git_blob": "093f1bf8e9bc6f6074a03bbac828710ce3830554"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/06-preparacion-gemini-real.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 130113,
+      "sha256": "0153bff6142d263819e9c7efb587fff0ed62e9ac196144061b6823bada9aa652",
+      "git_blob": "02f5c49227b76adaca500c14fcd64e5a381fe824"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/07-real-32-pass-guardado-pdf.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 110175,
+      "sha256": "5fdc20ac0f105f1c5d4bee57841003ab9a8b29af6dda5801cfd67d9643718fd0",
+      "git_blob": "455ea8de75cc32bd96b79c41794a41497b72d3c2"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/08-real-propuesta-test-results.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 108598,
+      "sha256": "3761ea3c9189b273dc2b5915f26aeda05ec51ff0ea0a23c60b7edb308442ddef",
+      "git_blob": "ebaa32f3c3153dda42fae0590ffd6bc42f1a0c61"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/09-real-respuesta-http-200.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 137754,
+      "sha256": "5703c2217c251aaded01893b37c9e9df211a8178d5533bc2c7eb76869dd440b9",
+      "git_blob": "7e0b493b372ec6acd4e76d313104282a3c6b4cd5"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/10-real-peticion-consentimiento.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 119555,
+      "sha256": "2015d6f8923daa89e43c1a0f6e4839bcf24c5b43f52f944f6ccadfd84f773806",
+      "git_blob": "1924842848a2849b96e9f45cbb8e69405914452f"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/11-real-pdf-clasica-moderna.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 117990,
+      "sha256": "94184fb8ea584286317ecbbf7a9ca1d60f784586e78f3be9826377980c08769a",
+      "git_blob": "171c72ef1312999c1b2b875b99e3440b9569ed1a"
+    },
+    {
+      "file": "backend/docs/evidencias/hu028-real-20261109/postman/12-real-minimalista-aislamiento-404.jpg",
+      "source_run": "run-20261109T184717Z-0165b8da",
+      "kind": "Original Postman Desktop Windows capture, no editing",
+      "bytes": 114193,
+      "sha256": "7f16d5ab7fca6c671d9e3f1ea93374af91debc0095c3d09028d338b565f6f389",
+      "git_blob": "b7b117bda6a4825b5e2fba1fcd5a60be1e90aa3d"
+    }
+  ],
+  "preserved_originals": true,
+  "no_image_editing": true,
+  "reports_separate_from_historical_cloud_evidence": true
+}

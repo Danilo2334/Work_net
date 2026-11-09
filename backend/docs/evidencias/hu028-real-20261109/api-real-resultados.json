@@ -1,0 +1,64 @@
+{
+  "date_utc": "2026-11-09T18:43:14.293865+00:00",
+  "run": "run-20261109T184303Z-4eb93e57",
+  "platform": "Windows / SQLite / loopback",
+  "python": "3.12.10",
+  "django": "6.1.1",
+  "source_sha": "169115f58199d582d7f0a431316c2f2bd928bcaf",
+  "provider_real_tested": true,
+  "provider_double": null,
+  "requests_checked": 8,
+  "cases": [
+    {
+      "case": "R01 configuración de proveedor real",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "R02 propuesta con proveedor real",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "R03 guardado clasica",
+      "expected_http": "200/201",
+      "obtained_http": 201,
+      "passed": true
+    },
+    {
+      "case": "R04 PDF clasica",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "R03 guardado moderna",
+      "expected_http": "200/201",
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "R04 PDF moderna",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "R03 guardado minimalista",
+      "expected_http": "200/201",
+      "obtained_http": 200,
+      "passed": true
+    },
+    {
+      "case": "R04 PDF minimalista",
+      "expected_http": 200,
+      "obtained_http": 200,
+      "passed": true
+    }
+  ],
+  "pending": [
+    "Postman Desktop evidence"
+  ]
+}
