@@ -117,7 +117,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
   }
 
   Future<void> _save() async {
-    if (!_current || _busy || _preferences == null) return;
+    if (!_current || _busy || _loading || _preferences == null) return;
+    final generation = _generation;
     final values = Map<String, bool>.from(_preferences!);
     setState(() {
       _busy = true;
@@ -126,7 +127,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     });
     try {
       final result = await widget.repository.savePreferences(_token!, values);
-      if (_current) {
+      if (_current && generation == _generation) {
         setState(() {
           _preferences = result;
           _success = 'Preferencias guardadas para los eventos nuevos.';
@@ -282,13 +283,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 SwitchListTile(
                   title: Text(entry.value),
                   value: _preferences![entry.key]!,
-                  onChanged: _busy
+                  onChanged: _busy || _loading
                       ? null
                       : (value) =>
                             setState(() => _preferences![entry.key] = value),
                 ),
               FilledButton(
-                onPressed: _busy ? null : _save,
+                onPressed: _busy || _loading ? null : _save,
                 child: const Text('Guardar preferencias'),
               ),
             ],

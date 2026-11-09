@@ -16,6 +16,7 @@ class NoticesFake implements NotificationsRepository {
   bool readAlready = false, empty = false;
   ApiFailure? failure;
   Completer<NoticePage>? delayed;
+  Completer<Map<String, bool>>? delayedPreferences;
   final calls = <({int page, String status, int? anchor})>[];
   final readIds = <int>[];
   Map<String, bool> prefs = {for (final k in noticeLabels.keys) k: true};
@@ -60,7 +61,7 @@ class NoticesFake implements NotificationsRepository {
   @override
   Future<Map<String, bool>> preferences(String token) async {
     preferenceCalls++;
-    return Map.of(prefs);
+    return delayedPreferences?.future ?? Map.of(prefs);
   }
 
   @override
@@ -100,6 +101,43 @@ Future<SessionController> showNotices(
 }
 
 void main() {
+  testWidgets(
+    'retained preferences GET blocks editing and saving until reload finishes',
+    (t) async {
+      final repo = NoticesFake();
+      await showNotices(t, repo);
+      final held = Completer<Map<String, bool>>();
+      repo.delayedPreferences = held;
+      final refresh = find.text('Actualizar notificaciones');
+      await t.ensureVisible(refresh);
+      await t.tap(refresh);
+      await t.pump();
+      final save = t.widget<FilledButton>(
+        find.widgetWithText(FilledButton, 'Guardar preferencias'),
+      );
+      expect(save.onPressed, isNull);
+      for (final item in t.widgetList<SwitchListTile>(
+        find.byType(SwitchListTile),
+      )) {
+        expect(item.onChanged, isNull);
+      }
+      expect(repo.saved, isNull);
+      held.complete(Map.of(repo.prefs));
+      await t.pumpAndSettle();
+      repo.delayedPreferences = null;
+      await tap(t, find.widgetWithText(SwitchListTile, 'Nuevos mensajes'));
+      await tap(t, find.text('Guardar preferencias'));
+      expect(repo.saved!['message_received'], false);
+      expect(
+        t
+            .widget<SwitchListTile>(
+              find.widgetWithText(SwitchListTile, 'Nuevos mensajes'),
+            )
+            .value,
+        false,
+      );
+    },
+  );
   test(
     'HTTP preserves filters anchor authorization and exact read IDs',
     () async {
