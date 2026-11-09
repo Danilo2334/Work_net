@@ -1,0 +1,1002 @@
+{
+  "info": {
+    "_postman_id": "89f1c950-0ff6-4cb1-b04b-9c51e913b1ca",
+    "name": "HU024 · Estadísticas QA · run-20261109T033609-4d372045",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get('base_url')!=='http://127.0.0.1:8102/api'||pm.environment.get('qa_run_id')!=='run-20261109T033609-4d372045'||pm.environment.get('qa_confirmation')!=='SOLO_BASE_AISLADA'){pm.execution.skipRequest();throw Error('Solo otra QA HU024');}",
+          "if(pm.info.iteration>0){pm.execution.skipRequest();throw Error(\"Solo una iteración\");}",
+          "if(pm.info.requestName===\"HU024-P01 · Candidato conteos completos\"){if(pm.collectionVariables.get('qa_consumed')){pm.execution.skipRequest();throw Error('Base consumida');}pm.collectionVariables.set('qa_consumed','run-20261109T033609-4d372045');}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "HU024-P01 · Candidato conteos completos",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(13);pm.expect(b.states).deep.eq({\"submitted\": 6, \"in_review\": 3, \"accepted\": 2, \"rejected\": 2, \"other\": 0});pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P02 · Empresa totales y primera página",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(26);pm.expect(b.states).deep.eq({\"submitted\": 19, \"in_review\": 3, \"accepted\": 2, \"rejected\": 2, \"other\": 0});pm.expect(b.active_offers_count).eq(11);pm.expect(b.offers.count).eq(17);pm.expect(b.offers.rows.length).eq(10);pm.collectionVariables.set('page1',JSON.stringify(b.offers.rows.map(o=>o.id)));});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P03 · Segunda página conserva totales e incluye cerradas",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?page=2&page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(26);pm.expect(b.offers.rows.length).eq(7);pm.expect(b.offers.rows.every(o=>!JSON.parse(pm.collectionVariables.get('page1')).includes(o.id))).eq(true);pm.expect(b.offers.rows.find(o=>o.id===3).applications_count).eq(14);pm.expect(b.offers.rows.find(o=>o.id===4).status).eq('archived');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P04 · Candidato vacío",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(0);pm.expect(Object.values(b.states).reduce((a,x)=>a+x,0)).eq(0);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P05 · Empresa sin ofertas ni postulaciones",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{stats_empty_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.active_offers_count).eq(0);pm.expect(b.applications_count).eq(0);pm.expect(b.offers.rows).deep.eq([]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P06 · Dashboard empresarial coincide",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.metrics.applications).eq(26);pm.expect(b.metrics.active_offers).eq(11);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P07 · Cambio real de estado",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/applications/13/status/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"target_status\": \"in_review\", \"expected_version\": 0, \"request_id\": \"3c473e29-4004-4ce2-aac2-e71d8e4bc057\", \"confirm\": true, \"comment\": \"Cambio real para estadísticas HU024 QA\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.application.status).eq('in_review');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P08 · Candidato refleja cambio persistido",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(13);pm.expect(b.states).deep.eq({\"submitted\": 5, \"in_review\": 4, \"accepted\": 2, \"rejected\": 2, \"other\": 0});});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P09 · Empresa refleja mismos estados",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(26);pm.expect(b.states).deep.eq({\"submitted\": 18, \"in_review\": 4, \"accepted\": 2, \"rejected\": 2, \"other\": 0});});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P10 · Nueva postulación real de otro candidato",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/offers/1/application/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cv_source\": \"uploaded\", \"cv_id\": 2, \"cv_revision\": \"2026-11-09T03:36:19.085698Z\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201',()=>pm.response.to.have.status(201));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.created).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P11 · Otro candidato refleja su nueva postulación",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{other_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(1);pm.expect(b.states.submitted).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P12 · Empresa incorpora la nueva postulación",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.applications_count).eq(27);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P13 · Cierre real conserva postulaciones",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/2/transition/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\": \"close\", \"confirm\": true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P14 · Activas disminuyen sin borrar historial",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.active_offers_count).eq(10);pm.expect(b.applications_count).eq(27);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P15 · Dashboard actualizado coherente",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/dashboard/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.metrics.applications).eq(27);pm.expect(b.metrics.active_offers).eq(10);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P16 · Regresión aviso real al candidato",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/notifications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.notifications[0].event_kind).eq('application_status_changed');pm.expect(b.unread_count).eq(14);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P17 · Regresión aviso real empresarial",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/notifications/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU024',()=>{pm.expect(b.notifications[0].event_kind).eq('application_created');pm.expect(b.unread_count).eq(1);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P18 · Rol o aprobación sin permiso",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P19 · Rol o aprobación sin permiso",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P20 · Rol o aprobación sin permiso",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{reviewer_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P21 · Rol o aprobación sin permiso",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{rejection_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P22 · Candidato no admite IDs inyectados",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/?candidate_id=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P23 · Parámetro inválido page",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?page=0",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P24 · Parámetro inválido page_size",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?page_size=51",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P25 · Parámetro inválido page",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?page=999",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P26 · Parámetro inválido page",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?page=1&page=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P27 · Parámetro inválido page",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?page=NaN",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P28 · Parámetro inválido company_id",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?company_id=1",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P29 · Parámetro inválido status",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/?status=accepted",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P30 · Sesión ausente candidate",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/candidate/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P31 · Sesión ausente company",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P32 · Estadísticas no permiten escritura",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 405',()=>pm.response.to.have.status(405));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P33 · Revocar sesión vacía por API real",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/logout/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{stats_empty_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU024-P34 · Sesión revocada rechazada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/statistics/company/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{stats_empty_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

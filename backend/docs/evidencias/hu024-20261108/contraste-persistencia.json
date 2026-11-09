@@ -1,0 +1,299 @@
+{
+  "new_applications": 1,
+  "new_notices": 2,
+  "new_status_events": 1,
+  "closed_offer_ids": [
+    2
+  ],
+  "old_notices_and_reads_unchanged": true,
+  "old_application_dates_relations_pdfs_unchanged": true,
+  "profiles_accounts_cv_favorites_messages_preferences_unchanged": true,
+  "duplicates": 0,
+  "statistics_sql": {
+    "candidate": {
+      "applications_count": 13,
+      "states": {
+        "submitted": 5,
+        "in_review": 4,
+        "accepted": 2,
+        "rejected": 2,
+        "other": 0
+      }
+    },
+    "other": {
+      "applications_count": 1,
+      "states": {
+        "submitted": 1,
+        "in_review": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "other": 0
+      }
+    },
+    "company": {
+      "applications_count": 27,
+      "states": {
+        "submitted": 19,
+        "in_review": 4,
+        "accepted": 2,
+        "rejected": 2,
+        "other": 0
+      },
+      "active_offers_count": 10,
+      "offers": [
+        {
+          "id": 17,
+          "title": "Inactiva QA 17",
+          "status": "published",
+          "is_active": false,
+          "applications_count": 0,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 16,
+          "title": "Inactiva QA 16",
+          "status": "draft",
+          "is_active": false,
+          "applications_count": 0,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 15,
+          "title": "Inactiva QA 15",
+          "status": "archived",
+          "is_active": false,
+          "applications_count": 0,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 14,
+          "title": "Inactiva QA 14",
+          "status": "closed",
+          "is_active": false,
+          "applications_count": 0,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 13,
+          "title": "Favorito QA 13",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 1,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 12,
+          "title": "Favorito QA 12",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 1,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 11,
+          "title": "Oferta sesión revocada QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 1,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 10,
+          "title": "Oferta CV cambiado QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 1,
+            "other": 0
+          }
+        },
+        {
+          "id": 9,
+          "title": "Oferta sin CV QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 1,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 8,
+          "title": "Oferta CV eliminado QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 1,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 7,
+          "title": "Oferta respuesta perdida QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 1,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 6,
+          "title": "Oferta cambia a archivada QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 1,
+            "other": 0
+          }
+        },
+        {
+          "id": 5,
+          "title": "Oferta cambia a cerrada QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 0,
+            "accepted": 1,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 4,
+          "title": "Oferta CV generado QA",
+          "status": "archived",
+          "is_active": false,
+          "applications_count": 1,
+          "states": {
+            "submitted": 0,
+            "in_review": 1,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 3,
+          "title": "Oferta CV subido QA",
+          "status": "closed",
+          "is_active": false,
+          "applications_count": 14,
+          "states": {
+            "submitted": 14,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 2,
+          "title": "Oferta Django QA",
+          "status": "closed",
+          "is_active": false,
+          "applications_count": 1,
+          "states": {
+            "submitted": 1,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        },
+        {
+          "id": 1,
+          "title": "Oferta Flutter QA",
+          "status": "published",
+          "is_active": true,
+          "applications_count": 2,
+          "states": {
+            "submitted": 2,
+            "in_review": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "other": 0
+          }
+        }
+      ],
+      "offer_count": 17
+    },
+    "stats_empty": {
+      "applications_count": 0,
+      "states": {
+        "submitted": 0,
+        "in_review": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "other": 0
+      },
+      "active_offers_count": 0,
+      "offers": [],
+      "offer_count": 0
+    }
+  }
+}

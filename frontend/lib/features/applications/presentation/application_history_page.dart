@@ -12,9 +12,11 @@ class ApplicationHistoryPage extends StatefulWidget {
     super.key,
     required this.session,
     required this.repository,
+    this.returnToStatistics = false,
   });
   final SessionController session;
   final ApplicationsRepository repository;
+  final bool returnToStatistics;
   @override
   State<ApplicationHistoryPage> createState() => _ApplicationHistoryPageState();
 }
@@ -100,8 +102,20 @@ class _ApplicationHistoryPageState extends State<ApplicationHistoryPage> {
         child: const Text('Actualizar historial'),
       ),
       TextButton(
-        onPressed: () => context.go('/dashboard'),
-        child: const Text('Volver al dashboard'),
+        onPressed: () {
+          if (widget.returnToStatistics && context.canPop()) {
+            context.pop();
+          } else {
+            context.go(
+              widget.returnToStatistics ? '/statistics' : '/dashboard',
+            );
+          }
+        },
+        child: Text(
+          widget.returnToStatistics
+              ? 'Volver a estadísticas'
+              : 'Volver al dashboard',
+        ),
       ),
       TextButton(
         onPressed: () => context.go('/offers/search'),

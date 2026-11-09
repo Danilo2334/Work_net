@@ -133,6 +133,21 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
             onPressed: () => context.go('/company/applicants'),
             child: const Text('Gestionar postulantes'),
           ),
+        if (!widget.admin)
+          OutlinedButton.icon(
+            key: const Key('open_statistics'),
+            icon: const Icon(Icons.bar_chart),
+            label: const Text('Estadísticas'),
+            onPressed: () async {
+              final token = widget.session.session?.token;
+              await context.push('/statistics');
+              if (mounted &&
+                  token == widget.session.session?.token &&
+                  token != null) {
+                await _load();
+              }
+            },
+          ),
         OutlinedButton(
           onPressed: _busy ? null : _logout,
           child: const Text('Cerrar sesión'),
@@ -185,16 +200,15 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
               d.events,
               'Todavía no hay eventos de validación.',
             ),
-          WorkspacePanel(
-            title: 'Próximas funciones',
-            children: [
-              Text(
-                widget.admin
-                    ? 'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.'
-                    : 'Las estadísticas todavía no están disponibles.',
-              ),
-            ],
-          ),
+          if (widget.admin)
+            WorkspacePanel(
+              title: 'Próximas funciones',
+              children: [
+                const Text(
+                  'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.',
+                ),
+              ],
+            ),
         ],
       ],
     );

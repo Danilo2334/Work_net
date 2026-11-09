@@ -64,7 +64,8 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
     } on FormatException {
       if (mounted && generation == _generation) {
         setState(
-          () => _error = 'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
+          () => _error =
+              'No pudimos interpretar los datos del dashboard. Vuelve a intentarlo.',
         );
       }
     } finally {
@@ -179,6 +180,19 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
           onPressed: () => context.go('/applications'),
           icon: const Icon(Icons.history),
           label: const Text('Mis postulaciones'),
+        ),
+        const SizedBox(height: 12),
+        TextButton.icon(
+          key: const Key('open_statistics'),
+          icon: const Icon(Icons.bar_chart),
+          label: const Text('Estadísticas'),
+          onPressed: () async {
+            final token = widget.controller.session?.token;
+            await context.push('/statistics');
+            if (mounted && token == widget.controller.session?.token) {
+              await _load();
+            }
+          },
         ),
         const SizedBox(height: 12),
         MessagesEntry(

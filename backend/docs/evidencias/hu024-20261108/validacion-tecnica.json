@@ -1,0 +1,52 @@
+{
+  "backend_sha": "ff3982697211bde837f5b9b2e9475ce1ccff8fdc",
+  "flutter_full_test_sha": "5f2ab620a71c84895dfeb6edf1d986b65950f818",
+  "frontend_browser_qa_sha": "3070f79ba4c32a3ba1bc6226aa802239ab23ded0",
+  "functional_identity": "lib/test de 3070f79,12e3041 y4c157d2 son idénticos a5f2ab62. Las correcciones posteriores afectan solo al ejecutor QA.",
+  "django": {
+    "passed": 257,
+    "new": 8,
+    "check": "sin incidencias",
+    "makemigrations": "sin cambios",
+    "schema": "0009 aplicada y plan pendiente cero; HU024 no modifica modelos"
+  },
+  "flutter": {
+    "passed": 195,
+    "new": 9,
+    "affected_navigation_passed": 19,
+    "analyze": "sin incidencias",
+    "build": "web JavaScript release por ejecutor final de aceptación"
+  },
+  "guards": {
+    "python_passed": 20,
+    "node_passed": 6
+  },
+  "delegated_review": {
+    "type": "Revisión técnica delegada del agente autorizado; no aprobación personal ni humana.",
+    "backend": "Sin bloqueantes en agregados privados, paginación, permisos, conservación y reglas activas reutilizadas.",
+    "frontend": "Sin hallazgos tras revisar parser, sesión, retorno y RouteAware; scroll al inicio y vacío honesto corregidos.",
+    "defects_corrected": [
+      "La semántica de barras necesita valor numérico; el conteo legible se pasó a la etiqueta y se conserva el porcentaje automático.",
+      "Volver después de paginar postulantes mediante replace podía conservar datos antiguos: RouteAware.didPopNext refresca; prueba con componentes reales falla antes y pasa después."
+    ],
+    "acceptance": "Navegador16/16 y15 contrastes SQL independientes; Desktop34peticiones/50PASS en otra base.",
+    "limits": "SQLite por respuesta; no instantánea congelada entre páginas ni prueba de aislamiento PostgreSQL."
+  },
+  "versions": {
+    "Python": "3.12.10",
+    "Django": "6.1.1",
+    "DRF": "3.18.3",
+    "Flutter": "3.47.5",
+    "Dart": "3.13.4",
+    "Playwright": "1.65.0",
+    "Chromium": "158.0.8127.18",
+    "Postman Desktop": "12.35.5"
+  },
+  "response_rate": "Opcional en criterios originales, omitida; no se inventa historial ni fórmula.",
+  "antecedents": [
+    "Corrida1: V01–V04 aprobados, V05 paginación/SQL correctos; el helper getByText no localizaba etiquetas accesibles Flutter. Corregido solo ejecutor.",
+    "Corrida2: V01–V05 aprobados y GET de postulantes página2 correcto; el guard de captura no incluía HU024 para la consulta pública. Se reutilizó el guard estricto existente, sin permitir parámetros privados.",
+    "Corrida3 completa en otra base; las anteriores se conservan sin sumarlas a16/16."
+  ],
+  "limits": "Windows/SQLite y móvil web emulado; no dispositivo físico, PostgreSQL ni carga. HU027 está cancelada/fuera de alcance."
+}

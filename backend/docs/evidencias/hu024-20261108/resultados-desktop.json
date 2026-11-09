@@ -1,0 +1,31 @@
+{
+  "schema": "worknet-hu024-desktop-v1",
+  "source": "Transcripción del resumen observado en Runner Desktop y capturas originales; no es una exportación cruda de respuestas.",
+  "execution_start_utc": "2026-11-09T03:42:59.124Z",
+  "date_local": "08/11/2026 22:42:59 America/Bogota",
+  "run": "run-20261109T033609-4d372045",
+  "postman_version": "12.35.5",
+  "backend_sha": "ff3982697211bde837f5b9b2e9475ce1ccff8fdc",
+  "preparer_sha": "4c157d2a609008bb70392f93211aedf6ad313fa6",
+  "server_checkout_at_start": "398ee95ac527190c147877aec00e90645daa723a",
+  "requests": 34,
+  "iterations": 1,
+  "assertions_passed": 50,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_ms": 5296,
+  "average_response_ms": 35,
+  "initial_database_hash_equal": true,
+  "initial_dataset": {
+    "offers": 18,
+    "applications": 27,
+    "messages": 23,
+    "notifications": 63,
+    "company_offers": 17,
+    "company_applications": 26,
+    "candidate_applications": 13
+  },
+  "base": "Otra SQLite nueva, usuarios ficticios, correo a archivos y credenciales privadas; independiente del navegador.",
+  "scope": "Lecturas por rol, páginas, vacío, cambios reales, permisos, parámetros inválidos y sesión revocada; capturas de Responses y Test Results conservados sin volver a ejecutar."
+}
