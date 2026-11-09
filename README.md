@@ -1,244 +1,109 @@
-# Work_net
+# WorkNet · Bolsa de empleo con asistencia de IA
 
-Bolsa de empleo con backend Django REST y frontend Flutter.
-Las historias y sus criterios se mantienen en [GitHub Issues](https://github.com/Danilo2334/Work_net/issues).
+WorkNet conecta candidatos y empresas: perfiles profesionales, currículums, ofertas, postulaciones y comunicación en una misma aplicación. Su asistente Gemini organiza la información del candidato en una propuesta de CV que se revisa antes de guardar.
 
-## Alcance vigente
+**Entrega académica cerrada el 09/11/2026:** HU001–HU026 y HU028, **27 historias y 112 subtareas completadas**. [HU027 · LinkedIn](https://github.com/Danilo2334/Work_net/issues/28) queda abierta para una segunda versión, con sus cinco tareas pendientes.
 
-La entrega estable comprende **HU001–HU026**. HU027 — Integración con LinkedIn queda **pendiente de desarrollo**, fuera de esta entrega, con #28 y #137–#141 abiertas. Se retiró su retorno estático y la configuración preparatoria de los archivos actuales. Los antecedentes permanecen en Git. **HU028 — Asistente de creación de currículum con IA (#224)** se desarrolla por separado; su aceptación con proveedor real requiere configuración privada y permanece pendiente.
+[Presentación y cierre](docs/ENTREGA.md) · [Guía y evidencias](frontend/docs/REVISION.md) · [Plan de despliegue](docs/DESPLIEGUE.md) · [Historias](https://github.com/Danilo2334/Work_net/issues)
 
-Los resultados de implementación, aceptación, documentación e integración de HU001–HU026 se registran en [la guía y evidencias vigentes](frontend/docs/REVISION.md). Los cortes anteriores conservan su fecha y procedencia en los antecedentes; no constituyen una ejecución nueva.
+## Qué permite hacer
 
-<details>
-<summary>Corte histórico del 07/11/2026; no es el estado vigente</summary>
+| Participante | Funciones entregadas |
+| --- | --- |
+| Candidato | Registro y verificación, perfil, CV subido o generado con tres plantillas, ayuda opcional de IA, búsqueda y favoritos, postulación con copia del CV, historial, mensajes, avisos y estadísticas. |
+| Empresa | Validación de cuenta, publicación/edición/cierre de ofertas, filtros de postulantes, revisión del CV enviado, cambios de estado, mensajes, estadísticas y exportación CSV/PDF. |
+| Administración | Revisión de empresas, dashboard, cuentas administrativas, permisos, eventos y autenticación TOTP con recuperación de un solo uso. |
 
-Estado del 07/11/2026: cierre y archivado HU015 implementados y revisados por
-delegación del titular; 159 Django, 124 Flutter y 18 casos nuevos de navegador
-aprobados, con los mismos 18 casos repetidos en dos bases QA nuevas. La historia
-mantiene pendientes los recorridos completos del buscador
-HU016 y postulación HU018, todavía no implementados.
-[Guía vigente, capturas y alcance](frontend/docs/REVISION.md#hu015-cierre-y-archivado-de-ofertas--07112026).
-API en #156/#158, Flutter/QA en #157, entrega conjunta en #159 y main en #160;
-las cabeceras y fusiones definitivas se registran en esos PR y en el seguimiento.
-Los apartados históricos conservan
-sus versiones y la procedencia de sus comprobaciones.
+### Asistente de currículum
 
-</details>
+Texto propio → consentimiento → propuesta Gemini → revisión → aplicar o descartar → edición → guardado explícito → PDF. Incluir el perfil propio es opcional. Generar y descartar no modifican el perfil ni el CV guardado. La clave se utiliza únicamente en Django; el editor manual sigue disponible si el proveedor falla.
 
-## Ramas
+![Propuesta real del asistente de CV con revisión obligatoria](frontend/docs/evidencias/hu028-real-20261109/HU028-V04-propuesta-real-faltantes-revision-obligatoria.png)
 
-- `develop`: backend consolidado; base de las tareas de backend.
-- `frontend`: nueva interfaz Flutter, dentro de `frontend/`, usando los criterios de las historias y los mockups revisados.
-- `feature/backend-sprint-2`: rama compartida del backend; su nombre no determina la asignación de Sprint del Project.
-- `feature/hu008-selection-profile`: consulta empresarial del perfil limitada a postulaciones propias.
-- `feature/backend-sprint-3`: API de currículums subidos, edición de datos y generación de PDF.
-- `main`: base estable; recibe las integraciones revisadas.
+Captura original de aceptación con datos ficticios. La [guía](frontend/docs/REVISION.md#hu028--asistente-de-creación-de-currículum-con-ia--resultado-vigente-09112026) explica la acción, el resultado y sus límites.
 
-La consolidación conserva los commits anteriores y retira los archivos del frontend antiguo de las versiones actuales. Los commits de Danilo y Francisco mantienen su autoría. Cambiar de cuenta de GitHub CLI no cambia el autor de los commits de Git.
+## Arquitectura
 
-## Backend disponible
-
-- HU001–HU004: registro y verificación, acceso, recuperación y configuración de cuenta.
-- HU005–HU007: dashboards de candidato, empresa y administración con datos y accesos reales.
-- HU008–HU012: perfil, solicitudes empresariales y CV PDF privado subido o generado desde el perfil.
-- HU013–HU015: publicar, editar, cerrar y archivar ofertas con sus reglas de actividad.
-- HU016–HU018: búsqueda/filtros/orden/paginación, favoritos y postulación con copia inmutable del CV elegido.
-- HU019–HU022: historial y detalle, consulta y filtros de postulantes, cambios de estado y mensajes autorizados.
-- HU023–HU025: notificaciones internas, estadísticas reales y exportación CSV/PDF de coincidencias autorizadas.
-- HU026: cuentas administrativas, permisos por rol y doble factor TOTP obligatorio, con recuperación de un solo uso.
-
-Django y sus pruebas: Danilo2334. Flutter, integración y QA: francisco3788. La guía registra referencias permanentes, versiones y límites reales de cada aceptación; la revisión técnica delegada no representa aprobación humana.
-
-<details>
-<summary>Inventario histórico hasta HU015; sus dependencias ya se contrastaron con HU016–HU026</summary>
-
-## Backend disponible
-
-- HU001: creación de cuenta, selección posterior de rol público y verificación de correo.
-- HU002: login con token, estados empresariales reales y cierre de sesión con revocación remota.
-- HU003: recuperación de contraseña con token de un solo uso y revocación del acceso anterior.
-- HU004: consulta y edición de cuenta, cambio de contraseña, eliminación con confirmación y preferencias push.
-- HU005, tarea #48: resumen del candidato con métricas, completitud del perfil y ofertas recientes.
-- HU008: CRUD del perfil propio, fotografía privada y reutilización efectiva para CV; consulta empresarial autorizada por postulación propia.
-- HU009/HU010: información empresarial, solicitud, revisión administrativa, rechazo con motivo, corrección, reenvío y aprobación; avisos dentro de WorkNet.
-- HU006/HU007: resúmenes de empresa aprobada y administrador, con datos reales y permisos por rol.
-- HU011: carga, consulta, reemplazo y retirada de un CV PDF privado.
-- HU012: precarga del perfil, guardado y edición del CV, tres plantillas y generación de PDF.
-- HU013: catálogos y publicación de ofertas por la empresa aprobada propietaria.
-- HU014: consulta y edición de ofertas propias activas, sin cambiar identidad ni requerir otra aprobación.
-- HU015: cierre/archivado de ofertas propias con confirmación y consulta de conservadas; datos y postulaciones intactos, consultas activas filtradas y bloqueo de nuevas escrituras sobre inactivas. El buscador completo y la postulación de HU016/HU018 siguen pendientes.
-
-El Project WORK_NET se consultó con Francisco y `read:project`: Sprint 1 contiene
-HU001–HU004 y #29–#46; Sprint 2, HU005–HU010 y #47–#70; Sprint 3, HU011–HU017 y
-#71–#79. La consulta del 07/11/2026 confirma #80–#83 en Sprint 3; no se modificaron los Sprint de las tareas futuras. Se conservaron esas
-asignaciones. La revisión técnica delegada y su integración se documentan en la
-guía vigente; los módulos futuros conservan su alcance pendiente.
-
-La selección de CV al postular sigue pendiente de HU018.
-
-
-</details>
+| Componente | Implementación |
+| --- | --- |
+| Interfaz | Flutter; capas de dominio, datos y presentación por funcionalidad. |
+| API | Django REST Framework; permisos y propiedad comprobados en servidor. |
+| Autenticación | Token revocable; segundo factor obligatorio para administración. |
+| Datos locales | SQLite para desarrollo y QA; migraciones versionadas. |
+| Documentos | CV, copia enviada, fotografía y logo como bytes privados en la base de datos. |
+| IA | Gemini desde backend, con consentimiento, contrato estructurado y límite por usuario. |
 
 ## Ejecutar en Windows / PowerShell
 
-Desde `backend`, con Python 3.12 o superior y el entorno virtual activo:
+Versiones de aceptación: Python 3.12.10, Django 6.1.1, Flutter 3.47.5 y Dart 3.13.4. Dependencias en [requirements.txt](backend/requirements.txt), [pubspec.yaml](frontend/pubspec.yaml) y [pubspec.lock](frontend/pubspec.lock).
+
+Trabajar en un checkout limpio separado de los entornos anteriores. Desde la raíz:
 
 ```powershell
-python -m pip install -r requirements.txt
-python manage.py migrate
-python manage.py check
-python manage.py test accounts candidate_dashboard curriculum --noinput
-python manage.py runserver
+py -3.12 -m venv backend/.venv
+./backend/.venv/Scripts/Activate.ps1
+python -m pip install -r backend/requirements.txt
+Copy-Item backend/.env.example backend/.env
 ```
 
-Se utiliza la base SQLite local configurada en el proyecto. El runner crea y elimina su propia base de pruebas. Las pruebas de correo usan memoria; no envían correos reales.
+La copia corresponde a una instalación nueva. Si ya existe configuración privada, conservarla. Completar localmente GMAIL_USER y GMAIL_APP_PASSWORD para el correo. Mantener PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password.
 
-### Correo y enlaces
+Para el asistente, configurar GEMINI_API_KEY y GEMINI_MODEL solo en el entorno privado del backend. Usar un modelo autorizado en la cuenta; no incluir credenciales en Flutter, Git ni capturas. La aceptación utilizó gemini-3.5-flash-lite; su disponibilidad y cuota dependen del proveedor.
 
-La configuración SMTP de la integración se conserva. Para los envíos reales, completar `GMAIL_USER` y `GMAIL_APP_PASSWORD` en `backend/.env`, usando una contraseña de aplicación autorizada. Puede tomarse `backend/.env.example` como referencia. El archivo `.env` se mantiene fuera de Git.
+```powershell
+cd backend
+python manage.py migrate
+python manage.py check
+python manage.py runserver 127.0.0.1:8000
+```
 
-La pantalla de recuperación ya existe. Configurar `PASSWORD_RESET_FRONTEND_URL=http://localhost:55000/reset-password` al ejecutar Flutter en ese puerto. Django instalado: 6.1.1; se conserva [MAILERS](https://docs.djangoproject.com/en/6.1/topics/email/#configuring-email). Registro SMTP verificado mediante el enlace recibido que aportó el usuario: HTTP 200, verificación persistida y login/dashboard desde Flutter correctos. Recuperación completada con el enlace recibido aportado por el usuario: cambio persistido, nueva contraseña aceptada desde Flutter, anterior y enlace usado rechazados; sesiones revocadas. [Estado del correo](https://github.com/Danilo2334/Work_net/issues/31#issuecomment-6272920035). El correo a archivos usado en la QA anterior no acredita entrega SMTP.
+En otra terminal, desde frontend:
 
-## API
+```powershell
+flutter pub get
+flutter run -d chrome --web-port 55000 --dart-define=API_BASE_URL=http://127.0.0.1:8000/api/
+```
 
-| Método | Ruta | Autenticación |
-|---|---|---|
-| POST | `/api/register/` | Pública |
-| POST | `/api/register/role/` | Autorización limitada del registro o sesión propia sin rol |
-| GET | `/api/verify-email/?token=...` | Enlace firmado |
-| POST | `/api/login/` | Pública |
-| POST | `/api/logout/` | Token que se revoca |
-| POST | `/api/password-recovery/request/` | Pública |
-| POST | `/api/password-recovery/confirm/` | UID y token de recuperación |
-| GET, PATCH | `/api/account/` | Token |
-| POST | `/api/account/password/` | Token |
-| DELETE | `/api/account/delete/` | Token y confirmación |
-| GET, PATCH | `/api/account/notifications/` | Token |
-| GET | `/api/dashboard/candidate/` | Token de candidato |
-| GET, PATCH | `/api/company/` | Token de la empresa propietaria |
-| POST | `/api/company/submit/` | Empresa con información completa |
-| PUT, GET, DELETE | `/api/company/logo/` | Empresa aprobada propietaria; JPEG/PNG privado |
-| GET | `/api/admin/companies/` | Administrador; listado paginado |
-| POST | `/api/admin/companies/{id}/review/` | Administrador; versión y motivo si rechaza |
-| GET | `/api/dashboard/company/` | Empresa aprobada |
-| GET | `/api/dashboard/admin/` | Administrador con sesión MFA y permiso dashboard |
-| GET, POST | `/api/admin/accounts/` | MFA y permiso; alta reservada al principal |
-| PATCH | `/api/admin/accounts/<id>/` | MFA, autoridad suficiente y versión actual |
-| GET | `/api/admin/events/` | MFA y permiso de eventos |
-| POST | `/api/admin/mfa/setup/` | Desafío de contraseña válido; no es una sesión |
-| POST | `/api/admin/mfa/verify/` | TOTP privado o recuperación que exige nuevo autenticador |
-| GET, POST, PATCH, DELETE | `/api/profile/candidate/` | Candidato propietario verificado |
-| GET, POST | `/api/profile/candidate/<section>/` | Candidato propietario verificado |
-| GET, PATCH, DELETE | `/api/profile/candidate/<section>/<uuid>/` | Candidato propietario verificado |
-| GET, PUT, DELETE | `/api/profile/candidate/photo/` | Candidato propietario verificado |
-| GET | `/api/company/applications/<id>/profile/` | Empresa aprobada dueña de la oferta |
-| GET | `/api/company/applications/<id>/profile/photo/` | Empresa aprobada dueña de la oferta |
-| POST | `/api/admin/companies/<id>/review/` | Administrador |
-| GET | `/api/curriculum/` | Candidato propietario verificado |
-| GET, PUT, DELETE | `/api/curriculum/uploaded/` | Candidato propietario verificado |
-| GET, PUT, PATCH, DELETE | `/api/curriculum/generated/` | Candidato propietario verificado |
-| POST | `/api/curriculum/generated/preview/` | Candidato propietario verificado |
-| GET | `/api/curriculum/generated/pdf/` | Candidato propietario verificado |
-| GET, POST | `/api/company/offers/` | Empresa propietaria aprobada y verificada |
+El principal se aprovisiona con `python manage.py createsuperuser`; al entrar configura y confirma su autenticador. No existe registro público de administradores. [Preparar la demostración](docs/ENTREGA.md).
 
-Encabezado: `Authorization: Token <token>`. Después de cambiar la contraseña desde configuración, guardar el token nuevo. La recuperación de contraseña requiere un nuevo login.
+## Validación publicada
 
-El [contrato del perfil](backend/candidate_dashboard/PROFILE_API.md) detalla las
-secciones, validaciones y permisos de selección. La [guía de Postman](backend/postman/README.md)
-explica cómo preparar y repetir los casos, conservando las colecciones anteriores.
+| Comprobación | Resultado acreditado |
+| --- | --- |
+| Regresión Django / Flutter | **301 / 237 pruebas aprobadas**. |
+| Análisis, compilación y migraciones | Correctos según los informes de aceptación. |
+| HU028 API / navegador | **8/8 / 14/14** casos; cuatro generaciones Gemini aceptadas entre API, navegador y Desktop. |
+| HU028 Postman Desktop | **18 peticiones / 52 comprobaciones aprobadas**, sin fallos. |
+| CV | PDF comprobado en Clásica, Moderna y Minimalista. |
 
-## Contrato de currículums
+Resultados de la aceptación de [main 66d9f15](https://github.com/Danilo2334/Work_net/commit/66d9f154068aa3e33cbef0bb5a751ff6c35df6ae), [PR #236](https://github.com/Danilo2334/Work_net/pull/236). La limpieza posterior cambia documentación y referencias de ramas; no constituye otra ejecución funcional. Los [informes originales](backend/docs/evidencias/hu028-real-20261109/aceptacion.json) distinguen llamadas reales, dobles e inyección de errores.
 
-`GET /api/curriculum/` devuelve `uploaded`, `generated`, `options` y `limits`.
-Los dos primeros son null si no hay documentos guardados. `options` contiene
-`source` (`uploaded` o `generated`) y `label`; prepara la integración de selección
-del documento, pero no crea una postulación ni concede acceso empresarial al CV.
+Para repetir la regresión, desde backend:
 
-### PDF subido
+```powershell
+python manage.py test
+python manage.py check
+python manage.py makemigrations --check --dry-run
+```
 
-Enviar `PUT /api/curriculum/uploaded/` como multipart con un único campo `file`.
-Se comprueban extensión `.pdf`, MIME `application/pdf`, estructura real, máximo
-**5 MiB** y entre **1 y 50 páginas**. Se rechazan archivos cifrados, formularios,
-acciones activas y adjuntos. Los enlaces HTTP, HTTPS y correo sí se admiten.
-Una carga inválida conserva el archivo anterior. Primera carga HTTP 201;
-reemplazo HTTP 200. La respuesta incluye nombre saneado, tamaño y fecha.
+Desde frontend:
 
-GET devuelve los bytes del PDF propio; DELETE retira solamente ese CV. El PDF
-se guarda en una fila privada, sin ruta pública ni `MEDIA_URL`. Las respuestas
-usan `private, no-store`, `Vary: Authorization` y `nosniff`; el token va en el
-encabezado, nunca en la URL. La consulta de metadatos no carga los bytes del PDF.
+```powershell
+flutter test
+flutter analyze
+flutter build web --release --no-web-resources-cdn
+```
 
-### CV creado con plantillas
+Utilizar una base QA nueva para aceptación y conservar las anteriores. [Contrato de perfil](backend/candidate_dashboard/PROFILE_API.md) · [Postman](backend/postman/README.md) · [Arquitectura Flutter](frontend/README.md).
 
-GET devuelve `exists` y `curriculum` con `template`, `data` y `updated_at`.
-Si no existe, precarga nombre y correo de la cuenta, resumen y cuatro secciones
-del perfil; consultar el borrador no crea registros. Un CV ya guardado conserva
-su edición, aunque después cambie el perfil de origen.
+La aceptación cubre Windows/SQLite, escritorio, móvil web emulado y recorridos específicos Android emulado. No acredita PostgreSQL, carga, iOS ni todos los flujos en un teléfono físico. La [página informativa](https://danilo2334.github.io/Work_net/) presenta el proyecto; la aplicación completa requiere [preparación y despliegue](docs/DESPLIEGUE.md).
 
-PUT guarda el documento completo. PATCH con solo `template` cambia la presentación
-sin perder datos. Si PATCH incluye `data`, ese bloque se reemplaza completo:
-el editor debe enviar todas sus secciones. Los datos del CV son independientes
-del nombre, correo y contraseña de la cuenta. No se aceptan IDs de propietarios
-ni campos desconocidos.
+## Ramas y continuidad
 
-| Campo de `data` | Contenido |
-|---|---|
-| `personal` | `full_name` obligatorio; `email`, `phone`, `location`, `website` opcionales |
-| `professional_summary` | Resumen, hasta 5000 caracteres |
-| `education` | Hasta 100 registros con `qualification`, `institution`, fechas y descripción |
-| `experience` | Hasta 100 registros con `position`, `company`, fechas y descripción |
-| `skills`, `languages` | Hasta 100 registros por lista; `name` y `level`, como en el perfil |
-| `certifications` | Hasta 100 registros con `title`, `issuer`, `issue_date` y `description` |
-| `extra_sections` | Hasta 10 secciones con `title` (120 caracteres) y `content` (3000) |
+`main` conserva la entrega integrada; `develop`, `frontend` y `feature/backend-sprint-3` conservan las bases compartidas del flujo usado. Se retiraron **45 ramas temporales** cuyos commits eran antecesores de main. `feature/hu008-selection-profile` se conserva porque contiene un commit de evidencias no fusionado; no forma parte de la entrega estable. El [inventario de cierre](docs/auditoria-cierre-20261109.json) conserva nombres y SHA. Los checkouts locales del equipo no se eliminaron desde esta sesión.
 
-Las listas opcionales vacías se conservan. Fechas ISO `YYYY-MM-DD` o null;
-en educación y experiencia, la final no puede preceder a la inicial. El bloque
-de datos admite hasta 128 KiB de texto UTF-8. Las plantillas son `clasica`,
-`moderna` y `minimalista`.
+HU027 permanece en el backlog de la segunda versión. Las nuevas funciones deben partir de la entrega estable y acreditar su propia aceptación.
 
-POST a `generated/preview/` recibe el mismo cuerpo que PUT y devuelve un PDF sin
-guardar. GET a `generated/pdf/` descarga el documento guardado. El texto se
-escapa antes de componer el PDF: no se interpreta HTML ni se cargan imágenes o
-recursos remotos. Hay paginación automática y números de página. DELETE sobre
-`generated/` conserva el CV subido, el perfil y la cuenta.
+## Equipo
 
-Sin sesión se devuelve 401; roles ajenos o candidato sin verificar, 403;
-documento guardado ausente, 404. Los errores de datos devuelven 400 con `message`
-y `errors`. La empresa aprobada propietaria consulta la copia de CV enviada con la postulación mediante HU018/HU020. El documento y sus metadatos quedan conservados aunque la fuente actual se sustituya o retire; los registros antiguos sin copia informan su ausencia. Se mantiene la autorización por propiedad y postulación.
-
-## HU005: alcance resuelto y antecedente
-
-Los criterios de acceso a CV, buscador, historial y mensajes están acreditados en HU011/HU012/HU016/HU018/HU019/HU022. Estadísticas de HU006 se completan con HU024; los accesos pendientes de HU007 se completan con HU026. Los cortes siguientes conservan su fecha histórica.
-
-<details>
-<summary>Seguimiento anterior de HU005</summary>
-
-El resumen consulta datos persistentes en `candidate_dashboard`: perfil, ofertas, postulaciones, guardados y notificaciones. El perfil propio ya se edita desde Flutter. CV subido/generado y publicación HU013 ya están implementados en los PR #146–#149 y comprobados en combinación aislada; su integración se valida en el bloque delegado actual. Gestión de ofertas, búsqueda, mensajes, estadísticas y gestión de postulantes pertenecen a historias futuras; no se iniciaron en este bloque. Las siguientes historias deben reutilizar las entidades existentes.
-
-El login distingue empresa Pendiente/Aprobada/Rechazada. Solo la aprobada accede a su resumen. La consulta de perfiles requiere además una postulación a una oferta propia. [Contrato empresarial y sesión](backend/accounts/COMPANY_API.md).
-
-La consulta empresarial del perfil usa una postulación existente y comprueba
-la propiedad de su oferta en cada petición. No implementa el listado, filtros,
-cambios de estado o selección de CV de los módulos futuros.
-
-</details>
-
-## Integración y evidencias
-
-Trabajar por bloques funcionales. Ejecutar las pruebas de las áreas modificadas y el conjunto completo antes de integrar. Documentar resultados reales. Las capturas de UI y el resumen de una colección de API complementan la revisión; las operaciones de frontend deben verificarse contra la API real.
-
-[Guía para revisar la aplicación](frontend/docs/REVISION.md) · [Frontend y arquitectura](frontend/README.md).
-
-[Tareas y evidencias en GitHub](https://github.com/Danilo2334/Work_net/issues).
-
-
-## Historial: retoma hasta HU013 — 07/11/2026
-
-<details>
-<summary>Corte histórico hasta HU013; consultar la guía vigente para el resultado posterior</summary>
-
-El seguimiento vigente y la aceptación técnica conjunta están en la [guía existente](frontend/docs/REVISION.md#retoma-de-danilo-aceptación-hasta-hu013--07112026), con [resultados sin secretos](frontend/docs/evidencias/retoma-20261107/resultados.json). Nuevo QA de aceptación/Postman/evidencias: Francisco; backend: Danilo. Se conserva la autoría histórica de sus implementaciones y pruebas.
-
-Los PR #146–#149 continúan en borrador. HU013 está publicado en #148 (backend) y #149 (Flutter); las APIs de CV y ofertas todavía requieren incorporar de forma revisada #148/#147 al backend de entrega antes de #146. La combinación aislada pasó 141 Django, 110 Flutter, análisis y compilación JavaScript, más comprobaciones HTTP y Newman identificadas por separado. En el primer bloque no conectó Computer Use; su error de pipe nativo continúa y no se repitió Postman Desktop. En la continuación autorizada, un Chromium temporal independiente sí completó la aceptación visual restante HU012/HU013: [25 casos y 37 capturas inspeccionadas](frontend/docs/evidencias/retoma-20261107/aceptacion-visual/resultados.json). Se corrigió la reentrada rápida del editor después de descartar cambios; pasaron 46 pruebas pertinentes, análisis y compilación. [Resultados y revisiones preparadas](frontend/docs/REVISION.md#aceptación-visual-y-revisiones-preparadas--07112026). HU018 mantiene pendiente la selección del CV en postulaciones. La evidencia histórica conserva su fecha y alcance; no se inició HU014–HU027, no se fusionó ni se inventaron revisiones humanas.
-
-</details>
+Danilo2334: Django y pruebas propias. francisco3788: Flutter, integración, QA y documentación. El historial conserva las contribuciones y autorías anteriores. Los informes identifican cuándo la revisión fue técnica de un agente; no se atribuye aprobación humana inexistente.
