@@ -148,18 +148,24 @@ class NotificationTests(MessageFixture, TestCase):
 class ConcurrentNotificationPreferencesTests(MessageFixture,TransactionTestCase):
     def test_first_partial_preferences_writes_conserve_both_values_under_contention(self):
         auth=self.client._credentials['HTTP_AUTHORIZATION']
-        barrier=Barrier(2);thread=local();original=QuerySet.create
-        def create(query,**values):
+        barrier=Barrier(2);thread=local()
+        original_create=QuerySet.create;original_bulk_create=QuerySet.bulk_create
+        def synchronize_first_write(query):
             if query.model is NotificationPreference and connection.vendor=='sqlite' and not getattr(thread,'waited',False):
                 thread.waited=True;barrier.wait(timeout=10)
-            return original(query,**values)
+        def create(query,**values):
+            synchronize_first_write(query)
+            return original_create(query,**values)
+        def bulk_create(query,*args,**kwargs):
+            synchronize_first_write(query)
+            return original_bulk_create(query,*args,**kwargs)
         def update(key):
             close_old_connections()
             try:
                 client=APIClient();client.credentials(HTTP_AUTHORIZATION=auth)
                 return client.patch('/api/notifications/preferences/',{key:False},format='json').status_code
             finally:close_old_connections()
-        with patch.object(QuerySet,'create',create),ThreadPoolExecutor(max_workers=2) as pool:
+        with patch.object(QuerySet,'create',create),patch.object(QuerySet,'bulk_create',bulk_create),ThreadPoolExecutor(max_workers=2) as pool:
             responses=list(pool.map(update,['message_received','company_reviewed']))
         self.assertEqual(responses,[200,200]);self.assertEqual(NotificationPreference.objects.count(),1)
         item=NotificationPreference.objects.get(user=self.user)
