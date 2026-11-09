@@ -37,6 +37,8 @@ class _ProfilePageState extends State<ProfilePage> {
   bool get _working => _busy || _picking;
   String get _token => widget.controller.session?.token ?? '';
 
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.controller.session?.token == token;
   @override
   void initState() {
     super.initState();
@@ -60,8 +62,10 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  Future<void> _loadPhoto() async {
-    if (mounted) {
+  Future<void> _loadPhoto([String? ownerToken]) async {
+    final token = ownerToken ?? widget.controller.session?.token;
+    if (!_isCurrent(token)) return;
+    if (_isCurrent(token)) {
       setState(() {
         _photoLoading = true;
         _photoError = null;
@@ -69,41 +73,47 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
     try {
-      final photo = await widget.repository.photo(_token);
-      if (mounted) setState(() => _photo = photo);
+      final photo = await widget.repository.photo(token!);
+      if (_isCurrent(token)) setState(() => _photo = photo);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.controller.expire();
-      if (mounted) setState(() => _photoError = e.message);
+      if (_isCurrent(token)) setState(() => _photoError = e.message);
     } finally {
-      if (mounted) setState(() => _photoLoading = false);
+      if (_isCurrent(token)) setState(() => _photoLoading = false);
     }
   }
 
   Future<void> _load() async {
+    final token = widget.controller.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _loading = true;
       _loadError = null;
     });
     try {
-      _apply(await widget.repository.load(_token));
-      if (_data?.hasPhoto == true) await _loadPhoto();
+      final loaded = await widget.repository.load(token!);
+      if (!_isCurrent(token)) return;
+      _apply(loaded);
+      if (_data?.hasPhoto == true) await _loadPhoto(token);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.controller.expire();
-      if (mounted) setState(() => _loadError = e.message);
+      if (_isCurrent(token)) setState(() => _loadError = e.message);
     } on FormatException {
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _loadError =
               'No pudimos interpretar tu perfil. Vuelve a intentarlo.',
         );
       }
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (_isCurrent(token)) setState(() => _loading = false);
     }
   }
 
-  void _feedback(String message) {
-    if (!mounted) return;
+  void _feedback(String message, String token) {
+    if (!_isCurrent(token)) return;
     setState(() {
       _success = message;
       _error = null;
@@ -122,18 +132,22 @@ class _ProfilePageState extends State<ProfilePage> {
     String success, {
     bool reloadPhoto = false,
   }) async {
-    if (_busy) return;
+    final token = widget.controller.session?.token;
+    if (_busy || !_isCurrent(token)) return;
     setState(() {
       _busy = true;
       _error = _success = null;
     });
     try {
-      _apply(await action());
-      if (reloadPhoto && _data?.hasPhoto == true) await _loadPhoto();
-      _feedback(success);
+      final result = await action();
+      if (!_isCurrent(token)) return;
+      _apply(result);
+      if (reloadPhoto && _data?.hasPhoto == true) await _loadPhoto(token);
+      if (_isCurrent(token)) _feedback(success, token!);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.controller.expire();
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _error = e.fields.isEmpty
               ? e.message
@@ -141,14 +155,14 @@ class _ProfilePageState extends State<ProfilePage> {
         );
       }
     } on FormatException {
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _error =
               'No pudimos interpretar el perfil actualizado. Vuelve a consultar tus datos.',
         );
       }
     } finally {
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(() => _busy = false);
         if (_scroll.hasClients && _error != null) {
           _scroll.animateTo(
@@ -162,6 +176,8 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _upload() async {
+    final token = widget.controller.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _picking = true;
       _error = _success = null;
@@ -179,26 +195,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ));
-      if (!mounted || file == null) return;
+      if (!_isCurrent(token) || file == null) return;
       validateProfilePhoto(file.name, await file.length());
       final bytes = await file.readAsBytes();
-      if (!mounted) return;
+      if (!_isCurrent(token)) return;
       await _run(
-        () => widget.repository.upload(_token, bytes, file.name),
+        () => widget.repository.upload(token!, bytes, file.name),
         'Fotografía guardada correctamente.',
         reloadPhoto: true,
       );
     } on ApiFailure catch (e) {
-      if (mounted) setState(() => _error = e.message);
+      if (_isCurrent(token)) setState(() => _error = e.message);
     } catch (_) {
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _error =
               'No pudimos abrir el archivo. Selecciona otra fotografía.',
         );
       }
     } finally {
-      if (mounted) setState(() => _picking = false);
+      if (_isCurrent(token)) setState(() => _picking = false);
     }
   }
 
@@ -224,6 +240,8 @@ class _ProfilePageState extends State<ProfilePage> {
       true;
 
   Future<void> _edit(String section, [Map<String, dynamic>? record]) async {
+    final token = widget.controller.session?.token;
+    if (!_isCurrent(token)) return;
     final saved = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
@@ -231,23 +249,26 @@ class _ProfilePageState extends State<ProfilePage> {
         section: section,
         record: record,
         onSave: (values) async {
+          if (!_isCurrent(token)) return;
           try {
-            _apply(
-              await widget.repository.saveRecord(
-                _token,
-                section,
-                values,
-                id: record?['id'] as String?,
-              ),
+            final saved = await widget.repository.saveRecord(
+              token!,
+              section,
+              values,
+              id: record?['id'] as String?,
             );
+            if (_isCurrent(token)) _apply(saved);
           } on ApiFailure catch (e) {
+            if (!_isCurrent(token)) return;
             if (e.status == 401) await widget.controller.expire();
             rethrow;
           }
         },
       ),
     );
-    if (saved == true) _feedback('Registro guardado correctamente.');
+    if (saved == true && _isCurrent(token)) {
+      _feedback('Registro guardado correctamente.', token!);
+    }
   }
 
   Widget _panel(String title, List<Widget> children) => Container(
@@ -321,13 +342,14 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: _working
                 ? null
                 : () async {
+                    final token = _token;
                     if (await _confirm(
                           '¿Eliminar fotografía?',
                           'Podrás agregar otra fotografía cuando quieras.',
                         ) &&
-                        mounted) {
+                        _isCurrent(token)) {
                       await _run(
-                        () => widget.repository.removePhoto(_token),
+                        () => widget.repository.removePhoto(token),
                         'Fotografía eliminada.',
                       );
                     }
@@ -396,14 +418,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     onPressed: _working
                         ? null
                         : () async {
+                            final token = _token;
                             if (await _confirm(
                                   '¿Eliminar registro?',
                                   'Se eliminará este registro de tu perfil.',
                                 ) &&
-                                mounted) {
+                                _isCurrent(token)) {
                               await _run(
                                 () => widget.repository.deleteRecord(
-                                  _token,
+                                  token,
                                   section,
                                   row['id'] as String,
                                 ),
@@ -525,9 +548,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? null
                               : () {
                                   if (_form.currentState!.validate()) {
+                                    final token = _token;
                                     _run(
                                       () => widget.repository.summary(
-                                        _token,
+                                        token,
                                         _summary.text,
                                         create: !_data!.exists,
                                       ),
@@ -554,13 +578,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             onPressed: _working
                                 ? null
                                 : () async {
+                                    final token = _token;
                                     if (await _confirm(
                                           '¿Vaciar tu perfil?',
                                           'Se borrarán la descripción, los registros y la fotografía. Tu cuenta seguirá disponible.',
                                         ) &&
-                                        mounted) {
+                                        _isCurrent(token)) {
                                       await _run(
-                                        () => widget.repository.clear(_token),
+                                        () => widget.repository.clear(token),
                                         'Perfil eliminado correctamente.',
                                       );
                                     }

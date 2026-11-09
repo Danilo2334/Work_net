@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:worknet/features/curriculum/domain/generated_curriculum.dart';
 
@@ -12,14 +13,12 @@ class FileSelectorCurriculumDownload implements CurriculumDownload {
       await file.saveTo(name);
       return true;
     }
-    final destination = await getSaveLocation(
-      suggestedName: name,
-      acceptedTypeGroups: const [
-        XTypeGroup(label: 'Documento PDF', extensions: ['pdf']),
-      ],
+    final destination = await FileSaver.instance.saveAs(
+      name: 'curriculum-worknet',
+      bytes: bytes,
+      fileExtension: 'pdf',
+      mimeType: MimeType.pdf,
     );
-    if (destination == null) return false;
-    await file.saveTo(destination.path);
-    return true;
+    return destination != null;
   }
 }

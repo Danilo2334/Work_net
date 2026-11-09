@@ -32,6 +32,8 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
   bool _loading = true, _busy = false;
   String? _error;
   int _generation = 0;
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.session.session?.token == token;
   @override
   void initState() {
     super.initState();
@@ -39,22 +41,24 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
   }
 
   Future<void> _load() async {
+    final token = widget.session.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _generation++;
       _loading = true;
       _error = null;
     });
     try {
-      final token = widget.session.session!.token;
       final data = await (widget.admin
-          ? widget.repository.adminSummary(token)
-          : widget.repository.companySummary(token));
-      if (mounted) setState(() => _data = data);
+          ? widget.repository.adminSummary(token!)
+          : widget.repository.companySummary(token!));
+      if (_isCurrent(token)) setState(() => _data = data);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.session.expire();
-      if (mounted) setState(() => _error = e.message);
+      if (_isCurrent(token)) setState(() => _error = e.message);
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (_isCurrent(token)) setState(() => _loading = false);
     }
   }
 
@@ -156,16 +160,31 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
           onPressed: () => context.go('/account'),
           child: const Text('Configuración de cuenta'),
         ),
-        if (widget.admin)
+        if (widget.admin &&
+            widget.session.session?.can('review_companies') == true)
           FilledButton(
             key: const Key('open_company_reviews'),
             onPressed: () => context.go('/company-reviews'),
             child: const Text('Revisar empresas'),
-          )
-        else
+          ),
+        if (!widget.admin)
           TextButton(
             onPressed: () => context.go('/company'),
             child: const Text('Información de empresa'),
+          ),
+        if (widget.admin &&
+            (widget.session.session?.can('manage_admins') == true ||
+                widget.session.session?.can('manage_permissions') == true))
+          FilledButton(
+            key: const Key('open_administrators'),
+            onPressed: () => context.go('/admin/accounts'),
+            child: const Text('Administradores y permisos'),
+          ),
+        if (widget.admin && widget.session.session?.can('view_events') == true)
+          OutlinedButton(
+            key: const Key('open_admin_events'),
+            onPressed: () => context.go('/admin/events'),
+            child: const Text('Eventos administrativos'),
           ),
         TextButton(
           onPressed: _loading ? null : _load,
@@ -199,15 +218,6 @@ class _RoleDashboardPageState extends State<RoleDashboardPage> {
               'Eventos de validación empresarial',
               d.events,
               'Todavía no hay eventos de validación.',
-            ),
-          if (widget.admin)
-            WorkspacePanel(
-              title: 'Próximas funciones',
-              children: [
-                const Text(
-                  'La gestión de administradores y permisos todavía no está disponible. La revisión de empresas está habilitada arriba.',
-                ),
-              ],
             ),
         ],
       ],

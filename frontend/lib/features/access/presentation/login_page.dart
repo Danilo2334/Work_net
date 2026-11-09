@@ -6,6 +6,9 @@ import 'package:worknet/core/widgets/auth_shell.dart';
 import 'package:worknet/core/widgets/error_notice.dart';
 import 'package:worknet/features/registration/domain/registration.dart';
 import 'package:worknet/features/access/presentation/session_controller.dart';
+import 'package:worknet/features/access/domain/admin_mfa.dart';
+
+import 'admin_mfa_panel.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.controller});
@@ -21,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _remember = false, _visible = false, _busy = false;
   String? _error;
   Map<String, String> _fields = {};
+  MfaRequired? _mfa;
   @override
   void dispose() {
     _email.dispose();
@@ -47,6 +51,9 @@ class _LoginPageState extends State<LoginPage> {
         remember: _remember,
       );
       _password.clear();
+    } on MfaRequired catch (mfa) {
+      _password.clear();
+      if (mounted) setState(() => _mfa = mfa);
     } on ApiFailure catch (e) {
       if (mounted) {
         setState(() {
@@ -62,7 +69,15 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) => ListenableBuilder(
     listenable: widget.controller,
-    builder: (context, _) => _content(context),
+    builder: (context, _) => _mfa == null
+        ? _content(context)
+        : AdminMfaPanel(
+            key: ValueKey(_mfa!.challenge),
+            challenge: _mfa!,
+            controller: widget.controller,
+            remember: _remember,
+            onCancel: () => setState(() => _mfa = null),
+          ),
   );
 
   Widget _content(BuildContext context) => AuthShell(

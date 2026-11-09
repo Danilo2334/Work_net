@@ -32,7 +32,10 @@ class _AccountPageState extends State<AccountPage> {
   AccountInfo? _user;
   Map<String, String> _fields = {};
   String? _loadError, _error, _success;
+  String? _operationToken;
 
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.controller.session?.token == token;
   @override
   void initState() {
     super.initState();
@@ -49,50 +52,58 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Future<void> _load() async {
+    final owner = widget.controller.session;
+    final token = owner?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _loading = true;
       _loadError = null;
     });
     try {
-      final result = await widget.repository.load(widget.controller.session!);
-      if (!mounted) return;
+      final result = await widget.repository.load(owner!);
+      if (!_isCurrent(token)) return;
       final user = result.user;
       final push = result.push;
       await widget.controller.update(name: user.name);
-      if (!mounted) return;
+      if (!_isCurrent(token)) return;
       setState(() {
         _user = user;
         _name.text = user.name;
         _push = _savedPush = push;
       });
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.controller.expire();
-      if (mounted) setState(() => _loadError = e.message);
+      if (_isCurrent(token)) setState(() => _loadError = e.message);
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (_isCurrent(token)) setState(() => _loading = false);
     }
   }
 
-  Future<void> _run(Future<String> Function() action) async {
-    if (_busy) return;
+  Future<void> _run(Future<String> Function(UserSession owner) action) async {
+    final owner = widget.controller.session;
+    final token = owner?.token;
+    if (_busy || !_isCurrent(token)) return;
+    _operationToken = token;
     setState(() {
       _busy = true;
       _error = _success = null;
       _fields = {};
     });
     try {
-      final message = await action();
-      if (mounted) setState(() => _success = message);
+      final message = await action(owner!);
+      if (_isCurrent(_operationToken)) setState(() => _success = message);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.controller.expire();
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(() {
           _error = e.fields.isEmpty ? e.message : e.fields.values.join('\n');
           _fields = e.fields;
         });
       }
     } finally {
-      if (mounted) {
+      if (_isCurrent(_operationToken)) {
         setState(() => _busy = false);
         if (_scroll.hasClients) {
           _scroll.animateTo(
@@ -107,13 +118,11 @@ class _AccountPageState extends State<AccountPage> {
 
   Future<void> _saveName() async {
     if (!_nameForm.currentState!.validate()) return;
-    await _run(() async {
-      final user = await widget.repository.rename(
-        widget.controller.session!,
-        _name.text,
-      );
+    await _run((owner) async {
+      final user = await widget.repository.rename(owner, _name.text);
+      if (!_isCurrent(owner.token)) return '';
       await widget.controller.update(name: user.name);
-      if (mounted) {
+      if (_isCurrent(owner.token)) {
         setState(() {
           _user = user;
           _name.text = user.name;
@@ -125,15 +134,17 @@ class _AccountPageState extends State<AccountPage> {
 
   Future<void> _savePassword() async {
     if (!_passwordForm.currentState!.validate()) return;
-    await _run(() async {
+    await _run((owner) async {
       final token = await widget.repository.changePassword(
-        widget.controller.session!.token,
+        owner.token,
         _current.text,
         _newPassword.text,
         _confirmation.text,
       );
+      if (!_isCurrent(owner.token)) return '';
       await widget.controller.update(token: token);
-      if (mounted) {
+      _operationToken = token;
+      if (_isCurrent(token)) {
         _current.clear();
         _newPassword.clear();
         _confirmation.clear();
@@ -142,28 +153,25 @@ class _AccountPageState extends State<AccountPage> {
     });
   }
 
-  Future<void> _savePreferences() => _run(() async {
-    final push = await widget.repository.setPush(
-      widget.controller.session!.token,
-      _push,
-    );
-    if (mounted) setState(() => _push = _savedPush = push);
+  Future<void> _savePreferences() => _run((owner) async {
+    final push = await widget.repository.setPush(owner.token, _push);
+    if (_isCurrent(owner.token)) setState(() => _push = _savedPush = push);
     return 'Preferencias guardadas correctamente.';
   });
 
   Future<void> _deleteAccount() async {
+    final token = widget.controller.session?.token;
+    if (!_isCurrent(token)) return;
     final password = await showDialog<String>(
       context: context,
       builder: (_) => const _DeleteConfirmation(),
     );
-    if (!mounted || password == null) return;
-    await _run(() async {
-      await widget.repository.delete(
-        widget.controller.session!.token,
-        password,
-      );
+    if (!_isCurrent(token) || password == null) return;
+    await _run((owner) async {
+      await widget.repository.delete(owner.token, password);
+      if (!_isCurrent(owner.token)) return '';
       await widget.controller.expire(announce: false);
-      if (mounted) {
+      if (mounted && widget.controller.session == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Cuenta eliminada correctamente.')),
         );
@@ -313,19 +321,27 @@ class _AccountPageState extends State<AccountPage> {
     ),
   ]);
 
-  Widget _danger() => _panel('Eliminar cuenta', [
-    const Text(
-      'Esta acción eliminará tu cuenta de forma permanente. Te pediremos la contraseña actual y una confirmación antes de continuar.',
-    ),
-    const SizedBox(height: 20),
-    OutlinedButton.icon(
-      key: const Key('request_delete_account'),
-      onPressed: _busy ? null : _deleteAccount,
-      style: OutlinedButton.styleFrom(foregroundColor: Colors.red.shade800),
-      icon: const Icon(Icons.delete_outline),
-      label: const Text('Eliminar mi cuenta'),
-    ),
-  ], danger: true);
+  Widget _danger() => widget.controller.session?.role == 'admin'
+      ? _panel('Cuenta administrativa protegida', [
+          const Text(
+            'Las cuentas administrativas no se eliminan desde configuración. Su estado y autoridad se gestionan con los permisos correspondientes.',
+          ),
+        ])
+      : _panel('Eliminar cuenta', [
+          const Text(
+            'Esta acción eliminará tu cuenta de forma permanente. Te pediremos la contraseña actual y una confirmación antes de continuar.',
+          ),
+          const SizedBox(height: 20),
+          OutlinedButton.icon(
+            key: const Key('request_delete_account'),
+            onPressed: _busy ? null : _deleteAccount,
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.red.shade800,
+            ),
+            icon: const Icon(Icons.delete_outline),
+            label: const Text('Eliminar mi cuenta'),
+          ),
+        ], danger: true);
 
   Widget _pair(Widget left, Widget right) => LayoutBuilder(
     builder: (_, constraints) => constraints.maxWidth >= 800

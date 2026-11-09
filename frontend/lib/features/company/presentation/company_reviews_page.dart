@@ -21,6 +21,8 @@ class _CompanyReviewsPageState extends State<CompanyReviewsPage> {
   CompanyListing? _data;
   bool _loading = true, _busy = false;
   String? _error, _success;
+  bool _isCurrent(String? token) =>
+      mounted && token != null && widget.session.session?.token == token;
   @override
   void initState() {
     super.initState();
@@ -28,30 +30,35 @@ class _CompanyReviewsPageState extends State<CompanyReviewsPage> {
   }
 
   Future<void> _load([int? page]) async {
+    final token = widget.session.session?.token;
+    if (!_isCurrent(token)) return;
     setState(() {
       _loading = true;
       _error = null;
     });
     try {
       final data = await widget.repository.pending(
-        widget.session.session!.token,
+        token!,
         page ?? _data?.page ?? 1,
       );
-      if (mounted) setState(() => _data = data);
+      if (_isCurrent(token)) setState(() => _data = data);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.session.expire();
-      if (mounted) setState(() => _error = e.message);
+      if (_isCurrent(token)) setState(() => _error = e.message);
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (_isCurrent(token)) setState(() => _loading = false);
     }
   }
 
   Future<void> _review(CompanyInfo company, bool approve) async {
+    final token = widget.session.session?.token;
+    if (!_isCurrent(token)) return;
     final reason = await showDialog<String>(
       context: context,
       builder: (_) => _ReviewDialog(approve: approve, name: company.draft.name),
     );
-    if (reason == null || !mounted) return;
+    if (reason == null || !_isCurrent(token)) return;
     setState(() {
       _busy = true;
       _error = null;
@@ -59,22 +66,23 @@ class _CompanyReviewsPageState extends State<CompanyReviewsPage> {
     });
     try {
       await ReviewCompany(widget.repository)(
-        widget.session.session!.token,
+        token!,
         company,
         approve: approve,
         reason: reason,
       );
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _success = approve
               ? 'Empresa aprobada.'
               : 'Solicitud rechazada y motivo registrado.',
         );
       }
-      await _load(1);
+      if (_isCurrent(token)) await _load(1);
     } on ApiFailure catch (e) {
+      if (!_isCurrent(token)) return;
       if (e.status == 401) await widget.session.expire();
-      if (mounted) {
+      if (_isCurrent(token)) {
         setState(
           () => _error = e.fields.isEmpty
               ? e.message
@@ -82,7 +90,7 @@ class _CompanyReviewsPageState extends State<CompanyReviewsPage> {
         );
       }
     } finally {
-      if (mounted) setState(() => _busy = false);
+      if (_isCurrent(token)) setState(() => _busy = false);
     }
   }
 

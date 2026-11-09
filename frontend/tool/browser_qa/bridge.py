@@ -1,4 +1,4 @@
-"""Guard de QA y contrastes de persistencia; nunca devuelve credenciales."""
+"""Guard de QA y persistencia. Códigos HU026 efímeros solo por IPC privado, nunca en resultados."""
 import hashlib
 import json
 import re
@@ -81,6 +81,22 @@ def execute(manifest, action, args):
             file.write('QA exclusiva; usar run.py para crear otra corrida.\n')
         return {'ready': True}
     require((root / '.suite-started').is_file())
+    if action.startswith('hu026_'):
+        require(config.get('suite') == 'hu026')
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('hu026_qa', root / 'source/frontend/tool/browser_qa/hu026_api.py')
+        module = importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        if action == 'hu026_prepare':return module.fixtures(run)
+        if action == 'hu026_seed':return module.seed(run)
+        if action == 'hu026_snapshot':return module.contrast(run)
+        if action == 'hu026_code':
+            require(len(args)==1)
+            return module.private_code(run,args[0])
+        if action == 'hu026_wrong_code':
+            require(len(args)==1)
+            return module.private_code(run,args[0],wrong=True)
+        if action == 'hu026_verify_created':return module.verify_created(run)
+        if action == 'hu026_revoke':return module.revoke_session(run)
     if action.startswith('hu025_'):
         require(config.get('suite') == 'hu025')
         import importlib.util

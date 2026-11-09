@@ -1,0 +1,21 @@
+{
+  "run": "run-20261109T063447-a0a3b4ff",
+  "avd": "WorkNet_QA_Cierre:5558",
+  "display": "360x640/160dpi",
+  "android_api": 37,
+  "source": "d7b8c2409e68d1f651040df826d06532fb008f12",
+  "backend": "4bfffaca80a2a0bd3e420f1281a3bf9c405b8a63",
+  "file": "CV-Android-guardado.pdf",
+  "bytes": 42425,
+  "sha256": "cb30764198f02831d08e55ebc42cbeb28ec0348c0def6f7bc444a5c1bd510e08",
+  "pages": 1,
+  "template": "moderna",
+  "sqlite_fields_present": 10,
+  "all_expected_fields_present": true,
+  "business_tables_unchanged": 13,
+  "cancelled_before_save": true,
+  "file_absent_after_cancel": true,
+  "actual_saf_save": true,
+  "source_path": "Downloads/curriculum-worknet.pdf en AVD QA vacío propio",
+  "limitation": "No dispositivo físico; comparación de contenido con SQLite, sin afirmar identidad binaria de dos generaciones PDF independientes. A01/A02 pertenecen al primer AVD con encuadre incompleto; A03+ al nuevo."
+}
