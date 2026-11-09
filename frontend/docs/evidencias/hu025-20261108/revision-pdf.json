@@ -1,0 +1,23 @@
+[
+  {
+    "archivo": "PDF-todas-1.png",
+    "sha256": "a4eaf40ff0edeec53e9232d6e5f991b06580f64bb4109108cf7550d985232300",
+    "procedencia": "Render Poppler110dpi del PDF auténtico descargado; no captura UI",
+    "fuente_pdf": "HU025-todas.pdf",
+    "revision_visual": "Versión final inspeccionada: legible, sin recortes ni solapamientos; tildes/escape, cabecera repetida y pie correctos."
+  },
+  {
+    "archivo": "PDF-todas-2.png",
+    "sha256": "4cf0b484731f33e20c49b266063823b22fe34dbb09a35125508669a200c8a038",
+    "procedencia": "Render Poppler110dpi del PDF auténtico descargado; no captura UI",
+    "fuente_pdf": "HU025-todas.pdf",
+    "revision_visual": "Versión final inspeccionada: legible, sin recortes ni solapamientos; tildes/escape, cabecera repetida y pie correctos."
+  },
+  {
+    "archivo": "PDF-combinado-1.png",
+    "sha256": "945ad6c32b82eb716605f37e645539c18f00fc6a1fc682c8a8700a30eb32dea9",
+    "procedencia": "Render Poppler110dpi del PDF auténtico descargado; no captura UI",
+    "fuente_pdf": "HU025-combinado-ordenado.pdf",
+    "revision_visual": "Versión final inspeccionada: legible, sin recortes ni solapamientos; tildes/escape, cabecera repetida y pie correctos."
+  }
+]

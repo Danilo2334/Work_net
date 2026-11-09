@@ -1,0 +1,24 @@
+{
+  "migrations_pending": 0,
+  "timings": {
+    "csv": {
+      "reads": 10,
+      "median_ms": 3.0818,
+      "bytes": 2715,
+      "rows": 14
+    },
+    "pdf": {
+      "reads": 10,
+      "median_ms": 23.6194,
+      "bytes": 44170,
+      "rows": 14
+    }
+  },
+  "dataset": {
+    "offers": 18,
+    "applications": 27,
+    "export_rows": 14
+  },
+  "environment": "Windows/SQLite/APIClient local, Python3.12.10 Django6.1.1 DRF3.18.3 ReportLab5.1.0; no load/production benchmark",
+  "unchanged_before_after": true
+}

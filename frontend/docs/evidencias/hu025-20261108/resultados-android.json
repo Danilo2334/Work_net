@@ -1,0 +1,75 @@
+{
+  "run": "run-20261109T043031-766ab00b",
+  "qa_source": "ae6ce8423a53891efc805f973ba1d097967d20d1",
+  "backend_source": "234ed32a34abee4bd144f37331439b2806c1fb05",
+  "platform": "Android17/API37 x86_64 emulado, AVD vacío propio480x800/160dpi; no móvil web ni dispositivo físico",
+  "session": "Credenciales ficticias privadas, preflight identidad de servidor, login API real y restauración de WorkNetApp con almacenamiento solo en memoria; no aceptación manual de login",
+  "entry": "tool/browser_qa/android_hu025.dart, producto lib/test idéntico e2194db",
+  "saved_files": [
+    {
+      "file": "HU025-android-todas.csv",
+      "bytes": 2715,
+      "sha256": "cd73ab2a81c2781bbb8ecc179debfbbb20979e15fdb4630476fcd05a09b70c98",
+      "row_count": 14,
+      "query": "",
+      "sql_equal": true,
+      "application_ids": [
+        26,
+        25,
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        3
+      ],
+      "comparison": "CSV: todas las filas, siete campos y orden, con neutralización de fórmulas",
+      "formula_cells_neutralized": 4
+    },
+    {
+      "file": "HU025-android-todas.pdf",
+      "bytes": 44175,
+      "sha256": "ca9a9add227c1b779fbf68098774b248f33097642e43da0e33a433f83ba6dc92",
+      "row_count": 14,
+      "query": "",
+      "sql_equal": true,
+      "application_ids": [
+        26,
+        25,
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        3
+      ],
+      "comparison": "PDF: IDs extraídos y orden, nombre/fecha UTC/estado/CV por bloque de fila; oferta, conteo y páginas",
+      "pages": 2
+    }
+  ],
+  "persistence": {
+    "offers": 18,
+    "applications": 27,
+    "selected_applicants": 14,
+    "all_business_tables_unchanged": true,
+    "accounts_unchanged": true,
+    "private_cv_bytes_dates_relations_unchanged": true,
+    "duplicates": 0,
+    "new_business_records": 0
+  },
+  "screenshots": 8,
+  "scope": "Dashboard real → ofertas propias página2 → oferta3 cerrada14 → exportarCSV/SAFguardar → exportarPDF/SAFguardar; bytes extraídos de Downloads por adb y contrastados con SQL independiente",
+  "private_assets": "APK QA/defines/credenciales/AVD permanecen privados, sin publicar"
+}

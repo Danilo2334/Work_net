@@ -1,0 +1,74 @@
+[
+  {
+    "archivo": "A01-dashboard-empresa.jpg",
+    "caso": "Android nativo API37: dashboard empresarial real, sesión ficticia preparada por API y restaurada en memoria; guards del producto activos",
+    "fecha_utc": "2026-11-09T04:38:37.009Z",
+    "sha256": "abf0050358dfb81a6b5d5c247579b589a2c46514e45877f22b0782ce0a0173d0",
+    "width": 482,
+    "height": 724,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A02-ofertas-propias.jpg",
+    "caso": "Android nativo: dashboard → gestión de postulantes,17 ofertas propias y consulta de conservadas; imagen muestra primeros registros, no todas las páginas",
+    "fecha_utc": "2026-11-09T04:43:47.071Z",
+    "sha256": "142dc37728ab11f702dfd4c76763937fa8d7c32a086ee149847d732a2a81d231",
+    "width": 482,
+    "height": 724,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A03-oferta-cerrada-14.jpg",
+    "caso": "Android nativo: oferta CV subido QA cerrada,14 postulantes; selección desde la segunda página de ofertas propias",
+    "fecha_utc": "2026-11-09T04:46:19.314Z",
+    "sha256": "c5753eb86a47c2c5aebd41ece612d1530d9e161a2857871ea043332177914ef1",
+    "width": 482,
+    "height": 831,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A04-controles-exportacion.jpg",
+    "caso": "Android nativo:14 coincidencias, alcance de todas las páginas y controles CSV/PDF en oferta conservada; sin filtros aplicados, orden más recientes",
+    "fecha_utc": "2026-11-09T04:46:35.996Z",
+    "sha256": "390fbff0e834ce8d13d441988a9eadb3eea4df4c5ca3b29aecbecb3d885bb303",
+    "width": 482,
+    "height": 831,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A05-selector-csv.jpg",
+    "caso": "Android SAF: selector nativo Downloads vacío con nombre postulantes-oferta-3.csv; todavía no acredita bytes guardados",
+    "fecha_utc": "2026-11-09T04:46:46.564Z",
+    "sha256": "17c96e830134f603418fc46e32f0e0e80942d6859ce119fa34b606f1d75c466a",
+    "width": 482,
+    "height": 831,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A06-csv-confirmado.jpg",
+    "caso": "Android nativo: mensaje Descarga solicitada14 coincidencias CSV tras guardar con SAF; los bytes se contrastan por separado con SQL",
+    "fecha_utc": "2026-11-09T04:46:57.418Z",
+    "sha256": "4f06f0cf0d14e59d12e7436127c6010b30dae8619899e467c45a9932e812ddf6",
+    "width": 482,
+    "height": 831,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A07-selector-pdf.jpg",
+    "caso": "Android SAF: nombre postulantes-oferta-3.pdf y CSV anterior presente en Downloads; sin abrir documentos privados",
+    "fecha_utc": "2026-11-09T04:47:06.758Z",
+    "sha256": "fcf6ab8dc10fef3abee18fc4ef5d7828558b916c268a3cb83d17d65d06ecad6a",
+    "width": 482,
+    "height": 831,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  },
+  {
+    "archivo": "A08-pdf-confirmado.jpg",
+    "caso": "Android nativo: mensaje Descarga solicitada14 coincidencias PDF tras guardar con SAF; descarga real, con verificación independiente de los bytes persistidos",
+    "fecha_utc": "2026-11-09T04:47:58.800Z",
+    "sha256": "b2634846a28ed312ae9ed0d6d05d05d080097411d931b9eb11f96da8145933d2",
+    "width": 482,
+    "height": 831,
+    "procedencia": "Captura original Computer Use de Android Emulator QA vacío; sin edición; no móvil web ni dispositivo físico"
+  }
+]

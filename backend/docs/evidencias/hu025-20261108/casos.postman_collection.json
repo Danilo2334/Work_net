@@ -1,0 +1,803 @@
+{
+  "info": {
+    "_postman_id": "b2457e42-6db6-4263-91f4-647747d3e9a9",
+    "name": "HU025 · Exportación QA · run-20261109T041747-2b35c70d",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(pm.environment.get('base_url')!=='http://127.0.0.1:8103/api'||pm.environment.get('qa_run_id')!=='run-20261109T041747-2b35c70d'||pm.environment.get('qa_confirmation')!=='SOLO_BASE_AISLADA'){pm.execution.skipRequest();throw Error('Solo QA HU025');}",
+          "if(pm.info.iteration>0){pm.execution.skipRequest();throw Error('Solo una iteración');}",
+          "if(pm.info.requestName===\"HU025-P01 · Listado cerrado propio primera página\"){if(pm.collectionVariables.get('qa_consumed')){pm.execution.skipRequest();throw Error('Base consumida');}pm.collectionVariables.set('qa_consumed','run-20261109T041747-2b35c70d');}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "HU025-P01 · Listado cerrado propio primera página",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU025',()=>{pm.expect(b.count).eq(14);pm.expect(b.applications.length).eq(10);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P02 · CSV todas las páginas y caracteres especiales",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('14');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"26\", \"Postulante HU025 13 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:14 UTC\", \"Enviada\", \"cv-qa-13.pdf\"], [\"3\", \"Oferta CV subido QA\", \"25\", \"Postulante HU025 12 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:13 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"24\", \"Postulante HU025 11 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:12 UTC\", \"Enviada\", \"cv-qa-11.pdf\"], [\"3\", \"Oferta CV subido QA\", \"23\", \"Postulante HU025 10 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:11 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"22\", \"Postulante HU025 09 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:10 UTC\", \"Enviada\", \"cv-qa-09.pdf\"], [\"3\", \"Oferta CV subido QA\", \"21\", \"Postulante HU025 08 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:09 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"20\", \"Postulante HU025 07 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:07 UTC\", \"Enviada\", \"cv-qa-07.pdf\"], [\"3\", \"Oferta CV subido QA\", \"19\", \"Postulante HU025 06 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:06 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"17\", \"'-1+2 QA\", \"2026-11-09 04:18:04 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"15\", \"'  +SUM(1,2) QA\", \"2026-11-09 04:18:02 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P03 · PDF autorizado multipágina",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=pdf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('14');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.pdf\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().slice(0,5)).eq('%PDF-');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P04 · CSV filtro experience",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&experience=Backend",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('9');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"21\", \"Postulante HU025 08 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:09 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"20\", \"Postulante HU025 07 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:07 UTC\", \"Enviada\", \"cv-qa-07.pdf\"], [\"3\", \"Oferta CV subido QA\", \"19\", \"Postulante HU025 06 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:06 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"17\", \"'-1+2 QA\", \"2026-11-09 04:18:04 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"15\", \"'  +SUM(1,2) QA\", \"2026-11-09 04:18:02 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P05 · CSV filtro education",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&education=Ingenieria",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('6');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"17\", \"'-1+2 QA\", \"2026-11-09 04:18:04 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"15\", \"'  +SUM(1,2) QA\", \"2026-11-09 04:18:02 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P06 · CSV filtro skill",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&skill=Python",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('6');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"22\", \"Postulante HU025 09 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:10 UTC\", \"Enviada\", \"cv-qa-09.pdf\"], [\"3\", \"Oferta CV subido QA\", \"20\", \"Postulante HU025 07 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:07 UTC\", \"Enviada\", \"cv-qa-07.pdf\"], [\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P07 · CSV filtro experience",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&experience=Backend&education=Ingenieria&skill=Python",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('4');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P08 · CSV orden estable oldest",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&order=oldest",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('14');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"15\", \"'  +SUM(1,2) QA\", \"2026-11-09 04:18:02 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"17\", \"'-1+2 QA\", \"2026-11-09 04:18:04 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"19\", \"Postulante HU025 06 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:06 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"20\", \"Postulante HU025 07 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:07 UTC\", \"Enviada\", \"cv-qa-07.pdf\"], [\"3\", \"Oferta CV subido QA\", \"21\", \"Postulante HU025 08 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:09 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"22\", \"Postulante HU025 09 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:10 UTC\", \"Enviada\", \"cv-qa-09.pdf\"], [\"3\", \"Oferta CV subido QA\", \"23\", \"Postulante HU025 10 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:11 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"24\", \"Postulante HU025 11 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:12 UTC\", \"Enviada\", \"cv-qa-11.pdf\"], [\"3\", \"Oferta CV subido QA\", \"25\", \"Postulante HU025 12 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:13 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"26\", \"Postulante HU025 13 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:14 UTC\", \"Enviada\", \"cv-qa-13.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P09 · CSV orden estable name",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&order=name",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('14');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"15\", \"'  +SUM(1,2) QA\", \"2026-11-09 04:18:02 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"17\", \"'-1+2 QA\", \"2026-11-09 04:18:04 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"19\", \"Postulante HU025 06 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:06 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"20\", \"Postulante HU025 07 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:07 UTC\", \"Enviada\", \"cv-qa-07.pdf\"], [\"3\", \"Oferta CV subido QA\", \"21\", \"Postulante HU025 08 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:09 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"22\", \"Postulante HU025 09 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:10 UTC\", \"Enviada\", \"cv-qa-09.pdf\"], [\"3\", \"Oferta CV subido QA\", \"23\", \"Postulante HU025 10 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:11 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"24\", \"Postulante HU025 11 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:12 UTC\", \"Enviada\", \"cv-qa-11.pdf\"], [\"3\", \"Oferta CV subido QA\", \"25\", \"Postulante HU025 12 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:13 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"26\", \"Postulante HU025 13 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:14 UTC\", \"Enviada\", \"cv-qa-13.pdf\"], [\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P10 · CSV orden estable name_desc",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&order=name_desc",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('14');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.csv\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');const s=pm.response.text().replace(/^\\uFEFF/,'');let rows=[],row=[],cell='',quoted=false;for(let i=0;i<s.length;i++){const c=s[i];if(c==='\"'){if(quoted&&s[i+1]==='\"'){cell+='\"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if(c==='\\n'&&!quoted){row.push(cell.replace(/\\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}pm.expect(rows.slice(1)).deep.eq([[\"3\", \"Oferta CV subido QA\", \"3\", \"Ángela, \\\"QA\\\" <&>\", \"2026-11-09 04:18:00 UTC\", \"Enviada\", \"cv-subido-qa.pdf\"], [\"3\", \"Oferta CV subido QA\", \"26\", \"Postulante HU025 13 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:14 UTC\", \"Enviada\", \"cv-qa-13.pdf\"], [\"3\", \"Oferta CV subido QA\", \"25\", \"Postulante HU025 12 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:13 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"24\", \"Postulante HU025 11 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:12 UTC\", \"Enviada\", \"cv-qa-11.pdf\"], [\"3\", \"Oferta CV subido QA\", \"23\", \"Postulante HU025 10 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:11 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"22\", \"Postulante HU025 09 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:10 UTC\", \"Enviada\", \"cv-qa-09.pdf\"], [\"3\", \"Oferta CV subido QA\", \"21\", \"Postulante HU025 08 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:09 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"20\", \"Postulante HU025 07 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:07 UTC\", \"Enviada\", \"cv-qa-07.pdf\"], [\"3\", \"Oferta CV subido QA\", \"19\", \"Postulante HU025 06 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:06 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"18\", \"Postulante HU025 05 Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA Nombre extenso Áé & QA \", \"2026-11-09 04:18:05 UTC\", \"Enviada\", \"cv-qa-05.pdf\"], [\"3\", \"Oferta CV subido QA\", \"16\", \"'@QA ñ\", \"2026-11-09 04:18:03 UTC\", \"Enviada\", \"cv-qa-03.pdf\"], [\"3\", \"Oferta CV subido QA\", \"14\", \"'=1+1 QA\", \"2026-11-09 04:18:01 UTC\", \"Enviada\", \"cv-qa-01.pdf\"], [\"3\", \"Oferta CV subido QA\", \"17\", \"'-1+2 QA\", \"2026-11-09 04:18:04 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"], [\"3\", \"Oferta CV subido QA\", \"15\", \"'  +SUM(1,2) QA\", \"2026-11-09 04:18:02 UTC\", \"Enviada\", \"curriculum-moderna.pdf\"]]);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P11 · PDF filtrado y ordenado",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=pdf&skill=Python&order=name",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "pm.test('Contrato HU025',()=>{pm.expect(pm.response.headers.get('X-Export-Count')).eq('6');pm.expect(pm.response.headers.get('Content-Disposition')).eq('attachment; filename=\"postulantes-oferta-3.pdf\"');pm.expect(pm.response.headers.get('X-Export-Scope')).eq('all_filtered_applicants');pm.expect(pm.response.headers.get('Cache-Control')).include('no-store');pm.expect(pm.response.headers.get('Content-Type')).include('application/pdf');pm.expect(pm.response.text().slice(0,5)).eq('%PDF-');});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P12 · Página dos no cambia el total",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/?page=2&page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));",
+              "const b=pm.response.json();",
+              "pm.test('Contrato HU025',()=>{pm.expect(b.count).eq(14);pm.expect(b.applications.length).eq(4);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P13 · Sin coincidencias informa sin descargar",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&skill=Ausente",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P14 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=exe",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P15 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&page=2",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P16 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=pdf&page_size=10",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P17 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&skill=Python&skill=Excel",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P18 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=pdf&order=otro",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P19 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&email=si",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P20 · Parámetro rechazado file_type",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv&skill=%0A",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 400',()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P21 · Rol o aprobación no autorizada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{candidate_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P22 · Rol o aprobación no autorizada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{admin_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P23 · Rol o aprobación no autorizada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{draft_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 403',()=>pm.response.to.have.status(403));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P24 · Oferta ajena",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/18/applications/export/?file_type=pdf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404',()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P25 · Sin sesión",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P26 · Exportar no admite escritura",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=csv",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 405',()=>pm.response.to.have.status(405));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P27 · Revocar sesión real",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/logout/",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200',()=>pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU025-P28 · Sesión revocada",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/company/offers/3/applications/export/?file_type=pdf",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{company_token}}"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 401',()=>pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
