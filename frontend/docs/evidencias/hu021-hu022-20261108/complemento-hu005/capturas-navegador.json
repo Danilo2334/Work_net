@@ -1,0 +1,72 @@
+{
+  "run": "browser-qa-20261109T004711-f3db255c",
+  "date_local": "08/11/2026 America/Bogota",
+  "frontend_sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+  "backend_sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+  "scope": "Complemento independiente: 5/5, siete PNG originales; un mensaje real preparado por otro actor API; lectura y regreso por UI, contador 1 a 0. No se suma a los 34 casos principales.",
+  "captures": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU005-C01-dashboard-escritorio-accesos.png",
+      "caso": "HU005-C01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0aaf116cee9a351062d6474ef8afa5bcec2c7eb678658c77e1503f362136e585"
+    },
+    {
+      "archivo": "HU005-C02-dashboard-movil-acceso-y-contador.png",
+      "caso": "HU005-C02",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "355ab49cc19f80ee2d3d2955e3e570e03be7afbd7bf0854eb291480877d9e5d8"
+    },
+    {
+      "archivo": "HU005-C03-clic-real-mensajes-movil.png",
+      "caso": "HU005-C03",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "11ba3014a77ee78103ff4a11be3a26215f8b93c0994bbde7f42ebb3a41503b4c"
+    },
+    {
+      "archivo": "HU005-C03-mensaje-recibido-leido.png",
+      "caso": "HU005-C03",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "e843d2779a44463bce08f3991afc25f1ddc4252ddbd0105c882ec3b7feef2005"
+    },
+    {
+      "archivo": "HU005-C04-contador-dashboard-despues-de-leer.png",
+      "caso": "HU005-C04",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "1f3e976a1b403b5c97cb7a940eaf69836cc35705d3daa3411ffd2cd2d5803623"
+    },
+    {
+      "archivo": "HU005-C04-regreso-dashboard-sin-alterar-datos.png",
+      "caso": "HU005-C04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "20766fe08fc9f7a0935e2fdde688e186da44014752214d4fb772a6c6d0ec4197"
+    }
+  ]
+}

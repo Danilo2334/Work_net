@@ -1,0 +1,24 @@
+{
+  "publicacion_sha": "75f2f1afc35f207dfddfe63afd75e8eb8662a73b",
+  "total": 3,
+  "imagenes": [
+    {
+      "archivo": "18-historico-sin-cv.jpg",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/18-historico-sin-cv.jpg",
+      "http": 200,
+      "sha256": "3f1a0c84d184999023cf3d9e46c51fd544b032d60ab089b20fa1cafc56275e9c"
+    },
+    {
+      "archivo": "19-copia-subida-conservada.jpg",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/19-copia-subida-conservada.jpg",
+      "http": 200,
+      "sha256": "e3ae9901391fabff16273363de9b16c2155083daba5be20a78fc36afb49a0785"
+    },
+    {
+      "archivo": "20-copia-generada-conservada.jpg",
+      "url": "https://raw.githubusercontent.com/Danilo2334/Work_net/75f2f1afc35f207dfddfe63afd75e8eb8662a73b/backend/docs/evidencias/hu019-hu020-20261108/20-copia-generada-conservada.jpg",
+      "http": 200,
+      "sha256": "776ac67ab90031ce78b220f4e277b19cbbe68e4b41ea681d2b1712988b119025"
+    }
+  ]
+}

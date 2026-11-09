@@ -1,0 +1,25 @@
+{
+  "offers": 18,
+  "applications": 27,
+  "new_applications": 0,
+  "status_events": 4,
+  "new_status_notices": 4,
+  "new_created_notices": 0,
+  "conversations": 15,
+  "new_conversations": 1,
+  "messages": 29,
+  "new_messages": 6,
+  "message_intent_duplicates": 0,
+  "application_duplicates": 0,
+  "old_application_content_dates_relations_and_pdfs_unchanged": true,
+  "old_notices_unchanged": true,
+  "old_messages_and_read_dates_unchanged": true,
+  "new_status_notice_recipient_version_and_atomic_relation_correct": true,
+  "legacy_application_status_dates_not_invented": true,
+  "conserved": {
+    "candidate_dashboard_candidateprofile": true,
+    "candidate_dashboard_joboffer": true,
+    "candidate_dashboard_savedoffer": true
+  },
+  "principal_sources_remaining": 0
+}
