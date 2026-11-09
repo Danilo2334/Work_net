@@ -13,7 +13,15 @@ module.exports=async({page,cfg,run,capture,bridge,ui,click:baseClick,waitText:ba
     assert.ok(await locator().count());
   };
   const click=async(name)=>{await reveal(()=>page.getByRole('button',{name,exact:true}));await baseClick(name);};
-  const text=async(value)=>{if(!(await ui()).includes(value))await reveal(()=>page.getByText(value,{exact:false}));await baseWait(value);};
+  const text=async(value)=>{
+    if(!(await ui()).includes(value)){
+      await top();
+      for(let i=0;i<35&&!(await ui()).includes(value);i++){
+        await page.mouse.move(180,350);await page.mouse.wheel(0,Math.floor(page.viewportSize().height*.65));await page.waitForTimeout(150);await semantics();
+      }
+    }
+    await baseWait(value);
+  };
   const actor=name=>{const r=bridge('hu024_'+name);(results.actores_qa??=[]).push(r);return r;};
   const sql=()=>bridge('hu024_sql');
   const verify=(body,role)=>{
@@ -49,7 +57,7 @@ module.exports=async({page,cfg,run,capture,bridge,ui,click:baseClick,waitText:ba
   });
   await run('HU024-V05',async()=>{
     const before=await refresh('company');const p=response('GET','statistics/company/');await click('Página siguiente');const r=await p;assert.equal(r.status(),200);const b=verify(await r.json(),'company');assert.equal(b.offers.page,2);assert.ok(b.offers.rows.every(o=>!before.offers.rows.some(x=>x.id===o.id)));await top();await capture('segunda-pagina-mismo-total');
-    await reveal(()=>page.getByText('Oferta CV subido QA',{exact:true}));await text('Postulaciones recibidas: 14');await capture('oferta-cerrada-conserva-catorce');
+    await text('Oferta CV subido QA');await text('Postulaciones recibidas: 14');await capture('oferta-cerrada-conserva-catorce');
   });
   await run('HU024-V06',async()=>{
     const p=response('GET','company/offers/3/applications/');await click('Consultar postulantes de Oferta CV subido QA');const r=await p;assert.equal(r.status(),200);assert.equal((await r.json()).count,14);
