@@ -1,0 +1,252 @@
+{
+  "run": "browser-qa-20261109T034437-035ac6e8",
+  "frontend_sha": "3070f79ba4c32a3ba1bc6226aa802239ab23ded0",
+  "backend_sha": "ff3982697211bde837f5b9b2e9475ce1ccff8fdc",
+  "date_local": "08/11/2026 America/Bogota",
+  "source": "27 PNG originales sin edición; aceptación16/16 y15 contrastesSQL; móvil390×844 emulado, no dispositivo físico",
+  "captures": [
+    {
+      "archivo": "NAVEGADOR-01-login.png",
+      "caso": "NAVEGADOR-01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d"
+    },
+    {
+      "archivo": "HU024-V01-acceso-candidato.png",
+      "caso": "HU024-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "55f6c590f9a3125a4329d9e7c7be98010792f818fb18792c2586ba21987f6d1f"
+    },
+    {
+      "archivo": "HU024-V01-conteos-y-estados-candidato.png",
+      "caso": "HU024-V01",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "de4c254fed653a22d073ccea58a96c0ce4db29f33046b0b316f6bdc4479c0540"
+    },
+    {
+      "archivo": "HU024-V02-historial-cambio-real.png",
+      "caso": "HU024-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f3887b6abea1fc97c2cb6d6e174e895cc5d8ad84c4eb06a4fe94f58d071c90c1"
+    },
+    {
+      "archivo": "HU024-V02-retorno-candidato-actualizado.png",
+      "caso": "HU024-V02",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b84be421efe5ec583f6fa4fa764e87a5f83f26d589124f373448391b2b236120"
+    },
+    {
+      "archivo": "HU024-V03-candidato-vacio-real.png",
+      "caso": "HU024-V03",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b6a911d3481e472b5a960190294e36fbb35916877a3b9f7b2976dbd1b249fc7a"
+    },
+    {
+      "archivo": "HU024-V04-dashboard-empresa-accesos-y-metricas.png",
+      "caso": "HU024-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7d38b1dd5a3707c5a8af781f9228a9e0acc58cf10fdd459a1208ce40860ae8b6"
+    },
+    {
+      "archivo": "HU024-V04-totales-empresa-primera-pagina.png",
+      "caso": "HU024-V04",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1c54040fe9affe3261779df2adb4ed59c59fd006e1fd0bcace72a3b4a6a967f0"
+    },
+    {
+      "archivo": "HU024-V05-segunda-pagina-mismo-total.png",
+      "caso": "HU024-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ecba06a3199d0418690dff48a5e9765f3afca4495161466fb88e745f13aac03d"
+    },
+    {
+      "archivo": "HU024-V05-oferta-cerrada-conserva-catorce.png",
+      "caso": "HU024-V05",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ecba06a3199d0418690dff48a5e9765f3afca4495161466fb88e745f13aac03d"
+    },
+    {
+      "archivo": "HU024-V06-postulantes-paginados-retorno-contextual.png",
+      "caso": "HU024-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3e9b7f30202bcc5c0ee56aa989c1e42d0f48ac5e622abe842a2aebc0e636528f"
+    },
+    {
+      "archivo": "HU024-V06-retorno-empresa-tras-alta-real.png",
+      "caso": "HU024-V06",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0b31585449e329b098004722d0ab1317ed199a8742a9ef27b92cc95197da4662"
+    },
+    {
+      "archivo": "HU024-V07-cierre-reduce-activas-conserva-postulaciones.png",
+      "caso": "HU024-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ba381799f423207a9b3f8562f54417bf0b138ec59dc756718f5e83f59a97805a"
+    },
+    {
+      "archivo": "HU024-V07-dashboard-actualizado-al-volver.png",
+      "caso": "HU024-V07",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f7d808be03609c5697c39819b7b9d60550d41195a321e4f656e50297f5fd41ee"
+    },
+    {
+      "archivo": "HU024-V08-nueva-postulacion-candidato-movil.png",
+      "caso": "HU024-V08",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ded274fdc149967f55e007d7bc83e96f7f77d5e27fdf67069b4424af9a2fe98d"
+    },
+    {
+      "archivo": "HU024-V08-estados-candidato-movil.png",
+      "caso": "HU024-V08",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ded274fdc149967f55e007d7bc83e96f7f77d5e27fdf67069b4424af9a2fe98d"
+    },
+    {
+      "archivo": "HU024-V09-empresa-movil-totales.png",
+      "caso": "HU024-V09",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "441e2e4164deab11b757116e6ca52831e58bcaa0c9bbf621f48d53601285ff36"
+    },
+    {
+      "archivo": "HU024-V09-empresa-movil-segunda-pagina.png",
+      "caso": "HU024-V09",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "74246e2317591beb912e603b08acc1b1a328b3eeb3091f920b7b96b95236c3bc"
+    },
+    {
+      "archivo": "HU024-V10-empresa-vacia-conteos-cero.png",
+      "caso": "HU024-V10",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6c760232eeb9b5d3a09f26184ee1c8c2fd6013af47054defd4b1b8a98a7b3dc9"
+    },
+    {
+      "archivo": "HU024-V11-vacio-movil-sin-dividir-por-cero.png",
+      "caso": "HU024-V11",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "a4f33ad1074e032688b599358eb705cf2b8b812f4bc40e1ae215e494e32d0c7e"
+    },
+    {
+      "archivo": "HU024-V11-paginacion-vacia-honesta.png",
+      "caso": "HU024-V11",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "a4f33ad1074e032688b599358eb705cf2b8b812f4bc40e1ae215e494e32d0c7e"
+    },
+    {
+      "archivo": "HU024-V12-error-inyectado-identificado.png",
+      "caso": "HU024-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "166c1b12682baf96be13cbd09840abefd41ab3340eacb3deab7a8aef7f950120"
+    },
+    {
+      "archivo": "HU024-V12-reintento-real-http200.png",
+      "caso": "HU024-V12",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "51aa23137be57ac6dd24110010909bbbc83b9f8aa82c82d2f4dcddf002377940"
+    },
+    {
+      "archivo": "HU024-V13-sesion-revocada-sin-datos.png",
+      "caso": "HU024-V13",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "caca9b90894f73ee8c69cdd446072033db144afc9d1ae7e81aff4a64d8d45b38"
+    },
+    {
+      "archivo": "HU024-V14-empresa-pendiente-sin-acceso.png",
+      "caso": "HU024-V14",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d6d7f82f91f55cb3ec77f3587ae107ac9a41ce0d281a1814fb83d143c2cd544d"
+    },
+    {
+      "archivo": "HU024-V15-hu006-accesos-funcionales.png",
+      "caso": "HU024-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4ec9b3e50b61bb6e0e24245257ae0c020fe96af46d3c268e9770f2922ceee766"
+    },
+    {
+      "archivo": "HU024-V15-hu006-estadisticas-integradas.png",
+      "caso": "HU024-V15",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6637828a267f93c5c8be9320ee3b7b7c2c709248e37d0c93ecedb4c8ca15ddfe"
+    }
+  ]
+}
