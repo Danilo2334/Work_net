@@ -1,0 +1,1975 @@
+{
+  "date": "2026-11-09",
+  "repository": "Danilo2334/Work_net",
+  "accepted_main_sha": "66d9f154068aa3e33cbef0bb5a751ff6c35df6ae",
+  "scope": {
+    "completed_stories": 27,
+    "completed_tasks": 112,
+    "delivered": "HU001–HU026, HU028",
+    "future_version": "HU027; open, native subtasks 0/5",
+    "open_pull_requests_at_review": 0
+  },
+  "issue_checks": [
+    {
+      "number": 2,
+      "title": "HU001 Registro de Usuario y Selección de Rol",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 3,
+      "title": "HU002 Inicio de Sesión",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 4,
+      "title": "HU003 Recuperación de Contraseña",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 5,
+      "title": "HU004 Configuración de Cuenta",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 6,
+      "title": "HU005 Dashboard del Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 7,
+      "title": "HU006 Dashboard de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 8,
+      "title": "HU007 Dashboard de Administrador",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 9,
+      "title": "HU008 Perfil de Candidato",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 10,
+      "title": "HU009 Registro de Información de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 11,
+      "title": "HU010 Validación de Cuenta de Empresa",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 12,
+      "title": "HU011 Subir Currículum",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 13,
+      "title": "HU012 Crear y Editar Currículum con Plantillas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 14,
+      "title": "HU013 Publicación de Oferta de Empleo",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 15,
+      "title": "HU014 Edición de Oferta de Empleo",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 16,
+      "title": "HU015 Cierre y Archivado de Oferta",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 17,
+      "title": "HU016 Búsqueda y Filtrado de Ofertas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 18,
+      "title": "HU017 Guardar Ofertas Favoritas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 19,
+      "title": "HU018 Postulación a Oferta de Empleo",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 20,
+      "title": "HU019 Historial de Postulaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 21,
+      "title": "HU020 Gestión y Filtrado de Postulantes",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 22,
+      "title": "HU021 Cambio de Estado de Postulación",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 23,
+      "title": "HU022 Mensajería Interna",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 24,
+      "title": "HU023 Sistema de Notificaciones",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 25,
+      "title": "HU024 Estadísticas",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 26,
+      "title": "HU025 Exportación de Postulantes",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 27,
+      "title": "HU026 Gestión de Administradores y Permisos",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 5,
+        "completed": 5,
+        "percent_completed": 100
+      }
+    },
+    {
+      "number": 28,
+      "title": "HU027 Integración con LinkedIn",
+      "state": "open",
+      "state_reason": "reopened",
+      "native_subtasks": {
+        "total": 5,
+        "completed": 0,
+        "percent_completed": 0
+      }
+    },
+    {
+      "number": 224,
+      "title": "HU028 Asistente de creación de currículum con IA",
+      "state": "closed",
+      "state_reason": "completed",
+      "native_subtasks": {
+        "total": 4,
+        "completed": 4,
+        "percent_completed": 100
+      }
+    }
+  ],
+  "method": {
+    "issues": "GitHub REST state, state_reason and sub_issues_summary; all three issue-list pages",
+    "branches": "Full clone; git merge-base --is-ancestor for every branch tip against accepted main",
+    "deletion": "GitHub branch UI, 0 ahead checked; deleted state confirmed, then REST inventory",
+    "project": "Done status reported in original acceptance; native Project not independently queried in this cleanup",
+    "local_checkouts": "No access to team Windows checkouts; none modified by this cloud review",
+    "functional_tests": "Original published acceptance; not rerun for documentation-only cleanup",
+    "comments": "All 112 completed tasks queried: exactly one top-level comment each, with at least one Markdown/HTML image; image presence is not a new functional acceptance"
+  },
+  "branches": {
+    "before": 50,
+    "removed": 45,
+    "remaining": 5,
+    "entries": [
+      {
+        "name": "codex/alcance-hu001-hu026",
+        "sha": "bd823e6be5593b510c553068fb1eca2b7f5f7dc1",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu016-api",
+        "sha": "cd808354da5dbb68c9d059a680ea47e8aff5f314",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu016-busqueda",
+        "sha": "d3961bde190076c25e78f17902e2d563341b0966",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu016-entrega",
+        "sha": "e11508f7f559a5180235820659c5c21a833258f9",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu017-api",
+        "sha": "742e60077bd018f7e88d141201c3c218eeefa075",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu017-entrega",
+        "sha": "13f5a838b3f15926b0b1e1ec7625be4008fdae25",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu017-favoritos",
+        "sha": "a27b6b550ab7ad3b89b8271f825e186941d9bd75",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu018-api",
+        "sha": "5d7c6f2535708d43bc88f7365d8d54886958b0c8",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu018-entrega",
+        "sha": "206edaaaed5fb10d7105310e280c7e266d7bef7c",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu018-postulacion",
+        "sha": "15c480432526980adb4e9560a01c00773c2cff20",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu019-hu020-api",
+        "sha": "ac5241136d82e8c3385a07fdb118e93913e570c3",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu019-hu020-entrega",
+        "sha": "aae1e7ae59ba3b8a44785ca5ed39f6789c423b42",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu019-hu020-flutter",
+        "sha": "4cd15eec2d0a8be0708f9abb86a1d07e37d28f0e",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu021-hu022-api",
+        "sha": "03e2dd2526ced86487a495ba0e3e4c05f620125e",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu021-hu022-entrega",
+        "sha": "3a727440e4ee822a7901f5e753b75353111520c1",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu021-hu022-flutter",
+        "sha": "21cbcf551ab35e0183bfb8147fa71e5bb48f3ff3",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu023-notifications-api",
+        "sha": "5e1b6cbd23e49175d1d74b99ab4c9aa6110e281d",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu023-notifications-entrega",
+        "sha": "eb5c9b1a9be2d93b1e995498b8637e29986345ef",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu023-notifications-flutter",
+        "sha": "77693bc5358dc433d4c8d80481d7062f93973d22",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu024-statistics-api",
+        "sha": "ff3982697211bde837f5b9b2e9475ce1ccff8fdc",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu024-statistics-entrega",
+        "sha": "9b20c9de85599c8c2a3a72de2baa4d78b18e8180",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu024-statistics-flutter",
+        "sha": "3070f79ba4c32a3ba1bc6226aa802239ab23ded0",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu025-export-api",
+        "sha": "234ed32a34abee4bd144f37331439b2806c1fb05",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu025-export-entrega",
+        "sha": "4ba951af9f82fc27a44c463aed0f496d3c18dddf",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu025-export-flutter",
+        "sha": "ae6ce8423a53891efc805f973ba1d097967d20d1",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu026-admin-api",
+        "sha": "4bfffaca80a2a0bd3e420f1281a3bf9c405b8a63",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu026-admin-entrega",
+        "sha": "d510fd85996df0ecb881830b9f16862a521aef0a",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu026-admin-flutter",
+        "sha": "b4e139f7319c3cec8f771fdaae1e9c860402eca3",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu027-aplazada-limpieza-20261109",
+        "sha": "8cfbe7e55f9948b30dd27fc01e697e3974acf0de",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu027-preparacion-linkedin",
+        "sha": "c1ff76f14b8036178f64ce31c5d2a468b9a797cf",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu028-curriculum-ai-api",
+        "sha": "6c76159ecdc90183cc12f3da43fcf10ccf6d0500",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu028-curriculum-ai-integracion",
+        "sha": "911bb2bb1f84196c0f0b89df0894228095008250",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "codex/hu028-curriculum-ai-ui",
+        "sha": "86ccf20427d1d34cbd2de2eedecbb62241414715",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "develop",
+        "sha": "173858e22680d40de4b729fa8604581a1deb02ed",
+        "removed": false,
+        "ancestor_of_accepted_main": true,
+        "reason": "Preserved shared branch"
+      },
+      {
+        "name": "docs/coherencia-hu001-hu015-20261108",
+        "sha": "6a627da34074484174c7cbf5b6bc2e78d8c3132d",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "docs/normalizacion-hu015",
+        "sha": "ea33193734f699f8d23422d0e545308dc024370a",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/backend-sprint-2",
+        "sha": "5d3b10abc9d17d20b335572dc4910083f2212c9f",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/backend-sprint-3",
+        "sha": "79cb98d3d968b318d8a262128d44e48c3000d8df",
+        "removed": false,
+        "ancestor_of_accepted_main": true,
+        "reason": "Preserved shared branch"
+      },
+      {
+        "name": "feature/hu008-selection-profile",
+        "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+        "removed": false,
+        "ancestor_of_accepted_main": false,
+        "reason": "Preserved: one evidence commit not present in main"
+      },
+      {
+        "name": "feature/hu013-formulario",
+        "sha": "c2c19d0dd704674b3a7c471b0588248aaa44aba2",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/hu013-publicacion",
+        "sha": "2f1b2f78e01e5e8da69295c5bca97c51e09fb04b",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/hu014-api",
+        "sha": "344606382c98274edb701627108ed4700430c236",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/hu014-edicion",
+        "sha": "3f61292b3d23658ef1b016ae82bc98f4b36d4820",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/hu015-cierre",
+        "sha": "abc496d8d6f3405fa0f3dd42334d091048717a57",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "feature/hu015-estados",
+        "sha": "79d45e30422f0973a86e53e34919f071895c1499",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "frontend",
+        "sha": "d31cb3ccfc0a9f2b74c3c6f835cd8acd9283e8ae",
+        "removed": false,
+        "ancestor_of_accepted_main": true,
+        "reason": "Preserved shared branch"
+      },
+      {
+        "name": "integracion/hu014-entrega",
+        "sha": "c9c6cc0816a3e115e25a06ad0dee81736a57dad5",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "integracion/hu015-entrega",
+        "sha": "e81a0bdf6c511458731ea16d29269685effc600f",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      },
+      {
+        "name": "main",
+        "sha": "66d9f154068aa3e33cbef0bb5a751ff6c35df6ae",
+        "removed": false,
+        "ancestor_of_accepted_main": true,
+        "reason": "Preserved shared branch"
+      },
+      {
+        "name": "qa/integracion-hu013-20261107",
+        "sha": "b0b0d6a22f8ae3e37ca6017af3713f00a1a868e3",
+        "removed": true,
+        "ancestor_of_accepted_main": true,
+        "reason": "Temporary branch already integrated; history retained"
+      }
+    ]
+  },
+  "preserved_evidence_branch": {
+    "name": "feature/hu008-selection-profile",
+    "sha": "d18bbbdd6359973cca15c9b04e6d7f1bbcab5d93",
+    "exclusive_commits": 1,
+    "contents": "HU008 Postman collection, reproducible QA helper and seven original screenshots; not merged or deleted"
+  },
+  "deployment": {
+    "application_deployed": false,
+    "pages": "Project information only",
+    "planned": "Flutter static HTTPS + Django web service + PostgreSQL + shared cache",
+    "remaining": "Production configuration, server/dependencies, PostgreSQL regression, health checks, email transport, secrets, hosting resources, end-to-end acceptance"
+  },
+  "task_checks": [
+    {
+      "number": 29,
+      "title": "TASK-HU001-01 Crear interfaz de registro en Flutter",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 30,
+      "title": "TASK-HU001-02 Implementar usuario, roles y API de registro",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 31,
+      "title": "TASK-HU001-03 Implementar verificación de correo",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 32,
+      "title": "TASK-HU001-04 Integrar registro Flutter con Django",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 33,
+      "title": "TASK-HU001-05 Probar criterios de aceptación de registro",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 34,
+      "title": "TASK-HU002-01 Crear pantalla de inicio de sesión en Flutter",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 35,
+      "title": "TASK-HU002-02 Implementar autenticación y endpoint de login",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 36,
+      "title": "TASK-HU002-03 Implementar sesión y redirección por rol",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 37,
+      "title": "TASK-HU002-04 Manejar estados especiales de empresa",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 38,
+      "title": "TASK-HU002-05 Probar criterios de aceptación del login",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 39,
+      "title": "TASK-HU003-01 Crear pantallas de recuperación de contraseña",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 40,
+      "title": "TASK-HU003-02 Implementar tokens y correo de recuperación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 41,
+      "title": "TASK-HU003-03 Integrar recuperación Flutter-Django",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 42,
+      "title": "TASK-HU003-04 Probar recuperación y expiración",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 43,
+      "title": "TASK-HU004-01 Crear interfaz de configuración de cuenta",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 44,
+      "title": "TASK-HU004-02 Implementar endpoints de configuración",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 45,
+      "title": "TASK-HU004-03 Implementar preferencias de notificaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 46,
+      "title": "TASK-HU004-04 Integrar y probar configuración",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 47,
+      "title": "TASK-HU005-01 Diseñar Dashboard del Candidato",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 48,
+      "title": "TASK-HU005-02 Crear API resumen del candidato",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 49,
+      "title": "TASK-HU005-03 Integrar datos reales en el dashboard",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 50,
+      "title": "TASK-HU005-04 Probar Dashboard del Candidato",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 51,
+      "title": "TASK-HU006-01 Diseñar Dashboard de Empresa",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 52,
+      "title": "TASK-HU006-02 Crear API resumen de empresa",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 53,
+      "title": "TASK-HU006-03 Integrar dashboard con datos reales",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 54,
+      "title": "TASK-HU006-04 Probar Dashboard de Empresa",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 55,
+      "title": "TASK-HU007-01 Diseñar Dashboard de Administrador",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 56,
+      "title": "TASK-HU007-02 Crear API de métricas administrativas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 57,
+      "title": "TASK-HU007-03 Integrar avisos de nuevas empresas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 58,
+      "title": "TASK-HU007-04 Probar permisos del administrador",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 59,
+      "title": "TASK-HU008-01 Crear formulario de Perfil de Candidato",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 60,
+      "title": "TASK-HU008-02 Crear modelos y API del perfil",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 61,
+      "title": "TASK-HU008-03 Integrar perfil y fotografía",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 62,
+      "title": "TASK-HU008-04 Probar perfil de candidato",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 63,
+      "title": "TASK-HU009-01 Crear formulario de información empresarial",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 64,
+      "title": "TASK-HU009-02 Crear modelo y API empresarial",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 65,
+      "title": "TASK-HU009-03 Integrar envío y pantalla de espera",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 66,
+      "title": "TASK-HU009-04 Probar registro empresarial",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 67,
+      "title": "TASK-HU010-01 Crear vista de empresas pendientes",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 68,
+      "title": "TASK-HU010-02 Implementar aprobación/rechazo",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 69,
+      "title": "TASK-HU010-03 Integrar validación y notificación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 70,
+      "title": "TASK-HU010-04 Probar validación empresarial",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 71,
+      "title": "TASK-HU011-01 Crear interfaz para subir CV",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 72,
+      "title": "TASK-HU011-02 Implementar almacenamiento y validación de PDF",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 73,
+      "title": "TASK-HU011-03 Integrar carga y reemplazo",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 74,
+      "title": "TASK-HU011-04 Probar carga de currículum",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 75,
+      "title": "TASK-HU012-01 Diseñar selector y editor de plantillas de CV",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 76,
+      "title": "TASK-HU012-02 Crear modelo de currículum generado",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 77,
+      "title": "TASK-HU012-03 Implementar generación de PDF",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 78,
+      "title": "TASK-HU012-04 Integrar perfil, editor y descarga",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 79,
+      "title": "TASK-HU012-05 Probar creador de CV",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 80,
+      "title": "TASK-HU013-01 Crear formulario de publicación de oferta",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 81,
+      "title": "TASK-HU013-02 Crear modelo y API de ofertas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 82,
+      "title": "TASK-HU013-03 Integrar publicación de oferta",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 83,
+      "title": "TASK-HU013-04 Probar publicación de ofertas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 84,
+      "title": "TASK-HU014-01 Crear pantalla de edición de oferta",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 85,
+      "title": "TASK-HU014-02 Implementar API de actualización",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 86,
+      "title": "TASK-HU014-03 Integrar edición",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 87,
+      "title": "TASK-HU014-04 Probar edición de oferta",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 88,
+      "title": "TASK-HU015-01 Crear acciones de cierre y archivado",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 89,
+      "title": "TASK-HU015-02 Implementar estados Cerrada/Archivada",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 90,
+      "title": "TASK-HU015-03 Integrar estados en listados",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 91,
+      "title": "TASK-HU015-04 Probar cierre y archivado",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 92,
+      "title": "TASK-HU016-01 Crear buscador y filtros",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 93,
+      "title": "TASK-HU016-02 Implementar filtros y paginación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 94,
+      "title": "TASK-HU016-03 Integrar resultados",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 95,
+      "title": "TASK-HU016-04 Probar búsqueda",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 96,
+      "title": "TASK-HU017-01 Crear interfaz de favoritos",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 97,
+      "title": "TASK-HU017-02 Crear modelo y API de favoritos",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 98,
+      "title": "TASK-HU017-03 Integrar favoritos",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 99,
+      "title": "TASK-HU017-04 Probar favoritos",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 100,
+      "title": "TASK-HU018-01 Crear flujo de postulación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 101,
+      "title": "TASK-HU018-02 Crear modelo y API de postulaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 102,
+      "title": "TASK-HU018-03 Integrar postulación y notificación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 103,
+      "title": "TASK-HU018-04 Probar postulación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 104,
+      "title": "TASK-HU019-01 Crear historial de postulaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 105,
+      "title": "TASK-HU019-02 Crear API de historial",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 106,
+      "title": "TASK-HU019-03 Integrar cambios de estado",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 107,
+      "title": "TASK-HU019-04 Probar historial",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 108,
+      "title": "TASK-HU020-01 Crear listado y filtros de postulantes",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 109,
+      "title": "TASK-HU020-02 Crear API de postulantes por oferta",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 110,
+      "title": "TASK-HU020-03 Integrar perfil y CV",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 111,
+      "title": "TASK-HU020-04 Probar gestión de postulantes",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 112,
+      "title": "TASK-HU021-01 Crear controles de cambio de estado",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 113,
+      "title": "TASK-HU021-02 Implementar API de estados",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 114,
+      "title": "TASK-HU021-03 Integrar cambio y notificación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 115,
+      "title": "TASK-HU021-04 Probar cambios de estado",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 116,
+      "title": "TASK-HU022-01 Crear interfaz de conversaciones y chat",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 117,
+      "title": "TASK-HU022-02 Crear modelos y API de mensajería",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 118,
+      "title": "TASK-HU022-03 Integrar envío y lectura",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 119,
+      "title": "TASK-HU022-04 Probar mensajería",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 120,
+      "title": "TASK-HU023-01 Crear centro de notificaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 121,
+      "title": "TASK-HU023-02 Crear modelo y API de notificaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 122,
+      "title": "TASK-HU023-03 Integrar eventos del sistema",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 123,
+      "title": "TASK-HU023-04 Probar notificaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 124,
+      "title": "TASK-HU024-01 Diseñar visualización de estadísticas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 125,
+      "title": "TASK-HU024-02 Crear endpoints de estadísticas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 126,
+      "title": "TASK-HU024-03 Integrar métricas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 127,
+      "title": "TASK-HU024-04 Probar estadísticas",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 128,
+      "title": "TASK-HU025-01 Crear controles de exportación",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 129,
+      "title": "TASK-HU025-02 Implementar exportación filtrada",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 130,
+      "title": "TASK-HU025-03 Integrar descarga",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 131,
+      "title": "TASK-HU025-04 Probar exportaciones",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 132,
+      "title": "TASK-HU026-01 Crear interfaz de administradores",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 133,
+      "title": "TASK-HU026-02 Implementar cuentas y permisos",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 134,
+      "title": "TASK-HU026-03 Implementar 2FA de administradores",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 135,
+      "title": "TASK-HU026-04 Integrar gestión administrativa",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 136,
+      "title": "TASK-HU026-05 Probar administradores y 2FA",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 137,
+      "title": "TASK-HU027-01 Crear interfaz de conexión con LinkedIn",
+      "state": "open",
+      "state_reason": "reopened"
+    },
+    {
+      "number": 138,
+      "title": "TASK-HU027-02 Implementar OAuth e integración",
+      "state": "open",
+      "state_reason": "reopened"
+    },
+    {
+      "number": 139,
+      "title": "TASK-HU027-03 Mapear datos al perfil",
+      "state": "open",
+      "state_reason": "reopened"
+    },
+    {
+      "number": 140,
+      "title": "TASK-HU027-04 Manejar fallos y uso sin LinkedIn",
+      "state": "open",
+      "state_reason": "reopened"
+    },
+    {
+      "number": 141,
+      "title": "TASK-HU027-05 Probar LinkedIn",
+      "state": "open",
+      "state_reason": "reopened"
+    },
+    {
+      "number": 225,
+      "title": "TASK-HU028-01 API privada y adaptación del borrador de CV con IA",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 226,
+      "title": "TASK-HU028-02 Interfaz de información, revisión y aplicación del borrador con IA",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 227,
+      "title": "TASK-HU028-03 Integración con editor, plantillas y PDF del currículum",
+      "state": "closed",
+      "state_reason": "completed"
+    },
+    {
+      "number": 228,
+      "title": "TASK-HU028-04 QA y evidencias del asistente de CV",
+      "state": "closed",
+      "state_reason": "completed"
+    }
+  ],
+  "comment_checks": [
+    {
+      "number": 29,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 30,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 31,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 32,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 33,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 34,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 35,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 36,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 37,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 38,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 39,
+      "comments": 1,
+      "images": 1
+    },
+    {
+      "number": 40,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 41,
+      "comments": 1,
+      "images": 3
+    },
+    {
+      "number": 42,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 43,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 44,
+      "comments": 1,
+      "images": 16
+    },
+    {
+      "number": 45,
+      "comments": 1,
+      "images": 9
+    },
+    {
+      "number": 46,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 47,
+      "comments": 1,
+      "images": 15
+    },
+    {
+      "number": 48,
+      "comments": 1,
+      "images": 1
+    },
+    {
+      "number": 49,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 50,
+      "comments": 1,
+      "images": 16
+    },
+    {
+      "number": 51,
+      "comments": 1,
+      "images": 16
+    },
+    {
+      "number": 52,
+      "comments": 1,
+      "images": 1
+    },
+    {
+      "number": 53,
+      "comments": 1,
+      "images": 16
+    },
+    {
+      "number": 54,
+      "comments": 1,
+      "images": 17
+    },
+    {
+      "number": 55,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 56,
+      "comments": 1,
+      "images": 1
+    },
+    {
+      "number": 57,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 58,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 59,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 60,
+      "comments": 1,
+      "images": 14
+    },
+    {
+      "number": 61,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 62,
+      "comments": 1,
+      "images": 12
+    },
+    {
+      "number": 63,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 64,
+      "comments": 1,
+      "images": 1
+    },
+    {
+      "number": 65,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 66,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 67,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 68,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 69,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 70,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 71,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 72,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 73,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 74,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 75,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 76,
+      "comments": 1,
+      "images": 9
+    },
+    {
+      "number": 77,
+      "comments": 1,
+      "images": 11
+    },
+    {
+      "number": 78,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 79,
+      "comments": 1,
+      "images": 25
+    },
+    {
+      "number": 80,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 81,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 82,
+      "comments": 1,
+      "images": 3
+    },
+    {
+      "number": 83,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 84,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 85,
+      "comments": 1,
+      "images": 16
+    },
+    {
+      "number": 86,
+      "comments": 1,
+      "images": 2
+    },
+    {
+      "number": 87,
+      "comments": 1,
+      "images": 19
+    },
+    {
+      "number": 88,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 89,
+      "comments": 1,
+      "images": 16
+    },
+    {
+      "number": 90,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 91,
+      "comments": 1,
+      "images": 29
+    },
+    {
+      "number": 92,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 93,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 94,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 95,
+      "comments": 1,
+      "images": 11
+    },
+    {
+      "number": 96,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 97,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 98,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 99,
+      "comments": 1,
+      "images": 11
+    },
+    {
+      "number": 100,
+      "comments": 1,
+      "images": 8
+    },
+    {
+      "number": 101,
+      "comments": 1,
+      "images": 11
+    },
+    {
+      "number": 102,
+      "comments": 1,
+      "images": 8
+    },
+    {
+      "number": 103,
+      "comments": 1,
+      "images": 14
+    },
+    {
+      "number": 104,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 105,
+      "comments": 1,
+      "images": 10
+    },
+    {
+      "number": 106,
+      "comments": 1,
+      "images": 9
+    },
+    {
+      "number": 107,
+      "comments": 1,
+      "images": 10
+    },
+    {
+      "number": 108,
+      "comments": 1,
+      "images": 11
+    },
+    {
+      "number": 109,
+      "comments": 1,
+      "images": 12
+    },
+    {
+      "number": 110,
+      "comments": 1,
+      "images": 9
+    },
+    {
+      "number": 111,
+      "comments": 1,
+      "images": 12
+    },
+    {
+      "number": 112,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 113,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 114,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 115,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 116,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 117,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 118,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 119,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 120,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 121,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 122,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 123,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 124,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 125,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 126,
+      "comments": 1,
+      "images": 5
+    },
+    {
+      "number": 127,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 128,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 129,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 130,
+      "comments": 1,
+      "images": 7
+    },
+    {
+      "number": 131,
+      "comments": 1,
+      "images": 8
+    },
+    {
+      "number": 132,
+      "comments": 1,
+      "images": 8
+    },
+    {
+      "number": 133,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 134,
+      "comments": 1,
+      "images": 6
+    },
+    {
+      "number": 135,
+      "comments": 1,
+      "images": 8
+    },
+    {
+      "number": 136,
+      "comments": 1,
+      "images": 8
+    },
+    {
+      "number": 225,
+      "comments": 1,
+      "images": 4
+    },
+    {
+      "number": 226,
+      "comments": 1,
+      "images": 9
+    },
+    {
+      "number": 227,
+      "comments": 1,
+      "images": 9
+    },
+    {
+      "number": 228,
+      "comments": 1,
+      "images": 7
+    }
+  ],
+  "integrity_checks": {
+    "hu028_original_assets": 44,
+    "sha256_mismatches": 0,
+    "guide_image_targets": 112,
+    "missing_git_blobs": 0,
+    "completed_task_comments_checked": 112,
+    "tasks_with_exactly_one_comment": 112,
+    "tasks_without_image": 0
+  }
+}
