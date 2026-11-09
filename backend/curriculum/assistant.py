@@ -149,6 +149,17 @@ def _normalized(value):
                              if not unicodedata.combining(c)).split())
 
 
+def _content_values(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from _content_values(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _content_values(item)
+
+
 def validate_suggestion(result, user, source):
     if not isinstance(result, dict) or set(result) != {"data", "missing_information"}:
         raise ValueError("invalid envelope")
@@ -160,7 +171,8 @@ def validate_suggestion(result, user, source):
     if any(not isinstance(v, str) for v in data["personal"].values()):
         raise ValueError("invalid personal values")
     personal_fields = [k for k, value in data["personal"].items() if value.strip()]
-    source_text = _normalized(json.dumps(source, ensure_ascii=False))
+    # Protocol field names are not facts supplied by the candidate.
+    source_text = _normalized(" ".join(_content_values(source)))
     facts = [data["personal"][k] for k in personal_fields]
     factual_fields = {
         "education": ("qualification", "institution", "start_date", "end_date"),
