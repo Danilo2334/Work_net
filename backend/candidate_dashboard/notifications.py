@@ -56,7 +56,11 @@ class NotificationsView(NoticeView):
         anchor = p.get('through_id', own.aggregate(value=Max('pk'))['value'] or 0)
         query = own.filter(pk__lte=anchor)
         if p['status'] != 'all':query = query.filter(read_at__isnull=p['status']=='unread')
-        meta, rows = paginated(query.select_related('application', 'message').order_by('-created_at', '-pk'), p)
+        query = query.select_related('application', 'message').only(
+            'id', 'title', 'event_kind', 'created_at', 'read_at',
+            'application_id', 'application__id', 'application__offer_id',
+            'message_id', 'message__id', 'message__conversation_id', 'company_review_id')
+        meta, rows = paginated(query.order_by('-created_at', '-pk'), p)
         return Response({**meta, 'through_id': anchor, 'unread_count': own.filter(read_at__isnull=True).count(),
                          'notifications': [notice_data(x) for x in rows]})
 
@@ -120,9 +124,11 @@ class NotificationPreferencesView(NoticeView):
 
     def patch(self, request):
         no_query(request);data=PreferencesInput(data=request.data);data.is_valid(raise_exception=True)
-        with transaction.atomic():
-            User.objects.select_for_update(no_key=True).get(pk=request.user.pk)
-            item,_=NotificationPreference.objects.get_or_create(user=request.user)
-            for key,value in data.validated_data.items():setattr(item,key,value)
-            item.save(update_fields=list(data.validated_data))
+        def write():
+            with transaction.atomic():
+                User.objects.select_for_update(no_key=True).get(pk=request.user.pk)
+                item,_=NotificationPreference.objects.get_or_create(user=request.user)
+                for key,value in data.validated_data.items():setattr(item,key,value)
+                item.save(update_fields=list(data.validated_data))
+        retry_write(write)
         return self.get(request)

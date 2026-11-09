@@ -1,8 +1,14 @@
 from unittest.mock import patch
+from concurrent.futures import ThreadPoolExecutor
+from threading import Barrier, local
 from uuid import uuid4
 from django.db import IntegrityError, transaction
 from django.db.migrations.executor import MigrationExecutor
 from django.db import connection
+from django.db import close_old_connections
+from django.db.models import QuerySet
+from django.test.utils import CaptureQueriesContext
+from rest_framework.test import APIClient
 from django.test import TestCase, TransactionTestCase, override_settings
 from django.utils import timezone
 from accounts.models import CompanyProfile, CompanyReview, User
@@ -61,6 +67,16 @@ class NotificationTests(MessageFixture, TestCase):
         self.ack([notices[0].pk]);self.assertEqual(self.listing('?status=read').data['count'],1)
         self.assertEqual(self.listing('?status=unread').data['count'],12)
         self.assertEqual(self.client.get(self.root+'summary/').data['unread_count'],12)
+
+    def test_listing_does_not_load_frozen_pdf_or_message_text(self):
+        self.authenticate(self.company)
+        with CaptureQueriesContext(connection) as queries:
+            response=self.listing()
+        self.assertEqual(response.status_code,200)
+        sql=' '.join(q['sql'] for q in queries.captured_queries)
+        self.assertNotIn('cv_document',sql)
+        self.assertNotIn('"candidate_dashboard_message"."text"',sql)
+        self.assertEqual(response.data['notifications'][0]['offer_id'],self.offer.pk)
 
     def test_read_is_owned_atomic_idempotent_and_independent_from_message(self):
         self.authenticate(self.company);sent=self.send().data['message'];self.authenticate(self.user)
@@ -126,6 +142,29 @@ class NotificationTests(MessageFixture, TestCase):
         self.user.email_verified=False;self.user.save(update_fields=['email_verified']);self.assertEqual(self.listing().status_code,403)
         self.user.is_active=False;self.user.save(update_fields=['is_active']);self.assertEqual(self.listing().status_code,401)
         self.client.credentials();self.assertEqual(self.listing().status_code,401)
+
+
+@override_settings(PASSWORD_HASHERS=['django.contrib.auth.hashers.MD5PasswordHasher'])
+class ConcurrentNotificationPreferencesTests(MessageFixture,TransactionTestCase):
+    def test_first_partial_preferences_writes_conserve_both_values_under_contention(self):
+        auth=self.client._credentials['HTTP_AUTHORIZATION']
+        barrier=Barrier(2);thread=local();original=QuerySet.create
+        def create(query,**values):
+            if query.model is NotificationPreference and connection.vendor=='sqlite' and not getattr(thread,'waited',False):
+                thread.waited=True;barrier.wait(timeout=10)
+            return original(query,**values)
+        def update(key):
+            close_old_connections()
+            try:
+                client=APIClient();client.credentials(HTTP_AUTHORIZATION=auth)
+                return client.patch('/api/notifications/preferences/',{key:False},format='json').status_code
+            finally:close_old_connections()
+        with patch.object(QuerySet,'create',create),ThreadPoolExecutor(max_workers=2) as pool:
+            responses=list(pool.map(update,['message_received','company_reviewed']))
+        self.assertEqual(responses,[200,200]);self.assertEqual(NotificationPreference.objects.count(),1)
+        item=NotificationPreference.objects.get(user=self.user)
+        self.assertFalse(item.message_received);self.assertFalse(item.company_reviewed)
+        self.assertTrue(item.application_created);self.assertTrue(item.application_status_changed)
 
 
 class NotificationMigrationTests(TransactionTestCase):
