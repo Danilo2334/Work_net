@@ -183,6 +183,7 @@ class GeminiTransportTests(SimpleTestCase):
         self.assertEqual(request.get_header("X-goog-api-key"), "fixture-key-not-real")
         payload = json.loads(request.data)
         self.assertIn("schema", payload["generationConfig"]["responseFormat"]["text"])
+        self.assertEqual(payload["generationConfig"]["responseFormat"]["text"]["mimeType"], "APPLICATION_JSON")
         self.assertEqual(opener.return_value.open.call_args.kwargs["timeout"], 15)
         self.assertEqual(result, proposal())
         self.assertEqual(model, "gemini-3.5-flash-lite")
