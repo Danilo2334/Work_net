@@ -218,6 +218,7 @@ class _WorkNetAppState extends State<WorkNetApp> {
                 session: _session,
                 repository: _dependencies.messages,
                 routeObserver: _messageObserver,
+                returnToNotifications: state.extra == 'notifications',
                 id: id,
               ),
             );

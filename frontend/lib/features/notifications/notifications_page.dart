@@ -242,7 +242,12 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         onPressed: _busy
                             ? null
                             : () async {
-                                await context.push(_destination(n)!);
+                                await context.push(
+                                  _destination(n)!,
+                                  extra: n.conversationId == null
+                                      ? null
+                                      : 'notifications',
+                                );
                                 if (_current) await _load();
                               },
                         child: const Text('Consultar evento'),
