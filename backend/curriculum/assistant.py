@@ -113,7 +113,7 @@ def generate(source):
         "systemInstruction": {"parts": [{"text": SYSTEM}]},
         "contents": [{"role": "user", "parts": [{"text": json.dumps(source, ensure_ascii=False)}]}],
         "generationConfig": {"temperature": 0.1, "maxOutputTokens": 7000,
-                             "responseFormat": {"text": {"mimeType": "application/json", "schema": response_schema()}}},
+                             "responseFormat": {"text": {"mimeType": "APPLICATION_JSON", "schema": response_schema()}}},
     }
     request = Request(
         f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
