@@ -435,3 +435,13 @@ Rutas privadas no-store/Vary Authorization; 401 sesión, 403 rol/aprobación,
 404 recurso ajeno, 400 parámetros/texto inválidos y 409 conflicto. Los reintentos
 transaccionales SQLite son acotados, con 503 si se agotan. 0008 añade las tablas
 sin transformar postulaciones, documentos, eventos ni avisos anteriores.
+
+## HU028 — asistente de CV (en desarrollo; 09/11/2026)
+
+API privada GET/POST `/api/curriculum/generated/assistant/`. La colección `hu028.postman_collection.json` separa permisos/validación, ausencia de configuración y generación con proveedor real. **No se ha ejecutado en Postman Desktop en esta sesión.** Los 19 casos HTTP publicados usaron un doble controlado, no Gemini.
+
+Usar la rama combinada `codex/hu028-curriculum-ai-integracion`; la rama UI por sí sola no incluye el endpoint backend. Desde la raíz, `python backend/postman/hu028_qa.py` crea otra SQLite y correo a archivos en el directorio Git común, verifica 19 peticiones y termina. `--serve` mantiene esa nueva QA en loopback (18488/18489) sin configuración. No reutiliza bases previas. Las credenciales QA solo están en `private.json` y `private.postman_environment.json` del run; importar este último en privado y no publicarlo.
+
+`--provider-real --serve` requiere GEMINI_API_KEY y GEMINI_MODEL en configuración privada de backend, realiza una petición real con datos ficticios y puede consumir cuota; guarda informe y PDF separados. No ejecutarlo hasta contar con credencial autorizada. El límite del asistente en esa QA es 1000/h; el valor productivo predeterminado es 5/h por usuario. El GET solo acredita configuración, no disponibilidad efectiva. No ejecutar todas las carpetas contra un mismo estado incompatible.
+
+La aceptación pendiente exige capturas reales de petición, HTTP y Test Results, con datos ficticios y secretos ocultos. Los renders de Flutter y PNG de PDF existentes se identifican por su procedencia; no son capturas Desktop. Ver preparación, diez imágenes explicadas, fuentes y pendientes en la sección HU028 de `frontend/docs/REVISION.md` y los seguimientos de #225–#228.

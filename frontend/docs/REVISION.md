@@ -5,9 +5,256 @@
 
 HU001–HU026 conservan su entrega estable en main `c49d0f7fe658aa8641dba52070a2c83172f69f83`. **HU027 #28 y #137–#141 quedan abiertas y pendientes de desarrollo**, por instrucción expresa del usuario. Su retorno estático y los pasos/configuración preparatorios se retiraron de la versión actual; los antecedentes de #196/#197 permanecen en Git. Se conservaron el sitio, logo y política generales de WorkNet. No existe integración LinkedIn operativa ni aceptación OAuth.
 
-El barrido de este checkout no encontró servicios, rutas o dependencias funcionales LinkedIn en `backend/` ni `frontend/lib/`; el elemento específico publicado era `docs/linkedin/callback.html`. No hay acceso al disco del Windows del usuario desde esta sesión; los posibles cambios locales no publicados de ese computador no se inspeccionaron ni se declaran eliminados.
+El barrido de este checkout no encontró servicios, rutas o dependencias funcionales LinkedIn en `backend/` ni `frontend/lib/`; el elemento específico publicado era `docs/linkedin/callback.html`. En la continuación Windows se inspeccionó el checkout preparatorio LinkedIn: limpio y ya contenido en el historial remoto. La entrega actual no contiene archivos exclusivos LinkedIn; se conservan la preparación histórica, los componentes generales y los entornos privados anteriores, sin reactivar la integración.
 
-**HU028 #224 — Asistente de creación de currículum con IA**, tareas #225–#228, se prepara por separado. La clave y aceptación real del proveedor permanecen pendientes; los dobles de prueba se identifican explícitamente. Las relaciones nativas de subtareas y los estados del Project requieren verificación adicional: el conector de esta sesión no expone esas mutaciones; no se atribuye actualización de WORK_NET.
+**HU028 #224 — Asistente de creación de currículum con IA**, tareas #225–#228, dispone de aceptación real Windows con Gemini, navegador y Postman Desktop. Las cuatro relaciones nativas están asociadas y WORK_NET actualizado preservando la planificación. Los resultados nuevos y los antecedentes con dobles se distinguen en la sección vigente siguiente.
+
+<!-- hu028-avance-inicio -->
+## HU028 — Asistente de creación de currículum con IA — resultado vigente 09/11/2026
+
+**Aceptación funcional real completada.** [HU028 #224](https://github.com/Danilo2334/Work_net/issues/224), subtareas nativas #225–#228, conserva sus criterios originales. La entrega utiliza [API #231](https://github.com/Danilo2334/Work_net/pull/231) → `feature/backend-sprint-3` → `develop`, y [Flutter/QA #232](https://github.com/Danilo2334/Work_net/pull/232) → `frontend`; incorporación del backend revisado y entrega conjunta a `main`. Los enlaces de la historia registran las fusiones y SHA finales verificados. HU027 permanece pendiente.
+
+### Qué se hizo
+
+API privada GET/POST con candidato verificado, consentimiento explícito y perfil propio opcional. Validación de contrato y hechos, transporte Gemini estructurado, límites y errores saneados. Generar nunca persiste CV, perfil ni postulaciones. Danilo2334 conserva implementación y pruebas Django; Francisco conserva QA transversal.
+
+Opción «Completar mi CV con IA», texto y perfil optativo, consentimiento informado, revisión obligatoria, faltantes, aplicar o descartar. Sesión, errores y cancelación conservan la edición. Aplicar conserva plantilla/contactos no aportados y exige guardado posterior. Flutter y sus pruebas: francisco3788.
+
+**Preparación**
+
+09/11/2026, Windows. Python 3.12.10, Django 6.1.1, DRF 3.18.3, SQLite 3.49.1; Flutter 3.47.5 / Dart 3.13.4; Chromium 158.0.8127.18, Playwright 1.65.0 y Postman Desktop 12.35.5. Escritorio 1440×1000, móvil web 390×844, Postman 1536×864.
+
+Fuente conjunta de aceptación [`169115f`](https://github.com/Danilo2334/Work_net/commit/169115f58199d582d7f0a431316c2f2bd928bcaf), backend [`6c76159`](https://github.com/Danilo2334/Work_net/commit/6c76159ecdc90183cc12f3da43fcf10ccf6d0500) y herramientas QA [`bf74181`](https://github.com/Danilo2334/Work_net/commit/bf74181a280af28d6f5225d203766b8eac3b1548). No hubo cambios funcionales Dart después del análisis/build. Originales permanentes en [`625839f`](https://github.com/Danilo2334/Work_net/commit/625839ff6cad5fee62418b95d95fdf1671c37f40), [manifest](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/manifest.json) con SHA256 y blobsGit.
+
+Tres bases nuevas, SQLite y correo a archivos: API `run-20261109T184303Z-4eb93e57`, navegador `run-20261109T185051Z-13e75b29`, Postman `run-20261109T184717Z-0165b8da`. Cuatro usuarios ficticios por QA; el control Postman añade2 perfiles, 1 oferta y 1 postulación histórica. No se reutilizaron bases anteriores. La clave autorizada permanece fuera del repositorio, solo en backend; el usuario confirmó Free Tier. Modelo `gemini-3.5-flash-lite` listado para esa clave y probado con JSON estructurado. No se activaron facturación ni servicios de pago.
+
+**Resultados y procedencia**
+
+- **301 Django**,16 pruebas HU028,19,418s; **237 Flutter**,52 s; analyze sin incidencias y web release correcto. Check, makemigrations en seco y plan de migraciones de la QA correctos. Dobles en las pruebas unitarias, no llamadasGemini.
+- **API real 8/8**,1 generación Gemini,2129,56 ms y 3 PDF. [Informe](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/api-real-resultados.json).
+- **Navegador 14/14**,20 PNG originales,2 generaciones Gemini y3 descargas PDF. [Informe](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/browser-resultados.json).503/429 y respuesta tardía se inyectan localmente y no cuentan como fallos reales del proveedor.
+- **Postman Desktop 18 peticiones, 52 PASS**,0 fallos:9 negativas / 20 PASS sin proveedor y9 positivas / 32 PASS con1 generación real. [Resultados nativos](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/resultados.json).
+- **6 PDF**(3 API + 3 navegador) leídos,renderizados e inspeccionados; [revisión](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/pdf-review.json). [Filas de negocio intactas](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/business-contrast.json).
+- **4 generaciones reales en la aceptación vigente**. El antecedente parcial de navegador generó 2 más; el primer intento de transporte fue rechazado 400 y se corrigió. Total del bloque:7 intentos, 6 generaciones satisfactorias, sin reintentos automáticos. [Auditoría vigente](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/provider-calls-accepted.json), [procedencia y límites](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/aceptacion.json).
+
+### Evidencias específicas
+
+![V03 — consentimiento](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/HU028-V03-texto-consentimiento-perfil-optativo.png)
+
+**Caso: V03 — consentimiento. Acción:** Introducir el texto ficticio y autorizar el envío manteniendo el perfil desmarcado. **Esperado:** Consentimiento informado independiente del perfil opcional. **Obtenido:** Texto, destinatario Gemini, perfil desmarcado y consentimiento visibles; antes de consentir Generar estaba deshabilitado. **Alcance demostrado:** Captura real Chromium de escritorio; la llamada posterior se acredita por V04 y auditoría del backend.
+
+![V04 — generación real y revisión](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/HU028-V04-propuesta-real-faltantes-revision-obligatoria.png)
+
+**Caso: V04 — generación real y revisión. Acción:** Generar contra Gemini y recibir la propuesta. **Esperado:** Secciones fieles, faltantes y Aplicar deshabilitado hasta revisar; ningún guardado. **Obtenido:** Formación Universidad QA, experiencia Equipo QA, Python y Español; fechas pendientes, revisión desmarcada y Aplicar deshabilitado. **Alcance demostrado:** Propuesta real del proveedor en navegador; el contraste API comprueba CV persistido intacto, no se deduce solo de la imagen.
+
+![V04 — aplicar al borrador](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/HU028-V04-aplicada-sin-guardar-conserva-plantilla.png)
+
+**Caso: V04 — aplicar al borrador. Acción:** Revisar y aplicar la propuesta. **Esperado:** Conservar Moderna y los contactos ausentes de la propuesta, sin PUT. **Obtenido:** Moderna, cv.hu028@example.test y 0000000000 permanecen; el ejecutor confirma datos anteriores persistidos. **Alcance demostrado:** Captura del editor real y contraste API; aplicar modifica solo el borrador.
+
+![V06 — perfil propio en móvil web](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-consentimiento-perfil-propio.png)
+
+**Caso: V06 — perfil propio en móvil web. Acción:** Abrir a 390×844 y seleccionar perfil propio y consentimiento. **Esperado:** Controles alcanzables y envío únicamente del perfil autorizado. **Obtenido:** Formulario legible con las dos opciones explícitas; segunda generación real con profile_included=true. **Alcance demostrado:** Móvil web emulado Chromium, sin afirmar dispositivo físico.
+
+![V06 — descarte](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/HU028-V06-movil-descartada-cv-previo-intacto.png)
+
+**Caso: V06 — descarte. Acción:** Descartar la propuesta real obtenida con perfil propio. **Esperado:** Recuperar el CV guardado sin sustituir contactos ni plantilla. **Obtenido:** Editor Minimalista con correo del CV conservado; comparación API antes/después idéntica. **Alcance demostrado:** Captura móvil real más contraste de persistencia; no se guardó la propuesta descartada.
+
+![V09 — sesión vencida](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/HU028-V09-sesion-revocada-sin-propuesta-privada.png)
+
+**Caso: V09 — sesión vencida. Acción:** Revocar el token QA mediante logout real y volver a consultar el asistente. **Esperado:** HTTP 401 y retorno a acceso sin propuesta privada. **Obtenido:** Aviso de sesión inválida y campos de acceso vacíos. **Alcance demostrado:** Sesión revocada realmente; ninguna credencial fotografiada.
+
+![Postman R01 — petición real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/10-real-peticion-consentimiento.jpg)
+
+**Caso: Postman R01 — petición real. Acción:** Enviar texto ficticio Ana QA con consent=true e include_profile=false. **Esperado:** HTTP 200 y propuesta no persistida de Gemini. **Obtenido:** Cuerpo enviado visible,HTTP 200 y6 pruebas R01 PASS; R02 confirma CV sin guardar. **Alcance demostrado:** Petición/estado/Test Results auténticos, sin mostrar Authorization ni valores del entorno.
+
+![Postman R01 — respuesta real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/09-real-respuesta-http-200.jpg)
+
+**Caso: Postman R01 — respuesta real. Acción:** Inspeccionar la respuesta de la corrida positiva. **Esperado:** JSON compatible, datos aportados y fechas desconocidas nulas. **Obtenido:** Respuesta200 con Ana QA, Universidad QA y Equipo QA, contactos vacíos y fechas null;32 PASS globales. **Alcance demostrado:** Respuesta HTTP real; auditoría backend acredita exactamente1 generación Gemini en esta base.
+
+![Postman — permisos y validación](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/02-negativos-20-pass.jpg)
+
+**Caso: Postman — permisos y validación. Acción:** Ejecutar C01–C07 y M01–M02 en Functional/Local, una iteración, sin proveedor configurado. **Esperado:** 401/403/400 y fallback503, sin llamada al proveedor. **Obtenido:** 9 peticiones,20 PASS, 0 fallos/errores/omitidas;1 s 614 ms, media HTTP 19 ms. **Alcance demostrado:** Corrida auténtica de Postman Desktop; no es Newman ni una imagen reconstruida.
+
+![Postman — aceptación positiva](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/08-real-propuesta-test-results.jpg)
+
+**Caso: Postman — aceptación positiva. Acción:** Ejecutar solo R01–R09 con el backend real habilitado. **Esperado:** Generar sin guardar, tres guardados/PDF y404ajeno. **Obtenido:** 9 peticiones,32 PASS,0 fallos/errores/omitidas;3 s 558 ms, media 253 ms. **Alcance demostrado:** Runner Desktop auténtico; exactamente 1 llamada Gemini, 2133,40 ms en backend.
+
+![Postman R07–R09 — PDF e aislamiento](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/docs/evidencias/hu028-real-20261109/postman/12-real-minimalista-aislamiento-404.jpg)
+
+**Caso: Postman R07–R09 — PDF e aislamiento. Acción:** Guardar Minimalista, descargar y consultar PDF con otro candidato. **Esperado:** Guardado200,PDF200,otrocandidato404. **Obtenido:** Todas las comprobaciones aprobadas;respuesta 404 sin documento ajeno visible. **Alcance demostrado:** HTTP real y Test Results; la conservación de4usuarios,2 perfiles, 1 oferta y 1 postulación se acredita además por hash de filas antes/después.
+
+![PDF clasica — descarga real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-clasica-generacion-real-render-1.png)
+
+**Caso: PDF clasica — descarga real. Acción:** Guardar expresamente y descargar desde el navegador tras generación, revisión y edición. **Esperado:** PDF legible con los datos y contactos del CV, sin inventar fechas. **Obtenido:** Una página; 8 campos esperados presentes; plantilla y contenido revisados visualmente. [PDF original](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-clasica-generacion-real.pdf). **Alcance demostrado:** Render Poppler 110 dpi de los bytes descargados, no captura de interfaz ni imagen de Postman. Los tres PDF de API son otra sesión ficticia y se conservan en pdf-api/.
+
+![PDF moderna — descarga real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-moderna-generacion-real-render-1.png)
+
+**Caso: PDF moderna — descarga real. Acción:** Guardar expresamente y descargar desde el navegador tras generación, revisión y edición. **Esperado:** PDF legible con los datos y contactos del CV, sin inventar fechas. **Obtenido:** Una página; 8 campos esperados presentes; plantilla y contenido revisados visualmente. [PDF original](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-moderna-generacion-real.pdf). **Alcance demostrado:** Render Poppler 110 dpi de los bytes descargados, no captura de interfaz ni imagen de Postman. Los tres PDF de API son otra sesión ficticia y se conservan en pdf-api/.
+
+![PDF minimalista — descarga real](https://raw.githubusercontent.com/Danilo2334/Work_net/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-minimalista-generacion-real-render-1.png)
+
+**Caso: PDF minimalista — descarga real. Acción:** Guardar expresamente y descargar desde el navegador tras generación, revisión y edición. **Esperado:** PDF legible con los datos y contactos del CV, sin inventar fechas. **Obtenido:** Una página; 8 campos esperados presentes; plantilla y contenido revisados visualmente. [PDF original](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/frontend/docs/evidencias/hu028-real-20261109/pdf-browser/HU028-CV-minimalista-generacion-real.pdf). **Alcance demostrado:** Render Poppler 110 dpi de los bytes descargados, no captura de interfaz ni imagen de Postman. Los tres PDF de API son otra sesión ficticia y se conservan en pdf-api/.
+
+**Revisión y límites**
+
+Revisión técnica del agente principal sobre API, permisos, transporte, contrato Dart, sesión, aplicación al borrador y herramientas QA. Se corrigieron dos defectos reales: las claves de metadatos JSON ya no cuentan como hechos aportados (`16131ce`), y GenerateContent usa el enum documentado `APPLICATION_JSON` (`6c76159`). Se verificó fidelidad de las propuestas ficticias; no se observaron empresas, títulos o fechas añadidos. La comprobación textual de hechos no sustituye la revisión humana de resúmenes/descripciones. Fechas parciales permanecen nulas; se aceptan fechas completas aportadas en ISO. No se atribuye aprobación humana ni revisión delegada.
+
+Es una aceptación funcional pequeña en SQLite/loopback, no carga ni PostgreSQL ni teléfono físico. Cancelar descarta localmente respuestas tardías; no se afirma abortar una petición ya enviada a Gemini. Límite de producción 5/h por usuario; la QA usa 1000/h solo en su proceso. Para límite global entre procesos se requiere caché compartida. La indisponibilidad/cuota futuras del proveedor dependen de su cuenta. HU027 y sus seis issues permanecen abiertas y Backlog.
+
+### Preparar otra QA sin afectar las anteriores
+
+Revisar primero `backend/postman/hu028_qa.py`. Por defecto usa un doble y crea otra base privada bajo el Git común; los resultados nuevos quedan en el run, sin sobrescribir los originales publicados. Los puertos deben estar libres. El archivo privado existente es `C:\Users\Danilo Carlosama\.codex\worknet-private\gemini.env`, con `GEMINI_API_KEY` y `GEMINI_MODEL=gemini-3.5-flash-lite`; no copiarlo al frontend, colecciones, capturas ni Git. No imprimir sus valores. Para preparar otra QA real sin generar todavía:
+
+```powershell
+python backend/postman/hu028_qa.py --provider-real --private-env "C:\Users\Danilo Carlosama\.codex\worknet-private\gemini.env" --prepare-only --serve --api-port 18494 --web-port 18495
+```
+
+Para la aceptación API8/8, omitir `--prepare-only`; realiza una generación real y puede consumir la cuota gratuita. Nunca repetir sobre una base consumida. El ejecutor navegador `frontend/tool/browser_qa/hu028_acceptance.cjs <repo> <nuevo-run> --real` exige build web compilado con el origen API de esa QA y realiza dos generaciones reales. Usa contexto Chromium nuevo, orígenes QA verificados y no exporta HAR/trazas/sesiones.
+
+En Postman importar solo colección y entorno privado del run nuevo. La colección canónica de 18 peticiones está en [`backend/postman/hu028.postman_collection.json`](https://github.com/Danilo2334/Work_net/blob/625839ff6cad5fee62418b95d95fdf1671c37f40/backend/postman/hu028.postman_collection.json). El entorno contiene únicamente credenciales ficticias QA, nunca la claveGemini. Ejecutar C01–C07/M01–M02 con `mode.json` en `unconfigured`; cambiar solo ese modo QA a `real` y ejecutar R01–R09 una vez. No ejecutar todas las carpetas mezclando los modos. La propuesta se transfiere mediante variables locales de la corrida, sin persistir en el entorno.
+
+Modelo y protocolo contrastados con documentación oficial: [modelo y salida estructurada](https://aistudio.google.com/docs/models/gemini-3.5-flash-lite), [FreeTier](https://aistudio.google.com/docs/pricing#gemini-3.5-flash-lite), [API GenerateContent](https://ai.google.dev/api/generate-content?hl=en), [esquema REST oficial](https://generativelanguage.googleapis.com/$discovery/rest?version=v1beta). El enum de TextResponseFormat es `APPLICATION_JSON`; no confundirlo con los ejemplos MIME de otra API.
+
+### Seguimientos únicos y responsabilidades
+
+| Tarea | Responsable | Seguimiento existente |
+|---|---|---|
+| #225 API privada y adaptación del borrador | Danilo2334 | [Comentario conservado](https://github.com/Danilo2334/Work_net/issues/225#issuecomment-6740954009) |
+| #226 Interfaz y revisión de propuestas | francisco3788 | [Comentario conservado](https://github.com/Danilo2334/Work_net/issues/226#issuecomment-6740954415) |
+| #227 Integración con editor, plantillas y PDF | francisco3788 | [Comentario conservado](https://github.com/Danilo2334/Work_net/issues/227#issuecomment-6740954688) |
+| #228 QA, Postman y evidencias auténticas | francisco3788 | [Comentario conservado](https://github.com/Danilo2334/Work_net/issues/228#issuecomment-6740954963) |
+
+Las cuatro relaciones nativas con #224 y los cinco ítems WORK_NET se verifican aparte del cierre de issues. Se conserva Sprint, fechas y asignaciones. Cuenta de publicación, autor y committer se comprueban por aportación. Los checkouts/entornos anteriores se conservan; solo se detuvieron los servidores QA creados en este bloque.
+
+<details>
+<summary>Antecedentes cloud — 300 Django,237 Flutter,19 HTTP con dobles; sin aceptación real en aquel corte</summary>
+
+## HU028 — Asistente de creación de currículum con IA — avance del 09/11/2026
+
+**Estado: en desarrollo, sin cierre ni aceptación del proveedor real.** Historia [#224](https://github.com/Danilo2334/Work_net/issues/224), tareas #225–#228 abiertas. La implementación se conserva en ramas de trabajo y PR en borrador; no modifica el producto estable de main. HU027 permanece pendiente de desarrollo.
+
+### Qué se hizo
+
+El generador conserva sus tres plantillas y permite «Completar mi CV con IA». El candidato escribe información, elige si incluye su perfil propio y autoriza su envío a Gemini. Revisa una propuesta estructurada, ve faltantes y decide aplicar al borrador o descartar. Aplicar conserva la plantilla y los contactos que no se hayan proporcionado; sustituye el resumen y las secciones, con aviso previo. El guardado y el PDF requieren la acción habitual del candidato.
+
+La API GET/POST `/api/curriculum/generated/assistant/` exige candidato autenticado y verificado. Comprueba consentimiento, texto, perfil propio y contrato del CV; generar nunca persiste un CV ni altera postulaciones. La clave y el modelo se configuran solo en backend. Se limita el uso por usuario, el tamaño de entrada/respuesta y el tiempo de espera; no se siguen redirecciones ni se reintentan llamadas automáticamente. Se rechazan hechos estructurados ausentes del texto/perfil autorizado. Esta comparación textual no garantiza la veracidad del resumen o de las descripciones: la revisión humana sigue siendo obligatoria. Las fechas incompletas permanecen sin día/mes inventados; las fechas completas deben coincidir con el formato ISO suministrado.
+
+### Preparación y procedencia
+
+- Fecha: **09/11/2026**. Clon cloud aislado Linux; Python 3.12.14, Django 6.1.1, Flutter 3.47.9 y Dart 3.13.7.
+- Base estable original `c49d0f7fe658aa8641dba52070a2c83172f69f83`; limpieza HU027 ya integrada en main `1da868605d117b3375edaed10af839a51d3c6bf5`. API de Danilo: [`6675613`](https://github.com/Danilo2334/Work_net/commit/6675613655748fbbba964c80493533b8e5d69659), PR #231. Flutter, QA y originales de Francisco: [`606ce39`](https://github.com/Danilo2334/Work_net/commit/606ce394290562db22a402ce1d56f50be1acb36f).
+- Fuentes y originales comprobables en [manifest.json](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/manifest.json), con SHA-256 y SHA de blob Git. No contiene credenciales.
+- **UI:** renderizaciones auténticas del componente Flutter en pruebas de widgets, repositorio ficticio y datos «Candidata QA / Universidad QA / Django». Vistas lógicas 1280×1000 y 390×844, factor de captura 1.5. Roboto y MaterialIcons cargados; el arnés de capturas fija Roboto en botones para evitar la fuente Ahem de pruebas. No son capturas de navegador, dispositivo ni Postman.
+- **API/PDF:** servidor Django HTTP real en loopback, otra SQLite por ejecución, correo a archivos y proveedor sustituido por un doble controlado. Datos separados: «Ana QA / Equipo QA / Universidad QA / Python». Estos PDF no pertenecen a la sesión de las imágenes Flutter. No se llamó a Gemini.
+- La ejecución HTTP final fue `run-20261109T130456Z-f9bc3f60`: [19 peticiones comprobadas](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/http-resultados.json). Los tokens y contraseñas quedaron únicamente en el directorio privado de esa QA, fuera de los archivos publicados.
+
+### Evidencias de interfaz, visibles y específicas
+
+![HU028 V01 — asistente sin configuración](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V01-sin-configuracion-render-flutter.png)
+
+**V01.** Abrir el asistente sin clave/modelo. Se esperaba un mensaje claro y la posibilidad de cancelar; se obtuvo el estado «pendiente de configuración». Acredita la presentación del componente. El HTTP 503 se comprueba por separado en A08; la imagen no prueba permisos.
+
+![HU028 V02 — edición manual conservada](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V02-editor-manual-conservado-render-flutter.png)
+
+**V02.** Cancelar el estado anterior. Se esperaba recuperar el resumen existente «Resumen del perfil» y no guardar; se ve el editor con ese contenido. El test comprueba además cero guardados en el repositorio ficticio. La persistencia de base de datos se comprueba en pruebas Django, no mediante esta imagen.
+
+![HU028 V03 — texto, perfil optativo y consentimiento](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V03-consentimiento-render-flutter.png)
+
+**V03.** Introducir formación y habilidad propias y autorizar el envío manteniendo el perfil desmarcado. Se esperaba explicar el destinatario y el alcance antes de generar; se obtuvo texto, opción independiente de perfil y consentimiento explícito.
+
+![HU028 V04 — revisión de propuesta de prueba](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V04-propuesta-doble-controlado-render-flutter.png)
+
+**V04.** Recibir la respuesta del repositorio ficticio. Se esperaba mostrar resumen, formación, habilidad y fecha pendiente, con «Aplicar» desactivado hasta revisar; así aparece. El aviso identifica la propuesta como prueba controlada. No acredita respuesta de Gemini.
+
+![HU028 V05 — propuesta aplicada a borrador editable](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V05-borrador-sin-autoguardado-render-flutter.png)
+
+**V05.** Confirmar revisión y aplicar. Se esperaba trasladar «Resumen propuesto para revisar» y formación al editor; ambos están visibles. El test comprueba que no se invocó guardar y que la plantilla se conserva. El candidato debe decidir el guardado definitivo.
+
+![HU028 V06 — consentimiento en ancho móvil](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V06-consentimiento-movil-render-flutter.png)
+
+**V06.** Repetir el formulario a 390×844. Se esperaba poder leer el aviso, marcar consentimiento y alcanzar el botón; los controles caben y son legibles. Es una prueba de layout Flutter, no un teléfono físico.
+
+![HU028 V07 — revisión y descarte en ancho móvil](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/frontend/docs/evidencias/hu028-20261109/HU028-V07-propuesta-movil-doble-controlado-render-flutter.png)
+
+**V07.** Revisar la propuesta en ancho móvil. Se esperaba contenido legible, faltantes, revisión obligatoria y opción de descartar; se obtuvo sin desbordamiento. Tras descartar, el test confirma resumen previo y cero guardados. Sigue pendiente el recorrido en navegador real.
+
+### Integración con las tres plantillas y PDF
+
+![HU028 PDF Clásica — datos ficticios del doble controlado](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.png)
+
+**PDF Clásica.** Guardar expresamente la propuesta ficticia mediante PUT y consultar el PDF propio por HTTP. Se esperaba 200/201 para guardar y 200 con PDF legible; se obtuvo el documento de Ana QA con formación, experiencia y habilidades conservadas. [PDF original](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-clasica-doble-controlado.pdf). La imagen es la primera página renderizada por `pdftoppm`; no es una captura de Postman ni acredita IA real.
+
+![HU028 PDF Moderna — datos ficticios del doble controlado](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.png)
+
+**PDF Moderna.** Guardar expresamente la propuesta ficticia mediante PUT y consultar el PDF propio por HTTP. Se esperaba 200/201 para guardar y 200 con PDF legible; se obtuvo el documento de Ana QA con formación, experiencia y habilidades conservadas. [PDF original](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-moderna-doble-controlado.pdf). La imagen es la primera página renderizada por `pdftoppm`; no es una captura de Postman ni acredita IA real.
+
+![HU028 PDF Minimalista — datos ficticios del doble controlado](https://raw.githubusercontent.com/Danilo2334/Work_net/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.png)
+
+**PDF Minimalista.** Guardar expresamente la propuesta ficticia mediante PUT y consultar el PDF propio por HTTP. Se esperaba 200/201 para guardar y 200 con PDF legible; se obtuvo el documento de Ana QA con formación, experiencia y habilidades conservadas. [PDF original](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/docs/evidencias/hu028-20261109/HU028-PDF-minimalista-doble-controlado.pdf). La imagen es la primera página renderizada por `pdftoppm`; no es una captura de Postman ni acredita IA real.
+
+### Comprobaciones realizadas
+
+| Comprobación | Resultado y alcance |
+|---|---|
+| Django | 300 aprobadas; 15 nuevas de HU028. Permisos, consentimiento, límites, perfil propio, datos inválidos, transporte, fallos y ausencia de persistencia. Proveedor simulado. |
+| Flutter | 237 aprobadas; 7 nuevas de contrato/interfaz y 3 de recorrido/render. Revisión, descartar, errores, cancelación y borrador sin guardado. |
+| Análisis y compilación | `flutter analyze` sin incidencias; build web release correcto. Se conservan avisos conocidos de soporte Wasm de secure storage y fuente Cupertino. |
+| Django check / migraciones | Correctos; sin nuevas migraciones. |
+| HTTP aislado | 19/19 peticiones con resultados esperados. 401/403/400, configuración 503, propuesta, cuota 429, respuesta inválida 502, guardado/PDF de tres plantillas y PDF ajeno 404. |
+| Gemini real | Pendiente; ninguna petición al proveedor realizada. |
+| Navegador / Postman Desktop | Pendientes. Los renders de widgets y las peticiones Python no sustituyen esta aceptación. |
+
+### Cómo reproducir y completar
+
+Usar una copia aislada de `codex/hu028-curriculum-ai-integracion`, que reúne API y Flutter. No ejecutar la colección completa contra una QA histórica consumida ni contra datos reales. Instalar las dependencias del backend y ejecutar desde la raíz:
+
+```bash
+python backend/postman/hu028_qa.py
+```
+
+Cada ejecución crea otra SQLite y correo a archivos bajo el directorio Git común `hu028-qa/run-...`. Usa solo loopback, puertos 18488/18489 libres, y sobrescribe únicamente los resultados HU028 del checkout actual. No toca bases anteriores. Por defecto usa un doble **sin consumo del proveedor** y termina sus servidores. `--serve` mantiene solo esa nueva QA para inspección, inicialmente sin configuración. Sus archivos privados `private.json` y `private.postman_environment.json` no se publican.
+
+Para generar capturas de widgets desde `frontend/`, con Flutter instalado:
+
+```bash
+CI=true FLUTTER_SUPPRESS_ANALYTICS=true flutter test test/curriculum_assistant_evidence_test.dart --dart-define=HU028_QA_SCREENSHOTS=true --dart-define=HU028_QA_FONT=/ruta/flutter/bin/cache/artifacts/material_fonts/Roboto-Regular.ttf
+```
+
+Para completar el proveedor real, guardar **GEMINI_API_KEY** y **GEMINI_MODEL** únicamente en variables privadas del backend o su `backend/.env` ignorado por Git. No pegarlos en issues, chats, Dart, capturas o colecciones. Elegir un modelo Gemini habilitado en la cuenta que admita salida estructurada; no hay un modelo ni facturación autorizados asumidos. Reiniciar backend. La vista GET indica configuración, no garantiza cuota ni funcionamiento.
+
+Una vez disponible la credencial autorizada, ejecutar explícitamente con datos ficticios:
+
+```bash
+python backend/postman/hu028_qa.py --provider-real --serve
+```
+
+Este modo sí realiza una generación contra Gemini y puede consumir cuota. Comprueba que generar no guarda, guarda expresamente en las tres plantillas y deja un informe `http-proveedor-real.json` separado. Mantiene un servidor QA nuevo para completar navegador y Postman. Si falta clave/modelo, falla antes de llamar al proveedor.
+
+La colección [hu028.postman_collection.json](https://github.com/Danilo2334/Work_net/blob/606ce394290562db22a402ce1d56f50be1acb36f/backend/postman/hu028.postman_collection.json) no contiene credenciales. Importar únicamente el entorno privado del nuevo run. Separar carpetas de permisos/validación, falta de configuración y proveedor real; no ejecutar la carpeta real sin autorización/configuración. La QA eleva su límite a 1000/h únicamente en el proceso aislado para permitir casos negativos; producción mantiene 5/h por usuario. En despliegues con varios procesos se necesita un caché compartido para un límite global.
+
+### Seguimientos de HU028 y continuación
+
+| Tarea | Seguimiento único | Evidencia y estado |
+|---|---|---|
+| #225 API — Danilo | [Comentario](https://github.com/Danilo2334/Work_net/issues/225#issuecomment-6740954009) | 15 pruebas propias y 19 peticiones HTTP documentadas; capturas Postman Desktop pendientes. |
+| #226 Flutter — Francisco | [Comentario](https://github.com/Danilo2334/Work_net/issues/226#issuecomment-6740954415) | Cuatro renders explicados de consentimiento, revisión, aplicación y móvil; navegador real pendiente. |
+| #227 Integración — Francisco | [Comentario](https://github.com/Danilo2334/Work_net/issues/227#issuecomment-6740954688) | Tres PDF y primeras páginas, guardado explícito por HTTP; recorrido conjunto con Gemini real pendiente. |
+| #228 QA — Francisco | [Comentario](https://github.com/Danilo2334/Work_net/issues/228#issuecomment-6740954963) | Dos renders de casos específicos reutilizados, manifiesto y resultados; aceptación externa pendiente. |
+
+[PR #231](https://github.com/Danilo2334/Work_net/pull/231) contiene API de Danilo; [PR #232](https://github.com/Danilo2334/Work_net/pull/232) contiene Flutter/QA/guía de Francisco. Ambos permanecen en borrador. La [rama combinada](https://github.com/Danilo2334/Work_net/tree/codex/hu028-curriculum-ai-integracion) conserva ambos historiales para continuar; el corte de implementación comprobado es [`ebd3f0f`](https://github.com/Danilo2334/Work_net/commit/ebd3f0fe1413ae7401dc91d4b6398ba15b74ec7a). Cada archivo funcional y original se contrastó con el árbol remoto; no se fusionó HU028 en main.
+
+### Pendientes concretos de aceptación y publicación
+
+1. Configurar clave y modelo autorizados y comprobar Gemini real, incluida utilidad/fidelidad de las propuestas.
+2. Completar el recorrido navegador: texto/perfil/consentimiento → propuesta → revisar/aplicar o descartar → editar → guardar → vista previa/descarga, escritorio y móvil web.
+3. Publicar capturas auténticas de Postman Desktop con petición, respuesta HTTP y Test Results para #225/#228, sin encabezados ni valores secretos.
+4. Asociar #225–#228 como subtareas nativas de #224 y verificar sus campos de Project. En esta sesión solo se pudieron crear referencias Markdown; no se declara ese contador ni un cambio de estado en WORK_NET.
+5. Revisar y entregar las ramas por el flujo habitual después de la aceptación. Danilo publica API; Francisco publica Flutter/integración/QA. No hay aprobación humana atribuida ni historias cerradas.
+
+El instalador de Chromium de Playwright devolvió HTML `Site Unavailable` con HTTP 200 en lugar del ZIP; el navegador cloud tampoco alcanzó el servidor loopback del ejecutor (`ERR_CONNECTION_REFUSED`). No se ocultaron esas limitaciones ni se inventaron capturas. Esta sesión no controla el Windows del usuario ni inspeccionó posibles cambios LinkedIn locales sin publicar.
+
+</details>
+<!-- hu028-avance-fin -->
 
 <details>
 <summary>Antecedente de alcance del cierre HU001–HU026; sustituido por la decisión del 09/11/2026</summary>

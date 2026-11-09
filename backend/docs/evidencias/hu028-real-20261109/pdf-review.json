@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "API",
+    "file": "HU028-PDF-clasica-proveedor-real.pdf",
+    "pages": 1,
+    "bytes": 42230,
+    "sha256": "ca660fddda35033a76f6f156e7a0d54f7b9944ba2a032a3d58443149212a8cec",
+    "expected_fields": 5,
+    "all_expected_present": true,
+    "render": "HU028-PDF-clasica-proveedor-real-render-1.png",
+    "render_kind": "Poppler110dpi, not UI screenshot"
+  },
+  {
+    "kind": "API",
+    "file": "HU028-PDF-minimalista-proveedor-real.pdf",
+    "pages": 1,
+    "bytes": 42123,
+    "sha256": "0c52ef164c0c4ebf93f1f6eeeacccdee9241b0defeb13b65254715bd2d83923c",
+    "expected_fields": 5,
+    "all_expected_present": true,
+    "render": "HU028-PDF-minimalista-proveedor-real-render-1.png",
+    "render_kind": "Poppler110dpi, not UI screenshot"
+  },
+  {
+    "kind": "API",
+    "file": "HU028-PDF-moderna-proveedor-real.pdf",
+    "pages": 1,
+    "bytes": 42248,
+    "sha256": "3954617f04bc950a759654ef30ba40206dbb64ac1ff47c29c5a9665c442e5957",
+    "expected_fields": 5,
+    "all_expected_present": true,
+    "render": "HU028-PDF-moderna-proveedor-real-render-1.png",
+    "render_kind": "Poppler110dpi, not UI screenshot"
+  },
+  {
+    "kind": "Browser",
+    "file": "HU028-CV-clasica-generacion-real.pdf",
+    "pages": 1,
+    "bytes": 42363,
+    "sha256": "19a87d6399ff41397e688012f7add332c91583cdb25802a5a9250451e11870b7",
+    "expected_fields": 8,
+    "all_expected_present": true,
+    "render": "HU028-CV-clasica-generacion-real-render-1.png",
+    "render_kind": "Poppler110dpi, not UI screenshot"
+  },
+  {
+    "kind": "Browser",
+    "file": "HU028-CV-minimalista-generacion-real.pdf",
+    "pages": 1,
+    "bytes": 42235,
+    "sha256": "1fa952779c3ee68fcf71b2d00959cb51ba0a593137b856146e7e98630e783476",
+    "expected_fields": 8,
+    "all_expected_present": true,
+    "render": "HU028-CV-minimalista-generacion-real-render-1.png",
+    "render_kind": "Poppler110dpi, not UI screenshot"
+  },
+  {
+    "kind": "Browser",
+    "file": "HU028-CV-moderna-generacion-real.pdf",
+    "pages": 1,
+    "bytes": 42363,
+    "sha256": "d6fb6f8cc770afffe5d4fe46d6a3e348182584f6cb3fee1d30ef4560721c0068",
+    "expected_fields": 8,
+    "all_expected_present": true,
+    "render": "HU028-CV-moderna-generacion-real-render-1.png",
+    "render_kind": "Poppler110dpi, not UI screenshot"
+  }
+]

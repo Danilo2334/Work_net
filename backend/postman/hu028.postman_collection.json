@@ -1,0 +1,667 @@
+{
+  "info": {
+    "name": "WorkNet HU028 - Asistente CV - QA aislada",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Importar solo con el entorno privado de una QA nueva de hu028_qa.py. La clave Gemini permanece exclusivamente en backend. Ejecutar 01/02 en modo sin configuración, y 03 una vez con proveedor real autorizado. Datos ficticios; las respuestas privadas solo contienen los datos de esa QA. No abrir valores secretos del entorno."
+  },
+  "item": [
+    {
+      "name": "01 Permisos y validación",
+      "item": [
+        {
+          "name": "C01 Estado de configuración",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Disponible booleano\", () => pm.expect(pm.response.json().available).to.be.a(\"boolean\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C02 Sin sesión",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C03 Empresa sin permiso",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_company_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C04 Candidato sin verificar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_unverified_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C05 Consentimiento denegado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"consent\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C06 Texto vacío",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"\",\n  \"consent\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C07 Propietario inyectado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"consent\": true,\n  \"candidate\": 9999\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 Sin proveedor configurado",
+      "item": [
+        {
+          "name": "M01 Configuración ausente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"No configurado\", () => pm.expect(pm.response.json().available).to.eql(false));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M02 Generación sin proveedor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"consent\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 503\", () => pm.response.to.have.status(503));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Gemini real - propuesta, guardado explícito y PDF",
+      "item": [
+        {
+          "name": "R01 Propuesta con proveedor real autorizado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/assistant/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ana QA. Ingeniera de Software de Universidad QA. Desarrolladora en Equipo QA. Python avanzado. Español nativo.\",\n  \"include_profile\": false,\n  \"consent\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "const result = pm.response.json();",
+                  "pm.test(\"No se guarda automáticamente\", () => pm.expect(result.saved).to.eql(false));",
+                  "pm.test(\"Contrato del borrador\", () => { pm.expect(result.suggestion.data.personal.full_name).to.be.a(\"string\"); for (const k of [\"education\",\"experience\",\"skills\",\"languages\",\"certifications\",\"extra_sections\"]) pm.expect(result.suggestion.data[k]).to.be.an(\"array\"); });",
+                  "pm.test(\"Proveedor real identificado\", () => { pm.expect(result.provider).to.eql(\"Gemini\"); pm.expect(result.model).not.to.contain(\"qa-\"); });",
+                  "pm.test('Esquema revisable', () => pm.expect(pm.response.json().suggestion.missing_information).to.be.an('array'));",
+                  "pm.variables.set('hu028_proposal_json', JSON.stringify(pm.response.json().suggestion.data));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R02 Generar no guarda el CV",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('CV sin guardar después de generar', () => pm.expect(pm.response.json().exists).to.eql(false));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R03 Guardado explícito clasica",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"template\":\"clasica\",\"data\":{{hu028_proposal_json}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Guardado 200 o 201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));",
+                  "pm.test('Plantilla clasica', () => pm.expect(pm.response.json().curriculum.template).to.eql('clasica'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R04 PDF privado clasica",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PDF auténtico', () => pm.expect(pm.response.text().slice(0,5)).to.eql('%PDF-'));",
+                  "pm.test('Tipo PDF', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R05 Guardado explícito moderna",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"template\":\"moderna\",\"data\":{{hu028_proposal_json}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Guardado 200 o 201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));",
+                  "pm.test('Plantilla moderna', () => pm.expect(pm.response.json().curriculum.template).to.eql('moderna'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R06 PDF privado moderna",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PDF auténtico', () => pm.expect(pm.response.text().slice(0,5)).to.eql('%PDF-'));",
+                  "pm.test('Tipo PDF', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R07 Guardado explícito minimalista",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"template\":\"minimalista\",\"data\":{{hu028_proposal_json}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Guardado 200 o 201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));",
+                  "pm.test('Plantilla minimalista', () => pm.expect(pm.response.json().curriculum.template).to.eql('minimalista'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R08 PDF privado minimalista",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_candidate_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('PDF auténtico', () => pm.expect(pm.response.text().slice(0,5)).to.eql('%PDF-'));",
+                  "pm.test('Tipo PDF', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/pdf'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "R09 Otra candidata no consulta el PDF",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{hu028_other_token}}"
+              }
+            ],
+            "url": "{{hu028_api_origin}}/api/curriculum/generated/pdf/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404, sin documento ajeno', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const origin = pm.environment.get('hu028_api_origin');",
+          "if (!/^http:\\/\\/127\\.0\\.0\\.1:[0-9]{4,5}$/.test(origin || '') || !/^run-/.test(pm.environment.get('hu028_run_id') || '')) { throw new Error('Solo QA HU028 aislada y nueva'); }"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test('QA aislada correcta', () => pm.expect(pm.response.headers.get('X-WorkNet-QA-Run')).to.eql(pm.environment.get('hu028_run_id')));"
+        ]
+      }
+    }
+  ]
+}
