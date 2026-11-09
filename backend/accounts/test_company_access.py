@@ -1,3 +1,4 @@
+from accounts.testing import fixture_token
 """Business flow and permissions against a disposable Django test database."""
 from smtplib import SMTPException
 from unittest.mock import patch
@@ -29,7 +30,7 @@ class CompanyAccessTests(TestCase):
         self.use(self.company)
 
     def use(self, user):
-        self.client.credentials(HTTP_AUTHORIZATION="Token " + Token.objects.get_or_create(user=user)[0].key)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + fixture_token(user).key)
 
     def submit(self):
         saved = self.client.patch("/api/company/", self.fields, format="json")

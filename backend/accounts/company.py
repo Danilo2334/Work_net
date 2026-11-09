@@ -26,9 +26,9 @@ def require_company(user):
         raise PermissionDenied("Este espacio corresponde a una cuenta de empresa.")
 
 
-def require_admin(user):
-    if not administrator(user):
-        raise PermissionDenied("Solo un administrador puede revisar solicitudes.")
+def require_admin(user, permission="review_companies"):
+    from .admin_access import require_permission
+    require_permission(user, permission)
 
 
 def company_state(user):
@@ -189,6 +189,8 @@ class ReviewCompanyView(APIView):
 
     @transaction.atomic
     def post(self, request, pk):
+        from .admin_access import locked_request_actor
+        request.user = locked_request_actor(request)
         require_admin(request.user)
         action = request.data.get("decision")
         reason = request.data.get("reason", "")
@@ -235,11 +237,12 @@ class AdminDashboardView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        require_admin(request.user)
+        from .admin_access import require_permission, admin_permissions
+        require_permission(request.user, "dashboard")
         users = User.objects.filter(is_staff=False, is_superuser=False)
         pending = CompanyProfile.objects.filter(state="pending", submitted_at__isnull=False)
         return Response({
             "metrics": {"candidates": users.filter(role="candidato").count(), "companies": users.filter(role="empresa").count(), "pending_companies": pending.count()},
             "notifications": notices(request.user),
-            "recent_events": list(CompanyReview.objects.select_related("profile", "actor").order_by("-created_at", "-id").values("id", "profile__legal_name", "actor__full_name", "action", "created_at")[:20]),
+            "recent_events": list(CompanyReview.objects.select_related("profile", "actor").order_by("-created_at", "-id").values("id", "profile__legal_name", "actor__full_name", "action", "created_at")[:20]) if "view_events" in admin_permissions(request.user) else [],
         })

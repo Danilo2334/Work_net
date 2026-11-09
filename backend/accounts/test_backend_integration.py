@@ -68,6 +68,14 @@ class ConsolidatedBackendTests(APITestCase):
             with self.subTest(field=field):
                 user = self.make_user(email=field + "@example.com", **{field: True})
                 response = self.login(user)
+                self.assertEqual(response.status_code, 202)
+                self.assertNotIn("token", response.data)
+                challenge = response.data["challenge"]
+                self.client.post("/api/admin/mfa/setup/", {"challenge": challenge}, format="json")
+                from django_otp.plugins.otp_totp.models import TOTPDevice
+                from django_otp.oath import totp
+                device = TOTPDevice.objects.get(user=user)
+                response = self.client.post("/api/admin/mfa/verify/", {"challenge": challenge, "code": f"{totp(device.bin_key):06d}"}, format="json")
                 self.assertEqual(response.status_code, 200)
                 self.assertEqual(response.data["user"]["role"], "admin")
                 self.client.credentials(HTTP_AUTHORIZATION="Token " + response.data["token"])

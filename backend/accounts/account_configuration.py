@@ -3,7 +3,7 @@
 from django.contrib.auth.password_validation import validate_password
 from django.db import transaction
 from rest_framework import serializers, status
-from rest_framework.authentication import TokenAuthentication
+from accounts.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -14,13 +14,37 @@ from .models import User
 
 class AccountSerializer(serializers.ModelSerializer):
     role = serializers.SerializerMethodField()
+    administrative_role = serializers.SerializerMethodField()
+    permissions = serializers.SerializerMethodField()
+    mfa_verified = serializers.SerializerMethodField()
+
+    def to_representation(self, user):
+        data = super().to_representation(user)
+        if not (user.is_staff or user.is_superuser):
+            for field in ("administrative_role", "permissions", "mfa_verified"):
+                data.pop(field, None)
+        return data
+
+    def get_administrative_role(self, user):
+        if not (user.is_staff or user.is_superuser):
+            return None
+        from .admin_access import admin_data
+        return admin_data(user)["administrative_role"]
+
+    def get_permissions(self, user):
+        from .admin_access import admin_permissions
+        return sorted(admin_permissions(user))
+
+    def get_mfa_verified(self, user):
+        # This serializer is used only after the MFA-aware authentication class.
+        return bool(user.is_staff or user.is_superuser)
 
     def get_role(self, user):
         return "admin" if user.is_staff or user.is_superuser else user.role or "unassigned"
 
     class Meta:
         model = User
-        fields = ("id", "full_name", "email", "role", "email_verified")
+        fields = ("id", "full_name", "email", "role", "email_verified", "administrative_role", "permissions", "mfa_verified")
         read_only_fields = ("id", "email", "role", "email_verified")
 
     def to_internal_value(self, data):
@@ -122,6 +146,8 @@ class ChangePasswordView(AuthenticatedAccountView):
                 )
             user.set_password(serializer.validated_data["new_password"])
             user.save(update_fields=["password"])
+            if user.is_staff or user.is_superuser:
+                return Response({"message": "Contraseña actualizada. Inicia sesión de nuevo con doble factor."}, status=401)
             # La señal revoca el token anterior. El cliente debe guardar el nuevo.
             token = Token.objects.create(user=user)
         return Response({"message": "Contraseña actualizada correctamente.", "token": token.key})
@@ -129,6 +155,8 @@ class ChangePasswordView(AuthenticatedAccountView):
 
 class DeleteAccountView(AuthenticatedAccountView):
     def delete(self, request):
+        if request.user.is_staff or request.user.is_superuser:
+            return Response({"message": "Las cuentas administrativas se desactivan desde la gestión autorizada; no pueden eliminarse aquí."}, status=403)
         with transaction.atomic():
             user = User.objects.select_for_update().get(pk=request.user.pk)
             serializer = DeleteAccountSerializer(data=request.data, context={"user": user})
