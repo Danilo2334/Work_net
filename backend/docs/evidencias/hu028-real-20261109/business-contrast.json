@@ -1,0 +1,12 @@
+{
+  "run": "run-20261109T184717Z-0165b8da",
+  "all_previous_business_rows_unchanged": true,
+  "counts": {
+    "users": 4,
+    "profiles": 2,
+    "offers": 1,
+    "applications": 1
+  },
+  "business_sha256": "525f9711ff946b518889b7d1ee2cf73099480a248b3624b567192963321a4a1a",
+  "generated_cv_count": 1
+}

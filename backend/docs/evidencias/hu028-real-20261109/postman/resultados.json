@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-09",
+  "run": "run-20261109T184717Z-0165b8da",
+  "app": "Postman Desktop 12.35.5",
+  "source_sha": "169115f58199d582d7f0a431316c2f2bd928bcaf",
+  "collection_source_sha": "bf74181a280af28d6f5225d203766b8eac3b1548",
+  "execution": "Functional / Local, one iteration per phase, persisted responses, stop on error",
+  "results_origin": "Observed native Runner UI, not Newman or Python",
+  "negative": {
+    "cases": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "M01",
+      "M02"
+    ],
+    "http": [
+      200,
+      401,
+      403,
+      403,
+      400,
+      400,
+      400,
+      200,
+      503
+    ],
+    "requests": 9,
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "duration_ms": 1614,
+    "average_http_ms": 19,
+    "provider_calls": 0
+  },
+  "real": {
+    "cases": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09"
+    ],
+    "http": [
+      200,
+      200,
+      201,
+      200,
+      200,
+      200,
+      200,
+      200,
+      404
+    ],
+    "requests": 9,
+    "passed": 32,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "duration_ms": 3558,
+    "average_http_ms": 253,
+    "provider_calls": 1,
+    "provider_elapsed_ms": 2133.4
+  },
+  "claims": [
+    "Generation saved=false; subsequent GET exists=false",
+    "Explicit saves in clasica, moderna and minimalista",
+    "Three HTTP200 PDFs with PDF signature and Content-Type assertions",
+    "Other candidate PDF404",
+    "No keys, tokens or authorization headers photographed"
+  ],
+  "collection_clone": "Import clone only changes collection UUID/name/run provenance; no Gemini key in collection or environment"
+}
