@@ -249,7 +249,7 @@ class _CandidateDashboardPageState extends State<CandidateDashboardPage> {
             ),
           ),
         const Text(
-          'El detalle de ofertas y la postulación pertenecen a módulos pendientes.',
+          'Consulta el detalle y postúlate desde Buscar ofertas.',
           style: TextStyle(color: WorkNetColors.muted),
         ),
       ],
