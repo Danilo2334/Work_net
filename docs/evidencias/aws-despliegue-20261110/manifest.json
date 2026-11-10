@@ -1,0 +1,47 @@
+{
+  "source_sha": "958bd3f34350525f98408363b52354ddc2d96500",
+  "origin": "https://worknet.3.136.118.169.sslip.io",
+  "captured_on": "2026-11-10",
+  "files": [
+    {
+      "file": "AWS-desktop-dashboard.png",
+      "type": "authentic browser screenshot from public HTTPS; fictitious QA data",
+      "sha256": "7a87954802f0898e7cc2a40ee287eb95fdf06ede2620776285530afdf38436e0"
+    },
+    {
+      "file": "AWS-desktop-gemini-proposal.png",
+      "type": "authentic browser screenshot from public HTTPS; fictitious QA data",
+      "sha256": "b049bff290cbe3f213eab320ef6c3a30bcecc197afa5e05f4ab45a0f64e2787e"
+    },
+    {
+      "file": "AWS-desktop-explicit-save.png",
+      "type": "authentic browser screenshot from public HTTPS; fictitious QA data",
+      "sha256": "6a0c1fb566b1a372f1ca31dd03d008d03f8a592e7867bcf3267d1da15f8c3079"
+    },
+    {
+      "file": "AWS-mobile-cv.png",
+      "type": "authentic browser screenshot from public HTTPS; fictitious QA data",
+      "sha256": "65a67f2944ae53792a5feec78111ee91dfc6d0051e1bc3836ab363d1f12375be"
+    },
+    {
+      "file": "AWS-mobile-pdf-download.png",
+      "type": "authentic browser screenshot from public HTTPS; fictitious QA data",
+      "sha256": "eff84e92bf584e06ee024141d5ae767d76c920d40a458baf4fa3dd925f2a255b"
+    },
+    {
+      "file": "AWS-CV-clasica.pdf",
+      "type": "actual downloaded PDF from production HTTPS API; not a Flutter screenshot",
+      "sha256": "95daeb8186c7b30ec68780707db5e0b0c5d82b5caf71aaa5ea2fe00a7c769f76"
+    },
+    {
+      "file": "AWS-CV-moderna.pdf",
+      "type": "actual downloaded PDF from production HTTPS API; not a Flutter screenshot",
+      "sha256": "50fd509e862de0599d0c38366e2911a700953ebc0aacc91e192162b812a1185f"
+    },
+    {
+      "file": "AWS-CV-minimalista.pdf",
+      "type": "actual downloaded PDF from production HTTPS API; not a Flutter screenshot",
+      "sha256": "e65796e665564e57d6753902b64a36ceabe790ba43362ad543d0b62c1f501966"
+    }
+  ]
+}
