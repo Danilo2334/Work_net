@@ -1,0 +1,241 @@
+{
+  "date_bogota": "2026-11-09",
+  "status": "local preparation; no AWS infrastructure created",
+  "source_main": "197f536600ae8f92854b79f92beab4d122b2a21d",
+  "backend_commit": "ed95b4a1391576a405f883f902faab223e5b9956",
+  "branch": "codex/aws-preparacion",
+  "roles": {
+    "backend_author_and_committer": "Danilo2334",
+    "integration_qa_docs": "francisco3788",
+    "github_identities_verified": true
+  },
+  "aws": {
+    "profile": "worknet",
+    "region": "us-east-2",
+    "plan": "FREE",
+    "free_plan_expires_bogota": "2027-05-09T19:27:34.067000-05:00",
+    "proposed_bundle": "small_3_0",
+    "monthly_instance_usd": 12.0,
+    "ram_gb": 2.0,
+    "disk_gb": 60,
+    "vcpus": 2,
+    "included_transfer_gb": 3072,
+    "existing_instance_count": 0,
+    "template_sha256": "38198269cce46e63d4c8c4f5b54031e1fdf2ce948bd76afece5531154048d429",
+    "template_validated_by_aws": true,
+    "resources_created": false,
+    "credit_balance": "Confirm current remaining shared credits in AWS Settings before creation"
+  },
+  "mcp": {
+    "direct_initialize": true,
+    "tools": 8,
+    "search_and_retrieve_skill": true,
+    "host_catalog_exposure": "AWS tools not exposed in this chat; direct stdio MCP bridge used",
+    "local_client_adjustment": "mcp_optional_startup_grace_ms=0; generated AWS server command/args unchanged"
+  },
+  "tests": {
+    "django_sqlite": {
+      "run": 308,
+      "seconds": 56.898,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "django_postgresql": {
+      "run": 308,
+      "seconds": 38.661,
+      "skipped": 2,
+      "result": "passed"
+    },
+    "flutter": {
+      "passed": 237
+    },
+    "flutter_analyze": "passed",
+    "flutter_release_web": "passed; JavaScript build with QA API origin; current dependencies report WASM compatibility warnings",
+    "check_deploy": "no issues, none silenced",
+    "migration_check": "no changes",
+    "cloudformation": "AWS validate-template and cfn-lint passed"
+  },
+  "https_checks": [
+    {
+      "path": "/login",
+      "expected": 200,
+      "status": 200,
+      "bytes": 1920,
+      "hsts": true
+    },
+    {
+      "path": "/health/live/",
+      "expected": 200,
+      "status": 200,
+      "bytes": 16,
+      "hsts": true
+    },
+    {
+      "path": "/health/ready/",
+      "expected": 200,
+      "status": 200,
+      "bytes": 16,
+      "hsts": true
+    },
+    {
+      "path": "/api/profile/candidate/",
+      "expected": 401,
+      "status": 401,
+      "bytes": 58,
+      "hsts": true
+    },
+    {
+      "path": "/static/admin/css/base.css",
+      "expected": 200,
+      "status": 200,
+      "bytes": 24538,
+      "hsts": true
+    },
+    {
+      "path": "/api/not-an-endpoint/",
+      "expected": 404,
+      "status": 404,
+      "bytes": 179,
+      "hsts": true
+    },
+    {
+      "path": "http:/login",
+      "expected": 308,
+      "status": 308,
+      "redirects_to_https": true
+    }
+  ],
+  "browser": [
+    {
+      "viewport": "desktop",
+      "status": 200,
+      "page_errors": [],
+      "real_api_invalid_login_status": 400,
+      "inputs": [
+        {
+          "type": "text",
+          "label": "Correo electrónico"
+        },
+        {
+          "type": "password",
+          "label": "Contraseña"
+        }
+      ],
+      "semantics": "WorkNet\nTu próximo paso te espera.\nVuelve a tus oportunidades y continúa construyendo tu futuro.\nConecta tu talento con tu próximo paso.\nBienvenido de nuevo\nInicia sesión para continuar en WorkNet.\nCorreo o contraseña incorrectos.\nMostrar contraseña\n¿Olvidaste tu contraseña?\nIniciar sesión\n¿Aún no tienes cuenta? Regístrate"
+    },
+    {
+      "viewport": "mobile",
+      "status": 200,
+      "page_errors": [],
+      "real_api_invalid_login_status": 400,
+      "inputs": [
+        {
+          "type": "text",
+          "label": "Correo electrónico"
+        },
+        {
+          "type": "password",
+          "label": "Contraseña"
+        }
+      ],
+      "semantics": "WorkNet\nBienvenido de nuevo\nInicia sesión para continuar en WorkNet.\nCorreo o contraseña incorrectos.\nMostrar contraseña\n¿Olvidaste tu contraseña?\nIniciar sesión\n¿Aún no tienes cuenta? Regístrate"
+    }
+  ],
+  "backup_restore": {
+    "dump_bytes": 109923,
+    "restored_fictitious_record_count": 1,
+    "app_role_superuser": false,
+    "app_role_createdb": false,
+    "app_role_createrole": false
+  },
+  "persistence": {
+    "redis_persisted_after_restart": true,
+    "fictitious_record_after_restart": 1,
+    "redis_policy": "noeviction"
+  },
+  "performance_default_localhost": {
+    "operation": "GET /health/ready/ over local HTTPS",
+    "samples": 20,
+    "median_ms": 2062.93,
+    "p95_ms": 2084.92,
+    "dataset": "One fictitious user in isolated PostgreSQL; not a load test or AWS latency measurement"
+  },
+  "performance_ipv4_control": {
+    "operation": "GET /health/ready/ over local HTTPS, client uses IPv4 loopback to match Docker binding",
+    "samples": 20,
+    "median_ms": 9.81,
+    "p95_ms": 30.76,
+    "scope": "Only this QA process changes localhost resolution; no Windows network settings changed"
+  },
+  "performance_interpretation": "The same local endpoint is much faster when this QA client uses IPv4, matching the Docker binding. This indicates local name/address selection overhead; no Windows networking settings were changed. Neither measurement is AWS performance or a load test.",
+  "container_memory_snapshot": [
+    {
+      "Name": "worknet-aws-qa-20261109-api-1",
+      "MemUsage": "147.6MiB / 512MiB",
+      "CPUPerc": "0.03%"
+    },
+    {
+      "Name": "worknet-aws-qa-20261109-cache-1",
+      "MemUsage": "4.34MiB / 128MiB",
+      "CPUPerc": "0.35%"
+    },
+    {
+      "Name": "worknet-aws-qa-20261109-db-1",
+      "MemUsage": "26.4MiB / 384MiB",
+      "CPUPerc": "0.00%"
+    },
+    {
+      "Name": "worknet-aws-qa-20261109-web-1",
+      "MemUsage": "19.58MiB / 128MiB",
+      "CPUPerc": "0.00%"
+    }
+  ],
+  "versions": {
+    "postgres": "postgres (PostgreSQL) 17.11 (Debian 17.11-1.pgdg12+2)",
+    "redis": "Redis server v=7.4.12 sha=00000000:0 malloc=jemalloc-5.3.0 bits=64 build=69f2dd83f1b1edb9",
+    "caddy": "v2.11.9 h1:bhZtcRKQOq0fuLvEgCdPYvUxXyGn9kzjG4lh2332DTE=",
+    "gunicorn": "gunicorn (version 26.2.0)",
+    "container_python": "Python 3.12.16",
+    "windows_python": "3.12.10",
+    "playwright": "1.65.0",
+    "flutter": "3.47.5",
+    "dart": "3.13.4"
+  },
+  "image_digests": {
+    "python:3.12-slim-bookworm": "python:3.12-slim-bookworm@sha256:935c3c5b12357a7e10caa9c1e6ca5692344d97cf229832ef584be2cec9fc03df",
+    "postgres:17-bookworm": "postgres@sha256:665dc7b37ac52a17e298511414c21d23ffa4e6a6ef6225b3e5d59c7afb35e994",
+    "redis:7.4-bookworm": "redis@sha256:2e3eb11462c4e3759e6972678dd051d150ff54b1e60714b3c33b701260172a90",
+    "caddy:2-alpine": "caddy@sha256:78bd35025c7ba85961dd149ae670315129954e77abe2383ac47c89106b35ade9"
+  },
+  "provider_calls": {
+    "real_gemini": 0,
+    "real_smtp": 0,
+    "real_provider_credentials": "absent from QA"
+  },
+  "scope_limits": [
+    "No public AWS certificate or URL yet",
+    "No new physical APK acceptance",
+    "No new Postman Desktop acceptance",
+    "No human approval or delegated review claimed",
+    "HU027 remains pending for a future version"
+  ],
+  "source_manifest_sha256": {
+    "deploy/aws/.env.example": "c3b8717df8f069520ae6b415c09e5560bf1d8d001bd640a12531f9e6eb1ce728",
+    "deploy/aws/backup.sh": "2f01ac37f5dd220581f6cb34bb16285559a98f9b1ac43e5c961ca0cdde233bba",
+    "deploy/aws/build-web.ps1": "fe402b9126318eecb552df116e940fe2336d4fe26feab71783d47a5b933a6e4c",
+    "deploy/aws/Caddyfile": "c56c14a13cd2efea22d15686f4c2f3cba68d6c519bccae1c8576892ff1913a45",
+    "deploy/aws/compose.yaml": "ce25a3a008028ea41f0784e803957af961dfcf58cb4a989717fa38a71e8377f1",
+    "deploy/aws/database.env.example": "04f69f1f0818e8687abd40a95fdc605e562044f85ac37ea1a5a75d9426b31d09",
+    "deploy/aws/db-init.sh": "a230732a8f11d337c30891073dbb57fa6041ca36ea54e6bc39e9807d60855e9b",
+    "deploy/aws/lightsail.json": "38198269cce46e63d4c8c4f5b54031e1fdf2ce948bd76afece5531154048d429",
+    "deploy/aws/plan.py": "4cf1bbf86cce3225b845e6940b765b479da99a61043caa14d0b4d1d54edc2778",
+    "deploy/aws/README.md": "c59c4d705f03e8d89e6b0d7efbd7e638dfece64c8ccbe401d8dcc80c82882a7c",
+    "backend/Dockerfile": "c2d225fa397bec1971749c50eae3ce2f8c8e8a311579202e5f724f8765d9cd5e",
+    "backend/config/production.py": "76eabaedb60ce190520ddfd207d684bc8564c6938c7b1055c504ee139df13fa0",
+    "backend/requirements-production.txt": "b5a53cfb0478350dceabf3b3dd2682f40e3888cfb7523ec93a851b78ce07d318"
+  },
+  "screenshots": {
+    "AWS-QA-desktop-login.png": "96a046551e11da236c5fae024157be7d33a90470b8e0ea17eb572939759a405d",
+    "AWS-QA-mobile-login.png": "3eb10520d419da4d404a4c9b93eb529f7f280ad3bea278ae20d6ec3642406a25"
+  }
+}

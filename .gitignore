@@ -22,3 +22,9 @@ frontend/build/
 *.log
 .DS_Store
 Thumbs.db
+
+# Production build output and private deployment files
+backend/staticfiles/
+deploy/aws/.local/
+deploy/aws/artifacts/
+deploy/aws/*.env

@@ -1,5 +1,19 @@
 # WorkNet · Plan de despliegue
 
+## Despliegue vigente: AWS con créditos — 10/11/2026
+
+Se trabaja en una copia aislada desde main `197f536`, conservando los entornos anteriores. Con autorización expresa del usuario se creó Lightsail Linux de **2 GB, 2 vCPU y 60 GB por US$12/mes contra créditos**, Ubuntu 24.04, en `us-east-2`. El proyecto `worknet` conserva el plan **FREE**; no se activó Paid. PostgreSQL, Redis, Django y Flutter/Caddy están preparados para esa misma instancia, sin contratar servicios gestionados adicionales. El saldo exacto restante debe consultarse en AWS Settings.
+
+**[WorkNet está publicada con HTTPS](https://worknet.3.136.118.169.sslip.io/login)** y certificado público de Let’s Encrypt verificado sin excepciones. Pasaron seis controles HTTPS, 61 de API, Gemini real, las tres plantillas PDF, TOTP, navegador de escritorio/móvil web y respaldo/restauración en otra base. PostgreSQL/Redis conservaron los datos al reiniciarse. [Resultados y capturas](../frontend/docs/REVISION.md) · [registro AWS](aws-despliegue-20261110.json) · [operación y recuperación](../deploy/aws/README.md).
+
+SSH quedó corregido: la regla permitía una IP distinta del origen TCP real, confirmado en una sesión autenticada. El 2222 queda limitado a ese `/32`, conservando intacto el 22 y el cliente del navegador. Las huellas del host se verificaron con la API de AWS. [#245](https://github.com/Danilo2334/Work_net/pull/245) quedó fusionado en `develop`; [#246](https://github.com/Danilo2334/Work_net/pull/246) incorpora el backend revisado para la entrega conjunta. Gemini permanece exclusivamente en el backend; HU027 sigue pendiente. El servidor consume créditos incluso apagado hasta su retirada explícita.
+
+El usuario confirmó recepción del correo real y apertura de «Nueva contraseña» en HTTPS. **Pendientes delimitados:** captura nueva de Postman Desktop y APK cloud. Gradle falló localmente con `Unable to establish loopback connection`; la APK anterior se conserva y la web pública no depende de ese build ni del USB. Los 308 Django SQLite, 306+2 PostgreSQL y 237 Flutter del ensayo local mantienen su fecha y procedencia, sin presentarse como nuevas ejecuciones en AWS.
+
+La propuesta Render siguiente se conserva como antecedente del corte anterior. Su presupuesto no es la elección vigente.
+
+## Antecedente: propuesta Render
+
 **09/11/2026: propuesta preparada; aplicación completa todavía sin desplegar.** HU001–HU026 y HU028 están entregadas. HU027 se mantiene para v2 y no es una dependencia del despliegue.
 
 ## Opción recomendada
