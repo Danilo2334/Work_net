@@ -8,4 +8,5 @@ backend/requirements-production.* text eol=lf
 deploy/aws/*.sh text eol=lf
 deploy/aws/*.yaml text eol=lf
 deploy/aws/*.json text eol=lf
+deploy/aws/*.guard text eol=lf
 deploy/aws/Caddyfile text eol=lf
