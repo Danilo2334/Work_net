@@ -1,8 +1,12 @@
 # WorkNet en AWS — preparación de presentación
 
-09/11/2026. Preparación local validada; **no hay instancia AWS ni URL pública de WorkNet todavía**. La entrega funcional sigue siendo HU001–HU026 y HU028. HU027 permanece pendiente para una versión futura.
+10/11/2026. **Instancia creada y plan FREE conservado; instalación de la aplicación y HTTPS pendientes de acceso SSH.** El usuario autorizó expresamente el servidor de US$12/mes contra créditos. La entrega funcional sigue siendo HU001–HU026 y HU028. HU027 permanece pendiente para una versión futura.
 
-## Recursos propuestos y presupuesto
+CloudFormation `worknet-presentacion` administra la instancia y su IPv4 estática `3.136.118.169`. El nombre previsto `worknet.3.136.118.169.sslip.io` ya resuelve a esa dirección. **Todavía no es una aplicación publicada ni un certificado emitido.** Los PR de preparación son [Django #245](https://github.com/Danilo2334/Work_net/pull/245), hacia `develop`, e [integración/QA #246](https://github.com/Danilo2334/Work_net/pull/246), hacia `frontend`; ambos continúan en borrador.
+
+[Registro sanitizado de activación](../../docs/aws-despliegue-20261110.json). La reconciliación de red terminó en `UPDATE_COMPLETE`, sin recursos añadidos ni reemplazados y sin cambiar el plan. Guard aprobó la plantilla y rechazó cuatro variantes inseguras: SSH público, alias del navegador en el puerto alternativo, bundle superior y puerto adicional.
+
+## Recursos aprobados y presupuesto
 
 | Recurso | Configuración | Referencia mensual |
 |---|---|---|
@@ -14,7 +18,7 @@
 
 Precio y disponibilidad consultados mediante AWS CLI. [Lightsail está admitido en el plan gratuito](https://docs.aws.amazon.com/accounts/latest/reference/supported-services-sign-up-new.html). [Lightsail utiliza créditos Free Tier](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html). El uso consume saldo: el servicio no es gratuito indefinidamente. El plan FREE termina al agotarse los créditos o al vencer su período; la consulta del proyecto indica **09/05/2027, 19:27, Bogotá**. No cambiarlo a Paid. [Reglas del plan gratuito](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html).
 
-Los US$100 mostrados previamente por el usuario no se presentan como un saldo bancario actual comprobado por esta preparación. Confirmar el saldo y otros consumos en AWS Settings antes de crear. Seis meses a US$12 equivalen a US$72 solo de instancia. Excesos de transferencia, snapshots y una IP desasociada pueden consumir saldo adicional. No se habilitan snapshots ni servicios gestionados adicionales automáticamente.
+Los US$100 mostrados previamente por el usuario no se presentan como un saldo actual comprobado mediante API. La autorización del usuario permitió activar esta instancia; el saldo restante se consulta en AWS Settings. Seis meses a US$12 equivalen a US$72 solo de instancia. Excesos de transferencia, snapshots y una IP desasociada pueden consumir saldo adicional. No se habilitan snapshots ni servicios gestionados adicionales automáticamente.
 
 Es una arquitectura para presentación y tráfico pequeño, con un único servidor. La capacidad real, el rendimiento de red desde AWS y la recuperación ante pérdida del servidor requieren la aceptación publicada. Apagar Lightsail **no detiene su coste**; retirar el servicio implica respaldo y eliminación explícita.
 
@@ -30,28 +34,30 @@ flowchart LR
   A --> M[Gmail TLS 587]
 ```
 
-Solo Caddy publica 80/443; el SSH se limita a la IPv4 `/32` del operador en Lightsail. Django, PostgreSQL y Redis no publican puertos del host. Caddy sustituye las cabeceras de proxy. Flutter y API comparten origen HTTPS. [HTTPS automático](https://caddyserver.com/docs/automatic-https) y [DNS temporal](https://sslip.io/) requieren confirmar DNS y certificado reales después de asignar la IP.
+Solo Caddy publicará 80/443; SSH 22 y el puerto alternativo 2222 se limitan a la IPv4 `/32` del operador en Lightsail. El 22 admite además exclusivamente el alias administrado `lightsail-connect` para la terminal del navegador de AWS. [Propiedad oficial de los puertos](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-lightsail-instance-port.html). El firewall no inicia por sí mismo un listener SSH en 2222. Django, PostgreSQL y Redis no publican puertos del host. Caddy sustituye las cabeceras de proxy. Flutter y API compartirán origen HTTPS. [HTTPS automático](https://caddyserver.com/docs/automatic-https) y [DNS temporal](https://sslip.io/) requieren confirmar certificado y aplicación reales después de instalar.
 
 Django usa `config.production`: DEBUG desactivado, clave privada obligatoria, host y origen HTTPS concretos, CORS limitado, cookies seguras, estáticos WhiteNoise y comprobación de PostgreSQL/Redis. La configuración de desarrollo y la demostración por USB conservan su módulo anterior. Las imágenes están fijadas por digest y las dependencias Python por versión y hash.
 
 La cuenta SQL de la aplicación es propietaria de su base, sin superusuario, creación de bases ni creación de roles. El secreto del propietario de PostgreSQL se mantiene en **otro archivo que no recibe Django**. Redis usa AOF y `noeviction`; no descarta claves de límites de IA por presión de memoria. Se conservan datos de CV, fotos, logos y documentos de postulación en PostgreSQL, según el dominio existente.
 
-## Preparación antes de activar recursos
+## Activación realizada y acceso pendiente
 
-1. Desde la raíz de esta copia, ejecutar `python deploy/aws/plan.py --profile worknet`. Solo consulta STS, plan, catálogo Lightsail, instancias y validación CloudFormation. Se detiene si deja de ser FREE, falta Ubuntu o el bundle supera US$12/mes. Nunca crea recursos.
-2. Revisar `lightsail.json`: instancia `worknet-presentacion`, IPv4 estática, clave SSH existente y CIDR del operador. AWS validó su sintaxis y `cfn-lint` no encontró incidencias; la creación y el arranque en AWS siguen pendientes.
-3. Preparar una clave SSH propia fuera de Git y registrar solo su parte pública en Lightsail cuando se autorice la activación. No incluir claves privadas, contraseñas, correo ni Gemini en parámetros CloudFormation o UserData.
-4. Completar el archivo privado de parámetros con `InstanceName`, `AvailabilityZone=us-east-2a`, `AdminCidr=<IPv4-del-operador>/32` y `KeyPairName`. Confirmar saldo disponible y autorizar esos recursos antes de `create-stack`.
+1. El preflight comprobó identidad, plan FREE, Ubuntu 24.04 y bundle de US$12. `python deploy/aws/plan.py --profile worknet` sigue siendo exclusivamente de lectura: no crea recursos ni cambia el plan.
+2. Se creó una clave SSH de Lightsail conservando su parte privada fuera de Git y con permisos restringidos. No se incluyeron claves privadas, correo, Gemini ni contraseñas en CloudFormation o UserData.
+3. Se validaron la plantilla con `cfn-lint`, cinco reglas Guard y la validación de servicio previa al despliegue. Un change set con exactamente dos recursos nuevos, instancia e IP, terminó en `CREATE_COMPLETE`; la protección de terminación permanece habilitada. Los ajustes posteriores de red no reemplazan la instancia.
+4. El SSH directo desde el PC agota el tiempo de espera, aun con su IPv4 de salida actual autorizada. Se habilitó el cliente del navegador de AWS y el puerto alternativo restringido. La causa exacta del bloqueo no está demostrada; no se atribuye a un proveedor de red concreto.
 
-El comando de activación, **aún no ejecutado**, sería:
+No repetir la creación del stack ni generar otras credenciales al retomar. El usuario debe abrir **Lightsail → Instancias → worknet-presentacion → Conectar mediante SSH** y ejecutar, si la terminal conecta:
 
-```powershell
-aws cloudformation create-stack --stack-name worknet-presentacion --template-body file://deploy/aws/lightsail.json --parameters file://RUTA_PRIVADA/parameters.json --enable-termination-protection --region us-east-2 --profile worknet
-aws cloudformation wait stack-create-complete --stack-name worknet-presentacion --region us-east-2 --profile worknet
-aws cloudformation describe-stacks --stack-name worknet-presentacion --query 'Stacks[0].Outputs' --region us-east-2 --profile worknet
+```sh
+sudo sh -c "printf 'Port 22\nPort 2222\n' > /etc/ssh/sshd_config.d/99-worknet-ports.conf && /usr/sbin/sshd -t && systemctl daemon-reload && systemctl restart ssh.socket ssh.service"
 ```
 
-## Publicación después de la autorización
+Comprobar después el puerto alternativo y fijar la clave del host antes de transferir los artefactos. Si AWS no proporciona huellas del host mediante su API, registrar honestamente la fijación en el primer uso de la IP estática recién confirmada; exigir la misma clave en conexiones posteriores. No desactivar la comprobación de claves. Si la terminal del navegador tampoco abre, conservar el servidor y sus registros para diagnosticar, sin crear otra instancia automáticamente.
+
+La configuración privada del backend ya está preparada localmente conservando Gemini y Gmail existentes. Los archivos no se han transferido al servidor. El artefacto Flutter compilado usa el origen público previsto; el paquete de fuentes contiene solo runtime rastreado, sin bases ni evidencias históricas. Se comprobaron hashes y ausencia de los secretos privados en ambos paquetes. Esto no acredita ejecución remota.
+
+## Publicación de la aplicación — en curso
 
 1. Publicar y revisar las aportaciones con el flujo del repositorio: Django de Danilo2334 hacia `develop`; integración/QA/documentación de francisco3788 hacia `frontend`; incorporación del backend revisado y entrega conjunta a `main`. Mantener tres ramas permanentes y usar ramas temporales durante la revisión. La preparación local no acredita fusiones remotas ni aprobaciones humanas.
 2. Obtener la IPv4 estática y fijar el nombre público. Verificar su resolución y acceso a 80/443. El nombre temporal puede sustituirse por un dominio propio; no se compra ninguno en esta fase.

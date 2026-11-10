@@ -22,13 +22,20 @@ rule ssh_is_scoped_to_operator_parameter {
         ToPort == 22
         Protocol == "tcp"
         Cidrs[*].Ref == "AdminCidr"
+        CidrListAliases == ["lightsail-connect"]
+    }
+    Resources.Server.Properties.Networking.Ports[ FromPort == 2222 ] {
+        ToPort == 2222
+        Protocol == "tcp"
+        Cidrs[*].Ref == "AdminCidr"
+        CidrListAliases !exists
     }
 }
 
 rule only_expected_ports {
     Resources.Server.Properties.Networking.Ports.* {
-        FromPort IN [22, 80, 443]
-        ToPort IN [22, 80, 443]
+        FromPort IN [22, 2222, 80, 443]
+        ToPort IN [22, 2222, 80, 443]
         Protocol == "tcp"
     }
 }

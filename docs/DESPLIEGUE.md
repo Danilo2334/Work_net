@@ -1,10 +1,10 @@
 # WorkNet · Plan de despliegue
 
-## Propuesta vigente: AWS con créditos — 09/11/2026
+## Despliegue vigente: AWS con créditos — 10/11/2026
 
-Se preparó una copia aislada desde main `197f536`, conservando los entornos anteriores. El proyecto AWS `worknet`, región `us-east-2`, conserva el plan **FREE**. La propuesta es Lightsail Linux de **2 GB, 2 vCPU y 60 GB por US$12/mes contra créditos**, con PostgreSQL, Redis, Django y Flutter/Caddy en la misma instancia. La consulta API confirma el bundle y Ubuntu 24.04. El saldo restante debe contrastarse en AWS Settings antes de crear recursos.
+Se trabaja en una copia aislada desde main `197f536`, conservando los entornos anteriores. Con autorización expresa del usuario se creó Lightsail Linux de **2 GB, 2 vCPU y 60 GB por US$12/mes contra créditos**, Ubuntu 24.04, en `us-east-2`. El proyecto `worknet` conserva el plan **FREE**; no se activó Paid. PostgreSQL, Redis, Django y Flutter/Caddy están preparados para esa misma instancia, sin contratar servicios gestionados adicionales. El saldo exacto restante debe consultarse en AWS Settings.
 
-Configuración, presupuesto, límites y secuencia concreta en [despliegue AWS](../deploy/aws/README.md); [resultados nuevos](aws-preparacion-20261109.json). La preparación local incluye PostgreSQL, HTTPS local y restauración. **No hay servidor AWS, URL pública, APK cloud ni aceptación externa todavía.** Gemini permanece en el backend; HU027 sigue pendiente. El servidor consume créditos incluso apagado hasta su retirada explícita.
+Configuración, presupuesto, límites y secuencia concreta en [despliegue AWS](../deploy/aws/README.md); [resultados locales](aws-preparacion-20261109.json). La instancia y la IP estática ya existen; el nombre previsto resuelve, pero **la instalación de WorkNet, HTTPS, APK cloud y aceptación externa siguen pendientes de acceso SSH**. El acceso directo desde el PC agota el tiempo de espera; se solicitó una intervención en la terminal de AWS para habilitar el puerto alternativo restringido. Los [PR #245](https://github.com/Danilo2334/Work_net/pull/245) y [#246](https://github.com/Danilo2334/Work_net/pull/246) conservan backend e integración en revisión. Gemini permanece exclusivamente en el backend; HU027 sigue pendiente. El servidor consume créditos incluso apagado hasta su retirada explícita.
 
 La propuesta Render siguiente se conserva como antecedente del corte anterior. Su presupuesto no es la elección vigente.
 

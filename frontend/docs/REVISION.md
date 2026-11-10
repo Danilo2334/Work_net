@@ -1,9 +1,21 @@
 # Guía para revisar WorkNet
 
-<!-- aws-preparacion-20261109-inicio -->
-## Preparación de despliegue AWS — 09/11/2026
+<!-- aws-activacion-20261110-inicio -->
+## Despliegue AWS — avance vigente 10/11/2026
 
-**Preparación local; recursos AWS todavía sin crear.** Rama temporal `codex/aws-preparacion`, base main `197f536600ae8f92854b79f92beab4d122b2a21d`. Se conservan los checkouts, entornos y la demostración USB. El proyecto `worknet` mantiene FREE y `us-east-2`. La propuesta es un servidor Lightsail Linux de US$12/mes contra créditos con PostgreSQL/Redis privados y Caddy/Flutter HTTPS; [procedimiento y límites](../../deploy/aws/README.md).
+**Instancia activada con autorización; aplicación y HTTPS todavía pendientes de instalación.** Lightsail `worknet-presentacion`, Ubuntu 24.04, 2 GB/2 vCPU/60 GB, US$12/mes contra créditos, región `us-east-2`. El proyecto conserva **FREE**, sin activar Paid ni servicios gestionados adicionales. CloudFormation creó la instancia y la IP estática, con protección de terminación y conservación de recursos. El nombre previsto resuelve a la IP asignada; no se presenta como una aplicación operativa.
+
+**Qué se hizo.** Se publicaron los borradores [Django #245 → develop](https://github.com/Danilo2334/Work_net/pull/245) e [integración/QA #246 → frontend](https://github.com/Danilo2334/Work_net/pull/246), verificando las cuentas y la autoría correspondiente. El frontend se compiló con el origen HTTPS previsto y se empaquetaron fuentes rastreadas y web por separado, comprobando hashes y ausencia de secretos. La configuración privada conserva las claves existentes, exclusivamente para el backend; aún no se ha transferido al servidor.
+
+**Preparación y límite actual.** Se conservaron los checkouts, bases y demostración USB. La creación pasó validación CloudFormation, `cfn-lint` y cinco reglas Guard. El SSH desde el PC agota el tiempo de espera; se habilitaron la terminal de AWS y un puerto alternativo limitado a la IP del operador, y se solicitó la intervención local necesaria. Falta comprobar Docker remoto, instalar/migrar la base nueva, emitir y validar el certificado, aceptar los recorridos con Gemini/correo reales, navegador/Postman y verificar respaldo/restauración remotos. No se atribuyen las pruebas locales siguientes a AWS. HU027 permanece pendiente para una versión futura.
+
+[Estado, procedimiento y acceso pendiente](../../deploy/aws/README.md) · [registro sanitizado de AWS](../../docs/aws-despliegue-20261110.json). La reconciliación de red terminó sin reemplazos; Guard también rechazó cuatro variantes inseguras. La entrega funcional histórica conserva su cierre; el despliegue no se da por terminado hasta acreditar esos resultados.
+<!-- aws-activacion-20261110-fin -->
+
+<!-- aws-preparacion-20261109-inicio -->
+## Antecedente: preparación local de AWS — 09/11/2026
+
+**Corte local anterior a la activación; sus resultados se conservan con su procedencia.** Rama temporal `codex/aws-preparacion`, base main `197f536600ae8f92854b79f92beab4d122b2a21d`. Se conservaron los checkouts, entornos y la demostración USB. El proyecto `worknet` mantuvo FREE y `us-east-2`. La preparación contempla Lightsail Linux de US$12/mes contra créditos con PostgreSQL/Redis privados y Caddy/Flutter HTTPS; el estado actual está arriba y en el [procedimiento](../../deploy/aws/README.md).
 
 **Qué se hizo.** Configuración productiva separada, secretos obligatorios, hosts/CORS concretos, caché compartida persistente, cuenta SQL limitada, Gunicorn, WhiteNoise, health checks, imágenes fijadas y dependencias con hashes. Plantilla CloudFormation validada por AWS y `cfn-lint`; el preflight solo consulta y rechaza cambios de plan o un bundle que exceda el presupuesto. Backend y sus pruebas conservan a Danilo2334; integración, QA y documentación a francisco3788.
 
@@ -28,7 +40,7 @@ El build informó limitaciones WASM de dependencias actuales; el artefacto ensay
 
 **Caso:** abrir el mismo origen en móvil web emulado. **Esperado:** formulario usable sin desbordamiento. **Obtenido:** render real 390×844; se verificó además que credenciales ficticias inválidas alcanzan la API y reciben HTTP 400 con el mensaje correspondiente. **Alcance:** integración Flutter → Caddy → Django/PostgreSQL en QA local; no es una nueva aceptación de APK física ni Postman Desktop.
 
-**Pendiente para publicación:** saldo actual de créditos, activación autorizada de instancia/IP, nombre y certificado públicos, secretos privados del backend, aceptación externa con correo/Gemini reales y compilación Android con el origen definitivo. Revisión técnica del agente principal, sin atribuir aprobación humana o revisión delegada nuevas. HU027 conserva su estado pendiente para una versión futura; el cierre funcional previo permanece.
+**Pendientes de ese corte:** activación de instancia/IP, nombre y certificado públicos, configuración privada y aceptación externa. La sección vigente superior distingue lo realizado después. Revisión técnica del agente principal, sin atribuir aprobación humana o revisión delegada nuevas. HU027 conserva su estado pendiente para una versión futura; el cierre funcional previo permanece.
 <!-- aws-preparacion-20261109-fin -->
 
 <!-- limpieza-ramas-permanentes-20261109 -->

@@ -1,0 +1,67 @@
+{
+  "checked_at_utc": "2026-11-10T05:22:46.904330+00:00",
+  "region": "us-east-2",
+  "account_plan": "FREE",
+  "paid_upgrade": false,
+  "instance": {
+    "name": "worknet-presentacion",
+    "state": "running",
+    "bundle": "small_3_0",
+    "monthly_usd": 12,
+    "ram_gb": 2,
+    "vcpus": 2,
+    "disk_gb": 60
+  },
+  "static_ip": "3.136.118.169",
+  "intended_hostname": "worknet.3.136.118.169.sslip.io",
+  "cloudformation": {
+    "stack": "worknet-presentacion",
+    "status": "UPDATE_COMPLETE",
+    "managed_resources": 2,
+    "termination_protection": true,
+    "predeployment_validation_errors": 0,
+    "guard_rules_passed": 5,
+    "network_replacement": false,
+    "template_sha256": "746e5035340f4677c369ccb1f9b57aaa2ae2b057920cd4b9e1def02a1c4022dd"
+  },
+  "ssh": {
+    "direct_pc_access": "timed out",
+    "alternate_port": 2222,
+    "operator_scope": "single current IPv4 /32, withheld",
+    "aws_browser_access": "lightsail-connect on port 22",
+    "host_key_pinned": false,
+    "manual_intervention": "pending AWS browser terminal step"
+  },
+  "local_artifacts": {
+    "created_at": "2026-11-10T05:18:28.510293+00:00",
+    "source_sha": "f3eaafbdfd7beaa2646745ec144bd2bfbb304ec1",
+    "api_origin": "https://worknet.3.136.118.169.sslip.io/api/",
+    "web_files": 42,
+    "source_files": 115,
+    "secrets_scan": "passed without recording values",
+    "files": [
+      {
+        "name": "server.tar",
+        "bytes": 737280,
+        "sha256": "63fbaff0d79ae7fb61153672664273ed251b659c9ff34c96ec9583330ac9e28b"
+      },
+      {
+        "name": "web.tar.gz",
+        "bytes": 14671762,
+        "sha256": "5caca7a35da40eebdb9eb64d879b7ae7e1b56397b4d71fb50c27f5e927ec85af"
+      }
+    ]
+  },
+  "application_installed": false,
+  "public_https_verified": false,
+  "provider_or_mail_calls_in_this_cloud_phase": 0,
+  "private_backend_configuration": "prepared locally; not transferred",
+  "cloud_acceptance": "pending administrative connection, installation and new acceptance",
+  "pull_requests": {
+    "backend": "https://github.com/Danilo2334/Work_net/pull/245",
+    "integration": "https://github.com/Danilo2334/Work_net/pull/246",
+    "state": "draft; not merged"
+  },
+  "credit_balance": "not exposed by these checks; consult AWS Settings",
+  "scope": "HU001-HU026 and HU028; HU027 pending future version"
+}
