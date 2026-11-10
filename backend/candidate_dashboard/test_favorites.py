@@ -2,6 +2,7 @@ from accounts.testing import fixture_token
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
 from threading import Barrier
+from unittest import skipUnless
 from unittest.mock import patch
 
 from django.db import IntegrityError, OperationalError, close_old_connections, connection, transaction
@@ -177,6 +178,7 @@ class FavoritesTests(FavoriteFixture, TestCase):
         self.assertEqual(len(queries), 3)  # Token, conteo, SELECT con JOIN/EXISTS.
         self.assertIn("LIMIT 10", queries[-1]["sql"])
 
+    @skipUnless(connection.vendor == "sqlite", "SQLite-specific lock failure")
     def test_sqlite_lock_exhaustion_returns_retryable_503_not_unhandled_500(self):
         with patch("candidate_dashboard.favorites.SavedOffer.objects.filter", side_effect=OperationalError("database is locked")), patch("candidate_dashboard.favorites.time.sleep"):
             self.assertEqual(self.client.put(self.url).status_code, 503)
