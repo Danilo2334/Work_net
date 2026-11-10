@@ -1,6 +1,6 @@
 # WorkNet en AWS — preparación de presentación
 
-10/11/2026. **Instancia creada y plan FREE conservado; instalación de la aplicación y HTTPS pendientes de acceso SSH.** El usuario autorizó expresamente el servidor de US$12/mes contra créditos. La entrega funcional sigue siendo HU001–HU026 y HU028. HU027 permanece pendiente para una versión futura.
+10/11/2026. **Instancia creada, plan FREE conservado y acceso SSH diagnosticado y corregido; instalación de la aplicación y HTTPS en curso.** El usuario autorizó expresamente el servidor de US$12/mes contra créditos. La entrega funcional sigue siendo HU001–HU026 y HU028. HU027 permanece pendiente para una versión futura.
 
 CloudFormation `worknet-presentacion` administra la instancia y su IPv4 estática `3.136.118.169`. El nombre previsto `worknet.3.136.118.169.sslip.io` ya resuelve a esa dirección. **Todavía no es una aplicación publicada ni un certificado emitido.** Los PR de preparación son [Django #245](https://github.com/Danilo2334/Work_net/pull/245), hacia `develop`, e [integración/QA #246](https://github.com/Danilo2334/Work_net/pull/246), hacia `frontend`; ambos continúan en borrador.
 
@@ -40,20 +40,20 @@ Django usa `config.production`: DEBUG desactivado, clave privada obligatoria, ho
 
 La cuenta SQL de la aplicación es propietaria de su base, sin superusuario, creación de bases ni creación de roles. El secreto del propietario de PostgreSQL se mantiene en **otro archivo que no recibe Django**. Redis usa AOF y `noeviction`; no descarta claves de límites de IA por presión de memoria. Se conservan datos de CV, fotos, logos y documentos de postulación en PostgreSQL, según el dominio existente.
 
-## Activación realizada y acceso pendiente
+## Activación realizada y acceso verificado
 
 1. El preflight comprobó identidad, plan FREE, Ubuntu 24.04 y bundle de US$12. `python deploy/aws/plan.py --profile worknet` sigue siendo exclusivamente de lectura: no crea recursos ni cambia el plan.
 2. Se creó una clave SSH de Lightsail conservando su parte privada fuera de Git y con permisos restringidos. No se incluyeron claves privadas, correo, Gemini ni contraseñas en CloudFormation o UserData.
 3. Se validaron la plantilla con `cfn-lint`, cinco reglas Guard y la validación de servicio previa al despliegue. Un change set con exactamente dos recursos nuevos, instancia e IP, terminó en `CREATE_COMPLETE`; la protección de terminación permanece habilitada. Los ajustes posteriores de red no reemplazan la instancia.
-4. El SSH directo desde el PC agota el tiempo de espera, aun con su IPv4 de salida actual autorizada. Se habilitó el cliente del navegador de AWS y el puerto alternativo restringido. La causa exacta del bloqueo no está demostrada; no se atribuye a un proveedor de red concreto.
+4. Se diagnosticó el timeout del puerto alternativo: la regla autorizaba una IP distinta de la observada en la conexión TCP real. Consultas HTTPS/DNS desde el PC devolvieron salidas diferentes. Se probaron únicamente IP observadas, una a una como `/32`; la sesión autenticada confirmó el origen correcto mediante `SSH_CONNECTION`. El 2222 conserva solo ese `/32`; el 22 y el alias del navegador permanecieron idénticos. No se abrió SSH al público ni se desactivaron firewalls. Esto no identifica qué equipo o servicio de red produce las distintas salidas.
 
-No repetir la creación del stack ni generar otras credenciales al retomar. El usuario debe abrir **Lightsail → Instancias → worknet-presentacion → Conectar mediante SSH** y ejecutar, si la terminal conecta:
+No repetir la creación del stack ni generar otras credenciales al retomar. El usuario completó el siguiente paso en **Lightsail → Instancias → worknet-presentacion → Conectar mediante SSH**; se conserva como procedimiento de recuperación, no como una intervención pendiente:
 
 ```sh
 sudo sh -c "printf 'Port 22\nPort 2222\n' > /etc/ssh/sshd_config.d/99-worknet-ports.conf && /usr/sbin/sshd -t && systemctl daemon-reload && systemctl restart ssh.socket ssh.service"
 ```
 
-Comprobar después el puerto alternativo y fijar la clave del host antes de transferir los artefactos. Si AWS no proporciona huellas del host mediante su API, registrar honestamente la fijación en el primer uso de la IP estática recién confirmada; exigir la misma clave en conexiones posteriores. No desactivar la comprobación de claves. Si la terminal del navegador tampoco abre, conservar el servidor y sus registros para diagnosticar, sin crear otra instancia automáticamente.
+Se verificaron las claves del host contra las huellas devueltas por la API autenticada de Lightsail; OpenSSH exige esas mismas claves. La sesión remota confirmó ambos listeners, `cloud-init` terminado, Docker 29.1.3, Compose 2.40.3 y UFW inactivo. En Windows se corrigió también el entrecomillado de la ruta privada `known_hosts`, que contiene espacios; no se desactivó la validación del host. Los parámetros `AdminCidr` y `AlternateAdminCidr` son independientes para conservar el acceso estándar cuando la salida TCP alternativa es distinta. Antes de actualizar un `/32`, comprobar la fuente real; una consulta HTTPS aislada no basta en esta red.
 
 La configuración privada del backend ya está preparada localmente conservando Gemini y Gmail existentes. Los archivos no se han transferido al servidor. El artefacto Flutter compilado usa el origen público previsto; el paquete de fuentes contiene solo runtime rastreado, sin bases ni evidencias históricas. Se comprobaron hashes y ausencia de los secretos privados en ambos paquetes. Esto no acredita ejecución remota.
 

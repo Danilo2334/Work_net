@@ -27,7 +27,7 @@ rule ssh_is_scoped_to_operator_parameter {
     Resources.Server.Properties.Networking.Ports[ FromPort == 2222 ] {
         ToPort == 2222
         Protocol == "tcp"
-        Cidrs[*].Ref == "AdminCidr"
+        Cidrs[*].Ref == "AlternateAdminCidr"
         CidrListAliases !exists
     }
 }
