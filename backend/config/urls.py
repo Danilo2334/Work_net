@@ -16,8 +16,11 @@ Including another URLconf
 """
 from accounts.admin_site import site
 from django.urls import include, path
+from .health import live, ready
 
 urlpatterns = [
+    path("health/live/", live, name="health-live"),
+    path("health/ready/", ready, name="health-ready"),
     path("api/curriculum/", include("curriculum.urls")),
     path("api/", include("candidate_dashboard.urls")),
     path('admin/', site.urls),

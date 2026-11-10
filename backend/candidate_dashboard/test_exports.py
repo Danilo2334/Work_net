@@ -69,8 +69,10 @@ class ExportTests(ApplicationFixture, TestCase):
 
     def test_pdf_multi_page_wraps_long_special_names_and_matches_order(self):
         for i in range(55):
-            u=User.objects.create_user(f'pdf{i}@hu025.test',full_name=f'Persona {i:03d} '+('NombreLargoÁé <&> '*10),role='candidato',email_verified=True)
-            Application.objects.create(candidate=u,offer=self.offer,cv_filename='CV-'+('extenso '*20)+'.pdf')
+            name = (f'Persona {i:03d} '+('NombreLargoÁé <&> '*10))[:User._meta.get_field('full_name').max_length]
+            u=User.objects.create_user(f'pdf{i}@hu025.test',full_name=name,role='candidato',email_verified=True)
+            filename = ('CV-'+('extenso '*20))[:Application._meta.get_field('cv_filename').max_length-4]+'.pdf'
+            Application.objects.create(candidate=u,offer=self.offer,cv_filename=filename)
         r=self.client.get(self.url+'?file_type=pdf&order=oldest')
         self.assertEqual(r.status_code,200)
         reader=PdfReader(BytesIO(r.content));text='\n'.join(p.extract_text() for p in reader.pages)
