@@ -1,5 +1,95 @@
 # Guía para revisar WorkNet
 
+<!-- aws-activacion-20261110-inicio -->
+## WorkNet publicada en AWS — 10/11/2026
+
+**Web operativa: [WorkNet HTTPS](https://worknet.3.136.118.169.sslip.io/login).** Lightsail `worknet-presentacion`, Ubuntu 24.04, 2 GB/2 vCPU/60 GB, US$12/mes contra créditos, `us-east-2`. El proyecto conserva **FREE**, sin activar Paid ni contratar servicios gestionados adicionales. Caddy emitió un certificado público de Let’s Encrypt, comprobado con confianza normal y TLS 1.3; HTTP redirige a HTTPS. PostgreSQL, Redis y Django no publican puertos del host.
+
+### Qué se hizo
+
+Se publicó el runtime Docker/Caddy, configuración productiva separada, base nueva, caché persistente, migraciones y estáticos. Se corrigió el timeout SSH contrastando la IP autorizada con el origen TCP real confirmado en una sesión autenticada. El 2222 queda en un solo `/32`; el 22 y el alias del navegador se conservaron exactamente. Las huellas del host se verificaron contra la API de Lightsail. La configuración de red quedó registrada en CloudFormation sin reemplazar recursos.
+
+Django y sus pruebas conservan a Danilo2334: [#245 → develop](https://github.com/Danilo2334/Work_net/pull/245), merge [`b6f2200`](https://github.com/Danilo2334/Work_net/commit/b6f22009143f7817d9d91af2609ce89fc6c055bb). Integración, QA y documentación: francisco3788, [#246 → frontend](https://github.com/Danilo2334/Work_net/pull/246), con el backend revisado incorporado. Se verificaron las cuentas de publicación y autor/committer de los commits propios; las fusiones realizadas por GitHub conservan su committer de servicio. Revisión técnica del agente principal, sin aprobación humana o delegada atribuida.
+
+### Preparación y resultados
+
+Fuente de aceptación [`958bd3f`](https://github.com/Danilo2334/Work_net/commit/958bd3f34350525f98408363b52354ddc2d96500), sobre main `197f536`. Windows, Python 3.12, Django 6.1.1, PostgreSQL 17.11, Redis 7.4.12, Caddy 2.11.9, Docker 29.1.3 y Compose 2.40.3. Flutter 3.47.5/Dart 3.13.4, Chromium 158.0.8127.18 y Playwright 1.65.0. Escritorio 1440×1000 y móvil web 390×844. Nueva base en AWS con siete cuentas QA y seis ofertas ficticias; un alias privado del dueño se usa exclusivamente para comprobar correo. No se copiaron las bases anteriores. Claves y credenciales solo en archivos privados del backend, ausentes de Git y del paquete web.
+
+| Comprobación nueva en AWS | Resultado |
+|---|---|
+| HTTPS público | Seis controles aprobados: certificado, redirección, Flutter, vida, disponibilidad y protección de sesión/login. |
+| API pública | **61 controles aprobados**: filtros/paginación/exclusión, favoritos, Gemini, CV, tres plantillas PDF, aislamiento, postulación, estado, mensajes, estadísticas, CSV/PDF y administración. |
+| Gemini real | Dos generaciones HTTP aceptadas —suite y navegador—, un diagnóstico real separado y una propuesta inicial rechazada por validación, con el CV conservado. No se debilitó la validación ni se usaron dobles. |
+| Navegador | Escritorio y móvil web sin errores JavaScript; consentimiento, revisión, conservación de contactos/plantilla, aplicación sin guardado automático, PUT explícito y descargas reales. |
+| Doble factor | Contraseña sola exige desafío; configuración y código TOTP reales por API, permisos protegidos y desafío usado rechazado. Sin grants de fixture. |
+| Correo | Recuperación aceptada por Gmail SMTP; el usuario confirmó recepción y que el enlace abre «Nueva contraseña» en el dominio HTTPS. Confirmación manual, sin publicar el mensaje ni su token. |
+| Respaldo | Dump de 158538 bytes restaurado en otra base QA; 7 usuarios, 1 CV, 1 postulación y 40 migraciones conservados. SHA256 del documento congelado verificado; copia privada fuera de AWS. |
+| Reinicio | PostgreSQL y Redis reiniciados; documento y clave Redis persistentes. Salud pública recuperada. |
+
+Veinte GET de disponibilidad desde este PC, con esos datos, dieron mediana **307,54 ms** y p95 **337,10 ms**. Es una medición de red y salud con poca carga, no una prueba de capacidad. Se mantienen por separado los 308/306+2 Django y 237 Flutter del ensayo local inferior; no se presentan como ejecuciones nuevas en AWS.
+
+### Capturas y documentos reales
+
+![Dashboard público de WorkNet con datos ficticios](../../docs/evidencias/aws-despliegue-20261110/AWS-desktop-dashboard.png)
+
+**Caso:** iniciar sesión por contraseña en el dominio público y abrir el dashboard. **Esperado:** resumen y ofertas de la cuenta propia. **Obtenido:** una postulación, un favorito y dos avisos de la QA, con respuesta de la API pública. **Alcance:** Flutter web → HTTPS → Django/PostgreSQL en AWS; datos ficticios.
+
+![Propuesta real de Gemini revisada en WorkNet AWS](../../docs/evidencias/aws-despliegue-20261110/AWS-desktop-gemini-proposal.png)
+
+**Caso:** enviar hechos ficticios con consentimiento, sin incluir el perfil. **Esperado:** propuesta y faltantes, revisión obligatoria y ningún guardado automático. **Obtenido:** Gemini real presenta formación, experiencia, habilidades e idioma; el botón exige revisión y el GET del CV mantiene la versión anterior. **Alcance:** proveedor real desde el backend de AWS; no es un doble ni un render PDF.
+
+![Guardado y descarga desde el editor web AWS](../../docs/evidencias/aws-despliegue-20261110/AWS-desktop-explicit-save.png)
+
+**Caso:** revisar, aplicar al borrador, guardar y descargar. **Esperado:** contactos y plantilla conservados; persistencia solo al guardar. **Obtenido:** se contrastó el CV antes/después de aplicar, se verificó PUT HTTP 200 y se descargó un PDF auténtico. **Alcance:** flujo real de escritorio; la imagen es Flutter y el PDF es un artefacto separado.
+
+![Editor de WorkNet en móvil web con HTTPS público](../../docs/evidencias/aws-despliegue-20261110/AWS-mobile-cv.png)
+
+**Caso:** iniciar sesión y consultar el CV guardado desde móvil web emulado. **Esperado:** diseño usable y los mismos datos. **Obtenido:** plantilla Minimalista, nombre y contactos ficticios conservados a 390×844. **Alcance:** navegador móvil emulado; no acredita una APK física cloud.
+
+![Descarga del CV guardado desde móvil web AWS](../../docs/evidencias/aws-despliegue-20261110/AWS-mobile-pdf-download.png)
+
+**Caso:** descargar el documento guardado desde el editor móvil. **Esperado:** descarga real y válida, sin depender del USB. **Obtenido:** el navegador recibió y guardó un archivo con cabecera PDF desde el backend público. **Alcance:** descarga de móvil web emulado; no representa la apertura en un visor Android físico.
+
+Documentos auténticos con datos ficticios: [Clásica](../../docs/evidencias/aws-despliegue-20261110/AWS-CV-clasica.pdf), [Moderna](../../docs/evidencias/aws-despliegue-20261110/AWS-CV-moderna.pdf), [Minimalista](../../docs/evidencias/aws-despliegue-20261110/AWS-CV-minimalista.pdf). Cada uno se obtuvo por HTTP, se analizó como PDF y conservó nombre/correo. [Manifest SHA256](../../docs/evidencias/aws-despliegue-20261110/manifest.json) · [registro sanitizado y casos](../../docs/aws-despliegue-20261110.json) · [operación, presupuesto y recuperación](../../deploy/aws/README.md).
+
+### Límites concretos de esta publicación
+
+La captura nueva de Postman Desktop aún está pendiente; los 61 controles son HTTP Python y se identifican así. El usuario confirmó recepción del correo y apertura de «Nueva contraseña»; no se atribuye a esa confirmación un cambio de contraseña posterior. La APK cloud no se generó: Gradle informó `java.io.IOException: Unable to establish loopback connection`, también con preferencia IPv4 por proceso. No se cambió la APK instalada que apunta al PC. La web pública sí está probada y funciona independientemente del USB; no se atribuye a esta publicación una prueba física Android cloud ni una firma de tienda.
+
+Se conservan checkouts, entornos, bases y antecedentes. HU001–HU026 y HU028 mantienen su cierre funcional previo. **HU027 sigue abierta y pendiente para una versión futura.**
+<!-- aws-activacion-20261110-fin -->
+
+<!-- aws-preparacion-20261109-inicio -->
+## Antecedente: preparación local de AWS — 09/11/2026
+
+**Corte local anterior a la activación; sus resultados se conservan con su procedencia.** Rama temporal `codex/aws-preparacion`, base main `197f536600ae8f92854b79f92beab4d122b2a21d`. Se conservaron los checkouts, entornos y la demostración USB. El proyecto `worknet` mantuvo FREE y `us-east-2`. La preparación contempla Lightsail Linux de US$12/mes contra créditos con PostgreSQL/Redis privados y Caddy/Flutter HTTPS; el estado actual está arriba y en el [procedimiento](../../deploy/aws/README.md).
+
+**Qué se hizo.** Configuración productiva separada, secretos obligatorios, hosts/CORS concretos, caché compartida persistente, cuenta SQL limitada, Gunicorn, WhiteNoise, health checks, imágenes fijadas y dependencias con hashes. Plantilla CloudFormation validada por AWS y `cfn-lint`; el preflight solo consulta y rechaza cambios de plan o un bundle que exceda el presupuesto. Backend y sus pruebas conservan a Danilo2334; integración, QA y documentación a francisco3788.
+
+**Preparación.** QA Docker nueva y separada, datos ficticios, ningún secreto real de correo/Gemini. Navegador de escritorio 1440×1000 y móvil web 390×844. HTTPS local con certificado de desarrollo; su excepción de confianza se limita al navegador automatizado de este ensayo. El [registro sanitizado](../../docs/aws-preparacion-20261109.json) conserva versiones, resultados y alcance. No se presentan llamadas simuladas como llamadas nuevas al proveedor.
+
+| Comprobación nueva | Resultado |
+|---|---|
+| Django en SQLite | 308 aprobadas, 56,898 s. |
+| Django en PostgreSQL 17.11 | 308 ejecutadas: 306 aprobadas y dos casos exclusivos de SQLite omitidos; 38,661 s. |
+| Flutter | 237 aprobadas; análisis sin incidencias y build web JavaScript release correcto. |
+| Producción y migraciones | Check sin incidencias ni avisos silenciados; sin cambios de migraciones. |
+| Stack local | Siete comprobaciones HTTP/HTTPS; 400 real de login inválido desde escritorio y móvil. |
+| Recuperación | Dump restaurado en otra PostgreSQL QA; registro ficticio, datos y caché conservados tras reinicio. |
+
+El build informó limitaciones WASM de dependencias actuales; el artefacto ensayado es JavaScript. En 20 consultas de salud HTTPS por IPv4 local se midieron mediana 9,81 ms y p95 30,76 ms, con un usuario ficticio y límites de memoria de los contenedores. El cliente Windows con resolución estándar de `localhost` tardó unos 2063 ms de mediana; el control que usa IPv4 indica demora local de resolución/selección de dirección. Se conservan ambos resultados. No representan rendimiento de AWS ni una prueba de carga.
+
+![WorkNet sobre el ensayo local de producción, escritorio](../../docs/evidencias/aws-preparacion-20261109/AWS-QA-desktop-login.png)
+
+**Caso:** abrir `/login` por Caddy HTTPS. **Esperado:** formulario legible y recursos Flutter cargados. **Obtenido:** render real de la compilación release a 1440×1000, sin errores JavaScript. **Alcance:** interfaz de escritorio del servidor local de ensayo; no acredita una URL pública de AWS.
+
+![WorkNet sobre el ensayo local de producción, móvil web](../../docs/evidencias/aws-preparacion-20261109/AWS-QA-mobile-login.png)
+
+**Caso:** abrir el mismo origen en móvil web emulado. **Esperado:** formulario usable sin desbordamiento. **Obtenido:** render real 390×844; se verificó además que credenciales ficticias inválidas alcanzan la API y reciben HTTP 400 con el mensaje correspondiente. **Alcance:** integración Flutter → Caddy → Django/PostgreSQL en QA local; no es una nueva aceptación de APK física ni Postman Desktop.
+
+**Pendientes de ese corte:** activación de instancia/IP, nombre y certificado públicos, configuración privada y aceptación externa. La sección vigente superior distingue lo realizado después. Revisión técnica del agente principal, sin atribuir aprobación humana o revisión delegada nuevas. HU027 conserva su estado pendiente para una versión futura; el cierre funcional previo permanece.
+<!-- aws-preparacion-20261109-fin -->
+
 <!-- limpieza-ramas-permanentes-20261109 -->
 ## Ramas permanentes y siguiente fase — 09/11/2026
 

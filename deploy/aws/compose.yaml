@@ -1,0 +1,95 @@
+name: worknet
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+services:
+  db:
+    image: postgres:17-bookworm@sha256:665dc7b37ac52a17e298511414c21d23ffa4e6a6ef6225b3e5d59c7afb35e994
+    restart: unless-stopped
+    env_file:
+      - ${WORKNET_DATABASE_ENV_FILE:?Set WORKNET_DATABASE_ENV_FILE to the private database environment}
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB}
+      POSTGRES_USER: worknet_owner
+      WORKNET_APP_DB_USER: ${POSTGRES_USER:?Set POSTGRES_USER}
+      WORKNET_APP_DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./db-init.sh:/docker-entrypoint-initdb.d/10-worknet.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    mem_limit: 384m
+    logging: *logging
+
+  cache:
+    image: redis:7.4-bookworm@sha256:2e3eb11462c4e3759e6972678dd051d150ff54b1e60714b3c33b701260172a90
+    restart: unless-stopped
+    command: [redis-server, --appendonly, "yes", --maxmemory, 64mb, --maxmemory-policy, noeviction]
+    volumes:
+      - cache:/data
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    mem_limit: 128m
+    logging: *logging
+
+  api:
+    build:
+      context: ../../backend
+    image: worknet-api:${WORKNET_RELEASE:-local}
+    restart: unless-stopped
+    env_file:
+      - ${WORKNET_ENV_FILE:?Set WORKNET_ENV_FILE to the private environment file}
+    environment:
+      DJANGO_SETTINGS_MODULE: config.production
+    depends_on:
+      db: {condition: service_healthy}
+      cache: {condition: service_healthy}
+    volumes:
+      - staticfiles:/app/staticfiles
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - 'import os,urllib.request; r=urllib.request.Request("http://127.0.0.1:8000/health/ready/",headers={"Host":os.environ["WORKNET_DOMAIN"],"X-Forwarded-Proto":"https"}); urllib.request.urlopen(r,timeout=8).read()'
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    mem_limit: 512m
+    logging: *logging
+
+  web:
+    image: caddy:2-alpine@sha256:78bd35025c7ba85961dd149ae670315129954e77abe2383ac47c89106b35ade9
+    restart: unless-stopped
+    environment:
+      WORKNET_DOMAIN: ${WORKNET_DOMAIN:?Set WORKNET_DOMAIN}
+    depends_on:
+      api: {condition: service_healthy}
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ${WORKNET_WEB_ROOT:?Set WORKNET_WEB_ROOT}:/srv:ro
+      - certificates:/data
+      - caddy_config:/config
+    mem_limit: 128m
+    logging: *logging
+
+volumes:
+  database:
+  cache:
+  staticfiles:
+  certificates:
+  caddy_config:

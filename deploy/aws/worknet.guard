@@ -1,0 +1,41 @@
+rule approved_resource_types {
+    Resources.*.Type IN ["AWS::Lightsail::Instance", "AWS::Lightsail::StaticIp"]
+}
+
+rule approved_bundle_and_blueprint {
+    Resources.Server.Properties {
+        BundleId == "small_3_0"
+        BlueprintId == "ubuntu_24_04"
+        KeyPairName.Ref == "KeyPairName"
+    }
+}
+
+rule retain_stateful_resources {
+    Resources.* {
+        DeletionPolicy == "Retain"
+        UpdateReplacePolicy == "Retain"
+    }
+}
+
+rule ssh_is_scoped_to_operator_parameter {
+    Resources.Server.Properties.Networking.Ports[ FromPort == 22 ] {
+        ToPort == 22
+        Protocol == "tcp"
+        Cidrs[*].Ref == "AdminCidr"
+        CidrListAliases == ["lightsail-connect"]
+    }
+    Resources.Server.Properties.Networking.Ports[ FromPort == 2222 ] {
+        ToPort == 2222
+        Protocol == "tcp"
+        Cidrs[*].Ref == "AlternateAdminCidr"
+        CidrListAliases !exists
+    }
+}
+
+rule only_expected_ports {
+    Resources.Server.Properties.Networking.Ports.* {
+        FromPort IN [22, 2222, 80, 443]
+        ToPort IN [22, 2222, 80, 443]
+        Protocol == "tcp"
+    }
+}

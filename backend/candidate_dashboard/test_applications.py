@@ -5,6 +5,7 @@ from datetime import timedelta
 from hashlib import sha256
 from io import BytesIO
 from threading import Barrier
+from unittest import skipUnless
 from unittest.mock import patch
 
 from django.core.exceptions import ValidationError as ModelValidationError
@@ -240,10 +241,13 @@ class ApplicationTests(ApplicationFixture, TestCase):
         self.assertIsNone(self.client.get('/api/applications/').data['applications'][0]['cv'])
         self.assertEqual(self.client.get(f'/api/applications/{item.pk}/cv/').status_code,404)
 
-    def test_notice_failure_rolls_back_and_busy_returns_recoverable_failure(self):
+    def test_notice_failure_rolls_back(self):
         with patch('candidate_dashboard.applications.Notification.objects.create',side_effect=IntegrityError('notice failed')):
             with self.assertRaises(IntegrityError):self.submit()
         self.assertEqual(Application.objects.count(),0)
+
+    @skipUnless(connection.vendor == 'sqlite', 'SQLite-specific lock failure')
+    def test_sqlite_busy_returns_recoverable_failure(self):
         with patch('candidate_dashboard.applications.snapshot',side_effect=OperationalError('database is locked')):
             r=self.submit();self.assertEqual(r.status_code,503)
         self.assertEqual((Application.objects.count(),Notification.objects.count()),(0,0))
