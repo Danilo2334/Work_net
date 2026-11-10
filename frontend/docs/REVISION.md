@@ -1,5 +1,36 @@
 # Guía para revisar WorkNet
 
+<!-- aws-preparacion-20261109-inicio -->
+## Preparación de despliegue AWS — 09/11/2026
+
+**Preparación local; recursos AWS todavía sin crear.** Rama temporal `codex/aws-preparacion`, base main `197f536600ae8f92854b79f92beab4d122b2a21d`. Se conservan los checkouts, entornos y la demostración USB. El proyecto `worknet` mantiene FREE y `us-east-2`. La propuesta es un servidor Lightsail Linux de US$12/mes contra créditos con PostgreSQL/Redis privados y Caddy/Flutter HTTPS; [procedimiento y límites](../../deploy/aws/README.md).
+
+**Qué se hizo.** Configuración productiva separada, secretos obligatorios, hosts/CORS concretos, caché compartida persistente, cuenta SQL limitada, Gunicorn, WhiteNoise, health checks, imágenes fijadas y dependencias con hashes. Plantilla CloudFormation validada por AWS y `cfn-lint`; el preflight solo consulta y rechaza cambios de plan o un bundle que exceda el presupuesto. Backend y sus pruebas conservan a Danilo2334; integración, QA y documentación a francisco3788.
+
+**Preparación.** QA Docker nueva y separada, datos ficticios, ningún secreto real de correo/Gemini. Navegador de escritorio 1440×1000 y móvil web 390×844. HTTPS local con certificado de desarrollo; su excepción de confianza se limita al navegador automatizado de este ensayo. El [registro sanitizado](../../docs/aws-preparacion-20261109.json) conserva versiones, resultados y alcance. No se presentan llamadas simuladas como llamadas nuevas al proveedor.
+
+| Comprobación nueva | Resultado |
+|---|---|
+| Django en SQLite | 308 aprobadas, 56,898 s. |
+| Django en PostgreSQL 17.11 | 308 ejecutadas: 306 aprobadas y dos casos exclusivos de SQLite omitidos; 38,661 s. |
+| Flutter | 237 aprobadas; análisis sin incidencias y build web JavaScript release correcto. |
+| Producción y migraciones | Check sin incidencias ni avisos silenciados; sin cambios de migraciones. |
+| Stack local | Siete comprobaciones HTTP/HTTPS; 400 real de login inválido desde escritorio y móvil. |
+| Recuperación | Dump restaurado en otra PostgreSQL QA; registro ficticio, datos y caché conservados tras reinicio. |
+
+El build informó limitaciones WASM de dependencias actuales; el artefacto ensayado es JavaScript. En 20 consultas de salud HTTPS por IPv4 local se midieron mediana 9,81 ms y p95 30,76 ms, con un usuario ficticio y límites de memoria de los contenedores. El cliente Windows con resolución estándar de `localhost` tardó unos 2063 ms de mediana; el control que usa IPv4 indica demora local de resolución/selección de dirección. Se conservan ambos resultados. No representan rendimiento de AWS ni una prueba de carga.
+
+![WorkNet sobre el ensayo local de producción, escritorio](../../docs/evidencias/aws-preparacion-20261109/AWS-QA-desktop-login.png)
+
+**Caso:** abrir `/login` por Caddy HTTPS. **Esperado:** formulario legible y recursos Flutter cargados. **Obtenido:** render real de la compilación release a 1440×1000, sin errores JavaScript. **Alcance:** interfaz de escritorio del servidor local de ensayo; no acredita una URL pública de AWS.
+
+![WorkNet sobre el ensayo local de producción, móvil web](../../docs/evidencias/aws-preparacion-20261109/AWS-QA-mobile-login.png)
+
+**Caso:** abrir el mismo origen en móvil web emulado. **Esperado:** formulario usable sin desbordamiento. **Obtenido:** render real 390×844; se verificó además que credenciales ficticias inválidas alcanzan la API y reciben HTTP 400 con el mensaje correspondiente. **Alcance:** integración Flutter → Caddy → Django/PostgreSQL en QA local; no es una nueva aceptación de APK física ni Postman Desktop.
+
+**Pendiente para publicación:** saldo actual de créditos, activación autorizada de instancia/IP, nombre y certificado públicos, secretos privados del backend, aceptación externa con correo/Gemini reales y compilación Android con el origen definitivo. Revisión técnica del agente principal, sin atribuir aprobación humana o revisión delegada nuevas. HU027 conserva su estado pendiente para una versión futura; el cierre funcional previo permanece.
+<!-- aws-preparacion-20261109-fin -->
+
 <!-- limpieza-ramas-permanentes-20261109 -->
 ## Ramas permanentes y siguiente fase — 09/11/2026
 

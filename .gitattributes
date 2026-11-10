@@ -1,2 +1,11 @@
 # Authentic QA downloads retain their measured UTF-8 BOM and CRLF bytes.
 frontend/docs/evidencias/hu025-20261108/*.csv binary
+
+# Keep deployment entrypoints usable after Windows checkouts and git archive.
+backend/Dockerfile text eol=lf
+backend/.dockerignore text eol=lf
+backend/requirements-production.* text eol=lf
+deploy/aws/*.sh text eol=lf
+deploy/aws/*.yaml text eol=lf
+deploy/aws/*.json text eol=lf
+deploy/aws/Caddyfile text eol=lf

@@ -1,5 +1,15 @@
 # WorkNet · Plan de despliegue
 
+## Propuesta vigente: AWS con créditos — 09/11/2026
+
+Se preparó una copia aislada desde main `197f536`, conservando los entornos anteriores. El proyecto AWS `worknet`, región `us-east-2`, conserva el plan **FREE**. La propuesta es Lightsail Linux de **2 GB, 2 vCPU y 60 GB por US$12/mes contra créditos**, con PostgreSQL, Redis, Django y Flutter/Caddy en la misma instancia. La consulta API confirma el bundle y Ubuntu 24.04. El saldo restante debe contrastarse en AWS Settings antes de crear recursos.
+
+Configuración, presupuesto, límites y secuencia concreta en [despliegue AWS](../deploy/aws/README.md); [resultados nuevos](aws-preparacion-20261109.json). La preparación local incluye PostgreSQL, HTTPS local y restauración. **No hay servidor AWS, URL pública, APK cloud ni aceptación externa todavía.** Gemini permanece en el backend; HU027 sigue pendiente. El servidor consume créditos incluso apagado hasta su retirada explícita.
+
+La propuesta Render siguiente se conserva como antecedente del corte anterior. Su presupuesto no es la elección vigente.
+
+## Antecedente: propuesta Render
+
 **09/11/2026: propuesta preparada; aplicación completa todavía sin desplegar.** HU001–HU026 y HU028 están entregadas. HU027 se mantiene para v2 y no es una dependencia del despliegue.
 
 ## Opción recomendada
