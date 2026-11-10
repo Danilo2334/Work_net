@@ -8,7 +8,7 @@ Se trabaja en una copia aislada desde main `197f536`, conservando los entornos a
 
 SSH quedó corregido: la regla permitía una IP distinta del origen TCP real, confirmado en una sesión autenticada. El 2222 queda limitado a ese `/32`, conservando intacto el 22 y el cliente del navegador. Las huellas del host se verificaron con la API de AWS. [#245](https://github.com/Danilo2334/Work_net/pull/245) quedó fusionado en `develop`; [#246](https://github.com/Danilo2334/Work_net/pull/246) incorpora el backend revisado para la entrega conjunta. Gemini permanece exclusivamente en el backend; HU027 sigue pendiente. El servidor consume créditos incluso apagado hasta su retirada explícita.
 
-**Pendientes delimitados:** confirmar recepción del correo ya aceptado por SMTP, captura nueva de Postman Desktop y APK cloud. Gradle falló localmente con `Unable to establish loopback connection`; la APK anterior se conserva y la web pública no depende de ese build ni del USB. Los 308 Django SQLite, 306+2 PostgreSQL y 237 Flutter del ensayo local mantienen su fecha y procedencia, sin presentarse como nuevas ejecuciones en AWS.
+El usuario confirmó recepción del correo real y apertura de «Nueva contraseña» en HTTPS. **Pendientes delimitados:** captura nueva de Postman Desktop y APK cloud. Gradle falló localmente con `Unable to establish loopback connection`; la APK anterior se conserva y la web pública no depende de ese build ni del USB. Los 308 Django SQLite, 306+2 PostgreSQL y 237 Flutter del ensayo local mantienen su fecha y procedencia, sin presentarse como nuevas ejecuciones en AWS.
 
 La propuesta Render siguiente se conserva como antecedente del corte anterior. Su presupuesto no es la elección vigente.
 

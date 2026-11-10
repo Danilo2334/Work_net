@@ -46,10 +46,10 @@
   "provider_or_mail_calls_in_this_cloud_phase": {
     "gemini": 4,
     "gemini_scope": "two accepted real HTTP generations (API and browser), one successful separate backend diagnostic, one HTTP proposal rejected by validation; no CV auto-save",
-    "smtp": "password recovery accepted by Gmail SMTP to a privately configured owned alias; receipt confirmation pending"
+    "smtp": "Gmail SMTP accepted; user confirmed receipt and public HTTPS reset page"
   },
   "private_backend_configuration": "transferred through verified SSH; root-only server files; absent from Git and frontend",
-  "cloud_acceptance": "HTTPS, API, Gemini, desktop/mobile web, PostgreSQL restore and restart completed; inbox confirmation pending",
+  "cloud_acceptance": "HTTPS, API, real Gemini, desktop/mobile web, PostgreSQL restore and restart completed; user confirmed real mail and public reset page",
   "pull_requests": {
     "backend": "https://github.com/Danilo2334/Work_net/pull/245",
     "integration": "https://github.com/Danilo2334/Work_net/pull/246",
@@ -857,5 +857,13 @@
         "sha256": "1c843ae4e5599538afec5bf730b34183b840fc92d46f23f5905b4ec0e72f37c4"
       }
     ]
+  },
+  "mail_receipt": {
+    "confirmed_by": "user",
+    "date_bogota": "2026-11-10",
+    "received": true,
+    "link_opens_public_https_new_password_screen": true,
+    "password_change_afterwards": "not claimed",
+    "private_message_and_link": "not published"
   }
 }

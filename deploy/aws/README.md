@@ -59,7 +59,7 @@ La configuración privada conserva Gemini y Gmail existentes y se transfirió po
 
 La aceptación pública pasó seis controles HTTPS, 61 de API y el recorrido real de IA/CV en navegador de escritorio y móvil web, con datos de QA. Se descargaron las tres plantillas PDF, se comprobó TOTP real y se restauró un respaldo en otra base con copia privada fuera de AWS. Tras reiniciar PostgreSQL/Redis se conservaron datos y caché. [Capturas, casos y límites de procedencia](../../frontend/docs/REVISION.md).
 
-El correo de recuperación fue aceptado por Gmail SMTP; falta confirmar su llegada al buzón. La nueva captura específica de Postman Desktop está pendiente. La compilación APK cloud falló por `java.io.IOException: Unable to establish loopback connection` de Gradle en Windows, incluso con preferencia IPv4 por proceso. No se actualizó ni desinstaló la APK anterior. La web pública funciona por su propia conexión de internet; la variante nativa necesita un nuevo build con el origen cloud y prueba física.
+El correo de recuperación fue aceptado por Gmail SMTP; el usuario confirmó su recepción y que el enlace abre «Nueva contraseña» en el dominio público. Esa confirmación no acredita por sí sola el envío posterior de una contraseña nueva. La nueva captura específica de Postman Desktop está pendiente. La compilación APK cloud falló por `java.io.IOException: Unable to establish loopback connection` de Gradle en Windows, incluso con preferencia IPv4 por proceso. No se actualizó ni desinstaló la APK anterior. La web pública funciona por su propia conexión de internet; la variante nativa necesita un nuevo build con el origen cloud y prueba física.
 
 ## Procedimiento de actualización y comprobación
 

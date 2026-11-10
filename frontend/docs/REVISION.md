@@ -22,7 +22,7 @@ Fuente de aceptación [`958bd3f`](https://github.com/Danilo2334/Work_net/commit/
 | Gemini real | Dos generaciones HTTP aceptadas —suite y navegador—, un diagnóstico real separado y una propuesta inicial rechazada por validación, con el CV conservado. No se debilitó la validación ni se usaron dobles. |
 | Navegador | Escritorio y móvil web sin errores JavaScript; consentimiento, revisión, conservación de contactos/plantilla, aplicación sin guardado automático, PUT explícito y descargas reales. |
 | Doble factor | Contraseña sola exige desafío; configuración y código TOTP reales por API, permisos protegidos y desafío usado rechazado. Sin grants de fixture. |
-| Correo | Recuperación aceptada por Gmail SMTP hacia un alias privado del buzón del usuario. Recepción/enlace aún pendientes de su confirmación. |
+| Correo | Recuperación aceptada por Gmail SMTP; el usuario confirmó recepción y que el enlace abre «Nueva contraseña» en el dominio HTTPS. Confirmación manual, sin publicar el mensaje ni su token. |
 | Respaldo | Dump de 158538 bytes restaurado en otra base QA; 7 usuarios, 1 CV, 1 postulación y 40 migraciones conservados. SHA256 del documento congelado verificado; copia privada fuera de AWS. |
 | Reinicio | PostgreSQL y Redis reiniciados; documento y clave Redis persistentes. Salud pública recuperada. |
 
@@ -54,7 +54,7 @@ Documentos auténticos con datos ficticios: [Clásica](../../docs/evidencias/aws
 
 ### Límites concretos de esta publicación
 
-La captura nueva de Postman Desktop aún está pendiente; los 61 controles son HTTP Python y se identifican así. La recepción del correo espera confirmación del usuario. La APK cloud no se generó: Gradle informó `java.io.IOException: Unable to establish loopback connection`, también con preferencia IPv4 por proceso. No se cambió la APK instalada que apunta al PC. La web pública sí está probada y funciona independientemente del USB; no se atribuye a esta publicación una prueba física Android cloud ni una firma de tienda.
+La captura nueva de Postman Desktop aún está pendiente; los 61 controles son HTTP Python y se identifican así. El usuario confirmó recepción del correo y apertura de «Nueva contraseña»; no se atribuye a esa confirmación un cambio de contraseña posterior. La APK cloud no se generó: Gradle informó `java.io.IOException: Unable to establish loopback connection`, también con preferencia IPv4 por proceso. No se cambió la APK instalada que apunta al PC. La web pública sí está probada y funciona independientemente del USB; no se atribuye a esta publicación una prueba física Android cloud ni una firma de tienda.
 
 Se conservan checkouts, entornos, bases y antecedentes. HU001–HU026 y HU028 mantienen su cierre funcional previo. **HU027 sigue abierta y pendiente para una versión futura.**
 <!-- aws-activacion-20261110-fin -->
