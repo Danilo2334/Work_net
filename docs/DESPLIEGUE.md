@@ -1,5 +1,7 @@
 # WorkNet · Plan de despliegue
 
+**APK vigente: [0.1.2 release](https://worknet.3.136.118.169.sslip.io/descargar/)**. Actualización y sesión probadas en emulador Android 12, incluida aceptación por el instalador estándar. Pendiente confirmar en los dos teléfonos que rechazaban 0.1.1; causa física no reproducida. Véase la sección vigente de REVISION.md.
+
 **Actualización 13/11/2026:** [descargar APK Android 0.1.1](https://worknet.3.136.118.169.sslip.io/descargar/). Página independiente publicada en el mismo servidor, con descarga completa y SHA-256 verificados. El bloqueo anterior de Gradle quedó resuelto; es una compilación de presentación, no de Google Play. [Revisión vigente y evidencias](../frontend/docs/REVISION.md).
 
 ## Despliegue vigente: AWS con créditos — 10/11/2026

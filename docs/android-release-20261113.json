@@ -1,0 +1,25 @@
+{
+  "android": "12",
+  "api": 31,
+  "architecture": "x86_64",
+  "old_profile_install": "Success; reported physical-device rejection not reproduced here",
+  "release_update": "Success",
+  "installed_version": "0.1.2 (3)",
+  "remembered_session_preserved": true,
+  "first_install_time_preserved": true,
+  "aws_candidate_dashboard": true,
+  "secrets_scan": "passed",
+  "apk": {
+    "version": "0.1.2",
+    "version_code": 3,
+    "filename": "WorkNet-AWS-0.1.2-3.apk",
+    "bytes": 55219847,
+    "sha256": "a800f493088e61f58ae0380a14b65af8fb433856f2e6ec4cf5eed911b19381f6",
+    "source_commit": "78f1978caf9856a974bc70db432ff98b1701e717",
+    "api_origin": "https://worknet.3.136.118.169.sslip.io/api/",
+    "min_android_api": 24,
+    "distribution": "Release build; existing presentation signing retained for in-place updates; not a Play Store release"
+  },
+  "scope": "Isolated Android emulator; not the two user phones; no uninstall or clearing data",
+  "system_package_installer": "Files → APK → Continue → Update → App installed; no ADB install for this step"
+}

@@ -1,8 +1,37 @@
 # Guía para revisar WorkNet
 
-## Descarga Android y revisión operativa — 13/11/2026
+## APK release 0.1.2 y aceptación Android 12 — 13/11/2026
 
-**Resultado vigente:** [página de descarga Android](https://worknet.3.136.118.169.sslip.io/descargar/) · [APK 0.1.1, compilación 2](https://worknet.3.136.118.169.sslip.io/descargar/WorkNet-AWS-0.1.1-2.apk) · [aplicación web](https://worknet.3.136.118.169.sslip.io/login).
+**Descarga vigente:** [WorkNet Android](https://worknet.3.136.118.169.sslip.io/descargar/) · [APK 0.1.2, compilación 3](https://worknet.3.136.118.169.sslip.io/descargar/WorkNet-AWS-0.1.2-3.apk).
+
+### Qué se hizo
+
+Ante el rechazo de instalación reportado por el usuario en dos teléfonos Android 12, se sustituyó la distribución `profile` por una compilación **release**, sin `debuggable` ni `testOnly`, universal para arm64-v8a, armeabi-v7a y x86_64. Se conserva `co.worknet.worknet`, la firma de presentación existente y el mínimo API 24. Se incrementó versión/code a 0.1.2/3; la nueva URL evita confundir el archivo con la descarga anterior. No se cambió el backend ni el plan AWS FREE.
+
+**Diagnóstico delimitado:** la APK 0.1.1 verificó firma, alineación y arquitecturas, y también se instaló correctamente en el emulador Android 12. Por tanto, el rechazo reportado en esos dos teléfonos **no se reprodujo y su causa concreta sigue sin confirmar**. Cambiar a release es una mejora comprobada de distribución, no evidencia de haber identificado o corregido el motivo específico de esos rechazos. Falta la confirmación del usuario en ambos teléfonos.
+
+### Preparación y resultados
+
+Fuente funcional [`78f1978`](https://github.com/Danilo2334/Work_net/commit/78f1978caf9856a974bc70db432ff98b1701e717), Flutter 3.47.5, build `--release --build-name=0.1.2 --build-number=3 --dart-define=API_BASE_URL=https://worknet.3.136.118.169.sslip.io/api/`. TEMP/TMP normalizados por proceso; checkouts y entornos anteriores conservados. Android 12/API 31 x86_64, emulador aislado con datos ficticios QA y conexión HTTPS real a AWS. No se utilizaron los teléfonos del usuario.
+
+Verificación de firma APK v2 y `zipalign -c -P 16 4` aprobadas; mismo certificado que 0.1.1. No contiene claves privadas de Gemini, correo, Django o SQL. Instalación de 0.1.1 limpia, login real y recordar sesión; actualización `-r` a 0.1.2 sin desinstalar, con sesión y primera fecha de instalación conservadas. Arranque de release hasta dashboard con datos AWS. Segunda instalación por el **instalador gráfico estándar**: Archivos → APK → Continue → Update → **App installed**; este paso no utilizó `adb install`. No se desactivó Play Protect ni se alteraron datos de los teléfonos.
+
+Archivo de 55.219.847 bytes, SHA-256 `a800f493088e61f58ae0380a14b65af8fb433856f2e6ec4cf5eed911b19381f6`. [Registro sanitizado](../../docs/android-release-20261113.json) · [manifest vigente](../web/descargar/apk.json).
+
+![Instalador estándar Android 12 acepta WorkNet release](../../docs/evidencias/android-release-20261113/android12-package-installer-success.png)
+
+**Caso:** abrir la APK en Archivos/Descargas y confirmar la actualización. **Esperado:** aceptación por el instalador normal. **Obtenido:** «App installed». **Alcance:** captura auténtica del emulador Android 12; no es uno de los teléfonos reportados ni una confirmación del usuario.
+
+![Dashboard de release tras actualización con sesión conservada](../../docs/evidencias/android-release-20261113/android12-release-dashboard.png)
+
+**Caso:** iniciar sesión en 0.1.1 con cuenta ficticia, recordar sesión y actualizar a 0.1.2. **Esperado:** abrir el dashboard sin borrar datos ni repetir login. **Obtenido:** sesión conservada y datos propios de AWS visibles. **Alcance:** APK Android nativa en emulador, no Flutter web. No se repitieron IA ni descarga PDF en este corte.
+
+HU027 sigue pendiente. Integración/QA por francisco3788, revisión técnica del agente principal sin atribuir aprobación humana o revisión delegada.
+
+
+## Antecedente: descarga 0.1.1 y revisión operativa — 13/11/2026
+
+**Corte anterior, sustituido por 0.1.2:** [página de descarga Android](https://worknet.3.136.118.169.sslip.io/descargar/) · [APK 0.1.1, compilación 2](https://worknet.3.136.118.169.sslip.io/descargar/WorkNet-AWS-0.1.1-2.apk) · [aplicación web](https://worknet.3.136.118.169.sslip.io/login).
 
 ### Qué se hizo
 

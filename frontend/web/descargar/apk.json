@@ -1,11 +1,11 @@
 {
-  "version": "0.1.1",
-  "version_code": 2,
-  "filename": "WorkNet-AWS-0.1.1-2.apk",
-  "bytes": 74656105,
-  "sha256": "56420ad9d7508eb1ed021d12344dbb7cd261e670d464b9b53c91295278485427",
-  "source_commit": "3cad0731c3dab3f30471614f63a5e22f4c78ba52",
+  "version": "0.1.2",
+  "version_code": 3,
+  "filename": "WorkNet-AWS-0.1.2-3.apk",
+  "bytes": 55219847,
+  "sha256": "a800f493088e61f58ae0380a14b65af8fb433856f2e6ec4cf5eed911b19381f6",
+  "source_commit": "78f1978caf9856a974bc70db432ff98b1701e717",
   "api_origin": "https://worknet.3.136.118.169.sslip.io/api/",
   "min_android_api": 24,
-  "distribution": "Direct presentation build; profile variant, debug signing; not a Play Store release"
+  "distribution": "Release build; existing presentation signing retained for in-place updates; not a Play Store release"
 }
