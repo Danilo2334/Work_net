@@ -104,3 +104,20 @@ La plantilla protege instancia/IP con `Retain`. **Eliminar el stack o detener la
 Windows y Docker Desktop, Python 3.12.10, Django 6.1.1, Flutter 3.47.5; servidor Linux local con PostgreSQL 17, Redis, Gunicorn y Caddy. Ver el [registro sanitizado](../../docs/aws-preparacion-20261109.json) y la [guía vigente](../../frontend/docs/REVISION.md).
 
 Los ensayos nuevos mantienen proveedor/correo sin credenciales y no consumen Gemini. La excepción TLS de Playwright es exclusiva del certificado local de `localhost`; nunca forma parte del despliegue público. Se corrigieron fixtures de exportación fuera del límite de 150 caracteres y se separaron dos fallos simulados exclusivos de SQLite; la reversión transaccional sigue probándose en ambos motores. No cambió el dominio funcional de HU001–HU026/HU028.
+
+
+## Página independiente de descarga Android — 13/11/2026
+
+URL: https://worknet.3.136.118.169.sslip.io/descargar/ . Fuente en `frontend/web/descargar/index.html`; no sustituye el index de Flutter. Caddy atiende esta ruta sin fallback SPA y configura las cabeceras de descarga APK. El manifest `apk.json` fija versión, origen API, tamaño y SHA-256. La APK 0.1.1/code 2 es una compilación de presentación con firma debug, no de tienda.
+
+Los APK no se incluyen en Git. Después de cada build web y **antes** de empaquetar/subir el directorio estático, incorporar el artefacto aprobado:
+
+```powershell
+python deploy/aws/stage_android_download.py --apk "RUTA_PRIVADA/WorkNet-AWS-0.1.1-2.apk" --web-root frontend/build/web
+```
+
+El preparador verifica tamaño/hash antes de copiar; rechaza otro archivo. No contiene ni necesita credenciales. Mantener la APK fuera de Git y de los secretos del backend. Cambiar una versión futura exige actualizar el manifest, la página, su firma compatible y repetir la descarga verificando el hash.
+
+La publicación inicial de esta página fue una adición estática sobre el runtime `3cad073`, con respaldo previo de Caddy y recarga validada sin reiniciar Django/PostgreSQL/Redis. Fuente HTML/Caddy `67688f5`; marcador operativo `/opt/worknet/download-page-source`. No confundir este marcador con `WORKNET_RELEASE`, que identifica el runtime de la aplicación. En una publicación completa futura, incluir la página/APK en el web root y conservar la regla Caddy versionada. Nunca copiar bases ni entornos privados al directorio web.
+
+Revisión: seis controles públicos y 16 HTTP de la aplicación; ocho verificaciones de página/archivo/navegación, incluida descarga completa desde Chromium móvil emulado. [Evidencias y límites](../../frontend/docs/REVISION.md). No se contrataron recursos; las descargas consumen transferencia del bundle existente. No se afirma una nueva aceptación física Android ni una generación nueva Gemini.

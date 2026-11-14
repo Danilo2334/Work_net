@@ -1,5 +1,32 @@
 # Guía para revisar WorkNet
 
+## Descarga Android y revisión operativa — 13/11/2026
+
+**Resultado vigente:** [página de descarga Android](https://worknet.3.136.118.169.sslip.io/descargar/) · [APK 0.1.1, compilación 2](https://worknet.3.136.118.169.sslip.io/descargar/WorkNet-AWS-0.1.1-2.apk) · [aplicación web](https://worknet.3.136.118.169.sslip.io/login).
+
+### Qué se hizo
+
+Página HTML independiente, adaptable y sin dependencias externas, con descarga directa, versión/tamaño, instrucciones de actualización conservando datos y acceso web. Caddy entrega APK con tipo Android y `attachment`; los archivos inexistentes en `/descargar/` devuelven 404, sin el fallback de Flutter. Se conserva la misma instancia y plan **FREE**, sin recursos nuevos. La IP del PC cambió; CloudFormation actualizó exclusivamente `AlternateAdminCidr` a su nuevo `/32`, sin reemplazo de instancia y con el puerto 22 intacto.
+
+La APK **sí quedó generada después del corte del 10/11**: el error de Gradle se aisló al directorio temporal de Java en Windows. Se normalizaron TEMP/TMP únicamente en el proceso y se compiló con JDK 17 aislado. Fuente de APK/runtime [`3cad073`](https://github.com/Danilo2334/Work_net/commit/3cad0731c3dab3f30471614f63a5e22f4c78ba52), versión 0.1.1/code 2, firma de presentación/debug. El usuario instaló esa actualización y ADB confirmó la versión; no se atribuye a ello un recorrido físico completo posterior sin USB. Fuente de la página/Caddy [`67688f5`](https://github.com/Danilo2334/Work_net/commit/67688f5a7f576d4441eff6353b251235753028e6). El cambio desplegado es una adición estática sobre el runtime citado, no una recompilación del backend ni una APK nueva.
+
+### Preparación y resultados
+
+Windows, Python 3.12, Chromium 158/Playwright 1.65; HTTPS público con confianza normal. Cuentas ficticias existentes de la QA AWS. **Seis controles públicos** de HTTPS/salud/sesión y **16 controles HTTP nuevos**: login candidato/empresa, dashboards, búsqueda, favoritos, configuración de IA, CV y PDF válido, historial, avisos, conversaciones, estadísticas, rechazo de administración para candidato y desafío MFA de administrador sin token de sesión. No se editaron perfiles ni postulaciones; no se repitieron generaciones Gemini, envíos de correo, pruebas completas ni Postman Desktop. Estos controles son operativos, no reemplazan la aceptación histórica de las historias.
+
+**Ocho verificaciones nuevas de descarga**: redirección de URL, manifest, 404, respuesta parcial 206 y cabeceras APK, descarga real completa por botón, y navegación hacia Flutter en escritorio 1440 px y móviles emulados 390/320 px. Sin desbordamientos horizontales ni errores JavaScript. El archivo descargado tiene **74.656.105 bytes** y SHA-256 `56420ad9d7508eb1ed021d12344dbb7cd261e670d464b9b53c91295278485427`, igual al original privado. [Registro sanitizado](../../docs/descarga-android-20261113.json) · [manifest de distribución](../web/descargar/apk.json).
+
+![Página pública de descarga en escritorio](../../docs/evidencias/descarga-android-20261113/escritorio.png)
+
+**Caso:** abrir la página por HTTPS en escritorio. **Esperado:** descarga identificada y acceso separado a la web. **Obtenido:** versión, tamaño, instrucciones y botones legibles; navegación a `/login` carga Flutter. **Alcance:** captura auténtica del sitio publicado, no un diseño simulado.
+
+![Página pública de descarga en móvil](../../docs/evidencias/descarga-android-20261113/movil.png)
+
+**Caso:** abrir en 390 px y pulsar descargar. **Esperado:** APK íntegra y diseño usable. **Obtenido:** descarga completa con nombre, tamaño y hash coincidentes; sin errores JavaScript ni desbordamiento. **Alcance:** Chromium móvil emulado y transferencia HTTPS real; no acredita una nueva instalación física Android. [Comprobación adicional a 320 px](../../docs/evidencias/descarga-android-20261113/estrecho.png).
+
+**Límites:** distribución directa de presentación, no Google Play. Las llamadas reales a Gemini y las capturas Postman previas conservan sus fechas/procedencia; no se presentan como repetidas hoy. HU027 sigue pendiente para una versión futura. Autoría de página, integración y QA: francisco3788; revisión técnica del agente principal, sin atribuir revisión humana o delegada.
+
+
 <!-- aws-activacion-20261110-inicio -->
 ## WorkNet publicada en AWS — 10/11/2026
 
@@ -54,7 +81,7 @@ Documentos auténticos con datos ficticios: [Clásica](../../docs/evidencias/aws
 
 ### Límites concretos de esta publicación
 
-La captura nueva de Postman Desktop aún está pendiente; los 61 controles son HTTP Python y se identifican así. El usuario confirmó recepción del correo y apertura de «Nueva contraseña»; no se atribuye a esa confirmación un cambio de contraseña posterior. La APK cloud no se generó: Gradle informó `java.io.IOException: Unable to establish loopback connection`, también con preferencia IPv4 por proceso. No se cambió la APK instalada que apunta al PC. La web pública sí está probada y funciona independientemente del USB; no se atribuye a esta publicación una prueba física Android cloud ni una firma de tienda.
+La captura nueva de Postman Desktop aún está pendiente; los 61 controles son HTTP Python y se identifican así. El usuario confirmó recepción del correo y apertura de «Nueva contraseña»; no se atribuye a esa confirmación un cambio de contraseña posterior. En este corte del 10/11 la APK cloud todavía no se había generado: Gradle informó `java.io.IOException: Unable to establish loopback connection`. El desbloqueo posterior, la APK 0.1.1 y su descarga pública se documentan en la sección vigente superior. La web pública sí está probada y funciona independientemente del USB; no se atribuye a esta publicación una prueba física Android cloud ni una firma de tienda.
 
 Se conservan checkouts, entornos, bases y antecedentes. HU001–HU026 y HU028 mantienen su cierre funcional previo. **HU027 sigue abierta y pendiente para una versión futura.**
 <!-- aws-activacion-20261110-fin -->
