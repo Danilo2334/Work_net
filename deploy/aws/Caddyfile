@@ -8,6 +8,15 @@
 		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 	}
 	@backend path /api /api/* /admin /admin/* /static/* /health/*
+	redir /descargar /descargar/ 308
+	handle /descargar/* {
+		root * /srv
+		@apk path /descargar/*.apk
+		header @apk Content-Type application/vnd.android.package-archive
+		header @apk Content-Disposition "attachment"
+		header Cache-Control "no-cache"
+		file_server
+	}
 	handle @backend {
 		reverse_proxy api:8000 {
 			header_up X-Forwarded-Proto {scheme}

@@ -28,3 +28,4 @@ backend/staticfiles/
 deploy/aws/.local/
 deploy/aws/artifacts/
 deploy/aws/*.env
+frontend/web/descargar/*.apk
