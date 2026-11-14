@@ -16,6 +16,8 @@ Fuente funcional [`78f1978`](https://github.com/Danilo2334/Work_net/commit/78f19
 
 Verificación de firma APK v2 y `zipalign -c -P 16 4` aprobadas; mismo certificado que 0.1.1. No contiene claves privadas de Gemini, correo, Django o SQL. Instalación de 0.1.1 limpia, login real y recordar sesión; actualización `-r` a 0.1.2 sin desinstalar, con sesión y primera fecha de instalación conservadas. Arranque de release hasta dashboard con datos AWS. Segunda instalación por el **instalador gráfico estándar**: Archivos → APK → Continue → Update → **App installed**; este paso no utilizó `adb install`. No se desactivó Play Protect ni se alteraron datos de los teléfonos.
 
+También pasó una instalación limpia de 0.1.2 y arranque en frío en el emulador, después de retirar únicamente su aplicación de prueba. La descarga pública nueva pasó ocho verificaciones (HTTPS, manifest, 404, rango/cabeceras APK, descarga íntegra y navegación web en 1440/390/320 px); el hash descargado coincide con el artefacto probado. [Registro de descarga](../../docs/android-release-download-20261113.json).
+
 Archivo de 55.219.847 bytes, SHA-256 `a800f493088e61f58ae0380a14b65af8fb433856f2e6ec4cf5eed911b19381f6`. [Registro sanitizado](../../docs/android-release-20261113.json) · [manifest vigente](../web/descargar/apk.json).
 
 ![Instalador estándar Android 12 acepta WorkNet release](../../docs/evidencias/android-release-20261113/android12-package-installer-success.png)

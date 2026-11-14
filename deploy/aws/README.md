@@ -113,7 +113,7 @@ URL: https://worknet.3.136.118.169.sslip.io/descargar/ . Fuente en `frontend/web
 Los APK no se incluyen en Git. Después de cada build web y **antes** de empaquetar/subir el directorio estático, incorporar el artefacto aprobado:
 
 ```powershell
-python deploy/aws/stage_android_download.py --apk "RUTA_PRIVADA/WorkNet-AWS-0.1.1-2.apk" --web-root frontend/build/web
+python deploy/aws/stage_android_download.py --apk "RUTA_PRIVADA/WorkNet-AWS-0.1.2-3.apk" --web-root frontend/build/web
 ```
 
 El preparador verifica tamaño/hash antes de copiar; rechaza otro archivo. No contiene ni necesita credenciales. Mantener la APK fuera de Git y de los secretos del backend. Cambiar una versión futura exige actualizar el manifest, la página, su firma compatible y repetir la descarga verificando el hash.

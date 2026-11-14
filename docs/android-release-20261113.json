@@ -20,6 +20,7 @@
     "min_android_api": 24,
     "distribution": "Release build; existing presentation signing retained for in-place updates; not a Play Store release"
   },
-  "scope": "Isolated Android emulator; not the two user phones; no uninstall or clearing data",
-  "system_package_installer": "Files → APK → Continue → Update → App installed; no ADB install for this step"
+  "scope": "Isolated Android 12 emulator, not the two user phones. Update preserved session/data. Separate fresh-install check removed only the emulator test app.",
+  "system_package_installer": "Files â†’ APK â†’ Continue â†’ Update â†’ App installed; no ADB install for this step",
+  "release_clean_install": "Success on isolated emulator; cold launch Status ok"
 }
