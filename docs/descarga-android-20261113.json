@@ -1,0 +1,168 @@
+{
+  "date_bogota": "2026-11-13",
+  "checked_at_utc": "2026-11-14T02:42:13.106702+00:00",
+  "origin": "https://worknet.3.136.118.169.sslip.io",
+  "apk": {
+    "version": "0.1.1",
+    "version_code": 2,
+    "filename": "WorkNet-AWS-0.1.1-2.apk",
+    "bytes": 74656105,
+    "sha256": "56420ad9d7508eb1ed021d12344dbb7cd261e670d464b9b53c91295278485427",
+    "source_commit": "3cad0731c3dab3f30471614f63a5e22f4c78ba52",
+    "api_origin": "https://worknet.3.136.118.169.sslip.io/api/",
+    "min_android_api": 24,
+    "distribution": "Direct presentation build; profile variant, debug signing; not a Play Store release"
+  },
+  "checks": [
+    {
+      "path": "/descargar",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/descargar/apk.json",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/descargar/no-existe.apk",
+      "status": 404,
+      "expected": 404
+    },
+    {
+      "path": "/descargar/WorkNet-AWS-0.1.1-2.apk",
+      "status": 206,
+      "expected": 206
+    },
+    {
+      "case": "public_page_and_web_navigation",
+      "viewport": "escritorio",
+      "width": 1440,
+      "javascript_errors": 0,
+      "horizontal_overflow": false
+    },
+    {
+      "case": "real_browser_download",
+      "filename": "WorkNet-AWS-0.1.1-2.apk",
+      "bytes": 74656105,
+      "sha256": "56420ad9d7508eb1ed021d12344dbb7cd261e670d464b9b53c91295278485427"
+    },
+    {
+      "case": "public_page_and_web_navigation",
+      "viewport": "movil",
+      "width": 390,
+      "javascript_errors": 0,
+      "horizontal_overflow": false
+    },
+    {
+      "case": "public_page_and_web_navigation",
+      "viewport": "estrecho",
+      "width": 320,
+      "javascript_errors": 0,
+      "horizontal_overflow": false
+    }
+  ],
+  "api_smoke": {
+    "checked_at_utc": "2026-11-14T02:40:14.817578+00:00",
+    "cases": [
+      {
+        "path": "login/",
+        "method": "POST",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "dashboard/candidate/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "offers/search/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "offers/saved/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "curriculum/generated/assistant/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "curriculum/generated/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "curriculum/generated/pdf/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "applications/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "notifications/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "conversations/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "dashboard/admin/",
+        "method": "GET",
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "path": "login/",
+        "method": "POST",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "statistics/company/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "dashboard/company/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "conversations/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200
+      },
+      {
+        "path": "login/",
+        "method": "POST",
+        "status": 202,
+        "expected": 202
+      }
+    ],
+    "scope": "New HTTP smoke checks with existing fictional QA accounts; no edits, no new Gemini generation or email; admin challenge only."
+  },
+  "scope": "HTTPS and HTTP smoke checks plus desktop/mobile emulated browser and real APK download; no new physical Android installation, Gemini generation, or Postman execution."
+}

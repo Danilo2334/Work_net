@@ -1,5 +1,7 @@
 # WorkNet · Plan de despliegue
 
+**Actualización 13/11/2026:** [descargar APK Android 0.1.1](https://worknet.3.136.118.169.sslip.io/descargar/). Página independiente publicada en el mismo servidor, con descarga completa y SHA-256 verificados. El bloqueo anterior de Gradle quedó resuelto; es una compilación de presentación, no de Google Play. [Revisión vigente y evidencias](../frontend/docs/REVISION.md).
+
 ## Despliegue vigente: AWS con créditos — 10/11/2026
 
 Se trabaja en una copia aislada desde main `197f536`, conservando los entornos anteriores. Con autorización expresa del usuario se creó Lightsail Linux de **2 GB, 2 vCPU y 60 GB por US$12/mes contra créditos**, Ubuntu 24.04, en `us-east-2`. El proyecto `worknet` conserva el plan **FREE**; no se activó Paid. PostgreSQL, Redis, Django y Flutter/Caddy están preparados para esa misma instancia, sin contratar servicios gestionados adicionales. El saldo exacto restante debe consultarse en AWS Settings.
