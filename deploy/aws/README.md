@@ -113,7 +113,7 @@ URL: https://worknet.3.136.118.169.sslip.io/descargar/ . Fuente en `frontend/web
 Los APK no se incluyen en Git. Después de cada build web y **antes** de empaquetar/subir el directorio estático, incorporar el artefacto aprobado:
 
 ```powershell
-python deploy/aws/stage_android_download.py --apk "RUTA_PRIVADA/WorkNet-AWS-0.1.1-2.apk" --web-root frontend/build/web
+python deploy/aws/stage_android_download.py --apk "RUTA_PRIVADA/WorkNet-AWS-0.1.2-3.apk" --web-root frontend/build/web
 ```
 
 El preparador verifica tamaño/hash antes de copiar; rechaza otro archivo. No contiene ni necesita credenciales. Mantener la APK fuera de Git y de los secretos del backend. Cambiar una versión futura exige actualizar el manifest, la página, su firma compatible y repetir la descarga verificando el hash.
@@ -121,3 +121,16 @@ El preparador verifica tamaño/hash antes de copiar; rechaza otro archivo. No co
 La publicación inicial de esta página fue una adición estática sobre el runtime `3cad073`, con respaldo previo de Caddy y recarga validada sin reiniciar Django/PostgreSQL/Redis. Fuente HTML/Caddy `67688f5`; marcador operativo `/opt/worknet/download-page-source`. No confundir este marcador con `WORKNET_RELEASE`, que identifica el runtime de la aplicación. En una publicación completa futura, incluir la página/APK en el web root y conservar la regla Caddy versionada. Nunca copiar bases ni entornos privados al directorio web.
 
 Revisión: seis controles públicos y 16 HTTP de la aplicación; ocho verificaciones de página/archivo/navegación, incluida descarga completa desde Chromium móvil emulado. [Evidencias y límites](../../frontend/docs/REVISION.md). No se contrataron recursos; las descargas consumen transferencia del bundle existente. No se afirma una nueva aceptación física Android ni una generación nueva Gemini.
+
+
+### Distribución Android release 0.1.2
+
+La descarga vigente es `WorkNet-AWS-0.1.2-3.apk`, compilada en modo release, con firma compatible con 0.1.1. Usar el preparador con ese archivo; `apk.json` fija su hash/tamaño. Se probó actualización con sesión conservada y aceptación por el instalador gráfico estándar en Android 12/API 31. La causa del rechazo físico de 0.1.1 no se reprodujo; no declarar resueltos ambos teléfonos sin confirmación. Los artefactos anteriores se conservan como antecedentes.
+
+Build reproducible desde `frontend` (configurar TEMP/TMP normalizados por proceso en Windows si Java informa un error de loopback):
+
+```powershell
+flutter build apk --release --build-name=0.1.2 --build-number=3 --dart-define=API_BASE_URL=https://worknet.3.136.118.169.sslip.io/api/
+```
+
+Comprobar `apksigner verify --verbose --print-certs`, identidad del certificado anterior y `zipalign -c -P 16 4` antes de publicar. Mantener las claves backend fuera de APK y Git. No sustituir la firma existente durante esta entrega: impediría actualizar sin desinstalar. No es una publicación Google Play.
