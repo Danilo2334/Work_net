@@ -201,7 +201,7 @@ class _CurriculumAssistantDialogState extends State<CurriculumAssistantDialog> {
                       ),
                     if (_available) ...[
                       const Text(
-                        'Cuéntanos tus estudios, experiencia, habilidades y logros. Gemini organizará los datos en una propuesta que podrás revisar antes de guardar.',
+                        'Cuéntanos tus estudios, experiencia, habilidades y logros. OpenAI organizará los datos en una propuesta que podrás revisar antes de guardar.',
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
@@ -235,7 +235,7 @@ class _CurriculumAssistantDialogState extends State<CurriculumAssistantDialog> {
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
                       const Text(
-                        'El texto y el perfil seleccionado se enviarán a Gemini. El tratamiento de la información depende de las condiciones y el plan del proveedor. Envía solo datos que quieras compartir.',
+                        'El texto y el perfil seleccionado se enviarán a OpenAI. El tratamiento de la información depende de las condiciones y el plan del proveedor. Envía solo datos que quieras compartir.',
                       ),
                       CheckboxListTile(
                         key: const ValueKey('cv_ai_consent'),

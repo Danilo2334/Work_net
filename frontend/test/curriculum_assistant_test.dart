@@ -100,6 +100,7 @@ void main() {
             'text': 'Texto QA',
             'include_profile': false,
             'consent': true,
+            'provider': 'OpenAI',
           });
           return http.Response(
             jsonEncode({
