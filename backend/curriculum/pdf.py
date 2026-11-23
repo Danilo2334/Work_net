@@ -35,7 +35,9 @@ def period(record):
     start, end = record.get("start_date"), record.get("end_date")
     if not start and not end:
         return ""
-    return " - ".join(str(value) for value in (start or "", end or "Actualidad"))
+    if not start:
+        return f"Hasta {end}"
+    return f"{start} - {end or 'Actualidad'}"
 
 
 def render_curriculum(template, data):

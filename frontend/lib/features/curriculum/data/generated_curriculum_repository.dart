@@ -89,6 +89,7 @@ class HttpGeneratedCurriculumRepository
         'text': text,
         'include_profile': includeProfile,
         'consent': consent,
+        'provider': 'OpenAI',
       },
     );
     final value = body['suggestion'];
