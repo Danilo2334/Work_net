@@ -39,6 +39,7 @@ class AssistantFailure(APIException):
 class AssistantInput(StrictInputSerializer):
     text = serializers.CharField(max_length=MAX_TEXT, allow_blank=True)
     include_profile = serializers.BooleanField(default=False)
+    provider = serializers.ChoiceField(choices=["OpenAI"], required=False)
     consent = serializers.BooleanField()
 
     def validate_consent(self, value):
@@ -47,6 +48,8 @@ class AssistantInput(StrictInputSerializer):
         return value
 
     def validate(self, value):
+        if value.get("provider") != "OpenAI":
+            raise serializers.ValidationError({"provider": "Actualiza WorkNet para autorizar el envio a OpenAI."})
         if not value["text"].strip() and not value["include_profile"]:
             raise serializers.ValidationError({"text": "Escribe tu información o incluye tu perfil propio."})
         return value
@@ -65,9 +68,9 @@ class NoRedirect(HTTPRedirectHandler):
 
 
 def configuration():
-    key = getattr(settings, "GEMINI_API_KEY", "").strip()
-    model = getattr(settings, "GEMINI_MODEL", "").strip()
-    return key, model if re.fullmatch(r"gemini-[a-zA-Z0-9._-]{1,100}", model) else ""
+    key = getattr(settings, "OPENAI_API_KEY", "").strip()
+    model = getattr(settings, "OPENAI_MODEL", "").strip()
+    return key, model if re.fullmatch(r"gpt-[a-zA-Z0-9._-]{1,100}", model) else ""
 
 
 def _object(properties, *, required=None):
@@ -110,15 +113,18 @@ def generate(source):
     if not key or not model:
         raise AssistantFailure(code="assistant_not_configured")
     payload = {
-        "systemInstruction": {"parts": [{"text": SYSTEM}]},
-        "contents": [{"role": "user", "parts": [{"text": json.dumps(source, ensure_ascii=False)}]}],
-        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 7000,
-                             "responseFormat": {"text": {"mimeType": "APPLICATION_JSON", "schema": response_schema()}}},
+        "model": model,
+        "store": False,
+        "messages": [{"role": "system", "content": SYSTEM},
+                     {"role": "user", "content": json.dumps(source, ensure_ascii=False)}],
+        "response_format": {"type": "json_schema", "json_schema": {
+            "name": "curriculum", "strict": True, "schema": response_schema()}},
+        "max_completion_tokens": 7000,
     }
     request = Request(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+        "https://api.openai.com/v1/chat/completions",
         data=json.dumps(payload, ensure_ascii=False).encode("utf-8"), method="POST",
-        headers={"Content-Type": "application/json", "Accept": "application/json", "x-goog-api-key": key},
+        headers={"Content-Type": "application/json", "Authorization": "Bearer " + key},
     )
     try:
         # Fixed HTTPS host, no redirect, no automatic retry or request logging.
@@ -127,12 +133,10 @@ def generate(source):
         if len(raw) > MAX_RESPONSE:
             raise ValueError("oversized provider response")
         envelope = json.loads(raw)
-        candidates = envelope["candidates"]
-        candidate = candidates[0]
-        if candidate.get("finishReason") != "STOP":
-            raise ValueError("unfinished or blocked provider response")
-        text = "".join(part.get("text", "") for part in candidate["content"]["parts"] if not part.get("thought"))
-        result = json.loads(text)
+        choice = envelope["choices"][0]
+        if choice.get("finish_reason") != "stop" or choice["message"].get("refusal"):
+            raise ValueError("unfinished or refused provider response")
+        result = json.loads(choice["message"]["content"])
     except HTTPError as exc:
         status = 429 if exc.code == 429 else 503
         message = "Se alcanzó el límite del servicio de IA. Inténtalo más tarde; tu edición se conserva." if status == 429 else None
@@ -233,7 +237,7 @@ class CurriculumAssistantView(OwnCurriculumView):
 
     def get(self, request):
         key, model = configuration()
-        return Response({"available": bool(key and model), "provider": "Gemini", "max_text_length": MAX_TEXT,
+        return Response({"available": bool(key and model), "provider": "OpenAI", "max_text_length": MAX_TEXT,
                          "message": "El proveedor está configurado; la disponibilidad real se comprueba al generar." if key and model
                          else "El asistente está pendiente de configuración. Puedes seguir creando tu CV manualmente."})
 
@@ -251,4 +255,4 @@ class CurriculumAssistantView(OwnCurriculumView):
             suggestion = validate_suggestion(result, request.user, source)
         except (ValueError, TypeError, ValidationError, RecursionError):
             raise AssistantFailure("La IA devolvió datos que necesitan corrección. Tu CV se conserva; vuelve a intentarlo.", status=502, code="invalid_suggestion") from None
-        return Response({"suggestion": suggestion, "provider": "Gemini", "model": model, "saved": False})
+        return Response({"suggestion": suggestion, "provider": "OpenAI", "model": model, "saved": False})

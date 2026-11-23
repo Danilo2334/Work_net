@@ -33,7 +33,7 @@ def proposal():
 
 
 @override_settings(PASSWORD_HASHERS=["django.contrib.auth.hashers.MD5PasswordHasher"],
-                   GEMINI_API_KEY="fixture-key-not-real", GEMINI_MODEL="gemini-3.5-flash-lite", CURRICULUM_AI_RATE="1000/hour")
+                   OPENAI_API_KEY="fixture-key-not-real", OPENAI_MODEL="gpt-4.1-mini", CURRICULUM_AI_RATE="1000/hour")
 class CurriculumAssistantTests(TestCase):
     def setUp(self):
         cache.clear()
@@ -48,7 +48,7 @@ class CurriculumAssistantTests(TestCase):
         self.client.credentials(HTTP_AUTHORIZATION="Token " + fixture_token(user).key)
 
     def post(self, **kwargs):
-        return self.client.post(URL, {"text": TEXT, "consent": True, **kwargs}, format="json")
+        return self.client.post(URL, {"text": TEXT, "consent": True, "provider": "OpenAI", **kwargs}, format="json")
 
     def test_configuration_reports_presence_without_key_or_network(self):
         response = self.client.get(URL)
@@ -58,7 +58,7 @@ class CurriculumAssistantTests(TestCase):
         self.generator.assert_not_called()
         self.assertEqual(response["Cache-Control"], "private, no-store")
         self.assertIn("Authorization", response["Vary"])
-        with override_settings(GEMINI_API_KEY=""):
+        with override_settings(OPENAI_API_KEY=""):
             self.assertFalse(self.client.get(URL).data["available"])
 
     def test_json_field_names_do_not_count_as_user_supplied_facts(self):
@@ -168,28 +168,28 @@ class CurriculumAssistantTests(TestCase):
         self.assertEqual(self.post().status_code, 200)
 
 
-@override_settings(GEMINI_API_KEY="fixture-key-not-real", GEMINI_MODEL="gemini-3.5-flash-lite")
+@override_settings(OPENAI_API_KEY="fixture-key-not-real", OPENAI_MODEL="gpt-4.1-mini")
 class GeminiTransportTests(SimpleTestCase):
     def test_private_header_fixed_host_structured_json_and_timeout(self):
-        envelope = {"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": json.dumps(proposal())}]}}]}
+        envelope = {"choices": [{"finish_reason": "stop", "message": {"content": json.dumps(proposal())}}]}
         response = MagicMock()
         response.__enter__.return_value.read.return_value = json.dumps(envelope).encode()
         with patch("curriculum.assistant.build_opener") as opener:
             opener.return_value.open.return_value = response
             result, model = generate({"text": TEXT})
         request = opener.return_value.open.call_args.args[0]
-        self.assertEqual(request.full_url, "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent")
+        self.assertEqual(request.full_url, "https://api.openai.com/v1/chat/completions")
         self.assertNotIn("fixture-key", request.full_url)
-        self.assertEqual(request.get_header("X-goog-api-key"), "fixture-key-not-real")
+        self.assertEqual(request.get_header("Authorization"), "Bearer fixture-key-not-real")
         payload = json.loads(request.data)
-        self.assertIn("schema", payload["generationConfig"]["responseFormat"]["text"])
-        self.assertEqual(payload["generationConfig"]["responseFormat"]["text"]["mimeType"], "APPLICATION_JSON")
+        self.assertIn("schema", payload["response_format"]["json_schema"])
+        self.assertTrue(payload["response_format"]["json_schema"]["strict"])
         self.assertEqual(opener.return_value.open.call_args.kwargs["timeout"], 15)
         self.assertEqual(result, proposal())
-        self.assertEqual(model, "gemini-3.5-flash-lite")
+        self.assertEqual(model, "gpt-4.1-mini")
 
     def test_configuration_missing_or_invalid_never_connects(self):
-        for settings in ({"GEMINI_API_KEY": ""}, {"GEMINI_MODEL": ""}, {"GEMINI_MODEL": "https://example.test/leak"}):
+        for settings in ({"OPENAI_API_KEY": ""}, {"OPENAI_MODEL": ""}, {"OPENAI_MODEL": "https://example.test/leak"}):
             with override_settings(**settings), patch("curriculum.assistant.build_opener") as opener:
                 with self.assertRaises(AssistantFailure): generate({"text": TEXT})
                 opener.assert_not_called()
